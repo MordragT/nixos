@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -78,28 +78,21 @@
     droidcam # use smartphone as camera
   ];
   
-  lib.options = {
-    
-    # pam environment variables
-    
-    pam.sessionVariables = {
-      EDITOR = "hx";
-    }; 
-    
-    # xdg
-    
-    xdg.enable = true;
-  
-    # xdg system dirs
-    
-    xdg.systemDirs.data = [
-      "$HOME/.local/share"
-      "$HOME/.nix-profile/share"
-      "/usr/share"    
-      "/usr/local/share"
-    ];
+  xdg = {
+    enable = true;
   };
-   
+  
+  home.sessionVariables = {
+    EDITOR="hx";
+  };
+
+  pam.sessionVariables = with config.home; sessionVariables // {
+    XDG_CONFIG_HOME =  "${homeDirectory}/.config";
+    XDG_CACHE_HOME = "${homeDirectory}/.cache";
+    XDG_DATA_HOME = "${homeDirectory}/.local/share";
+    XDG_STATE_HOME = "${homeDirectory}/.local/state";
+    XDG_DATA_DIRS = "/usr/share:/usr/local/share:${homeDirectory}/.local/share/:${homeDirectory}/.nix-profile/share";
+  };
   
   programs.nushell = {
     enable = true;
@@ -121,6 +114,5 @@
   programs.bat.enable = true;
   programs.exa.enable = true;
   programs.zoxide.enable = true;
-  
   
 }
