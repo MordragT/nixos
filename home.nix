@@ -67,6 +67,8 @@ in {
     fd # find replacement
     zola # static site generator # lieber in flake ?
     rustscan # modern portscanner
+    sn0int # semi automatic osint framework
+    unstable.authoscope # scriptable network authentication cracker
              
     # Downloads        
     megasync # File sharing
@@ -212,6 +214,9 @@ in {
       "browser.download.useDownloadDir" = false;
       "signon.rememberSignons" = false;
       "services.sync.engine.passwords" = false;
+      "services.sync.engine.addons" = false;
+      "services.sync.engine.history" = false;
+      "services.sync.engine.bookmarks" = true;
     };
   }; 
     
