@@ -69,6 +69,7 @@ in {
     rustscan # modern portscanner
     sn0int # semi automatic osint framework
     unstable.authoscope # scriptable network authentication cracker
+    rbw # biwtarden cli manager
              
     # Downloads        
     megasync # File sharing
