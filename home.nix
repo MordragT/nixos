@@ -98,6 +98,10 @@ in {
     cpufetch
     spotify
     droidcam # use smartphone as camera
+    
+    # needed for cargo install command
+    openssl
+    pkg-config
   ];
   
   xdg = {
@@ -195,6 +199,8 @@ in {
     };    
   };
       
+  programs.chromium.enable = true;
+    
   programs.exa.enable = true;
   
   programs.firefox = {

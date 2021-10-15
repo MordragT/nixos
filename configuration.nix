@@ -11,7 +11,7 @@ let
   home-manager =
     fetchTarball {
       url = "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz";
-      sha256 = "1x77fglv81rrpihkv8vnl1023hawg83k42vbflp76blgljv1sxm7";
+      sha256 = "1kb4hx8ymdynfz08c417wvql7yq07w5sabxhihlvlfnzicnrbsp7";
   };
 in {
     
@@ -52,7 +52,8 @@ in {
     useDHCP = false;
     interfaces.enp2s0.useDHCP = true;
     interfaces.wlo1.useDHCP = true;
-
+    # resolvconf.dnsExtensionMechanism = false;
+      
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
     # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -114,7 +115,14 @@ in {
     neovim
     step-cli
     firefox
+    clang
+    # cargo
+    rustup
   ];
+    
+  environment.variables = {
+    EDITOR = "hx";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tom = {
@@ -152,6 +160,12 @@ in {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+    
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlo1";
+  };
+  
 
   security.acme.server = "https://localhost:8443/acme/acme/directory";
   security.acme.email = "connect.mordrag@gmx.de";
