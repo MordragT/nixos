@@ -115,9 +115,6 @@ in {
     neovim
     step-cli
     firefox
-    clang
-    # cargo
-    rustup
   ];
     
   environment.variables = {

@@ -7,6 +7,14 @@ let
   nurTarball =
     fetchTarball
       https://github.com/nix-community/NUR/archive/master.tar.gz;
+  cargo2nixTarball =
+    fetchTarball
+      https://github.com/cargo2nix/cargo2nix/tarball/master;
+  cargo2nix = import cargo2nixTarball {};
+  gitmojiTarball =
+    fetchTarball
+      https://github.com/MordragT/gitmoji-cli/tarball/master;
+  gitmoji = import gitmojiTarball {};
   toml = pkgs.formats.toml {};
 in {
   # Let Home Manager install and manage itself.
@@ -26,7 +34,7 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "21.05";
-  
+    
   # Packages
   
   nixpkgs.config = {
@@ -70,6 +78,7 @@ in {
     sn0int # semi automatic osint framework
     unstable.authoscope # scriptable network authentication cracker
     rbw # biwtarden cli manager
+    gitmoji
              
     # Downloads        
     megasync # File sharing
@@ -100,8 +109,9 @@ in {
     droidcam # use smartphone as camera
     
     # needed for cargo install command
-    openssl
-    pkg-config
+    rustup
+    clang
+    cargo2nix.package
   ];
   
   xdg = {
