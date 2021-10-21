@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  # imports =
+  #   [
+  #     (modulesPath + "/installer/scan/not-detected.nix")
+  #   ];
   
   hostName = "tom-laptop"; # Define your hostname.
   
