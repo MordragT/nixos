@@ -25,6 +25,16 @@
           ./hosts/laptop.nix
           ./system/default.nix
           ./features/self-hosting.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.root = import ./home/root.nix {
+              inherit inputs;      
+            };
+            home-manager.users.tom = import ./home/tom.nix {
+              inherit inputs;    
+            };
+          }
           ./users/tom.nix
           ./users/root.nix
         ];   
