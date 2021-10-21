@@ -1,4 +1,4 @@
-{ lib, config, home-manager, nur-community, ... }:
+{ config, pkgs, home-manager, nur-community, ... }:
 {   
   home-manager.users.root = { config, pkgs, ... }:
   let
