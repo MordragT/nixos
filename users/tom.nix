@@ -1,4 +1,4 @@
-{ lib, config, home-manager, nur-community, ... }:
+{ config, pkgs, lib, home-manager, nur-community, ... }:
 let
   toml = pkgs.formats.toml {};
 in
