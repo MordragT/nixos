@@ -1,4 +1,7 @@
 { lib, config, home-manager, nur-community, ... }:
+let
+  toml = pkgs.formats.toml {};
+in
 {        
   users.users.tom = {
      isNormalUser = true;
