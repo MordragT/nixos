@@ -1,14 +1,23 @@
 { pkgs, config, lib, ... }:
-{
+let
+  root = ../../secrets/step-ca/root_ca.crt;
+  crt = ../../secrets/step-ca/intermediate_ca.crt;
+  key = ../../secrets/step-ca/intermediate_ca_key;
+in {
+  age.secrets.step-ca = {
+    file = ../../secrets/step-ca.age;
+    owner = "step-ca";
+    group = "step-ca";
+    mode = "0440";
+  };
+      
   services.step-ca = {
     enable = true;
     address = "127.0.0.1";
     port = 8443;    
-    intermediatePasswordFile = ./secrets/step-ca/password;
+    intermediatePasswordFile = config.age.secrets.step-ca.path;
     settings = {
-      root = "./secrets/step-ca/root_ca.crt";
-      crt = "./secrets/step-ca/intermediate_ca.crt";
-      key = "./secrets/step-ca/intermediate_ca_key";
+      inherit root crt key;
       dnsNames = [ "localhost" ];
       logger.format = "text";
       db = {
@@ -27,21 +36,17 @@
     
   security.acme.server = "https://localhost:8443/acme/acme/directory";  
   security.pki.certificateFiles = [
-    "./secrets/step-ca/root_ca.crt"
-    "./secrets/step-ca/intermediate_ca.crt"    
+    root
+    crt
   ];
     
   users.users.step-ca = {
     group = "step-ca";
-    extraGroups = [ "secrets" ];
     isSystemUser = true;    
   };
   users.groups.step-ca = { };
-  users.groups.secrets.name = "secrets";
     
   systemd.tmpfiles.rules = [
-    "d ./secrets 750 root secrets"    
-    "z ./secrets 750 root secrets"
     "d /var/lib/step-ca 700 step-ca step-ca"    
     "z /var/lib/step-ca 700 step-ca step-ca"    
     "d /var/log/caddy 750 caddy caddy"

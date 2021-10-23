@@ -1,5 +1,17 @@
 { pkgs, config, lib, ... }:
-{
+let
+  caddy = config.services.caddy;
+  secrets = config.age.secrets;
+  
+  secret = path: {
+    file = path;
+    owner = "nextcloud";
+    group = "nextcloud";
+    mode = "0440";
+  };
+in {
+  age.secrets.nextcloud = secret ../../secrets/nextcloud.age;
+    
   services.nextcloud = {
     enable = true;
     hostName = "nextcloud.localhost";
@@ -10,20 +22,24 @@
       defaultPhoneRegion = "DE";
       adminuser = "root"; 
       # Should use adminpassfile
-      adminpassFile = "/etc/nixos/secrets/nextcloud-admin-pass";
+      adminpassFile = secrets.nextcloud.path;
       extraTrustedDomains = [
         "nextcloud.localhost"
         "git.localhost"
       ];
       overwriteProtocol = "https";
-    };    
+    };
   };
   
   services.phpfpm.pools.nextcloud.settings = {
-    "listen.owner" = config.services.caddy.user;
-    "listen.group" = config.services.caddy.group;    
+    "listen.owner" = caddy.user;
+    "listen.group" = caddy.group;    
   };
   
+  users.users.nextcloud = {
+    group = "nextcloud";
+    isSystemUser = true;
+  };
   users.groups.nextcloud.members = [ "nextcloud" config.services.caddy.user ];
 
   services.caddy.virtualHosts."nextcloud.localhost" = {

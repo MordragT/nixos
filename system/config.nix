@@ -17,7 +17,13 @@
 
   security.acme.email = "connect.mordrag@gmx.de";
   security.acme.acceptTerms = true;
-    
+  # security.pam.p11.enable = true;
+
+  environment.variables = {
+    EDITOR = "hx";
+  };
+  
+  # Users    
   users.users = {
     tom = {
       isNormalUser = true;
@@ -27,9 +33,5 @@
     root = {
       extraGroups = [ "root" ];
     };
-  };
-  
-  environment.variables = {
-    EDITOR = "hx";
   };
 }

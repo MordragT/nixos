@@ -32,10 +32,8 @@
     nixosConfigurations = {
       "tom-laptop" = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [
-          ./hosts/laptop.nix
-          ./system/default.nix
-          ./features/self-hosting.nix
+            
+        modules = [            
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
@@ -47,8 +45,12 @@
               inherit system pkgs;    
             };
           }
+          ./hosts/laptop.nix
+          ./system/default.nix
+          ./features/self-hosting.nix
         ];   
-        specialArgs = { inherit system pkgs; };
+            
+        specialArgs = { inherit system pkgs inputs; };
       };
     };
   };

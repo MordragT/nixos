@@ -1,5 +1,7 @@
 { pkgs, config, lib, ... }:
 {
+  services.nginx.enable = false;
+  
   services.caddy = {
     enable = true;
     ca = config.security.acme.server;
