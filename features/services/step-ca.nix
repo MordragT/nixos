@@ -4,11 +4,11 @@
     enable = true;
     address = "127.0.0.1";
     port = 8443;    
-    intermediatePasswordFile = "/var/secrets/step-ca/password";
+    intermediatePasswordFile = ./secrets/step-ca/password;
     settings = {
-      root = "/var/secrets/step-ca/root_ca.crt";
-      crt = "/var/secrets/step-ca/intermediate_ca.crt";
-      key = "/var/secrets/step-ca/intermediate_ca_key";
+      root = "./secrets/step-ca/root_ca.crt";
+      crt = "./secrets/step-ca/intermediate_ca.crt";
+      key = "./secrets/step-ca/intermediate_ca_key";
       dnsNames = [ "localhost" ];
       logger.format = "text";
       db = {
@@ -27,8 +27,8 @@
     
   security.acme.server = "https://localhost:8443/acme/acme/directory";  
   security.pki.certificateFiles = [
-    /var/secrets/step-ca/root_ca.crt
-    /var/secrets/step-ca/intermediate_ca.crt    
+    "./secrets/step-ca/root_ca.crt"
+    "./secrets/step-ca/intermediate_ca.crt"    
   ];
     
   users.users.step-ca = {
@@ -40,8 +40,8 @@
   users.groups.secrets.name = "secrets";
     
   systemd.tmpfiles.rules = [
-    "d /var/secrets 750 root secrets"    
-    "z /var/secrets 750 root secrets"
+    "d ./secrets 750 root secrets"    
+    "z ./secrets 750 root secrets"
     "d /var/lib/step-ca 700 step-ca step-ca"    
     "z /var/lib/step-ca 700 step-ca step-ca"    
     "d /var/log/caddy 750 caddy caddy"

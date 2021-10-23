@@ -22,17 +22,7 @@ in {
   home.stateVersion = "21.11";
     
   # Packages
-  
-  # nixpkgs.config = {
-  #   allowUnfree = true;
-  #   packageOverrides = pkgs: {
-  #     # = import arball {
-  #     #   config = config.nixpkgs.config;
-  #     # };
-  #     inherit nur;
-  #   };
-  # };  
-    
+   
   home.packages = with pkgs; [
     # No GTK Core Apps
     
@@ -44,7 +34,7 @@ in {
     contrast # gtk check contrast
     fractal # gtk matrix messaging
     markets # gtk crypto market prices
-    just # make alike # lieber in flake ?
+    just # make alike
     navi # interactive cheat sheet
     tealdeer # tldr
     du-dust # file system usage
@@ -63,7 +53,7 @@ in {
     sn0int # semi automatic osint framework
     authoscope # scriptable network authentication cracker
     rbw # biwtarden cli manager
-    gitmoji
+    local.gitmoji
     himalaya # cli email client
              
     # Downloads        
@@ -71,11 +61,9 @@ in {
     qbittorrent
     
     # IT Security & Reverse Engineering
-    # wireshark
     cutter    
     
     # Development
-    javacc # nicht lieber in flake wo gebraucht ?
     dbeaver
     
     # Asset creation
@@ -97,8 +85,6 @@ in {
     # needed for cargo install command
     rustup
     clang
-    cargo2nix.package
-    crate2nix
   ];
   
   xdg = {

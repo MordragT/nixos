@@ -29,4 +29,12 @@
       };    
     };    
   };
+    
+  services.caddy.virtualHosts."mailserver.localhost" = {
+    extraConfig = ''
+      tls connect.mordrag@gmx.de {
+        ca https://localhost:8443/acme/acme/directory
+      }
+    '';          
+  };
 }
