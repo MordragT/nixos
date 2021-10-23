@@ -5,8 +5,6 @@
   #     (modulesPath + "/installer/scan/not-detected.nix")
   #   ];
   
-  # hostName = "tom-laptop"; # Define your hostname.
-  
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   
@@ -31,11 +29,13 @@
   
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlo1.useDHCP = true;
-  
-  # extraHosts = ''
-  #   127.0.0.1 mordrag.io
-  # '';
+  networking = {
+    hostName = "tom-laptop";    
+    useDHCP = false;
+    interfaces.enp2s0.useDHCP = true;
+    interfaces.wlo1.useDHCP = true;
+    extraHosts = ''
+      127.0.0.1 mordrag.io
+    '';
+  };
 }
