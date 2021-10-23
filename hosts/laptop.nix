@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, modulesPath, ... }:
 {
-  # imports =
-  #   [
-  #     (modulesPath + "/installer/scan/not-detected.nix")
-  #   ];
+  imports =
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -32,6 +32,7 @@
   networking = {
     hostName = "tom-laptop";    
     useDHCP = false;
+    
     interfaces.enp2s0.useDHCP = true;
     interfaces.wlo1.useDHCP = true;
     extraHosts = ''
