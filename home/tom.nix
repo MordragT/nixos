@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   toml = pkgs.formats.toml {};
 in {
@@ -9,7 +9,7 @@ in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "tom";
-  home.homeDirectory = "/home/tom";
+  home.homeDirectory = pkgs.lib.mkForce "/home/tom";
   
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -23,17 +23,15 @@ in {
     
   # Packages
   
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: {
-      # = import arball {
-      #   config = config.nixpkgs.config;
-      # };
-      nur = import nur-community {
-        inherit pkgs;
-      };
-    };
-  };  
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   packageOverrides = pkgs: {
+  #     # = import arball {
+  #     #   config = config.nixpkgs.config;
+  #     # };
+  #     inherit nur;
+  #   };
+  # };  
     
   home.packages = with pkgs; [
     # No GTK Core Apps
@@ -111,16 +109,16 @@ in {
     };
   };
   
-  home.sessionVariables = {
-    EDITOR="hx";
-  };
+  # home.sessionVariables = {
+  #   EDITOR="hx";
+  # };
   
-  pam.sessionVariables = with config.home; sessionVariables // {
-    XDG_CONFIG_HOME =  "${homeDirectory}/.config";
-    XDG_CACHE_HOME = "${homeDirectory}/.cache";
-    XDG_DATA_HOME = "${homeDirectory}/.local/share";
-    XDG_STATE_HOME = "${homeDirectory}/.local/state";
-    XDG_DATA_DIRS = "/usr/share:/usr/local/share:${homeDirectory}/.local/share/:${homeDirectory}/.nix-profile/share";
+  pam.sessionVariables = {
+    XDG_CONFIG_HOME =  "/home/tom/.config";
+    XDG_CACHE_HOME = "/home/tom/.cache";
+    XDG_DATA_HOME = "/home/tom/.local/share";
+    XDG_STATE_HOME = "/home/tom/.local/state";
+    XDG_DATA_DIRS = "/usr/share:/usr/local/share:/home/tom/.local/share/:/home/tom/.nix-profile/share";
   };
     
   programs.bat = {
@@ -198,12 +196,6 @@ in {
     };    
   };
         
-    
-  programs.captive-browser = {
-    enable = true;
-    interface = "wlo1";
-  };
-    
   programs.chromium.enable = true;
     
   programs.exa.enable = true;
@@ -244,8 +236,6 @@ in {
     edit_mode = "vi";
     };
   };  
-      
-  programs.wireshark.enable = true;
-    
+          
   programs.zoxide.enable = true; 
 }

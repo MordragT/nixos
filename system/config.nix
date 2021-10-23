@@ -18,6 +18,17 @@
   security.acme.email = "connect.mordrag@gmx.de";
   security.acme.acceptTerms = true;
     
+  users.users = {
+    tom = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
+     
+    root = {
+      extraGroups = [ "root" ];
+    };
+  };
+  
   environment.variables = {
     EDITOR = "hx";
   };

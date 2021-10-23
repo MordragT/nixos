@@ -19,7 +19,7 @@
     };    
   };
   
-  phpfpm.pools.nextcloud.settings = {
+  services.phpfpm.pools.nextcloud.settings = {
     "listen.owner" = config.services.caddy.user;
     "listen.group" = config.services.caddy.group;    
   };
