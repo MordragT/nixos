@@ -8,6 +8,7 @@
   programs.wireshark.enable = true;
   
   environment.systemPackages = with pkgs; [
-    helix  
+    helix
+    agenix
   ];
 }

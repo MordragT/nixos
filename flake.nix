@@ -21,19 +21,13 @@
       config.allowUnfree = true;
       overlays = [
         nur-community.overlay    
+        agenix.overlay
         (final: prev: { local.gitmoji = prev.callPackage gitmoji {
           inherit naersk fenix;    
         }; })
       ];
-      # packageOverrides = pkgs: {
-      #   gitmoji = gitmoji.packages.gitmoji;
-      # };
-    };
-      
+    };      
     system = "x86_64-linux";
-    # nur = import nur-community {
-    #   inherit pkgs;
-    # };
   in {         
     nixosConfigurations = {
       "tom-laptop" = nixpkgs.lib.nixosSystem {
@@ -42,7 +36,7 @@
           ./hosts/laptop.nix
           ./system/default.nix
           ./features/self-hosting.nix
-          # agenix.nixosModules.age
+          agenix.nixosModules.age
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -51,11 +45,10 @@
             };
             home-manager.users.tom = import ./home/tom.nix {
               inherit system pkgs;    
-              # gitmoji = gitmoji.packages.gitmoji;
             };
           }
         ];   
-        specialArgs = { inherit system inputs; };
+        specialArgs = { inherit system pkgs; };
       };
     };
   };
