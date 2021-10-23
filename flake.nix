@@ -34,9 +34,7 @@
       overlays = [
         nur-community.overlay    
         agenix.overlay
-        (final: prev: { local.gitmoji = prev.callPackage gitmoji {
-          inherit naersk fenix;    
-        }; })
+        gitmoji.overlay
       ];
     };      
     system = "x86_64-linux";

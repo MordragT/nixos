@@ -53,7 +53,7 @@ in {
     sn0int # semi automatic osint framework
     authoscope # scriptable network authentication cracker
     rbw # biwtarden cli manager
-    local.gitmoji
+    gitmoji
     himalaya # cli email client
              
     # Downloads        
