@@ -12,9 +12,21 @@
     agenix.url = "github:ryantm/agenix";
     nur-community.url = "github:nix-community/NUR";
     gitmoji.url = "github:MordragT/gitmoji-cli";
+    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
   };
 
-  outputs = { self, nixpkgs, home-manager, naersk, fenix, agenix, nur-community, gitmoji, ... }@inputs: 
+  outputs = {
+    self
+    , nixpkgs
+    , home-manager
+    , naersk
+    , fenix
+    , agenix
+    , nur-community
+    , gitmoji
+    , mailserver
+    , ... 
+  }@inputs: 
   let
     pkgs = import nixpkgs {
       inherit system;
@@ -33,7 +45,8 @@
       "tom-laptop" = nixpkgs.lib.nixosSystem {
         inherit system;
             
-        modules = [            
+        modules = [
+          mailserver.nixosModules.mailserver
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
@@ -47,10 +60,19 @@
           }
           ./hosts/laptop.nix
           ./system/default.nix
-          ./features/self-hosting.nix
+          ./services/vaultwarden.nix
+          ./services/gitea.nix
+          ./services/caddy.nix
+          ./services/nextcloud.nix
+          ./services/step-ca.nix
+          ./services/mailserver.nix
+          ./services/default.nix
+          # ./services/roundcube.nix
         ];   
             
-        specialArgs = { inherit system pkgs inputs; };
+        specialArgs = {
+          inherit system pkgs inputs;
+        };
       };
     };
   };

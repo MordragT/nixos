@@ -10,7 +10,7 @@ let
     mode = "0440";
   };
 in {
-  age.secrets.nextcloud = secret ../../secrets/nextcloud.age;
+  age.secrets.nextcloud = secret ../secrets/nextcloud.age;
     
   services.nextcloud = {
     enable = true;

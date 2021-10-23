@@ -1,11 +1,11 @@
 { pkgs, config, lib, ... }:
 let
-  root = ../../secrets/step-ca/root_ca.crt;
-  crt = ../../secrets/step-ca/intermediate_ca.crt;
-  key = ../../secrets/step-ca/intermediate_ca_key;
+  root = ../secrets/step-ca/root_ca.crt;
+  crt = ../secrets/step-ca/intermediate_ca.crt;
+  key = ../secrets/step-ca/intermediate_ca_key;
 in {
   age.secrets.step-ca = {
-    file = ../../secrets/step-ca.age;
+    file = ../secrets/step-ca.age;
     owner = "step-ca";
     group = "step-ca";
     mode = "0440";
