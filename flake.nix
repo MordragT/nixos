@@ -56,7 +56,40 @@
               inherit system pkgs;    
             };
           }
-          ./hosts/laptop.nix
+          ./hosts/laptop
+          ./system/default.nix
+          ./services/vaultwarden.nix
+          ./services/gitea.nix
+          ./services/caddy.nix
+          ./services/nextcloud.nix
+          ./services/step-ca.nix
+          ./services/mailserver.nix
+          ./services/default.nix
+          # ./services/roundcube.nix
+        ];   
+            
+        specialArgs = {
+          inherit system pkgs inputs;
+        };
+      };
+            
+      "tom-pc" = nixpkgs.lib.nixosSystem {
+        inherit system;
+            
+        modules = [
+          mailserver.nixosModules.mailserver
+          agenix.nixosModules.age
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.root = import ./home/root.nix {
+              inherit system pkgs;      
+            };
+            home-manager.users.tom = import ./home/tom.nix {
+              inherit system pkgs;    
+            };
+          }
+          ./hosts/desktop
           ./system/default.nix
           ./services/vaultwarden.nix
           ./services/gitea.nix
