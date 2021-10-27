@@ -27,7 +27,6 @@ in {
     # No GTK Core Apps
     
     # Rust Apps
-    # helix
     helix # Kakoune style editor
     bottom # htop alike   
     macchina # neofetch alike
@@ -57,14 +56,15 @@ in {
     himalaya # cli email client
              
     # Downloads        
-    megasync # File sharing
+    megacmd # File sharing
     qbittorrent
     
     # IT Security & Reverse Engineering
     cutter    
     
     # Development
-    dbeaver
+    dbeaver # sql client
+    godot # game engine
     
     # Asset creation
     blender
@@ -81,10 +81,20 @@ in {
     cpufetch
     spotify
     droidcam # use smartphone as camera
-    
+    ventoy-bin # create bootable usb drive for isos
+    libreoffice-fresh
+      
     # needed for cargo install command
     rustup
     clang
+      
+    # Gaming
+    steam-tui
+    steamcmd
+    lutris
+    teamspeak_client
+    # pufferpanel # game server
+    
   ];
   
   xdg = {
@@ -222,6 +232,8 @@ in {
     edit_mode = "vi";
     };
   };  
-          
+   
+  programs.obs-studio.enable = true;
+            
   programs.zoxide.enable = true; 
 }
