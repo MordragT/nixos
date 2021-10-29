@@ -234,6 +234,17 @@ in {
   };  
    
   programs.obs-studio.enable = true;
-            
+    
+  programs.rofi = {
+    enable = true;
+    font = "Fira Code Retina 10";
+    theme = "gruvbox-dark";
+    terminal = "${pkgs.kitty}/bin/kitty";
+    extraConfig = {
+      columns = 1;
+      modi = "run,drun";    
+    };
+  }; 
+           
   programs.zoxide.enable = true; 
 }

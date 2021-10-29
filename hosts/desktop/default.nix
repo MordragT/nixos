@@ -9,7 +9,7 @@
     interface = "wlp2s0";
   };
   
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   
   networking = {
     hostName = "tom-pc";    

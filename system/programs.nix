@@ -7,5 +7,7 @@
   environment.systemPackages = with pkgs; [
     helix
     agenix
+    gnome.gnome-tweaks
+    gparted
   ];
 }
