@@ -28,10 +28,16 @@
     , ... 
   }@inputs: 
   let
+    rust-overlay = (name: path: final: prev: {
+        "${name}" = prev.callPackage (import path) {
+          inherit naersk fenix;
+        };  
+    });
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
       overlays = [
+        (rust-overlay "findex" ./packages/findex.nix)
         nur-community.overlay    
         agenix.overlay
         gitmoji.overlay

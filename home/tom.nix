@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let
   toml = pkgs.formats.toml {};
+  wine-staging = pkgs.wineWowPackages.staging;
+  winetricks-staging = pkgs.winetricks.override { wine = wine-staging; };
 in {
             
   # Let Home Manager install and manage itself.
@@ -80,15 +82,20 @@ in {
            
     cpufetch
     spotify
-    droidcam # use smartphone as camera
+       
     ventoy-bin # create bootable usb drive for isos
     libreoffice-fresh
+    cabextract
+    wget
+    trash-cli # put files in trash
       
     # needed for cargo install command
     rustup
     clang
       
     # Gaming
+    wine-staging
+    winetricks-staging
     steam-tui
     steamcmd
     lutris
@@ -102,6 +109,30 @@ in {
     configFile = {
       "helix/config.toml".source =
         toml.generate "helix-conf" { theme = "gruvbox"; };     
+      "findex/style.css".source =
+        builtins.toFile "style.css" ''
+        	.findex-query {
+        	    color: white;
+        	    padding: 15px;
+        	    font-size: 20px;
+        	    border: none;
+        	}
+        
+        	.findex-result-row:selected .findex-result-app-name {
+        	    color: black;
+        	}
+        
+        	.findex-result-icon {
+        	    margin: 10px;
+        	}
+        
+        	.findex-result-app-name {
+        	    color: #fff;
+        	    margin: 10px;
+        	    font-weight: bold;
+        	    font-size: 15px;
+        	}
+        '';
     };
   };
   
@@ -235,16 +266,16 @@ in {
    
   programs.obs-studio.enable = true;
     
-  programs.rofi = {
-    enable = true;
-    font = "Fira Code Retina 10";
-    theme = "gruvbox-dark";
-    terminal = "${pkgs.kitty}/bin/kitty";
-    extraConfig = {
-      columns = 1;
-      modi = "run,drun";    
-    };
-  }; 
+  # programs.rofi = {
+  #   enable = true;
+  #   font = "Fira Code Retina 10";
+  #   theme = "gruvbox-dark";
+  #   terminal = "${pkgs.kitty}/bin/kitty";
+  #   extraConfig = {
+  #     columns = 1;
+  #     modi = "run,drun";    
+  #   };
+  # }; 
            
   programs.zoxide.enable = true; 
 }
