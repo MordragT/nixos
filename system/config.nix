@@ -12,7 +12,12 @@
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # league of legends
+  boot.kernel.sysctl."abi.vsyscall32" = 0;
   
+  services.xserver.wacom.enable = true;
+    
   time.timeZone = "Europe/Berlin";
     
   # Select internationalisation properties.

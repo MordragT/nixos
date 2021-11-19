@@ -56,6 +56,9 @@ in {
     rbw # biwtarden cli manager
     gitmoji
     himalaya # cli email client
+    mdbook # create books from markdown
+    mdbook-katex # render math notations in mdbook
+    mdbook-mermaid # render mermaid.js
              
     # Downloads        
     megacmd # File sharing
@@ -101,7 +104,13 @@ in {
     lutris
     teamspeak_client
     # pufferpanel # game server
+      
+    # required by lol installer
+    openssl
+    expect    
     
+    okular
+    vscode
   ];
   
   xdg = {
