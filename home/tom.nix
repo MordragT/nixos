@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   toml = pkgs.formats.toml {};
-  wine-staging = pkgs.wineWowPackages.staging;
-  winetricks-staging = pkgs.winetricks.override { wine = wine-staging; };
+  # wine-staging = pkgs.wineWowPackages.staging;
+  # winetricks-staging = pkgs.winetricks.override { wine = wine-staging; };
 in {
             
   # Let Home Manager install and manage itself.
@@ -29,6 +29,7 @@ in {
     # No GTK Core Apps
     
     # Rust Apps
+    xsel # clipboard for helix
     helix # Kakoune style editor
     bottom # htop alike   
     macchina # neofetch alike
@@ -97,20 +98,28 @@ in {
     clang
       
     # Gaming
-    wine-staging
-    winetricks-staging
+    # wine-staging
+    # winetricks-staging
     steam-tui
     steamcmd
     lutris
     teamspeak_client
+    protonup
+    vulkan-tools
     # pufferpanel # game server
       
     # required by lol installer
     openssl
+    # required by ubisoft connect
+    gnutls
+      
     expect    
     
     okular
     vscode
+      
+    usbmuxd
+    
   ];
   
   xdg = {

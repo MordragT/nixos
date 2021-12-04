@@ -17,6 +17,7 @@
   boot.kernel.sysctl."abi.vsyscall32" = 0;
   
   services.xserver.wacom.enable = true;
+  services.printing.enable = true;
     
   time.timeZone = "Europe/Berlin";
     
