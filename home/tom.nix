@@ -119,7 +119,7 @@ in {
     vscode
       
     usbmuxd
-    
+    macchanger
   ];
   
   xdg = {
