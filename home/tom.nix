@@ -120,6 +120,7 @@ in {
       
     usbmuxd
     macchanger
+    appimage-run
   ];
   
   xdg = {

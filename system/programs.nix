@@ -4,11 +4,13 @@
   programs.steam.enable = true;
   programs.droidcam.enable = true;
   programs.adb.enable = true;
+  programs.gamemode.enable = true;
   
   environment.systemPackages = with pkgs; [
     helix
     agenix
-    findex
+    # findex
+    ulauncher
     gnome.gnome-tweaks
     gnomeExtensions.pop-shell
     gparted
