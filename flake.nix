@@ -33,11 +33,15 @@
           inherit naersk fenix;
         };  
     });
+    webex-overlay = (final: prev: {
+      "webex" = prev.callPackage (import ./packages/webex.nix) {};
+    });
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
       overlays = [
         (rust-overlay "findex" ./packages/findex.nix)
+        webex-overlay
         nur-community.overlay    
         agenix.overlay
         gitmoji.overlay

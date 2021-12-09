@@ -121,6 +121,7 @@ in {
     usbmuxd
     macchanger
     appimage-run
+    webex
   ];
   
   xdg = {
