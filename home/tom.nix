@@ -122,6 +122,7 @@ in {
     macchanger
     appimage-run
     webex
+    nodePackages.reveal-md
   ];
   
   xdg = {
