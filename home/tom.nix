@@ -122,6 +122,7 @@ in {
     macchanger
     appimage-run
     webex
+    # webdesigner
     nodePackages.reveal-md
   ];
   
