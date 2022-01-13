@@ -10,7 +10,7 @@ stdenv.mkDerivation {
     # New versions get uploaded to same link, so lock url for this version in archive.org
     #url = "https://web.archive.org/web/20210529010325/https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb";
     url = "https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb";
-    sha256 = "JeHYTgLzi75rqf5TKz6mZc5D1/9rOfwn1imY7vELvXs=";
+    sha256 = "N8Ruea6VEFCQeRBWRllIE2ygR4IBgcJKf2GYHV+Sfqk=";
   };
 
   nativeBuildInputs = [
@@ -43,6 +43,8 @@ stdenv.mkDerivation {
     udev
     dbus
     glib
+    gdk-pixbuf
+    gtk3
     libpulseaudio
     pango
     cairo

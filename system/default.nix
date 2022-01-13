@@ -4,6 +4,6 @@
     [ 
       ./programs.nix
       ./config.nix
-      ./gnome.nix
+      ./desktop.nix
     ];
 }

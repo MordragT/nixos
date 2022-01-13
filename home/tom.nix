@@ -71,6 +71,7 @@ in {
     # Development
     dbeaver # sql client
     godot # game engine
+    vscode      
     
     # Asset creation
     blender
@@ -83,16 +84,8 @@ in {
     discord
     teams
     zoom-us
-           
-    cpufetch
-    spotify
-       
-    ventoy-bin # create bootable usb drive for isos
-    libreoffice-fresh
-    cabextract
-    wget
-    trash-cli # put files in trash
-      
+    webex
+                 
     # needed for cargo install command
     rustup
     clang
@@ -108,22 +101,26 @@ in {
     vulkan-tools
     # pufferpanel # game server
       
-    # required by lol installer
-    openssl
-    # required by ubisoft connect
-    gnutls
-      
-    expect    
-    
+    # Documents
+    libreoffice-fresh
+    nodePackages.reveal-md
     okular
-    vscode
-      
+            
+    cpufetch
+    spotify
+    ventoy-bin # create bootable usb drive for isos
+    cabextract
+    unzip
+    wget
+    trash-cli # put files in trash
+    openssl # required by lol installer
+    gnutls # required by ubisoft connect
+    expect    
     usbmuxd
     macchanger
     appimage-run
-    webex
     # webdesigner
-    nodePackages.reveal-md
+    gnome.gnome-boxes
   ];
   
   xdg = {
@@ -300,4 +297,7 @@ in {
   # }; 
            
   programs.zoxide.enable = true; 
+  
+    
+  wayland.windowManager.sway.enable = true;
 }

@@ -12,7 +12,7 @@
     # findex
     ulauncher
     gnome.gnome-tweaks
-    gnomeExtensions.pop-shell
+    # gnomeExtensions.pop-shell
     gparted
     protontricks
   ];
