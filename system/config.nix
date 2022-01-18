@@ -19,6 +19,8 @@
   services.xserver.wacom.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mariadb;
     
   time.timeZone = "Europe/Berlin";
     
