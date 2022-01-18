@@ -13,4 +13,6 @@
   
   # Configure keymap in X11
   services.xserver.layout = "de";
+  
+  # services.xserver.videoDrivers = [ "amdgpu-pro" ];
 }

@@ -72,6 +72,7 @@ in {
     dbeaver # sql client
     godot # game engine
     vscode      
+    conda # python package manager
     
     # Asset creation
     blender
@@ -121,6 +122,8 @@ in {
     appimage-run
     # webdesigner
     gnome.gnome-boxes
+    tts # AI powered text to speech
+    youtube-dl # download youtube videos
   ];
   
   xdg = {
