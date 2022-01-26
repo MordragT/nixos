@@ -73,6 +73,8 @@ in {
     godot # game engine
     vscode      
     conda # python package manager
+    php
+    jetbrains.phpstorm
     
     # Asset creation
     blender
@@ -124,6 +126,7 @@ in {
     gnome.gnome-boxes
     tts # AI powered text to speech
     youtube-dl # download youtube videos
+    zrythm
   ];
   
   xdg = {
