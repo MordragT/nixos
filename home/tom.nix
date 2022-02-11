@@ -71,11 +71,11 @@ in {
     # Development
     dbeaver # sql client
     godot # game engine
-    vscode      
     conda # python package manager
-    php
+    # php
     jetbrains.phpstorm
-    
+    jetbrains.pycharm-community
+          
     # Asset creation
     blender
     krita
@@ -94,8 +94,6 @@ in {
     clang
       
     # Gaming
-    # wine-staging
-    # winetricks-staging
     steam-tui
     steamcmd
     lutris
@@ -124,6 +122,7 @@ in {
     appimage-run
     # webdesigner
     gnome.gnome-boxes
+    gnome.gnome-todo
     tts # AI powered text to speech
     youtube-dl # download youtube videos
     zrythm
@@ -301,6 +300,101 @@ in {
   #     modi = "run,drun";    
   #   };
   # }; 
+  
+  programs.vscode = {
+    enable = true;
+    userSettings = {
+      "window.zoomLevel" = 0;
+      "editor.minimap.enabled" = false;
+      "editor.fontLigatures" = true;
+      "editor.fontFamily" = "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'";
+      "editor.fontSize" = 14;
+      "terminal.integrated.fontSize" = 14;
+      "editor.renderWhitespace" = "none";
+      "editor.folding" = false;
+      "editor.glyphMargin" = true;
+      "explorer.openEditors.visible" = 0;
+      "workbench.activityBar.visible" = true;
+      "workbench.editor.showTabs" = false;
+      "workbench.statusBar.visible" = true;
+      "workbench.sideBar.location" = "right";
+      "workbench.editor.showIcons" = false;
+      "editor.occurrencesHighlight" = false;
+      "workbench.startupEditor" = "newUntitledFile";
+      "workbench.tree.renderIndentGuides" = "none";
+      "editor.acceptSuggestionOnEnter" = "off";
+      "explorer.confirmDelete" = false;
+      "explorer.confirmDragAndDrop" = false;
+      "editor.renderIndentGuides" = false;
+      "editor.formatOnSave" = true;
+      "terminal.integrated.rendererType" = "dom";
+      "git.enableSmartCommit" = true;
+      "git.autofetch" = true;
+      "editor.tabCompletion" = "on";
+      "editor.dragAndDrop" = false;
+      "editor.lineNumbers" = "interval";
+      "editor.renderLineHighlight" = "none";
+      "editor.cursorBlinking" = "expand";
+      "files.exclude" = {
+          "**/.classpath" = true;
+          "**/.factorypath" = true;
+          "**/.idea" = true;
+          "**/.project" = true;
+          "**/.settings" = true;
+      };
+      "breadcrumbs.enabled" = false;
+      "workbench.editor.labelFormat" = "short";
+      "window.menuBarVisibility" = "toggle";
+      "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
+      "debug.allowBreakpointsEverywhere" = true;
+      "debug.showBreakpointsInOverviewRuler" = true;
+      "rust-analyzer.procMacro.enable" = false;
+      "files.associations" = {
+          "*.lalrpop" = "rust";
+          "*.tera" = "html";
+      };
+    };
+    keybindings = [
+      {
+        key = "ctrl+k ctrl+e";
+        command = "workbench.view.explorer";     
+      }    
+      {
+          key = "ctrl+k ctrl+v";
+          command = "workbench.view.scm";
+      }
+      {
+          key = "ctrl+k ctrl+d";
+          command = "workbench.view.debug";
+      }
+      {
+          key = "ctrl+k ctrl+x";
+          command = "workbench.extensions.action.showInstalledExtensions";
+      }
+      {
+          key = "ctrl+n";
+          command = "explorer.newFile";
+          when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+      }
+      {
+          key = "shift+ctrl+n";
+          command = "explorer.newFolder";
+          when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+      }
+      {
+          key = "ctrl+r";
+          command = "workbench.files.action.refreshFilesExplorer";
+          when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+      }
+    ];
+    extensions = with pkgs.vscode-extensions; [
+      matklad.rust-analyzer
+      ms-python.python    
+      ms-vsliveshare.vsliveshare
+      bbenoist.nix
+      # arrterian.nix-env-selector
+    ];
+  };
            
   programs.zoxide.enable = true; 
   
