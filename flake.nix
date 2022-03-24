@@ -12,7 +12,7 @@
     agenix.url = "github:ryantm/agenix";
     nur-community.url = "github:nix-community/NUR";
     gitmoji.url = "github:MordragT/gitmoji-cli";
-    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-21.11";
   };
 
   outputs = {
@@ -46,6 +46,7 @@
         nur-community.overlay    
         agenix.overlay
         gitmoji.overlay
+        fenix.overlay
       ];
     };      
     system = "x86_64-linux";

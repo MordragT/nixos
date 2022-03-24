@@ -19,8 +19,18 @@
   services.xserver.wacom.enable = true;
   services.printing.enable = true;
   services.flatpak.enable = true;
+  services.tor.enable = true;
   services.mysql.enable = true;
   services.mysql.package = pkgs.mariadb;
+  services.logmein-hamachi.enable = true;
+  services.minecraft-server = {
+    serverProperties = {
+      difficulty = 3;
+    };
+    eula = true;
+    openFirewall = true;
+    enable = false;
+  };
     
   time.timeZone = "Europe/Berlin";
     

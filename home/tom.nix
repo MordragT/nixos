@@ -60,6 +60,7 @@ in {
     mdbook # create books from markdown
     mdbook-katex # render math notations in mdbook
     mdbook-mermaid # render mermaid.js
+    miniserve # serve some files via http
              
     # Downloads        
     megacmd # File sharing
@@ -82,6 +83,7 @@ in {
     
     # Video
     pitivi
+    mpv
     
     # Social    
     discord
@@ -90,17 +92,20 @@ in {
     webex
                  
     # needed for cargo install command
-    rustup
-    clang
+    # rustup
+    # clang
       
     # Gaming
     steam-tui
     steamcmd
+    steamcontroller
     lutris
     teamspeak_client
     protonup
     vulkan-tools
     # pufferpanel # game server
+    minecraft
+    optifine
       
     # Documents
     libreoffice-fresh
@@ -388,10 +393,11 @@ in {
       }
     ];
     extensions = with pkgs.vscode-extensions; [
-      matklad.rust-analyzer
+      pkgs.fenix.rust-analyzer-vscode-extension
       ms-python.python    
       ms-vsliveshare.vsliveshare
       bbenoist.nix
+      bungcip.better-toml
       # arrterian.nix-env-selector
     ];
   };
