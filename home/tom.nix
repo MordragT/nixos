@@ -74,8 +74,8 @@ in {
     godot # game engine
     conda # python package manager
     # php
-    jetbrains.phpstorm
-    jetbrains.pycharm-community
+    # jetbrains.phpstorm
+    # jetbrains.pycharm-community
           
     # Asset creation
     blender
