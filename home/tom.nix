@@ -112,6 +112,7 @@ in {
     nodePackages.reveal-md
     okular
             
+    asciinema
     cpufetch
     spotify
     ventoy-bin # create bootable usb drive for isos
@@ -164,11 +165,7 @@ in {
         '';
     };
   };
-  
-  # home.sessionVariables = {
-  #   EDITOR="hx";
-  # };
-  
+    
   pam.sessionVariables = {
     XDG_CONFIG_HOME =  "/home/tom/.config";
     XDG_CACHE_HOME = "/home/tom/.cache";
@@ -176,7 +173,7 @@ in {
     XDG_STATE_HOME = "/home/tom/.local/state";
     XDG_DATA_DIRS = "/usr/share:/usr/local/share:/home/tom/.local/share/:/home/tom/.nix-profile/share";
   };
-    
+        
   programs.bat = {
     enable = true;
     config.theme = "gruvbox-dark";
@@ -394,6 +391,7 @@ in {
     ];
     extensions = with pkgs.vscode-extensions; [
       pkgs.fenix.rust-analyzer-vscode-extension
+      vadimcn.vscode-lldb
       ms-python.python    
       ms-vsliveshare.vsliveshare
       bbenoist.nix
@@ -403,6 +401,32 @@ in {
   };
            
   programs.zoxide.enable = true; 
+    
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+      
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = ["git" "colorize" "z"];
+    };
+        
+    shellAliases = {
+      "..." = "../..";
+    };
+        
+    initExtra = ''
+      export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
+        
+      # Rust
+      export PATH=$PATH:$HOME/.cargo/bin
+        
+      # Editor
+      export EDITOR="hx"
+    '';
+  };
   
     
   wayland.windowManager.sway.enable = true;

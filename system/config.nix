@@ -60,6 +60,7 @@
       extraGroups = [ "root" ];
     };
   };
+  # users.defaultUserShell = pkgs.zsh;
   
   fonts = {
     enableDefaultFonts = true;
