@@ -4,9 +4,9 @@
   
   services.caddy = {
     enable = true;
-    ca = config.security.acme.server;
+    acmeCA = config.security.acme.server;
     # email = "connect.mordrag@gmx.de";
-    config = ''
+    extraConfig = ''
       web.localhost {
         tls connect.mordrag@gmx.de {
           ca https://localhost:8443/acme/acme/directory

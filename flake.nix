@@ -2,7 +2,7 @@
   description = "My system configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-21.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +12,8 @@
     agenix.url = "github:ryantm/agenix";
     nur-community.url = "github:nix-community/NUR";
     gitmoji.url = "github:MordragT/gitmoji-cli";
-    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-21.11";
+    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+    hua.url = "github:MordragT/hua";
   };
 
   outputs = {
@@ -25,6 +26,7 @@
     , nur-community
     , gitmoji
     , mailserver
+    , hua
     , ... 
   }@inputs: 
   let
@@ -46,6 +48,7 @@
         nur-community.overlay    
         agenix.overlay
         gitmoji.overlay
+        hua.overlay
         fenix.overlay
       ];
     };      

@@ -29,8 +29,10 @@ in {
     # No GTK Core Apps
     
     # Rust Apps
+    hua # My own package manager
     xsel # clipboard for helix
     helix # Kakoune style editor
+    lapce # code editor
     bottom # htop alike   
     macchina # neofetch alike
     contrast # gtk check contrast
@@ -43,6 +45,7 @@ in {
     watchexec # executes command on modifications
     tokei # count lines of code
     onefetch # git summary 
+    freshfetch # neofetch alternative
     grex # create regular expressions
     hexyl # hex viewer
     zellij # terminal workspace
@@ -129,7 +132,8 @@ in {
     # webdesigner
     gnome.gnome-boxes
     gnome.gnome-todo
-    tts # AI powered text to speech
+    gnome.gnome-sound-recorder
+    # tts # AI powered text to speech
     youtube-dl # download youtube videos
     zrythm
   ];
@@ -351,6 +355,7 @@ in {
       "debug.allowBreakpointsEverywhere" = true;
       "debug.showBreakpointsInOverviewRuler" = true;
       "rust-analyzer.procMacro.enable" = false;
+      "lldb.verboseLogging" = true;
       "files.associations" = {
           "*.lalrpop" = "rust";
           "*.tera" = "html";
@@ -396,6 +401,9 @@ in {
       ms-vsliveshare.vsliveshare
       bbenoist.nix
       bungcip.better-toml
+      tiehuis.zig
+      ms-vscode.cpptools
+      xaver.clang-format
       # arrterian.nix-env-selector
     ];
   };

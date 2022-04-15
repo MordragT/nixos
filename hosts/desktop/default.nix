@@ -14,9 +14,10 @@
   networking = {
     hostName = "tom-pc";    
     useDHCP = false;
+    useNetworkd = true;
     
-    interfaces.enp5s0.useDHCP = true;
-    interfaces.wlp2s0.useDHCP = true;
+    # interfaces.enp5s0.useDHCP = true;
+    # interfaces.wlp2s0.useDHCP = true;
     extraHosts = ''
       127.0.0.1 mordrag.io
     '';

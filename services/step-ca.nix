@@ -34,7 +34,7 @@ in {
     };
   };
     
-  security.acme.server = "https://localhost:8443/acme/acme/directory";  
+  security.acme.defaults.server = "https://localhost:8443/acme/acme/directory";  
   security.pki.certificateFiles = [
     root
     crt

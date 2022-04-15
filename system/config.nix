@@ -41,7 +41,7 @@
     keyMap = "de";
   };
 
-  security.acme.email = "connect.mordrag@gmx.de";
+  security.acme.defaults.email = "connect.mordrag@gmx.de";
   security.acme.acceptTerms = true;
   # security.pam.p11.enable = true;
 
