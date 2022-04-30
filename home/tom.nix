@@ -30,6 +30,9 @@ in {
     
     # Rust Apps
     hua # My own package manager
+    gitoxide # alternative git still wip
+    mcfly # Upgraded shell history (ctrl+r)
+    dua # disk usage analysis
     xsel # clipboard for helix
     helix # Kakoune style editor
     lapce # code editor
@@ -64,10 +67,12 @@ in {
     mdbook-katex # render math notations in mdbook
     mdbook-mermaid # render mermaid.js
     miniserve # serve some files via http
+    hexdino # hex editor
              
     # Downloads        
     megacmd # File sharing
     qbittorrent
+    fragments
     
     # IT Security & Reverse Engineering
     cutter    
@@ -83,6 +88,7 @@ in {
     # Asset creation
     blender
     krita
+    inkscape
     
     # Video
     pitivi
@@ -109,6 +115,8 @@ in {
     # pufferpanel # game server
     minecraft
     optifine
+    pkgs.nur.repos.dukzcry.gamescope
+    mangohud
       
     # Documents
     libreoffice-fresh
@@ -133,6 +141,8 @@ in {
     gnome.gnome-boxes
     gnome.gnome-todo
     gnome.gnome-sound-recorder
+    gnome.ghex
+    pdfarranger
     # tts # AI powered text to speech
     youtube-dl # download youtube videos
     zrythm
@@ -260,6 +270,7 @@ in {
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      sponsorblock
       bitwarden
       honey
       duckduckgo-privacy-essentials
@@ -404,6 +415,7 @@ in {
       tiehuis.zig
       ms-vscode.cpptools
       xaver.clang-format
+      gruntfuggly.todo-tree
       # arrterian.nix-env-selector
     ];
   };

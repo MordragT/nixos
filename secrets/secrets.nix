@@ -8,4 +8,5 @@ in {
   
   "nextcloud.age".publicKeys = keys;  
   "step-ca.age".publicKeys = keys;
+  "pia.age".publicKeys = keys;
 }

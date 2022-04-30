@@ -7,13 +7,34 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    naersk.url = "github:nmattia/naersk";
-    fenix.url = "github:nix-community/fenix";
-    agenix.url = "github:ryantm/agenix";
-    nur-community.url = "github:nix-community/NUR";
-    gitmoji.url = "github:MordragT/gitmoji-cli";
-    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
-    hua.url = "github:MordragT/hua";
+    naersk = {
+      url = "github:nmattia/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur-community = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    gitmoji = {
+      url = "github:MordragT/gitmoji-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hua = {
+      url = "github:MordragT/hua";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -80,6 +101,7 @@
           ./services/step-ca.nix
           ./services/mailserver.nix
           ./services/default.nix
+          ./services/pia.nix
           # ./services/roundcube.nix
         ];   
             
@@ -113,6 +135,7 @@
           ./services/step-ca.nix
           ./services/mailserver.nix
           ./services/default.nix
+          ./services/pia.nix
           # ./services/roundcube.nix
         ];   
             
