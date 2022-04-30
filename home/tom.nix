@@ -122,6 +122,7 @@ in {
     libreoffice-fresh
     nodePackages.reveal-md
     okular
+    zotero
             
     asciinema
     cpufetch
