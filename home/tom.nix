@@ -29,7 +29,7 @@ in {
     # No GTK Core Apps
     
     # Rust Apps
-    hua # My own package manager
+    # hua # My own package manager
     gitoxide # alternative git still wip
     mcfly # Upgraded shell history (ctrl+r)
     dua # disk usage analysis
@@ -107,7 +107,8 @@ in {
     # Gaming
     steam-tui
     steamcmd
-    steamcontroller
+    sc-controller
+    # steamcontroller
     lutris
     teamspeak_client
     protonup
@@ -115,7 +116,7 @@ in {
     # pufferpanel # game server
     minecraft
     optifine
-    pkgs.nur.repos.dukzcry.gamescope
+    # pkgs.nur.repos.dukzcry.gamescope
     mangohud
       
     # Documents
@@ -143,9 +144,11 @@ in {
     gnome.gnome-todo
     gnome.gnome-sound-recorder
     gnome.ghex
+    gnome-latex
+    texlive.combined.scheme-medium
     pdfarranger
     # tts # AI powered text to speech
-    youtube-dl # download youtube videos
+    yt-dlp # download youtube videos
     zrythm
   ];
   
@@ -410,13 +413,14 @@ in {
       pkgs.fenix.rust-analyzer-vscode-extension
       vadimcn.vscode-lldb
       ms-python.python    
-      ms-vsliveshare.vsliveshare
+      # ms-vsliveshare.vsliveshare
       bbenoist.nix
       bungcip.better-toml
       tiehuis.zig
       ms-vscode.cpptools
       xaver.clang-format
       gruntfuggly.todo-tree
+      james-yu.latex-workshop
       # arrterian.nix-env-selector
     ];
   };

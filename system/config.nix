@@ -10,6 +10,8 @@
     };
   };
   
+  hardware.steam-hardware.enable = true;
+  
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   
@@ -22,7 +24,7 @@
   services.tor.enable = true;
   services.mysql.enable = true;
   services.mysql.package = pkgs.mariadb;
-  services.logmein-hamachi.enable = true;
+  # services.logmein-hamachi.enable = true;
   services.minecraft-server = {
     serverProperties = {
       difficulty = 3;
