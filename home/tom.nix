@@ -3,6 +3,12 @@ let
   toml = pkgs.formats.toml {};
   # wine-staging = pkgs.wineWowPackages.staging;
   # winetricks-staging = pkgs.winetricks.override { wine = wine-staging; };
+  firefox-gnome-theme = pkgs.fetchFromGitHub {
+    owner = "rafaelmardojai";
+    repo = "firefox-gnome-theme";
+    rev = "fc44130eb94467f6392fc86dd136235013c9ffd0";
+    hash = "sha256-D6HBSFnlttKeIg64nW6gAt7h6YNeGbX6mYGV3pJXZNM=";
+  };
 in {
             
   # Let Home Manager install and manage itself.
@@ -31,6 +37,7 @@ in {
     # Rust Apps
     # hua # My own package manager
     gitoxide # alternative git still wip
+    git-cliff # generate changelogs
     mcfly # Upgraded shell history (ctrl+r)
     dua # disk usage analysis
     xsel # clipboard for helix
@@ -145,6 +152,7 @@ in {
     gnome.gnome-sound-recorder
     gnome.ghex
     gnome-latex
+    spflashtool
     texlive.combined.scheme-medium
     pdfarranger
     # tts # AI powered text to speech
@@ -274,6 +282,7 @@ in {
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      sidebery
       sponsorblock
       bitwarden
       honey
@@ -281,18 +290,32 @@ in {
       ublock-origin
       rust-search-extension
     ];
-    profiles.options.settings = {
-      "browser.startup.homepage" = "https://duckduckgo.com";
-      "browser.search.region" = "DE";
-      "browser.search.isUS" = false;
-      "browser.useragent.locale" = "de-DE";
-      "browser.startup.page" = 3; 
-      "browser.download.useDownloadDir" = false;
-      "signon.rememberSignons" = false;
-      "services.sync.engine.passwords" = false;
-      "services.sync.engine.addons" = false;
-      "services.sync.engine.history" = false;
-      "services.sync.engine.bookmarks" = true;
+    profiles.options = {
+      settings = {
+        "browser.startup.homepage" = "https://duckduckgo.com";
+        "browser.search.region" = "DE";
+        "browser.search.isUS" = false;
+        "browser.useragent.locale" = "de-DE";
+        "browser.startup.page" = 3; 
+        "browser.download.useDownloadDir" = false;
+        "signon.rememberSignons" = false;
+        "services.sync.engine.passwords" = false;
+        "services.sync.engine.addons" = false;
+        "services.sync.engine.history" = false;
+        "services.sync.engine.bookmarks" = true;
+
+        # For firefox GNOME theme
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.tabs.drawInTitlebar" = true;
+        "svg.context-properties.content.enabled" = true;
+      };
+      userChrome = ''
+        @import "${firefox-gnome-theme}/userChrome.css";
+
+        #TabsToolbar {
+            visibility: collapse !important;
+        }
+      '';
     };
   }; 
     

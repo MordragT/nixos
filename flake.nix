@@ -65,6 +65,7 @@
       overlays = [
         (rust-overlay "findex" ./packages/findex.nix)
         (custom-overlay "webex" ./packages/webex.nix)
+        (custom-overlay "spflashtool" ./packages/spflashtool.nix)
         # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
         nur-community.overlay    
         agenix.overlay
