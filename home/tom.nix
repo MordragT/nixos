@@ -153,7 +153,8 @@ in {
     gnome.ghex
     gnome-latex
     spflashtool
-    texlive.combined.scheme-medium
+    # texlive.combined.scheme-medium
+    texlab
     pdfarranger
     # tts # AI powered text to speech
     yt-dlp # download youtube videos
@@ -334,17 +335,6 @@ in {
    
   programs.obs-studio.enable = true;
     
-  # programs.rofi = {
-  #   enable = true;
-  #   font = "Fira Code Retina 10";
-  #   theme = "gruvbox-dark";
-  #   terminal = "${pkgs.kitty}/bin/kitty";
-  #   extraConfig = {
-  #     columns = 1;
-  #     modi = "run,drun";    
-  #   };
-  # }; 
-  
   programs.vscode = {
     enable = true;
     userSettings = {
@@ -398,6 +388,12 @@ in {
           "*.lalrpop" = "rust";
           "*.tera" = "html";
       };
+      # "latex-workshop.latex.recipes" = [
+      #   {
+      #     "name" = "tectonic";
+      #     "tools" = [ "tectonic" ];      
+      #   }    
+      # ];
     };
     keybindings = [
       {
@@ -436,15 +432,30 @@ in {
       pkgs.fenix.rust-analyzer-vscode-extension
       vadimcn.vscode-lldb
       ms-python.python    
-      # ms-vsliveshare.vsliveshare
+      ms-vscode-remote.remote-ssh
+      ms-vsliveshare.vsliveshare
       bbenoist.nix
       bungcip.better-toml
       tiehuis.zig
-      ms-vscode.cpptools
+      # ms-vscode.cpptools
       xaver.clang-format
       gruntfuggly.todo-tree
-      james-yu.latex-workshop
+      # james-yu.latex-workshop
+      skellock.just
       # arrterian.nix-env-selector
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [       
+    {
+      name = "texlab";
+      publisher = "efoerster";
+      version = "4.0.0";
+      sha256 = "0bR/SPi4NkHT0GRaHyuT2A1f3vjRkhVH7wXcKq3LsEE=";
+    }
+    {
+      name = "vscode-intelephense-client";
+      publisher = "bmewburn";
+      version = "1.8.2";
+      sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
+    }
     ];
   };
            
@@ -475,7 +486,6 @@ in {
       export EDITOR="hx"
     '';
   };
-  
-    
+
   wayland.windowManager.sway.enable = true;
 }
