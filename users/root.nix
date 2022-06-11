@@ -1,10 +1,8 @@
 { pkgs, ... }:
-let
-  toml = pkgs.formats.toml {};
-in {   
+{
   home.username = "root";
   home.homeDirectory = "/root";
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.11";
   
   home.packages = with pkgs; [
     helix    
@@ -12,7 +10,9 @@ in {
       
   xdg = {
     enable = true;    
-    configFile = {
+    configFile = let
+      toml = pkgs.formats.toml {};
+    in {
       "helix/config.toml".source =
         toml.generate "helix-conf" { theme = "gruvbox"; };    
     };

@@ -4,6 +4,5 @@
     [ 
       ./programs.nix
       ./config.nix
-      ./desktop.nix
     ];
 }

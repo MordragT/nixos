@@ -23,8 +23,8 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    gitmoji = {
-      url = "github:MordragT/gitmoji-cli";
+    comoji = {
+      url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mailserver = {
@@ -45,7 +45,7 @@
     , fenix
     , agenix
     , nur-community
-    , gitmoji
+    , comoji
     , mailserver
     , hua
     , ... 
@@ -69,7 +69,7 @@
         # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
         nur-community.overlay    
         agenix.overlay
-        gitmoji.overlay
+        comoji.overlay
         hua.overlay
         fenix.overlay
       ];
@@ -84,26 +84,19 @@
           mailserver.nixosModules.mailserver
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.root = import ./home/root.nix {
-              inherit system pkgs;      
-            };
-            home-manager.users.tom = import ./home/tom.nix {
-              inherit system pkgs;    
-            };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.root = import ./users/root.nix {
+                  inherit system pkgs;      
+              };
+              home-manager.users.tom = import ./users/tom.nix {
+                  inherit system pkgs;    
+              };
           }
-          ./hosts/laptop
-          ./system/default.nix
-          ./services/vaultwarden.nix
-          ./services/gitea.nix
-          ./services/caddy.nix
-          ./services/nextcloud.nix
-          ./services/step-ca.nix
-          ./services/mailserver.nix
-          ./services/default.nix
-          ./services/pia.nix
-          # ./services/roundcube.nix
+          ./system/laptop
+          ./system
+          ./services
+          ./virtualization
         ];   
             
         specialArgs = {
@@ -118,26 +111,19 @@
           mailserver.nixosModules.mailserver
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.root = import ./home/root.nix {
-              inherit system pkgs;      
-            };
-            home-manager.users.tom = import ./home/tom.nix {
-              inherit system pkgs;    
-            };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.root = import ./users/root.nix {
+                  inherit system pkgs;      
+              };
+              home-manager.users.tom = import ./users/tom.nix {
+                  inherit system pkgs;    
+              };
           }
-          ./hosts/desktop
-          ./system/default.nix
-          ./services/vaultwarden.nix
-          ./services/gitea.nix
-          ./services/caddy.nix
-          ./services/nextcloud.nix
-          ./services/step-ca.nix
-          ./services/mailserver.nix
-          ./services/default.nix
-          ./services/pia.nix
-          # ./services/roundcube.nix
+          ./system/desktop
+          ./system
+          ./services
+          ./virtualization
         ];   
             
         specialArgs = {

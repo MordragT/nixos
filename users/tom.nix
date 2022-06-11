@@ -1,21 +1,9 @@
 { pkgs, ... }:
-let
-  toml = pkgs.formats.toml {};
-  # wine-staging = pkgs.wineWowPackages.staging;
-  # winetricks-staging = pkgs.winetricks.override { wine = wine-staging; };
-  firefox-gnome-theme = pkgs.fetchFromGitHub {
-    owner = "rafaelmardojai";
-    repo = "firefox-gnome-theme";
-    rev = "fc44130eb94467f6392fc86dd136235013c9ffd0";
-    hash = "sha256-D6HBSFnlttKeIg64nW6gAt7h6YNeGbX6mYGV3pJXZNM=";
-  };
-in {
-            
+
+{         
   # Let Home Manager install and manage itself.
   #programs.home-manager.enable = true;
-  
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
+
   home.username = "tom";
   home.homeDirectory = pkgs.lib.mkForce "/home/tom";
   
@@ -27,14 +15,11 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.11";
     
   # Packages
-   
-  home.packages = with pkgs; [
-    # No GTK Core Apps
-    
-    # Rust Apps
+  home.packages = with pkgs; [    
+    # Rust cli
     # hua # My own package manager
     gitoxide # alternative git still wip
     git-cliff # generate changelogs
@@ -45,9 +30,6 @@ in {
     lapce # code editor
     bottom # htop alike   
     macchina # neofetch alike
-    contrast # gtk check contrast
-    fractal # gtk matrix messaging
-    markets # gtk crypto market prices
     just # make alike
     navi # interactive cheat sheet
     tealdeer # tldr
@@ -68,13 +50,40 @@ in {
     sn0int # semi automatic osint framework
     authoscope # scriptable network authentication cracker
     rbw # biwtarden cli manager
-    gitmoji
+    comoji
     himalaya # cli email client
     mdbook # create books from markdown
     mdbook-katex # render math notations in mdbook
     mdbook-mermaid # render mermaid.js
     miniserve # serve some files via http
     hexdino # hex editor
+    difftastic  # a diff tool
+
+    # Rust GTK
+    kooha # screen recording
+    contrast # gtk check contrast
+    fractal # gtk matrix messaging
+    markets # gtk crypto market prices
+    gnome-obfuscate # censor private information
+    pika-backup # simple backups
+    icon-library
+
+    # GTK Apps
+    amberol
+    apostrophe # markdown editor
+    blanket # listen to chill sounds
+    gaphor # create diagrams and uml
+    metadata-cleaner
+    khronos # track task time
+    tootle # mastodon client
+    gnome.gnome-color-manager
+
+    gnome.gnome-boxes
+    gnome.gnome-todo
+    gnome.gnome-sound-recorder
+    gnome.ghex
+    gnome-latex
+    pdfarranger
              
     # Downloads        
     megacmd # File sharing
@@ -83,33 +92,34 @@ in {
     
     # IT Security & Reverse Engineering
     cutter    
-    
+    macchanger # change the network's mac address
+
     # Development
     dbeaver # sql client
     godot # game engine
     conda # python package manager
-    # php
-    # jetbrains.phpstorm
-    # jetbrains.pycharm-community
+    texlab # latex lsp implementation
           
     # Asset creation
     blender
     krita
     inkscape
+    zrythm
     
     # Video
     pitivi
     mpv
+    yt-dlp # download youtube videos
+    asciinema # record terminals
+
+    # Music
+    spotify
     
     # Social    
     discord
     teams
     zoom-us
     webex
-                 
-    # needed for cargo install command
-    # rustup
-    # clang
       
     # Gaming
     steam-tui
@@ -131,10 +141,9 @@ in {
     nodePackages.reveal-md
     okular
     zotero
-            
-    asciinema
+    
+    # Tools
     cpufetch
-    spotify
     ventoy-bin # create bootable usb drive for isos
     cabextract
     unzip
@@ -144,26 +153,15 @@ in {
     gnutls # required by ubisoft connect
     expect    
     usbmuxd
-    macchanger
     appimage-run
-    # webdesigner
-    gnome.gnome-boxes
-    gnome.gnome-todo
-    gnome.gnome-sound-recorder
-    gnome.ghex
-    gnome-latex
-    spflashtool
-    # texlive.combined.scheme-medium
-    texlab
-    pdfarranger
-    # tts # AI powered text to speech
-    yt-dlp # download youtube videos
-    zrythm
+    spflashtool # flash android mtk
   ];
   
   xdg = {
     enable = true;
-    configFile = {
+    configFile = let
+      toml = pkgs.formats.toml {};
+    in {
       "helix/config.toml".source =
         toml.generate "helix-conf" { theme = "gruvbox"; };     
       "findex/style.css".source =
@@ -282,7 +280,54 @@ in {
   
   programs.firefox = {
     enable = true;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = let  
+      buildFirefoxXpiAddon = pkgs.lib.makeOverridable ({ pname, version, addonId,
+          url, sha256, meta, ...
+      }: pkgs.stdenv.mkDerivation {
+        name = "${pname}-${version}";
+
+        inherit meta;
+
+        src = pkgs.fetchurl { inherit url sha256; };
+
+        preferLocalBuild = true;
+        allowSubstitutes = true;
+
+        buildCommand = ''
+          dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+          mkdir -p "$dst"
+          install -v -m644 "$src" "$dst/${addonId}.xpi"
+        '';
+      });
+      bibitnow = buildFirefoxXpiAddon {
+        pname = "BibItNow!";
+        version = "0.908";
+        addonId = "bibitnow@langenscheiss";
+        url = "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi";
+        sha256 = "QIWgTLD+WVZ3+lt/pjDYF+CRiMz7/NNYbMwWLv6mdGc=";
+        meta = with pkgs.lib;
+        {
+          homepage = "https://github.com/Langenscheiss/bibitnow";
+          description = "Instantly creates a Bibtex, RIS, Endnote, APA, MLA or (B)Arnold S.";
+          license = licenses.mpl20;
+          platforms = platforms.all;
+        };
+      };
+      pia = buildFirefoxXpiAddon {
+        pname = "PrivateInternetAccess";
+        version = "3.2.0";
+        addonId = "privateinternetaccess@privateinternetaccess";
+        url = "https://addons.mozilla.org/firefox/downloads/file/3916166/private_internet_access_ext-3.2.0.xpi";
+        sha256 = "RbiCnMerNjakrFIBXiPnzIxvohh3zgYM1R5WU2yVhbk=";
+        meta = with pkgs.lib;
+        {
+          homepage = "https://www.privateinternetaccess.com/";
+          description = "Defeat censorship, unblock any website and access the open Internet the way it was meant to be with Private Internet Access";
+          license = licenses.mit;
+          platforms = platforms.all;
+        };
+      };
+    in with pkgs.nur.repos.rycee.firefox-addons; [
       sidebery
       sponsorblock
       bitwarden
@@ -290,6 +335,9 @@ in {
       duckduckgo-privacy-essentials
       ublock-origin
       rust-search-extension
+          
+      bibitnow
+      pia
     ];
     profiles.options = {
       settings = {
@@ -310,7 +358,14 @@ in {
         "browser.tabs.drawInTitlebar" = true;
         "svg.context-properties.content.enabled" = true;
       };
-      userChrome = ''
+      userChrome = let
+        firefox-gnome-theme = pkgs.fetchFromGitHub {
+          owner = "rafaelmardojai";
+          repo = "firefox-gnome-theme";
+          rev = "fc44130eb94467f6392fc86dd136235013c9ffd0";
+          hash = "sha256-D6HBSFnlttKeIg64nW6gAt7h6YNeGbX6mYGV3pJXZNM=";
+        };
+      in ''
         @import "${firefox-gnome-theme}/userChrome.css";
 
         #TabsToolbar {
@@ -430,7 +485,7 @@ in {
     ];
     extensions = with pkgs.vscode-extensions; [
       pkgs.fenix.rust-analyzer-vscode-extension
-      vadimcn.vscode-lldb
+      # vadimcn.vscode-lldb
       ms-python.python    
       ms-vscode-remote.remote-ssh
       ms-vsliveshare.vsliveshare
@@ -443,6 +498,7 @@ in {
       # james-yu.latex-workshop
       skellock.just
       # arrterian.nix-env-selector
+      valentjn.vscode-ltex
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [       
     {
       name = "texlab";
