@@ -19,6 +19,14 @@
     services.logmein-hamachi.enable = false;
     # Keep this to not override caddy
     services.nginx.enable = false;
+    
+    services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+    };
 
     services.mysql = {
         enable = false;
