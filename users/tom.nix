@@ -20,7 +20,7 @@
   # Packages
   home.packages = with pkgs; [    
     # Rust cli
-    # hua # My own package manager
+    hua # My own package manager
     gitoxide # alternative git still wip
     git-cliff # generate changelogs
     mcfly # Upgraded shell history (ctrl+r)
@@ -83,7 +83,7 @@
     gnome.gnome-todo
     gnome.gnome-sound-recorder
     gnome.ghex
-    gnome-latex
+    # gnome-latex
     pdfarranger
              
     # Downloads        
@@ -104,6 +104,7 @@
           
     # Asset creation
     blender
+    blockbench-electron
     krita
     inkscape
     zrythm
@@ -143,7 +144,7 @@
     libreoffice-fresh
     nodePackages.reveal-md
     okular
-    zotero
+    # zotero
     
     # Tools
     cpufetch
@@ -399,9 +400,12 @@
 
   programs.nushell = {
     enable = true;
-    settings = {
-    edit_mode = "vi";
-    };
+    configFile.text = ''
+      let $config = {
+        table_mode: rounded
+      }
+    '';
+    envFile.text = "";
   };  
    
   programs.obs-studio.enable = true;
