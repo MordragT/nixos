@@ -15,6 +15,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    js-bp = {
+      url = "github:serokell/nix-npm-buildpackage";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
     , home-manager
     , naersk
     , fenix
+    , js-bp
     , agenix
     , nur-community
     , comoji
@@ -51,27 +56,24 @@
     , ... 
   }@inputs: 
   let
-    rust-overlay = (name: path: final: prev: {
-        "${name}" = prev.callPackage (import path) {
-          inherit naersk fenix;
-        };  
-    });
-    custom-overlay = (name: path: final: prev: {
+    overlay = (name: path: final: prev: {
       "${name}" = prev.callPackage (import path) {};
     });
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
       overlays = [
-        (rust-overlay "findex" ./packages/findex.nix)
-        (custom-overlay "webex" ./packages/webex.nix)
-        (custom-overlay "spflashtool" ./packages/spflashtool.nix)
+        (overlay "webex" ./packages/webex.nix)
+        (overlay "spflashtool" ./packages/spflashtool.nix)
+        (overlay "astrofox" ./packages/astrofox.nix)
         # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
         nur-community.overlay    
         agenix.overlay
         comoji.overlay
         hua.overlay
         fenix.overlay
+        naersk.overlay
+        js-bp.overlays.default
       ];
     };      
     system = "x86_64-linux";
