@@ -58,7 +58,8 @@
     miniserve # serve some files via http
     hexdino # hex editor
     difftastic  # a diff tool
-
+    nix-index # locate files of nix packages
+    
     # Rust GTK
     kooha # screen recording
     contrast # gtk check contrast
@@ -93,6 +94,7 @@
     # IT Security & Reverse Engineering
     cutter    
     macchanger # change the network's mac address
+    tor-browser-bundle-bin
 
     # Development
     dbeaver # sql client
@@ -111,10 +113,11 @@
     mpv
     yt-dlp # download youtube videos
     asciinema # record terminals
+    astrofox
 
     # Music
     spotify
-    
+        
     # Social    
     discord
     teams
@@ -302,7 +305,7 @@
       bibitnow = buildFirefoxXpiAddon {
         pname = "BibItNow!";
         version = "0.908";
-        addonId = "bibitnow@langenscheiss";
+        addonId = "bibitnow018@aqpl.mc2.chalmers.se";
         url = "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi";
         sha256 = "QIWgTLD+WVZ3+lt/pjDYF+CRiMz7/NNYbMwWLv6mdGc=";
         meta = with pkgs.lib;
@@ -316,7 +319,7 @@
       pia = buildFirefoxXpiAddon {
         pname = "PrivateInternetAccess";
         version = "3.2.0";
-        addonId = "privateinternetaccess@privateinternetaccess";
+        addonId = "{3e4d2037-d300-4e95-859d-3cba866f46d3}";
         url = "https://addons.mozilla.org/firefox/downloads/file/3916166/private_internet_access_ext-3.2.0.xpi";
         sha256 = "RbiCnMerNjakrFIBXiPnzIxvohh3zgYM1R5WU2yVhbk=";
         meta = with pkgs.lib;
@@ -327,21 +330,34 @@
           platforms = platforms.all;
         };
       };
+      brave-search = buildFirefoxXpiAddon {
+        pname = "BraveSearch";
+        version = "1.0.1";
+        addonId = "BraveSearchExtension@io.Uvera";
+        url = "https://addons.mozilla.org/firefox/downloads/file/3809887/brave_search-1.0.1.xpi";
+        sha256 = "lIgiSnoSMwI/7DNTOnjhgDSCvFANkq/LOWK3hXXfza4=";
+        meta = with pkgs.lib;
+        {
+          homepage = "https://github.com/uvera/firefox-extension-brave-search";
+          description = "Adds Brave search as a search engine";
+          license = licenses.mit;
+          platforms = platforms.all;
+        };
+      };
     in with pkgs.nur.repos.rycee.firefox-addons; [
       sidebery
       sponsorblock
       bitwarden
       honey
-      duckduckgo-privacy-essentials
       ublock-origin
       rust-search-extension
-          
+      brave-search
       bibitnow
       pia
     ];
     profiles.options = {
       settings = {
-        "browser.startup.homepage" = "https://duckduckgo.com";
+        "browser.startup.homepage" = "https://search.brave.com";
         "browser.search.region" = "DE";
         "browser.search.isUS" = false;
         "browser.useragent.locale" = "de-DE";
