@@ -4,6 +4,7 @@
         # ./vaultwarden.nix
         # ./gitea.nix
         ./caddy.nix
+        # ./maddy.nix
         # ./nextcloud.nix
         ./step-ca.nix
         # ./mailserver.nix

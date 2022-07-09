@@ -22,6 +22,7 @@
     # Rust cli
     hua # My own package manager
     gitoxide # alternative git still wip
+    pijul # alternative vcs
     git-cliff # generate changelogs
     mcfly # Upgraded shell history (ctrl+r)
     dua # disk usage analysis
@@ -59,6 +60,12 @@
     hexdino # hex editor
     difftastic  # a diff tool
     nix-index # locate files of nix packages
+    ffsend # securely share files
+    pueue # send commands into queue to execute
+    nomino # batch renaming
+    ouch # (de)compressor with sane interface
+    skim # fuzzy finder
+    rnote # draw notes
     
     # Rust GTK
     kooha # screen recording
@@ -78,13 +85,15 @@
     khronos # track task time
     tootle # mastodon client
     gnome.gnome-color-manager
-
+    # gnome.polari # irc client not working atm
+    hexchat
     gnome.gnome-boxes
     gnome.gnome-todo
     gnome.gnome-sound-recorder
     gnome.ghex
     # gnome-latex
     pdfarranger
+    junction
              
     # Downloads        
     megacmd # File sharing
@@ -95,6 +104,7 @@
     cutter    
     macchanger # change the network's mac address
     tor-browser-bundle-bin
+    scrcpy # control android from pc
 
     # Development
     dbeaver # sql client
@@ -108,6 +118,7 @@
     krita
     inkscape
     zrythm
+    akira-unstable
     
     # Video
     pitivi
@@ -163,11 +174,16 @@
   
   xdg = {
     enable = true;
+    userDirs.enable = true;
     configFile = let
       toml = pkgs.formats.toml {};
     in {
       "helix/config.toml".source =
-        toml.generate "helix-conf" { theme = "gruvbox"; };     
+        toml.generate "helix-conf" {
+          theme = "gruvbox";
+            
+          # editor.cursor-shape.normal = "bar";
+        };     
       "findex/style.css".source =
         builtins.toFile "style.css" ''
         	.findex-query {
@@ -191,7 +207,7 @@
         	    font-weight: bold;
         	    font-size: 15px;
         	}
-        '';
+        '';       
     };
   };
     
@@ -401,7 +417,7 @@
   programs.nushell = {
     enable = true;
     configFile.text = ''
-      let $config = {
+      let-env config = {
         table_mode: rounded
       }
     '';
@@ -520,18 +536,24 @@
       # arrterian.nix-env-selector
       valentjn.vscode-ltex
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [       
-    {
-      name = "texlab";
-      publisher = "efoerster";
-      version = "4.0.0";
-      sha256 = "0bR/SPi4NkHT0GRaHyuT2A1f3vjRkhVH7wXcKq3LsEE=";
-    }
-    {
-      name = "vscode-intelephense-client";
-      publisher = "bmewburn";
-      version = "1.8.2";
-      sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
-    }
+      {
+        name = "texlab";
+        publisher = "efoerster";
+        version = "4.0.0";
+        sha256 = "0bR/SPi4NkHT0GRaHyuT2A1f3vjRkhVH7wXcKq3LsEE=";
+      }
+      {
+        name = "vscode-intelephense-client";
+        publisher = "bmewburn";
+        version = "1.8.2";
+        sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
+      }
+      {
+        name = "flowistry";
+        publisher = "wcrichton";
+        version = "0.5.27";
+        sha256 = "1rhp32az7smzhdc6gbz546v0l0507pmhw9y7zsdw43hb5sh1ykj7";
+      }
     ];
   };
            
