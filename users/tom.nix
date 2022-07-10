@@ -416,7 +416,16 @@
 
   programs.nushell = {
     enable = true;
-    configFile.text = ''
+    configFile.text = ''      
+      def , [...pkgs: string] {
+        let $pkgs = ($pkgs
+          | each { |pkg| "'nixpkgs#" + $pkg + "'" }
+          | str collect ' ')
+        nu -c $"nix shell ($pkgs)"
+      }
+      
+      alias comojit = comoji commit
+      
       let-env config = {
         table_mode: rounded
       }

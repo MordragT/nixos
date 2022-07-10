@@ -47,9 +47,9 @@
     EDITOR = "hx";
   };
   
-  environment.interactiveShellInit = ''
-    alias comojit='comoji commit'
-  '';
+  # environment.interactiveShellInit = ''
+  #   alias comojit='comoji commit'
+  # '';
   
   fonts = {
     enableDefaultFonts = true;

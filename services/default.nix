@@ -21,6 +21,8 @@
     # Keep this to not override caddy
     services.nginx.enable = false;
     
+    # recommended for pipewire
+    security.rtkit.enable = true;
     services.pipewire = {
         enable = true;
         alsa.enable = true;

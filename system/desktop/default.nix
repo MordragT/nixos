@@ -22,4 +22,5 @@
       127.0.0.1 mordrag.io
     '';
   };
+  systemd.services."systemd-networkd-wait-online".enable = false; 
 }
