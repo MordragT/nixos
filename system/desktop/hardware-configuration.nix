@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
@@ -13,27 +14,29 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.resumeDevice = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700";
-  
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/7edc6fe9-2aab-429a-baa4-2187bbf3186f";
+    {
+      device = "/dev/disk/by-uuid/7edc6fe9-2aab-429a-baa4-2187bbf3186f";
       fsType = "f2fs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FE10-AE4C";
+    {
+      device = "/dev/disk/by-uuid/FE10-AE4C";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/81ebaab8-f772-4b6c-9b1a-b5f697a227f5";
+    {
+      device = "/dev/disk/by-uuid/81ebaab8-f772-4b6c-9b1a-b5f697a227f5";
       fsType = "btrfs";
       options = [
         "compress=zstd"
       ];
     };
-  
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700"; }];
 
 }

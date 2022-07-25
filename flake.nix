@@ -7,10 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    naersk = {
-      url = "github:nmattia/naersk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,11 +37,10 @@
     };
   };
 
-  outputs = {
-    self
+  outputs =
+    { self
     , nixpkgs
     , home-manager
-    , naersk
     , fenix
     , js-bp
     , agenix
@@ -53,85 +48,88 @@
     , comoji
     , mailserver
     , hua
-    , ... 
-  }@inputs: 
-  let
-    overlay = (name: path: final: prev: {
-      "${name}" = prev.callPackage (import path) {};
-    });
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [
-        (overlay "webex" ./packages/webex.nix)
-        (overlay "spflashtool" ./packages/spflashtool.nix)
-        (overlay "astrofox" ./packages/astrofox.nix)
-        # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
-        nur-community.overlay    
-        agenix.overlay
-        comoji.overlay
-        hua.overlay
-        fenix.overlay
-        naersk.overlay
-        js-bp.overlays.default
-      ];
-    };      
-    system = "x86_64-linux";
-  in {         
-    nixosConfigurations = {
-      "tom-laptop" = nixpkgs.lib.nixosSystem {
+    }@inputs:
+    let
+      overlay = (name: path: final: prev: {
+        "${name}" = prev.callPackage (import path) { };
+      });
+      pkgs = import nixpkgs {
         inherit system;
-            
-        modules = [
-          mailserver.nixosModules.mailserver
-          agenix.nixosModules.age
-          home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.root = import ./users/root.nix {
-                  inherit system pkgs;      
-              };
-              home-manager.users.tom = import ./users/tom.nix {
-                  inherit system pkgs;    
-              };
-          }
-          ./system/laptop
-          ./system
-          ./services
-          ./virtualization
-        ];   
-            
-        specialArgs = {
-          inherit system pkgs inputs;
-        };
+        config.allowUnfree = true;
+        overlays = [
+          (overlay "grass" ./packages/grass.nix)
+          (overlay "lottieconv" ./packages/lottieconv.nix)
+          (overlay "webex" ./packages/webex.nix)
+          (overlay "spflashtool" ./packages/spflashtool.nix)
+          (overlay "astrofox" ./packages/astrofox.nix)
+          # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
+          nur-community.overlay
+          agenix.overlay
+          comoji.overlay
+          hua.overlay
+          fenix.overlay
+          js-bp.overlays.default
+        ];
       };
-            
-      "tom-pc" = nixpkgs.lib.nixosSystem {
-        inherit system;
-            
-        modules = [
-          mailserver.nixosModules.mailserver
-          agenix.nixosModules.age
-          home-manager.nixosModules.home-manager {
+      system = "x86_64-linux";
+    in
+    {
+      nixosConfigurations = {
+        "tom-laptop" = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            mailserver.nixosModules.mailserver
+            agenix.nixosModules.age
+            home-manager.nixosModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.root = import ./users/root.nix {
-                  inherit system pkgs;      
+                inherit system pkgs;
               };
               home-manager.users.tom = import ./users/tom.nix {
-                  inherit system pkgs;    
+                inherit system pkgs;
               };
-          }
-          ./system/desktop
-          ./system
-          ./services
-          ./virtualization
-        ];   
-            
-        specialArgs = {
-          inherit system pkgs inputs;
+            }
+            ./system/laptop
+            ./system
+            ./services
+            ./virtualization
+          ];
+
+          specialArgs = {
+            inherit system pkgs inputs;
+          };
+        };
+
+        "tom-pc" = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            mailserver.nixosModules.mailserver
+            agenix.nixosModules.age
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.root = import ./users/root.nix {
+                inherit system pkgs;
+              };
+              home-manager.users.tom = import ./users/tom.nix {
+                inherit system pkgs;
+              };
+            }
+            ./system/desktop
+            ./system
+            ./services
+            ./virtualization
+          ];
+
+          specialArgs = {
+            inherit system pkgs inputs;
+          };
         };
       };
     };
-  };
 }

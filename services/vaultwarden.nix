@@ -3,11 +3,11 @@
   services.vaultwarden = {
     enable = true;
     config = {
-      domain = "https://bitwarden.localhost";    
+      domain = "https://bitwarden.localhost";
       rocketPort = 3030;
-    };    
+    };
   };
-  
+
   services.caddy.virtualHosts."bitwarden.localhost" = {
     extraConfig = ''
       tls connect.mordrag@gmx.de {

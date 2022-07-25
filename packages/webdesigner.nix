@@ -1,6 +1,6 @@
 { pkgs }:
 with pkgs;
-  
+
 stdenv.mkDerivation {
   pname = "webdesigner";
   version = "14.0.4";
@@ -11,7 +11,7 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ dpkg ];
-  buildInputs = [];
+  buildInputs = [ ];
 
   dontBuild = true;
 

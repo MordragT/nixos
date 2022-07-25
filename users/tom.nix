@@ -1,12 +1,12 @@
 { pkgs, ... }:
 
-{         
+{
   # Let Home Manager install and manage itself.
   #programs.home-manager.enable = true;
 
   home.username = "tom";
   home.homeDirectory = pkgs.lib.mkForce "/home/tom";
-  
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -16,9 +16,9 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.11";
-    
+
   # Packages
-  home.packages = with pkgs; [    
+  home.packages = with pkgs; [
     # Rust cli
     hua # My own package manager
     gitoxide # alternative git still wip
@@ -58,7 +58,7 @@
     mdbook-mermaid # render mermaid.js
     miniserve # serve some files via http
     hexdino # hex editor
-    difftastic  # a diff tool
+    difftastic # a diff tool
     nix-index # locate files of nix packages
     ffsend # securely share files
     pueue # send commands into queue to execute
@@ -66,7 +66,10 @@
     ouch # (de)compressor with sane interface
     skim # fuzzy finder
     rnote # draw notes
-    
+    grass # sass compiler
+    lottieconv # convert lottie into gif or webp
+    nixpkgs-fmt
+
     # Rust GTK
     kooha # screen recording
     contrast # gtk check contrast
@@ -94,14 +97,14 @@
     # gnome-latex
     pdfarranger
     junction
-             
+
     # Downloads        
     megacmd # File sharing
     qbittorrent
     fragments
-    
+
     # IT Security & Reverse Engineering
-    cutter    
+    cutter
     macchanger # change the network's mac address
     tor-browser-bundle-bin
     scrcpy # control android from pc
@@ -111,7 +114,7 @@
     godot # game engine
     conda # python package manager
     texlab # latex lsp implementation
-          
+
     # Asset creation
     blender
     blockbench-electron
@@ -119,7 +122,7 @@
     inkscape
     zrythm
     akira-unstable
-    
+
     # Video
     pitivi
     mpv
@@ -129,19 +132,21 @@
 
     # Music
     spotify
-        
+
     # Social    
     discord
     teams
     zoom-us
     webex
-      
+
     # Gaming
     steam-tui
     steamcmd
+    steam-run
     sc-controller
     # steamcontroller
     lutris
+    # bottles
     teamspeak_client
     protonup
     vulkan-tools
@@ -150,13 +155,14 @@
     optifine
     # pkgs.nur.repos.dukzcry.gamescope
     mangohud
-      
+
     # Documents
     libreoffice-fresh
+    onlyoffice-bin
     nodePackages.reveal-md
     okular
     # zotero
-    
+
     # Tools
     cpufetch
     ventoy-bin # create bootable usb drive for isos
@@ -166,64 +172,66 @@
     trash-cli # put files in trash
     openssl # required by lol installer
     gnutls # required by ubisoft connect
-    expect    
+    expect
     usbmuxd
     appimage-run
     spflashtool # flash android mtk
   ];
-  
+
   xdg = {
     enable = true;
     userDirs.enable = true;
-    configFile = let
-      toml = pkgs.formats.toml {};
-    in {
-      "helix/config.toml".source =
-        toml.generate "helix-conf" {
-          theme = "gruvbox";
-            
-          # editor.cursor-shape.normal = "bar";
-        };     
-      "findex/style.css".source =
-        builtins.toFile "style.css" ''
-        	.findex-query {
-        	    color: white;
-        	    padding: 15px;
-        	    font-size: 20px;
-        	    border: none;
-        	}
+    configFile =
+      let
+        toml = pkgs.formats.toml { };
+      in
+      {
+        "helix/config.toml".source =
+          toml.generate "helix-conf" {
+            theme = "gruvbox";
+
+            # editor.cursor-shape.normal = "bar";
+          };
+        "findex/style.css".source =
+          builtins.toFile "style.css" ''
+            	.findex-query {
+            	    color: white;
+            	    padding: 15px;
+            	    font-size: 20px;
+            	    border: none;
+            	}
         
-        	.findex-result-row:selected .findex-result-app-name {
-        	    color: black;
-        	}
+            	.findex-result-row:selected .findex-result-app-name {
+            	    color: black;
+            	}
         
-        	.findex-result-icon {
-        	    margin: 10px;
-        	}
+            	.findex-result-icon {
+            	    margin: 10px;
+            	}
         
-        	.findex-result-app-name {
-        	    color: #fff;
-        	    margin: 10px;
-        	    font-weight: bold;
-        	    font-size: 15px;
-        	}
-        '';       
-    };
+            	.findex-result-app-name {
+            	    color: #fff;
+            	    margin: 10px;
+            	    font-weight: bold;
+            	    font-size: 15px;
+            	}
+          '';
+      };
   };
-    
+
   pam.sessionVariables = {
-    XDG_CONFIG_HOME =  "/home/tom/.config";
+    XDG_CONFIG_HOME = "/home/tom/.config";
     XDG_CACHE_HOME = "/home/tom/.cache";
     XDG_DATA_HOME = "/home/tom/.local/share";
     XDG_STATE_HOME = "/home/tom/.local/state";
     XDG_DATA_DIRS = "/usr/share:/usr/local/share:/home/tom/.local/share/:/home/tom/.nix-profile/share";
   };
-        
+
   programs.bat = {
     enable = true;
     config.theme = "gruvbox-dark";
   };
-    
+
   programs.broot = {
     enable = true;
     skin = {
@@ -291,94 +299,101 @@
       hex_non_ascii = "rgb(214, 93, 14) None";
       staging_area_title = "rgb(235, 219, 178) rgb(40, 40, 40) / rgb(189, 174, 147) rgb(40, 40, 40)";
       mode_command_mark = "gray(5) ansi(204) Bold";
-    };    
+    };
   };
-        
+
   programs.chromium.enable = true;
-    
+
   programs.exa.enable = true;
-  
+
   programs.firefox = {
     enable = true;
-    extensions = let  
-      buildFirefoxXpiAddon = pkgs.lib.makeOverridable ({ pname, version, addonId,
-          url, sha256, meta, ...
-      }: pkgs.stdenv.mkDerivation {
-        name = "${pname}-${version}";
+    extensions =
+      let
+        buildFirefoxXpiAddon = pkgs.lib.makeOverridable ({ pname
+                                                         , version
+                                                         , addonId
+                                                         , url
+                                                         , sha256
+                                                         , meta
+                                                         , ...
+                                                         }: pkgs.stdenv.mkDerivation {
+          name = "${pname}-${version}";
 
-        inherit meta;
+          inherit meta;
 
-        src = pkgs.fetchurl { inherit url sha256; };
+          src = pkgs.fetchurl { inherit url sha256; };
 
-        preferLocalBuild = true;
-        allowSubstitutes = true;
+          preferLocalBuild = true;
+          allowSubstitutes = true;
 
-        buildCommand = ''
-          dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-          mkdir -p "$dst"
-          install -v -m644 "$src" "$dst/${addonId}.xpi"
-        '';
-      });
-      bibitnow = buildFirefoxXpiAddon {
-        pname = "BibItNow!";
-        version = "0.908";
-        addonId = "bibitnow018@aqpl.mc2.chalmers.se";
-        url = "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi";
-        sha256 = "QIWgTLD+WVZ3+lt/pjDYF+CRiMz7/NNYbMwWLv6mdGc=";
-        meta = with pkgs.lib;
-        {
-          homepage = "https://github.com/Langenscheiss/bibitnow";
-          description = "Instantly creates a Bibtex, RIS, Endnote, APA, MLA or (B)Arnold S.";
-          license = licenses.mpl20;
-          platforms = platforms.all;
+          buildCommand = ''
+            dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+            mkdir -p "$dst"
+            install -v -m644 "$src" "$dst/${addonId}.xpi"
+          '';
+        });
+        bibitnow = buildFirefoxXpiAddon {
+          pname = "BibItNow!";
+          version = "0.908";
+          addonId = "bibitnow018@aqpl.mc2.chalmers.se";
+          url = "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi";
+          sha256 = "QIWgTLD+WVZ3+lt/pjDYF+CRiMz7/NNYbMwWLv6mdGc=";
+          meta = with pkgs.lib;
+            {
+              homepage = "https://github.com/Langenscheiss/bibitnow";
+              description = "Instantly creates a Bibtex, RIS, Endnote, APA, MLA or (B)Arnold S.";
+              license = licenses.mpl20;
+              platforms = platforms.all;
+            };
         };
-      };
-      pia = buildFirefoxXpiAddon {
-        pname = "PrivateInternetAccess";
-        version = "3.2.0";
-        addonId = "{3e4d2037-d300-4e95-859d-3cba866f46d3}";
-        url = "https://addons.mozilla.org/firefox/downloads/file/3916166/private_internet_access_ext-3.2.0.xpi";
-        sha256 = "RbiCnMerNjakrFIBXiPnzIxvohh3zgYM1R5WU2yVhbk=";
-        meta = with pkgs.lib;
-        {
-          homepage = "https://www.privateinternetaccess.com/";
-          description = "Defeat censorship, unblock any website and access the open Internet the way it was meant to be with Private Internet Access";
-          license = licenses.mit;
-          platforms = platforms.all;
+        pia = buildFirefoxXpiAddon {
+          pname = "PrivateInternetAccess";
+          version = "3.2.0";
+          addonId = "{3e4d2037-d300-4e95-859d-3cba866f46d3}";
+          url = "https://addons.mozilla.org/firefox/downloads/file/3916166/private_internet_access_ext-3.2.0.xpi";
+          sha256 = "RbiCnMerNjakrFIBXiPnzIxvohh3zgYM1R5WU2yVhbk=";
+          meta = with pkgs.lib;
+            {
+              homepage = "https://www.privateinternetaccess.com/";
+              description = "Defeat censorship, unblock any website and access the open Internet the way it was meant to be with Private Internet Access";
+              license = licenses.mit;
+              platforms = platforms.all;
+            };
         };
-      };
-      brave-search = buildFirefoxXpiAddon {
-        pname = "BraveSearch";
-        version = "1.0.1";
-        addonId = "BraveSearchExtension@io.Uvera";
-        url = "https://addons.mozilla.org/firefox/downloads/file/3809887/brave_search-1.0.1.xpi";
-        sha256 = "lIgiSnoSMwI/7DNTOnjhgDSCvFANkq/LOWK3hXXfza4=";
-        meta = with pkgs.lib;
-        {
-          homepage = "https://github.com/uvera/firefox-extension-brave-search";
-          description = "Adds Brave search as a search engine";
-          license = licenses.mit;
-          platforms = platforms.all;
+        brave-search = buildFirefoxXpiAddon {
+          pname = "BraveSearch";
+          version = "1.0.1";
+          addonId = "BraveSearchExtension@io.Uvera";
+          url = "https://addons.mozilla.org/firefox/downloads/file/3809887/brave_search-1.0.1.xpi";
+          sha256 = "lIgiSnoSMwI/7DNTOnjhgDSCvFANkq/LOWK3hXXfza4=";
+          meta = with pkgs.lib;
+            {
+              homepage = "https://github.com/uvera/firefox-extension-brave-search";
+              description = "Adds Brave search as a search engine";
+              license = licenses.mit;
+              platforms = platforms.all;
+            };
         };
-      };
-    in with pkgs.nur.repos.rycee.firefox-addons; [
-      sidebery
-      sponsorblock
-      bitwarden
-      honey
-      ublock-origin
-      rust-search-extension
-      brave-search
-      bibitnow
-      pia
-    ];
+      in
+      with pkgs.nur.repos.rycee.firefox-addons; [
+        sidebery
+        sponsorblock
+        bitwarden
+        honey
+        ublock-origin
+        rust-search-extension
+        brave-search
+        bibitnow
+        pia
+      ];
     profiles.options = {
       settings = {
         "browser.startup.homepage" = "https://search.brave.com";
         "browser.search.region" = "DE";
         "browser.search.isUS" = false;
         "browser.useragent.locale" = "de-DE";
-        "browser.startup.page" = 3; 
+        "browser.startup.page" = 3;
         "browser.download.useDownloadDir" = false;
         "signon.rememberSignons" = false;
         "services.sync.engine.passwords" = false;
@@ -391,23 +406,25 @@
         "browser.tabs.drawInTitlebar" = true;
         "svg.context-properties.content.enabled" = true;
       };
-      userChrome = let
-        firefox-gnome-theme = pkgs.fetchFromGitHub {
-          owner = "rafaelmardojai";
-          repo = "firefox-gnome-theme";
-          rev = "fc44130eb94467f6392fc86dd136235013c9ffd0";
-          hash = "sha256-D6HBSFnlttKeIg64nW6gAt7h6YNeGbX6mYGV3pJXZNM=";
-        };
-      in ''
-        @import "${firefox-gnome-theme}/userChrome.css";
+      userChrome =
+        let
+          firefox-gnome-theme = pkgs.fetchFromGitHub {
+            owner = "rafaelmardojai";
+            repo = "firefox-gnome-theme";
+            rev = "fc44130eb94467f6392fc86dd136235013c9ffd0";
+            hash = "sha256-D6HBSFnlttKeIg64nW6gAt7h6YNeGbX6mYGV3pJXZNM=";
+          };
+        in
+        ''
+          @import "${firefox-gnome-theme}/userChrome.css";
 
-        #TabsToolbar {
-            visibility: collapse !important;
-        }
-      '';
+          #TabsToolbar {
+              visibility: collapse !important;
+          }
+        '';
     };
-  }; 
-    
+  };
+
   programs.git = {
     enable = true;
     userName = "Thomas Wehmöller";
@@ -419,9 +436,10 @@
     configFile.text = ''      
       def , [...pkgs: string] {
         let $pkgs = ($pkgs
-          | each { |pkg| "'nixpkgs#" + $pkg + "'" }
+          | each { |pkg| "nixpkgs#" + $pkg }
           | str collect ' ')
-        nu -c $"nix shell ($pkgs)"
+        let cmd = $"nix shell ($pkgs)"
+        bash -c $cmd
       }
       
       alias comojit = comoji commit
@@ -431,10 +449,10 @@
       }
     '';
     envFile.text = "";
-  };  
-   
+  };
+
   programs.obs-studio.enable = true;
-    
+
   programs.vscode = {
     enable = true;
     userSettings = {
@@ -453,6 +471,7 @@
       "workbench.statusBar.visible" = true;
       "workbench.sideBar.location" = "right";
       "workbench.editor.showIcons" = false;
+      "workbench.colorTheme" = "One Dark Vibrant";
       "editor.occurrencesHighlight" = false;
       "workbench.startupEditor" = "newUntitledFile";
       "workbench.tree.renderIndentGuides" = "none";
@@ -470,11 +489,11 @@
       "editor.renderLineHighlight" = "none";
       "editor.cursorBlinking" = "expand";
       "files.exclude" = {
-          "**/.classpath" = true;
-          "**/.factorypath" = true;
-          "**/.idea" = true;
-          "**/.project" = true;
-          "**/.settings" = true;
+        "**/.classpath" = true;
+        "**/.factorypath" = true;
+        "**/.idea" = true;
+        "**/.project" = true;
+        "**/.settings" = true;
       };
       "breadcrumbs.enabled" = false;
       "workbench.editor.labelFormat" = "short";
@@ -485,9 +504,10 @@
       "rust-analyzer.procMacro.enable" = false;
       "lldb.verboseLogging" = true;
       "files.associations" = {
-          "*.lalrpop" = "rust";
-          "*.tera" = "html";
+        "*.lalrpop" = "rust";
+        "*.tera" = "html";
       };
+      "ltex.language" = "de-DE";
       # "latex-workshop.latex.recipes" = [
       #   {
       #     "name" = "tectonic";
@@ -498,43 +518,43 @@
     keybindings = [
       {
         key = "ctrl+k ctrl+e";
-        command = "workbench.view.explorer";     
-      }    
-      {
-          key = "ctrl+k ctrl+v";
-          command = "workbench.view.scm";
+        command = "workbench.view.explorer";
       }
       {
-          key = "ctrl+k ctrl+d";
-          command = "workbench.view.debug";
+        key = "ctrl+k ctrl+v";
+        command = "workbench.view.scm";
       }
       {
-          key = "ctrl+k ctrl+x";
-          command = "workbench.extensions.action.showInstalledExtensions";
+        key = "ctrl+k ctrl+d";
+        command = "workbench.view.debug";
       }
       {
-          key = "ctrl+n";
-          command = "explorer.newFile";
-          when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+        key = "ctrl+k ctrl+x";
+        command = "workbench.extensions.action.showInstalledExtensions";
       }
       {
-          key = "shift+ctrl+n";
-          command = "explorer.newFolder";
-          when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+        key = "ctrl+n";
+        command = "explorer.newFile";
+        when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
       }
       {
-          key = "ctrl+r";
-          command = "workbench.files.action.refreshFilesExplorer";
-          when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+        key = "shift+ctrl+n";
+        command = "explorer.newFolder";
+        when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
+      }
+      {
+        key = "ctrl+r";
+        command = "workbench.files.action.refreshFilesExplorer";
+        when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
       }
     ];
     extensions = with pkgs.vscode-extensions; [
       pkgs.fenix.rust-analyzer-vscode-extension
       # vadimcn.vscode-lldb
-      ms-python.python    
+      ms-python.python
       ms-vscode-remote.remote-ssh
       ms-vsliveshare.vsliveshare
-      bbenoist.nix
+      # bbenoist.nix
       bungcip.better-toml
       tiehuis.zig
       # ms-vscode.cpptools
@@ -542,9 +562,10 @@
       gruntfuggly.todo-tree
       # james-yu.latex-workshop
       skellock.just
+      jnoortheen.nix-ide
       # arrterian.nix-env-selector
       valentjn.vscode-ltex
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [       
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "texlab";
         publisher = "efoerster";
@@ -563,26 +584,32 @@
         version = "0.5.27";
         sha256 = "1rhp32az7smzhdc6gbz546v0l0507pmhw9y7zsdw43hb5sh1ykj7";
       }
+      {
+        name = "one-dark-vibrant";
+        publisher = "Mordrag";
+        version = "0.0.4";
+        sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
+      }
     ];
   };
-           
-  programs.zoxide.enable = true; 
-    
+
+  programs.zoxide.enable = true;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
-      
+
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = ["git" "colorize" "z"];
+      plugins = [ "git" "colorize" "z" ];
     };
-        
+
     shellAliases = {
       "..." = "../..";
     };
-        
+
     initExtra = ''
       export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
         

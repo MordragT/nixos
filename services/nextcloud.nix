@@ -2,16 +2,17 @@
 let
   caddy = config.services.caddy;
   secrets = config.age.secrets;
-  
+
   secret = path: {
     file = path;
     owner = "nextcloud";
     group = "nextcloud";
     mode = "0440";
   };
-in {
+in
+{
   age.secrets.nextcloud = secret ../secrets/nextcloud.age;
-    
+
   services.nextcloud = {
     enable = true;
     hostName = "nextcloud.localhost";
@@ -20,7 +21,7 @@ in {
     config = {
       dbtype = "sqlite";
       defaultPhoneRegion = "DE";
-      adminuser = "root"; 
+      adminuser = "root";
       # Should use adminpassfile
       adminpassFile = secrets.nextcloud.path;
       extraTrustedDomains = [
@@ -30,12 +31,12 @@ in {
       overwriteProtocol = "https";
     };
   };
-  
+
   services.phpfpm.pools.nextcloud.settings = {
     "listen.owner" = caddy.user;
-    "listen.group" = caddy.group;    
+    "listen.group" = caddy.group;
   };
-  
+
   users.users.nextcloud = {
     group = "nextcloud";
     isSystemUser = true;
@@ -89,6 +90,6 @@ in {
       tls connect.mordrag@gmx.de {
         ca https://localhost:8443/acme/acme/directory
       }
-    '';          
+    '';
   };
 }

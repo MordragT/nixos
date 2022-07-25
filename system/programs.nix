@@ -5,7 +5,7 @@
   programs.droidcam.enable = true;
   programs.adb.enable = true;
   programs.gamemode.enable = true;
-  
+
   environment.systemPackages = with pkgs; [
     helix
     agenix
@@ -15,5 +15,7 @@
     gnomeExtensions.pop-shell
     gparted
     protontricks
+    # wineWowPackages.waylandFull
+    wineWowPackages.staging
   ];
 }

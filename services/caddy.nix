@@ -1,5 +1,5 @@
 { pkgs, config, lib, ... }:
-{  
+{
   services.caddy = {
     enable = true;
     acmeCA = config.security.acme.defaults.server;
@@ -11,6 +11,6 @@
         }
         respond "Hello, world!"         
       }        
-    '';    
+    '';
   };
 }

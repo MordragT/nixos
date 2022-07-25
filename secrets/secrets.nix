@@ -4,9 +4,10 @@ let
   rootDesktop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBRTN+C6PFAtIeMvSo7gGXS4baEbjNbEenAaUmiADXtM root@tom-pc";
   tomDesktop = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIm/oTrV+ISStJ7Gb3ES7lZdCfya2TdEtkFZ/A1rqYEv tom@tom-pc";
   keys = [ rootLaptop tomLaptop rootDesktop tomDesktop ];
-in {
-  
-  "nextcloud.age".publicKeys = keys;  
+in
+{
+
+  "nextcloud.age".publicKeys = keys;
   "step-ca.age".publicKeys = keys;
   "pia.age".publicKeys = keys;
 }

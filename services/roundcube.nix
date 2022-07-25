@@ -2,6 +2,6 @@
 {
   services.roundcube = {
     enable = true;
-    hostName = "roundcube.localhost";    
+    hostName = "roundcube.localhost";
   };
 }
