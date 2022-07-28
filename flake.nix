@@ -15,6 +15,10 @@
       url = "github:serokell/nix-npm-buildpackage";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gomod2nix = {
+      url = "github:tweag/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
     , home-manager
     , fenix
     , js-bp
+    , gomod2nix
     , agenix
     , nur-community
     , comoji
@@ -62,6 +67,8 @@
           (overlay "webex" ./packages/webex.nix)
           (overlay "spflashtool" ./packages/spflashtool.nix)
           (overlay "astrofox" ./packages/astrofox.nix)
+          (overlay "superview" ./packages/superview.nix)
+          (overlay "dandere2x" ./packages/dandere2x.nix)
           # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
           nur-community.overlay
           agenix.overlay
@@ -69,6 +76,7 @@
           hua.overlay
           fenix.overlay
           js-bp.overlays.default
+          gomod2nix.overlays.default
         ];
       };
       system = "x86_64-linux";

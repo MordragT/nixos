@@ -22,6 +22,7 @@
     };
   };
 
+  hardware.opengl.enable = true;
   hardware.steam-hardware.enable = true;
   hardware.pulseaudio.enable = false;
 
@@ -47,9 +48,9 @@
     variables = {
       EDITOR = "hx";
     };
-    loginShellInit = ''
-      hua generations switch $(hua generations current)
-    '';
+    # loginShellInit = ''
+    #   hua generations switch $(hua generations current)
+    # '';
   };
 
   # environment.interactiveShellInit = ''

@@ -114,6 +114,8 @@
     godot # game engine
     conda # python package manager
     texlab # latex lsp implementation
+    gomod2nix # go.mod to nix
+    # mach-nix # python requirements.txt to nix
 
     # Asset creation
     blender
@@ -121,14 +123,20 @@
     krita
     inkscape
     zrythm
+    # mixxx
+    # audacity
+    tenacity
     akira-unstable
 
     # Video
+    waifu2x-converter-cpp
     pitivi
     mpv
     yt-dlp # download youtube videos
     asciinema # record terminals
     astrofox
+    superview
+    dandere2x
 
     # Music
     spotify
