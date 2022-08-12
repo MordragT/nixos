@@ -35,6 +35,10 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hua = {
       url = "github:MordragT/hua";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +56,7 @@
     , nur-community
     , comoji
     , mailserver
+    , microvm
     , hua
     }@inputs:
     let
@@ -67,8 +72,8 @@
           (overlay "webex" ./packages/webex.nix)
           (overlay "spflashtool" ./packages/spflashtool.nix)
           (overlay "astrofox" ./packages/astrofox.nix)
-          (overlay "superview" ./packages/superview.nix)
-          (overlay "dandere2x" ./packages/dandere2x.nix)
+          #(overlay "superview" ./packages/superview.nix)
+          #(overlay "dandere2x" ./packages/dandere2x.nix)
           # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
           nur-community.overlay
           agenix.overlay
@@ -132,11 +137,120 @@
             ./system
             ./services
             ./virtualization
+
+            ({ ... }: {
+              nix.registry = {
+                nixpkgs.flake = nixpkgs;
+                microvm.flake = self;
+              };
+            })
+
+            microvm.nixosModules.host
+            {
+              microvm.vms.vm =
+                {
+                  flake = self;
+                  updateFlake = "microvm";
+                };
+              # microvm.autostart = [ "vm" ];
+            }
           ];
 
           specialArgs = {
             inherit system pkgs inputs;
           };
+        };
+
+        # vm must use dhcp otherwise not working
+        # probably due to misconfiguration
+        vm = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            microvm.nixosModules.microvm
+            {
+              system.stateVersion =
+                "22.11";
+
+              services.sshd.enable = true;
+              environment.systemPackages = with pkgs; [
+
+              ];
+
+              networking = {
+                hostName = "vm";
+                #useDHCP = false;
+                firewall = {
+                  enable = true;
+                  allowedTCPPorts = [ 22 ];
+                };
+                # useNetworkd = true;
+
+                interfaces.eth0 = {
+                  ipv4 = {
+                    addresses = [
+                      { address = "192.168.1.80"; prefixLength = 32; }
+                    ];
+                    # routes = [
+                    #   {
+                    #     address = "192.168.1.0";
+                    #     prefixLength = 24;
+                    #     via = "192.168.240.0";
+                    #   }
+                    # ];
+                  };
+                };
+              };
+
+              # systemd.network = {
+              #   enable = true;
+              #   networks.uplink = {
+              #     matchConfig = { Name = "eth0"; };
+              #     address = [ "192.168.240.80/24" ];
+              #     dns = [ "1.1.1.1" "8.8.8.8" "4.4.4.4" ];
+              #     gateway = [ "192.168.240.0" ];
+              #   };
+              # };
+
+              users.users = {
+                root.password = "";
+                netzag = {
+                  isNormalUser = true;
+                  extraGroups = [ "wheel" "docker" ];
+                  password = "test";
+                };
+              };
+
+              microvm = {
+                interfaces = [{
+                  type = "tap";
+                  id = "vm-a1";
+                  mac = "02:00:00:00:00:01";
+                }];
+
+                volumes = [{
+                  mountPoint = "/var";
+                  image = "var.img";
+                  size = 256;
+                }];
+
+                shares = [{
+                  # use "virtiofs" for MicroVMs that are started by systemd
+                  proto = "virtiofs";
+                  tag = "ro-store";
+                  socket = "ro-store.socket";
+                  # a host's /nix/store will be picked up so that the
+                  # size of the /dev/vda can be reduced.
+                  source = "/nix/store";
+                  mountPoint = "/nix/.ro-store";
+                }];
+
+                socket = "control.socket";
+                # relevant for delarative MicroVM management
+                hypervisor = "cloud-hypervisor";
+              };
+            }
+          ];
         };
       };
     };

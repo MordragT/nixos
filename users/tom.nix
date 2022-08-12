@@ -97,6 +97,7 @@
     # gnome-latex
     pdfarranger
     junction
+    easyeffects # audio effects
 
     # Downloads        
     megacmd # File sharing
@@ -108,6 +109,7 @@
     macchanger # change the network's mac address
     tor-browser-bundle-bin
     scrcpy # control android from pc
+    step-cli # generate certificates
 
     # Development
     dbeaver # sql client
@@ -135,8 +137,8 @@
     yt-dlp # download youtube videos
     asciinema # record terminals
     astrofox
-    superview
-    dandere2x
+    #superview
+    #dandere2x
 
     # Music
     spotify

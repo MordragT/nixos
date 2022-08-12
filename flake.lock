@@ -118,6 +118,21 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1653893745,
+        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "gomod2nix": {
       "inputs": {
         "nixpkgs": [
@@ -224,6 +239,27 @@
         "owner": "simple-nixos-mailserver",
         "repo": "nixos-mailserver",
         "type": "gitlab"
+      }
+    },
+    "microvm": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1659196193,
+        "narHash": "sha256-R7LmNYexghJ79WdFkQnYvRWT2encMxQQw21HoJwG2UQ=",
+        "owner": "astro",
+        "repo": "microvm.nix",
+        "rev": "1f1a004ca878665b4f7a91e138d8604793ef98d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "astro",
+        "repo": "microvm.nix",
+        "type": "github"
       }
     },
     "naersk": {
@@ -377,6 +413,7 @@
         "hua": "hua",
         "js-bp": "js-bp",
         "mailserver": "mailserver",
+        "microvm": "microvm",
         "nixpkgs": "nixpkgs_5",
         "nur-community": "nur-community"
       }
