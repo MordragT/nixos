@@ -163,7 +163,7 @@
     # pufferpanel # game server
     minecraft
     optifine
-    # pkgs.nur.repos.dukzcry.gamescope
+    gamescope
     mangohud
 
     # Documents
