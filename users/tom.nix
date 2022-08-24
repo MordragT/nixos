@@ -114,7 +114,8 @@
     # Development
     dbeaver # sql client
     godot # game engine
-    conda # python package manager
+    # conda # python package manager
+    micromamba # replacement for conda
     texlab # latex lsp implementation
     gomod2nix # go.mod to nix
     # mach-nix # python requirements.txt to nix
