@@ -107,18 +107,21 @@
     # IT Security & Reverse Engineering
     cutter
     macchanger # change the network's mac address
-    tor-browser-bundle-bin
+    # tor-browser-bundle-bin
     scrcpy # control android from pc
     step-cli # generate certificates
 
     # Development
     dbeaver # sql client
     godot # game engine
-    # conda # python package manager
+    conda # python package manager
     micromamba # replacement for conda
     texlab # latex lsp implementation
     gomod2nix # go.mod to nix
     # mach-nix # python requirements.txt to nix
+    (dvc.override { enableAWS = true; }) # data version control
+    awscli2
+    ignite # run oci-container in firecracker vm
 
     # Asset creation
     blender
@@ -173,8 +176,12 @@
     nodePackages.reveal-md
     okular
     # zotero
+    # notes-desktop
 
     # Tools
+    jq # required for nixos-shell
+    nixos-shell # get vm shell
+    nixos-generators # creates images from nixos configuration
     cpufetch
     ventoy-bin # create bootable usb drive for isos
     cabextract
@@ -187,6 +194,7 @@
     usbmuxd
     appimage-run
     spflashtool # flash android mtk
+    alsa-utils
   ];
 
   xdg = {
@@ -314,7 +322,8 @@
   };
 
   programs.chromium.enable = true;
-
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
   programs.exa.enable = true;
 
   programs.firefox = {
@@ -457,6 +466,16 @@
       
       let-env config = {
         table_mode: rounded
+        # wait for 0.66 to release in nix
+        # hooks: {
+        #   pre_prompt: [{
+        #     code: "
+        #       let direnv = (direnv export json | from json)
+        #       let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+        #       $direnv | load-env
+        #     "
+        #   }]
+        # }
       }
     '';
     envFile.text = "";
@@ -489,7 +508,7 @@
       "editor.acceptSuggestionOnEnter" = "off";
       "explorer.confirmDelete" = false;
       "explorer.confirmDragAndDrop" = false;
-      "editor.renderIndentGuides" = false;
+      # "editor.renderIndentGuides" = false;
       "editor.formatOnSave" = true;
       "terminal.integrated.rendererType" = "dom";
       "git.enableSmartCommit" = true;
@@ -562,6 +581,7 @@
     extensions = with pkgs.vscode-extensions; [
       pkgs.fenix.rust-analyzer-vscode-extension
       # vadimcn.vscode-lldb
+      ms-toolsai.jupyter
       ms-python.python
       ms-vscode-remote.remote-ssh
       ms-vsliveshare.vsliveshare

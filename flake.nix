@@ -25,7 +25,7 @@
     };
     nur-community = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     comoji = {
       url = "github:MordragT/comoji";
@@ -43,6 +43,7 @@
       url = "github:MordragT/hua";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # notes.url = "github:MordragT/notes";
   };
 
   outputs =
@@ -58,6 +59,7 @@
     , mailserver
     , microvm
     , hua
+      # , notes
     }@inputs:
     let
       overlay = (name: path: final: prev: {
@@ -79,6 +81,7 @@
           agenix.overlay
           comoji.overlay
           hua.overlay
+          # notes.overlay
           fenix.overlay
           js-bp.overlays.default
           gomod2nix.overlays.default
