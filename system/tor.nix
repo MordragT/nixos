@@ -1,0 +1,4 @@
+{ ... }:
+{
+  services.tor.enable = true;
+}

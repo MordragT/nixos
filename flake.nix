@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +23,6 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nur-community = {
-      url = "github:nix-community/NUR";
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
     comoji = {
       url = "github:MordragT/comoji";
@@ -49,12 +46,12 @@
   outputs =
     { self
     , nixpkgs
+    , nur
     , home-manager
     , fenix
     , js-bp
     , gomod2nix
     , agenix
-    , nur-community
     , comoji
     , mailserver
     , microvm
@@ -69,15 +66,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (overlay "grass" ./packages/grass.nix)
-          (overlay "lottieconv" ./packages/lottieconv.nix)
-          (overlay "webex" ./packages/webex.nix)
-          (overlay "spflashtool" ./packages/spflashtool.nix)
-          (overlay "astrofox" ./packages/astrofox.nix)
-          #(overlay "superview" ./packages/superview.nix)
-          #(overlay "dandere2x" ./packages/dandere2x.nix)
-          # (custom-overlay "webdesigner" ./packages/webdesigner.nix)
-          nur-community.overlay
+          nur.overlay
           agenix.overlay
           comoji.overlay
           hua.overlay
@@ -85,176 +74,171 @@
           fenix.overlay
           js-bp.overlays.default
           gomod2nix.overlays.default
+          (import ./overlay.nix)
         ];
       };
+      lib = import ./lib { inherit nixpkgs pkgs home-manager agenix; };
       system = "x86_64-linux";
     in
     {
       nixosConfigurations = {
-        "tom-laptop" = nixpkgs.lib.nixosSystem {
+        "tom-laptop" = lib.mkHost { };
+
+        "tom-pc" = lib.mkHost rec {
           inherit system;
-
+          stateVersion = "22.11";
           modules = [
-            mailserver.nixosModules.mailserver
-            agenix.nixosModules.age
-            home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.root = import ./users/root.nix {
-                inherit system pkgs;
-              };
-              home-manager.users.tom = import ./users/tom.nix {
-                inherit system pkgs;
-              };
-            }
-            ./system/laptop
-            ./system
-            ./services
-            ./virtualization
-          ];
-
-          specialArgs = {
-            inherit system pkgs inputs;
-          };
-        };
-
-        "tom-pc" = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            mailserver.nixosModules.mailserver
-            agenix.nixosModules.age
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.root = import ./users/root.nix {
-                inherit system pkgs;
-              };
-              home-manager.users.tom = import ./users/tom.nix {
-                inherit system pkgs;
-              };
-            }
-            ./system/desktop
-            ./system
-            ./services
-            ./virtualization
-
-            ({ ... }: {
-              nix.registry = {
-                nixpkgs.flake = nixpkgs;
-                microvm.flake = self;
-              };
-            })
-
-            microvm.nixosModules.host
-            {
-              microvm.vms.vm =
-                {
-                  flake = self;
-                  updateFlake = "microvm";
-                };
-              # microvm.autostart = [ "vm" ];
-            }
-          ];
-
-          specialArgs = {
-            inherit system pkgs inputs;
-          };
-        };
-
-        # vm must use dhcp otherwise not working
-        # probably due to misconfiguration
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            microvm.nixosModules.microvm
-            {
-              system.stateVersion =
-                "22.11";
-
-              services.sshd.enable = true;
-              environment.systemPackages = with pkgs; [
-
+              imports = [
+                ./hosts/desktop
+                ./system
               ];
-
-              networking = {
-                hostName = "vm";
-                #useDHCP = false;
-                firewall = {
-                  enable = true;
-                  allowedTCPPorts = [ 22 ];
-                };
-                # useNetworkd = true;
-
-                interfaces.eth0 = {
-                  ipv4 = {
-                    addresses = [
-                      { address = "192.168.1.80"; prefixLength = 32; }
-                    ];
-                    # routes = [
-                    #   {
-                    #     address = "192.168.1.0";
-                    #     prefixLength = 24;
-                    #     via = "192.168.240.0";
-                    #   }
-                    # ];
-                  };
-                };
-              };
-
-              # systemd.network = {
-              #   enable = true;
-              #   networks.uplink = {
-              #     matchConfig = { Name = "eth0"; };
-              #     address = [ "192.168.240.80/24" ];
-              #     dns = [ "1.1.1.1" "8.8.8.8" "4.4.4.4" ];
-              #     gateway = [ "192.168.240.0" ];
-              #   };
-              # };
-
-              users.users = {
-                root.password = "";
-                netzag = {
-                  isNormalUser = true;
-                  extraGroups = [ "wheel" "docker" ];
-                  password = "test";
-                };
-              };
-
-              microvm = {
-                interfaces = [{
-                  type = "tap";
-                  id = "vm-a1";
-                  mac = "02:00:00:00:00:01";
-                }];
-
-                volumes = [{
-                  mountPoint = "/var";
-                  image = "var.img";
-                  size = 256;
-                }];
-
-                shares = [{
-                  # use "virtiofs" for MicroVMs that are started by systemd
-                  proto = "virtiofs";
-                  tag = "ro-store";
-                  socket = "ro-store.socket";
-                  # a host's /nix/store will be picked up so that the
-                  # size of the /dev/vda can be reduced.
-                  source = "/nix/store";
-                  mountPoint = "/nix/.ro-store";
-                }];
-
-                socket = "control.socket";
-                # relevant for delarative MicroVM management
-                hypervisor = "cloud-hypervisor";
-              };
             }
           ];
+
+          users = {
+            users.root = {
+              extraGroups = [ "root" ];
+            };
+
+            users.tom = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" "docker" ];
+              shell = pkgs.nushell;
+            };
+          };
+
+          specialArgs = {
+            inherit pkgs;
+          };
+
+          # TODO better way ?
+          specialHomeArgs = {
+            vscode-extensions = pkgs.vscode-extensions;
+            vscode-utils = pkgs.vscode-utils;
+            fenix = fenix.packages."${system}";
+            nur = import nur {
+              nurpkgs = pkgs;
+              inherit pkgs;
+            };
+            stdenv = pkgs.stdenv;
+            fetchFromGitHub = pkgs.fetchFromGitHub;
+            fetchurl = pkgs.fetchurl;
+          };
+
+          homes =
+            (lib.mkHome {
+              inherit stateVersion;
+              username = "tom";
+              packages = (import ./home { inherit pkgs; });
+              imports = [
+                ./home/programs/bat.nix
+                ./home/programs/exa.nix
+                ./home/programs/firefox.nix
+                ./home/programs/git.nix
+                ./home/programs/helix.nix
+                ./home/programs/nushell.nix
+                ./home/programs/obs.nix
+                ./home/programs/vscode.nix
+                ./home/programs/zoxide.nix
+                ./home/programs/zsh.nix
+              ];
+            }) //
+            (lib.mkHome {
+              inherit stateVersion;
+              username = "root";
+              homeDirectory = "/root";
+              packages = [ ];
+              imports = [
+                ./home/programs/bat.nix
+                ./home/programs/exa.nix
+                ./home/programs/nushell.nix
+              ];
+            });
         };
       };
+
+      overlay = import ./overlay.nix;
+
+      devShell."${system}" =
+        let
+          vscode-extensions = with pkgs; pkgs.writeShellScriptBin "vscode-ext" ''
+            # Helper to just fail with a message and non-zero exit code.
+            function fail() {
+                echo "$1" >&2
+                exit 1
+            }
+
+            # Helper to clean up after ourselves if we're killed by SIGINT.
+            function clean_up() {
+                TDIR="${TMPDIR:-/tmp}"
+                echo "Script killed, cleaning up tmpdirs: $TDIR/vscode_exts_*" >&2
+                rm -Rf "$TDIR/vscode_exts_*"
+            }
+
+            function get_vsixpkg() {
+                N="$1.$2"
+
+                # Create a tempdir for the extension download.
+                EXTTMP=$(mktemp -d -t vscode_exts_XXXXXXXX)
+
+                URL="https://$1.gallery.vsassets.io/_apis/public/gallery/publisher/$1/extension/$2/latest/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
+
+                # Quietly but delicately curl down the file, blowing up at the first sign of trouble.
+                ${curl}/bin/curl --silent --show-error --retry 3 --fail -X GET -o "$EXTTMP/$N.zip" "$URL"
+                # Unpack the file we need to stdout then pull out the version
+                VER=$(${jq}/bin/jq -r '.version' <(${unzip}/bin/unzip -qc "$EXTTMP/$N.zip" "extension/package.json"))
+                # Calculate the SHA
+                SHA=$(nix-hash --flat --base32 --type sha256 "$EXTTMP/$N.zip")
+
+                # Clean up.
+                rm -Rf "$EXTTMP"
+                # I don't like 'rm -Rf' lurking in my scripts but this seems appropriate.
+
+                cat <<-EOF
+              {
+                name = "$2";
+                publisher = "$1";
+                version = "$VER";
+                sha256 = "$SHA";
+              }
+            EOF
+            }
+
+            # See if we can find our `code` binary somewhere.
+            if [ $# -ne 0 ]; then
+                CODE=$1
+            else
+                CODE=$(command -v code || command -v codium)
+            fi
+
+            if [ -z "$CODE" ]; then
+                # Not much point continuing.
+                fail "VSCode executable not found"
+            fi
+
+            # Try to be a good citizen and clean up after ourselves if we're killed.
+            trap clean_up SIGINT
+
+            # Begin the printing of the nix expression that will house the list of extensions.
+            printf '{ extensions = [\n'
+
+            # Note that we are only looking to update extensions that are already installed.
+            for i in $($CODE --list-extensions)
+            do
+                OWNER=$(echo "$i" | cut -d. -f1)
+                EXT=$(echo "$i" | cut -d. -f2)
+
+                get_vsixpkg "$OWNER" "$EXT"
+            done
+            # Close off the nix expression.
+            printf '];\n}'
+          '';
+        in
+        pkgs.mkShell {
+          buildInputs = [
+            vscode-extensions
+          ];
+        };
     };
 }

@@ -1,0 +1,4 @@
+{ ... }:
+{
+  services.printing.enable = true;
+}
