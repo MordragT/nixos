@@ -3,7 +3,8 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "gruvbox";
+      theme = "catppuccin_frappe";
     };
   };
 }
+

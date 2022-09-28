@@ -1,4 +1,4 @@
-{ vscode-extensions, vscode-utils, fenix, ... }:
+{ vscode-extensions, vscode-utils, ... }:
 {
   programs.vscode = {
     enable = true;
@@ -48,7 +48,7 @@
       "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
       "debug.allowBreakpointsEverywhere" = true;
       "debug.showBreakpointsInOverviewRuler" = true;
-      "rust-analyzer.procMacro.enable" = false;
+      #"rust-analyzer.procMacro.enable" = false;
       "lldb.verboseLogging" = true;
       "files.associations" = {
         "*.lalrpop" = "rust";
@@ -95,30 +95,33 @@
         when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
       }
     ];
+    #mutableExtensionsDir = false;
     extensions = with vscode-extensions; [
-      fenix.rust-analyzer-vscode-extension
-      # vadimcn.vscode-lldb
+      rust-lang.rust-analyzer-nightly
+      vadimcn.vscode-lldb
       ms-toolsai.jupyter
       ms-python.python
       ms-vscode-remote.remote-ssh
-      ms-vsliveshare.vsliveshare
-      # bbenoist.nix
+      ms-vscode.cpptools
+      # ms-vsliveshare.vsliveshare
       bungcip.better-toml
       tiehuis.zig
-      # ms-vscode.cpptools
       xaver.clang-format
       gruntfuggly.todo-tree
-      # james-yu.latex-workshop
       skellock.just
       jnoortheen.nix-ide
+      # bbenoist.nix
       # arrterian.nix-env-selector
       valentjn.vscode-ltex
+      # james-yu.latex-workshop
+      yzhang.markdown-all-in-one
+      catppuccin.catppuccin-vsc
     ] ++ vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "texlab";
         publisher = "efoerster";
-        version = "4.0.0";
-        sha256 = "0bR/SPi4NkHT0GRaHyuT2A1f3vjRkhVH7wXcKq3LsEE=";
+        version = "4.2.2";
+        sha256 = "KEXy5FQIBRZXrR6rcdcWEG2qM1B9ricY3W+H0R+HBM4=";
       }
       {
         name = "vscode-intelephense-client";
@@ -126,17 +129,47 @@
         version = "1.8.2";
         sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
       }
-      {
-        name = "flowistry";
-        publisher = "wcrichton";
-        version = "0.5.27";
-        sha256 = "1rhp32az7smzhdc6gbz546v0l0507pmhw9y7zsdw43hb5sh1ykj7";
-      }
+      # {
+      #   name = "flowistry";
+      #   publisher = "wcrichton";
+      #   version = "0.5.28";
+      #   sha256 = "1r232zcbqd7fs1nbjj4c4iwnw1z18b6ms2has74i97xrx17jhmqk";
+      # }
       {
         name = "one-dark-vibrant";
         publisher = "Mordrag";
         version = "0.0.4";
         sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
+      }
+      {
+        name = "gltf-vscode";
+        publisher = "cesium";
+        version = "2.3.16";
+        sha256 = "02xd6vzy5a9q5cs5pwzr8cli28lbs4vaqq3r2ljzcgbwds45f83a";
+      }
+      {
+        name = "wgsl";
+        publisher = "PolyMeilex";
+        version = "0.1.12";
+        sha256 = "1m1j9fi85fjjyx2ws9d7vnmn8g22sxhrk27diazy34mp2p4dr8jd";
+      }
+      {
+        name = "sublime-keybindings";
+        publisher = "ms-vscode";
+        version = "4.0.10";
+        sha256 = "0l8z0sv3432qrzh6118km7xr7g93fajmjihw8md47kfsdl9c4xxg";
+      }
+      {
+        name = "vscode-jupyter-cell-tags";
+        publisher = "ms-toolsai";
+        version = "0.1.3";
+        sha256 = "12kwpda0bf5zvhkm9bbjmzdj2lcw6674bbscmbilyzqcz730zyrr";
+      }
+      {
+        name = "vscode-jupyter-slideshow";
+        publisher = "ms-toolsai";
+        version = "0.1.3";
+        sha256 = "04ibh7ddzhdcvl6wa9lzrp84l41zczcxqlz1dfp3b7mz130pr1x7";
       }
     ];
   };

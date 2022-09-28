@@ -9,6 +9,7 @@ with pkgs; [
   icon-library
 
   # GTK Apps
+  warp # send and recieve files
   khronos # track task time
   gnome.gnome-color-manager
   gnome.gnome-boxes

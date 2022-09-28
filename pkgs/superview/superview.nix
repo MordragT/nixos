@@ -1,4 +1,4 @@
-{ buildGoApplication, fetchFromGitHub, pkgconfig, ffmpeg, binutils, libGL, xorg }:
+{ buildGoApplication, fetchFromGitHub, pkg-config, ffmpeg, binutils, libGL, xorg }:
 let
   src = fetchFromGitHub {
     owner = "Niek";
@@ -17,7 +17,7 @@ buildGoApplication {
   LD_LIBRARY_PATH = "${xorg.libX11}/lib:${xorg.libXrandr}/lib:${xorg.libXxf86vm}:${xorg.libXi}/lib:${xorg.libXcursor}/lib";
 
   nativeBuildInputs = [
-    pkgconfig
+    pkg-config
     ffmpeg
     binutils
     libGL

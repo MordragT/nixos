@@ -24,6 +24,9 @@
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
 
+          # league of legends
+          boot.kernel.sysctl."abi.vsyscall32" = 0;
+
           hardware.opengl.enable = true;
         }
         home-manager.nixosModules.home-manager

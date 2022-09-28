@@ -1,4 +1,4 @@
-{ makeRustPlatform, fetchCrate, runCommand, fenix, rlottie, clang, libclang, pkgconfig, openssl }:
+{ makeRustPlatform, fetchCrate, runCommand, fenix, rlottie, clang, libclang, pkg-config, openssl }:
 
 (makeRustPlatform {
   inherit (fenix.minimal) cargo rustc;
@@ -19,7 +19,7 @@
   nativeBuildInputs = with pkgs; [
     clang
     libclang
-    pkgconfig
+    pkg-config
     openssl
     rlottie
   ];

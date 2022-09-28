@@ -22,7 +22,7 @@
 , libpulseaudio
 , pango
 , cairo
-, alsaLib
+, alsa-lib
 , at-spi2-atk
 , at-spi2-core
 , harfbuzz
@@ -76,7 +76,7 @@ stdenv.mkDerivation {
     libpulseaudio
     pango
     cairo
-    alsaLib
+    alsa-lib
     at-spi2-core
     at-spi2-atk
     harfbuzz
