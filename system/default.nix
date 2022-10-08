@@ -11,12 +11,14 @@
     ./gamemode.nix
     ./gnome.nix
     # ./hamachi.nix
+    ./haguichi.nix
     ./locale.nix
     # ./maddy.nix
     # ./mariadb.nix
     # ./nextcloud.nix
     ./nix.nix
     ./pipewire.nix
+    ./pki.nix
     ./printing.nix
     ./sshd.nix
     ./steam.nix

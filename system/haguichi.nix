@@ -1,0 +1,4 @@
+{ ... }:
+{
+  programs.haguichi.enable = true;
+}

@@ -98,6 +98,7 @@
     #mutableExtensionsDir = false;
     extensions = with vscode-extensions; [
       rust-lang.rust-analyzer-nightly
+      redhat.java
       vadimcn.vscode-lldb
       ms-toolsai.jupyter
       ms-python.python
@@ -170,6 +171,18 @@
         publisher = "ms-toolsai";
         version = "0.1.3";
         sha256 = "04ibh7ddzhdcvl6wa9lzrp84l41zczcxqlz1dfp3b7mz130pr1x7";
+      }
+      {
+        name = "kotlin";
+        publisher = "fwcd";
+        version = "0.2.26";
+        sha256 = "1br0vr4v1xcl4c7bcqwzfqd4xr6q2ajwkipqrwm928mj96dkafkn";
+      }
+      {
+        name = "vscode-gradle";
+        publisher = "vscjava";
+        version = "3.12.2022092700";
+        sha256 = "00pmfmbzqfqp49li0ykxaji04frn1xfshpk9wz3ib8csdzhs7wzm";
       }
     ];
   };

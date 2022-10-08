@@ -8,6 +8,7 @@ with pkgs; [
   lutris
   # bottles
   protonup
+  protontricks
   vulkan-tools
   minecraft
   optifine

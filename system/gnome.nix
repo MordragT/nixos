@@ -13,5 +13,7 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
     gnomeExtensions.pop-shell
+    gnomeExtensions.space-bar
+    gnome-shell-extension-fly-pie
   ];
 }
