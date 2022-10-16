@@ -17,6 +17,7 @@
     # ./mariadb.nix
     # ./nextcloud.nix
     ./nix.nix
+    ./net.nix
     ./pipewire.nix
     ./pki.nix
     ./printing.nix
