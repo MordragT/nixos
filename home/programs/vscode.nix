@@ -115,6 +115,7 @@
       # arrterian.nix-env-selector
       valentjn.vscode-ltex
       # james-yu.latex-workshop
+      svelte.svelte-vscode
       yzhang.markdown-all-in-one
       catppuccin.catppuccin-vsc
     ] ++ vscode-utils.extensionsFromVscodeMarketplace [
