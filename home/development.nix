@@ -23,4 +23,6 @@ with pkgs; [
   gaphor # create diagrams and uml
   apostrophe # markdown editor
   renderdoc # debug graphics
+  #oneapi # roofline, gpgpu etc.
+  likwid # performance monitoring
 ]

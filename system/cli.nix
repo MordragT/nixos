@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+
+  environment.shells = [ pkgs.nushell ];
+
   # This module contains mostly alternatives to POSIX utilities
   environment.systemPackages = with pkgs; [
     # Rust Tools

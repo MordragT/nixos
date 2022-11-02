@@ -27,6 +27,7 @@
     # ./vaultwarden.nix
     ./virtualisation.nix
     ./wacom.nix
+    ./webcam.nix
     ./wireshark.nix
   ];
 }

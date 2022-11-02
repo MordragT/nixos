@@ -130,6 +130,7 @@
               packages = (import ./home { inherit pkgs; });
               imports = [
                 ./home/programs/bat.nix
+                ./home/programs/chromium.nix
                 ./home/programs/exa.nix
                 ./home/programs/firefox.nix
                 ./home/programs/git.nix
@@ -204,6 +205,7 @@
               packages = (import ./home { inherit pkgs; });
               imports = [
                 ./home/programs/bat.nix
+                ./home/programs/chromium.nix
                 ./home/programs/exa.nix
                 ./home/programs/firefox.nix
                 ./home/programs/git.nix

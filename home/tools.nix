@@ -5,4 +5,5 @@ with pkgs; [
   appimage-run # run appimages
   scrcpy # control android from pc
   qbittorrent # download torrents
+  popsicle # flash usb with iso
 ]

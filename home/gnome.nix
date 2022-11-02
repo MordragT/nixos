@@ -7,6 +7,7 @@ with pkgs; [
   gnome-obfuscate # censor private information
   pika-backup # simple backups
   icon-library
+  gnome-solanum # pomodoro timer
 
   # GTK Apps
   warp # send and recieve files

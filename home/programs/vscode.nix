@@ -54,7 +54,7 @@
         "*.lalrpop" = "rust";
         "*.tera" = "html";
       };
-      "ltex.language" = "de-DE";
+      #"ltex.language" = "de-DE";
       # "latex-workshop.latex.recipes" = [
       #   {
       #     "name" = "tectonic";

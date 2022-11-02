@@ -6,6 +6,7 @@ let
     future-annotations = callPackage ./future-annotations.nix { };
     pyqt6 = callPackage ./pyqt6.nix { };
     dandere2x = callPackage ./dandere2x.nix { };
+    pylikwid = callPackage ./pylikwid.nix { };
   };
 in
 self
