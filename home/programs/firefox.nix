@@ -43,10 +43,10 @@
         };
         pia = buildFirefoxXpiAddon {
           pname = "PrivateInternetAccess";
-          version = "3.2.0";
+          version = "2.1.4.2";
           addonId = "{3e4d2037-d300-4e95-859d-3cba866f46d3}";
-          url = "https://addons.mozilla.org/firefox/downloads/file/3916166/private_internet_access_ext-3.2.0.xpi";
-          sha256 = "RbiCnMerNjakrFIBXiPnzIxvohh3zgYM1R5WU2yVhbk=";
+          url = "https://addons.mozilla.org/firefox/downloads/file/3502793/private_internet_access_ext-2.1.4.2.xpi";
+          sha256 = "FQ0xLL6KgmLwRUCiwG4iU5IOVmRMFUfqK6BZtimY8ok=";
           meta = with lib;
             {
               homepage = "https://www.privateinternetaccess.com/";
