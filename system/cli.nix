@@ -22,6 +22,7 @@
     ripgrep # grep alternative
     procs # modern ps replacement
 
+    p7zip # to extract .exe
     cpufetch # fetch cpu information
     ventoy-bin # create bootable usb drive for isos
     trash-cli # put files in trash

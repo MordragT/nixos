@@ -1,7 +1,7 @@
 { pkgs }:
 with pkgs; [
   blender
-  blockbench-electron
+  # insecure electron16 blockbench-electron
   krita
   inkscape
 ]

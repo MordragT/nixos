@@ -40,6 +40,10 @@
       url = "github:MordragT/hua";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rzPkgs = {
+      url = "git+https://im.badat.dev/bad/rizin-nix-plugins.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     templates.url = "github:MordragT/nix-templates";
     # notes.url = "github:MordragT/notes";
   };
@@ -57,6 +61,7 @@
     , mailserver
     , microvm
     , hua
+    , rzPkgs
     , templates
       # , notes
     }@inputs:
@@ -70,9 +75,10 @@
           comoji.overlays.default
           hua.overlay
           # notes.overlay
-          fenix.overlay
+          fenix.overlays.default
           js-bp.overlays.default
           gomod2nix.overlays.default
+          rzPkgs.overlays.default
           (import ./overlay.nix)
         ];
       };
@@ -160,11 +166,13 @@
           inherit system;
           stateVersion = "22.11";
           modules = [
+            #ba7web.nixosModules.default
             {
               imports = [
                 ./hosts/desktop
                 ./system
               ];
+              #services.svelte-caddy.enable = true;
             }
           ];
 

@@ -8,4 +8,5 @@ with pkgs; [
   teams # microsoft teams
   zoom-us
   webex
+  whatsapp-for-linux
 ]

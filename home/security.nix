@@ -6,7 +6,12 @@ with pkgs; [
   authoscope # scriptable network authentication cracker
   metadata-cleaner
 
-  cutter
+  (rizin.withPlugins (p: [
+    p.rz-ghidra
+    p.jsdec
+  ]))
+  (cutter.override { rizin = rizin; })
+  ghidra
   macchanger # change the network's mac address
   # tor-browser-bundle-bin
   step-cli # generate certificates

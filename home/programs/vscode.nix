@@ -41,6 +41,7 @@
         "**/.idea" = true;
         "**/.project" = true;
         "**/.settings" = true;
+        "**/.direnv" = true;
       };
       "breadcrumbs.enabled" = false;
       "workbench.editor.labelFormat" = "short";
@@ -117,6 +118,7 @@
       # james-yu.latex-workshop
       svelte.svelte-vscode
       yzhang.markdown-all-in-one
+      bierner.markdown-mermaid
       catppuccin.catppuccin-vsc
     ] ++ vscode-utils.extensionsFromVscodeMarketplace [
       {
