@@ -1,4 +1,4 @@
-{ fetchFromGitHub, ... }:
+{ pkgs, fetchFromGitHub, ... }:
 let
   catppuccin = fetchFromGitHub {
     owner = "catppuccin";
@@ -8,7 +8,15 @@ let
   };
 in
 {
-  programs.obs-studio.enable = true;
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      obs-move-transition
+      input-overlay
+    ];
+  };
 
   xdg.configFile."obs-studio/themes/".source = "${catppuccin}/themes";
 }

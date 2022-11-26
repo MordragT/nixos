@@ -42,6 +42,7 @@
         "**/.project" = true;
         "**/.settings" = true;
         "**/.direnv" = true;
+        "**/__pycache__" = true;
       };
       "breadcrumbs.enabled" = false;
       "workbench.editor.labelFormat" = "short";
@@ -49,12 +50,14 @@
       "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
       "debug.allowBreakpointsEverywhere" = true;
       "debug.showBreakpointsInOverviewRuler" = true;
-      #"rust-analyzer.procMacro.enable" = false;
       "lldb.verboseLogging" = true;
       "files.associations" = {
         "*.lalrpop" = "rust";
         "*.tera" = "html";
       };
+      "jupyter.allowUnauthorizedRemoteConnection" = true;
+      "http.proxySupport" = "off";
+      #"rust-analyzer.procMacro.enable" = false;
       #"ltex.language" = "de-DE";
       # "latex-workshop.latex.recipes" = [
       #   {
@@ -103,6 +106,7 @@
       vadimcn.vscode-lldb
       ms-toolsai.jupyter
       ms-python.python
+      matangover.mypy
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
       # ms-vsliveshare.vsliveshare

@@ -28,14 +28,6 @@
       url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    microvm = {
-      url = "github:astro/microvm.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hua = {
       url = "github:MordragT/hua";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,8 +50,6 @@
     , gomod2nix
     , agenix
     , comoji
-    , mailserver
-    , microvm
     , hua
     , rzPkgs
     , templates
