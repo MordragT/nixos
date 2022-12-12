@@ -18,6 +18,8 @@
 
       modules = [
         {
+          boot.supportedFilesystems = [ "ntfs" ];
+
           inherit users;
           system.stateVersion = stateVersion;
 

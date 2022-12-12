@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   version = "master";
 
   src = fetchFromGitHub {
-    sha256 = "cupTSWWyJL/PkT3IcacG5dVkYYY3LGeNirzVzNDSJuE=";
+    sha256 = "KrvXMqqZyD+zx0EoVAhdkZ5VOj1cl4+lypUDzzdwGhM=";
     rev = version;
     owner = "RRZE-HPC";
     repo = "likwid";
