@@ -24,8 +24,19 @@
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
 
+          boot.tmpOnTmpfs = true;
+          boot.runSize = "50%";
+          boot.kernelPackages = pkgs.linuxPackages_latest;
           # league of legends
           boot.kernel.sysctl."abi.vsyscall32" = 0;
+
+          environment.sessionVariables = {
+            XDG_CONFIG_HOME = "\${HOME}/.config";
+            XDG_CACHE_HOME = "\${XDG_RUNTIME_DIR}/.cache";
+            XDG_DATA_HOME = "\${HOME}/.local/share";
+            XDG_STATE_HOME = "\${HOME}/.local/state";
+            XDG_BIN_HOME = "\${HOME}/.local/bin";
+          };
 
           hardware.opengl.enable = true;
         }
@@ -62,14 +73,6 @@
         xdg = {
           enable = true;
           userDirs.enable = true;
-        };
-
-        pam.sessionVariables = {
-          XDG_CONFIG_HOME = "/home/${username}/.config";
-          XDG_CACHE_HOME = "/home/${username}/.cache";
-          XDG_DATA_HOME = "/home/${username}/.local/share";
-          XDG_STATE_HOME = "/home/${username}/.local/state";
-          XDG_DATA_DIRS = "/usr/share:/usr/local/share:/home/${username}/.local/share/:/home/${username}/.nix-profile/share";
         };
       };
     };
