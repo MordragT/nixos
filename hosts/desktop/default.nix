@@ -22,5 +22,6 @@
   };
   # https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.services."systemd-networkd-wait-online".enable = false;
+  systemd.services.systemd-networkd-wait-online.restartIfChanged = false;
+  systemd.services.systemd-udevd.restartIfChanged = false;
 }

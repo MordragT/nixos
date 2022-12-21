@@ -10,8 +10,6 @@
     ./fonts.nix
     ./gamemode.nix
     ./gnome.nix
-    # ./hamachi.nix
-    ./haguichi.nix
     ./locale.nix
     # ./maddy.nix
     # ./mariadb.nix
@@ -26,6 +24,7 @@
     ./tor.nix
     # ./vaultwarden.nix
     ./virtualisation.nix
+    ./vpn.nix
     ./wacom.nix
     #./webcam.nix
     ./wireshark.nix

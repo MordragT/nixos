@@ -10,5 +10,6 @@ with pkgs; [
   astrofox # create audio videos
   #superview # change asepct ratio of videos
   #dandere2x # upscale anime videos
+  ffmpeg
 ]
 

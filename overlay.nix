@@ -29,10 +29,10 @@ in
 rec
 {
   #stdenv = pkgs.withCFlags (x86_64-v3 ++ flags) pkgs.stdenv;
-  clangStdenv = pkgs.withCFlags (x86_64-v3 ++ flags) pkgs.llvmPackages_14.stdenv;
-  firefox-unwrapped = pkgs.firefox-unwrapped.override {
-    stdenv = clangStdenv;
-  };
+  #clangStdenv = pkgs.withCFlags (x86_64-v3 ++ flags) pkgs.llvmPackages_14.stdenv;
+  # firefox-unwrapped = pkgs.firefox-unwrapped.override {
+  #   stdenv = clangStdenv;
+  # };
   # steam-fhsenv = pkgs.steam-fhsenv.overrideAttr (orig: {
   #   extraLibraries = pkgs: with pkgs; [
   #     # Crusader Kings 3
@@ -47,13 +47,4 @@ rec
       #gnome.zenity
     ];
   };
-  python3 = pkgs.python3.override {
-    packageOverrides = self: pyPkgs: import ./pkgs/python {
-      inherit pyPkgs;
-      pkgs = pkgs // myPkgs;
-    };
-  };
-  python3Packages = python3.pkgs;
-
-  dandere2x = pkgs.python3Packages.dandere2x;
 } // myPkgs

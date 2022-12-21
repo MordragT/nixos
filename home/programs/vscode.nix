@@ -123,6 +123,7 @@
       svelte.svelte-vscode
       yzhang.markdown-all-in-one
       bierner.markdown-mermaid
+      thenuprojectcontributors.vscode-nushell-lang
       catppuccin.catppuccin-vsc
     ] ++ vscode-utils.extensionsFromVscodeMarketplace [
       {

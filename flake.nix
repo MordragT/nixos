@@ -32,10 +32,6 @@
       url = "github:MordragT/hua";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rzPkgs = {
-      url = "git+https://im.badat.dev/bad/rizin-nix-plugins.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     templates.url = "github:MordragT/nix-templates";
     # notes.url = "github:MordragT/notes";
   };
@@ -51,7 +47,6 @@
     , agenix
     , comoji
     , hua
-    , rzPkgs
     , templates
       # , notes
     }@inputs:
@@ -68,7 +63,6 @@
           fenix.overlays.default
           js-bp.overlays.default
           gomod2nix.overlays.default
-          rzPkgs.overlays.default
           (import ./overlay.nix)
         ];
       };

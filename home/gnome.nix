@@ -10,6 +10,7 @@ with pkgs; [
   gnome-solanum # pomodoro timer
 
   # GTK Apps
+  citations # bibtex
   warp # send and recieve files
   khronos # track task time
   gnome.gnome-color-manager

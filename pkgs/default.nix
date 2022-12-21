@@ -14,7 +14,17 @@ let
     webcamoid = pkgs.libsForQt5.callPackage ./webcamoid.nix { };
     oneapi = callPackage ./oneapi.nix { };
     likwid = callPackage ./likwid.nix { };
+    dvc = callPackage ./dvc.nix { };
+  };
+  python3 = pkgs.python3.override {
+    packageOverrides = pySelf: pyPkgs: import ./python {
+      inherit pyPkgs;
+      pkgs = pkgs // self;
+    };
   };
 in
-self
+self // {
+  python3 = python3;
+  python3Packages = python3.pkgs;
+}
 

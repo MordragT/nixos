@@ -1,6 +1,6 @@
 { pkgs }:
 with pkgs; [
-  steam-tui
+  # steam-tui
   steamcmd
   steam-run
   sc-controller

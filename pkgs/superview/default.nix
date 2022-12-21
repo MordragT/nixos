@@ -1,4 +1,4 @@
-{ buildGoApplication, fetchFromGitHub, pkg-config, ffmpeg, binutils, libGL, xorg }:
+{ buildGoApplication, fetchFromGitHub, pkg-config, ffmpeg, binutils, libGL, libglvnd, xorg }:
 let
   src = fetchFromGitHub {
     owner = "Niek";
@@ -31,3 +31,6 @@ buildGoApplication {
   pwd = ./.;
   modules = ./superview.toml;
 }
+
+# alternative
+# ffmpeg -i input.mov -vf scale=720x406,setsar=1:1 output.mp4
