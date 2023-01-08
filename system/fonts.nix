@@ -12,6 +12,7 @@
       noto-fonts-emoji
       # needed for steam adwaita theme
       cantarell-fonts
+      times-newer-roman
     ];
     fontconfig.defaultFonts = {
       monospace = [ "Fira Code" ];

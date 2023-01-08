@@ -105,8 +105,8 @@
           firefox-gnome-theme = fetchFromGitHub {
             owner = "rafaelmardojai";
             repo = "firefox-gnome-theme";
-            rev = "13a8ec9d8d0430378d4bef0e0c8eee1cc3893998";
-            sha256 = "GTL1omaL7oUWV3PLHPKx0LEFbv6VLXS0/22ah0DG0z0=";
+            rev = "996ed599213c7d3086304a5940c0e82a4c090516";
+            sha256 = "+s7u+mgeEx6oKoqvYnOumE3PLOobQbXBdl3zrgLWBPQ=";
           };
         in
         ''
