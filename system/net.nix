@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    openconnect
+    openconnect_unstable
+    hurl # like curl but better
   ];
 }

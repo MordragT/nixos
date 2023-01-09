@@ -110,9 +110,10 @@
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
       # ms-vsliveshare.vsliveshare
+      ms-vscode.cmake-tools
+      twxs.cmake
       bungcip.better-toml
       tiehuis.zig
-      xaver.clang-format
       gruntfuggly.todo-tree
       skellock.just
       jnoortheen.nix-ide

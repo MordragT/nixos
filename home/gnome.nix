@@ -10,6 +10,7 @@ with pkgs; [
   gnome-solanum # pomodoro timer
 
   # GTK Apps
+  raider # file shredder
   citations # bibtex
   warp # send and recieve files
   khronos # track task time
@@ -22,4 +23,6 @@ with pkgs; [
   junction # open with preview
   fragments # torrent downloader
   # not working paperwork
+  money # finance manager
+  foliate # book reader
 ]

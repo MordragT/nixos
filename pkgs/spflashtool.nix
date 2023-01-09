@@ -58,5 +58,6 @@ stdenv.mkDerivation rec {
     maintainers = with maintainers; [ mordrag ];
     description = "SP Flash Tool is an application to flash your MediaTek (MTK) SmartPhone.";
     platforms = platforms.linux;
+    broken = true;
   };
 }

@@ -9,14 +9,14 @@ with pkgs; [
   pijul # alternative vcs
   just # make alike
   hexyl # hex viewer
+  lapce # code editor
 
   (dvc.override { enableAWS = true; }) # data version control
   awscli2 # amazon web services
   nodePackages.reveal-md # create presentations from markdown
 
   nixpkgs-fmt # nix files are everywhere anyways
-
-  lapce # code editor
+  android-studio
   dbeaver # sql client
   godot # game engine
   akira-unstable # prototype gui

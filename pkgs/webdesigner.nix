@@ -31,5 +31,6 @@ stdenv.mkDerivation {
     maintainers = with maintainers; [ mordrag ];
     description = "Google Web Designer for Linux";
     platforms = platforms.linux;
+    broken = true;
   };
 }

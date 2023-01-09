@@ -63,4 +63,10 @@ buildPythonApplication {
       },
     )
   '';
+
+  meta = with lib; {
+    maintainers = with maintainers; [ mordrag ];
+    platforms = platforms.linux;
+    broken = true;
+  };
 }

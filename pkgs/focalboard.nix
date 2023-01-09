@@ -25,4 +25,10 @@ stdenv.mkDerivation rec {
   installPhase = ''
     ls
   '';
+
+  meta = with lib; {
+    maintainers = with maintainers; [ mordrag ];
+    platforms = platforms.linux;
+    broken = true;
+  };
 }
