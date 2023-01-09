@@ -2,6 +2,7 @@
 {
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
+  #programs.direnv.enableNushellIntegration = true;
 
   #programs.starship.enable = true;
   #programs.starship.enableNushellIntegration = true;
@@ -65,19 +66,7 @@
       }
       
       alias comojit = comoji commit
-      
-      let-env config = {
-        table_mode: rounded
-        hooks: {
-          pre_prompt: [{
-            code: "
-              let direnv = (direnv export json | from json)
-              let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
-              $direnv | load-env
-            "
-          }]
-        }
-      }
+      alias r = direnv reload
     '';
     envFile.text = "";
   };

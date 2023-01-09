@@ -21,7 +21,13 @@ let
       propagatedBuildInputs = with python3.pkgs; [
         packaging
         omegaconf
+        antlr4-python3-runtime
       ];
+
+      postPatch = ''
+        substituteInPlace requirements/requirements.txt \
+          --replace "antlr4-python3-runtime==4.9.*" "antlr4-python3-runtime==4.11.*"
+      '';
 
       nativeBuildInputs = [
         jre

@@ -21,5 +21,5 @@ with pkgs; [
   pdfarranger
   junction # open with preview
   fragments # torrent downloader
-  paperwork
+  # not working paperwork
 ]

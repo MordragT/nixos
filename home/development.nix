@@ -25,4 +25,5 @@ with pkgs; [
   renderdoc # debug graphics
   #oneapi # roofline, gpgpu etc.
   likwid # performance monitoring
+  byfl # compiler based application analysis
 ]
