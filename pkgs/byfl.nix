@@ -25,6 +25,9 @@ clangStdenv.mkDerivation rec {
     substituteInPlace tools/wrappers/make-bf-mpi \
       --replace "#! /bin/bash" "#! ${bash}/bin/bash" \
       --replace "#! /bin/sh" "#! ${bash}/bin/bash"
+
+    substituteInPlace tools/wrappers/bf-clang.in \
+      --replace "@CMAKE_INSTALL_FULL_BYFL_PLUGIN_DIR@/" "@CMAKE_INSTALL_FULL_LIBEXECDIR@/byfl/"
   '';
 
   buildInputs = [
