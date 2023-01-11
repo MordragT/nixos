@@ -128,7 +128,7 @@
                 ./home/programs/nushell.nix
                 ./home/programs/obs.nix
                 ./home/programs/steam.nix
-                ./home/programs/vscode.nix
+                ./home/programs/vscode
                 ./home/programs/zoxide.nix
                 ./home/programs/zsh.nix
               ];
@@ -205,7 +205,7 @@
                 ./home/programs/nushell.nix
                 ./home/programs/obs.nix
                 ./home/programs/steam.nix
-                ./home/programs/vscode.nix
+                ./home/programs/vscode
                 ./home/programs/zoxide.nix
                 ./home/programs/zsh.nix
               ];

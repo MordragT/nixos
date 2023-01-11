@@ -1,40 +1,77 @@
-{ vscode-extensions, vscode-utils, ... }:
+{ pkgs, vscode-extensions, vscode-utils, ... }:
+let
+  #css = pkgs.writeText "vscode.css" (builtins.readFile ./vscode.css);
+  vscode = pkgs.vscodium.overrideAttrs (old: {
+    # preInstall = ''
+    #   substituteInPlace vs/workbench/electron-sandbox/parts/titlebar/titlebarParts.ts \
+    #     --replace "35" "48"
+    # '';
+
+    postInstall = ''
+      # substituteInPlace $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.js \
+      #   --replace "\''${t.titleBarHeight}px" "48px"
+      
+      # substituteInPlace $out/lib/vscode/resources/app/out/vs/workbench/workbench.desktop.main.css \
+      #   --replace "return(this.isCommandCenterVisible||c.isWeb&&(0,L.isWCOEnabled)()?35:30)/(this.ub?(0,L.getZoomFactor)():1)"\
+      #   "return(this.isCommandCenterVisible||c.isWeb&&(0,L.isWCOEnabled)()?48:48)/(this.ub?(0,L.getZoomFactor)():1)"
+
+      rm $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html
+
+      cat > $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html << EOF
+      <!DOCTYPE html>
+        <head>
+          <meta charset="utf-8" />
+        </head>
+
+        <body aria-label="">
+        </body>
+
+        <style>
+        ${builtins.readFile ./vscode.css}
+        </style>
+
+        <!-- Startup (do not modify order of script tags!) -->
+        <script src="workbench.js"></script>
+        <script>
+        ${builtins.readFile ./vscode.js}
+        </script>
+      </html>
+
+      EOF
+    '';
+  });
+in
 {
   programs.vscode = {
+    package = vscode;
     enable = true;
     userSettings = {
-      "window.zoomLevel" = 0;
+      "breadcrumbs.enabled" = false;
+      "debug.allowBreakpointsEverywhere" = true;
+      "debug.showBreakpointsInOverviewRuler" = true;
+
       "editor.minimap.enabled" = false;
       "editor.fontLigatures" = true;
       "editor.fontFamily" = "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'";
-      "editor.fontSize" = 14;
-      "terminal.integrated.fontSize" = 14;
+      "editor.fontSize" = 11;
       "editor.renderWhitespace" = "none";
       "editor.folding" = false;
       "editor.glyphMargin" = true;
-      "explorer.openEditors.visible" = 0;
-      "workbench.activityBar.visible" = true;
-      "workbench.editor.showTabs" = false;
-      "workbench.statusBar.visible" = true;
-      "workbench.sideBar.location" = "right";
-      "workbench.editor.showIcons" = false;
-      "workbench.colorTheme" = "One Dark Vibrant";
       "editor.occurrencesHighlight" = false;
-      "workbench.startupEditor" = "newUntitledFile";
-      "workbench.tree.renderIndentGuides" = "none";
       "editor.acceptSuggestionOnEnter" = "off";
-      "explorer.confirmDelete" = false;
-      "explorer.confirmDragAndDrop" = false;
-      # "editor.renderIndentGuides" = false;
       "editor.formatOnSave" = true;
-      "terminal.integrated.rendererType" = "dom";
-      "git.enableSmartCommit" = true;
-      "git.autofetch" = true;
       "editor.tabCompletion" = "on";
       "editor.dragAndDrop" = false;
       "editor.lineNumbers" = "interval";
       "editor.renderLineHighlight" = "none";
       "editor.cursorBlinking" = "expand";
+      "editor.renderIndentGuides" = false;
+      "editor.guides.indentation" = false;
+
+      "explorer.openEditors.visible" = 0;
+      "explorer.confirmDelete" = false;
+      "explorer.confirmDragAndDrop" = false;
+
       "files.exclude" = {
         "**/.classpath" = true;
         "**/.factorypath" = true;
@@ -44,20 +81,16 @@
         "**/.direnv" = true;
         "**/__pycache__" = true;
       };
-      "breadcrumbs.enabled" = false;
-      "workbench.editor.labelFormat" = "short";
-      "window.menuBarVisibility" = "toggle";
-      "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
-      "debug.allowBreakpointsEverywhere" = true;
-      "debug.showBreakpointsInOverviewRuler" = true;
-      "lldb.verboseLogging" = true;
       "files.associations" = {
         "*.lalrpop" = "rust";
         "*.tera" = "html";
       };
-      "jupyter.allowUnauthorizedRemoteConnection" = true;
+
+      "git.enableSmartCommit" = true;
+      "git.autofetch" = true;
       "http.proxySupport" = "off";
-      #"rust-analyzer.procMacro.enable" = false;
+      "jupyter.allowUnauthorizedRemoteConnection" = true;
+      "lldb.verboseLogging" = true;
       #"ltex.language" = "de-DE";
       # "latex-workshop.latex.recipes" = [
       #   {
@@ -65,6 +98,27 @@
       #     "tools" = [ "tectonic" ];      
       #   }    
       # ];
+      #"rust-analyzer.procMacro.enable" = false;
+      "terminal.integrated.fontSize" = 11;
+      "terminal.integrated.rendererType" = "dom";
+
+      "window.zoomLevel" = 2;
+      "window.menuBarVisibility" = "compact";
+      "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
+      "window.titleBarStyle" = "custom";
+      "window.commandCenter" = true;
+
+      "workbench.activityBar.visible" = true;
+      "workbench.tree.indent" = 12;
+      "workbench.editor.showTabs" = false;
+      "workbench.statusBar.visible" = true;
+      "workbench.sideBar.location" = "right";
+      "workbench.editor.showIcons" = false;
+      "workbench.colorTheme" = "Monokai";
+      "workbench.startupEditor" = "newUntitledFile";
+      "workbench.tree.renderIndentGuides" = "none";
+      "workbench.productIconTheme" = "adwaita";
+      "workbench.editor.labelFormat" = "short";
     };
     keybindings = [
       {
@@ -126,6 +180,7 @@
       bierner.markdown-mermaid
       thenuprojectcontributors.vscode-nushell-lang
       catppuccin.catppuccin-vsc
+      piousdeer.adwaita-theme
     ] ++ vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "texlab";

@@ -67,6 +67,7 @@
       
       alias comojit = comoji commit
       alias r = direnv reload
+      alias code = codium
     '';
     envFile.text = "";
   };
