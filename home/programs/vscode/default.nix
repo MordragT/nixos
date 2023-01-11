@@ -51,6 +51,7 @@ in
       "debug.showBreakpointsInOverviewRuler" = true;
 
       "editor.minimap.enabled" = false;
+      "editor.minimap.scale" = 2;
       "editor.fontLigatures" = true;
       "editor.fontFamily" = "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'";
       "editor.fontSize" = 11;
