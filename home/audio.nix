@@ -4,6 +4,7 @@ with pkgs; [
   alsa-utils # configure audio devices
 
   # GUI
+  #ensembles # live DAW
   blanket # listen to chill sounds
   amberol # simple audio player
   mousai # identitfy any song

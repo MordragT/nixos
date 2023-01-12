@@ -17,6 +17,7 @@ let
     byfl = callPackage ./byfl.nix { };
     dvc = callPackage ./dvc.nix { };
     money = callPackage ./money.nix { };
+    ensembles = callPackage ./ensembles.nix { };
   };
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs: import ./python {

@@ -99,6 +99,7 @@ in
       #     "tools" = [ "tectonic" ];      
       #   }    
       # ];
+      "python.formatting.provider" = "black";
       #"rust-analyzer.procMacro.enable" = false;
       "terminal.integrated.fontSize" = 11;
       "terminal.integrated.rendererType" = "dom";
