@@ -16,6 +16,6 @@
     gnomeExtensions.space-bar
     gnomeExtensions.rounded-window-corners
     gnome-shell-extension-fly-pie
-    adw-gtk3
+    #adw-gtk3
   ];
 }

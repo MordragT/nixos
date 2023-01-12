@@ -36,7 +36,7 @@
 
 /* Show decorations more in the middle */
 #workbench\.parts\.editor>div.content>div.grid-view-container>div>div>div>div.monaco-scrollable-element>div.split-view-container>div>div>div.editor-container>div>div>div.overflow-guard>div.monaco-scrollable-element.editor-scrollable>canvas {
-  right: 120px !important;
+  right: 256px !important;
 }
 
 /* Round corners in expanded pane */

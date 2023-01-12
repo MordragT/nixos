@@ -5,8 +5,8 @@ with pkgs; [
   steam-run
   sc-controller
   # steamcontroller
-  lutris
-  # bottles
+  # lutris
+  bottles
   protonup
   protontricks
   vulkan-tools
