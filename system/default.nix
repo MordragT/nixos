@@ -8,12 +8,13 @@
     ./env.nix
     ./flatpak.nix
     ./fonts.nix
+    #./gitea.nix
     ./gamemode.nix
     ./gnome.nix
     ./locale.nix
     # ./maddy.nix
     # ./mariadb.nix
-    # ./nextcloud.nix
+    #./nextcloud.nix
     ./nix.nix
     ./net.nix
     ./pipewire.nix

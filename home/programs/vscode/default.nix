@@ -66,7 +66,6 @@ in
       "editor.lineNumbers" = "interval";
       "editor.renderLineHighlight" = "none";
       "editor.cursorBlinking" = "expand";
-      "editor.renderIndentGuides" = false;
       "editor.guides.indentation" = false;
 
       "explorer.openEditors.visible" = 0;
@@ -90,7 +89,9 @@ in
       "git.enableSmartCommit" = true;
       "git.autofetch" = true;
       "http.proxySupport" = "off";
+      #"java.import.gradle.wrapper.enabled" = false;
       "jupyter.allowUnauthorizedRemoteConnection" = true;
+      "kotlin.java.home" = "$JAVA_HOME";
       "lldb.verboseLogging" = true;
       #"ltex.language" = "de-DE";
       # "latex-workshop.latex.recipes" = [
@@ -102,7 +103,7 @@ in
       "python.formatting.provider" = "black";
       #"rust-analyzer.procMacro.enable" = false;
       "terminal.integrated.fontSize" = 11;
-      "terminal.integrated.rendererType" = "dom";
+      #"terminal.integrated.rendererType" = "dom";
 
       "window.zoomLevel" = 2;
       "window.menuBarVisibility" = "compact";
@@ -161,7 +162,7 @@ in
       redhat.java
       vadimcn.vscode-lldb
       ms-toolsai.jupyter
-      ms-python.python
+      # broken ms-python.python
       matangover.mypy
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
