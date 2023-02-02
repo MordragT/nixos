@@ -56,7 +56,7 @@
         config.allowUnfree = true;
         overlays = [
           nur.overlay
-          agenix.overlay
+          agenix.overlays.default
           comoji.overlays.default
           hua.overlay
           # notes.overlay
