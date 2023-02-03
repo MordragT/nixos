@@ -145,6 +145,81 @@
               ];
             });
         };
+        
+        tom-lenovo = lib.mkHost rec {
+          inherit system;
+          stateVersion = "22.11";
+          modules = [
+            {
+              imports = [
+                ./hosts/lenovo
+                ./system
+              ];
+            }
+          ];
+
+          users = {
+            users.root = {
+              extraGroups = [ "root" ];
+            };
+
+            users.tom = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" "docker" ];
+              shell = pkgs.nushell;
+            };
+          };
+
+          specialArgs = {
+            inherit pkgs templates;
+          };
+
+          # TODO better way ?
+          specialHomeArgs = {
+            vscode-extensions = pkgs.vscode-extensions;
+            vscode-utils = pkgs.vscode-utils;
+            # fenix = fenix.packages."${system}";
+            nur = import nur {
+              nurpkgs = pkgs;
+              inherit pkgs;
+            };
+            stdenv = pkgs.stdenv;
+            fetchFromGitHub = pkgs.fetchFromGitHub;
+            fetchurl = pkgs.fetchurl;
+          };
+
+          homes =
+            (lib.mkHome {
+              inherit stateVersion;
+              username = "tom";
+              packages = (import ./home { inherit pkgs; });
+              imports = [
+                ./home/programs/bat.nix
+                ./home/programs/chromium.nix
+                ./home/programs/exa.nix
+                ./home/programs/firefox.nix
+                ./home/programs/git.nix
+                ./home/programs/helix.nix
+                ./home/programs/nushell.nix
+                ./home/programs/obs.nix
+                ./home/programs/steam.nix
+                ./home/programs/vscode
+                ./home/programs/zoxide.nix
+                ./home/programs/zsh.nix
+              ];
+            }) //
+            (lib.mkHome {
+              inherit stateVersion;
+              username = "root";
+              homeDirectory = "/root";
+              packages = [ ];
+              imports = [
+                ./home/programs/bat.nix
+                ./home/programs/exa.nix
+                ./home/programs/nushell.nix
+              ];
+            });
+        };
 
         tom-pc = lib.mkHost rec {
           inherit system;

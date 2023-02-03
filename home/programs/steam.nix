@@ -39,7 +39,7 @@ in
       [ "writeBoundary" ]
       ''
         if [ ! -d ${config.xdg.dataHome}/Steam/skins ]; then
-          mkdir ${config.xdg.dataHome}/Steam/skins
+          mkdir -p ${config.xdg.dataHome}/Steam/skins
         fi
         # Delete the directory to copy again, if src was updated
         if [ -d ${config.xdg.dataHome}/Steam/skins/adwaita ]; then
