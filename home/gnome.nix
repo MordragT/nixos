@@ -8,6 +8,7 @@ with pkgs; [
   pika-backup # simple backups
   icon-library
   gnome-solanum # pomodoro timer
+  emblem
 
   # GTK Apps
   raider # file shredder
@@ -23,6 +24,6 @@ with pkgs; [
   junction # open with preview
   fragments # torrent downloader
   # not working paperwork
-  money # finance manager
+  # sqlitecpp broken money # finance manager
   foliate # book reader
 ]

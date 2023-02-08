@@ -162,7 +162,7 @@ in
       redhat.java
       vadimcn.vscode-lldb
       ms-toolsai.jupyter
-      # broken ms-python.python
+      ms-python.python
       matangover.mypy
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
