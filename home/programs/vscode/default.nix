@@ -1,7 +1,7 @@
 { pkgs, vscode-extensions, vscode-utils, ... }:
 let
   #css = pkgs.writeText "vscode.css" (builtins.readFile ./vscode.css);
-  vscode = pkgs.vscodium.overrideAttrs (old: {
+  vscode = pkgs.vscode.overrideAttrs (old: {
     # preInstall = ''
     #   substituteInPlace vs/workbench/electron-sandbox/parts/titlebar/titlebarParts.ts \
     #     --replace "35" "48"
@@ -156,7 +156,7 @@ in
         when = "explorerViewletVisible && filesExplorerFocus && !inputFocus";
       }
     ];
-    #mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
     extensions = with vscode-extensions; [
       rust-lang.rust-analyzer-nightly
       redhat.java
@@ -170,7 +170,6 @@ in
       ms-vscode.cmake-tools
       twxs.cmake
       bungcip.better-toml
-      tiehuis.zig
       gruntfuggly.todo-tree
       skellock.just
       jnoortheen.nix-ide
@@ -250,6 +249,24 @@ in
         publisher = "vscjava";
         version = "3.12.2022092700";
         sha256 = "00pmfmbzqfqp49li0ykxaji04frn1xfshpk9wz3ib8csdzhs7wzm";
+      }
+      # {
+      #   name = "vscode-embedded-tools";
+      #   publisher = "ms-vscode";
+      #   version = "0.7.230323001";
+      #   sha256 = "1hm47gvhb510lhqarryhjsh8gzfpxnzhiyv16d63999f4fli5sqv";
+      # }
+      {
+        name = "vscode-zig";
+        publisher = "ziglang";
+        version = "0.3.1";
+        sha256 = "17k2jk1yfhsxysmp6kj6xyljvnjgqx38l2a2b1aa0syafv8iqzvk";
+      }
+      {
+        name = "typst-lsp";
+        publisher = "nvarner";
+        version = "0.2.0";
+        sha256 = "KXd2jYzin6C5QeAogQjcNn1HqbanfrYLCc+sB5yX0Iw=";
       }
     ];
   };

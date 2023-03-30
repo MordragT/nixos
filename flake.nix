@@ -145,7 +145,7 @@
               ];
             });
         };
-        
+
         tom-lenovo = lib.mkHost rec {
           inherit system;
           stateVersion = "22.11";

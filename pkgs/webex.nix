@@ -26,6 +26,9 @@
 , at-spi2-atk
 , at-spi2-core
 , harfbuzz
+, tbb
+, ocl-icd
+, libxcrypt-legacy
 }:
 
 stdenv.mkDerivation {
@@ -37,7 +40,7 @@ stdenv.mkDerivation {
     # New versions get uploaded to same link, so lock url for this version in archive.org
     #url = "https://web.archive.org/web/20210529010325/https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb";
     url = "https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb";
-    sha256 = "wRmWNINxfzfCZ4XJq/PmFwwEi27nKN9Pdye0E1om2C4=";
+    sha256 = "6IFXCaRR2anGOB96QH7aVdyZvNMOo1phGHCNDX0nSaQ=";
   };
 
   nativeBuildInputs = [
@@ -80,6 +83,9 @@ stdenv.mkDerivation {
     at-spi2-core
     at-spi2-atk
     harfbuzz
+    tbb
+    ocl-icd
+    libxcrypt-legacy
   ];
 
   dontBuild = true;

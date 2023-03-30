@@ -14,4 +14,6 @@ with pkgs; [
   optifine
   gamescope
   mangohud
+  # unigine-superposition # benchmark
+  # geekbench # benchmark
 ]

@@ -42,6 +42,7 @@
           };
 
           hardware.opengl.enable = true;
+          hardware.opengl.mesaPackage = pkgs.mesa;
         }
         home-manager.nixosModules.home-manager
         {

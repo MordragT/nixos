@@ -6,7 +6,7 @@
 
   programs.captive-browser = {
     enable = true;
-    interface = "wlp2s0";
+    interface = "wlp39s0";
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

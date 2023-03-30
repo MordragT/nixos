@@ -9,6 +9,7 @@ with pkgs; [
   icon-library
   gnome-solanum # pomodoro timer
   emblem
+  textpieces
 
   # GTK Apps
   raider # file shredder
@@ -23,7 +24,7 @@ with pkgs; [
   pdfarranger
   junction # open with preview
   fragments # torrent downloader
-  # not working paperwork
-  # sqlitecpp broken money # finance manager
+  paperwork
+  denaro # personal finance manager
   foliate # book reader
 ]

@@ -44,6 +44,9 @@ rec
     extraLibraries = pkgs: with pkgs; [
       # Crusader Kings 3
       ncurses
+      # gamescope
+      libkrb5
+      keyutils
       #gnome.zenity
     ];
   };

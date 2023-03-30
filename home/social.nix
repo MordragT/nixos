@@ -1,6 +1,6 @@
 { pkgs }:
 with pkgs; [
-  fractal # gtk matrix messaging
+  fractal-next # gtk matrix messaging
   gnome.polari # irc client not working atm
   # hexchat # irc client
   discord-canary

@@ -6,6 +6,7 @@ let
     lottieconv = callPackage ./lottieconv { };
     superview = callPackage ./superview { };
     astrofox = callPackage ./astrofox.nix { };
+    epic-asset-manager = callPackage ./epic-asset-manager { };
     spflashtool = callPackage ./spflashtool.nix { };
     webdesigner = callPackage ./webdesigner.nix { };
     webex = callPackage ./webex.nix { };
@@ -16,7 +17,6 @@ let
     likwid = callPackage ./likwid.nix { };
     byfl = callPackage ./byfl.nix { };
     dvc = callPackage ./dvc.nix { };
-    money = callPackage ./money.nix { };
     ensembles = callPackage ./ensembles.nix { };
   };
   python3 = pkgs.python3.override {

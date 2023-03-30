@@ -11,14 +11,15 @@ with pkgs; [
   hexyl # hex viewer
   lapce # code editor
 
-  (dvc.override { enableAWS = true; }) # data version control
-  awscli2 # amazon web services
+  # broken (dvc.override { enableAWS = true; }) # data version control
+  #broken awscli2 # amazon web services
   nodePackages.reveal-md # create presentations from markdown
 
   nixpkgs-fmt # nix files are everywhere anyways
   android-studio
   dbeaver # sql client
   godot # game engine
+  epic-asset-manager # manager for unreal engine and its assets
   akira-unstable # prototype gui
   gaphor # create diagrams and uml
   apostrophe # markdown editor

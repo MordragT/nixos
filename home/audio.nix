@@ -9,8 +9,10 @@ with pkgs; [
   amberol # simple audio player
   mousai # identitfy any song
   easyeffects # audio effects
-  # broken helvum # patchbay for pipewire
-  zrythm # music daw
+  helvum # patchbay for pipewire
+  # broken zrythm # music daw
   tenacity # master audio
   spotify # listen to music
+
+  pavucontrol
 ]
