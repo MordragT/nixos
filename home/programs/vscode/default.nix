@@ -122,6 +122,10 @@ in
       "workbench.tree.renderIndentGuides" = "none";
       "workbench.productIconTheme" = "adwaita";
       "workbench.editor.labelFormat" = "short";
+      #"platformio-ide.customPATH" = "/nix/store/9ak4j7mjxxqwp85a0dwa381acx3i5zrz-platformio-fhs";
+      "platformio-ide.useBuiltinPIOCore" = false;
+      "platformio-ide.useBuiltinPython" = false;
+      #"platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
     };
     keybindings = [
       {
@@ -166,7 +170,7 @@ in
       matangover.mypy
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
-      # ms-vsliveshare.vsliveshare
+      ms-vsliveshare.vsliveshare
       ms-vscode.cmake-tools
       twxs.cmake
       bungcip.better-toml
@@ -267,6 +271,12 @@ in
         publisher = "nvarner";
         version = "0.2.0";
         sha256 = "KXd2jYzin6C5QeAogQjcNn1HqbanfrYLCc+sB5yX0Iw=";
+      }
+      {
+        name = "platformio-ide";
+        publisher = "platformio";
+        version = "3.1.1";
+        sha256 = "1j2jpj9pw9qp5gzqrgajck6hnshr94kcss5l739vgwg3njviq0bz";
       }
     ];
   };
