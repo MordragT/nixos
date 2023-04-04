@@ -1,10 +1,10 @@
-{ fetchFromGitHub, stdenv, config, lib, ... }:
+{ pkgs, config, ... }:
 with builtins;
 let
-  theme = stdenv.mkDerivation rec {
+  theme = pkgs.stdenv.mkDerivation rec {
     name = "adwaita-for-steam";
 
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "tkashkin";
       repo = "Adwaita-for-Steam";
       rev = "7d293ed7b25e2cd10d84b278e64ac2ae0737aabc";
@@ -34,19 +34,19 @@ in
   # does not work because steam cannot read symlinks
   # xdg.dataFile."Steam/skins/Adwaita".source = theme;
 
-  home.activation = {
-    copySteamAdwaitaSkin = lib.hm.dag.entryAfter
-      [ "writeBoundary" ]
-      ''
-        if [ ! -d ${config.xdg.dataHome}/Steam/skins ]; then
-          mkdir -p ${config.xdg.dataHome}/Steam/skins
-        fi
-        # Delete the directory to copy again, if src was updated
-        if [ -d ${config.xdg.dataHome}/Steam/skins/adwaita ]; then
-          rm -rf ${config.xdg.dataHome}/Steam/skins/adwaita
-        fi
-        cp -r ${theme} ${config.xdg.dataHome}/Steam/skins/adwaita
-        chmod -R +w ${config.xdg.dataHome}/Steam/skins/adwaita
-      '';
-  };
+  # home.activation = {
+  #   copySteamAdwaitaSkin = pkgs.lib.hm.dag.entryAfter
+  #     [ "writeBoundary" ]
+  #     ''
+  #       if [ ! -d ${config.xdg.dataHome}/Steam/skins ]; then
+  #         mkdir -p ${config.xdg.dataHome}/Steam/skins
+  #       fi
+  #       # Delete the directory to copy again, if src was updated
+  #       if [ -d ${config.xdg.dataHome}/Steam/skins/adwaita ]; then
+  #         rm -rf ${config.xdg.dataHome}/Steam/skins/adwaita
+  #       fi
+  #       cp -r ${theme} ${config.xdg.dataHome}/Steam/skins/adwaita
+  #       chmod -R +w ${config.xdg.dataHome}/Steam/skins/adwaita
+  #     '';
+  # };
 }

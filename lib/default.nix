@@ -62,17 +62,14 @@
     { username
     , homeDirectory ? "/home/${username}"
     , stateVersion
-    , packages
     , imports
     }:
     {
       "${username}" = {
         inherit imports;
-        # fix for "useGlobalPkgs"
-        #nixpkgs = { inherit (pkgs) config overlays; };
 
         home = {
-          inherit username stateVersion packages homeDirectory;
+          inherit username stateVersion homeDirectory;
         };
         xdg = {
           enable = true;

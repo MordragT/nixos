@@ -1,4 +1,0 @@
-{ ... }:
-{
-  programs.wireshark.enable = true;
-}

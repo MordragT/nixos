@@ -1,33 +1,56 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
-    ./acme.nix
-    ./adb.nix
-    ./cli.nix
-    ./droidcam.nix
-    ./env.nix
-    ./flatpak.nix
     ./fonts.nix
-    #./gitea.nix
-    ./gamemode.nix
     ./gnome.nix
     ./locale.nix
-    # ./maddy.nix
-    # ./mariadb.nix
-    #./nextcloud.nix
     ./nix.nix
-    ./net.nix
     ./pipewire.nix
-    ./pki.nix
-    ./printing.nix
-    ./sshd.nix
+    ./programs
     ./steam.nix
-    ./tor.nix
-    # ./vaultwarden.nix
-    ./virtualisation.nix
+    ./security
+    ./services
+    ./virtualisation
     ./vpn.nix
-    ./wacom.nix
     #./webcam.nix
-    ./wireshark.nix
   ];
+
+  environment.interactiveShellInit = ''
+    alias comojit='comoji commit'
+  '';
+
+  environment.shells = [ pkgs.nushell ];
+
+  # This module contains mostly alternatives to POSIX utilities
+  environment.systemPackages = with pkgs; [
+    # Rust Tools
+    helix # Kakoune style editor
+    bottom # htop alike   
+    tealdeer # tldr
+    tokei # count lines of code
+    freshfetch # neofetch alternative
+    grex # create regular expressions
+    hyperfine # benchmarking
+    gping # ping with a graph
+    sd # sed and awk replacement using regex   
+    fd # find replacement
+    pueue # send commands into queue to execute
+    nomino # batch renaming
+    ouch # (de)compressor with sane interface
+    ripgrep # grep alternative
+    procs # modern ps replacement
+
+    p7zip # to extract .exe
+    cpufetch # fetch cpu information
+    ventoy-bin # create bootable usb drive for isos
+    trash-cli # put files in trash
+    expect # automate interactive applications
+
+    openconnect_unstable
+    hurl # like curl but better
+  ];
+
+  environment.variables = {
+    EDITOR = "hx";
+  };
 }

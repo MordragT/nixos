@@ -1,5 +1,8 @@
-{ pkgs }:
-with pkgs; [
-  libreoffice-fresh
-  okular
-]
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    libreoffice-fresh
+    okular
+  ];
+
+}

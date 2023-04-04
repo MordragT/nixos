@@ -1,6 +1,6 @@
-{ pkgs, fetchFromGitHub, ... }:
+{ pkgs, ... }:
 let
-  catppuccin = fetchFromGitHub {
+  catppuccin = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "obs";
     rev = "985431cfc252c41fc151c50f91d265e16da03e83";

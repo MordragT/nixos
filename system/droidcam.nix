@@ -1,4 +1,0 @@
-{ ... }:
-{
-  programs.droidcam.enable = true;
-}

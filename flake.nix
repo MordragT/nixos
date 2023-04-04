@@ -33,7 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     templates.url = "github:MordragT/nix-templates";
-    # notes.url = "github:MordragT/notes";
   };
 
   outputs =
@@ -48,7 +47,6 @@
     , comoji
     , hua
     , templates
-      # , notes
     }@inputs:
     let
       pkgs = import nixpkgs {
@@ -59,7 +57,6 @@
           agenix.overlays.default
           comoji.overlays.default
           hua.overlay
-          # notes.overlay
           fenix.overlays.default
           js-bp.overlays.default
           gomod2nix.overlays.default
@@ -99,48 +96,24 @@
             inherit pkgs templates;
           };
 
-          # TODO better way ?
-          specialHomeArgs = {
-            vscode-extensions = pkgs.vscode-extensions;
-            vscode-utils = pkgs.vscode-utils;
-            # fenix = fenix.packages."${system}";
-            nur = import nur {
-              nurpkgs = pkgs;
-              inherit pkgs;
-            };
-            stdenv = pkgs.stdenv;
-            fetchFromGitHub = pkgs.fetchFromGitHub;
-            fetchurl = pkgs.fetchurl;
-          };
+          # specialHomeArgs = {
+          #   nur = import nur {
+          #     nurpkgs = pkgs;
+          #     inherit pkgs;
+          #   };
+          # };
 
           homes =
             (lib.mkHome {
               inherit stateVersion;
               username = "tom";
-              packages = (import ./home { inherit pkgs; });
-              imports = [
-                ./home/programs/bat.nix
-                ./home/programs/chromium.nix
-                ./home/programs/exa.nix
-                ./home/programs/firefox.nix
-                ./home/programs/git.nix
-                ./home/programs/helix.nix
-                ./home/programs/nushell.nix
-                ./home/programs/obs.nix
-                ./home/programs/steam.nix
-                ./home/programs/vscode
-                ./home/programs/zoxide.nix
-                ./home/programs/zsh.nix
-              ];
+              imports = [ ./home ];
             }) //
             (lib.mkHome {
               inherit stateVersion;
               username = "root";
               homeDirectory = "/root";
-              packages = [ ];
               imports = [
-                ./home/programs/bat.nix
-                ./home/programs/exa.nix
                 ./home/programs/nushell.nix
               ];
             });
@@ -174,48 +147,24 @@
             inherit pkgs templates;
           };
 
-          # TODO better way ?
-          specialHomeArgs = {
-            vscode-extensions = pkgs.vscode-extensions;
-            vscode-utils = pkgs.vscode-utils;
-            # fenix = fenix.packages."${system}";
-            nur = import nur {
-              nurpkgs = pkgs;
-              inherit pkgs;
-            };
-            stdenv = pkgs.stdenv;
-            fetchFromGitHub = pkgs.fetchFromGitHub;
-            fetchurl = pkgs.fetchurl;
-          };
+          # specialHomeArgs = {
+          #   nur = import nur {
+          #     nurpkgs = pkgs;
+          #     inherit pkgs;
+          #   };
+          # };
 
           homes =
             (lib.mkHome {
               inherit stateVersion;
               username = "tom";
-              packages = (import ./home { inherit pkgs; });
-              imports = [
-                ./home/programs/bat.nix
-                ./home/programs/chromium.nix
-                ./home/programs/exa.nix
-                ./home/programs/firefox.nix
-                ./home/programs/git.nix
-                ./home/programs/helix.nix
-                ./home/programs/nushell.nix
-                ./home/programs/obs.nix
-                ./home/programs/steam.nix
-                ./home/programs/vscode
-                ./home/programs/zoxide.nix
-                ./home/programs/zsh.nix
-              ];
+              imports = [ ./home ];
             }) //
             (lib.mkHome {
               inherit stateVersion;
               username = "root";
               homeDirectory = "/root";
-              packages = [ ];
               imports = [
-                ./home/programs/bat.nix
-                ./home/programs/exa.nix
                 ./home/programs/nushell.nix
               ];
             });
@@ -225,13 +174,11 @@
           inherit system;
           stateVersion = "22.11";
           modules = [
-            #ba7web.nixosModules.default
             {
               imports = [
                 ./hosts/desktop
                 ./system
               ];
-              #services.svelte-caddy.enable = true;
             }
           ];
 
@@ -251,48 +198,24 @@
             inherit pkgs templates;
           };
 
-          # TODO better way ?
-          specialHomeArgs = {
-            vscode-extensions = pkgs.vscode-extensions;
-            vscode-utils = pkgs.vscode-utils;
-            # fenix = fenix.packages."${system}";
-            nur = import nur {
-              nurpkgs = pkgs;
-              inherit pkgs;
-            };
-            stdenv = pkgs.stdenv;
-            fetchFromGitHub = pkgs.fetchFromGitHub;
-            fetchurl = pkgs.fetchurl;
-          };
+          # specialHomeArgs = {
+          #   nur = import nur {
+          #     nurpkgs = pkgs;
+          #     inherit pkgs;
+          #   };
+          # };
 
           homes =
             (lib.mkHome {
               inherit stateVersion;
               username = "tom";
-              packages = (import ./home { inherit pkgs; });
-              imports = [
-                ./home/programs/bat.nix
-                ./home/programs/chromium.nix
-                ./home/programs/exa.nix
-                ./home/programs/firefox.nix
-                ./home/programs/git.nix
-                ./home/programs/helix.nix
-                ./home/programs/nushell.nix
-                ./home/programs/obs.nix
-                ./home/programs/steam.nix
-                ./home/programs/vscode
-                ./home/programs/zoxide.nix
-                ./home/programs/zsh.nix
-              ];
+              imports = [ ./home ];
             }) //
             (lib.mkHome {
               inherit stateVersion;
               username = "root";
               homeDirectory = "/root";
-              packages = [ ];
               imports = [
-                ./home/programs/bat.nix
-                ./home/programs/exa.nix
                 ./home/programs/nushell.nix
               ];
             });

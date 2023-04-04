@@ -1,20 +1,7 @@
-{ pkgs, vscode-extensions, vscode-utils, ... }:
+{ pkgs, ... }:
 let
-  #css = pkgs.writeText "vscode.css" (builtins.readFile ./vscode.css);
   vscode = pkgs.vscode.overrideAttrs (old: {
-    # preInstall = ''
-    #   substituteInPlace vs/workbench/electron-sandbox/parts/titlebar/titlebarParts.ts \
-    #     --replace "35" "48"
-    # '';
-
     postInstall = ''
-      # substituteInPlace $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.js \
-      #   --replace "\''${t.titleBarHeight}px" "48px"
-      
-      # substituteInPlace $out/lib/vscode/resources/app/out/vs/workbench/workbench.desktop.main.css \
-      #   --replace "return(this.isCommandCenterVisible||c.isWeb&&(0,L.isWCOEnabled)()?35:30)/(this.ub?(0,L.getZoomFactor)():1)"\
-      #   "return(this.isCommandCenterVisible||c.isWeb&&(0,L.isWCOEnabled)()?48:48)/(this.ub?(0,L.getZoomFactor)():1)"
-
       rm $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html
 
       cat > $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html << EOF
@@ -42,6 +29,13 @@ let
   });
 in
 {
+  home.packages = with pkgs; [
+    typst-lsp
+    rnix-lsp
+    black
+    platformio-core
+  ];
+
   programs.vscode = {
     package = vscode;
     enable = true;
@@ -161,7 +155,7 @@ in
       }
     ];
     mutableExtensionsDir = true;
-    extensions = with vscode-extensions; [
+    extensions = with pkgs.vscode-extensions; [
       rust-lang.rust-analyzer-nightly
       redhat.java
       vadimcn.vscode-lldb
@@ -187,19 +181,23 @@ in
       thenuprojectcontributors.vscode-nushell-lang
       catppuccin.catppuccin-vsc
       piousdeer.adwaita-theme
-    ] ++ vscode-utils.extensionsFromVscodeMarketplace [
+      bmewburn.vscode-intelephense-client
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-toolsai.vscode-jupyter-cell-tags
+      vscjava.vscode-gradle
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "texlab";
         publisher = "efoerster";
         version = "4.2.2";
         sha256 = "KEXy5FQIBRZXrR6rcdcWEG2qM1B9ricY3W+H0R+HBM4=";
       }
-      {
-        name = "vscode-intelephense-client";
-        publisher = "bmewburn";
-        version = "1.8.2";
-        sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
-      }
+      # {
+      #   name = "vscode-intelephense-client";
+      #   publisher = "bmewburn";
+      #   version = "1.8.2";
+      #   sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
+      # }
       # {
       #   name = "flowistry";
       #   publisher = "wcrichton";
@@ -230,30 +228,30 @@ in
         version = "4.0.10";
         sha256 = "0l8z0sv3432qrzh6118km7xr7g93fajmjihw8md47kfsdl9c4xxg";
       }
-      {
-        name = "vscode-jupyter-cell-tags";
-        publisher = "ms-toolsai";
-        version = "0.1.3";
-        sha256 = "12kwpda0bf5zvhkm9bbjmzdj2lcw6674bbscmbilyzqcz730zyrr";
-      }
-      {
-        name = "vscode-jupyter-slideshow";
-        publisher = "ms-toolsai";
-        version = "0.1.3";
-        sha256 = "04ibh7ddzhdcvl6wa9lzrp84l41zczcxqlz1dfp3b7mz130pr1x7";
-      }
+      # {
+      #   name = "vscode-jupyter-cell-tags";
+      #   publisher = "ms-toolsai";
+      #   version = "0.1.3";
+      #   sha256 = "12kwpda0bf5zvhkm9bbjmzdj2lcw6674bbscmbilyzqcz730zyrr";
+      # }
+      # {
+      #   name = "vscode-jupyter-slideshow";
+      #   publisher = "ms-toolsai";
+      #   version = "0.1.3";
+      #   sha256 = "04ibh7ddzhdcvl6wa9lzrp84l41zczcxqlz1dfp3b7mz130pr1x7";
+      # }
       {
         name = "kotlin";
         publisher = "fwcd";
         version = "0.2.26";
         sha256 = "1br0vr4v1xcl4c7bcqwzfqd4xr6q2ajwkipqrwm928mj96dkafkn";
       }
-      {
-        name = "vscode-gradle";
-        publisher = "vscjava";
-        version = "3.12.2022092700";
-        sha256 = "00pmfmbzqfqp49li0ykxaji04frn1xfshpk9wz3ib8csdzhs7wzm";
-      }
+      # {
+      #   name = "vscode-gradle";
+      #   publisher = "vscjava";
+      #   version = "3.12.2022092700";
+      #   sha256 = "00pmfmbzqfqp49li0ykxaji04frn1xfshpk9wz3ib8csdzhs7wzm";
+      # }
       # {
       #   name = "vscode-embedded-tools";
       #   publisher = "ms-vscode";
