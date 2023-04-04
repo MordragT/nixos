@@ -19,6 +19,15 @@
     alias comojit='comoji commit'
   '';
 
+  environment.sessionVariables = {
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    XDG_CACHE_HOME = "\${XDG_RUNTIME_DIR}/.cache";
+    # XDG_CACHE_HOME = "/run/user/1000/.cache";
+    XDG_DATA_HOME = "\${HOME}/.local/share";
+    XDG_STATE_HOME = "\${HOME}/.local/state";
+    XDG_BIN_HOME = "\${HOME}/.local/bin";
+  };
+
   environment.shells = [ pkgs.nushell ];
 
   # This module contains mostly alternatives to POSIX utilities

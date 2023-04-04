@@ -32,15 +32,6 @@
           # league of legends
           boot.kernel.sysctl."abi.vsyscall32" = 0;
 
-          environment.sessionVariables = {
-            XDG_CONFIG_HOME = "\${HOME}/.config";
-            # not working ? XDG_CACHE_HOME = "\${XDG_RUNTIME_DIR}/.cache";
-            XDG_CACHE_HOME = "/run/user/1000/.cache";
-            XDG_DATA_HOME = "\${HOME}/.local/share";
-            XDG_STATE_HOME = "\${HOME}/.local/state";
-            XDG_BIN_HOME = "\${HOME}/.local/bin";
-          };
-
           hardware.opengl.enable = true;
           hardware.opengl.mesaPackage = pkgs.mesa;
         }
