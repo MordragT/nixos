@@ -94,6 +94,14 @@ in
       #     "tools" = [ "tectonic" ];      
       #   }    
       # ];
+
+      "nix.enableLanguageServer" = true;
+
+      #"platformio-ide.customPATH" = "/nix/store/9ak4j7mjxxqwp85a0dwa381acx3i5zrz-platformio-fhs";
+      "platformio-ide.useBuiltinPIOCore" = false;
+      "platformio-ide.useBuiltinPython" = false;
+      #"platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
+
       "python.formatting.provider" = "black";
       #"rust-analyzer.procMacro.enable" = false;
       "terminal.integrated.fontSize" = 11;
@@ -116,10 +124,6 @@ in
       "workbench.tree.renderIndentGuides" = "none";
       "workbench.productIconTheme" = "adwaita";
       "workbench.editor.labelFormat" = "short";
-      #"platformio-ide.customPATH" = "/nix/store/9ak4j7mjxxqwp85a0dwa381acx3i5zrz-platformio-fhs";
-      "platformio-ide.useBuiltinPIOCore" = false;
-      "platformio-ide.useBuiltinPython" = false;
-      #"platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
     };
     keybindings = [
       {
@@ -185,6 +189,7 @@ in
       ms-toolsai.vscode-jupyter-slideshow
       ms-toolsai.vscode-jupyter-cell-tags
       vscjava.vscode-gradle
+      nvarner.typst-lsp
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "texlab";
@@ -263,12 +268,6 @@ in
         publisher = "ziglang";
         version = "0.3.1";
         sha256 = "17k2jk1yfhsxysmp6kj6xyljvnjgqx38l2a2b1aa0syafv8iqzvk";
-      }
-      {
-        name = "typst-lsp";
-        publisher = "nvarner";
-        version = "0.2.0";
-        sha256 = "KXd2jYzin6C5QeAogQjcNn1HqbanfrYLCc+sB5yX0Iw=";
       }
       {
         name = "platformio-ide";
