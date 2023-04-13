@@ -21,6 +21,7 @@
 
   services.udev.packages = with pkgs; [
     platformio
+    openocd
   ];
 
   services.xserver.wacom.enable = true;
