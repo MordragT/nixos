@@ -54,7 +54,8 @@
     ventoy-bin # create bootable usb drive for isos
     trash-cli # put files in trash
     expect # automate interactive applications
-
+    usbutils
+    pciutils
     openconnect_unstable
     hurl # like curl but better
   ];
