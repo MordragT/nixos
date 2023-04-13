@@ -33,7 +33,7 @@
           boot.kernel.sysctl."abi.vsyscall32" = 0;
 
           hardware.opengl.enable = true;
-          hardware.opengl.mesaPackage = pkgs.mesa;
+          # hardware.opengl.mesaPackage = pkgs.mesa;
         }
         home-manager.nixosModules.home-manager
         {
