@@ -3,6 +3,11 @@
   virtualisation.docker.enable = true;
   virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableHardening = false;
+  };
+
 
   # workaround for https://github.com/NixOS/nixpkgs/issues/59219#issuecomment-774711048
   # environment.variables = {

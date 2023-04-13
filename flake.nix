@@ -138,7 +138,7 @@
 
             users.tom = {
               isNormalUser = true;
-              extraGroups = [ "wheel" "docker" ];
+              extraGroups = [ "wheel" "docker" "vboxusers" ];
               shell = pkgs.nushell;
             };
           };
