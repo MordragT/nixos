@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fenix = {
-      url = "github:nix-community/fenix";
+      url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     js-bp = {
@@ -189,7 +189,7 @@
 
             users.tom = {
               isNormalUser = true;
-              extraGroups = [ "wheel" "docker" ];
+              extraGroups = [ "wheel" "docker" "vboxusers" ];
               shell = pkgs.nushell;
             };
           };

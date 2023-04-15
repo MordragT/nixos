@@ -26,7 +26,7 @@
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
 
-          boot.tmpOnTmpfs = true;
+          boot.tmp.useTmpfs = true;
           boot.runSize = "50%";
           boot.kernelPackages = pkgs.linuxPackages_latest;
           # league of legends

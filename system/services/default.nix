@@ -20,7 +20,7 @@
   services.tor.enable = true;
 
   services.udev.packages = with pkgs; [
-    platformio
+    platformio-core
     openocd
   ];
 

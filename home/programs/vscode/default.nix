@@ -198,12 +198,6 @@ in
         sha256 = "KEXy5FQIBRZXrR6rcdcWEG2qM1B9ricY3W+H0R+HBM4=";
       }
       # {
-      #   name = "vscode-intelephense-client";
-      #   publisher = "bmewburn";
-      #   version = "1.8.2";
-      #   sha256 = "1sla3pl3jfdawjmscwf2ml42xhwjaa9ywdgdpl6v99p10w6rvx9s";
-      # }
-      # {
       #   name = "flowistry";
       #   publisher = "wcrichton";
       #   version = "0.5.28";
@@ -233,30 +227,12 @@ in
         version = "4.0.10";
         sha256 = "0l8z0sv3432qrzh6118km7xr7g93fajmjihw8md47kfsdl9c4xxg";
       }
-      # {
-      #   name = "vscode-jupyter-cell-tags";
-      #   publisher = "ms-toolsai";
-      #   version = "0.1.3";
-      #   sha256 = "12kwpda0bf5zvhkm9bbjmzdj2lcw6674bbscmbilyzqcz730zyrr";
-      # }
-      # {
-      #   name = "vscode-jupyter-slideshow";
-      #   publisher = "ms-toolsai";
-      #   version = "0.1.3";
-      #   sha256 = "04ibh7ddzhdcvl6wa9lzrp84l41zczcxqlz1dfp3b7mz130pr1x7";
-      # }
       {
         name = "kotlin";
         publisher = "fwcd";
         version = "0.2.26";
         sha256 = "1br0vr4v1xcl4c7bcqwzfqd4xr6q2ajwkipqrwm928mj96dkafkn";
       }
-      # {
-      #   name = "vscode-gradle";
-      #   publisher = "vscjava";
-      #   version = "3.12.2022092700";
-      #   sha256 = "00pmfmbzqfqp49li0ykxaji04frn1xfshpk9wz3ib8csdzhs7wzm";
-      # }
       # {
       #   name = "vscode-embedded-tools";
       #   publisher = "ms-vscode";
@@ -273,7 +249,7 @@ in
         name = "platformio-ide";
         publisher = "platformio";
         version = "3.1.1";
-        sha256 = "g9yTG3DjVUS2w9eHGAai5LoIfEGus+FPhqDnCi4e90Q=";
+        sha256 = "fwEct7Tj8bfTOLRozSZJGWoLzWRSvYz/KxcnfpO8Usg=";
       }
     ];
   };
