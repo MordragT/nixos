@@ -160,36 +160,41 @@ in
     ];
     mutableExtensionsDir = true;
     extensions = with pkgs.vscode-extensions; [
-      rust-lang.rust-analyzer-nightly
-      redhat.java
-      vadimcn.vscode-lldb
-      ms-toolsai.jupyter
-      ms-python.python
-      matangover.mypy
-      ms-vscode-remote.remote-ssh
-      ms-vscode.cpptools
-      ms-vsliveshare.vsliveshare
-      ms-vscode.cmake-tools
-      twxs.cmake
-      bungcip.better-toml
-      gruntfuggly.todo-tree
-      skellock.just
-      jnoortheen.nix-ide
-      # bbenoist.nix
       # arrterian.nix-env-selector
-      valentjn.vscode-ltex
-      # james-yu.latex-workshop
-      svelte.svelte-vscode
-      yzhang.markdown-all-in-one
+      # bbenoist.nix
       bierner.markdown-mermaid
-      thenuprojectcontributors.vscode-nushell-lang
-      catppuccin.catppuccin-vsc
-      piousdeer.adwaita-theme
       bmewburn.vscode-intelephense-client
-      ms-toolsai.vscode-jupyter-slideshow
+      bungcip.better-toml
+      catppuccin.catppuccin-vsc
+      firefox-devtools.vscode-firefox-debug
+      gruntfuggly.todo-tree
+      # james-yu.latex-workshop
+      jnoortheen.nix-ide
+      matangover.mypy
+
+      ms-python.python
+      ms-toolsai.jupyter
       ms-toolsai.vscode-jupyter-cell-tags
-      vscjava.vscode-gradle
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-vscode.cmake-tools
+      ms-vscode.cpptools
+      ms-vscode-remote.remote-ssh
+      ms-vsliveshare.vsliveshare
+
       nvarner.typst-lsp
+      piousdeer.adwaita-theme
+      redhat.java
+      rust-lang.rust-analyzer-nightly
+      skellock.just
+      svelte.svelte-vscode
+      thenuprojectcontributors.vscode-nushell-lang
+      twxs.cmake
+
+      vadimcn.vscode-lldb
+      valentjn.vscode-ltex
+      vscjava.vscode-gradle
+      yzhang.markdown-all-in-one
+
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "texlab";
@@ -204,22 +209,28 @@ in
       #   sha256 = "1r232zcbqd7fs1nbjj4c4iwnw1z18b6ms2has74i97xrx17jhmqk";
       # }
       {
-        name = "one-dark-vibrant";
-        publisher = "Mordrag";
-        version = "0.0.4";
-        sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
-      }
-      {
         name = "gltf-vscode";
         publisher = "cesium";
         version = "2.3.16";
         sha256 = "02xd6vzy5a9q5cs5pwzr8cli28lbs4vaqq3r2ljzcgbwds45f83a";
       }
       {
-        name = "wgsl";
-        publisher = "PolyMeilex";
-        version = "0.1.12";
-        sha256 = "1m1j9fi85fjjyx2ws9d7vnmn8g22sxhrk27diazy34mp2p4dr8jd";
+        name = "kotlin";
+        publisher = "fwcd";
+        version = "0.2.26";
+        sha256 = "1br0vr4v1xcl4c7bcqwzfqd4xr6q2ajwkipqrwm928mj96dkafkn";
+      }
+      {
+        name = "one-dark-vibrant";
+        publisher = "Mordrag";
+        version = "0.0.4";
+        sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
+      }
+      {
+        name = "platformio-ide";
+        publisher = "platformio";
+        version = "3.1.1";
+        sha256 = "fwEct7Tj8bfTOLRozSZJGWoLzWRSvYz/KxcnfpO8Usg=";
       }
       {
         name = "sublime-keybindings";
@@ -227,11 +238,12 @@ in
         version = "4.0.10";
         sha256 = "0l8z0sv3432qrzh6118km7xr7g93fajmjihw8md47kfsdl9c4xxg";
       }
+
       {
-        name = "kotlin";
-        publisher = "fwcd";
-        version = "0.2.26";
-        sha256 = "1br0vr4v1xcl4c7bcqwzfqd4xr6q2ajwkipqrwm928mj96dkafkn";
+        name = "wgsl";
+        publisher = "PolyMeilex";
+        version = "0.1.12";
+        sha256 = "1m1j9fi85fjjyx2ws9d7vnmn8g22sxhrk27diazy34mp2p4dr8jd";
       }
       # {
       #   name = "vscode-embedded-tools";
@@ -244,12 +256,6 @@ in
         publisher = "ziglang";
         version = "0.3.1";
         sha256 = "17k2jk1yfhsxysmp6kj6xyljvnjgqx38l2a2b1aa0syafv8iqzvk";
-      }
-      {
-        name = "platformio-ide";
-        publisher = "platformio";
-        version = "3.1.1";
-        sha256 = "fwEct7Tj8bfTOLRozSZJGWoLzWRSvYz/KxcnfpO8Usg=";
       }
     ];
   };
