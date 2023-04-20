@@ -18,6 +18,7 @@
 
     nixpkgs-fmt # nix files are everywhere anyways
     android-studio
+    jetbrains.idea-community
     dbeaver # sql client
     godot # game engine
     epic-asset-manager # manager for unreal engine and its assets

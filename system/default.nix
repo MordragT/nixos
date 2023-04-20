@@ -51,7 +51,7 @@
 
     p7zip # to extract .exe
     cpufetch # fetch cpu information
-    ventoy-bin # create bootable usb drive for isos
+    ventoy # create bootable usb drive for isos
     trash-cli # put files in trash
     expect # automate interactive applications
     usbutils

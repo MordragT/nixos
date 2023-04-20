@@ -11,7 +11,7 @@
     mousai # identitfy any song
     easyeffects # audio effects
     helvum # patchbay for pipewire
-    # broken zrythm # music daw
+    #broken zrythm # music daw
     tenacity # master audio
     spotify # listen to music
   ];

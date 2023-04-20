@@ -9,7 +9,7 @@ let
     epic-asset-manager = callPackage ./epic-asset-manager { };
     spflashtool = callPackage ./spflashtool.nix { };
     webdesigner = callPackage ./webdesigner.nix { };
-    webex = callPackage ./webex.nix { };
+    # webex = callPackage ./webex.nix { };
     focalboard = callPackage ./focalboard.nix { };
     gnome-shell-extension-fly-pie = callPackage ./gnome-extensions/fly-pie.nix { };
     webcamoid = pkgs.libsForQt5.callPackage ./webcamoid.nix { };
