@@ -227,6 +227,22 @@
             });
         };
       };
+      
+      homeConfigurations = {
+      	tom = home-manager.lib.homeManagerConfiguration {
+      	  inherit pkgs;
+      	  
+      	  modules = [
+      	    ({ ... }: {
+      	      home.username = "tom";
+      	      home.homeDirectory = "/home/tom";
+      	      home.stateVersion = "22.11";
+      	      programs.home-manager.enable = true;
+      	    })
+      	    ./home
+      	  ];
+      	};	
+      };
 
       overlay = import ./overlay.nix;
 
