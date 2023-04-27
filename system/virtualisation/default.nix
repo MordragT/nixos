@@ -4,7 +4,7 @@
   virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host = {
-    enable = true;
+    enable = false;
     enableHardening = false;
   };
 
