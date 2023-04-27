@@ -59,6 +59,8 @@
     openconnect_unstable
     hurl # like curl but better
     nix-alien # run external programs in nix
+    # etcher # iso flasher
+    woeusb
   ];
 
   environment.variables = {

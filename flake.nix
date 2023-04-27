@@ -62,7 +62,7 @@
           nur.overlay
           agenix.overlays.default
           comoji.overlays.default
-          hua.overlay
+          # hua.overlay
           fenix.overlays.default
           js-bp.overlays.default
           gomod2nix.overlays.default

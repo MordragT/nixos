@@ -5,7 +5,7 @@ let
     grass = callPackage ./grass { };
     lottieconv = callPackage ./lottieconv { };
     superview = callPackage ./superview { };
-    astrofox = callPackage ./astrofox.nix { };
+    # astrofox = callPackage ./astrofox.nix { };
     epic-asset-manager = callPackage ./epic-asset-manager { };
     spflashtool = callPackage ./spflashtool.nix { };
     webdesigner = callPackage ./webdesigner.nix { };

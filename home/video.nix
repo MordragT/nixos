@@ -8,7 +8,7 @@
     mpv # customizable video player
     celluloid # gtk mpv frontend
     asciinema # record terminals
-    astrofox # create audio videos
+    # astrofox # create audio videos
     #superview # change asepct ratio of videos
     #dandere2x # upscale anime videos
     ffmpeg
