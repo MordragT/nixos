@@ -6,6 +6,7 @@
     ./documents.nix
     ./gaming.nix
     ./gnome.nix
+    ./nix.nix
     ./programs
     ./security.nix
     ./social.nix

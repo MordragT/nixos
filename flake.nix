@@ -99,15 +99,12 @@
           };
 
           specialArgs = {
-            inherit pkgs templates;
+            inherit pkgs;
           };
 
-          # specialHomeArgs = {
-          #   nur = import nur {
-          #     nurpkgs = pkgs;
-          #     inherit pkgs;
-          #   };
-          # };
+          specialHomeArgs = {
+            inherit templates;
+          };
 
           homes =
             (lib.mkHome {
@@ -150,15 +147,12 @@
           };
 
           specialArgs = {
-            inherit pkgs templates;
+            inherit pkgs;
           };
 
-          # specialHomeArgs = {
-          #   nur = import nur {
-          #     nurpkgs = pkgs;
-          #     inherit pkgs;
-          #   };
-          # };
+          specialHomeArgs = {
+            inherit templates;
+          };
 
           homes =
             (lib.mkHome {
@@ -201,15 +195,12 @@
           };
 
           specialArgs = {
-            inherit pkgs templates;
+            inherit pkgs;
           };
 
-          # specialHomeArgs = {
-          #   nur = import nur {
-          #     nurpkgs = pkgs;
-          #     inherit pkgs;
-          #   };
-          # };
+          specialHomeArgs = {
+            inherit templates;
+          };
 
           homes =
             (lib.mkHome {
@@ -231,6 +222,10 @@
       homeConfigurations = {
         tom = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit templates;
+          };
 
           modules = [
             ({ ... }: {
