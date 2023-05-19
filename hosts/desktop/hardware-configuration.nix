@@ -33,6 +33,7 @@
       fsType = "btrfs";
       options = [
         "compress=zstd"
+        "autodefrag"
       ];
     };
 
