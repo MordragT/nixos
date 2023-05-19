@@ -10,6 +10,7 @@
       roboto
       noto-fonts
       noto-fonts-emoji
+      caladea # similar to microsoft cambria
       # needed for steam adwaita theme
       cantarell-fonts
       times-newer-roman
