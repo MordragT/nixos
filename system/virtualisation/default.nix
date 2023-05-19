@@ -4,9 +4,16 @@
   virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host = {
-    enable = false;
-    enableHardening = false;
+    enable = true;
+    #headless = true;
+    #enableHardening = false;
   };
+
+  # vagrant
+  networking.firewall.extraCommands = ''
+    ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
+  '';
+
 
 
   # workaround for https://github.com/NixOS/nixpkgs/issues/59219#issuecomment-774711048
