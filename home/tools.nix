@@ -8,5 +8,6 @@
     scrcpy # control android from pc
     qbittorrent # download torrents
     popsicle # flash usb with iso
+    cachix # nix binary hosting
   ];
 }

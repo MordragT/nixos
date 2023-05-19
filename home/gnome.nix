@@ -11,8 +11,10 @@
     gnome-solanum # pomodoro timer
     emblem
     textpieces
+    paleta # extract dominant color from images
 
     # GTK Apps
+    eartag # tag audio files
     raider # file shredder
     citations # bibtex
     warp # send and recieve files
