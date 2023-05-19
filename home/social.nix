@@ -6,7 +6,7 @@
     # hexchat # irc client
     discord
     teamspeak_client
-    teams # microsoft teams
+    # teams # microsoft teams
     zoom-us
     webex
     whatsapp-for-linux
