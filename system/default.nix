@@ -49,6 +49,7 @@
     ripgrep # grep alternative
     procs # modern ps replacement
 
+    piper # manage gaming mice
     p7zip # to extract .exe
     cpufetch # fetch cpu information
     ventoy # create bootable usb drive for isos

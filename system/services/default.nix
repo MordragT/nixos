@@ -16,6 +16,7 @@
   };
 
   services.printing.enable = true;
+  services.ratbagd.enable = true; # gaming mice daemon
   services.sshd.enable = true;
   services.tor.enable = true;
 
