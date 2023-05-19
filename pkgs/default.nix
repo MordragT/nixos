@@ -16,7 +16,7 @@ let
     oneapi = callPackage ./oneapi.nix { };
     likwid = callPackage ./likwid.nix { };
     byfl = callPackage ./byfl.nix { };
-    dvc = callPackage ./dvc.nix { };
+    #dvc = callPackage ./dvc.nix { };
     ensembles = callPackage ./ensembles.nix { };
   };
   python3 = pkgs.python3.override {
