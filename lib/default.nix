@@ -28,12 +28,9 @@
 
           boot.tmp.useTmpfs = true;
           boot.runSize = "50%";
-          boot.kernelPackages = pkgs.linuxPackages_6_2; #pkgs.linuxPackages_latest;
+          boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
           # league of legends
           boot.kernel.sysctl."abi.vsyscall32" = 0;
-
-          hardware.opengl.enable = true;
-          # hardware.opengl.mesaPackage = pkgs.mesa;
         }
         home-manager.nixosModules.home-manager
         {

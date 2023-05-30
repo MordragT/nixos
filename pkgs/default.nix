@@ -18,6 +18,9 @@ let
     byfl = callPackage ./byfl.nix { };
     #dvc = callPackage ./dvc.nix { };
     ensembles = callPackage ./ensembles.nix { };
+    tmfs = callPackage ./tmfs.nix { };
+    oneVPL = callPackage ./oneVPL.nix { inherit oneVPL-intel-gpu; };
+    oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix { };
   };
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs: import ./python {

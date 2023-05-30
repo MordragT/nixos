@@ -40,6 +40,15 @@ rec
   #     gnome.zenity
   #   ];
   # });
+  libratbag =
+    let
+      func_ms2 = builtins.readFile ./system/services/ratbag/func-ms2.device;
+    in
+    pkgs.libratbag.overrideAttrs (old: {
+      preFixup = ''
+        cp ${./system/services/ratbag/func-ms2.device} $out/share/libratbag/func-ms2.device
+      '';
+    });
   steam = pkgs.steam.override {
     extraLibraries = pkgs: with pkgs; [
       # Crusader Kings 3

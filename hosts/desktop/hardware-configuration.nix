@@ -29,7 +29,7 @@
 
   fileSystems."/home" =
     {
-      device = "/dev/disk/by-uuid/81ebaab8-f772-4b6c-9b1a-b5f697a227f5";
+      device = "/dev/disk/by-uuid/f825b422-d860-4579-90cf-dc0af7651f62";
       fsType = "btrfs";
       options = [
         "compress=zstd"

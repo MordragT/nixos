@@ -31,6 +31,7 @@
     likwid # performance monitoring
     byfl # compiler based application analysis
     hollywood # fake hacking
+    oneVPL
   ];
 }
 

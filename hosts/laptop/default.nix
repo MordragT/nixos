@@ -21,4 +21,10 @@
       127.0.0.1 mordrag.io
     '';
   };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 }

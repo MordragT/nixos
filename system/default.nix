@@ -49,6 +49,7 @@
     ripgrep # grep alternative
     procs # modern ps replacement
 
+    tmfs # read apple time machine backup
     piper # manage gaming mice
     p7zip # to extract .exe
     cpufetch # fetch cpu information

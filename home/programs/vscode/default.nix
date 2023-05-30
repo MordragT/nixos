@@ -174,6 +174,7 @@ in
       matangover.mypy
 
       ms-python.python
+      ms-python.vscode-pylance
       ms-toolsai.jupyter
       ms-toolsai.vscode-jupyter-cell-tags
       ms-toolsai.vscode-jupyter-slideshow
@@ -191,7 +192,7 @@ in
       thenuprojectcontributors.vscode-nushell-lang
       twxs.cmake
 
-      vadimcn.vscode-lldb
+      # broken vadimcn.vscode-lldb
       valentjn.vscode-ltex
       vscjava.vscode-gradle
       yzhang.markdown-all-in-one

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -26,4 +26,20 @@
   #systemd.services.systemd-udevd.restartIfChanged = false;
   systemd.network.wait-online.anyInterface = true;
   systemd.network.wait-online.timeout = 5;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    intel-gpu-tools
+  ];
 }

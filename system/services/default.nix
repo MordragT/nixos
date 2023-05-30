@@ -6,6 +6,7 @@
     #./maddy.nix
     #./nextcloud.nix
     #./vaultwarden.nix
+    ./ratbag
   ];
 
   services.flatpak.enable = true;
@@ -16,7 +17,6 @@
   };
 
   services.printing.enable = true;
-  services.ratbagd.enable = true; # gaming mice daemon
   services.sshd.enable = true;
   services.tor.enable = true;
 
