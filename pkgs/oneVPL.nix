@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
   ];
 
   # TODO one api has funky way for searching for the runtime
-  # Therefore this isn't working atm
+  # Therefore this isn't working atm: https://github.com/oneapi-src/oneAPI-spec/issues/418
   postFixup = ''
     patchelf --add-rpath ${oneVPL-intel-gpu}/lib $out/lib/libvpl.so.2.9
   '';
