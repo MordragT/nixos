@@ -228,12 +228,14 @@
           };
 
           modules = [
-            ({ ... }: {
+            ({ pkgs, ... }: {
               home.username = "tom";
               home.homeDirectory = "/home/tom";
               home.stateVersion = "22.11";
               programs.home-manager.enable = true;
               targets.genericLinux.enable = true;
+
+              nix.package = pkgs.nixVersions.stable;
             })
             ./home
           ];
