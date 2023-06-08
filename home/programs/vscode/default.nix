@@ -41,6 +41,8 @@ in
     enable = true;
     userSettings = {
       "breadcrumbs.enabled" = false;
+      "cSpell.language" = "en,de";
+      "cSpell.enableFiletypes" = [ "typst" ];
       "debug.allowBreakpointsEverywhere" = true;
       "debug.showBreakpointsInOverviewRuler" = true;
 
@@ -161,15 +163,12 @@ in
     ];
     mutableExtensionsDir = true;
     extensions = with pkgs.vscode-extensions; [
-      # arrterian.nix-env-selector
-      # bbenoist.nix
       bierner.markdown-mermaid
       bmewburn.vscode-intelephense-client
       bungcip.better-toml
       catppuccin.catppuccin-vsc
       firefox-devtools.vscode-firefox-debug
       gruntfuggly.todo-tree
-      # james-yu.latex-workshop
       jnoortheen.nix-ide
       matangover.mypy
 
@@ -179,7 +178,7 @@ in
       ms-toolsai.vscode-jupyter-cell-tags
       ms-toolsai.vscode-jupyter-slideshow
       ms-vscode.cmake-tools
-      # broken ms-vscode.cpptools
+      ms-vscode.cpptools
       ms-vscode-remote.remote-ssh
       ms-vsliveshare.vsliveshare
 
@@ -188,21 +187,22 @@ in
       redhat.java
       rust-lang.rust-analyzer-nightly
       skellock.just
+      streetsidesoftware.code-spell-checker
       svelte.svelte-vscode
       thenuprojectcontributors.vscode-nushell-lang
       twxs.cmake
 
       # broken vadimcn.vscode-lldb
-      valentjn.vscode-ltex
+      #valentjn.vscode-ltex
       vscjava.vscode-gradle
       yzhang.markdown-all-in-one
 
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
-        name = "texlab";
-        publisher = "efoerster";
-        version = "4.2.2";
-        sha256 = "KEXy5FQIBRZXrR6rcdcWEG2qM1B9ricY3W+H0R+HBM4=";
+        name = "code-spell-checker-german";
+        publisher = "streetsidesoftware";
+        version = "2.2.1";
+        sha256 = "F0ykTfFAZSqWfntYKWWEgtUyLimBT0Q0fiE219/YqGs=";
       }
       # {
       #   name = "flowistry";
@@ -228,19 +228,24 @@ in
         version = "0.0.4";
         sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
       }
-      {
-        name = "platformio-ide";
-        publisher = "platformio";
-        version = "3.1.1";
-        sha256 = "fwEct7Tj8bfTOLRozSZJGWoLzWRSvYz/KxcnfpO8Usg=";
-      }
+      # {
+      #   name = "platformio-ide";
+      #   publisher = "platformio";
+      #   version = "3.1.1";
+      #   sha256 = "fwEct7Tj8bfTOLRozSZJGWoLzWRSvYz/KxcnfpO8Usg=";
+      # }
       {
         name = "sublime-keybindings";
         publisher = "ms-vscode";
         version = "4.0.10";
         sha256 = "0l8z0sv3432qrzh6118km7xr7g93fajmjihw8md47kfsdl9c4xxg";
       }
-
+      {
+        name = "texlab";
+        publisher = "efoerster";
+        version = "4.2.2";
+        sha256 = "KEXy5FQIBRZXrR6rcdcWEG2qM1B9ricY3W+H0R+HBM4=";
+      }
       {
         name = "wgsl";
         publisher = "PolyMeilex";

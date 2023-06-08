@@ -29,8 +29,8 @@ in
           firefox-gnome-theme = pkgs.fetchFromGitHub {
             owner = "rafaelmardojai";
             repo = "firefox-gnome-theme";
-            rev = "9b88fd9bb16da01c8535889e04e14231e853de6c";
-            sha256 = "AeRlezeG5jBcRN6IwVxXdK+zv9OlPdoNJkpJ1Lha5Ho=";
+            rev = "bc1033167a4537d3043854ae02dc95ec2168edd1";
+            sha256 = "vQ4AkeZJOysRTQ8KOkpmjMkH76S3i2PgHeDYZjVbUxE=";
           };
         in
         ''
@@ -65,6 +65,20 @@ in
               install -v -m644 "$src" "$dst/${addonId}.xpi"
             '';
           });
+          bibkit = buildFirefoxXpiAddon {
+            pname = "BibKit";
+            version = "0.1.2";
+            addonId = "{a85febca-472c-4ccf-aea0-204fd08feaf9}";
+            url = "https://addons.mozilla.org/firefox/downloads/file/4100741/bib_kit-0.1.2.xpi";
+            sha256 = "dRZBM7H41XEdNag/r82M1ifBQFmlH4Jmby+0rUiMO4g=";
+            meta = with lib;
+              {
+                homepage = "https://github.com/MordragT/bib_kit";
+                description = "Instantly create hayagriva bibliography items from websites.";
+                license = licenses.mit;
+                platforms = platforms.all;
+              };
+          };
           bibitnow = buildFirefoxXpiAddon {
             pname = "BibItNow!";
             version = "0.908";
@@ -81,10 +95,10 @@ in
           };
           pia = buildFirefoxXpiAddon {
             pname = "PrivateInternetAccess";
-            version = "2.1.4.2";
+            version = "3.2.5";
             addonId = "{3e4d2037-d300-4e95-859d-3cba866f46d3}";
-            url = "https://addons.mozilla.org/firefox/downloads/file/3502793/private_internet_access_ext-2.1.4.2.xpi";
-            sha256 = "FQ0xLL6KgmLwRUCiwG4iU5IOVmRMFUfqK6BZtimY8ok=";
+            url = "https://addons.mozilla.org/firefox/downloads/file/4073898/private_internet_access_ext-3.2.5.xpi";
+            sha256 = "J6cFzBHQvuRo5oetDK2ZDcXUex33GBoDb7gTohLbGqk=";
             meta = with lib;
               {
                 homepage = "https://www.privateinternetaccess.com/";
@@ -111,6 +125,7 @@ in
         with pkgs.nur.repos.rycee.firefox-addons; [
           sidebery
           sponsorblock
+          bibkit
           bitwarden
           honey
           ublock-origin
