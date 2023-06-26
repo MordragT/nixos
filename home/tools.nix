@@ -9,5 +9,6 @@
     qbittorrent # download torrents
     popsicle # flash usb with iso
     cachix # nix binary hosting
+    silicon # rust tool to create beautiful code images
   ];
 }

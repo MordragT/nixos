@@ -58,7 +58,7 @@
     expect # automate interactive applications
     usbutils
     pciutils
-    openconnect_unstable
+    # openconnect_unstable
     hurl # like curl but better
     nix-alien # run external programs in nix
     # etcher # iso flasher

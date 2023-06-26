@@ -109,7 +109,7 @@ in
       "terminal.integrated.fontSize" = 11;
       #"terminal.integrated.rendererType" = "dom";
       "typst-lsp.exportPdf" = "never";
-      "typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
+      #"typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
       "window.zoomLevel" = 2;
       "window.menuBarVisibility" = "compact";
       "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
@@ -170,11 +170,13 @@ in
       firefox-devtools.vscode-firefox-debug
       gruntfuggly.todo-tree
       jnoortheen.nix-ide
+      marp-team.marp-vscode
       matangover.mypy
 
       ms-python.python
       ms-python.vscode-pylance
       ms-toolsai.jupyter
+      ms-toolsai.jupyter-renderers
       ms-toolsai.vscode-jupyter-cell-tags
       ms-toolsai.vscode-jupyter-slideshow
       ms-vscode.cmake-tools

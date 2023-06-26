@@ -12,6 +12,9 @@
     emblem
     textpieces
     paleta # extract dominant color from images
+    fclones # find duplicate files
+    health # health tracker
+    identity # image viewer
 
     # GTK Apps
     eartag # tag audio files
@@ -30,6 +33,7 @@
     paperwork
     denaro # personal finance manager
     foliate # book reader
+    valent # kde connect implementation for gnome
   ];
 
 }

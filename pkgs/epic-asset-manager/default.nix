@@ -7,6 +7,8 @@
 , ninja
 , pkg-config
 , openssl
+, cargo
+, rustc
 , rustPlatform
 , libadwaita
 , gtk4
@@ -42,11 +44,10 @@ stdenv.mkDerivation rec {
     pkg-config
     openssl
     ninja
-  ] ++ (with rustPlatform; [
-    cargoSetupHook
-    rust.cargo
-    rust.rustc
-  ]);
+    cargo
+    rustc
+    rustPlatform.cargoSetupHook
+  ];
 
   buildInputs = [
     libadwaita

@@ -16,6 +16,7 @@
     gnomeExtensions.space-bar
     gnomeExtensions.rounded-window-corners
     gnomeExtensions.task-widget
+    gnomeExtensions.valent
     gnome-shell-extension-fly-pie
     #adw-gtk3
   ];
