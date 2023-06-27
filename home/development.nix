@@ -32,6 +32,7 @@
     byfl # compiler based application analysis
     hollywood # fake hacking
     oneVPL
+    insomnia # make http requests against rest apis
   ];
 }
 
