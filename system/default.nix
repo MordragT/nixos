@@ -10,6 +10,7 @@
     ./steam.nix
     ./security
     ./services
+    ./users.nix
     ./virtualisation
     ./vpn.nix
     #./webcam.nix

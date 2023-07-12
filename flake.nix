@@ -86,18 +86,6 @@
             }
           ];
 
-          users = {
-            users.root = {
-              extraGroups = [ "root" ];
-            };
-
-            users.tom = {
-              isNormalUser = true;
-              extraGroups = [ "wheel" "docker" ];
-              shell = pkgs.nushell;
-            };
-          };
-
           specialArgs = {
             inherit pkgs;
           };
@@ -134,18 +122,6 @@
             }
           ];
 
-          users = {
-            users.root = {
-              extraGroups = [ "root" ];
-            };
-
-            users.tom = {
-              isNormalUser = true;
-              extraGroups = [ "wheel" "docker" "vboxusers" ];
-              shell = pkgs.nushell;
-            };
-          };
-
           specialArgs = {
             inherit pkgs;
           };
@@ -181,18 +157,6 @@
               ];
             }
           ];
-
-          users = {
-            users.root = {
-              extraGroups = [ "root" ];
-            };
-
-            users.tom = {
-              isNormalUser = true;
-              extraGroups = [ "wheel" "docker" "vboxusers" ];
-              shell = pkgs.nushell;
-            };
-          };
 
           specialArgs = {
             inherit pkgs;

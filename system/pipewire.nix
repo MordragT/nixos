@@ -15,8 +15,6 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
-  # recommended for pipewire
-  security.rtkit.enable = true;
 
 
   # environment.etc = {

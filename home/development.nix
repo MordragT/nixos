@@ -15,7 +15,7 @@
     (dvc.override { enableAWS = true; }) # data version control
     awscli2 # amazon web services
     nodePackages.reveal-md # create presentations from markdown
-    vagrant # vm provisioning
+    # vagrant # vm provisioning
 
     nixpkgs-fmt # nix files are everywhere anyways
     android-studio

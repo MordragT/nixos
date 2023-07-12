@@ -6,7 +6,6 @@
     , modules
     , specialArgs ? { }
     , specialHomeArgs ? { }
-    , users
     , homes
     }:
     let
@@ -20,7 +19,6 @@
         {
           boot.supportedFilesystems = [ "ntfs" ];
 
-          inherit users;
           system.stateVersion = stateVersion;
 
           boot.loader.systemd-boot.enable = true;

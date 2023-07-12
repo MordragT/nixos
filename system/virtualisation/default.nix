@@ -1,8 +1,8 @@
 { ... }:
 {
   virtualisation.docker.enable = true;
-  virtualisation.waydroid.enable = true;
-  virtualisation.libvirtd.enable = true;
+  virtualisation.waydroid.enable = false;
+  virtualisation.libvirtd.enable = false;
   virtualisation.virtualbox.host = {
     enable = false;
     #headless = true;
@@ -10,9 +10,9 @@
   };
 
   # vagrant
-  networking.firewall.extraCommands = ''
-    ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
-  '';
+  # networking.firewall.extraCommands = ''
+  #   ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
+  # '';
 
 
 

@@ -10,7 +10,7 @@
     icon-library
     gnome-solanum # pomodoro timer
     emblem
-    textpieces
+    # broken textpieces
     paleta # extract dominant color from images
     fclones # find duplicate files
     health # health tracker

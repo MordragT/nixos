@@ -11,6 +11,7 @@
     # astrofox # create audio videos
     #superview # change asepct ratio of videos
     #dandere2x # upscale anime videos
+    upscayl
     ((ffmpeg_6-full.overrideAttrs (old: {
       configureFlags = old.configureFlags ++ [ "--enable-libvpl" ];
       buildInputs = old.buildInputs ++ [ pkgs.oneVPL ];

@@ -109,7 +109,7 @@ in
       "terminal.integrated.fontSize" = 11;
       #"terminal.integrated.rendererType" = "dom";
       "typst-lsp.exportPdf" = "never";
-      #"typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
+      "typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
       "window.zoomLevel" = 2;
       "window.menuBarVisibility" = "compact";
       "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";

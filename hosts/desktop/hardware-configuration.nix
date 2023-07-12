@@ -37,6 +37,16 @@
       ];
     };
 
+  fileSystems."/run/media/Media" =
+    {
+      device = "/dev/disk/by-uuid/5b5ff03b-1335-4810-a047-4e482283ea94";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "autodefrag"
+      ];
+    };
+
   swapDevices =
     [{ device = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700"; }];
 
