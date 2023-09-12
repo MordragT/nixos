@@ -29,8 +29,8 @@ in
           firefox-gnome-theme = pkgs.fetchFromGitHub {
             owner = "rafaelmardojai";
             repo = "firefox-gnome-theme";
-            rev = "bc1033167a4537d3043854ae02dc95ec2168edd1";
-            sha256 = "vQ4AkeZJOysRTQ8KOkpmjMkH76S3i2PgHeDYZjVbUxE=";
+            rev = "6c4190fbbf320569cc546a73efd25380d92fdd91";
+            sha256 = "rAM6kNwHxT/YK58eC62vpcgf7i73ffBg8EHz3NoaAog=";
           };
         in
         ''
@@ -133,6 +133,7 @@ in
           brave-search
           bibitnow
           pia
+          pkgs.nur.repos.bandithedoge.firefoxAddons.augmented-steam
         ];
     };
   };

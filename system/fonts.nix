@@ -2,8 +2,8 @@
 {
   fonts = {
     fontDir.enable = true;
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       fira
       fira-code
       jetbrains-mono

@@ -29,6 +29,8 @@
           boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
           # league of legends
           boot.kernel.sysctl."abi.vsyscall32" = 0;
+          # cs 2
+          boot.kernel.sysctl."vm.max_map_count" = 16777216;
         }
         home-manager.nixosModules.home-manager
         {

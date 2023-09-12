@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     # Rust Tools
-    gitoxide # alternative git still wip
+    #broken gitoxide # alternative git still wip
     git-cliff # generate changelogs
     comoji # emoji conventional commits
     onefetch # git summary
@@ -21,7 +21,7 @@
     android-studio
     jetbrains.idea-community
     dbeaver # sql client
-    godot # game engine
+    godot_4 # game engine
     epic-asset-manager # manager for unreal engine and its assets
     akira-unstable # prototype gui
     gaphor # create diagrams and uml

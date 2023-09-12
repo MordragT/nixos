@@ -5,6 +5,7 @@
     kooha # screen recording
     waifu2x-converter-cpp
     pitivi # video editor
+    olive-editor # video editor
     mpv # customizable video player
     celluloid # gtk mpv frontend
     asciinema # record terminals

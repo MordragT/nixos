@@ -21,6 +21,7 @@
   '';
 
   environment.sessionVariables = {
+    PATH = "\${HOME}/.cargo/bin";
     XDG_CONFIG_HOME = "\${HOME}/.config";
     XDG_CACHE_HOME = "\${HOME}/.cache";
     #XDG_CACHE_HOME = "/run/user/1000/.cache";
@@ -49,6 +50,7 @@
     ouch # (de)compressor with sane interface
     ripgrep # grep alternative
     procs # modern ps replacement
+    htop # better top
 
     tmfs # read apple time machine backup
     piper # manage gaming mice

@@ -34,6 +34,7 @@
     denaro # personal finance manager
     foliate # book reader
     valent # kde connect implementation for gnome
+    calls # phone dialer and call handler
   ];
 
 }

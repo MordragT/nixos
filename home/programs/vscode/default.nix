@@ -47,6 +47,7 @@ in
       "debug.showBreakpointsInOverviewRuler" = true;
 
       "editor.minimap.enabled" = false;
+      #ensembles # live DAW
       "editor.minimap.scale" = 2;
       "editor.fontLigatures" = true;
       "editor.fontFamily" = "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'";
@@ -165,7 +166,6 @@ in
     extensions = with pkgs.vscode-extensions; [
       bierner.markdown-mermaid
       bmewburn.vscode-intelephense-client
-      bungcip.better-toml
       catppuccin.catppuccin-vsc
       firefox-devtools.vscode-firefox-debug
       gruntfuggly.todo-tree
@@ -191,6 +191,7 @@ in
       skellock.just
       streetsidesoftware.code-spell-checker
       svelte.svelte-vscode
+      tamasfe.even-better-toml
       thenuprojectcontributors.vscode-nushell-lang
       twxs.cmake
 
@@ -229,6 +230,12 @@ in
         publisher = "Mordrag";
         version = "0.0.4";
         sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
+      }
+      {
+        name = "parol-vscode";
+        publisher = "jsinger67";
+        version = "0.1.15";
+        sha256 = "1y2fixz4jazac384wqv84grn0wbgq5n0jfw4hrdiv54gziqqf964";
       }
       # {
       #   name = "platformio-ide";

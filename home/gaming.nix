@@ -8,7 +8,7 @@
     # steamcontroller
     # lutris
     bottles
-    protonup
+    protonup-qt
     protontricks
     vulkan-tools
     minecraft

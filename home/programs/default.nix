@@ -15,7 +15,7 @@
   };
 
   programs.chromium.enable = true;
-  programs.exa.enable = true;
+  programs.eza.enable = true;
 
   programs.git = {
     enable = true;
@@ -31,6 +31,6 @@
     };
   };
 
-  programs.zoxide.enable = true;
+  programs.zoxide.enable = false;
 
 }
