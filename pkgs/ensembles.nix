@@ -1,30 +1,30 @@
-{ stdenv
-, lib
-, fetchFromGitHub
-, wrapGAppsHook
-, meson
-, ninja
-, pkg-config
-, vala
-, pantheon
-, gtk3
-, glib
-, gobject-introspection
-, libsoup
-, json-glib
-, libhandy
-, gst_all_1
-, lv2
-, lilv
-, pipewire
-, suil
-, fluidsynth
-, portmidi
-, xorg
-, desktop-file-utils
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  wrapGAppsHook,
+  meson,
+  ninja,
+  pkg-config,
+  vala,
+  pantheon,
+  gtk3,
+  glib,
+  gobject-introspection,
+  libsoup,
+  json-glib,
+  libhandy,
+  gst_all_1,
+  lv2,
+  lilv,
+  pipewire,
+  suil,
+  fluidsynth,
+  portmidi,
+  xorg,
+  desktop-file-utils,
 }:
-
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "ensembles";
   version = "master";
 
@@ -64,7 +64,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     license = licenses.gpl3;
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
     description = "A digital arranger workstation powered by FluidSynth";
     platforms = platforms.linux;
   };

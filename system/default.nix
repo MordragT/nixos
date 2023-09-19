@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./fonts.nix
     ./gnome.nix
@@ -30,20 +29,20 @@
     XDG_BIN_HOME = "\${HOME}/.local/bin";
   };
 
-  environment.shells = [ pkgs.nushell ];
+  environment.shells = [pkgs.nushell];
 
   # This module contains mostly alternatives to POSIX utilities
   environment.systemPackages = with pkgs; [
     # Rust Tools
     helix # Kakoune style editor
-    bottom # htop alike   
+    bottom # htop alike
     tealdeer # tldr
     tokei # count lines of code
     freshfetch # neofetch alternative
     grex # create regular expressions
     hyperfine # benchmarking
     gping # ping with a graph
-    sd # sed and awk replacement using regex   
+    sd # sed and awk replacement using regex
     fd # find replacement
     pueue # send commands into queue to execute
     nomino # batch renaming

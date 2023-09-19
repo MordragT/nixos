@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.gitea = {
     enable = true;
     database.type = "sqlite3";
@@ -10,7 +9,7 @@
   };
 
   services.caddy.virtualHosts."git.localhost" = {
-    extraConfig = ''          
+    extraConfig = ''
       tls connect.mordrag@gmx.de {
         ca https://localhost:8443/acme/acme/directory
       }

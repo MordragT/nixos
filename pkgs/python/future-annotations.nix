@@ -1,5 +1,8 @@
-{ buildPythonPackage, fetchPypi, tokenize-rt }:
-
+{
+  buildPythonPackage,
+  fetchPypi,
+  tokenize-rt,
+}:
 buildPythonPackage rec {
   pname = "future_annotations";
   version = "1.0.0";

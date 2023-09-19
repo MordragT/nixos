@@ -1,13 +1,13 @@
-{ clangStdenv
-, lib
-, fetchFromGitHub
-, llvm
-, perl
-, cmake
-, clang
-, bash
+{
+  clangStdenv,
+  fetchFromGitHub,
+  llvm,
+  perl,
+  cmake,
+  clang,
+  bash,
 }:
-clangStdenv.mkDerivation rec {
+clangStdenv.mkDerivation {
   pname = "byfl";
   version = "master";
 
@@ -37,5 +37,5 @@ clangStdenv.mkDerivation rec {
     clang
   ];
 
-  nativeBuildInputs = [ cmake ];
+  nativeBuildInputs = [cmake];
 }

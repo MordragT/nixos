@@ -1,7 +1,9 @@
-{ pkgs, config, ... }:
-with builtins;
-let
-  theme = pkgs.stdenv.mkDerivation rec {
+{
+  pkgs,
+  # config,
+  ...
+}: let
+  theme = pkgs.stdenv.mkDerivation {
     name = "adwaita-for-steam";
 
     src = pkgs.fetchFromGitHub {
@@ -29,8 +31,7 @@ let
       done
     '';
   };
-in
-{
+in {
   # does not work because steam cannot read symlinks
   # xdg.dataFile."Steam/skins/Adwaita".source = theme;
 

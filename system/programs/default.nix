@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.adb.enable = true;
   programs.bandwhich.enable = true; # view network utilization
   programs.corectrl.enable = true;

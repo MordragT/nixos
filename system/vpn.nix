@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.tailscale.enable = true;
   #programs.haguichi.enable = true;
   #services.logmein-hamachi.enable = true;

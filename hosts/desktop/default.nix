@@ -1,5 +1,8 @@
-{ lib, pkgs, ... }:
 {
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -36,7 +39,7 @@
     ];
   };
 
-  environment.systemPackages = [ pkgs.intel-gpu-tools ];
+  environment.systemPackages = [pkgs.intel-gpu-tools];
 
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";

@@ -1,7 +1,10 @@
-{ pkgs, config, ... }:
 {
-  boot.extraModulePackages = with config.boot.kernelPackages; [ akvcam v4l2loopback ];
-  boot.kernelModules = [ "akvcam" "v4l2loopback" ];
+  pkgs,
+  config,
+  ...
+}: {
+  boot.extraModulePackages = with config.boot.kernelPackages; [akvcam v4l2loopback];
+  boot.kernelModules = ["akvcam" "v4l2loopback"];
   environment.systemPackages = with pkgs; [
     webcamoid
   ];

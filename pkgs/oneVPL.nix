@@ -1,17 +1,17 @@
-{ stdenv
-, lib
-, fetchFromGitHub
-, cmake
-, pkgconfig
-, libva
-, xorg
-, libdrm
-, wayland
-, wayland-protocols
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  cmake,
+  pkg-config,
+  libva,
+  xorg,
+  libdrm,
+  wayland,
+  wayland-protocols,
   # , addOpenGLRunpath
-, oneVPL-intel-gpu
+  oneVPL-intel-gpu,
 }:
-
 # This was originally called mkl-dnn, then it was renamed to dnnl, and it has
 # just recently been renamed again to oneDNN. See here for details:
 # https://github.com/oneapi-src/oneDNN#oneapi-deep-neural-network-library-onednn
@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
     sha256 = "hQ0/zZWvZuvOBEIP2xny7DtLvDua1ieH9hlh1UsztJc=";
   };
 
-  nativeBuildInputs = [ cmake pkgconfig ];
+  nativeBuildInputs = [cmake pkg-config];
 
   buildInputs = [
     libva
@@ -60,6 +60,6 @@ stdenv.mkDerivation rec {
     changelog = "https://github.com/oneapi-src/oneVPL/releases/tag/v${version}";
     license = licenses.mit;
     platforms = platforms.all;
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
   };
 }

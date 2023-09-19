@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   nix = {
     settings = {
       substituters = [

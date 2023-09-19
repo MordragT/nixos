@@ -1,37 +1,37 @@
-{ lib
-, stdenv
-, fetchurl
-, glibc
-, libX11
-, glib
-, libnotify
-, xdg-utils
-, ncurses
-, nss
-, at-spi2-core
-, libxcb
-, libdrm
-, gtk3
-, mesa
-, qt515
-, zlib
-, xorg
-, atk
-, nspr
-, dbus
-, pango
-, cairo
-, gdk-pixbuf
+{
+  lib,
+  stdenv,
+  fetchurl,
+  glibc,
+  libX11,
+  glib,
+  libnotify,
+  xdg-utils,
+  ncurses,
+  nss,
+  at-spi2-core,
+  libxcb,
+  libdrm,
+  gtk3,
+  mesa,
+  qt515,
+  zlib,
+  xorg,
+  atk,
+  nspr,
+  dbus,
+  pango,
+  cairo,
+  gdk-pixbuf,
   #, x11
-, xlibsWrapper
-, cups
-, expat
-, libxkbcommon
-, alsaLib
-, file
-, at-spi2-atk
+  xlibsWrapper,
+  cups,
+  expat,
+  libxkbcommon,
+  alsaLib,
+  file,
+  at-spi2-atk,
 }:
-
 stdenv.mkDerivation rec {
   version = "2022.2.0.262";
   hpc_version = "2022.2.0.191";
@@ -53,7 +53,7 @@ stdenv.mkDerivation rec {
     })
   ];
 
-  nativeBuildInputs = [ file ];
+  nativeBuildInputs = [file];
 
   propagatedBuildInputs = [
     glibc
@@ -108,7 +108,7 @@ stdenv.mkDerivation rec {
     xorg.libXrandr
   ];
 
-  phases = [ "installPhase" "fixupPhase" "installCheckPhase" "distPhase" ];
+  phases = ["installPhase" "fixupPhase" "installCheckPhase" "distPhase"];
 
   installPhase = ''
     cd $sourceRoot
@@ -159,7 +159,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "Intel OneAPI Basekit + HPCKit";
-    maintainers = [ lib.maintainers.bzizou ];
+    maintainers = [lib.maintainers.bzizou];
     platforms = lib.platforms.linux;
     license = lib.licenses.unfree;
   };

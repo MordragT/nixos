@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Rust Tools
     #broken gitoxide # alternative git still wip
@@ -12,12 +11,13 @@
     hexyl # hex viewer
     lapce # code editor
 
-    (dvc.override { enableAWS = true; }) # data version control
+    (dvc.override {enableAWS = true;}) # data version control
     awscli2 # amazon web services
     nodePackages.reveal-md # create presentations from markdown
     # vagrant # vm provisioning
 
-    nixpkgs-fmt # nix files are everywhere anyways
+    alejandra # nix formmater: files are everywhere anyways
+    nil # nix language server
     android-studio
     jetbrains.idea-community
     dbeaver # sql client
@@ -35,4 +35,3 @@
     insomnia # make http requests against rest apis
   ];
 }
-

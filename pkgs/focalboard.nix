@@ -1,10 +1,11 @@
-{ stdenv
-, fetchFromGitHub
-, go
-, nodejs
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  go,
+  nodejs,
 }:
-
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "focalboard";
   version = "7.4.2";
 
@@ -15,7 +16,7 @@ stdenv.mkDerivation rec {
     sha256 = "lnmng5T6liLNkoetE+4/8lMTi9+iLNmUDHE/HMm6ZIc=";
   };
 
-  nativeBuildInputs = [ go nodejs ];
+  nativeBuildInputs = [go nodejs];
 
   buildPhase = ''
     npm install --prefix project webapp/
@@ -27,7 +28,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
     platforms = platforms.linux;
     broken = true;
   };

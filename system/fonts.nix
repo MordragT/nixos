@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = true;
@@ -16,10 +15,10 @@
       times-newer-roman
     ];
     fontconfig.defaultFonts = {
-      monospace = [ "Fira Code" ];
-      serif = [ "Noto Serif" ];
-      sansSerif = [ "Fira Sans" ];
-      emoji = [ "Noto Color Emoji" ];
+      monospace = ["Fira Code"];
+      serif = ["Noto Serif"];
+      sansSerif = ["Fira Sans"];
+      emoji = ["Noto Color Emoji"];
     };
   };
 }

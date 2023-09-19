@@ -1,5 +1,11 @@
-{ mkYarnPackage, makeWrapper, makeDesktopItem, fetchFromGitHub, ffmpeg, electron }:
-
+{
+  mkYarnPackage,
+  makeWrapper,
+  makeDesktopItem,
+  fetchFromGitHub,
+  ffmpeg,
+  electron,
+}:
 mkYarnPackage rec {
   name = "astrofox";
 
@@ -14,25 +20,25 @@ mkYarnPackage rec {
     yarn build-prod
   '';
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [makeWrapper];
 
   installPhase = ''
     mkdir -p "$out/share/astrofox"
     cp -r ./deps/astrofox "$out/share/astrofox/electron"
     rm "$out/share/astrofox/electron/node_modules"
     cp -r ./node_modules "$out/share/astrofox/electron"
-  
+
     mkdir -p $out/share/astrofox/electron/deps
     ln -s $out/share/astrofox/electron $out/share/astrofox/electron/deps/astrofox
-  
+
     mkdir -p $out/libexec/astrofox
     ln -s $out/share/astrofox/electron/deps $out/libexec/astrofox/deps
-  
-    mkdir -p $out/share/astrofox/bin  
+
+    mkdir -p $out/share/astrofox/bin
     ln -s "${ffmpeg}/bin/ffmpeg" "$out/share/astrofox/bin/ffmpeg"
-  
+
     ln -s "${desktopItem}/share/applications" "$out/share/applications"
-  
+
     makeWrapper "${electron}/bin/electron" "$out/bin/astrofox" \
       --add-flags "$out/share/astrofox/electron"
   '';

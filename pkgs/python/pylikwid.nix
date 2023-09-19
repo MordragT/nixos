@@ -1,5 +1,8 @@
-{ buildPythonPackage, fetchPypi, likwid }:
-
+{
+  buildPythonPackage,
+  fetchPypi,
+  likwid,
+}:
 buildPythonPackage rec {
   pname = "pylikwid";
   version = "0.4.2";

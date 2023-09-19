@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Rust GTK
     rnote # draw notes
@@ -36,5 +35,4 @@
     valent # kde connect implementation for gnome
     calls # phone dialer and call handler
   ];
-
 }

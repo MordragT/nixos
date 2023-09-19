@@ -1,5 +1,13 @@
-{ lib, stdenv, bash, fetchFromGitHub, glib, gettext, zip, unzip }:
-
+{
+  lib,
+  stdenv,
+  bash,
+  fetchFromGitHub,
+  glib,
+  gettext,
+  zip,
+  unzip,
+}:
 # TODO: Deprecate this package once it is successfully packaged in nixpkgs.
 # This is done automatically from the following PR:
 # https://github.com/NixOS/nixpkgs/pull/118232
@@ -17,8 +25,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-fHMC3aj2TrNEET5dSd1/wKuJ/9jwTbWU+FvcJR7F00U=";
   };
 
-  nativeBuildInputs = [ glib gettext ];
-  buildInputs = [ zip ];
+  nativeBuildInputs = [glib gettext];
+  buildInputs = [zip];
   skipConfigure = true;
 
   buildPhase = ''
@@ -27,20 +35,17 @@ stdenv.mkDerivation rec {
     make SHELL=${bash}/bin/bash ${passthru.extensionUuid}.zip
   '';
 
-  installPhase =
-    let
-      extensionDir =
-        "$out/share/gnome-shell/extensions/${passthru.extensionUuid}";
-    in
-    ''
-      # Install the required extensions file.
-      mkdir -p ${extensionDir}
-      ${unzip}/bin/unzip ${passthru.extensionUuid}.zip -d ${extensionDir}
-      # Install the GSchema.
-      install -Dm644 schemas/* -t "${
-        glib.makeSchemaPath "$out" "${pname}-${version}"
-      }"
-    '';
+  installPhase = let
+    extensionDir = "$out/share/gnome-shell/extensions/${passthru.extensionUuid}";
+  in ''
+    # Install the required extensions file.
+    mkdir -p ${extensionDir}
+    ${unzip}/bin/unzip ${passthru.extensionUuid}.zip -d ${extensionDir}
+    # Install the GSchema.
+    install -Dm644 schemas/* -t "${
+      glib.makeSchemaPath "$out" "${pname}-${version}"
+    }"
+  '';
 
   passthru.extensionUuid = "flypie@schneegans.github.com";
 

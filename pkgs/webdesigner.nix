@@ -1,5 +1,9 @@
-{ stdenv, lib, fetchurl, dpkg }:
-
+{
+  stdenv,
+  lib,
+  fetchurl,
+  dpkg,
+}:
 stdenv.mkDerivation {
   pname = "webdesigner";
   version = "14.0.4";
@@ -9,8 +13,8 @@ stdenv.mkDerivation {
     sha256 = "hLr3E8BaYV7h5PJIEPmSJVht+WuJuxWXSZH0cG1h2cw=";
   };
 
-  nativeBuildInputs = [ dpkg ];
-  buildInputs = [ ];
+  nativeBuildInputs = [dpkg];
+  buildInputs = [];
 
   dontBuild = true;
 
@@ -28,7 +32,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     license = licenses.unfree;
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
     description = "Google Web Designer for Linux";
     platforms = platforms.linux;
     broken = true;

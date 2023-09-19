@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   virtualisation.docker.enable = true;
   virtualisation.waydroid.enable = false;
   virtualisation.libvirtd.enable = true;
@@ -13,8 +12,6 @@
   # networking.firewall.extraCommands = ''
   #   ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
   # '';
-
-
 
   # workaround for https://github.com/NixOS/nixpkgs/issues/59219#issuecomment-774711048
   # environment.variables = {

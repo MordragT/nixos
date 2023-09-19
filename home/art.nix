@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     blender
     # insecure electron16 blockbench-electron
@@ -9,4 +8,3 @@
     drawio
   ];
 }
-

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.

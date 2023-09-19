@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.vaultwarden = {
     enable = true;
     config = {

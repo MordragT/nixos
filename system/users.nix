@@ -1,15 +1,14 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   users = {
     mutableUsers = true;
 
     users.root = {
-      extraGroups = [ "root" ];
+      extraGroups = ["root"];
     };
 
     users.tom = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = ["wheel"];
       shell = pkgs.nushell;
     };
   };

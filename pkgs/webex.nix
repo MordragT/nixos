@@ -1,36 +1,36 @@
-{ stdenv
-, lib
-, fetchurl
-, dpkg
-, autoPatchelfHook
-, makeWrapper
-, mesa
-, libGL
-, xorg
-, cups
-, libxkbcommon
-, libsecret
-, libdrm
-, fontconfig
-, nss
-, wayland
-, udev
-, dbus
-, glib
-, gdk-pixbuf
-, gtk3
-, libpulseaudio
-, pango
-, cairo
-, alsa-lib
-, at-spi2-atk
-, at-spi2-core
-, harfbuzz
-, tbb
-, ocl-icd
-, libxcrypt-legacy
+{
+  stdenv,
+  lib,
+  fetchurl,
+  dpkg,
+  autoPatchelfHook,
+  makeWrapper,
+  mesa,
+  libGL,
+  xorg,
+  cups,
+  libxkbcommon,
+  libsecret,
+  libdrm,
+  fontconfig,
+  nss,
+  wayland,
+  udev,
+  dbus,
+  glib,
+  gdk-pixbuf,
+  gtk3,
+  libpulseaudio,
+  pango,
+  cairo,
+  alsa-lib,
+  at-spi2-atk,
+  at-spi2-core,
+  harfbuzz,
+  tbb,
+  ocl-icd,
+  libxcrypt-legacy,
 }:
-
 stdenv.mkDerivation {
   pname = "webex";
   version = "41.10.0.20371-j1";
@@ -109,7 +109,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     license = licenses.unfree;
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
     description = "Webex for Linux";
     platforms = platforms.linux;
   };

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./firefox.nix
     ./nushell.nix
@@ -22,7 +21,7 @@
     userName = "Thomas Wehmöller";
     userEmail = "connect.mordrag@gmx.de";
   };
-  home.packages = with pkgs; [ git-subrepo ];
+  home.packages = with pkgs; [git-subrepo];
 
   programs.helix = {
     enable = true;
@@ -32,5 +31,4 @@
   };
 
   programs.zoxide.enable = false;
-
 }

@@ -1,5 +1,4 @@
-{ config, ... }:
-let
+{config, ...}: let
   caddy = config.services.caddy;
   secrets = config.age.secrets;
 
@@ -9,8 +8,7 @@ let
     group = "nextcloud";
     mode = "0440";
   };
-in
-{
+in {
   age.secrets.nextcloud = secret ../secrets/nextcloud.age;
 
   services.nextcloud = {
@@ -41,7 +39,7 @@ in
     group = "nextcloud";
     isSystemUser = true;
   };
-  users.groups.nextcloud.members = [ "nextcloud" config.services.caddy.user ];
+  users.groups.nextcloud.members = ["nextcloud" config.services.caddy.user];
 
   services.nginx.enable = false;
   services.caddy.enable = true;
@@ -51,16 +49,16 @@ in
       root * ${config.services.nextcloud.package}
       php_fastcgi unix/${config.services.phpfpm.pools.nextcloud.socket}
       file_server
-                              
+
       header {
         Strict-Transport-Security max-age=1578000;
       }
-        
+
       redir /.well-known/carddav /remote.php/dav 301
       redir /.well-known/caldav /remote.php/dav 301
-        
+
       rewrite / /index.php
-        
+
       @forbidden {
         path /.htaccess
         path /data/*

@@ -1,12 +1,13 @@
-{ stdenv
-, lib
-, fetchFromGitHub
-, cmake
-, gcc
-, fuse
-, pkgconfig
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  cmake,
+  gcc,
+  fuse,
+  pkg-config,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "tmfs";
   version = "0.7";
 
@@ -24,7 +25,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     gcc
-    pkgconfig
+    pkg-config
   ];
 
   meta = with lib; {
@@ -37,8 +38,8 @@ stdenv.mkDerivation rec {
       and wants to recover its data on Linux.
     '';
     homepage = "https://hpc.fau.de/research/tools/likwid/";
-    license = [ licenses.mit ];
+    license = [licenses.mit];
     platforms = platforms.unix;
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
   };
 }

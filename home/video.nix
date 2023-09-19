@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     yt-dlp # download youtube videos
     kooha # screen recording
@@ -14,10 +13,9 @@
     #dandere2x # upscale anime videos
     upscayl
     ((ffmpeg_6-full.overrideAttrs (old: {
-      configureFlags = old.configureFlags ++ [ "--enable-libvpl" ];
-      buildInputs = old.buildInputs ++ [ pkgs.oneVPL ];
-    })).override { withMfx = false; })
+        configureFlags = old.configureFlags ++ ["--enable-libvpl"];
+        buildInputs = old.buildInputs ++ [pkgs.oneVPL];
+      }))
+      .override {withMfx = false;})
   ];
 }
-
-

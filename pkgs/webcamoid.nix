@@ -1,24 +1,25 @@
-{ stdenv
-, lib
-, fetchFromGitHub
-, pkg-config
-, libxcb
-, cmake
-, wrapQtAppsHook
-, qtbase
-, qtdeclarative
-, qtquickcontrols
-, qtquickcontrols2
-, ffmpeg-full
-, gst_all_1
-, libpulseaudio
-, alsa-lib
-, jack2
-, v4l-utils
-, kmod
-, polkit
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  pkg-config,
+  libxcb,
+  cmake,
+  wrapQtAppsHook,
+  qtbase,
+  qtdeclarative,
+  qtquickcontrols,
+  qtquickcontrols2,
+  ffmpeg-full,
+  gst_all_1,
+  libpulseaudio,
+  alsa-lib,
+  jack2,
+  v4l-utils,
+  kmod,
+  polkit,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "webcamoid";
   version = "master";
 
@@ -45,7 +46,7 @@ stdenv.mkDerivation rec {
     kmod.dev
   ];
 
-  nativeBuildInputs = [ pkg-config cmake wrapQtAppsHook ];
+  nativeBuildInputs = [pkg-config cmake wrapQtAppsHook];
 
   #dontWrapQtApps = true;
 
@@ -62,8 +63,8 @@ stdenv.mkDerivation rec {
     description = "Webcam Capture Software";
     longDescription = "Webcamoid is a full featured and multiplatform webcam suite.";
     homepage = "https://github.com/webcamoid/webcamoid/";
-    license = [ licenses.gpl3Plus ];
+    license = [licenses.gpl3Plus];
     platforms = platforms.linux;
-    maintainers = with maintainers; [ mordrag ];
+    maintainers = with maintainers; [mordrag];
   };
 }

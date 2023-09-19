@@ -1,11 +1,10 @@
-{ config, ... }:
-{
+{config, ...}: {
   services.maddy = {
     enable = true;
     hostname = "localhost";
     primaryDomain = "localhost";
     config = ''
-            
+
       auth.pass_table local_authdb {
         table sql_table {
           driver sqlite3
@@ -13,12 +12,12 @@
           table_name passwords
         }
       }
-      
+
       storage.imapsql local_mailboxes {
         driver sqlite3
         dsn imapsql.db
       }
-      
+
       table.chain local_rewrites {
         optional_step regexp "(.+)\+(.+)@(.+)" "$1@$3"
         optional_step static {
@@ -26,7 +25,7 @@
         }
         optional_step file /etc/maddy/aliases
       }
-      
+
       msgpipeline local_routing {
         destination postmaster $(local_domains) {
           modify {
@@ -38,7 +37,7 @@
           reject 550 5.1.1 "User doesn't exist"
         }
       }
-      
+
       tls.loader.acme local_tls {
         hostname $(hostname)
         debug
@@ -46,7 +45,7 @@
         agreed
         ca ${config.security.acme.defaults.server}
       }
-      
+
       tls &local_tls
 
       smtp tcp://0.0.0.0:25 {

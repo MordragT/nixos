@@ -1,5 +1,7 @@
-{ buildPythonPackage, fetchPypi }:
-
+{
+  buildPythonPackage,
+  fetchPypi,
+}:
 buildPythonPackage rec {
   pname = "dataclasses";
   version = "0.6";

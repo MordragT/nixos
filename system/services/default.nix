@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   imports = [
     #./gitea.nix
     #./maddy.nix

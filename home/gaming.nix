@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # steam-tui
     steamcmd
@@ -18,5 +17,4 @@
     # unigine-superposition # benchmark
     # geekbench # benchmark
   ];
-
 }

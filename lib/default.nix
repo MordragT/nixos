@@ -1,68 +1,69 @@
-{ nixpkgs, pkgs, home-manager, agenix }:
 {
-  mkHost =
-    { system
-    , stateVersion
-    , modules
-    , specialArgs ? { }
-    , specialHomeArgs ? { }
-    , homes
-    }:
-    let
-      config = pkgs.config;
-      lib = pkgs.lib;
-    in
+  nixpkgs,
+  pkgs,
+  home-manager,
+  agenix,
+}: {
+  mkHost = {
+    system,
+    stateVersion,
+    modules,
+    specialArgs ? {},
+    specialHomeArgs ? {},
+    homes,
+  }:
     nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
 
-      modules = [
-        {
-          boot.supportedFilesystems = [ "ntfs" ];
+      modules =
+        [
+          {
+            boot.supportedFilesystems = ["ntfs"];
 
-          system.stateVersion = stateVersion;
+            system.stateVersion = stateVersion;
 
-          boot.loader.systemd-boot.enable = true;
-          boot.loader.efi.canTouchEfiVariables = true;
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
 
-          boot.tmp.useTmpfs = true;
-          boot.runSize = "50%";
-          boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
-          # league of legends
-          boot.kernel.sysctl."abi.vsyscall32" = 0;
-          # cs 2
-          boot.kernel.sysctl."vm.max_map_count" = 16777216;
-        }
-        home-manager.nixosModules.home-manager
-        {
-          # maybe ? https://github.com/nix-community/home-manager/issues/2701
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialHomeArgs;
-          home-manager.users = homes;
-        }
-        agenix.nixosModules.age
-      ] ++ modules;
+            boot.tmp.useTmpfs = true;
+            boot.runSize = "50%";
+            boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
+            # league of legends
+            boot.kernel.sysctl."abi.vsyscall32" = 0;
+            # cs 2
+            boot.kernel.sysctl."vm.max_map_count" = 16777216;
+          }
+          home-manager.nixosModules.home-manager
+          {
+            # maybe ? https://github.com/nix-community/home-manager/issues/2701
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialHomeArgs;
+            home-manager.users = homes;
+          }
+          agenix.nixosModules.age
+        ]
+        ++ modules;
 
       # config._modules.args = { inherit pkgs; };
     };
 
-  mkHome =
-    { username
-    , homeDirectory ? "/home/${username}"
-    , stateVersion
-    , imports
-    }:
-    {
-      "${username}" = {
-        inherit imports;
+  mkHome = {
+    username,
+    homeDirectory ? "/home/${username}",
+    stateVersion,
+    imports,
+  }: {
+    "${username}" = {
+      inherit imports;
 
-        home = {
-          inherit username stateVersion homeDirectory;
-        };
-        xdg = {
-          enable = true;
-          userDirs.enable = true;
-        };
+      home = {
+        inherit username stateVersion homeDirectory;
+      };
+      xdg = {
+        enable = true;
+        userDirs.enable = true;
       };
     };
+  };
 }

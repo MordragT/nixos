@@ -1,5 +1,4 @@
-{ pkgs, templates, ... }:
-{
+{templates, ...}: {
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
