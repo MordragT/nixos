@@ -174,13 +174,13 @@ in {
         matangover.mypy
 
         ms-python.python
-        ms-python.vscode-pylance
+        # ms-python.vscode-pylance
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
         ms-vscode.cmake-tools
-        ms-vscode.cpptools
+        # ms-vscode.cpptools
         ms-vscode-remote.remote-ssh
         ms-vsliveshare.vsliveshare
 

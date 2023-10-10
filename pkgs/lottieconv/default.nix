@@ -1,8 +1,17 @@
-{ makeRustPlatform, fetchCrate, runCommand, fenix, rlottie, clang, libclang, pkg-config, openssl }:
-
+{
+  makeRustPlatform,
+  fetchCrate,
+  fenix,
+  rlottie,
+  clang,
+  libclang,
+  pkg-config,
+  openssl,
+}:
 (makeRustPlatform {
   inherit (fenix.minimal) cargo rustc;
-}).buildRustPackage rec {
+})
+.buildRustPackage rec {
   pname = "lottieconv";
   version = "0.1.2";
   src = fetchCrate {
@@ -16,7 +25,7 @@
   LIBCLANG_PATH = "${libclang.lib}/lib";
   BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${rlottie}/include";
 
-  nativeBuildInputs = with pkgs; [
+  nativeBuildInputs = [
     clang
     libclang
     pkg-config

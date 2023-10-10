@@ -14,15 +14,7 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
-  networking = {
-    hostName = "tom-pc";
-    useDHCP = false;
-    useNetworkd = true;
-
-    extraHosts = ''
-      127.0.0.1 mordrag.io
-    '';
-  };
+  networking.hostName = "tom-pc";
   # https://github.com/NixOS/nixpkgs/issues/180175
   systemd.network.wait-online.anyInterface = true;
   systemd.network.wait-online.timeout = 5;

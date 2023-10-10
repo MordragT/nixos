@@ -10,16 +10,7 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  networking = {
-    hostName = "tom-lenovo";
-    useDHCP = false;
-
-    interfaces.enp1s0.useDHCP = true;
-    interfaces.wlp2s0.useDHCP = true;
-    extraHosts = ''
-      127.0.0.1 mordrag.io
-    '';
-  };
+  networking.hostName = "tom-lenovo";
 
   hardware.opengl = {
     enable = true;

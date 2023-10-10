@@ -12,6 +12,10 @@
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +49,7 @@
     nur,
     home-manager,
     nix-alien,
+    nix-index-database,
     fenix,
     js-bp,
     gomod2nix,
@@ -82,6 +87,7 @@
               ./system
             ];
           }
+          nix-index-database.nixosModules.nix-index
         ];
 
         specialArgs = {
@@ -118,6 +124,7 @@
               ./system
             ];
           }
+          nix-index-database.nixosModules.nix-index
         ];
 
         specialArgs = {
@@ -154,6 +161,7 @@
               ./system
             ];
           }
+          nix-index-database.nixosModules.nix-index
         ];
 
         specialArgs = {

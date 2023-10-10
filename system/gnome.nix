@@ -11,7 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
-    gnomeExtensions.pop-shell
+    # gnomeExtensions.pop-shell
     gnomeExtensions.space-bar
     gnomeExtensions.rounded-window-corners
     gnomeExtensions.task-widget

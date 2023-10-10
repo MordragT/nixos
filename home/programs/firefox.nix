@@ -26,8 +26,8 @@ in {
         firefox-gnome-theme = pkgs.fetchFromGitHub {
           owner = "rafaelmardojai";
           repo = "firefox-gnome-theme";
-          rev = "6c4190fbbf320569cc546a73efd25380d92fdd91";
-          sha256 = "rAM6kNwHxT/YK58eC62vpcgf7i73ffBg8EHz3NoaAog=";
+          rev = "6514f65331a98d3ea571edb1fa74cb39aaac1459";
+          sha256 = "kWNuxFWEkK2LtxMi3I+L/55dTrAdtCaXyPalClclD8s=";
         };
       in ''
         @import "${firefox-gnome-theme}/userChrome.css";

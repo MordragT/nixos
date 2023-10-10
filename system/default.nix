@@ -3,6 +3,7 @@
     ./fonts.nix
     ./gnome.nix
     ./locale.nix
+    ./networking.nix
     ./nix.nix
     ./pipewire.nix
     ./programs
