@@ -26,7 +26,8 @@
             boot.loader.efi.canTouchEfiVariables = true;
 
             boot.tmp.useTmpfs = true;
-            boot.runSize = "50%";
+            boot.tmp.tmpfsSize = "75%";
+            boot.runSize = "25%";
             boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
             # league of legends
             boot.kernel.sysctl."abi.vsyscall32" = 0;

@@ -16,6 +16,10 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
     fenix = {
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +54,7 @@
     home-manager,
     nix-alien,
     nix-index-database,
+    nix-matlab,
     fenix,
     js-bp,
     gomod2nix,
@@ -63,6 +68,7 @@
       config.allowUnfree = true;
       overlays = [
         nix-alien.overlays.default
+        nix-matlab.overlay
         nur.overlay
         agenix.overlays.default
         comoji.overlays.default

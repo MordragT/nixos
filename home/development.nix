@@ -11,7 +11,7 @@
     hexyl # hex viewer
     lapce # code editor
 
-    (dvc.override {enableAWS = true;}) # data version control
+    # (dvc.override {enableAWS = true;}) # data version control
     awscli2 # amazon web services
     nodePackages.reveal-md # create presentations from markdown
     # vagrant # vm provisioning
@@ -20,6 +20,7 @@
     nil # nix language server
     android-studio
     jetbrains.idea-community
+    matlab
     dbeaver # sql client
     godot_4 # game engine
     epic-asset-manager # manager for unreal engine and its assets
