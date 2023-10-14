@@ -5,6 +5,7 @@
     # broken sn0int # semi automatic osint framework
     authoscope # scriptable network authentication cracker
     metadata-cleaner
+    cisco-secure-client # cisco vpn
 
     cutter
     cutterPlugins.jsdec

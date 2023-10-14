@@ -7,6 +7,7 @@
     #headless = true;
     #enableHardening = false;
   };
+  virtualisation.multipass.enable = true;
 
   # vagrant
   # networking.firewall.extraCommands = ''
