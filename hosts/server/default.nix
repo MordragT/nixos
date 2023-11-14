@@ -1,10 +1,9 @@
-{
-  lib,
-  pkgs,
-  ...
+{ lib
+, pkgs
+, ...
 }: {
   imports = [
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
