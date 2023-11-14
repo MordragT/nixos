@@ -38,7 +38,7 @@
       #   };
       # };
       bigscreen.enable = true;
-      # useQtScaling = true;
+      useQtScaling = true;
     };
   };
 

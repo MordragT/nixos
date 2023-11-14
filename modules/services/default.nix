@@ -5,12 +5,12 @@
     #./nextcloud.nix
     #./vaultwarden.nix
     #./sunshine.nix
+    # ./openssh.nix
     ./tailscale.nix
   ];
 
   services.flatpak.enable = true;
   services.printing.enable = true;
-  services.sshd.enable = true;
   services.tor.enable = true;
 
   services.udev.packages = with pkgs; [
