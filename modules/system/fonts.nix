@@ -5,6 +5,7 @@
     packages = with pkgs; [
       fira
       fira-code
+      fira-mono
       jetbrains-mono
       roboto
       noto-fonts
@@ -15,7 +16,7 @@
       times-newer-roman
     ];
     fontconfig.defaultFonts = {
-      monospace = ["Fira Code"];
+      monospace = ["Fira Mono"];
       serif = ["Noto Serif"];
       sansSerif = ["Fira Sans"];
       emoji = ["Noto Color Emoji"];

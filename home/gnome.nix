@@ -9,7 +9,7 @@
     icon-library
     gnome-solanum # pomodoro timer
     emblem
-    # broken textpieces
+    # textpieces
     paleta # extract dominant color from images
     fclones # find duplicate files
     health # health tracker
@@ -18,7 +18,9 @@
     # GTK Apps
     eartag # tag audio files
     raider # file shredder
+    cartridges # game launcher
     citations # bibtex
+    collision # check file hashes
     warp # send and recieve files
     khronos # track task time
     gnome.gnome-color-manager
@@ -27,6 +29,7 @@
     gnome.gnome-sound-recorder
     gnome.ghex # hex editor
     pdfarranger
+    plots # graph plotting
     junction # open with preview
     fragments # torrent downloader
     paperwork

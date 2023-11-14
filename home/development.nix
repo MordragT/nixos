@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # Rust Tools
-    #broken gitoxide # alternative git still wip
+    # gitoxide # alternative git still wip
     git-cliff # generate changelogs
     comoji # emoji conventional commits
     onefetch # git summary
@@ -27,7 +27,7 @@
     akira-unstable # prototype gui
     gaphor # create diagrams and uml
     apostrophe # markdown editor
-    renderdoc # debug graphics
+    # renderdoc # debug graphics
     #oneapi # roofline, gpgpu etc.
     likwid # performance monitoring
     byfl # compiler based application analysis

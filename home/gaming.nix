@@ -6,6 +6,7 @@
     sc-controller
     # steamcontroller
     # lutris
+    retroarchFull
     bottles
     protonup-qt
     protontricks
@@ -16,5 +17,6 @@
     mangohud
     # unigine-superposition # benchmark
     # geekbench # benchmark
+    moonlight-qt # game stream client ala steam link
   ];
 }

@@ -40,11 +40,6 @@ in
     #     gnome.zenity
     #   ];
     # });
-    libratbag = pkgs.libratbag.overrideAttrs (old: {
-      preFixup = ''
-        cp ${./system/services/ratbag/func-ms2.device} $out/share/libratbag/func-ms2.device
-      '';
-    });
     steam = pkgs.steam.override {
       extraLibraries = pkgs:
         with pkgs; [

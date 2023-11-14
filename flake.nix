@@ -2,6 +2,7 @@
   description = "My system configuration";
 
   inputs = {
+    nixpkgs-master.url = "nixpkgs/master";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     home-manager = {
@@ -40,15 +41,12 @@
       url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hua = {
-    #   url = "github:MordragT/hua";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     templates.url = "github:MordragT/nix-templates";
   };
 
   outputs = {
     self,
+    nixpkgs-master,
     nixpkgs,
     nur,
     home-manager,
@@ -60,7 +58,6 @@
     gomod2nix,
     agenix,
     comoji,
-    # , hua
     templates,
   }: let
     pkgs = import nixpkgs {
@@ -72,12 +69,14 @@
         nur.overlay
         agenix.overlays.default
         comoji.overlays.default
-        # hua.overlay
         fenix.overlays.default
         js-bp.overlays.default
         gomod2nix.overlays.default
         (import ./overlay.nix)
       ];
+    };
+    master = import nixpkgs-master {
+      inherit system;
     };
     lib = import ./lib {inherit nixpkgs pkgs home-manager agenix;};
     system = "x86_64-linux";
@@ -85,23 +84,27 @@
     nixosConfigurations = {
       tom-laptop = lib.mkHost rec {
         inherit system;
-        stateVersion = "22.11";
+        stateVersion = "23.11";
         modules = [
           {
             imports = [
               ./hosts/laptop
-              ./system
+              ./modules/system
+              ./modules/services
+              ./modules/programs
+              ./modules/security.nix
+              ./modules/desktop-manager/gnome.nix
             ];
           }
           nix-index-database.nixosModules.nix-index
         ];
 
         specialArgs = {
-          inherit pkgs;
+          inherit pkgs master;
         };
 
         specialHomeArgs = {
-          inherit templates;
+          inherit templates master;
         };
 
         homes =
@@ -120,32 +123,43 @@
           });
       };
 
-      tom-lenovo = lib.mkHost rec {
+      tom-server = lib.mkHost rec {
         inherit system;
-        stateVersion = "22.11";
+        stateVersion = "23.11";
         modules = [
           {
             imports = [
-              ./hosts/lenovo
-              ./system
+              ./hosts/server
+              ./modules/system
+              # ./modules/services/maddy.nix
+              # ./modules/services/nextcloud.nix
+              # ./modules/services/gitea.nix
+              # ./modules/services/vaultwarden.nix
+              ./modules/programs
+              ./modules/security.nix
+              ./modules/desktop-manager/plasma-bigscreen.nix
             ];
           }
           nix-index-database.nixosModules.nix-index
         ];
 
         specialArgs = {
-          inherit pkgs;
+          inherit pkgs master;
         };
 
         specialHomeArgs = {
-          inherit templates;
+          inherit templates master;
         };
 
         homes =
           (lib.mkHome {
             inherit stateVersion;
             username = "tom";
-            imports = [./home];
+            imports = [
+              ./home/programs/nushell.nix
+              ./home/gaming.nix
+              ./home/plasma.nix
+            ];
           })
           // (lib.mkHome {
             inherit stateVersion;
@@ -157,25 +171,31 @@
           });
       };
 
-      tom-pc = lib.mkHost rec {
+      tom-desktop = lib.mkHost rec {
         inherit system;
         stateVersion = "22.11";
         modules = [
           {
             imports = [
               ./hosts/desktop
-              ./system
+              ./modules/system
+              ./modules/services
+              ./modules/programs
+              ./modules/security.nix
+              ./modules/virtualisation.nix
+              ./modules/desktop-manager/gnome.nix
+              ./modules/desktop-manager/cosmic.nix
             ];
           }
           nix-index-database.nixosModules.nix-index
         ];
 
         specialArgs = {
-          inherit pkgs;
+          inherit pkgs master;
         };
 
         specialHomeArgs = {
-          inherit templates;
+          inherit templates master;
         };
 
         homes =

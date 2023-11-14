@@ -1,19 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./fonts.nix
-    ./gnome.nix
     ./locale.nix
     ./networking.nix
     ./nix.nix
     ./pipewire.nix
-    ./programs
-    ./steam.nix
-    ./security
-    ./services
     ./users.nix
-    ./virtualisation
-    ./vpn.nix
-    #./webcam.nix
   ];
 
   environment.interactiveShellInit = ''
@@ -51,21 +43,16 @@
     ripgrep # grep alternative
     procs # modern ps replacement
     htop # better top
-
-    tmfs # read apple time machine backup
-    piper # manage gaming mice
-    p7zip # to extract .exe
     cpufetch # fetch cpu information
     ventoy # create bootable usb drive for isos
     trash-cli # put files in trash
     expect # automate interactive applications
     usbutils
     pciutils
+    psmisc
     openconnect
     hurl # like curl but better
     nix-alien # run external programs in nix
-    # etcher # iso flasher
-    woeusb
   ];
 
   environment.variables = {

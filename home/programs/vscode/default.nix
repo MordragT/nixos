@@ -173,8 +173,9 @@ in {
         marp-team.marp-vscode
         matangover.mypy
 
-        ms-python.python
+        # ms-python.python
         # ms-python.vscode-pylance
+        ms-dotnettools.csharp
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
         ms-toolsai.vscode-jupyter-cell-tags
@@ -184,7 +185,7 @@ in {
         ms-vscode-remote.remote-ssh
         ms-vsliveshare.vsliveshare
 
-        nvarner.typst-lsp
+        # nvarner.typst-lsp
         piousdeer.adwaita-theme
         redhat.java
         rust-lang.rust-analyzer-nightly
@@ -195,7 +196,7 @@ in {
         thenuprojectcontributors.vscode-nushell-lang
         twxs.cmake
 
-        # broken vadimcn.vscode-lldb
+        # vadimcn.vscode-lldb
         #valentjn.vscode-ltex
         vscjava.vscode-gradle
         yzhang.markdown-all-in-one

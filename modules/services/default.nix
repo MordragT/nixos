@@ -4,16 +4,11 @@
     #./maddy.nix
     #./nextcloud.nix
     #./vaultwarden.nix
-    ./ratbag
+    #./sunshine.nix
+    ./tailscale.nix
   ];
 
   services.flatpak.enable = true;
-
-  services.mysql = {
-    enable = false;
-    package = pkgs.mariadb;
-  };
-
   services.printing.enable = true;
   services.sshd.enable = true;
   services.tor.enable = true;

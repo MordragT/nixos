@@ -1,5 +1,0 @@
-[Device]
-Name=Func MS-2
-DeviceMatch=usb:040b:1015
-Driver=hidpp10
-DeviceType=mouse

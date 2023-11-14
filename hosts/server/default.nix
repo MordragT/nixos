@@ -1,16 +1,15 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
   ];
-
-  programs.captive-browser = {
-    enable = true;
-    interface = "wlp2s0";
-  };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  networking.hostName = "tom-lenovo";
+  networking.hostName = "tom-server";
 
   hardware.opengl = {
     enable = true;

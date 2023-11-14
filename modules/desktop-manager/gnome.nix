@@ -4,7 +4,10 @@
     layout = "de";
     displayManager.gdm = {
       enable = true;
-      autoSuspend = false;
+      wayland = true;
+      banner = ''
+        Valve please fix
+      '';
     };
     desktopManager.gnome.enable = true;
   };

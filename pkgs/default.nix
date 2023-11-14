@@ -4,7 +4,7 @@
     lottieconv = callPackage ./lottieconv {};
     superview = callPackage ./superview {};
     # astrofox = callPackage ./astrofox.nix { };
-    cisco-secure-client = callPackage ./cisco-secure-client.nix {};
+    cisco-secure-client = callPackage ./cisco-secure-client {};
     epic-asset-manager = callPackage ./epic-asset-manager {};
     spflashtool = callPackage ./spflashtool.nix {};
     webdesigner = callPackage ./webdesigner.nix {};
