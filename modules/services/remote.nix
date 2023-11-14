@@ -5,4 +5,6 @@
       PasswordAuthentication = false;
     };
   };
+
+  services.samba.enable = true;
 }

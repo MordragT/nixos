@@ -131,7 +131,7 @@
             imports = [
               ./hosts/server
               ./modules/system
-              ./modules/services/openssh.nix
+              ./modules/services/remote.nix
               # ./modules/services/maddy.nix
               # ./modules/services/nextcloud.nix
               # ./modules/services/gitea.nix
