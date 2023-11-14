@@ -1,6 +1,6 @@
 {...}: {
   networking = {
-    useDHCP = false;
+    useDHCP = true;
     useNetworkd = true;
 
     extraHosts = ''
