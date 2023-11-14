@@ -1,10 +1,8 @@
 {...}: {
-  networking = {
-    useDHCP = true;
-    useNetworkd = true;
-
-    extraHosts = ''
-      127.0.0.1 mordrag.io
-    '';
+  networking.networkmanager = {
+    enable = true;
+    dns = "systemd-resolved";
   };
+  systemd.services.NetworkManager-wait-online.enable = false;
+  services.resolved.enable = true;
 }

@@ -137,6 +137,7 @@
               # ./modules/services/gitea.nix
               # ./modules/services/vaultwarden.nix
               ./modules/programs/steam.nix
+              ./modules/programs/comma.nix
               ./modules/security.nix
               ./modules/desktop-manager/plasma-bigscreen.nix
             ];

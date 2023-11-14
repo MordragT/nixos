@@ -49,6 +49,7 @@
     expect # automate interactive applications
     usbutils
     pciutils
+    inetutils
     psmisc
     openconnect
     hurl # like curl but better

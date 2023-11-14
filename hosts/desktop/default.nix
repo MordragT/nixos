@@ -16,8 +16,8 @@
 
   networking.hostName = "tom-desktop";
   # https://github.com/NixOS/nixpkgs/issues/180175
-  systemd.network.wait-online.anyInterface = true;
-  systemd.network.wait-online.timeout = 5;
+  # systemd.network.wait-online.anyInterface = true;
+  # systemd.network.wait-online.timeout = 5;
 
   hardware.opengl = {
     enable = true;
