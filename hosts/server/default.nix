@@ -1,6 +1,7 @@
-{ lib
-, pkgs
-, ...
+{
+  lib,
+  pkgs,
+  ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -15,4 +16,9 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  programs.steam.gamescopeSession.args = [
+    "-w 1920"
+    "-h 1080"
+  ];
 }
