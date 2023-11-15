@@ -5,10 +5,13 @@
     shares = {
       public = {
         path = "/srv/public";
-        "read only" = false;
         browseable = "yes";
+        "read only" = "no";
         "guest ok" = "yes";
-        comment = "Public samba share.";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "root";
+        "force group" = "root";
       };
     };
   };
