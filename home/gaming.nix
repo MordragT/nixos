@@ -3,7 +3,7 @@
     # steam-tui
     steamcmd
     steam-run
-    # sc-controller
+    sc-controller
     # steamcontroller
     # lutris
     retroarchFull
