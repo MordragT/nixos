@@ -189,6 +189,7 @@
               ./hosts/desktop
               ./config/system
               ./config/services
+              ./config/services/pia-wg.nix
               ./config/programs
               ./config/security.nix
               ./config/virtualisation.nix
