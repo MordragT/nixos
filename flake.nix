@@ -33,8 +33,8 @@
       url = "github:tweag/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix = {
-      url = "github:ryantm/agenix";
+    classified = {
+      url = "github:GoldsteinE/classified";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     comoji = {
@@ -56,7 +56,7 @@
     fenix,
     js-bp,
     gomod2nix,
-    agenix,
+    classified,
     comoji,
     templates,
   }: let
@@ -67,7 +67,6 @@
         nix-alien.overlays.default
         nix-matlab.overlay
         nur.overlay
-        agenix.overlays.default
         comoji.overlays.default
         fenix.overlays.default
         js-bp.overlays.default
@@ -78,7 +77,7 @@
     master = import nixpkgs-master {
       inherit system;
     };
-    lib = import ./lib {inherit nixpkgs pkgs home-manager agenix;};
+    lib = import ./lib {inherit nixpkgs pkgs home-manager;};
     system = "x86_64-linux";
   in {
     nixosConfigurations = {
@@ -88,15 +87,17 @@
         modules = [
           {
             imports = [
+              ./modules
               ./hosts/laptop
-              ./modules/system
-              ./modules/services
-              ./modules/programs
-              ./modules/security.nix
-              ./modules/desktop-manager/gnome.nix
+              ./config/system
+              ./config/services
+              ./config/programs
+              ./config/security.nix
+              ./config/desktop-manager/gnome.nix
             ];
           }
           nix-index-database.nixosModules.nix-index
+          classified.nixosModules.${system}.default
         ];
 
         specialArgs = {
@@ -129,21 +130,23 @@
         modules = [
           {
             imports = [
+              ./modules
               ./hosts/server
-              ./modules/system
-              ./modules/services/openssh.nix
-              ./modules/services/samba.nix
-              # ./modules/services/maddy.nix
-              # ./modules/services/nextcloud.nix
-              # ./modules/services/gitea.nix
-              # ./modules/services/vaultwarden.nix
-              ./modules/programs/steam.nix
-              ./modules/programs/comma.nix
-              ./modules/security.nix
-              ./modules/desktop-manager/plasma-bigscreen.nix
+              ./config/system
+              ./config/services/openssh.nix
+              ./config/services/samba.nix
+              # ./config/services/maddy.nix
+              # ./config/services/nextcloud.nix
+              # ./config/services/gitea.nix
+              # ./config/services/vaultwarden.nix
+              ./config/programs/steam.nix
+              ./config/programs/comma.nix
+              ./config/security.nix
+              ./config/desktop-manager/plasma-bigscreen.nix
             ];
           }
           nix-index-database.nixosModules.nix-index
+          classified.nixosModules.${system}.default
         ];
 
         specialArgs = {
@@ -161,6 +164,7 @@
             imports = [
               ./home/programs/git.nix
               ./home/programs/nushell.nix
+              ./home/programs/firefox.nix
               ./home/gaming.nix
               ./home/plasma.nix
             ];
@@ -181,17 +185,19 @@
         modules = [
           {
             imports = [
+              ./modules
               ./hosts/desktop
-              ./modules/system
-              ./modules/services
-              ./modules/programs
-              ./modules/security.nix
-              ./modules/virtualisation.nix
-              ./modules/desktop-manager/gnome.nix
-              ./modules/desktop-manager/cosmic.nix
+              ./config/system
+              ./config/services
+              ./config/programs
+              ./config/security.nix
+              ./config/virtualisation.nix
+              ./config/desktop-manager/gnome.nix
+              ./config/desktop-manager/cosmic.nix
             ];
           }
           nix-index-database.nixosModules.nix-index
+          classified.nixosModules.${system}.default
         ];
 
         specialArgs = {

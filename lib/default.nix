@@ -2,7 +2,6 @@
   nixpkgs,
   pkgs,
   home-manager,
-  agenix,
 }: {
   mkHost = {
     system,
@@ -42,7 +41,6 @@
             home-manager.extraSpecialArgs = specialHomeArgs;
             home-manager.users = homes;
           }
-          agenix.nixosModules.age
         ]
         ++ modules;
 

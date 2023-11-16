@@ -16,6 +16,7 @@
     tmfs = callPackage ./tmfs.nix {};
     oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};
     oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix {};
+    pia-openvpn = callPackage ./pia-openvpn.nix {};
   };
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs:

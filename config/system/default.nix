@@ -8,9 +8,15 @@
     ./users.nix
   ];
 
+  classified.keys.first = "/var/key";
+
   environment.interactiveShellInit = ''
     alias comojit='comoji commit'
   '';
+
+  environment.variables = {
+    EDITOR = "hx";
+  };
 
   environment.sessionVariables = {
     PATH = "\${HOME}/.cargo/bin";
@@ -42,6 +48,8 @@
     ouch # (de)compressor with sane interface
     ripgrep # grep alternative
     procs # modern ps replacement
+    hurl # like curl but better
+
     htop # better top
     cpufetch # fetch cpu information
     ventoy # create bootable usb drive for isos
@@ -52,11 +60,6 @@
     inetutils
     psmisc
     openconnect
-    hurl # like curl but better
     nix-alien # run external programs in nix
   ];
-
-  environment.variables = {
-    EDITOR = "hx";
-  };
 }
