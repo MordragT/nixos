@@ -20,7 +20,7 @@
     nil # nix language server
     android-studio
     jetbrains.idea-community
-    matlab
+    # matlab
     octaveFull # aims to be compatible with matlab
     dbeaver # sql client
     godot_4 # game engine
