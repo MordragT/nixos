@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./firefox.nix
     ./git.nix
@@ -14,7 +14,6 @@
     config.theme = "gruvbox-dark";
   };
 
-  programs.chromium.enable = true;
   programs.eza.enable = true;
 
   programs.helix = {

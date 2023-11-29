@@ -12,7 +12,7 @@
     lapce # code editor
 
     # (dvc.override {enableAWS = true;}) # data version control
-    awscli2 # amazon web services
+    # awscli2 # amazon web services
     nodePackages.reveal-md # create presentations from markdown
     # vagrant # vm provisioning
 
@@ -21,6 +21,7 @@
     android-studio
     jetbrains.idea-community
     matlab
+    octaveFull # aims to be compatible with matlab
     dbeaver # sql client
     godot_4 # game engine
     epic-asset-manager # manager for unreal engine and its assets
@@ -30,7 +31,7 @@
     # renderdoc # debug graphics
     #oneapi # roofline, gpgpu etc.
     likwid # performance monitoring
-    byfl # compiler based application analysis
+    # byfl # compiler based application analysis
     hollywood # fake hacking
     oneVPL
     insomnia # make http requests against rest apis

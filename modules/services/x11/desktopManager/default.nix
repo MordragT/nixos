@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./pia-wg.nix
-    ./x11
+    ./cosmic.nix
   ];
 }

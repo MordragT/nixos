@@ -12,7 +12,7 @@
     # cutterPlugins.jsdec
     # cutterPlugins.rz-ghidra
     macchanger # change the network's mac address
-    # tor-browser-bundle-bin
+    tor-browser-bundle-bin
     step-cli # generate certificates
   ];
 }

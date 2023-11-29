@@ -19,7 +19,7 @@
     eartag # tag audio files
     raider # file shredder
     cartridges # game launcher
-    citations # bibtex
+    # broken citations # bibtex
     collision # check file hashes
     warp # send and recieve files
     khronos # track task time
@@ -35,7 +35,7 @@
     paperwork
     denaro # personal finance manager
     foliate # book reader
-    valent # kde connect implementation for gnome
+    # broken valent # kde connect implementation for gnome
     calls # phone dialer and call handler
   ];
 }

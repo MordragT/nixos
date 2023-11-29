@@ -18,6 +18,8 @@
     EDITOR = "hx";
   };
 
+  environment.shells = [pkgs.nushell];
+
   environment.sessionVariables = {
     PATH = "\${HOME}/.cargo/bin";
     XDG_CONFIG_HOME = "\${HOME}/.config";
@@ -28,7 +30,16 @@
     XDG_BIN_HOME = "\${HOME}/.local/bin";
   };
 
-  environment.shells = [pkgs.nushell];
+  # xdg.mime = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "text/html" = "chromium-browser.desktop";
+  #     "x-scheme-handler/http" = "chromium-browser.desktop";
+  #     "x-scheme-handler/https" = "chromium-browser.desktop";
+  #     "x-scheme-handler/about" = "chromium-browser.desktop";
+  #     "x-scheme-handler/unknown" = "chromium-browser.desktop";
+  #   };
+  # };
 
   # This module contains mostly alternatives to POSIX utilities
   environment.systemPackages = with pkgs; [
@@ -50,6 +61,7 @@
     procs # modern ps replacement
     hurl # like curl but better
 
+    openconnect
     htop # better top
     cpufetch # fetch cpu information
     ventoy # create bootable usb drive for isos
@@ -59,7 +71,6 @@
     pciutils
     inetutils
     psmisc
-    openconnect
     nix-alien # run external programs in nix
   ];
 }
