@@ -61,6 +61,7 @@
     procs # modern ps replacement
     hurl # like curl but better
 
+    brightnessctl
     openconnect
     htop # better top
     cpufetch # fetch cpu information

@@ -26,6 +26,7 @@
 
             boot.tmp.useTmpfs = true;
             boot.tmp.tmpfsSize = "75%";
+            boot.tmp.cleanOnBoot = true;
             boot.runSize = "25%";
             boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
             # league of legends

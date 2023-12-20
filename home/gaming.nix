@@ -12,7 +12,7 @@
       ];
     })
     bottles
-    protonup-qt
+    # protonup-qt # replaced by chaotic luxtorpeda/proton-ge
     protontricks
     vulkan-tools
     # minecraft

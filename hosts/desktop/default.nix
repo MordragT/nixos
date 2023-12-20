@@ -19,6 +19,16 @@
   # systemd.network.wait-online.anyInterface = true;
   # systemd.network.wait-online.timeout = 5;
 
+  # chaotic.mesa-git = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     intel-media-driver
+  #     vaapiIntel
+  #     vaapiVdpau
+  #     libvdpau-va-gl
+  #   ];
+  # };
+
   hardware.opengl = {
     enable = true;
     driSupport = true;

@@ -24,7 +24,7 @@
     octaveFull # aims to be compatible with matlab
     dbeaver # sql client
     godot_4 # game engine
-    epic-asset-manager # manager for unreal engine and its assets
+    # epic-asset-manager # manager for unreal engine and its assets
     akira-unstable # prototype gui
     gaphor # create diagrams and uml
     apostrophe # markdown editor
@@ -33,7 +33,7 @@
     likwid # performance monitoring
     # byfl # compiler based application analysis
     hollywood # fake hacking
-    oneVPL
+    # oneVPL
     insomnia # make http requests against rest apis
   ];
 }

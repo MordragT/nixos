@@ -8,6 +8,7 @@
 
   programs.nushell = {
     enable = true;
+    package = pkgs.nushellFull;
     configFile.text = ''
       # def , [...pkgs: string] {
       #   let $pkgs = ($pkgs
@@ -17,6 +18,7 @@
       #   bash -c $cmd
       # }
 
+      $env.config.rm.always_trash = true
 
       alias comojit = comoji commit
       alias r = direnv reload

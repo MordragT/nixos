@@ -44,7 +44,6 @@ in {
       "debug.showBreakpointsInOverviewRuler" = true;
 
       "editor.minimap.enabled" = false;
-      #ensembles # live DAW
       "editor.minimap.scale" = 2;
       "editor.fontLigatures" = true;
       "editor.fontFamily" = "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'";
@@ -74,6 +73,7 @@ in {
         "**/.settings" = true;
         "**/.direnv" = true;
         "**/__pycache__" = true;
+        "**/.venv" = true;
       };
       "files.associations" = {
         "*.lalrpop" = "rust";
@@ -185,7 +185,8 @@ in {
         ms-vscode-remote.remote-ssh
         ms-vsliveshare.vsliveshare
 
-        # nvarner.typst-lsp
+        mgt19937.typst-preview
+        nvarner.typst-lsp
         piousdeer.adwaita-theme
         redhat.java
         rust-lang.rust-analyzer-nightly

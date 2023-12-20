@@ -1,9 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   hardware.pulseaudio.enable = false;
-  # hardware.bluetooth = {
-  #   enable = true;
-  #   package = pkgs.bluez5-experimental;
-  # };
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluez5-experimental;
+    powerOnBoot = false;
+  };
 
   services.pipewire = {
     enable = true;

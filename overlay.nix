@@ -40,16 +40,5 @@ in
     #     gnome.zenity
     #   ];
     # });
-    steam = pkgs.steam.override {
-      extraLibraries = pkgs:
-        with pkgs; [
-          # Crusader Kings 3
-          ncurses
-          # gamescope
-          libkrb5
-          keyutils
-          #gnome.zenity
-        ];
-    };
   }
   // myPkgs
