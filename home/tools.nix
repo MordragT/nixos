@@ -11,5 +11,7 @@
     cachix # nix binary hosting
     silicon # rust tool to create beautiful code images
     nix-tree # browse nix store path dependencies
+
+    ollama # run large language models locally
   ];
 }

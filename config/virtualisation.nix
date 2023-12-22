@@ -11,7 +11,7 @@
       #headless = true;
       #enableHardening = false;
     };
-    # docker.enable = true;
+    docker.enable = true;
     # waydroid.enable = true;
     # libvirtd.enable = true;
     # multipass.enable = true;

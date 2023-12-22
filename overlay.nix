@@ -40,5 +40,9 @@ in
     #     gnome.zenity
     #   ];
     # });
+    llama-cpp = pkgs.llama-cpp.override {
+      openclSupport = true;
+      openblasSupport = false;
+    };
   }
   // myPkgs

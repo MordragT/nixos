@@ -65,6 +65,8 @@
     openconnect
     htop # better top
     cpufetch # fetch cpu information
+    clinfo # opencl info
+    vulkan-tools
     ventoy # create bootable usb drive for isos
     trash-cli # put files in trash
     expect # automate interactive applications

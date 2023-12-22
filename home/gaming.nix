@@ -14,7 +14,6 @@
     bottles
     # protonup-qt # replaced by chaotic luxtorpeda/proton-ge
     protontricks
-    vulkan-tools
     # minecraft
     optifine
     gamescope
