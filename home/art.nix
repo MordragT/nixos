@@ -5,6 +5,6 @@
     krita
     inkscape
     # glaxnimate
-    drawio
+    # broken drawio
   ];
 }

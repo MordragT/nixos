@@ -14,13 +14,13 @@
     bottles
     # protonup-qt # replaced by chaotic luxtorpeda/proton-ge
     protontricks
-    # minecraft
+    minecraft
     optifine
     gamescope
     mangohud
     # unigine-superposition # benchmark
     # geekbench # benchmark
     moonlight-qt # game stream client ala steam link
-    yuzu # switch emulation
+    # yuzu # switch emulation
   ];
 }

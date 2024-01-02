@@ -7,7 +7,7 @@
     };
 
     virtualbox.host = {
-      enable = true;
+      enable = false;
       #headless = true;
       #enableHardening = false;
     };

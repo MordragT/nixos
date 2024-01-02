@@ -16,7 +16,7 @@
 
   services.udev.packages = with pkgs; [
     platformio-core
-    openocd
+    # openocd # plugdev errors are polluting the logs
   ];
 
   services.xserver.wacom.enable = true;

@@ -8,9 +8,7 @@
     # cisco-secure-client # cisco vpn
 
     steghide # stenography hiding in files
-    # cutter
-    # cutterPlugins.jsdec
-    # cutterPlugins.rz-ghidra
+    (cutter.withPlugins (cpkgs: with cpkgs; [jsdec rz-ghidra]))
     macchanger # change the network's mac address
     tor-browser-bundle-bin
     step-cli # generate certificates

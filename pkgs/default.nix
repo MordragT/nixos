@@ -9,14 +9,15 @@
     spflashtool = callPackage ./spflashtool.nix {};
     webdesigner = callPackage ./webdesigner.nix {};
     gnome-shell-extension-fly-pie = callPackage ./gnome-extensions/fly-pie.nix {};
-    oneapi = callPackage ./oneapi.nix {};
     likwid = callPackage ./likwid.nix {};
     byfl = callPackage ./byfl.nix {};
     ensembles = callPackage ./ensembles.nix {};
     tmfs = callPackage ./tmfs.nix {};
+    oneAPI = callPackage ./oneAPI.nix {};
     oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};
     oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix {};
     pia-openvpn = callPackage ./pia-openvpn.nix {};
+    xpuPackages = import ./xpuPackages {inherit callPackage;};
   };
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs:

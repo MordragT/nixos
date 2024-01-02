@@ -29,6 +29,8 @@
   #   ];
   # };
 
+  chaotic.mesa-git.enable = true;
+
   hardware.opengl = {
     enable = true;
     driSupport = true;

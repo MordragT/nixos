@@ -173,15 +173,15 @@ in {
         marp-team.marp-vscode
         matangover.mypy
 
-        # ms-python.python
-        # ms-python.vscode-pylance
+        ms-python.python
+        ms-python.vscode-pylance
         ms-dotnettools.csharp
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
         ms-vscode.cmake-tools
-        # ms-vscode.cpptools
+        ms-vscode.cpptools
         ms-vscode-remote.remote-ssh
         ms-vsliveshare.vsliveshare
 
@@ -198,7 +198,7 @@ in {
         twxs.cmake
 
         # vadimcn.vscode-lldb
-        #valentjn.vscode-ltex
+        # valentjn.vscode-ltex
         vscjava.vscode-gradle
         yzhang.markdown-all-in-one
       ]

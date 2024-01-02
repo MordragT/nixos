@@ -2,7 +2,7 @@
   description = "My system configuration";
 
   inputs = {
-    nixpkgs-master.url = "nixpkgs/master";
+    nixpkgs-master.url = "nixpkgs/staging-next";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nur.url = "github:nix-community/NUR";
@@ -62,6 +62,10 @@
     comoji,
     templates,
   }: let
+    system = "x86_64-linux";
+    master = import nixpkgs-master {
+      inherit system;
+    };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -75,13 +79,10 @@
         js-bp.overlays.default
         gomod2nix.overlays.default
         (import ./overlay.nix)
+        # (self: pkgs: {mesa = master.mesa;})
       ];
     };
-    master = import nixpkgs-master {
-      inherit system;
-    };
     lib = import ./lib {inherit nixpkgs pkgs home-manager;};
-    system = "x86_64-linux";
   in {
     nixosConfigurations = {
       tom-laptop = lib.mkHost rec {

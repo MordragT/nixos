@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    anytype # notion.so alternative
+    # anytype # notion.so alternative
     miniserve # serve some files via http
     ffsend # securely share files
     appimage-run # run appimages
@@ -11,7 +11,7 @@
     cachix # nix binary hosting
     silicon # rust tool to create beautiful code images
     nix-tree # browse nix store path dependencies
-
+    p7zip
     ollama # run large language models locally
   ];
 }

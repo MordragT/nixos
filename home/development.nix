@@ -18,10 +18,10 @@
 
     alejandra # nix formmater: files are everywhere anyways
     nil # nix language server
-    android-studio
-    jetbrains.idea-community
+    # android-studio
+    # jetbrains.idea-community
     # matlab
-    octaveFull # aims to be compatible with matlab
+    # octaveFull # aims to be compatible with matlab
     dbeaver # sql client
     godot_4 # game engine
     # epic-asset-manager # manager for unreal engine and its assets
@@ -35,5 +35,8 @@
     hollywood # fake hacking
     # oneVPL
     insomnia # make http requests against rest apis
+
+    python3Packages.xpu.ipex
+    python3Packages.xpu.torch
   ];
 }

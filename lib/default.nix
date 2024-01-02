@@ -30,9 +30,9 @@
             boot.runSize = "25%";
             boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_testing;
             # league of legends
-            boot.kernel.sysctl."abi.vsyscall32" = 0;
+            # boot.kernel.sysctl."abi.vsyscall32" = 0;
             # cs 2
-            boot.kernel.sysctl."vm.max_map_count" = 16777216;
+            # boot.kernel.sysctl."vm.max_map_count" = 16777216;
           }
           home-manager.nixosModules.home-manager
           {
@@ -63,6 +63,10 @@
       xdg = {
         enable = true;
         userDirs.enable = true;
+        # configHome = "~/.config";
+        cacheHome = "/run/user/1000/.cache";
+        # dataHome = "~/.local/share";
+        # stateHome = "~/.local/state";
       };
     };
   };

@@ -15,6 +15,14 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7edc6fe9-2aab-429a-baa4-2187bbf3186f";
     fsType = "f2fs";
+    options = [
+      # needs to be enabled at creation ?
+      # "compress_algorithm=zstd"
+      # "compress_chksum"
+      "atgc"
+      "gc_merge"
+      "lazytime"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -40,5 +48,22 @@
     ];
   };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700";}];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 32 * 1024;
+      priority = 1;
+    }
+  ];
+
+  # according to this https://github.com/systemd/systemd/issues/16708
+  # systemd will skip zram swaps when hibernating, so as long as i keep
+  # a traditional swapfile I should be gucci
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+    priority = 2;
+    # is this possible as it is no device ?
+    # writebackDevice = "/swapfile";
+  };
 }

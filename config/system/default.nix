@@ -20,15 +20,15 @@
 
   environment.shells = [pkgs.nushell];
 
-  environment.sessionVariables = {
-    PATH = "\${HOME}/.cargo/bin";
-    XDG_CONFIG_HOME = "\${HOME}/.config";
-    XDG_CACHE_HOME = "\${HOME}/.cache";
-    #XDG_CACHE_HOME = "/run/user/1000/.cache";
-    XDG_DATA_HOME = "\${HOME}/.local/share";
-    XDG_STATE_HOME = "\${HOME}/.local/state";
-    XDG_BIN_HOME = "\${HOME}/.local/bin";
-  };
+  # environment.sessionVariables = {
+  #   PATH = "\${HOME}/.cargo/bin";
+  #   XDG_CONFIG_HOME = "\${HOME}/.config";
+  #   XDG_CACHE_HOME = "\${HOME}/.cache";
+  #   #XDG_CACHE_HOME = "/run/user/1000/.cache";
+  #   XDG_DATA_HOME = "\${HOME}/.local/share";
+  #   XDG_STATE_HOME = "\${HOME}/.local/state";
+  #   XDG_BIN_HOME = "\${HOME}/.local/bin";
+  # };
 
   # xdg.mime = {
   #   enable = true;
@@ -67,6 +67,7 @@
     cpufetch # fetch cpu information
     clinfo # opencl info
     vulkan-tools
+    mesa-demos
     ventoy # create bootable usb drive for isos
     trash-cli # put files in trash
     expect # automate interactive applications
