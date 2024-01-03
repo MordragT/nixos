@@ -13,7 +13,7 @@
   boot.resumeDevice = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/7edc6fe9-2aab-429a-baa4-2187bbf3186f";
+    device = "/dev/disk/by-label/nixos";
     fsType = "f2fs";
     options = [
       # needs to be enabled at creation ?
@@ -34,6 +34,7 @@
     device = "/dev/disk/by-uuid/f825b422-d860-4579-90cf-dc0af7651f62";
     fsType = "btrfs";
     options = [
+      "noatime"
       "compress=zstd"
       "autodefrag"
     ];
@@ -43,6 +44,7 @@
     device = "/dev/disk/by-uuid/5b5ff03b-1335-4810-a047-4e482283ea94";
     fsType = "btrfs";
     options = [
+      "noatime"
       "compress=zstd"
       "autodefrag"
     ];

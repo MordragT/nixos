@@ -6,7 +6,6 @@
   python3,
   libbacktrace,
   level-zero,
-  breakpointHook,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "unified-runtime";
@@ -21,13 +20,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     cmake
-    # breakpointHook does not work why ever the fuck not
   ];
 
   cmakeFlags = [
     "-DUR_BUILD_TESTS=OFF"
     "-DUR_BUILD_ADAPTER_L0=ON"
-    "-DL0_LIBRARY=${level-zero}/lib"
+    "-DL0_LIBRARY=${level-zero}/lib/libze_loader.so"
     "-DL0_INCLUDE_DIR=${level-zero}/include"
   ];
 
@@ -41,7 +39,6 @@ stdenv.mkDerivation (finalAttrs: {
   doCheck = false;
 
   meta = {
-    broken = true; # not working god knows why
     changelog = "https://github.com/oneapi-src/unified-runtime/releases/tag/v${finalAttrs.version}";
     description = "oneAPI unified runtime";
     license = lib.licenses.asl20;

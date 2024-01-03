@@ -2,7 +2,7 @@
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
   self = rec {
     # mkl = callPackage ./mkl.nix {};
-    llvm = import ./llvm {inherit pkgs;};
+    llvm = import ./llvm {inherit pkgs unified-runtime;};
     oneCCL = callPackage ./oneCCL.nix {};
     oneDAL = callPackage ./oneDAL.nix {};
     oneDPL = callPackage ./oneDPL.nix {};
