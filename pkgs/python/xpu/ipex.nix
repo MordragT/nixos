@@ -36,7 +36,7 @@ buildPythonPackage {
   buildInputs = [
     level-zero
     xpuPackages.oneMKL
-    xpuPackages.dpcpp-cpp
+    xpuPackages.llvm.sycl
     zstd
   ];
 

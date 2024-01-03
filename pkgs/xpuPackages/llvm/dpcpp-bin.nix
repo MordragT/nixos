@@ -1,16 +1,19 @@
 {
+  stdenvNoCC,
   autoPatchelfHook,
   addOpenGLRunpath,
-  llvmPackages_17,
+  llvmPackages,
   fetchurl,
   level-zero,
   libz,
   libxml2,
   ncurses,
 }:
-llvmPackages_17.stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
   pname = "dpcpp-cpp-compiler";
   version = "nightly-2023-12-18";
+
+  isClang = true;
 
   sourceRoot = ".";
   src = fetchurl {
@@ -37,7 +40,7 @@ llvmPackages_17.stdenv.mkDerivation rec {
   '';
 
   buildInputs = [
-    llvmPackages_17.libcxx
+    llvmPackages.libcxx
     level-zero
     libz
     libxml2

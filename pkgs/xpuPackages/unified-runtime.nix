@@ -1,14 +1,15 @@
 {
-  cmake,
-  fetchFromGitHub,
   lib,
   stdenv,
+  fetchFromGitHub,
+  cmake,
   python3,
   libbacktrace,
   level-zero,
+  breakpointHook,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "oneURT";
+  pname = "unified-runtime";
   version = "0.8.2";
 
   src = fetchFromGitHub {
@@ -20,12 +21,14 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     cmake
+    # breakpointHook does not work why ever the fuck not
   ];
 
   cmakeFlags = [
     "-DUR_BUILD_TESTS=OFF"
-    # TODO why ever this is not working
-    "-DUR_BUILD_ADAPTER_L0=OFF"
+    "-DUR_BUILD_ADAPTER_L0=ON"
+    "-DL0_LIBRARY=${level-zero}/lib"
+    "-DL0_INCLUDE_DIR=${level-zero}/include"
   ];
 
   buildInputs = [
@@ -38,6 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
   doCheck = false;
 
   meta = {
+    broken = true; # not working god knows why
     changelog = "https://github.com/oneapi-src/unified-runtime/releases/tag/v${finalAttrs.version}";
     description = "oneAPI unified runtime";
     license = lib.licenses.asl20;

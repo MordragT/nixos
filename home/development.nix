@@ -15,6 +15,7 @@
     # awscli2 # amazon web services
     nodePackages.reveal-md # create presentations from markdown
     # vagrant # vm provisioning
+    cntr # container debugging
 
     alejandra # nix formmater: files are everywhere anyways
     nil # nix language server
@@ -36,7 +37,7 @@
     # oneVPL
     insomnia # make http requests against rest apis
 
-    python3Packages.xpu.ipex
-    python3Packages.xpu.torch
+    # python3Packages.xpu.ipex
+    # python3Packages.xpu.torch
   ];
 }

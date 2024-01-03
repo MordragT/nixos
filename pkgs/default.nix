@@ -17,7 +17,7 @@
     oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};
     oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix {};
     pia-openvpn = callPackage ./pia-openvpn.nix {};
-    xpuPackages = import ./xpuPackages {inherit callPackage;};
+    xpuPackages = import ./xpuPackages {inherit pkgs;};
   };
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs:

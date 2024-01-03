@@ -5,15 +5,16 @@
   cmake,
   oneTBB,
 }:
+# requires dpcpp compiler
 stdenv.mkDerivation (finalAttrs: {
-  pname = "oneDPL";
-  version = "2022.3.0";
+  pname = "oneDAL";
+  version = "2024.0.1";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
-    repo = "oneDPL";
-    rev = "release/2022.3";
-    hash = "sha256-22fbB89iHJ9SJlvDOZ4g4mlFHuxC0uxe9HNl2HIPISs=";
+    repo = "oneDAL";
+    rev = finalAttrs.version;
+    hash = "";
   };
 
   nativeBuildInputs = [
@@ -28,9 +29,9 @@ stdenv.mkDerivation (finalAttrs: {
   doCheck = false;
 
   meta = {
-    changelog = "https://github.com/oneapi-src/oneDPL/releases/tag/oneDPL-${finalAttrs.version}-rc1";
-    description = " oneAPI DPC++ Library (oneDPL)";
-    homepage = "https://01.org/oneDPL";
+    changelog = "https://github.com/oneapi-src/oneDAL/releases/tag/${finalAttrs.version}";
+    description = "oneAPI Data Analytics Library (oneDAL)";
+    homepage = "https://01.org/oneDAL";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [mordrag];
     platforms = lib.platforms.all;
