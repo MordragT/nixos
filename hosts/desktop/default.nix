@@ -29,7 +29,7 @@
   #   ];
   # };
 
-  chaotic.mesa-git.enable = true;
+  # chaotic.mesa-git.enable = true;
 
   hardware.opengl = {
     enable = true;

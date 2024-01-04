@@ -187,7 +187,7 @@
 
       tom-desktop = lib.mkHost rec {
         inherit system;
-        stateVersion = "22.11";
+        stateVersion = "23.11";
         modules = [
           {
             imports = [
@@ -227,6 +227,7 @@
             username = "root";
             homeDirectory = "/root";
             imports = [
+              ./home/programs/git.nix
               ./home/programs/nushell.nix
             ];
           });

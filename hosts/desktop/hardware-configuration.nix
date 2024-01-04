@@ -10,28 +10,23 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd" "btintel"];
   boot.extraModulePackages = [];
-  boot.resumeDevice = "/dev/disk/by-uuid/2a9f30ad-dc12-45af-8351-4700123e1700";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "f2fs";
+    device = "/dev/disk/by-label/Nixos";
+    fsType = "btrfs";
     options = [
-      # needs to be enabled at creation ?
-      # "compress_algorithm=zstd"
-      # "compress_chksum"
-      "atgc"
-      "gc_merge"
-      "lazytime"
+      "noatime"
+      "compress=zstd"
     ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FE10-AE4C";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/f825b422-d860-4579-90cf-dc0af7651f62";
+    device = "/dev/disk/by-label/Home";
     fsType = "btrfs";
     options = [
       "noatime"
@@ -41,7 +36,7 @@
   };
 
   fileSystems."/run/media/Media" = {
-    device = "/dev/disk/by-uuid/5b5ff03b-1335-4810-a047-4e482283ea94";
+    device = "/dev/disk/by-label/Media";
     fsType = "btrfs";
     options = [
       "noatime"
@@ -52,9 +47,7 @@
 
   swapDevices = [
     {
-      device = "/swapfile";
-      size = 32 * 1024;
-      priority = 1;
+      device = "/dev/disk/by-label/Swap";
     }
   ];
 
@@ -63,9 +56,6 @@
   # a traditional swapfile I should be gucci
   zramSwap = {
     enable = true;
-    memoryPercent = 25;
-    priority = 2;
-    # is this possible as it is no device ?
-    # writebackDevice = "/swapfile";
+    # writebackDevice = "/dev/disk/by-label/Swap";
   };
 }

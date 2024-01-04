@@ -8,6 +8,7 @@
 
     users.tom = {
       isNormalUser = true;
+      initialPassword = "tom";
       extraGroups = ["wheel" "docker"];
       shell = pkgs.nushell;
       openssh.authorizedKeys.keys = [

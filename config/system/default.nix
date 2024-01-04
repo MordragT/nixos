@@ -75,6 +75,6 @@
     pciutils
     inetutils
     psmisc
-    nix-alien # run external programs in nix
+    #nix-alien # run external programs in nix
   ];
 }
