@@ -55,8 +55,6 @@
     imports,
   }: {
     "${username}" = {
-      inherit imports;
-
       home = {
         inherit username stateVersion homeDirectory;
       };
@@ -68,6 +66,7 @@
         # dataHome = "~/.local/share";
         # stateHome = "~/.local/state";
       };
+      inherit imports;
     };
   };
 }

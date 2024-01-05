@@ -26,7 +26,14 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-label/Home";
+    device = "none";
+    neededForBoot = true;
+    fsType = "tmpfs";
+    options = ["defaults" "size=50%" "mode=755"];
+  };
+
+  fileSystems."/run/media/Media" = {
+    device = "/dev/disk/by-label/Media";
     fsType = "btrfs";
     options = [
       "noatime"
@@ -35,8 +42,8 @@
     ];
   };
 
-  fileSystems."/run/media/Media" = {
-    device = "/dev/disk/by-label/Media";
+  fileSystems."/run/media/Backup" = {
+    device = "/dev/disk/by-label/Backup";
     fsType = "btrfs";
     options = [
       "noatime"
@@ -56,6 +63,6 @@
   # a traditional swapfile I should be gucci
   zramSwap = {
     enable = true;
-    # writebackDevice = "/dev/disk/by-label/Swap";
+    writebackDevice = "/dev/disk/by-label/SwapWriteback";
   };
 }

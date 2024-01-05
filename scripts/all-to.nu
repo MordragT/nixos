@@ -108,4 +108,3 @@ def "main prefix" [path: string = ".", --extension(-e): string, --prefix(-p): st
         $recursive
     )
 }
-        

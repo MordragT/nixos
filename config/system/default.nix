@@ -60,6 +60,7 @@
     ripgrep # grep alternative
     procs # modern ps replacement
     hurl # like curl but better
+    dua # print file size of directories
 
     brightnessctl
     openconnect

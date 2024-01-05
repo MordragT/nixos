@@ -11,7 +11,8 @@
     emblem
     # textpieces
     paleta # extract dominant color from images
-    fclones # find duplicate files
+    fclones-gui # find duplicate files
+    czkawka # duplicate finder
     health # health tracker
     identity # image viewer
 

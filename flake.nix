@@ -10,6 +10,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +53,7 @@
     chaotic,
     nur,
     home-manager,
+    impermanence,
     nix-alien,
     nix-index-database,
     nix-matlab,
@@ -197,6 +199,7 @@
               ./config/services
               ./config/services/pia-wg.nix
               ./config/programs
+              ./config/impermanence.nix
               ./config/security.nix
               ./config/virtualisation.nix
               ./config/desktop-manager/gnome.nix
@@ -206,6 +209,7 @@
           nix-index-database.nixosModules.nix-index
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
+          impermanence.nixosModules.impermanence
         ];
 
         specialArgs = {
@@ -220,7 +224,10 @@
           (lib.mkHome {
             inherit stateVersion;
             username = "tom";
-            imports = [./home];
+            imports = [
+              ./home/impermanence.nix
+              ./home
+            ];
           })
           // (lib.mkHome {
             inherit stateVersion;
