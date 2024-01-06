@@ -18,7 +18,7 @@
     EDITOR = "hx";
   };
 
-  environment.shells = [pkgs.nushell];
+  environment.shells = [pkgs.nushellFull];
 
   # environment.sessionVariables = {
   #   PATH = "\${HOME}/.cargo/bin";
