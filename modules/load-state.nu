@@ -1,9 +1,9 @@
 #! /usr/bin/env nu
 
-# source must not start with @
+# source must not end with @
 
 def find-paths [source] {
-    if ($source | path basename | str starts-with "@") {
+    if ($source | path basename | str ends-with '@') {
         return [$source]
     } else {
         let results = ls -a $source
@@ -21,21 +21,12 @@ def find-paths [source] {
 }
 
 def load-paths [f, source, destination] {
-    let left = if ($source | str ends-with "/") {
-        $source | str length
-    } else {
-        # skip leading /
-        ($source | str length) + 1
-    }
+    find-paths $source
+    | each { |path|
+        let relative = path relative-to $source
+        let cleaned = $relative | str trim --char '@' --right
 
-    let relative_paths = find-paths $source
-    | each { |path| $path | str substring $left.. }
-
-    $relative_paths
-    | each { |rel| 
-        let cleaned = $rel | str replace '@' ''
-
-        let src = $source | path join $rel
+        let src = $source | path join $relative
         let dest = $destination | path join $cleaned
 
         do $f $src $dest
@@ -66,22 +57,26 @@ def create-dir [path, owner, group, mode] {
 
 def "main symlink" [source, destination, owner, group, mode] {
     let f = { |src, dest|
-        let parent = $dest | path dirname
+        if not ($dest | path exists) {
+            let parent = $dest | path dirname
 
-        if not ($parent | path exists) {
-            create-dir $parent $owner $group $mode
+            if not ($parent | path exists) {
+                create-dir $parent $owner $group $mode
+            }
+            ln -s $src $dest
         }
-        ln -s $src $dest
     }
     load-paths $f $source $destination
 }
 
 def "main mount" [source, destination, owner, group, mode] {
     let f = { |src, dest|
-        if not ($dest | path exists) {
-            create-dir $dest $owner $group $mode
+        if (mountpoint -q $dest | complete).exit_code != 0 {
+            if not ($dest | path exists) {
+                create-dir $dest $owner $group $mode
+            }
+            mount -o x-gvfs-hide --bind $src $dest
         }
-        mount -o x-gvfs-hide --bind $src $dest
     }
     load-paths $f $source $destination
 }

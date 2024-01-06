@@ -7,9 +7,6 @@
   cfg = config.environment.state;
 in
   with lib; {
-    # permissions owner group are "copied" from source
-    # leaf dirs are linked/mounted and denoted by '@' infront of them
-    # if leaf dir already exists on activation throw warning
     options.environment.state = {
       enable = mkEnableOption "Enable state loading";
       targets = mkOption {
