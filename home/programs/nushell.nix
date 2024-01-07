@@ -10,13 +10,8 @@
     enable = true;
     package = pkgs.nushellFull;
     configFile.text = ''
-      # def , [...pkgs: string] {
-      #   let $pkgs = ($pkgs
-      #     | each { |pkg| "nixpkgs#" + $pkg }
-      #     | str join ' ')
-      #   let cmd = $"nix shell ($pkgs)"
-      #   bash -c $cmd
-      # }
+      use ${../../scripts/comma.nu} ,
+      # broken ?? use ${../../scripts/all-to.nu} main
 
       $env.config.rm.always_trash = true
 

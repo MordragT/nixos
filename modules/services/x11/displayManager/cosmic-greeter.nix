@@ -1,13 +1,13 @@
 {
   config,
   lib,
-  master,
+  pkgs,
   ...
 }: let
   dmcfg = config.services.xserver.displayManager;
   cfg = dmcfg.cosmic-greeter;
-  cosmic-greeter = master.cosmic-greeter;
-  cage = master.cage;
+  cosmic-greeter = pkgs.cosmic-greeter;
+  cage = pkgs.cage;
 in
   with lib; {
     options.services.xserver.displayManager.cosmic-greeter = {

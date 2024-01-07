@@ -1,4 +1,8 @@
-{templates, ...}: {
+{
+  pkgs,
+  templates,
+  ...
+}: {
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
@@ -13,4 +17,12 @@
     };
     registry.templates.flake = templates;
   };
+
+  home.packages = with pkgs; [
+    alejandra # nix formater: files are everywhere anyways
+    cachix # nix binary hosting
+    cntr # container debugging for nix derivations
+    nil # nix language server
+    nix-tree # browse nix store path dependencies
+  ];
 }

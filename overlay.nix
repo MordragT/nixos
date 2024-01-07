@@ -42,7 +42,7 @@ in
     # });
     llama-cpp = pkgs.llama-cpp.override {
       openclSupport = true;
-      openblasSupport = false;
+      blasSupport = false;
     };
   }
   // myPkgs

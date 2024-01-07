@@ -2,7 +2,6 @@
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xorg // self);
   self = rec {
     lottieconv = callPackage ./lottieconv {};
-    superview = callPackage ./superview {};
     # astrofox = callPackage ./astrofox.nix { };
     cisco-secure-client = callPackage ./cisco-secure-client {};
     epic-asset-manager = callPackage ./epic-asset-manager {};
@@ -16,6 +15,7 @@
     oneAPI = callPackage ./oneAPI.nix {};
     oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};
     oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix {};
+    opengothic = callPackage ./opengothic.nix {};
     pia-openvpn = callPackage ./pia-openvpn.nix {};
     xpuPackages = import ./xpuPackages {inherit pkgs;};
   };

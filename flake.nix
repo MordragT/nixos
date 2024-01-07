@@ -2,37 +2,12 @@
   description = "My system configuration";
 
   inputs = {
-    nixpkgs-master.url = "nixpkgs/staging-next";
+    templates.url = "github:MordragT/nix-templates";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nur.url = "github:nix-community/NUR";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    impermanence.url = "github:nix-community/impermanence";
-    nix-alien = {
-      url = "github:thiagokokada/nix-alien";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-matlab = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "gitlab:doronbehar/nix-matlab";
-    };
-    fenix = {
-      url = "github:nix-community/fenix/monthly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    js-bp = {
-      url = "github:serokell/nix-npm-buildpackage";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    gomod2nix = {
-      url = "github:tweag/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     classified = {
@@ -43,45 +18,33 @@
       url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    templates.url = "github:MordragT/nix-templates";
+    fenix = {
+      url = "github:nix-community/fenix/monthly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
-    nixpkgs-master,
+    templates,
     nixpkgs,
-    chaotic,
     nur,
+    chaotic,
     home-manager,
-    impermanence,
-    nix-alien,
-    nix-index-database,
-    nix-matlab,
-    fenix,
-    js-bp,
-    gomod2nix,
     classified,
     comoji,
-    templates,
+    fenix,
   }: let
     system = "x86_64-linux";
-    master = import nixpkgs-master {
-      inherit system;
-    };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
       overlays = [
-        nix-alien.overlays.default
-        nix-matlab.overlay
         chaotic.overlays.default
-        nur.overlay
         comoji.overlays.default
         fenix.overlays.default
-        js-bp.overlays.default
-        gomod2nix.overlays.default
+        nur.overlay
         (import ./overlay.nix)
-        # (self: pkgs: {mesa = master.mesa;})
       ];
     };
     lib = import ./lib {inherit nixpkgs pkgs home-manager;};
@@ -102,17 +65,16 @@
               ./config/desktop-manager/gnome.nix
             ];
           }
-          nix-index-database.nixosModules.nix-index
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
         ];
 
         specialArgs = {
-          inherit pkgs master;
+          inherit pkgs;
         };
 
         specialHomeArgs = {
-          inherit templates master;
+          inherit templates;
         };
 
         homes =
@@ -152,17 +114,16 @@
               ./config/desktop-manager/plasma-bigscreen.nix
             ];
           }
-          nix-index-database.nixosModules.nix-index
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
         ];
 
         specialArgs = {
-          inherit pkgs master;
+          inherit pkgs;
         };
 
         specialHomeArgs = {
-          inherit templates master;
+          inherit templates;
         };
 
         homes =
@@ -206,18 +167,16 @@
               ./config/desktop-manager/cosmic.nix
             ];
           }
-          nix-index-database.nixosModules.nix-index
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
-          impermanence.nixosModules.impermanence
         ];
 
         specialArgs = {
-          inherit pkgs master;
+          inherit pkgs;
         };
 
         specialHomeArgs = {
-          inherit templates master;
+          inherit templates;
         };
 
         homes =
@@ -225,7 +184,6 @@
             inherit stateVersion;
             username = "tom";
             imports = [
-              ./home/impermanence.nix
               ./home
             ];
           })

@@ -17,4 +17,14 @@
   };
 
   chaotic.steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom steamtinkerlaunch];
+
+  environment.systemPackages = with pkgs; [
+    # steam-tui
+    steamcmd
+    steam-run
+    sc-controller
+    # steamcontroller
+    # protonup-qt # replaced by chaotic luxtorpeda/proton-ge
+    protontricks
+  ];
 }

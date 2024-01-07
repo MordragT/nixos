@@ -1,10 +1,10 @@
-{master, ...}: {
+{pkgs, ...}: {
   systemd.user.services.sunshine = {
     enable = true;
     description = "sunshine";
     wantedBy = ["graphical-session.target"];
     serviceConfig = {
-      ExecStart = "${master.sunshine}/bin/sunshine";
+      ExecStart = "${pkgs.sunshine}/bin/sunshine";
     };
   };
 

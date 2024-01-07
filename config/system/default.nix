@@ -62,6 +62,7 @@
     hurl # like curl but better
     dua # print file size of directories
 
+    alsa-utils # configure audio devices
     brightnessctl
     openconnect
     htop # better top
@@ -76,6 +77,5 @@
     pciutils
     inetutils
     psmisc
-    #nix-alien # run external programs in nix
   ];
 }

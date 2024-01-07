@@ -1,16 +1,11 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
-    ./art.nix
-    ./audio.nix
-    ./development.nix
-    ./documents.nix
-    ./gaming.nix
-    ./gnome.nix
-    ./nix.nix
+    ./cli
+    ./gnome
     ./programs
-    ./security.nix
-    ./social.nix
-    ./tools.nix
-    ./video.nix
+    ./free.nix
+    ./gaming.nix
+    ./nix.nix
+    ./unfree.nix
   ];
 }

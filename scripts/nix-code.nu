@@ -19,11 +19,11 @@ def get-vsixpkg [publisher, name] {
     }
 }
 
-def "main by-tuple" [publisher, name] {
+export def "main by-tuple" [publisher, name] {
     get-vsixpkg $publisher $name
 }
 
-def "main list" [] {
+export def "main list" [] {
     code --list-extensions | lines | par-each { |extension|
         let combined = ($extension | split row '.')
         let publisher = $combined.0
@@ -32,4 +32,4 @@ def "main list" [] {
     }
 }
 
-def main [] {}
+export def main [] {}

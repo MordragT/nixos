@@ -1,16 +1,13 @@
 {
-  makeRustPlatform,
   fetchCrate,
-  fenix,
+  rustPlatform,
   rlottie,
   clang,
   libclang,
   pkg-config,
   openssl,
 }:
-(makeRustPlatform {
-  inherit (fenix.minimal) cargo rustc;
-})
+rustPlatform
 .buildRustPackage rec {
   pname = "lottieconv";
   version = "0.1.2";

@@ -1,11 +1,10 @@
 {
   config,
   lib,
-  master,
+  pkgs,
   utils,
   ...
 }: let
-  pkgs = master;
   cfg = config.services.xserver.desktopManager.cosmic;
 in
   with lib; {
@@ -22,34 +21,34 @@ in
       };
     };
 
-    # config = mkIf cfg.enable {
-    #   environment.systemPackages = let
-    #     mandatoryPackages = with pkgs; [
-    #       # cosmic-applibrary
-    #       cosmic-applets
-    #       # cosmic-bg
-    #       cosmic-comp
-    #       cosmic-icons
-    #       # cosmic-launcher
-    #       # cosmic-notifications
-    #       # cosmic-osd
-    #       cosmic-panel
-    #       # cosmic-screenshot
-    #       cosmic-settings
-    #       # cosmic-settings-daemon
-    #       # cosmic-workspaces-epoch
-    #       # xdg-desktop-portal-cosmic
-    #     ];
-    #     optionalPackages = with pkgs; [
-    #       # TODO check which are optional
-    #       cosmic-edit
-    #     ];
-    #   in
-    #     mandatoryPackages
-    #     ++ utils.removePackagesByName optionalPackages config.environment.cosmic.excludePackages;
+    config = mkIf cfg.enable {
+      environment.systemPackages = let
+        mandatoryPackages = with pkgs; [
+          # cosmic-applibrary
+          cosmic-applets
+          # cosmic-bg
+          cosmic-comp
+          cosmic-icons
+          # cosmic-launcher
+          # cosmic-notifications
+          cosmic-osd
+          cosmic-panel
+          # cosmic-screenshot
+          cosmic-settings
+          # cosmic-settings-daemon
+          cosmic-workspaces-epoch
+          xdg-desktop-portal-cosmic
+        ];
+        optionalPackages = with pkgs; [
+          # TODO check which are optional
+          cosmic-edit
+        ];
+      in
+        mandatoryPackages
+        ++ utils.removePackagesByName optionalPackages config.environment.cosmic.excludePackages;
 
-    #   # session files for display manager and systemd
-    #   services.xserver.displayManager.sessionPackages = with pkgs; [cosmic-session];
-    #   systemd.packages = with pkgs; [cosmic-session];
-    # };
+      # session files for display manager and systemd
+      # services.xserver.displayManager.sessionPackages = with pkgs; [cosmic-session];
+      # systemd.packages = with pkgs; [cosmic-session];
+    };
   }

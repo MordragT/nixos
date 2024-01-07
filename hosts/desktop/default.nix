@@ -19,29 +19,29 @@
   # systemd.network.wait-online.anyInterface = true;
   # systemd.network.wait-online.timeout = 5;
 
-  # chaotic.mesa-git = {
-  #   enable = true;
-  #   extraPackages = with pkgs; [
-  #     intel-media-driver
-  #     vaapiIntel
-  #     vaapiVdpau
-  #     libvdpau-va-gl
-  #   ];
-  # };
-
-  # chaotic.mesa-git.enable = true;
-
-  hardware.opengl = {
+  chaotic.mesa-git = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [
+      # mesa_git.opencl
       intel-compute-runtime
       intel-media-driver
       vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
     ];
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    # extraPackages = with pkgs; [
+    #   intel-compute-runtime
+    #   intel-media-driver
+    #   vaapiIntel
+    #   vaapiVdpau
+    #   libvdpau-va-gl
+    # ];
   };
 
   environment.systemPackages = [pkgs.intel-gpu-tools];
