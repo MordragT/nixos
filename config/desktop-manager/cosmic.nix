@@ -1,3 +1,3 @@
 {...}: {
-  services.xserver.desktopManager.cosmic.enable = false;
+  services.xserver.desktopManager.cosmic.enable = true;
 }
