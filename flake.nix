@@ -111,7 +111,7 @@
               ./config/programs/steam.nix
               ./config/programs/comma.nix
               ./config/security.nix
-              ./config/desktop-manager/plasma-bigscreen.nix
+              ./config/desktop-manager/gnome.nix
             ];
           }
           classified.nixosModules.${system}.default
@@ -135,7 +135,7 @@
               ./home/programs/nushell.nix
               ./home/programs/firefox.nix
               ./home/gaming.nix
-              ./home/plasma.nix
+              ./home/gnome
             ];
           })
           // (lib.mkHome {

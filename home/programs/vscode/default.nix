@@ -51,7 +51,7 @@ in {
       "editor.renderWhitespace" = "none";
       "editor.folding" = false;
       "editor.glyphMargin" = true;
-      "editor.occurrencesHighlight" = false;
+      "editor.occurrencesHighlight" = "off";
       "editor.acceptSuggestionOnEnter" = "off";
       "editor.formatOnSave" = true;
       "editor.tabCompletion" = "on";
@@ -61,7 +61,7 @@ in {
       "editor.cursorBlinking" = "expand";
       "editor.guides.indentation" = false;
 
-      "explorer.openEditors.visible" = 0;
+      "explorer.openEditors.visible" = 1;
       "explorer.confirmDelete" = false;
       "explorer.confirmDragAndDrop" = false;
 
@@ -86,8 +86,8 @@ in {
       #"java.import.gradle.wrapper.enabled" = false;
       "jupyter.allowUnauthorizedRemoteConnection" = true;
       "kotlin.java.home" = "$JAVA_HOME";
-      "lldb.verboseLogging" = true;
-      #"ltex.language" = "de-DE";
+      # "lldb.verboseLogging" = true;
+      # "ltex.language" = "de-DE";
       # "latex-workshop.latex.recipes" = [
       #   {
       #     "name" = "tectonic";
@@ -98,26 +98,26 @@ in {
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
 
-      #"platformio-ide.customPATH" = "/nix/store/9ak4j7mjxxqwp85a0dwa381acx3i5zrz-platformio-fhs";
-      "platformio-ide.useBuiltinPIOCore" = false;
-      "platformio-ide.useBuiltinPython" = false;
-      #"platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
+      # "platformio-ide.customPATH" = "/nix/store/9ak4j7mjxxqwp85a0dwa381acx3i5zrz-platformio-fhs";
+      # "platformio-ide.useBuiltinPIOCore" = false;
+      # "platformio-ide.useBuiltinPython" = false;
+      # "platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
 
-      "python.formatting.provider" = "black";
-      #"rust-analyzer.procMacro.enable" = false;
+      # "python.formatting.provider" = "black";
+      # "rust-analyzer.procMacro.enable" = false;
       "terminal.integrated.fontSize" = 11;
-      #"terminal.integrated.rendererType" = "dom";
+      # "terminal.integrated.rendererType" = "dom";
       "typst-lsp.exportPdf" = "never";
-      "typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
+      # "typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
       "window.zoomLevel" = 2;
       "window.menuBarVisibility" = "compact";
       "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
       "window.titleBarStyle" = "custom";
       "window.commandCenter" = true;
 
-      "workbench.activityBar.visible" = true;
+      # "workbench.activityBar.visible" = true;
       "workbench.tree.indent" = 12;
-      "workbench.editor.showTabs" = false;
+      "workbench.editor.showTabs" = "single";
       "workbench.statusBar.visible" = true;
       "workbench.sideBar.location" = "right";
       "workbench.editor.showIcons" = false;
@@ -165,7 +165,8 @@ in {
       [
         bierner.markdown-mermaid
         bmewburn.vscode-intelephense-client
-        catppuccin.catppuccin-vsc
+        # catppuccin.catppuccin-vsc
+        davidanson.vscode-markdownlint
         firefox-devtools.vscode-firefox-debug
         gruntfuggly.todo-tree
         jnoortheen.nix-ide
@@ -182,8 +183,8 @@ in {
         ms-toolsai.vscode-jupyter-slideshow
         ms-vscode.cmake-tools
         ms-vscode.cpptools
-        ms-vscode-remote.remote-ssh
-        ms-vsliveshare.vsliveshare
+        # ms-vscode-remote.remote-ssh
+        # ms-vsliveshare.vsliveshare
 
         mgt19937.typst-preview
         nvarner.typst-lsp
@@ -201,13 +202,14 @@ in {
         # valentjn.vscode-ltex
         vscjava.vscode-gradle
         yzhang.markdown-all-in-one
+        ziglang.vscode-zig
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "code-spell-checker-german";
           publisher = "streetsidesoftware";
-          version = "2.2.1";
-          sha256 = "F0ykTfFAZSqWfntYKWWEgtUyLimBT0Q0fiE219/YqGs=";
+          version = "2.3.1";
+          sha256 = "0dxqslksj1l27lq8fc083w1nhipd9gd70na7469bz4s65asiy61g";
         }
         # {
         #   name = "flowistry";
@@ -218,14 +220,14 @@ in {
         {
           name = "gltf-vscode";
           publisher = "cesium";
-          version = "2.3.16";
-          sha256 = "02xd6vzy5a9q5cs5pwzr8cli28lbs4vaqq3r2ljzcgbwds45f83a";
+          version = "2.4.0";
+          sha256 = "0yvhnriwryxz37n89wphmy51r0r7p7q8jg6nz4wq7824lvb8hbyh";
         }
         {
           name = "kotlin";
           publisher = "fwcd";
-          version = "0.2.26";
-          sha256 = "1br0vr4v1xcl4c7bcqwzfqd4xr6q2ajwkipqrwm928mj96dkafkn";
+          version = "0.2.34";
+          sha256 = "12d7nmbzpfaqif86hxw6qq3jv7q77h0b7mbn41y3rx80f9q7lwfk";
         }
         {
           name = "one-dark-vibrant";
@@ -254,14 +256,14 @@ in {
         {
           name = "texlab";
           publisher = "efoerster";
-          version = "4.2.2";
-          sha256 = "KEXy5FQIBRZXrR6rcdcWEG2qM1B9ricY3W+H0R+HBM4=";
+          version = "5.12.1";
+          sha256 = "0kkbqjiamkx2yrpdlw7mi5m34vqdxyavhc1aii85fkxjifpy0vf0";
         }
         {
           name = "wgsl";
           publisher = "PolyMeilex";
-          version = "0.1.12";
-          sha256 = "1m1j9fi85fjjyx2ws9d7vnmn8g22sxhrk27diazy34mp2p4dr8jd";
+          version = "0.1.16";
+          sha256 = "1fb4vqp5l1qgvhpgasivar05p71kcgkka4xy0y87gfvw8griaiyh";
         }
         # {
         #   name = "vscode-embedded-tools";
@@ -269,12 +271,6 @@ in {
         #   version = "0.7.230323001";
         #   sha256 = "1hm47gvhb510lhqarryhjsh8gzfpxnzhiyv16d63999f4fli5sqv";
         # }
-        {
-          name = "vscode-zig";
-          publisher = "ziglang";
-          version = "0.3.1";
-          sha256 = "17k2jk1yfhsxysmp6kj6xyljvnjgqx38l2a2b1aa0syafv8iqzvk";
-        }
       ];
   };
 }

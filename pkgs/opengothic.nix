@@ -2,12 +2,12 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  addOpenGLRunpath,
   cmake,
   alsa-lib,
   glslang,
   libglvnd,
   vulkan-headers,
+  vulkan-loader,
   xorg,
 }:
 stdenv.mkDerivation rec {
@@ -17,36 +17,37 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "Try";
     repo = "OpenGothic";
-    rev = "master";
-    sha256 = "sha256-31EeATIwrjAsu2DOOl4Uwm5bvCJzBXSSpBXjVPMf/Y4=";
+    rev = "e2235f6936f317ca4f30d2b11f929cbbe38ebcf4";
+    sha256 = "sha256-NNGCo5r7SJOc0Z8+y2MNiw3VOVK5M+ypP/tEZ1dwhD8=";
     fetchSubmodules = true;
   };
 
-  # > CMake Error at CMakeLists.txt:138 (target_compile_options):
-  # > Cannot specify compile options for target "LinearMath" which is not built
-  # > by this project.
-
   nativeBuildInputs = [
     cmake
-    addOpenGLRunpath
   ];
 
   cmakeFlags = [
     "-DBUILD_SHARED_LIBS=ON"
     "-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo"
+    "-DCMAKE_SKIP_RPATH=OFF"
   ];
 
   buildInputs = [
-    alsa-lib
+    alsa-lib # cannot find audio device
     glslang
     libglvnd
     vulkan-headers
+    vulkan-loader
     xorg.libX11
     xorg.libXcursor
   ];
 
+  postInstall = ''
+    mv opengothic/lib* $out/lib/
+    mv $out/bin/Gothic2Notr $out/bin/opengothic
+  '';
+
   meta = with lib; {
-    broken = true;
     description = "Reimplementation of Gothic 2 Notr";
     homepage = "https://github.com/Try/OpenGothic";
     changelog = "https://github.com/Try/OpenGothic/releases/tag/opengothic-v${version}";

@@ -3,7 +3,7 @@
     # byfl # compiler based application analysis
     # likwid # performance monitoring
     # renderdoc # debug graphics
-    vkmark
+    # broken vkmark
     # vulkan-raytracing
   ];
 }

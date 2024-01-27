@@ -26,7 +26,7 @@
     # not packaged forge-sparks
     fragments # torrent downloader
     # not packaged fretboard
-    gaphor # create diagrams and uml
+    # broken gaphor # create diagrams and uml
     health # health tracker
     identity # image viewer
     impression # create bootable drives
@@ -41,7 +41,7 @@
     gnome-obfuscate # censor private information
     # not packaged paperclip # edit pdf metadata
     pika-backup # simple backups
-    plots # graph plotting
+    # broken plots # graph plotting
     gnome-podcasts # listen to podcasts
     gnome.polari # irc client
     # gnome-secrets # password manager

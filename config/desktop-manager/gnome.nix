@@ -12,14 +12,11 @@
     desktopManager.gnome.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
-    # gnomeExtensions.pop-shell
-    gnomeExtensions.space-bar
-    gnomeExtensions.rounded-window-corners
-    gnomeExtensions.task-widget
-    gnomeExtensions.valent
-    gnome-shell-extension-fly-pie
-    #adw-gtk3
+  environment.systemPackages = with pkgs.gnomeExtensions; [
+    space-bar
+    rounded-window-corners
+    task-widget
+    valent
+    fly-pie
   ];
 }

@@ -1,55 +1,46 @@
 #!/usr/bin/env -S nix shell nixpkgs#nushellFull nixpkgs#rclone --command nu
 
 use std log
+use mod.nu [init root-path add-object]
 
 const config_name = "config.toml"
+const store_name = "store"
 
 def main [] {
 
 }
 
 def "main init" [remote, destination] {
-    if not (is-git) {
-        return "Fatal: Not inside a git repository."
-    }
-    let config_dir = get-config-dir
-
-    if ($config_dir | path exists) {
-        return "Fatal: Data control already initialized."
-    }
-
-    mkdir $config_dir
-    let config = {
-        remote: $remote
-        destination: $destination
-        filters: []
-    }
-
-    $config | to toml | save $"($config_dir)/($config_name)"
+    init $remote $destination
 }
 
 def "main add" [path] {
-    let root = get-root
-    let absolute = pwd | path join $path
-
-    if not ($absolute | path exists) {
-        return "Fatal: Specified path does not exist"
-    }
-
-    let relative = $absolute | path relative-to $root
-
-    let config_file = get-config-file
-    if not ($config_file | path exists) {
-        return "Fatal: Data control is not initialized"
-    }
-
-    let config = open $config_file
-        | update filters { |config|
-            $config.filters | append $relative
-        }
-
-    $config | to toml | save -f $config_file
+    let root = root-path
+    add-object $root $path
 }
+
+# def "main add" [path] {
+#     let root = root-path
+#     let absolute = pwd | path join $path
+
+#     if not ($absolute | path exists) {
+#         return "Fatal: Specified path does not exist"
+#     }
+
+#     let relative = $absolute | path relative-to $root
+
+#     let config_file = get-config-file
+#     if not ($config_file | path exists) {
+#         return "Fatal: Data control is not initialized"
+#     }
+
+#     let config = open $config_file
+#         | update filters { |config|
+#             $config.filters | append $relative
+#         }
+
+#     $config | to toml | save -f $config_file
+# }
 
 def "main remove" [path] {
     let root = get-root
@@ -100,26 +91,4 @@ def "main status" [] {
     echo ($config | reject filters)
     echo $config.filters
     # echo ($config | table -e)
-}
-
-def get-root [] {
-    let root = git rev-parse --show-toplevel
-    return $root
-}
-
-def get-config-dir [] {
-    let root = get-root
-    let config_dir = $root | path join ".dcs"
-    return $config_dir
-}
-
-def get-config-file [] {
-    let config_dir = get-config-dir
-    let config_file = $"($config_dir)/($config_name)"
-    return $config_file
-}
-
-def is-git [] {
-    let output = do { git rev-parse --is-inside-work-tree } | complete
-    return ($output.exit_code == 0)
 }

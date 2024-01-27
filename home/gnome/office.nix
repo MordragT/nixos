@@ -7,6 +7,5 @@
     rnote # draw notes
     paperwork
     pdfarranger
-    valent # kde connect implementation for gnome
   ];
 }

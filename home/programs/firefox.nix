@@ -26,8 +26,8 @@ in {
         firefox-gnome-theme = pkgs.fetchFromGitHub {
           owner = "rafaelmardojai";
           repo = "firefox-gnome-theme";
-          rev = "6514f65331a98d3ea571edb1fa74cb39aaac1459";
-          sha256 = "kWNuxFWEkK2LtxMi3I+L/55dTrAdtCaXyPalClclD8s=";
+          rev = "v121.1";
+          sha256 = "sha256-SYp0DRkO73i8XVyOdAlcP2ZItqx9DqraIEJy6mY/2Ng=";
         };
       in ''
         @import "${firefox-gnome-theme}/userChrome.css";
@@ -75,19 +75,19 @@ in {
             platforms = platforms.all;
           };
         };
-        bibitnow = buildFirefoxXpiAddon {
-          pname = "BibItNow!";
-          version = "0.908";
-          addonId = "bibitnow018@aqpl.mc2.chalmers.se";
-          url = "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi";
-          sha256 = "QIWgTLD+WVZ3+lt/pjDYF+CRiMz7/NNYbMwWLv6mdGc=";
-          meta = with lib; {
-            homepage = "https://github.com/Langenscheiss/bibitnow";
-            description = "Instantly creates a Bibtex, RIS, Endnote, APA, MLA or (B)Arnold S.";
-            license = licenses.mpl20;
-            platforms = platforms.all;
-          };
-        };
+        # bibitnow = buildFirefoxXpiAddon {
+        #   pname = "BibItNow!";
+        #   version = "0.908";
+        #   addonId = "bibitnow018@aqpl.mc2.chalmers.se";
+        #   url = "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi";
+        #   sha256 = "QIWgTLD+WVZ3+lt/pjDYF+CRiMz7/NNYbMwWLv6mdGc=";
+        #   meta = with lib; {
+        #     homepage = "https://github.com/Langenscheiss/bibitnow";
+        #     description = "Instantly creates a Bibtex, RIS, Endnote, APA, MLA or (B)Arnold S.";
+        #     license = licenses.mpl20;
+        #     platforms = platforms.all;
+        #   };
+        # };
         pia = buildFirefoxXpiAddon {
           pname = "PrivateInternetAccess";
           version = "3.2.5";
@@ -116,17 +116,19 @@ in {
         };
       in
         with pkgs.nur.repos.rycee.firefox-addons; [
+          bibkit
+          # bibitnow
+          bitwarden
+          brave-search
+          ghostery
+          honey
+          pia
+          rust-search-extension
           sidebery
           sponsorblock
-          bibkit
-          bitwarden
-          honey
-          ublock-origin
-          rust-search-extension
-          brave-search
-          bibitnow
-          pia
-          pkgs.nur.repos.bandithedoge.firefoxAddons.augmented-steam
+          # ublock-origin
+          youtube-shorts-block
+          # pkgs.nur.repos.bandithedoge.firefoxAddons.augmented-steam
         ];
     };
   };

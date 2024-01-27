@@ -18,6 +18,7 @@
     gnome.gnome-boxes
     gnome.gnome-sound-recorder
     gnome.ghex # hex editor
+    gnome.gnome-tweaks
     # lutris
     # broken popsicle # flash usb with iso
   ];

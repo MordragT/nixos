@@ -13,6 +13,8 @@
       use ${../../scripts/comma.nu} ,
       # broken ?? use ${../../scripts/all-to.nu} main
 
+      register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
+
       $env.config.rm.always_trash = true
 
       alias comojit = comoji commit

@@ -9,8 +9,6 @@
     dud = callPackage ./dud.nix {};
     ensembles = callPackage ./ensembles.nix {};
     epic-asset-manager = callPackage ./epic-asset-manager {};
-    gnome-shell-extension-fly-pie = callPackage ./gnome-extensions/fly-pie.nix {};
-    likwid = callPackage ./likwid.nix {};
     lottieconv = callPackage ./lottieconv {};
     oneAPI = callPackage ./oneAPI.nix {};
     oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};

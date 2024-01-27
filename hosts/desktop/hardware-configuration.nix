@@ -42,16 +42,6 @@
     ];
   };
 
-  fileSystems."/run/media/Backup" = {
-    device = "/dev/disk/by-label/Backup";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-      "autodefrag"
-    ];
-  };
-
   swapDevices = [
     {
       device = "/dev/disk/by-label/Swap";

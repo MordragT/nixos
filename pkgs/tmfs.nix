@@ -37,7 +37,7 @@ stdenv.mkDerivation {
       it has been written for a friend who has lost his macbook
       and wants to recover its data on Linux.
     '';
-    homepage = "https://hpc.fau.de/research/tools/likwid/";
+    homepage = "https://github.com/abique/tmfs";
     license = [licenses.mit];
     platforms = platforms.unix;
     maintainers = with maintainers; [mordrag];
