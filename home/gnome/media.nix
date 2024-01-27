@@ -5,7 +5,7 @@
     # ensembles # live DAW
     helvum # patchbay for pipewire
     kooha # screen recording
-    pitivi # video editor
+    # broken pitivi # video editor
     # zrythm # music daw
   ];
 }
