@@ -109,7 +109,6 @@
               # ./config/services/gitea.nix
               # ./config/services/vaultwarden.nix
               ./config/programs/steam.nix
-              ./config/programs/comma.nix
               ./config/security.nix
               ./config/desktop-manager/gnome.nix
             ];
