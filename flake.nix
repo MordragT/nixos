@@ -134,6 +134,7 @@
               ./home/programs/nushell.nix
               ./home/programs/firefox.nix
               ./home/gaming.nix
+              ./home/nix.nix
               ./home/gnome
             ];
           })
