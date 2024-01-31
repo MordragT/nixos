@@ -22,6 +22,8 @@
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.niri-src.url = "github:YaLTeR/niri";
   };
 
   outputs = {
@@ -34,6 +36,8 @@
     classified,
     comoji,
     fenix,
+    niri,
+    ...
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -67,6 +71,7 @@
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
+          niri.nixosModules.niri
         ];
 
         specialArgs = {
@@ -115,6 +120,7 @@
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
+          niri.nixosModules.niri
         ];
 
         specialArgs = {
@@ -165,10 +171,12 @@
               ./config/virtualisation.nix
               ./config/desktop-manager/gnome.nix
               ./config/desktop-manager/cosmic.nix
+              ./config/desktop-manager/niri.nix
             ];
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
+          niri.nixosModules.niri
         ];
 
         specialArgs = {
@@ -185,6 +193,7 @@
             username = "tom";
             imports = [
               ./home
+              ./home/programs/niri.nix
             ];
           })
           // (lib.mkHome {

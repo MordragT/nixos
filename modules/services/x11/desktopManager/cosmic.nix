@@ -34,6 +34,7 @@ in
           cosmic-osd
           cosmic-panel
           cosmic-screenshot
+          cosmic-session
           cosmic-settings
           cosmic-settings-daemon
           cosmic-workspaces-epoch
@@ -43,6 +44,10 @@ in
           # TODO check which are optional
           cosmic-edit
           cosmic-term
+          cosmic-randr
+          cosmic-files
+          cosmic-design-demo
+          cosmic-protocols
         ];
       in
         mandatoryPackages
