@@ -166,12 +166,13 @@
               ./config/services
               ./config/services/pia-wg.nix
               ./config/programs
+              # ./config/programs/niri.nix
+              ./config/programs/sway.nix
               ./config/impermanence.nix
               ./config/security.nix
               ./config/virtualisation.nix
               ./config/desktop-manager/gnome.nix
               ./config/desktop-manager/cosmic.nix
-              ./config/desktop-manager/niri.nix
             ];
           }
           classified.nixosModules.${system}.default
@@ -193,7 +194,8 @@
             username = "tom";
             imports = [
               ./home
-              ./home/programs/niri.nix
+              # ./home/window-manager/niri.nix
+              ./home/window-manager/sway.nix
             ];
           })
           // (lib.mkHome {

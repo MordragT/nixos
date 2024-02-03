@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services.xserver = {
     enable = true;
-    layout = "de";
+    xkb.layout = "de";
     displayManager.gdm = {
       enable = true;
       wayland = true;

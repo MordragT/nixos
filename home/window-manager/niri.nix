@@ -86,7 +86,7 @@
         // automatically.
         position x=2560 y=0
     }
-    
+
     output "eDP-1" {
         // Uncomment this line to disable this output.
         // off
