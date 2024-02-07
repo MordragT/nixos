@@ -57,14 +57,14 @@ in
         xdg-desktop-portal-cosmic
       ];
 
-      xdg.portal.configPackages = [
-        (pkgs.writeTextDir "share/xdg-desktop-portal/cosmic-portals.conf" ''
-          [preferred]
-          default=gtk
-          org.freedesktop.impl.portal.Screencast=cosmic
-          org.freedesktop.impl.portal.Screenshot=cosmic
-        '')
-      ];
+      # xdg.portal.configPackages = [
+      #   (pkgs.writeTextDir "share/xdg-desktop-portal/cosmic-portals.conf" ''
+      #     [preferred]
+      #     default=gtk
+      #     org.freedesktop.impl.portal.Screencast=cosmic
+      #     org.freedesktop.impl.portal.Screenshot=cosmic
+      #   '')
+      # ];
 
       # session files for display manager and systemd
       services.xserver.displayManager.sessionPackages = with pkgs; [cosmic-session];

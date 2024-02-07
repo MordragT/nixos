@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # matlab
-    spotify # listen to music
+    # spotify # spotube is far better # listen to music
     unigine-superposition
 
     # Social

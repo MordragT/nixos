@@ -26,6 +26,7 @@
     # Media
     # olive-editor # video editor
     # upscayl
+    spotube # use spotify to find music on youtube
 
     # Security
     (cutter.withPlugins (cpkgs: with cpkgs; [jsdec rz-ghidra]))

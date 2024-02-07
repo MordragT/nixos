@@ -11,6 +11,7 @@
     # czkawka # duplicate finder
     fclones-gui # find duplicate files
     markets # gtk crypto market prices
+    overskride # bluetooth client
 
     # GTK Apps
     bottles

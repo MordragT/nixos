@@ -116,6 +116,7 @@
               ./config/programs/steam.nix
               ./config/security.nix
               ./config/desktop-manager/gnome.nix
+              ./config/desktop-manager/lxqt.nix
             ];
           }
           classified.nixosModules.${system}.default
@@ -167,12 +168,13 @@
               ./config/services/pia-wg.nix
               ./config/programs
               # ./config/programs/niri.nix
-              ./config/programs/sway.nix
+              # ./config/programs/sway.nix
               ./config/impermanence.nix
               ./config/security.nix
               ./config/virtualisation.nix
               ./config/desktop-manager/gnome.nix
-              ./config/desktop-manager/cosmic.nix
+              ./config/desktop-manager/lxqt.nix
+              # ./config/desktop-manager/cosmic.nix
             ];
           }
           classified.nixosModules.${system}.default
@@ -195,7 +197,7 @@
             imports = [
               ./home
               # ./home/window-manager/niri.nix
-              ./home/window-manager/sway.nix
+              # ./home/window-manager/sway.nix
             ];
           })
           // (lib.mkHome {

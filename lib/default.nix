@@ -28,7 +28,7 @@
             boot.tmp.tmpfsSize = "75%";
             boot.tmp.cleanOnBoot = true;
             boot.runSize = "25%";
-            boot.kernelPackages = pkgs.linuxPackages_6_6;
+            boot.kernelPackages = pkgs.linuxPackages_6_7; #linuxPackages_latest/testing
             # league of legends
             # boot.kernel.sysctl."abi.vsyscall32" = 0;
             # cs 2
