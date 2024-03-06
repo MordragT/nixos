@@ -14,13 +14,12 @@
     # not packaged commit
     curtail
     # not packaged decibles
-    gnome-decoder # scan qr codes
     dialect # translate
     deja-dup # backup tool
     eartag # tag audio files
     # elastic
     emblem
-    # not packaged errands
+    errands
     eyedropper # pick format colors
     raider # file shredder
     # not packaged forge-sparks
@@ -42,6 +41,7 @@
     # not packaged paperclip # edit pdf metadata
     pika-backup # simple backups
     # broken plots # graph plotting
+    gnome-decoder # scan qr codes
     gnome-podcasts # listen to podcasts
     gnome.polari # irc client
     # gnome-secrets # password manager

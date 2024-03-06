@@ -8,11 +8,11 @@
     # Documents
     # libreoffice-fresh
     # okular
-    onlyoffice-bin_7_5
+    onlyoffice-bin_latest
     xournalpp
 
     # Graphics
-    blender
+    # broken blender
     # broken electron16 blockbench-electron
     # broken drawio
     # glaxnimate
@@ -29,7 +29,7 @@
     spotube # use spotify to find music on youtube
 
     # Security
-    (cutter.withPlugins (cpkgs: with cpkgs; [jsdec rz-ghidra]))
+    # (cutter.withPlugins (plugins: with plugins; [jsdec rz-ghidra]))
     # tor-browser-bundle-bin
 
     # Other

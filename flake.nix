@@ -6,6 +6,10 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,8 +26,6 @@
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri.url = "github:sodiboo/niri-flake";
-    niri.inputs.niri-src.url = "github:YaLTeR/niri";
   };
 
   outputs = {
@@ -32,11 +34,11 @@
     nixpkgs,
     nur,
     chaotic,
+    cosmic,
     home-manager,
     classified,
     comoji,
     fenix,
-    niri,
     ...
   }: let
     system = "x86_64-linux";
@@ -45,6 +47,7 @@
       config.allowUnfree = true;
       overlays = [
         chaotic.overlays.default
+        cosmic.overlays.default
         comoji.overlays.default
         fenix.overlays.default
         nur.overlay
@@ -71,7 +74,6 @@
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
-          niri.nixosModules.niri
         ];
 
         specialArgs = {
@@ -115,13 +117,11 @@
               # ./config/services/vaultwarden.nix
               ./config/programs/steam.nix
               ./config/security.nix
-              ./config/desktop-manager/gnome.nix
-              ./config/desktop-manager/lxqt.nix
+              ./config/desktop-manager/cosmic.nix
             ];
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
-          niri.nixosModules.niri
         ];
 
         specialArgs = {
@@ -167,19 +167,20 @@
               ./config/services
               ./config/services/pia-wg.nix
               ./config/programs
+              # no fractional scaling (https://github.com/YaLTeR/niri/issues/35)
               # ./config/programs/niri.nix
-              # ./config/programs/sway.nix
+              # no security manager (wlroots issue https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/3339)
+              # ./config/programs/hyprland.nix
               ./config/impermanence.nix
               ./config/security.nix
               ./config/virtualisation.nix
-              ./config/desktop-manager/gnome.nix
-              ./config/desktop-manager/lxqt.nix
-              # ./config/desktop-manager/cosmic.nix
+              # ./config/desktop-manager/gnome.nix
+              ./config/desktop-manager/cosmic.nix
             ];
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
-          niri.nixosModules.niri
+          cosmic.nixosModules.default
         ];
 
         specialArgs = {
@@ -197,7 +198,7 @@
             imports = [
               ./home
               # ./home/window-manager/niri.nix
-              # ./home/window-manager/sway.nix
+              ./home/window-manager/hyprland.nix
             ];
           })
           // (lib.mkHome {

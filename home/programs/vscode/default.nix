@@ -65,6 +65,8 @@ in {
       "explorer.confirmDelete" = false;
       "explorer.confirmDragAndDrop" = false;
 
+      "extensions.autoUpdate" = false;
+
       "files.exclude" = {
         "**/.classpath" = true;
         "**/.factorypath" = true;
@@ -104,7 +106,7 @@ in {
       # "platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
 
       # "python.formatting.provider" = "black";
-      # "rust-analyzer.procMacro.enable" = false;
+      "rust-analyzer.procMacro.enable" = false;
       "terminal.integrated.fontSize" = 11;
       # "terminal.integrated.rendererType" = "dom";
       "typst-lsp.exportPdf" = "never";
