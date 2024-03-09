@@ -3,6 +3,7 @@
 in {
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox-beta;
     profiles.options = {
       settings = {
         "browser.startup.homepage" = "https://search.brave.com";
@@ -17,6 +18,11 @@ in {
         "services.sync.engine.history" = false;
         "services.sync.engine.bookmarks" = true;
 
+        # Acceleration
+        # "dom.webgpu.enabled" = true;
+        "gfx.webrender.all" = true;
+        "media.ffmpeg.vaapi.enabled" = true;
+
         # For firefox GNOME theme
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.tabs.drawInTitlebar" = true;
@@ -26,8 +32,8 @@ in {
         firefox-gnome-theme = pkgs.fetchFromGitHub {
           owner = "rafaelmardojai";
           repo = "firefox-gnome-theme";
-          rev = "v121.1";
-          sha256 = "sha256-SYp0DRkO73i8XVyOdAlcP2ZItqx9DqraIEJy6mY/2Ng=";
+          rev = "v122";
+          sha256 = "sha256-QZk/qZQVt1X53peCqB2qmWhpA3xtAVgY95pebSKaTFU=";
         };
       in ''
         @import "${firefox-gnome-theme}/userChrome.css";

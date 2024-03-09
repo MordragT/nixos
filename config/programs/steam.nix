@@ -3,12 +3,12 @@
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
+    extest.enable = true;
     package = pkgs.steam.override {
       extraLibraries = pkgs:
         with pkgs; [
           # Crusader Kings 3
           ncurses
-          # gamescope
           libkrb5
           keyutils
           #gnome.zenity
@@ -23,6 +23,7 @@
     steamcmd
     steam-run
     sc-controller
+    steamtinkerlaunch
     # steamcontroller
     # protonup-qt # replaced by chaotic luxtorpeda/proton-ge
     protontricks

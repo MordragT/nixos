@@ -17,8 +17,8 @@
     driSupport32Bit = true;
   };
 
-  programs.steam.gamescopeSession.args = [
-    "-w 1920"
-    "-h 1080"
-  ];
+  # programs.steam.gamescopeSession.args = [
+  #   "-w 1920"
+  #   "-h 1080"
+  # ];
 }

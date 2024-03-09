@@ -31,16 +31,16 @@
   #   XDG_BIN_HOME = "\${HOME}/.local/bin";
   # };
 
-  # xdg.mime = {
-  #   enable = true;
-  #   defaultApplications = {
-  #     "text/html" = "chromium-browser.desktop";
-  #     "x-scheme-handler/http" = "chromium-browser.desktop";
-  #     "x-scheme-handler/https" = "chromium-browser.desktop";
-  #     "x-scheme-handler/about" = "chromium-browser.desktop";
-  #     "x-scheme-handler/unknown" = "chromium-browser.desktop";
-  #   };
-  # };
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
+  };
 
   # This module contains mostly alternatives to POSIX utilities
   environment.systemPackages = with pkgs; [
@@ -66,6 +66,7 @@
     alsa-utils # configure audio devices
     brightnessctl
     openconnect
+    fh-connect
     htop # better top
     cpufetch # fetch cpu information
     clinfo # opencl info
@@ -77,6 +78,8 @@
     usbutils
     pciutils
     inetutils
+    libva-utils
     psmisc
+    xorg.xlsclients
   ];
 }

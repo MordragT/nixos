@@ -15,4 +15,6 @@
   services.gnome.gnome-keyring.enable = true;
   # quick previewer for nautilus
   services.gnome.sushi.enable = true;
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    gamescope
+    # gamescope
     mangohud
     minecraft
     moonlight-qt # game stream client ala steam link

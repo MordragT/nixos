@@ -122,6 +122,7 @@
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
+          cosmic.nixosModules.default
         ];
 
         specialArgs = {

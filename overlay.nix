@@ -44,5 +44,17 @@ in
       openclSupport = true;
       blasSupport = false;
     };
+    gamescope = pkgs.gamescope_git;
+    fh-connect = pkgs.writeScriptBin "fh-connect" ''
+      #!${pkgs.bash}/bin/bash
+
+      COOKIE=
+      eval `${pkgs.openconnect}/bin/openconnect --authenticate --useragent=AnyConnect vpn.fh-aachen.de`
+      if [ -z "$COOKIE" ]; then
+          exit 1
+      fi
+
+      sudo ${pkgs.openconnect}/bin/openconnect --servercert "$FINGERPRINT" "$CONNECT_URL" --cookie-on-stdin <<< "$COOKIE"
+    '';
   }
   // myPkgs
