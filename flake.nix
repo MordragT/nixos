@@ -109,6 +109,7 @@
               ./modules
               ./hosts/server
               ./config/system
+              ./config/security.nix
               ./config/services/openssh.nix
               ./config/services/samba.nix
               # ./config/services/maddy.nix
@@ -116,7 +117,6 @@
               # ./config/services/gitea.nix
               # ./config/services/vaultwarden.nix
               ./config/programs/steam.nix
-              ./config/security.nix
               ./config/desktop-manager/cosmic.nix
             ];
           }

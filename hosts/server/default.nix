@@ -24,6 +24,10 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    protonvpn-gui
+  ];
+
   # programs.steam.gamescopeSession.args = [
   #   "-w 1920"
   #   "-h 1080"
