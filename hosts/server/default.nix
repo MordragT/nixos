@@ -24,6 +24,10 @@
     ];
   };
 
+  # needed for protonvpn
+  # https://github.com/NixOS/nixpkgs/issues/294750
+  programs.nm-applet.enable = true;
+
   environment.systemPackages = with pkgs; [
     protonvpn-gui
   ];
