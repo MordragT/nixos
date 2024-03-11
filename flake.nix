@@ -166,7 +166,6 @@
               ./hosts/desktop
               ./config/system
               ./config/services
-              ./config/services/pia-wg.nix
               ./config/programs
               # no fractional scaling (https://github.com/YaLTeR/niri/issues/35)
               # ./config/programs/niri.nix

@@ -3,7 +3,7 @@
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
-    extest.enable = true;
+    # extest.enable = true;
     package = pkgs.steam.override {
       extraLibraries = pkgs:
         with pkgs; [
@@ -12,6 +12,7 @@
           libkrb5
           keyutils
           #gnome.zenity
+          mangohud
         ];
     };
   };

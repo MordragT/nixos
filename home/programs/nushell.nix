@@ -11,6 +11,7 @@
     package = pkgs.nushellFull;
     configFile.text = ''
       use ${../../scripts/comma.nu} ,
+      use ${../../scripts/vpnctl.nu} [vpnctl "vpnctl fh-aachen" "vpnctl up" "vpnctl down"]
       # broken ?? use ${../../scripts/all-to.nu} main
 
       register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
@@ -23,4 +24,10 @@
     '';
     envFile.text = "";
   };
+
+  # vpnctl
+  home.packages = with pkgs; [
+    openconnect
+    wireguard-tools
+  ];
 }

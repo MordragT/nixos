@@ -14,7 +14,6 @@
     oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};
     oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix {};
     opengothic = callPackage ./opengothic.nix {};
-    pia-openvpn = callPackage ./pia-openvpn.nix {};
     spflashtool = callPackage ./spflashtool.nix {};
     tmfs = callPackage ./tmfs.nix {};
     vulkan-raytracing = callPackage ./vulkan-raytracing.nix {};

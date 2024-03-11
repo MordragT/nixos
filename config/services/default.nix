@@ -7,7 +7,6 @@
     #./sunshine.nix
     ./openssh.nix
     ./tailscale.nix
-    # ./pia-wg.nix
   ];
 
   services.flatpak.enable = true;

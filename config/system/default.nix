@@ -10,6 +10,7 @@
   ];
 
   classified.keys.first = "/var/key";
+  classified.files.pia.encrypted = ../../secrets/pia/pia.enc;
 
   environment.interactiveShellInit = ''
     alias comojit='comoji commit'
@@ -65,8 +66,6 @@
 
     alsa-utils # configure audio devices
     brightnessctl
-    openconnect
-    fh-connect
     htop # better top
     cpufetch # fetch cpu information
     clinfo # opencl info
