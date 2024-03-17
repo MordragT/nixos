@@ -5,14 +5,19 @@
   environment.systemPackages = with pkgs.gnome; [
     nautilus
     gnome-system-monitor
+    gnome-calculator
   ];
 
   programs.evince.enable = true;
   programs.file-roller.enable = true;
   programs.geary.enable = true;
+
+  services.udisks2.enable = true;
   programs.gnome-disks.enable = true;
 
+  security.pam.services.login.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;
+
   # quick previewer for nautilus
   services.gnome.sushi.enable = true;
 

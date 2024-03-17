@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./bluetooth.nix
+    ./boot.nix
     ./fonts.nix
     ./locale.nix
     ./networking.nix
@@ -80,5 +81,6 @@
     libva-utils
     psmisc
     xorg.xlsclients
+    hwloc
   ];
 }

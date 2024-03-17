@@ -12,7 +12,7 @@
     interface = "wlp39s0";
   };
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "tom-desktop";
   # https://github.com/NixOS/nixpkgs/issues/180175
@@ -24,9 +24,7 @@
   #   extraPackages = with pkgs; [
   #     intel-compute-runtime
   #     intel-media-driver
-  #     vaapiIntel
-  #     vaapiVdpau
-  #     libvdpau-va-gl
+  #     intel-vaapi-driver
   #   ];
   # };
 
@@ -37,9 +35,7 @@
     extraPackages = with pkgs; [
       intel-compute-runtime
       intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
+      intel-vaapi-driver
     ];
   };
 

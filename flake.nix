@@ -26,6 +26,15 @@
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nuenv = {
+      # url = "github:DeterminateSystems/nuenv";
+      url = "github:NotLebedev/nuenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -39,6 +48,8 @@
     classified,
     comoji,
     fenix,
+    lanzaboote,
+    nuenv,
     ...
   }: let
     system = "x86_64-linux";
@@ -51,6 +62,7 @@
         comoji.overlays.default
         fenix.overlays.default
         nur.overlay
+        nuenv.overlays.default
         (import ./overlay.nix)
       ];
     };
@@ -74,6 +86,7 @@
           }
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
         ];
 
         specialArgs = {
@@ -123,6 +136,7 @@
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
           cosmic.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
         ];
 
         specialArgs = {
@@ -181,6 +195,7 @@
           classified.nixosModules.${system}.default
           chaotic.nixosModules.default
           cosmic.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
         ];
 
         specialArgs = {

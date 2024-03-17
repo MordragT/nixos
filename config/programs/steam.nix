@@ -5,28 +5,37 @@
     gamescopeSession.enable = true;
     # extest.enable = true;
     package = pkgs.steam.override {
+      extraEnv = {
+        MANGOHUD = true;
+      };
       extraLibraries = pkgs:
         with pkgs; [
-          # Crusader Kings 3
-          ncurses
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
           libkrb5
           keyutils
-          #gnome.zenity
-          mangohud
+
+          gamemode
         ];
     };
+    extraCompatPackages = with pkgs; [
+      luxtorpeda
+      proton-ge-custom
+      steamtinkerlaunch
+      # compatPackages.wine-unstable
+    ];
   };
 
-  chaotic.steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom steamtinkerlaunch];
-
   environment.systemPackages = with pkgs; [
-    # steam-tui
     steamcmd
     steam-run
     sc-controller
-    steamtinkerlaunch
-    # steamcontroller
-    # protonup-qt # replaced by chaotic luxtorpeda/proton-ge
     protontricks
   ];
 }

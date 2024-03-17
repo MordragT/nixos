@@ -28,11 +28,7 @@
             boot.tmp.tmpfsSize = "75%";
             boot.tmp.cleanOnBoot = true;
             boot.runSize = "25%";
-            boot.kernelPackages = pkgs.linuxPackages_testing; #linuxPackages_latest/testing/6_7
-            # league of legends
-            # boot.kernel.sysctl."abi.vsyscall32" = 0;
-            # cs 2
-            # boot.kernel.sysctl."vm.max_map_count" = 16777216;
+            boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
           }
           home-manager.nixosModules.home-manager
           {
@@ -66,6 +62,7 @@
         # dataHome = "~/.local/share";
         # stateHome = "~/.local/state";
       };
+      nix.registry.nixpkgs.flake = nixpkgs;
       inherit imports;
     };
   };
