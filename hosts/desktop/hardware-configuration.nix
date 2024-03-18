@@ -15,7 +15,7 @@
   boot.kernelModules = [
     "kvm-amd"
     "btintel"
-    # "v4l2loopback"
+    "v4l2loopback"
     # "amd_pstate=active" _CPC object not present and no settings in bios
   ];
   boot.kernelParams = [
@@ -28,7 +28,7 @@
     "retbleed=off"
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    # v4l2loopback
+    v4l2loopback
   ];
 
   boot.kernel.sysctl = {

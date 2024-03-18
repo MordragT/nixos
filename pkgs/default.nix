@@ -1,35 +1,43 @@
 {pkgs}: let
-  callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xorg // self);
-  self = rec {
-    xpuPackages = import ./xpuPackages {inherit pkgs;};
-    compatPackages = import ./compatPackages {inherit pkgs opengothic;};
+  # callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xorg // self);
+  callPackage = pkgs.callPackage;
+in rec
+{
+  xpuPackages = import ./xpuPackages {inherit pkgs;};
+  compatPackages = import ./compatPackages {inherit pkgs opengothic;};
 
-    # astrofox = callPackage ./astrofox.nix { };
-    byfl = callPackage ./byfl.nix {};
-    cisco-secure-client = callPackage ./cisco-secure-client {};
-    dud = callPackage ./dud.nix {};
-    ensembles = callPackage ./ensembles.nix {};
-    epic-asset-manager = callPackage ./epic-asset-manager {};
-    lottieconv = callPackage ./lottieconv {};
-    oneAPI = callPackage ./oneAPI.nix {};
-    oneVPL = callPackage ./oneVPL.nix {inherit oneVPL-intel-gpu;};
-    oneVPL-intel-gpu = callPackage ./oneVPL-intel-gpu.nix {};
-    opengothic = callPackage ./opengothic.nix {};
-    spflashtool = callPackage ./spflashtool.nix {};
-    tmfs = callPackage ./tmfs.nix {};
-    vulkan-raytracing = callPackage ./vulkan-raytracing.nix {};
-    webdesigner = callPackage ./webdesigner.nix {};
-  };
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs:
       import ./python {
         inherit pyPkgs;
-        pkgs = pkgs // self;
+        pkgs = pkgs // {inherit xpuPackages;};
       };
   };
-in
-  self
-  // {
-    python3 = python3;
-    python3Packages = python3.pkgs;
-  }
+  python3Packages = python3.pkgs;
+
+  hpcStdenv =
+    pkgs.withCFlags [
+      # "-flto" # link time optimization
+      "-march=x86-64-v3"
+      "-O3"
+    ]
+    pkgs.llvmPackages.stdenv;
+
+  # astrofox = callPackage ./astrofox.nix { };
+  byfl = callPackage ./byfl.nix {};
+  dud = callPackage ./dud.nix {};
+  ensembles = callPackage ./ensembles.nix {};
+  epic-asset-manager = callPackage ./epic-asset-manager {};
+  lottieconv = callPackage ./lottieconv {};
+  opengothic = callPackage ./opengothic.nix {inherit hpcStdenv;};
+  spflashtool = callPackage ./spflashtool.nix {};
+  tmfs = callPackage ./tmfs.nix {};
+  vulkan-raytracing = callPackage ./vulkan-raytracing.nix {};
+  webdesigner = callPackage ./webdesigner.nix {};
+
+  llama-cpp = pkgs.llama-cpp.override {
+    openclSupport = true;
+    blasSupport = false;
+  };
+  gamescope = pkgs.gamescope_git;
+}

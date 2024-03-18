@@ -28,7 +28,7 @@
             boot.tmp.tmpfsSize = "75%";
             boot.tmp.cleanOnBoot = true;
             boot.runSize = "25%";
-            boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
+            boot.kernelPackages = pkgs.linuxPackages_6_8; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
           }
           home-manager.nixosModules.home-manager
           {

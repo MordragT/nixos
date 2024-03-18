@@ -1,6 +1,6 @@
 {
   lib,
-  stdenv,
+  hpcStdenv,
   fetchFromGitHub,
   cmake,
   alsa-lib,
@@ -10,21 +10,23 @@
   vulkan-loader,
   xorg,
 }:
-stdenv.mkDerivation rec {
+hpcStdenv.mkDerivation rec {
   pname = "opengothic";
   version = "master";
 
   src = fetchFromGitHub {
     owner = "Try";
     repo = "OpenGothic";
-    rev = "794e575f006698900eaf826d17eb1c98061795ad";
-    sha256 = "sha256-geyUc4LeiI9uqjy4YtNi0BTa76JqmcEtvy71GjdFTd0=";
+    rev = "a506c4656903d5754c21318f691939e239678b97";
+    sha256 = "sha256-HswZVl3SXJE0UBRt23ZupUOjg/0Fly3MjO4B74cDBik=";
     fetchSubmodules = true;
   };
 
   nativeBuildInputs = [
     cmake
   ];
+
+  env.NIX_CFLAGS_COMPILE = ["-Wno-unused-but-set-variable"];
 
   cmakeFlags = [
     "-DBUILD_SHARED_LIBS=ON"
