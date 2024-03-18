@@ -24,11 +24,12 @@
           gamemode
         ];
     };
-    extraCompatPackages = with pkgs; [
+    extraCompatPackages = with pkgs.compatPackages; [
       luxtorpeda
-      proton-ge-custom
+      proton
       steamtinkerlaunch
-      # compatPackages.wine-unstable
+      wine-unstable
+      opengothic
     ];
   };
 

@@ -253,6 +253,7 @@
     };
 
     overlays.default = import ./overlay.nix;
+    packages."${system}" = import ./pkgs {inherit pkgs;};
     devShells."${system}" = import ./shells {inherit pkgs;};
   };
 }

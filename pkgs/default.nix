@@ -2,7 +2,7 @@
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xorg // self);
   self = rec {
     xpuPackages = import ./xpuPackages {inherit pkgs;};
-    compatPackages = import ./compatPackages {inherit pkgs;};
+    compatPackages = import ./compatPackages {inherit pkgs opengothic;};
 
     # astrofox = callPackage ./astrofox.nix { };
     byfl = callPackage ./byfl.nix {};
