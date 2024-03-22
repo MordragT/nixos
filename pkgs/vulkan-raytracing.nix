@@ -11,15 +11,16 @@
   vulkan-tools,
   vulkan-validation-layers,
   freetype,
+  glew,
   glfw,
   glm,
   stb,
   boost,
   SDL2,
-  imgui,
   libGL,
   libGLU,
   xorg,
+  zlib,
 }: let
   tinyobjloader = stdenv.mkDerivation rec {
     pname = "tinyobjloader";
@@ -40,6 +41,52 @@
         --replace '$'{prefix}/@TINYOBJLOADER_LIBRARY_DIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \
         --replace '$'{prefix}/@TINYOBJLOADER_INCLUDE_DIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@
     '';
+  };
+
+  imgui = stdenv.mkDerivation {
+    pname = "imgui";
+    version = "master";
+
+    src = fetchFromGitHub {
+      owner = "opencodewin";
+      repo = "imgui";
+      rev = "008d29cbb4ebf14b8642979da8844d6e23696138";
+      hash = "sha256-DCLMINR4V8gKqB1+CHoctVSDacz2M1/dxGvg2p2GeMQ=";
+    };
+
+    nativeBuildInputs = [
+      cmake
+      pkg-config
+    ];
+
+    cmakeFlags = [
+      "-DIMGUI_SKIP_INSTALL=OFF"
+      "-DIMGUI_STATIC=ON"
+    ];
+
+    # preConfigure = ''
+    #   substituteInPlace CMakeLists.txt \
+    #     --replace "ARCHIVE DESTINATION ''${CMAKE_INSTALL_LIBDIR}" "ARCHIVE DESTINATION ''${CMAKE_INSTALL_LIBDIR}\nINCLUDES DESTINATION include"
+    # '';
+
+    buildInputs = [
+      vulkan-loader
+      vulkan-headers
+      glslang
+      glfw
+      glew
+      freetype
+      zlib
+      SDL2
+      xorg.libXext
+      xorg.libXcursor
+      xorg.libXi
+      xorg.libXfixes
+      xorg.libXrandr
+      xorg.libXScrnSaver
+    ];
+
+    meta.broken = true;
   };
 in
   stdenv.mkDerivation {
@@ -66,43 +113,12 @@ in
 
     preConfigure = ''
       substituteInPlace CMakeLists.txt \
-        --replace "find_package(imgui CONFIG REQUIRED)" '
-            add_library(imgui STATIC)
-
-            # set(IMGUI_DIR $ENV{IMGUI_DIR})
-            target_sources( imgui
-                            PRIVATE
-                                ''${IMGUI_DIR}/imgui_demo.cpp
-                                ''${IMGUI_DIR}/imgui_draw.cpp
-                                ''${IMGUI_DIR}/imgui_tables.cpp
-                                ''${IMGUI_DIR}/imgui_widgets.cpp
-                                ''${IMGUI_DIR}/imgui.cpp
-
-                            PRIVATE
-                                ''${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
-                                ''${IMGUI_DIR}/backends/imgui_impl_sdl2.cpp
-
-                            PRIVATE
-                                ''${IMGUI_DIR}/misc/freetype/imgui_freetype.cpp
-                            )
-
-            find_path(SDL2_DIR "SDL2/SDL.h")
-            target_include_directories( imgui
-                                        PUBLIC ''${IMGUI_DIR}
-                                        PUBLIC ''${IMGUI_DIR}/backends
-                                        PUBLIC ''${IMGUI_DIR}/misc/freetype
-                                        PUBLIC ''${SDL2_DIR}/SDL2
-                                        )
-        ' \
         --replace "find_package(Stb REQUIRED)" "find_package(Freetype REQUIRED)" \
         --replace "find_package(tinyobjloader CONFIG REQUIRED)" "find_package(tinyobjloader REQUIRED)" \
 
-      substituteInPlace src/CMakeLists.txt \
-        --replace "imgui::imgui" "imgui"
+      # substituteInPlace src/CMakeLists.txt \
+      #   --replace "imgui::imgui" "imgui"
     '';
-
-    # IMGUI_DIR = "${imgui}/include/imgui";
-    # STB_DIR = "${stb}/include/stb";
 
     buildInputs = [
       glslang

@@ -1,10 +1,18 @@
 {pkgs}: let
   # callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xorg // self);
   callPackage = pkgs.callPackage;
+  vplPin =
+    import (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/88add7e28ef9e6610619bac4752a11be0830a0d2.tar.gz";
+      sha256 = "1f5kckzrnm523sgcspviwj1a3fyl0i3px9xgap84nzwpz2k34ars";
+    }) {
+      system = "x86_64-linux";
+    };
 in rec
 {
   xpuPackages = import ./xpuPackages {inherit pkgs;};
   compatPackages = import ./compatPackages {inherit pkgs opengothic;};
+  winePackages = import ./winePackages {inherit pkgs;};
 
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pyPkgs:
@@ -40,4 +48,9 @@ in rec
     blasSupport = false;
   };
   gamescope = pkgs.gamescope_git;
+  onevpl-intel-gpu = vplPin.onevpl-intel-gpu;
+  ffmpeg-vpl = vplPin.ffmpeg-full.override {
+    withVpl = true;
+    withMfx = false;
+  };
 }

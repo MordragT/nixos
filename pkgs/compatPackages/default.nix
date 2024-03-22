@@ -74,14 +74,6 @@
       '';
     };
 in {
-  wine-unstable = mkCompatDerivation {
-    name = "wine-unstable";
-    run = ''
-      export WINEPREFIX=''${STEAM_COMPAT_DATA_PATH}/pfx
-      [ ! -d "$WINEPREFIX" ] && mkdir $WINEPREFIX
-      ${pkgs.wine64Packages.unstableFull}/bin/wine64 $@ > /tmp/compat.log 2> /tmp/compat_err.log
-    '';
-  };
   opengothic = mkCompatDerivation {
     name = "opengothic";
     run = ''
@@ -89,7 +81,8 @@ in {
       ${opengothic}/bin/opengothic -g $gothic_dir $@ > /tmp/compat.log 2> /tmp/compat_err.log
     '';
   };
-  proton = pkgs.proton-ge-custom;
+  proton-cachyos-bin = pkgs.callPackage ./proton-cachyos.nix {};
+  proton-ge-bin = pkgs.proton-ge-bin;
   luxtorpeda = pkgs.luxtorpeda;
   steamtinkerlaunch = pkgs.steamtinkerlaunch;
 }

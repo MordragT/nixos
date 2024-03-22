@@ -36,10 +36,11 @@
       intel-compute-runtime
       intel-media-driver
       intel-vaapi-driver
+      onevpl-intel-gpu
     ];
   };
 
-  environment.systemPackages = [pkgs.intel-gpu-tools];
+  environment.systemPackages = [pkgs.intel-gpu-tools pkgs.ffmpeg-vpl];
 
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";

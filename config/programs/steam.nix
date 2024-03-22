@@ -25,11 +25,11 @@
         ];
     };
     extraCompatPackages = with pkgs.compatPackages; [
+      proton-ge-bin
+      proton-cachyos-bin
       luxtorpeda
-      proton
-      steamtinkerlaunch
-      wine-unstable
       opengothic
+      steamtinkerlaunch
     ];
   };
 
