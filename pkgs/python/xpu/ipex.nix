@@ -16,6 +16,7 @@
   autoPatchelfHook,
   level-zero,
   xpuPackages,
+  mkl,
   zstd,
 }:
 buildPythonPackage {
@@ -35,8 +36,9 @@ buildPythonPackage {
 
   buildInputs = [
     level-zero
-    xpuPackages.oneMKL
-    xpuPackages.llvm.sycl
+    # xpuPackages.oneMKL
+    mkl
+    xpuPackages.sycl
     zstd
   ];
 

@@ -1,15 +1,16 @@
 {
   lib,
-  stdenv,
+  dpcenv,
   fetchFromGitHub,
   cmake,
   level-zero,
   oneTBB,
   mkl,
-  sycl,
+  blas,
+  lapack,
 }:
 # requires dpcpp compiler
-stdenv.mkDerivation (finalAttrs: {
+dpcenv.mkDerivation (finalAttrs: {
   pname = "oneMKL";
   version = "0.3";
 
@@ -31,29 +32,31 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     level-zero
     oneTBB
-    (mkl.overrideAttrs (orig: {
-      postFixup =
-        ''
-          ln -s $out/lib/libmkl_rt.so $out/lib/libblas64.so
-          ln -s $out/lib/libmkl_rt.so $out/lib/libcblas64.so
-          ln -s $out/lib/libmkl_rt.so $out/lib/liblapack64.so
-          ln -s $out/lib/libmkl_rt.so $out/lib/liblapacke64.so
+    (blas.override {
+      blasProvider = mkl;
+      isILP64 = true;
+    })
+    (lapack.override {
+      lapackProvider = mkl;
+      isILP64 = true;
+    })
+    mkl
+    # https://github.com/NixOS/nixpkgs/issues/245030 ??
+    # (mkl.overrideAttrs (orig: {
+    #   postFixup =
+    #     ''
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/libblas64.so
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/libcblas64.so
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/liblapack64.so
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/liblapacke64.so
 
-          ln -s $out/lib/libmkl_rt.so $out/lib/libblas64.so.3
-          ln -s $out/lib/libmkl_rt.so $out/lib/libcblas64.so.3
-          ln -s $out/lib/libmkl_rt.so $out/lib/liblapack64.so.3
-          ln -s $out/lib/libmkl_rt.so $out/lib/liblapacke64.so.3
-
-          ln -s $out/include/mkl_blas.h $out/include/blas.h
-          ln -s $out/include/mkl_blas64.h $out/include/blas64.h
-          ln -s $out/include/mkl_cblas.h $out/include/cblas.h
-          ln -s $out/include/mkl_cblas64.h $out/include/cblas64.h
-          ln -s $out/include/mkl_lapack.h $out/include/lapack.h
-          ln -s $out/include/mkl_lapacke.h $out/include/lapacke.h
-        ''
-        + orig.postFixup;
-    }))
-    sycl
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/libblas64.so.3
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/libcblas64.so.3
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/liblapack64.so.3
+    #       ln -s $out/lib/libmkl_rt.so $out/lib/liblapacke64.so.3
+    #     ''
+    #     + orig.postFixup;
+    # }))
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
