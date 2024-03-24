@@ -1,15 +1,15 @@
 {
-  pytorch,
+  python3Packages,
   fetchFromGitHub,
-}: (pytorch.overrideAttrs (old: {
+}: (python3Packages.pytorch.overrideAttrs (old: {
   version = "2.1.0a0";
 
   src = fetchFromGitHub {
     owner = "pytorch";
     repo = "pytorch";
     rev = "209f2fa8ff86652f67d75c2f19bf9cb9942fd018";
-    fetchSubmodules = true;
     hash = "sha256-0BpGhi/ZKSOFXYmFrHoqPc5/P9X/cHNm+z3Q0CeoX34=";
+    fetchSubmodules = true;
   };
 
   patches =

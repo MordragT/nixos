@@ -14,7 +14,7 @@
 
     rclone # sync data with cloud
 
-    xpuPackages.oneMKL
+    xpuPackages.ipex
     # python3Packages.xpu.ipex
   ];
 }

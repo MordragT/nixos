@@ -57,6 +57,7 @@ in
     pname = "llvm";
 
     passthru.isClang = true;
+    passthru.isLLVM = true;
 
     nativeBuildInputs = [
       cmake
@@ -82,7 +83,7 @@ in
       "-DLLVM_EXTERNAL_XPTIFW_SOURCE_DIR=/build/source/xptifw"
       # "-DLLVM_EXTERNAL_LIBDEVICE_SOURCE_DIR=/build/source/libdevice"
       "-DLLVM_EXTERNAL_SYCL_FUSION_SOURCE_DIR=/build/source/sycl-fusion"
-      "-DLLVM_ENABLE_PROJECTS=clang;sycl;sycl-fusion;llvm-spirv;opencl;xpti;xptifw"
+      "-DLLVM_ENABLE_PROJECTS=clang;lld;sycl;sycl-fusion;llvm-spirv;opencl;xpti;xptifw"
       "-DLIBCLC_TARGETS_TO_BUILD=''"
       "-DLIBCLC_GENERATE_REMANGLED_VARIANTS=ON"
       "-DSYCL_BUILD_PI_HIP_PLATFORM=''"
@@ -91,6 +92,7 @@ in
       "-DSYCL_INCLUDE_TESTS=ON"
       "-DLLVM_ENABLE_DOXYGEN=OFF"
       "-DLLVM_ENABLE_SPHINX=OFF"
+      "-DLLVM_ENABLE_LLD=ON"
       "-DBUILD_SHARED_LIBS=ON"
       "-DSYCL_ENABLE_XPTI_TRACING=ON"
       "-DLLVM_ENABLE_LLD=OFF"

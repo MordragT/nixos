@@ -1,12 +1,12 @@
 {
   lib,
-  stdenv,
+  intel-env,
   fetchFromGitHub,
   cmake,
-  oneTBB,
+  oneapi-tbb,
 }:
-stdenv.mkDerivation (finalAttrs: {
-  pname = "oneDPL";
+intel-env.mkDerivation (finalAttrs: {
+  pname = "oneapi-dpl";
   version = "2022.3.0";
 
   src = fetchFromGitHub {
@@ -21,7 +21,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    oneTBB
+    oneapi-tbb
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

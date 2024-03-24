@@ -31,11 +31,11 @@ stdenv.mkDerivation {
     runCommand "source" {} ''
       cp -R ${source} $out
       chmod +w $out
-      cp ${./Cargo.lock} $out/Cargo.lock
+      cp ${./epic-asset-manager.lock} $out/Cargo.lock
     '';
 
   cargoDeps = rustPlatform.importCargoLock {
-    lockFile = ./Cargo.lock;
+    lockFile = ./epic-asset-manager.lock;
   };
 
   nativeBuildInputs = [

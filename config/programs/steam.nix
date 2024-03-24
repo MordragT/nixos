@@ -24,7 +24,7 @@
           gamemode
         ];
     };
-    extraCompatPackages = with pkgs.compatPackages; [
+    extraCompatPackages = with pkgs.steamPackages; [
       proton-ge-bin
       proton-cachyos-bin
       luxtorpeda
@@ -34,7 +34,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    steamcmd
+    steamPackages.steamcmd
     steam-run
     sc-controller
     protontricks

@@ -11,17 +11,17 @@
 in rec
 {
   xpuPackages = import ./xpuPackages {inherit pkgs;};
-  compatPackages = import ./compatPackages {inherit pkgs opengothic;};
-  winePackages = import ./winePackages {inherit pkgs;};
+  steamPackages = import ./steamPackages {inherit pkgs opengothic;} // pkgs.steamPackages;
+  winePackages = import ./winePackages {inherit pkgs;} // pkgs.winePackages;
 
-  python3 = pkgs.python3.override {
-    packageOverrides = pySelf: pyPkgs:
-      import ./python {
-        inherit pyPkgs;
-        pkgs = pkgs // {inherit xpuPackages;};
-      };
-  };
-  python3Packages = python3.pkgs;
+  # python3 = pkgs.python3.override {
+  #   packageOverrides = pySelf: pyPkgs:
+  #     import ./python {
+  #       inherit pyPkgs;
+  #       pkgs = pkgs // {inherit xpuPackages;};
+  #     };
+  # };
+  # python3Packages = python3.pkgs;
 
   hpcStdenv =
     pkgs.withCFlags [
@@ -35,8 +35,8 @@ in rec
   byfl = callPackage ./byfl.nix {};
   dud = callPackage ./dud.nix {};
   ensembles = callPackage ./ensembles.nix {};
-  epic-asset-manager = callPackage ./epic-asset-manager {};
-  lottieconv = callPackage ./lottieconv {};
+  epic-asset-manager = callPackage ./epic-asset-manager.nix {};
+  lottieconv = callPackage ./lottieconv.nix {};
   opengothic = callPackage ./opengothic.nix {inherit hpcStdenv;};
   spflashtool = callPackage ./spflashtool.nix {};
   tmfs = callPackage ./tmfs.nix {};
