@@ -1,5 +1,6 @@
-self: pkgs: rec {
+self: pkgs: let
   mkBottle = self.callPackage ./make-bottle.nix {};
+in rec {
   league-of-legends = self.callPackage ./league-of-legends.nix {
     inherit mkBottle;
     # TODO broken compile wine-lol by source
