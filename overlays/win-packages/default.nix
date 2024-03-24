@@ -8,7 +8,7 @@ in rec {
   };
   battle-net = import ./battle-net.nix {
     inherit mkBottle;
-    wine = pkgs.wine-wayland;
+    wine = pkgs.wine64Packages.waylandFull;
   };
   wine-ge-bin = self.callPackage ./wine-ge.nix {};
   wine-lol-bin = self.callPackage ./wine-lol.nix {};

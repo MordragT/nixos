@@ -13,10 +13,10 @@
     ];
     registry = [
       {
-        key = ''HKCU\Software\Wine\Drivers'';
-        name = "Graphics";
+        path = ''HKCU\Software\Wine\Drivers'';
+        key = "Graphics";
         type = "REG_SZ";
-        data = "wayland";
+        value = "wayland";
       }
     ];
     workingDir = "drive_c/Riot Games/League of Legends/";

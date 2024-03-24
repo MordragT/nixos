@@ -12,24 +12,30 @@ mkBottle {
   ];
   registry = [
     {
-      key = ''HKCU\Software\Wine\Drivers'';
-      name = "Graphics";
+      path = ''HKCU\Software\Wine\Drivers'';
+      key = "Graphics";
       type = "REG_SZ";
-      data = "wayland";
+      value = "wayland";
     }
     {
-      key = ''HKCU\Software\Wine'';
-      name = "Version";
+      path = ''HKCU\Software\Wine'';
+      key = "Version";
       type = "REG_SZ";
-      data = "win10";
+      value = "win10";
     }
     {
-      key = ''HKCU\Software\Wine\AppDefaults\BlizzardBrowser.exe'';
-      name = "version";
+      path = ''HKCU\Software\Wine\AppDefaults\BlizzardBrowser.exe'';
+      key = "version";
       type = "REG_SZ";
-      data = "win7";
+      value = "win7";
+    }
+    {
+      path = ''HKCU\Software\Wine\DXVA2'';
+      key = "backend";
+      type = "REG_SZ";
+      value = "va";
     }
   ];
-  workingDir = "drive_c/Program Files (x86)/Battle.net/";
+  workingDir = "drive_c/Program Files/Battle.net/";
   exe = "Battle.net.exe";
 }

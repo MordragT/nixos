@@ -19,7 +19,7 @@
     if (lib.length packages) > 0
     then "${winetricks}/bin/winetricks ${tricks}"
     else "";
-  regAdd = entry: "${wine}/bin/wine reg add ${entry.key} /v ${entry.name} /t ${entry.type} /d ${entry.data}\n";
+  regAdd = entry: "${wine}/bin/wine reg add ${entry.path} /v ${entry.key} /t ${entry.type} /d ${entry.value}\n";
   regedit = lib.concatMapStrings regAdd registry;
   lnHome =
     if linkHome
