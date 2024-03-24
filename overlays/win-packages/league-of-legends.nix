@@ -3,14 +3,18 @@
   symlinkJoin,
   mkBottle,
   makeDesktopItem,
-  wine,
+  wine-lol-bin,
 }: let
   name = "league-of-legends";
   bottle = mkBottle {
-    inherit name wine;
+    inherit name;
+    wine = wine-lol-bin;
+    wineArch = 64;
+
     packages = [
       "dxvk"
     ];
+
     registry = [
       {
         path = ''HKCU\Software\Wine\Drivers'';
@@ -19,6 +23,7 @@
         value = "wayland";
       }
     ];
+
     workingDir = "drive_c/Riot Games/League of Legends/";
     exe = "LeagueClient.exe";
   };

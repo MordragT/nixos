@@ -2,9 +2,11 @@
   lib,
   nuenv,
   winetricks,
+  dxvk,
 }: {
   name,
   wine,
+  wineArch ? 32,
   wineFlags ? [],
   packages ? [],
   registry ? [],
@@ -19,7 +21,7 @@
     if (lib.length packages) > 0
     then "${winetricks}/bin/winetricks ${tricks}"
     else "";
-  regAdd = entry: "${wine}/bin/wine reg add ${entry.path} /v ${entry.key} /t ${entry.type} /d ${entry.value}\n";
+  regAdd = entry: "^$env.WINE reg add ${entry.path} /v ${entry.key} /t ${entry.type} /d ${entry.value}\n";
   regedit = lib.concatMapStrings regAdd registry;
   lnHome =
     if linkHome
@@ -33,15 +35,15 @@ in
   nuenv.writeScriptBin {
     inherit name;
     script = ''
-      let prefix = $env.HOME | path join "${prefix}"
-
       $env.WINE = ${wine}/bin/wine
       $env.WINESERVER = ${wine}/bin/wineserver
-      # $env.WINEARCH = "win64"
-      $env.WINEPREFIX = $prefix
+      $env.WINEBOOT = ${wine}/bin/wineboot
+      $env.WINEARCH = "win${toString wineArch}"
+      $env.WINEPREFIX = ($env.HOME | path join "${prefix}")
+      $env.PATH = ($env.PATH | append ${lib.makeBinPath [wine dxvk]})
 
       def main [] {
-        if ($prefix | path exists) {
+        if ($env.WINEPREFIX | path exists) {
           run
         } else {
           setup $env.SETUP
@@ -57,25 +59,25 @@ in
       }
 
       def setup [exe] {
-        rm -rf $prefix
-        mkdir $prefix
+        rm -rf $env.WINEPREFIX
+        mkdir $env.WINEPREFIX
 
-        ${wine}/bin/wineboot
-        ${wine}/bin/wineserver -w
+        ^$env.WINEBOOT
+        ^$env.WINESERVER -w
 
         ${tricksCmd}
         ${lnHome}
 
         ${regedit}
-        ${wine}/bin/wineserver -w
+        ^$env.WINESERVER -w
 
-        ${wine}/bin/wine $exe
-        ${wine}/bin/wineserver -w
+        ^$env.WINE $exe
+        ^$env.WINESERVER -w
       }
 
       def run [] {
-        ${wine}/bin/wine ${flags} ($prefix | path join "${workingDir}" "${exe}")
-        ${wine}/bin wineserver -w
+        ^$env.WINE ${flags} ($env.WINEPREFIX | path join "${workingDir}" "${exe}")
+        ^$env.WINESERVER -w
       }
     '';
   }

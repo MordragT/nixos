@@ -1,15 +1,19 @@
 {
   mkBottle,
-  wine,
+  wineWowPackages,
 }:
 mkBottle {
-  inherit wine;
+  wine = wineWowPackages.waylandFull;
+  wineArch = 64;
+
   name = "battle-net";
+
   packages = [
     "dxvk"
     "tahoma"
     "arial"
   ];
+
   registry = [
     {
       path = ''HKCU\Software\Wine\Drivers'';
@@ -36,6 +40,7 @@ mkBottle {
       value = "va";
     }
   ];
-  workingDir = "drive_c/Program Files/Battle.net/";
+
+  workingDir = "drive_c/Program Files (x86)/Battle.net/";
   exe = "Battle.net.exe";
 }
