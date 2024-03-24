@@ -1,5 +1,5 @@
 self: pkgs: let
-  mkCompat = self.callPackage ./mk-compat.nix {};
+  mkCompat = self.callPackage ./make-compat.nix {};
 in {
   opengothic = self.callPackage ./opengothic.nix {
     inherit mkCompat;
