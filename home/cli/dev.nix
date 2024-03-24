@@ -13,8 +13,5 @@
     dud # dvc alternative with rclone backend written in go
 
     rclone # sync data with cloud
-
-    xpuPackages.ipex
-    # python3Packages.xpu.ipex
   ];
 }

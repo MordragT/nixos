@@ -53,7 +53,6 @@
     ...
   }: let
     system = "x86_64-linux";
-    overlay = self: pkgs: import ./pkgs {inherit pkgs;};
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -64,7 +63,7 @@
         fenix.overlays.default
         nur.overlay
         nuenv.overlays.default
-        overlay
+        (import ./overlays)
       ];
     };
     lib = import ./lib {inherit nixpkgs pkgs home-manager;};
@@ -253,8 +252,11 @@
       };
     };
 
-    overlays.default = overlay;
-    packages."${system}" = import ./pkgs {inherit pkgs;};
+    overlays = {
+      default = import ./overlays;
+      intel = import ./overlays/intel-packages;
+    };
+    packages."${system}" = import ./overlays (self.packages."${system}" // pkgs) pkgs;
     devShells."${system}" = import ./shells {inherit pkgs;};
   };
 }
