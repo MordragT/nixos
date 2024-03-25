@@ -66,166 +66,165 @@
         (import ./pkgs/overlay.nix)
       ];
     };
-    lib = import ./lib {inherit nixpkgs pkgs home-manager;};
+    lib = import ./lib.nix {
+      inherit nixpkgs home-manager templates;
+    };
   in {
     nixosConfigurations = {
-      tom-laptop = lib.mkHost rec {
-        inherit system;
+      tom-laptop = let
         stateVersion = "23.11";
-        modules = [
-          {
-            imports = [
-              ./modules
-              ./hosts/laptop
-              ./config/system
-              ./config/services
-              ./config/programs
-              ./config/security.nix
-              ./config/desktop-manager/gnome.nix
-            ];
-          }
-          classified.nixosModules.${system}.default
-          chaotic.nixosModules.default
-          lanzaboote.nixosModules.lanzaboote
-        ];
+      in
+        lib.mkHost {
+          inherit system stateVersion;
 
-        specialArgs = {
-          inherit pkgs;
+          imports = [
+            ./modules
+            ./hosts/laptop
+            ./config/system
+            ./config/services
+            ./config/programs
+            ./config/security.nix
+            ./config/desktop-manager/gnome.nix
+          ];
+
+          modules = [
+            classified.nixosModules.${system}.default
+            chaotic.nixosModules.default
+            lanzaboote.nixosModules.lanzaboote
+          ];
+
+          specialArgs = {
+            inherit pkgs;
+          };
+
+          homes = {
+            "tom" = lib.mkHome {
+              inherit stateVersion;
+              username = "tom";
+              imports = [./home];
+            };
+
+            "root" = lib.mkHome {
+              inherit stateVersion;
+              username = "root";
+              imports = [
+                ./home/programs/nushell.nix
+              ];
+            };
+          };
         };
 
-        specialHomeArgs = {
-          inherit templates;
-        };
-
-        homes =
-          (lib.mkHome {
-            inherit stateVersion;
-            username = "tom";
-            imports = [./home];
-          })
-          // (lib.mkHome {
-            inherit stateVersion;
-            username = "root";
-            homeDirectory = "/root";
-            imports = [
-              ./home/programs/nushell.nix
-            ];
-          });
-      };
-
-      tom-server = lib.mkHost rec {
-        inherit system;
+      tom-server = let
         stateVersion = "23.05";
-        modules = [
-          {
-            imports = [
-              ./modules
-              ./hosts/server
-              ./config/system
-              ./config/security.nix
-              ./config/services/openssh.nix
-              ./config/services/samba.nix
-              # ./config/services/maddy.nix
-              # ./config/services/nextcloud.nix
-              # ./config/services/gitea.nix
-              # ./config/services/vaultwarden.nix
-              ./config/programs/steam.nix
-              ./config/desktop-manager/cosmic.nix
-            ];
-          }
-          classified.nixosModules.${system}.default
-          chaotic.nixosModules.default
-          cosmic.nixosModules.default
-          lanzaboote.nixosModules.lanzaboote
-        ];
+      in
+        lib.mkHost {
+          inherit system stateVersion;
 
-        specialArgs = {
-          inherit pkgs;
+          imports = [
+            ./modules
+            ./hosts/server
+            ./config/system
+            ./config/security.nix
+            ./config/services/openssh.nix
+            ./config/services/samba.nix
+            # ./config/services/maddy.nix
+            # ./config/services/nextcloud.nix
+            # ./config/services/gitea.nix
+            # ./config/services/vaultwarden.nix
+            ./config/programs/steam.nix
+            ./config/desktop-manager/cosmic.nix
+          ];
+
+          modules = [
+            classified.nixosModules.${system}.default
+            chaotic.nixosModules.default
+            cosmic.nixosModules.default
+            lanzaboote.nixosModules.lanzaboote
+          ];
+
+          specialArgs = {
+            inherit pkgs;
+          };
+
+          homes = {
+            "tom" = lib.mkHome {
+              inherit stateVersion;
+              username = "tom";
+              imports = [
+                ./home/programs/git.nix
+                ./home/programs/nushell.nix
+                ./home/programs/firefox.nix
+                ./home/gaming.nix
+                ./home/nix.nix
+                ./home/gnome
+              ];
+            };
+
+            "root" = lib.mkHome {
+              inherit stateVersion;
+              username = "root";
+              imports = [
+                ./home/programs/nushell.nix
+              ];
+            };
+          };
         };
 
-        specialHomeArgs = {
-          inherit templates;
-        };
-
-        homes =
-          (lib.mkHome {
-            inherit stateVersion;
-            username = "tom";
-            imports = [
-              ./home/programs/git.nix
-              ./home/programs/nushell.nix
-              ./home/programs/firefox.nix
-              ./home/gaming.nix
-              ./home/nix.nix
-              ./home/gnome
-            ];
-          })
-          // (lib.mkHome {
-            inherit stateVersion;
-            username = "root";
-            homeDirectory = "/root";
-            imports = [
-              ./home/programs/nushell.nix
-            ];
-          });
-      };
-
-      tom-desktop = lib.mkHost rec {
-        inherit system;
+      tom-desktop = let
         stateVersion = "23.11";
-        modules = [
-          {
-            imports = [
-              ./modules
-              ./hosts/desktop
-              ./config/system
-              ./config/services
-              ./config/programs
-              # no fractional scaling (https://github.com/YaLTeR/niri/issues/35)
-              # ./config/programs/niri.nix
-              # no security manager (wlroots issue https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/3339)
-              # ./config/programs/hyprland.nix
-              ./config/impermanence.nix
-              ./config/security.nix
-              ./config/virtualisation.nix
-              # ./config/desktop-manager/gnome.nix
-              ./config/desktop-manager/cosmic.nix
-            ];
-          }
-          classified.nixosModules.${system}.default
-          chaotic.nixosModules.default
-          cosmic.nixosModules.default
-          lanzaboote.nixosModules.lanzaboote
-        ];
+      in
+        lib.mkHost {
+          inherit system stateVersion;
 
-        specialArgs = {
-          inherit pkgs;
+          imports = [
+            ./modules
+            ./hosts/desktop
+            ./config/system
+            ./config/services
+            ./config/programs
+            # no fractional scaling (https://github.com/YaLTeR/niri/issues/35)
+            # ./config/programs/niri.nix
+            # no security manager (wlroots issue https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/3339)
+            # ./config/programs/hyprland.nix
+            ./config/impermanence.nix
+            ./config/security.nix
+            ./config/virtualisation.nix
+            # ./config/desktop-manager/gnome.nix
+            ./config/desktop-manager/cosmic.nix
+          ];
+
+          modules = [
+            classified.nixosModules.${system}.default
+            chaotic.nixosModules.default
+            cosmic.nixosModules.default
+            lanzaboote.nixosModules.lanzaboote
+          ];
+
+          specialArgs = {
+            inherit pkgs;
+          };
+
+          homes = {
+            "tom" = lib.mkHome {
+              inherit stateVersion;
+              username = "tom";
+              imports = [
+                ./home
+                # ./home/window-manager/niri.nix
+                ./home/window-manager/hyprland.nix
+              ];
+            };
+
+            "root" = lib.mkHome {
+              inherit stateVersion;
+              username = "root";
+              imports = [
+                ./home/programs/git.nix
+                ./home/programs/nushell.nix
+              ];
+            };
+          };
         };
-
-        specialHomeArgs = {
-          inherit templates;
-        };
-
-        homes =
-          (lib.mkHome {
-            inherit stateVersion;
-            username = "tom";
-            imports = [
-              ./home
-              # ./home/window-manager/niri.nix
-              ./home/window-manager/hyprland.nix
-            ];
-          })
-          // (lib.mkHome {
-            inherit stateVersion;
-            username = "root";
-            homeDirectory = "/root";
-            imports = [
-              ./home/programs/git.nix
-              ./home/programs/nushell.nix
-            ];
-          });
-      };
     };
 
     homeConfigurations = {
@@ -240,7 +239,7 @@
           ({pkgs, ...}: {
             home.username = "tom";
             home.homeDirectory = "/home/tom";
-            home.stateVersion = "22.11";
+            home.stateVersion = "23.11";
             programs.home-manager.enable = true;
             targets.genericLinux.enable = true;
 

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  templates,
-  ...
-}: {
+{pkgs, ...}: {
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
@@ -15,7 +11,6 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
-    registry.templates.flake = templates;
   };
 
   home.packages = with pkgs; [

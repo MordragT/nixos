@@ -1,20 +1,8 @@
-{lib, ...}: {
+{modulesPath, ...}: {
   imports = [
-    ./hardware-configuration.nix
+    ./boot.nix
+    ./config.nix
+    ./file-systems.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  programs.captive-browser = {
-    enable = true;
-    interface = "wlp2s0";
-  };
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
-  networking.hostName = "tom-laptop";
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
 }

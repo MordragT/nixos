@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./bluetooth.nix
-    ./boot.nix
     ./fonts.nix
     ./locale.nix
     ./networking.nix
