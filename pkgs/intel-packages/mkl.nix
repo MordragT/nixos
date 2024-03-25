@@ -1,7 +1,7 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchDeb,
+  fetchdeb,
   autoPatchelfHook,
   dpkg,
   runtime,
@@ -11,27 +11,27 @@
   major = "2024.0";
   version = "2024.0.0-49656";
 
-  mkl = fetchDeb {
+  mkl = fetchdeb {
     package = "intel-oneapi-mkl-${major}-${version}_amd64";
     hash = "sha256-EKhuJAUdbvSoD9g5xXDmKRkGOKPArJvMqZq4VfU0uVk=";
   };
-  mkl-devel = fetchDeb {
+  mkl-devel = fetchdeb {
     package = "intel-oneapi-mkl-devel-${major}-${version}_amd64";
     hash = "sha256-+rKm8V4Yv9m01CXycD5OmJKMV/UsT+68ntiG8JcGLoQ=";
   };
-  mkl-runtime = fetchDeb {
+  mkl-runtime = fetchdeb {
     package = "intel-oneapi-runtime-mkl-2024-${version}_amd64";
     hash = "sha256-kk5xgAjYTTHKyWAAI1ueEHDfMVpa7NxBtQ0P5SA19xQ=";
   };
-  mkl-common = fetchDeb {
+  mkl-common = fetchdeb {
     package = "intel-oneapi-mkl-common-${major}-${version}_all";
     hash = "sha256-7CtngTc5+koolfY0eaQay6IXSv4tDLigwckRnRMX2O8=";
   };
-  mkl-common-devel = fetchDeb {
+  mkl-common-devel = fetchdeb {
     package = "intel-oneapi-mkl-common-devel-${major}-${version}_all";
     hash = "sha256-rb8OqUb2OUbSm3+cdQw4pC6npl2MgWVbJoqix7uQgZI=";
   };
-  mkl-common-runtime = fetchDeb {
+  mkl-common-runtime = fetchdeb {
     package = "intel-oneapi-runtime-mkl-common-2024-${version}_all";
     hash = "sha256-MvUUr3DFJX/rx6L57OwQXwDnQThFbfUYW3WBzfnkvB8=";
   };

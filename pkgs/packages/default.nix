@@ -1,5 +1,5 @@
 self: pkgs: let
-  callPackage = self.callPackage;
+  callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
   # astrofox = callPackage ./astrofox.nix { };
   byfl = callPackage ./byfl.nix {};

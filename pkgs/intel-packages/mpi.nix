@@ -1,7 +1,7 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchDeb,
+  fetchdeb,
   autoPatchelfHook,
   dpkg,
   level-zero,
@@ -10,15 +10,15 @@
   major = "2021.11";
   version = "2021.11.0-49493";
 
-  mpi = fetchDeb {
+  mpi = fetchdeb {
     package = "intel-oneapi-mpi-${major}-${version}_amd64";
     hash = "sha256-PaRmjyPrYXW3i4lab0TLN1IpcU8KLkL8MF2GUpQdxbk=";
   };
-  mpi-devel = fetchDeb {
+  mpi-devel = fetchdeb {
     package = "intel-oneapi-mpi-devel-${major}-${version}_amd64";
     hash = "sha256-NuCtxFKDhPwInTV7vRmFQ3iXl2ytzLDoDvn1oS9YdWM=";
   };
-  mpi-runtime = fetchDeb {
+  mpi-runtime = fetchdeb {
     package = "intel-oneapi-runtime-mpi-2021-${version}_amd64";
     hash = "sha256-c1QriM1bPMFG787aVpcTq71fSHqPdMQHugtJUNSQhTI=";
   };

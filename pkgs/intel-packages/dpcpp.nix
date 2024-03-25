@@ -1,7 +1,7 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchDeb,
+  fetchdeb,
   autoPatchelfHook,
   dpkg,
   level-zero,
@@ -14,54 +14,54 @@
   major = "2024.0";
   version = "2024.0.1-49878";
 
-  base = fetchDeb {
+  base = fetchdeb {
     package = "intel-oneapi-dpcpp-cpp-${major}-${version}_amd64";
     hash = "sha256-Jrl/f5ihNB/U4EWXsRQcXimrpqBkMs7QTro8suYjgr4=";
   };
-  dpcpp = fetchDeb {
+  dpcpp = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-${major}-${version}_amd64";
     hash = "sha256-Tg9OcEb/3xm6HGftcnzsm0XTZuAx3OHw2LveAVPuwIM=";
   };
-  dpcpp-runtime = fetchDeb {
+  dpcpp-runtime = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-runtime-${major}-${version}_amd64";
     hash = "sha256-ylUWk+5z0GUUPXtpoSXvPadeRuW1zft9tUQb+eeyHkc=";
   };
-  dpcpp-common = fetchDeb {
+  dpcpp-common = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-common-${major}-${version}_all";
     hash = "sha256-t8IaRMoe0lwxIplROH7G9BgOJRsy6Du5gNcCVYXW0xY=";
   };
-  shared = fetchDeb {
+  shared = fetchdeb {
     package = "intel-oneapi-compiler-shared-${major}-${version}_amd64";
     hash = "sha256-wNhDjW4aGxxeK4otgIydjTSR9u4xV+1u1neDMiVb74k=";
   };
-  shared-runtime = fetchDeb {
+  shared-runtime = fetchdeb {
     package = "intel-oneapi-compiler-shared-runtime-${major}-${version}_amd64";
     hash = "sha256-YA4yCLz5WdQqYCvjDUieOROzXL3waM0vjLueZWJsS2U=";
   };
-  shared-common = fetchDeb {
+  shared-common = fetchdeb {
     package = "intel-oneapi-compiler-shared-common-${major}-${version}_all";
     hash = "sha256-GxoNvhBndvYGmuMt+auh6Bs88qZPgudw+6jdQfX81I8=";
   };
-  openmp = fetchDeb {
+  openmp = fetchdeb {
     package = "intel-oneapi-openmp-${major}-${version}_amd64";
     hash = "sha256-U8sKp16d2hqTqFymT72EGj4cLVZpOhL2CjgqrLe5de8=";
   };
-  openmp-common = fetchDeb {
+  openmp-common = fetchdeb {
     package = "intel-oneapi-openmp-common-${major}-${version}_all";
     hash = "sha256-8I8PLGcfUiKFZCVAJXk+51N5Dj395NZ/ClGRoQBzfr4=";
   };
 
   classicVersion = "2023.2.3-2023.2.3-20";
 
-  classic = fetchDeb {
+  classic = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-${classicVersion}_amd64";
     hash = "sha256-9TJyy9tdyNIJDw+/7AAMWB9FY6QPwnXbL2JoZbZoBUA=";
   };
-  classic-runtime = fetchDeb {
+  classic-runtime = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-${classicVersion}_amd64";
     hash = "sha256-rIJdyjAxeSa2N3F4kZ7Y6c/GugQFER0vx5120O0crBE=";
   };
-  classic-common = fetchDeb {
+  classic-common = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-${classicVersion}_all";
     hash = "sha256-eA2K2H4T1Zn10OW+/Z+e+SJ5fxqPekKukkGG5uz8NRU=";
   };

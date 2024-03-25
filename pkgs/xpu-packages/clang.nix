@@ -7,6 +7,7 @@
   pstl,
   libcxx,
 }:
+# not working: openmp libc;
 wrapCCWith {
   inherit libcxx;
   # inherit libc;

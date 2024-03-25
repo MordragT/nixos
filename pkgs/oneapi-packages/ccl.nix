@@ -5,7 +5,7 @@
   cmake,
 }:
 # requires dpcpp compiler
-intelPackages.stdenv.mkDerivation (finalAttrs: {
+intelPackages.env.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
   version = "2021.11.2";
 

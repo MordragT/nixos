@@ -1,8 +1,6 @@
 self: pkgs: let
-  callPackage = self.callPackage;
-in rec {
-  stdenv = callPackage ./stdenv.nix {};
-  opengothic = callPackage ./opengothic.nix {
-    inherit stdenv;
-  };
+  callPackage = pkgs.lib.callPackageWith (pkgs // self);
+in {
+  env = callPackage ./env.nix {};
+  opengothic = callPackage ./opengothic.nix {};
 }

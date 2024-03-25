@@ -1,9 +1,9 @@
 {
-  stdenv,
+  envNoLibs,
   callPackage,
 }:
 callPackage ./base.nix {
-  inherit stdenv;
+  stdenv = envNoLibs;
 
   name = "libcxx";
   targetDir = "runtimes";

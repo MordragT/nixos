@@ -1,35 +1,13 @@
 self: pkgs: let
-  # https://apt.repos.intel.com/oneapi/dists/all/main/binary-amd64/Packages
-  # https://apt.repos.intel.com/oneapi/dists/all/main/binary-all/Packages
-  fetchDeb = {
-    package,
-    hash,
-  }:
-    pkgs.fetchurl {
-      inherit hash;
-      url = "https://apt.repos.intel.com/oneapi/pool/main/${package}.deb";
-    };
-in rec {
-  tbb = self.callPackage ./tbb.nix {
-    inherit fetchDeb;
-  };
+  callPackage = pkgs.lib.callPackageWith (pkgs // self // (pkgs.callPackage ./build-support.nix {}));
+in {
+  tbb = callPackage ./tbb.nix {};
+  mpi = callPackage ./mpi.nix {};
+  mkl = callPackage ./mkl.nix {};
 
-  mpi = self.callPackage ./mpi.nix {
-    inherit fetchDeb;
-  };
+  dpcpp-unwrapped = callPackage ./dpcpp.nix {};
+  dpcpp = callPackage ./wrap-dpcpp.nix {};
+  env = pkgs.overrideCC pkgs.stdenv self.dpcpp;
 
-  mkl = self.callPackage ./mkl.nix {
-    inherit fetchDeb runtime mpi;
-  };
-
-  dpcpp-unwrapped = self.callPackage ./dpcpp.nix {
-    inherit fetchDeb tbb;
-  };
-  runtime = dpcpp-unwrapped;
-
-  dpcpp = self.callPackage ./wrap-dpcpp.nix {
-    inherit dpcpp-unwrapped;
-  };
-
-  stdenv = pkgs.overrideCC pkgs.stdenv dpcpp;
+  runtime = self.dpcpp-unwrapped;
 }

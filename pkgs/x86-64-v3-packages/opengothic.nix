@@ -1,6 +1,6 @@
 {
   lib,
-  stdenv,
+  env,
   fetchFromGitHub,
   cmake,
   alsa-lib,
@@ -10,7 +10,7 @@
   vulkan-loader,
   xorg,
 }:
-stdenv.mkDerivation rec {
+env.mkDerivation rec {
   pname = "opengothic";
   version = "master";
 

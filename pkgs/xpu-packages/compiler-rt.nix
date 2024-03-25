@@ -1,9 +1,9 @@
 {
-  stdenv,
+  envNoLibs,
   callPackage,
 }:
 callPackage ./base.nix rec {
-  inherit stdenv;
+  stdenv = envNoLibs;
 
   name = "compiler-rt";
   targetDir = "runtimes";

@@ -5,7 +5,7 @@
   cmake,
   tbb,
 }:
-intelPackages.stdenv.mkDerivation (finalAttrs: {
+intelPackages.env.mkDerivation (finalAttrs: {
   pname = "oneapi-dpl";
   version = "2022.3.0";
 

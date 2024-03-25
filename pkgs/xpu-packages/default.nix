@@ -1,41 +1,33 @@
 self: pkgs: let
-  callPackage = self.callPackage;
-in rec {
+  callPackage = pkgs.lib.callPackageWith (pkgs // self);
+in {
   llvm = callPackage ./llvm.nix {
     inherit callPackage;
   };
-  sycl = llvm;
+  sycl = self.llvm;
 
-  compiler-rt = import ./compiler-rt.nix {
+  compiler-rt = callPackage ./compiler-rt.nix {
     inherit callPackage;
-    stdenv = stdenvNoLibs;
   };
 
-  pstl = import ./pstl.nix {
+  pstl = callPackage ./pstl.nix {
     inherit callPackage;
-    stdenv = stdenvNoLibs;
   };
 
-  openmp = import ./openmp.nix {
+  openmp = callPackage ./openmp.nix {
     inherit callPackage;
-    stdenv = stdenvNoLibs;
   };
 
-  libc = import ./libc.nix {
+  libc = callPackage ./libc.nix {
     inherit callPackage;
-    stdenv = stdenvNoLibs;
   };
 
-  libcxx = import ./libcxx.nix {
+  libcxx = callPackage ./libcxx.nix {
     inherit callPackage;
-    stdenv = stdenvNoLibs;
   };
 
-  clang = callPackage ./clang.nix {
-    inherit llvm compiler-rt pstl libcxx;
-    # not working inherit openmp libc;
-  };
+  clang = callPackage ./clang.nix {};
   # pkgs.buildEnv ?
-  stdenv = pkgs.overrideCC pkgs.stdenv clang;
-  stdenvNoLibs = pkgs.overrideCC pkgs.clangStdenvNoLibs (pkgs.wrapCC llvm);
+  env = pkgs.overrideCC pkgs.stdenv self.clang;
+  envNoLibs = pkgs.overrideCC pkgs.clangStdenvNoLibs (pkgs.wrapCC self.llvm);
 }

@@ -21,7 +21,7 @@
 #   };
 # in
 # requires dpcpp compiler
-intelPackages.stdenv.mkDerivation (finalAttrs: {
+intelPackages.env.mkDerivation (finalAttrs: {
   pname = "oneapi-mkl";
   # version = "0.3";
   version = "develop";

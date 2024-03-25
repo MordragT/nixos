@@ -6,7 +6,7 @@
   tbb,
 }:
 # requires dpcpp compiler
-intelPackages.stdenv.mkDerivation (finalAttrs: {
+intelPackages.env.mkDerivation (finalAttrs: {
   pname = "oneapi-dal";
   version = "2024.0.1";
 

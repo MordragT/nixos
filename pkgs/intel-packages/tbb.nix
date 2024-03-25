@@ -1,7 +1,7 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchDeb,
+  fetchdeb,
   autoPatchelfHook,
   dpkg,
   hwloc,
@@ -9,27 +9,27 @@
   major = "2021.11";
   version = "2021.11.0-49513";
 
-  tbb = fetchDeb {
+  tbb = fetchdeb {
     package = "intel-oneapi-tbb-${major}-${version}_amd64";
     hash = "sha256-YQZ9v3WuAZI6KUCE7kAZGhN8WHUSOhm3ZCRFIiMvF2k=";
   };
-  tbb-devel = fetchDeb {
+  tbb-devel = fetchdeb {
     package = "intel-oneapi-tbb-devel-${major}-${version}_amd64";
     hash = "sha256-9RqbE/pRt9zrr0JGWPTz7ArgUr9dUXhuOFzHFk3Fd0M=";
   };
-  tbb-runtime = fetchDeb {
+  tbb-runtime = fetchdeb {
     package = "intel-oneapi-runtime-tbb-2021-${version}_amd64";
     hash = "sha256-CB8Pta09RNodvAa0J9Rdaf4dotO6NC8JY40iScqXA/g=";
   };
-  tbb-common = fetchDeb {
+  tbb-common = fetchdeb {
     package = "intel-oneapi-tbb-common-${major}-${version}_all";
     hash = "sha256-8B3gFiZmvDZoWZ79NVWnPuKye6J2nfDwMshnWJZYXcA=";
   };
-  tbb-common-devel = fetchDeb {
+  tbb-common-devel = fetchdeb {
     package = "intel-oneapi-tbb-common-devel-${major}-${version}_all";
     hash = "sha256-BTMP1j+aoVMmc6ZONt/Ltfgxo8SvLesNxqn7X4TSOqE=";
   };
-  tbb-common-runtime = fetchDeb {
+  tbb-common-runtime = fetchdeb {
     package = "intel-oneapi-runtime-tbb-common-2021-${version}_all";
     hash = "sha256-Hk0SU8kWilVYjt1t2WWkdKEtbFLLdMiXH25Jbk2Odmo=";
   };
