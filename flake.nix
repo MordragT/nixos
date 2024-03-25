@@ -63,7 +63,7 @@
         fenix.overlays.default
         nur.overlay
         nuenv.overlays.default
-        (import ./overlays)
+        (import ./pkgs)
       ];
     };
     lib = import ./lib {inherit nixpkgs pkgs home-manager;};
@@ -253,10 +253,10 @@
     };
 
     overlays = {
-      default = import ./overlays;
-      intel = import ./overlays/intel-packages;
+      default = import ./pkgs;
+      intel = import ./pkgs/intel-packages;
     };
-    packages."${system}" = import ./overlays (self.packages."${system}" // pkgs) pkgs;
+    packages."${system}" = import ./pkgs (self.packages."${system}" // pkgs) pkgs;
     devShells."${system}" = import ./shells {inherit pkgs;};
   };
 }

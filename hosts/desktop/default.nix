@@ -50,12 +50,12 @@
     capabilities = "cap_perfmon=ep";
   };
 
-  # services.comfyui = {
-  #   enable = true;
-  #   # intel arc letzze goo ... soon hopefully
-  #   extraArgs = "--use-pytorch-cross-attention --highvram";
-  #   package = pkgs.comfyui.override {gpuBackend = "xpu";};
-  # };
+  services.comfyui = {
+    enable = true;
+    # intel arc letzze goo ... soon hopefully
+    extraArgs = "--use-pytorch-cross-attention --highvram";
+    package = pkgs.comfyui.override {gpuBackend = "xpu";};
+  };
 
   # programs.gamescope.args = [
   #   "-W 2560"

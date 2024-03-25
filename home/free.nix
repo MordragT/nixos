@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    # Must haves
+    anarchism
+
     # Editors
     # jetbrains.idea-community
     # lapce # code editor

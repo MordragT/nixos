@@ -10,7 +10,8 @@
     owner = "pytorch";
     repo = "pytorch";
     rev = "209f2fa8ff86652f67d75c2f19bf9cb9942fd018";
-    hash = "sha256-0BpGhi/ZKSOFXYmFrHoqPc5/P9X/cHNm+z3Q0CeoX34=";
+    # hash = "sha256-0BpGhi/ZKSOFXYmFrHoqPc5/P9X/cHNm+z3Q0CeoX34=";
+    hash = "sha256-BJpLX5jOE8ICWM4eMd88uqD6wDh9ehVQu6LjuOiItCw=";
     fetchSubmodules = true;
   };
 
