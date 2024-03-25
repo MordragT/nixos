@@ -67,6 +67,8 @@ def "main symlink" [source, destination, owner, group, mode] {
         }
     }
     load-paths $f $source $destination
+
+    return $"Successfully symlinked ($source) to ($destination)"
 }
 
 def "main mount" [source, destination, owner, group, mode] {
@@ -79,6 +81,8 @@ def "main mount" [source, destination, owner, group, mode] {
         }
     }
     load-paths $f $source $destination
+
+    return $"Successfully mounted ($source) to ($destination)"
 }
 
 def main [] {
