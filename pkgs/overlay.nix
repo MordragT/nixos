@@ -12,6 +12,7 @@ in
     };
 
     # Namespaced packages
+    firefoxAddons = import ./firefox-addons self.firefoxAddons pkgs;
     intelPackages = import ./intel-packages self.intelPackages pkgs;
     oneapiPackages = import ./oneapi-packages self.oneapiPackages (pkgs // {inherit (self) intelPackages;});
     steamPackages = pkgs.steamPackages.overrideScope (_: _: import ./steam-packages self.steamPackages (pkgs // {inherit (self) x86-64-v3Packages;}));

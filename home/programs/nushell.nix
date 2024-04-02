@@ -10,7 +10,7 @@
     enable = true;
     package = pkgs.nushellFull;
     configFile.text = ''
-      use ${../../scripts/comma.nu} ,
+      use ${../../scripts/nix/comma.nu} ,
       use ${../../scripts/vpnctl.nu} [vpnctl "vpnctl fh-aachen" "vpnctl up" "vpnctl down"]
       # broken ?? use ${../../scripts/all-to.nu} main
 

@@ -67,7 +67,7 @@
       ++ (builtins.concatMap (node: node.dependencies) customNodes));
 
   executable = writers.writeDashBin "comfyui" ''
-    cd $out && ${pythonEnv}/bin/python comfyui "$@"
+    cd $out && ${pythonEnv}/bin/ipexrun comfyui "$@"
   '';
 
   customNodesCollection = (

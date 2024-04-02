@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "bib-kit",
+    "name": "Bib Kit",
+    "version": "0.1.2",
+    "addonId": "{a85febca-472c-4ccf-aea0-204fd08feaf9}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4100741/bib_kit-0.1.2.xpi",
+    "sha256": "sha256:75164133b1f8d5711d35a83fafcd8cd627c14059a51f82666f2fb4ad488c3b88",
+    "homepage": "https://github.com/MordragT/bib_kit",
+    "description": "Instantly create hayagriva bibliography items from websites.",
+    "license": "MIT"
+  },
+  {
+    "slug": "bibitnow",
+    "name": "BibItNow!",
+    "version": "0.908",
+    "addonId": "bibitnow018@aqpl.mc2.chalmers.se",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/3937047/bibitnow-0.908.xpi",
+    "sha256": "sha256:4085a04cb0fe595677fa5b7fa630d817e09188ccfbfcd3586ccc162efea67467",
+    "homepage": "https://github.com/Langenscheiss",
+    "description": "Instantly creates a Bibtex, RIS, Endnote, APA, MLA or (B)Arnold S. or any user-defined bibliography item, or a user-defined link from abstract pages of scientific journal articles, books and theses, or from news pages and generic websites!",
+    "license": "MPL-2.0"
+  },
+  {
+    "slug": "brave-search",
+    "name": "Brave search",
+    "version": "1.0.1",
+    "addonId": "BraveSearchExtension@io.Uvera",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/3809887/brave_search-1.0.1.xpi",
+    "sha256": "sha256:9488224a7a1233023fec33533a78e1803482bc500d92afcb3962b78575dfcdae",
+    "homepage": "https://github.com/uvera/firefox-extension-brave-search",
+    "description": "Adds Brave search as a search engine.",
+    "license": "MIT"
+  },
+  {
+    "slug": "private-internet-access-ext",
+    "name": "Private Internet Access",
+    "version": "3.2.5",
+    "addonId": "{3e4d2037-d300-4e95-859d-3cba866f46d3}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4073898/private_internet_access_ext-3.2.5.xpi",
+    "sha256": "sha256:27a705cc11d0bee468e687ad0cad990dc5d47b1df7181a036fb813a212db1aa9",
+    "homepage": "https://privateinternetaccess.com/",
+    "description": "Defeat censorship, unblock any website and access the open Internet the way it was meant to be with Private Internet Access®",
+    "license": "MIT"
+  }
+]
