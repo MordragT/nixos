@@ -1,8 +1,6 @@
 #!/usr/bin/env -S nix shell nixpkgs#ffmpeg nixpkgs#nushellFull nixpkgs#imagemagick --command nu
 
-export def main [] {}
-
-export def "main hevc" [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
+export def hevc [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
     (convert-to
         { |entry, basename|
             let source = $entry.name
@@ -18,7 +16,7 @@ export def "main hevc" [path: string = ".", --extension(-e): string, --delete(-d
     )
 }
 
-export def "main opus" [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
+export def opus [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
     (convert-to
         { |entry, basename|
             let source = $entry.name
@@ -34,7 +32,7 @@ export def "main opus" [path: string = ".", --extension(-e): string, --delete(-d
     )
 }
 
-export def "main png" [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
+export def png [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
     (convert-to
         { |entry, basename|
             let source = $entry.name
@@ -50,7 +48,7 @@ export def "main png" [path: string = ".", --extension(-e): string, --delete(-d)
     )
 }
 
-export def "main enum" [path: string = ".", --extension(-e): string, --recursive(-r)] {
+export def enum [path: string = ".", --extension(-e): string, --recursive(-r)] {
     let extension = $extension | str trim --left --char '.'
 
     (convert-to
@@ -67,7 +65,7 @@ export def "main enum" [path: string = ".", --extension(-e): string, --recursive
     )
 }
 
-export def "main prefix" [path: string = ".", --extension(-e): string, --prefix(-p): string, --recursive(-r)] {
+export def prefix [path: string = ".", --extension(-e): string, --prefix(-p): string, --recursive(-r)] {
     let extension = $extension | str trim --left --char '.'
 
     (convert-to

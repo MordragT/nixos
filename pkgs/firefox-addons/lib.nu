@@ -1,24 +1,10 @@
-#!/usr/bin/env -S nix shell nixpkgs#nushell --command nu
-
-use utils.nu "to nix"
-
-def main [] {}
-
-def "main update" [file] {
-    nix-firefox update $file
-}
-
-def "main create" [...slugs, --dest="addons.json"] {
-    nix-firefox create $slugs $dest
-}
-
-export def "nix-firefox update" [file] {
+export def update [file] {
     let addons = open $file
     let addons = $addons | each { |addon| get-addon $addon.slug }
     $addons | save --force $file
 }
 
-export def "nix-firefox create" [slugs: list<string>, dest] {
+export def create [slugs: list<string>, dest] {
     let addons = get-addons $slugs
     ($addons | to json) | save $dest
 }

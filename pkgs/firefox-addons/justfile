@@ -1,8 +1,0 @@
-addons := "bib-kit bibitnow brave-search private-internet-access-ext"
-exe := "../../scripts/nix/firefox.nu"
-
-create:
-    {{ exe }} create {{ addons }} --dest addons.json
-
-update:
-    {{ exe }} update addons.json

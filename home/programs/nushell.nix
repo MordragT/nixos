@@ -10,9 +10,14 @@
     enable = true;
     package = pkgs.nushellFull;
     configFile.text = ''
-      use ${../../scripts/nix/comma.nu} ,
-      use ${../../scripts/vpnctl.nu} [vpnctl "vpnctl fh-aachen" "vpnctl up" "vpnctl down"]
-      # broken ?? use ${../../scripts/all-to.nu} main
+      const scripts = ${../../scripts}
+
+      # cannot use files directly as that would rename them to a hash
+      # and would clash with nushell module system
+      use $"($scripts)/comma.nu" ,
+      use $"($scripts)/vpnctl.nu"
+      use $"($scripts)/all-to.nu"
+      use $"($scripts)/superview.nu"
 
       register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
 

@@ -84,7 +84,7 @@ def gen-xmap [stream, width: int, height: int] {
 #     return $result
 # }
 
-def main [file, --skip(-s): bool = false, --output(-o): string] {
+export def main [file, --skip(-s), --output(-o): string] {
     echo ("Processing: " + $file)
 
     let specs = ((ffprobe

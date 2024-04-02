@@ -1,33 +1,17 @@
 #!/usr/bin/env -S nix shell nixpkgs#nushell nixpkgs#openconnect nixpkgs#wireguard-tools --command nu
 
-def main [] {}
-
-def "main fh-aachen" [] {
-    vpnctl fh-aachen
-}
-
-def "main up" [id] {
-    vpnctl up $id
-}
-
-def "main down" [] {
-    vpnctl down
-}
-
-export def vpnctl [] {}
-
-export def "vpnctl fh-aachen" [] {
+export def fh-aachen [] {
     let $response = openconnect --authenticate --useragent=AnyConnect vpn.fh-aachen.de
     let $start = $response | str index-of "COOKIE"
     let $response = ($"[response]\n($response | str substring $start..)" | from ini).response
     sudo openconnect --servercert $response.FINGERPRINT --cookie $response.COOKIE $response.CONNECT_URL
 }
 
-export def "vpnctl down" [] {
+export def down [] {
     sudo nmcli connection delete wg-0
 }
 
-export def "vpnctl up" [id] {
+export def up [id] {
     let $cacert = "/home/tom/Desktop/Mordrag/nixos/secrets/pia/ca.rsa.4096.crt"
 
     let $servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
