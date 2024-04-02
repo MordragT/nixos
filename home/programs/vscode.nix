@@ -1,32 +1,4 @@
-{pkgs, ...}: let
-  vscode = pkgs.vscode.overrideAttrs (old: {
-    postInstall = ''
-      rm $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html
-
-      cat > $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html << EOF
-      <!DOCTYPE html>
-        <head>
-          <meta charset="utf-8" />
-        </head>
-
-        <body aria-label="">
-        </body>
-
-        <style>
-        ${builtins.readFile ./vscode.css}
-        </style>
-
-        <!-- Startup (do not modify order of script tags!) -->
-        <script src="workbench.js"></script>
-        <script>
-        ${builtins.readFile ./vscode.js}
-        </script>
-      </html>
-
-      EOF
-    '';
-  });
-in {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     typst-lsp
     black
@@ -34,7 +6,7 @@ in {
   ];
 
   programs.vscode = {
-    package = vscode;
+    package = pkgs.my-vscode;
     enable = true;
     userSettings = {
       "breadcrumbs.enabled" = false;

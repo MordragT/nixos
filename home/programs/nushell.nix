@@ -20,6 +20,7 @@
       use $"($scripts)/superview.nu"
 
       register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
+      register "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
 
       $env.config.rm.always_trash = true
 

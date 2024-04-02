@@ -1,8 +1,8 @@
 {...}: {
   programs.zsh = {
     enable = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
 
     oh-my-zsh = {
       enable = true;

@@ -5,7 +5,7 @@
     ./nushell.nix
     ./obs.nix
     ./steam.nix
-    ./vscode
+    ./vscode.nix
     ./zsh.nix
   ];
 
