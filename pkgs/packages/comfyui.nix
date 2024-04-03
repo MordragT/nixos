@@ -43,15 +43,14 @@
       [
         (
           if gpuBackend == "cuda"
-          then torchWithCuda
+          then [torchWithCuda torchvision]
           else if gpuBackend == "rocm"
-          then torchWithRocm
+          then [torchWithRocm torchvision]
           else if gpuBackend == "xpu"
-          then [torchWithXpu ipex]
-          else torch
+          then [torchWithXpu torchvisionWithXpu ipex]
+          else [torch torchvision]
         )
         torchsde
-        torchvision
         torchaudio
         transformers
         safetensors
@@ -67,7 +66,12 @@
       ++ (builtins.concatMap (node: node.dependencies) customNodes));
 
   executable = writers.writeDashBin "comfyui" ''
-    cd $out && ${pythonEnv}/bin/ipexrun comfyui "$@"
+    cd $out && ${pythonEnv}/bin/${
+      if gpuBackend == "xpu"
+      # then "ipexrun"
+      then "python"
+      else "python"
+    } comfyui "$@"
   '';
 
   customNodesCollection = (

@@ -1,6 +1,6 @@
 {
   buildPythonPackage,
-  fetchurl,
+  fetchwheel,
   expecttest,
   hypothesis,
   numpy,
@@ -8,7 +8,6 @@
   pytest,
   pyyaml,
   scipy,
-  # types-dataclasses,
   typing-extensions,
   pydantic,
   torchWithXpu,
@@ -19,13 +18,16 @@
   zstd,
   ocl-icd,
 }:
-buildPythonPackage {
-  pname = "intel-extension-for-pytorch";
-  version = "2.1.10+xpu";
+buildPythonPackage rec {
+  pname = "intel_extension_for_pytorch";
+  # version = "2.1.20";
+  version = "2.1.10";
   format = "wheel";
 
-  src = fetchurl {
-    url = "https://intel-extension-for-pytorch.s3.amazonaws.com/ipex_stable/xpu/intel_extension_for_pytorch-2.1.10%2Bxpu-cp311-cp311-linux_x86_64.whl";
+  src = fetchwheel {
+    abi = "xpu";
+    package = "${pname}-${version}";
+    # sha256 = "sha256-h0KlANwIs62E5nWIb3dXv/f+2Tn0UiVVghUGk4OwDjE=";
     sha256 = "sha256-LX3TvEGM5BbPw/nkOhaTq6v+nduTI68y2WFhNw25VSI=";
   };
 
@@ -37,6 +39,7 @@ buildPythonPackage {
   buildInputs = [
     intelPackages.mkl
     intelPackages.runtime
+    torchWithXpu.lib
     level-zero
     zstd
     ocl-icd

@@ -1,39 +1,92 @@
 {
-  pytorch,
-  fetchFromGitHub,
-}: (pytorch.overrideAttrs (old: rec {
+  buildPythonPackage,
+  python,
+  fetchwheel,
+  autoPatchelfHook,
+  zlib,
+  intelPackages,
+  astunparse,
+  cffi,
+  click,
+  numpy,
+  pyyaml,
+  fsspec,
+  filelock,
+  typing-extensions,
+  sympy,
+  networkx,
+  jinja2,
+  pillow,
+  six,
+  future,
+  tensorboard,
+  protobuf,
+  pybind11,
+}:
+buildPythonPackage rec {
+  pname = "torch";
   version = "2.1.0a0";
+  format = "wheel";
 
-  PYTORCH_BUILD_VERSION = version;
+  outputs = ["out" "dev" "lib"];
 
-  src = fetchFromGitHub {
-    owner = "pytorch";
-    repo = "pytorch";
-    rev = "209f2fa8ff86652f67d75c2f19bf9cb9942fd018";
-    # hash = "sha256-0BpGhi/ZKSOFXYmFrHoqPc5/P9X/cHNm+z3Q0CeoX34=";
-    hash = "sha256-BJpLX5jOE8ICWM4eMd88uqD6wDh9ehVQu6LjuOiItCw=";
-    fetchSubmodules = true;
+  src = fetchwheel {
+    package = "${pname}-${version}";
+    sha256 = "sha256-CjX7U8hFxNMKYDyfDxbHol33Iw9mMfOeBmVnvrqpcp0=";
   };
 
-  patches =
-    [
-      ./torch-patches/0001-Add-API-for-intel-XPU-to-register-new-tensor-type.patch
-      ./torch-patches/0002-Add-xpu-legacy-profiler-163.patch
-      ./torch-patches/0003-add-custom-pass-hooks-in-post_grad_passes-164.patch
-      ./torch-patches/0004-Add-qweight-prepack-runtime-registration-linear-conv.patch
-      ./torch-patches/0005-fix-hpu-deserialization-bug-165.patch
-      ./torch-patches/0006-C10d-Add-xpu-as-the-supported-device-in-device-backe.patch
-      ./torch-patches/0007-add-path-for-DPC-SYCL-device-code-167.patch
-      ./torch-patches/0008-generalize-inductor-triton-backend-device-agnostic-1.patch
-      ./torch-patches/0009-Integrate-xpu-into-torch.Generator-and-torch.seed-10.patch
-      ./torch-patches/0010-Enable-xpu-backend-in-torchdynamo-benchmarks-171.patch
-      ./torch-patches/0011-support-channel-last-for-xpu-conv-in-inductor-layout.patch
-      ./torch-patches/0012-Cherry-pick-https-github.com-pytorch-pytorch-pull-10.patch
-      ./torch-patches/0013-Inductor-backend-specific-num-sm-for-XPU-backend-in-.patch
-      ./torch-patches/0014-ATen-scaled_dot_product_attention-follow-supposed-CU.patch
-      ./torch-patches/0015-Profiler-Kineto-Legacy-Enable-Profiler-with-Legacy-K.patch
-      ./torch-patches/0016-Fix-dynamo-benchmark-random-seed-for-xpu-device-181.patch
-      ./torch-patches/0017-fix-deterministic-issue-200.patch
-    ]
-    ++ old.patches;
-}))
+  nativeBuildInputs = [
+    autoPatchelfHook
+  ];
+
+  buildInputs = [
+    zlib
+    intelPackages.mkl
+  ];
+
+  propagatedBuildInputs = [
+    astunparse
+    cffi
+    click
+    numpy
+    pyyaml
+
+    # From install_requires:
+    fsspec
+    filelock
+    typing-extensions
+    sympy
+    networkx
+    jinja2
+
+    # the following are required for tensorboard support
+    pillow
+    six
+    future
+    tensorboard
+    protobuf
+
+    # torch/csrc requires `pybind11` at runtime
+    pybind11
+  ];
+
+  postInstall = ''
+    mkdir $dev
+    cp -r $out/${python.sitePackages}/torch/include $dev/include
+    cp -r $out/${python.sitePackages}/torch/share $dev/share
+
+
+    # Fix up library paths for split outputs
+    substituteInPlace \
+      $dev/share/cmake/Torch/TorchConfig.cmake \
+      --replace \''${TORCH_INSTALL_PREFIX}/lib "$lib/lib"
+
+    substituteInPlace \
+      $dev/share/cmake/Caffe2/Caffe2Targets-release.cmake \
+      --replace \''${_IMPORT_PREFIX}/lib "$lib/lib"
+
+    mkdir $lib
+    mv $out/${python.sitePackages}/torch/lib $lib/lib
+    ln -s $lib/lib $out/${python.sitePackages}/torch/lib
+  '';
+}

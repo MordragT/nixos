@@ -66,6 +66,7 @@ in
       cd ./opt/intel/oneapi/mkl/${major}
 
       mv bin $out/bin
+      mv env $out/env
       mv include $out/include
       mv lib $out/lib
       # mv lib32 $out/lib32

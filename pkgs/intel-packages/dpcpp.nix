@@ -105,6 +105,7 @@ in
 
       mv bin $out/bin
       rm $out/bin/aocl
+      mv env $out/env
       mv include $out/include
       mv lib $out/lib
       mv share $out/share

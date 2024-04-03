@@ -30,8 +30,10 @@
   #     intel-compute-runtime
   #     intel-media-driver
   #     intel-vaapi-driver
+  #     onevpl-intel-gpu
   #   ];
   # };
+
   environment.systemPackages = with pkgs; [intel-gpu-tools ffmpeg-vpl];
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";
@@ -42,12 +44,12 @@
   };
 
   # Other
-  # services.comfyui = {
-  #   enable = true;
-  #   # intel arc letzze goo ... soon hopefully
-  #   extraArgs = "--use-pytorch-cross-attention --highvram";
-  #   package = pkgs.comfyui.override {gpuBackend = "xpu";};
-  # };
+  services.comfyui = {
+    enable = true;
+    # intel arc letzze goo ... soon hopefully
+    extraArgs = "--use-pytorch-cross-attention --highvram";
+    package = pkgs.comfyui.override {gpuBackend = "xpu";};
+  };
   # programs.gamescope.args = [
   #   "-W 2560"
   #   "-H 1440"
