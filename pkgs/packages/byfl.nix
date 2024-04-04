@@ -1,5 +1,5 @@
 {
-  clangStdenv,
+  libcxxStdenv,
   fetchFromGitHub,
   llvm,
   perl,
@@ -7,7 +7,7 @@
   clang,
   bash,
 }:
-clangStdenv.mkDerivation {
+libcxxStdenv.mkDerivation {
   pname = "byfl";
   version = "master";
 

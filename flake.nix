@@ -38,7 +38,6 @@
   };
 
   outputs = {
-    self,
     templates,
     nixpkgs,
     nur,

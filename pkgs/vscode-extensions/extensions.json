@@ -1,0 +1,62 @@
+[
+  {
+    "name": "gltf-vscode",
+    "publisher": "cesium",
+    "version": "2.4.0",
+    "sha256": "0yvhnriwryxz37n89wphmy51r0r7p7q8jg6nz4wq7824lvb8hbyh"
+  },
+  {
+    "name": "texlab",
+    "publisher": "efoerster",
+    "version": "5.14.1",
+    "sha256": "0396zhj9wjzw25qb8xdpmqnfl40705i2v64gn9ml1d2hijrxz8di"
+  },
+  {
+    "name": "kotlin",
+    "publisher": "fwcd",
+    "version": "0.2.34",
+    "sha256": "12d7nmbzpfaqif86hxw6qq3jv7q77h0b7mbn41y3rx80f9q7lwfk"
+  },
+  {
+    "name": "parol-vscode",
+    "publisher": "jsinger67",
+    "version": "0.1.15",
+    "sha256": "1y2fixz4jazac384wqv84grn0wbgq5n0jfw4hrdiv54gziqqf964"
+  },
+  {
+    "name": "one-dark-vibrant",
+    "publisher": "Mordrag",
+    "version": "0.0.4",
+    "sha256": "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb"
+  },
+  {
+    "name": "sublime-keybindings",
+    "publisher": "ms-vscode",
+    "version": "4.1.10",
+    "sha256": "0zfyv2l9q5vqy2knvlyxzsmlwaji4mz2q5az2fnzz641gdx20njy"
+  },
+  {
+    "name": "wgsl",
+    "publisher": "PolyMeilex",
+    "version": "0.1.17",
+    "sha256": "1320ykimlbxl9jn9rcjqa376n5x28ir3lwg23jxd3h7pp9baysmw"
+  },
+  {
+    "name": "code-spell-checker-german",
+    "publisher": "streetsidesoftware",
+    "version": "2.3.1",
+    "sha256": "0dxqslksj1l27lq8fc083w1nhipd9gd70na7469bz4s65asiy61g"
+  },
+  {
+    "name": "vscode-nickel",
+    "publisher": "tweag",
+    "version": "0.3.0",
+    "sha256": "11caqvxayj22k4rsb4mf26q1q3vgnqpf6132yzqivm3r31zm0yrs"
+  },
+  {
+    "name": "flowistry",
+    "publisher": "wcrichton",
+    "version": "0.5.41",
+    "sha256": "02zqy59j6av8xspjdqqyzakplpkbagkzh2z7lnxlm4cygnmklamn"
+  }
+]

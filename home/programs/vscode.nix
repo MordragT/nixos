@@ -2,7 +2,12 @@
   home.packages = with pkgs; [
     typst-lsp
     black
-    platformio-core
+    # platformio-core
+
+    # nickel support
+    nickel
+    nls
+    topiary
   ];
 
   programs.vscode = {
@@ -135,116 +140,54 @@
       }
     ];
     mutableExtensionsDir = true;
-    extensions = with pkgs.vscode-extensions;
-      [
-        bierner.markdown-mermaid
-        bmewburn.vscode-intelephense-client
-        # catppuccin.catppuccin-vsc
-        davidanson.vscode-markdownlint
-        firefox-devtools.vscode-firefox-debug
-        gruntfuggly.todo-tree
-        jnoortheen.nix-ide
-        kamadorueda.alejandra
-        marp-team.marp-vscode
-        matangover.mypy
+    extensions = with pkgs.vscode-extensions; [
+      bierner.markdown-mermaid
+      bmewburn.vscode-intelephense-client
+      # catppuccin.catppuccin-vsc
+      cesium.gltf-vscode
+      davidanson.vscode-markdownlint
+      firefox-devtools.vscode-firefox-debug
+      fwcd.kotlin
+      gruntfuggly.todo-tree
+      jnoortheen.nix-ide
+      jsinger67.parol-vscode
+      kamadorueda.alejandra
+      marp-team.marp-vscode
+      matangover.mypy
+      Mordrag.one-dark-vibrant
 
-        ms-python.python
-        ms-python.vscode-pylance
-        ms-dotnettools.csharp
-        ms-toolsai.jupyter
-        ms-toolsai.jupyter-renderers
-        ms-toolsai.vscode-jupyter-cell-tags
-        ms-toolsai.vscode-jupyter-slideshow
-        ms-vscode.cmake-tools
-        ms-vscode.cpptools
-        # ms-vscode-remote.remote-ssh
-        # ms-vsliveshare.vsliveshare
+      ms-python.python
+      ms-python.vscode-pylance
+      ms-dotnettools.csharp
+      ms-toolsai.jupyter
+      ms-toolsai.jupyter-renderers
+      ms-toolsai.vscode-jupyter-cell-tags
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-vscode.cmake-tools
+      ms-vscode.cpptools
+      ms-vscode.sublime-keybindings
+      # ms-vscode-remote.remote-ssh
+      # ms-vsliveshare.vsliveshare
 
-        mgt19937.typst-preview
-        nvarner.typst-lsp
-        piousdeer.adwaita-theme
-        redhat.java
-        rust-lang.rust-analyzer-nightly
-        skellock.just
-        streetsidesoftware.code-spell-checker
-        svelte.svelte-vscode
-        tamasfe.even-better-toml
-        thenuprojectcontributors.vscode-nushell-lang
-        twxs.cmake
+      mgt19937.typst-preview
+      nvarner.typst-lsp
+      piousdeer.adwaita-theme
+      PolyMeilex.wgsl
+      redhat.java
+      rust-lang.rust-analyzer-nightly
+      skellock.just
+      streetsidesoftware.code-spell-checker
+      streetsidesoftware.code-spell-checker-german
+      svelte.svelte-vscode
+      tamasfe.even-better-toml
+      thenuprojectcontributors.vscode-nushell-lang
+      twxs.cmake
 
-        # vadimcn.vscode-lldb
-        # valentjn.vscode-ltex
-        vscjava.vscode-gradle
-        yzhang.markdown-all-in-one
-        ziglang.vscode-zig
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "code-spell-checker-german";
-          publisher = "streetsidesoftware";
-          version = "2.3.1";
-          sha256 = "0dxqslksj1l27lq8fc083w1nhipd9gd70na7469bz4s65asiy61g";
-        }
-        # {
-        #   name = "flowistry";
-        #   publisher = "wcrichton";
-        #   version = "0.5.28";
-        #   sha256 = "1r232zcbqd7fs1nbjj4c4iwnw1z18b6ms2has74i97xrx17jhmqk";
-        # }
-        {
-          name = "gltf-vscode";
-          publisher = "cesium";
-          version = "2.4.0";
-          sha256 = "0yvhnriwryxz37n89wphmy51r0r7p7q8jg6nz4wq7824lvb8hbyh";
-        }
-        {
-          name = "kotlin";
-          publisher = "fwcd";
-          version = "0.2.34";
-          sha256 = "12d7nmbzpfaqif86hxw6qq3jv7q77h0b7mbn41y3rx80f9q7lwfk";
-        }
-        {
-          name = "one-dark-vibrant";
-          publisher = "Mordrag";
-          version = "0.0.4";
-          sha256 = "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb";
-        }
-        {
-          name = "parol-vscode";
-          publisher = "jsinger67";
-          version = "0.1.15";
-          sha256 = "1y2fixz4jazac384wqv84grn0wbgq5n0jfw4hrdiv54gziqqf964";
-        }
-        # {
-        #   name = "platformio-ide";
-        #   publisher = "platformio";
-        #   version = "3.1.1";
-        #   sha256 = "fwEct7Tj8bfTOLRozSZJGWoLzWRSvYz/KxcnfpO8Usg=";
-        # }
-        {
-          name = "sublime-keybindings";
-          publisher = "ms-vscode";
-          version = "4.0.10";
-          sha256 = "0l8z0sv3432qrzh6118km7xr7g93fajmjihw8md47kfsdl9c4xxg";
-        }
-        {
-          name = "texlab";
-          publisher = "efoerster";
-          version = "5.12.1";
-          sha256 = "0kkbqjiamkx2yrpdlw7mi5m34vqdxyavhc1aii85fkxjifpy0vf0";
-        }
-        {
-          name = "wgsl";
-          publisher = "PolyMeilex";
-          version = "0.1.16";
-          sha256 = "1fb4vqp5l1qgvhpgasivar05p71kcgkka4xy0y87gfvw8griaiyh";
-        }
-        # {
-        #   name = "vscode-embedded-tools";
-        #   publisher = "ms-vscode";
-        #   version = "0.7.230323001";
-        #   sha256 = "1hm47gvhb510lhqarryhjsh8gzfpxnzhiyv16d63999f4fli5sqv";
-        # }
-      ];
+      # vadimcn.vscode-lldb
+      # valentjn.vscode-ltex
+      vscjava.vscode-gradle
+      yzhang.markdown-all-in-one
+      ziglang.vscode-zig
+    ];
   };
 }

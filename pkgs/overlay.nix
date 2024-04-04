@@ -16,6 +16,7 @@ in
     intelPackages = import ./intel-packages self.intelPackages pkgs;
     oneapiPackages = import ./oneapi-packages self.oneapiPackages (pkgs // {inherit (self) intelPackages;});
     steamPackages = pkgs.steamPackages.overrideScope (_: _: import ./steam-packages self.steamPackages (pkgs // {inherit (self) x86-64-v3Packages;}));
+    vscode-extensions = pkgs.lib.recursiveUpdate pkgs.vscode-extensions (import ./vscode-extensions self.vscode-extensions pkgs);
     winPackages = import ./win-packages self.winPackages pkgs;
     x86-64-v3Packages = import ./x86-64-v3-packages self.x86-64-v3Packages pkgs;
     xpuPackages = import ./xpu-packages self.xpuPackages pkgs;
