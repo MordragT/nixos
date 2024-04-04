@@ -49,4 +49,6 @@ mkYarnPackage rec {
     desktopName = "Astrofox Audio Visualizer";
     genericName = "Audio Visualizer";
   };
+
+  meta.broken = true;
 }

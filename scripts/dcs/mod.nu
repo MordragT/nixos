@@ -1,92 +1,94 @@
-const dcs_name = ".dcs"
+#!/usr/bin/env -S nix shell nixpkgs#nushellFull nixpkgs#rclone --command nu
+
+use std log
+use lib.nu [init root-path add-object]
+
 const config_name = "config.toml"
-const objects_name = "objects"
+const store_name = "store"
 
-export def init [remote destination force=false] {
+def main [] {
+
+}
+
+def "main init" [remote, destination] {
+    init $remote $destination
+}
+
+def "main add" [path] {
     let root = root-path
-
-    let dcs_path = dcs-path $root
-    if $force {
-        rm -r $dcs_path
-    }
-    mkdir $dcs_path
-    mkdir (objects-path $root)
-    let config = {
-        remote: $remote
-        destination: $destination
-        # table must not be empty apparently
-        objects: [[root]; ["/"]]
-    }
-    $config | to toml | save (config-path $root)
+    add-object $root $path
 }
 
-export def root-path [] {
-    is-git
-    let root = git rev-parse --show-toplevel
-    $root
-}
+# def "main add" [path] {
+#     let root = root-path
+#     let absolute = pwd | path join $path
 
-export def dcs-path [root] {
-    $root | path join $dcs_name
-}
+#     if not ($absolute | path exists) {
+#         return "Fatal: Specified path does not exist"
+#     }
 
-export def objects-path [root] {
-    [ $root $dcs_name $objects_name ] | path join
-}
+#     let relative = $absolute | path relative-to $root
 
-export def config-path [root] {
-    [ $root $dcs_name $config_name ] | path join
-}
+#     let config_file = get-config-file
+#     if not ($config_file | path exists) {
+#         return "Fatal: Data control is not initialized"
+#     }
 
-export def update-config [root, field, replacement] {
-    let path = config-path $root
-    if not ($path | path exists) {
-        error make {
-            msg: "Data control is not initialized"
-            help: "Initialize with 'dcs init <remote> <destination>"
-        }
-    } else {
-        let config = open $path | update $field $replacement
-        $config | to toml | save -f $path
-    }
-}
+#     let config = open $config_file
+#         | update filters { |config|
+#             $config.filters | append $relative
+#         }
 
-export def add-object [root, path] {
+#     $config | to toml | save -f $config_file
+# }
+
+def "main remove" [path] {
+    let root = get-root
     let absolute = pwd | path join $path
-    if not ($absolute | path exists) {
-        error make {
-            msg: "Specified path does not exist"
-            help: "Cannot add a file or directory that does not exist"
-        }
-    }
-
-    let hash = match ($absolute | path type) {
-        "file" => {
-            open $absolute | hash md5
-        }
-        _ => {
-            error make {
-                msg: "Only files supported"
-            }
-        }
-    }
     let relative = $absolute | path relative-to $root
-    let object_path = [(objects-path $root) $hash $relative] | path join
-    
-    mkdir ($object_path | path dirname)
-    ln -s $absolute $object_path
 
-    update-config $root objects { |config|
-        $config.objects | upsert $relative $hash
+    let config_file = get-config-file
+    if not ($config_file | path exists) {
+        return "Fatal: Data control is not initialized"
     }
+
+    let config = open $config_file
+        | update filters { |config|
+            $config.filters | where { |entry| $entry != $relative }
+        }
+
+    $config | to toml | save -f $config_file
 }
 
-def is-git [] {
-    let output = do { git rev-parse --is-inside-work-tree } | complete
-    if $output.exit_code != 0 {
-        error make {
-            msg: "Not inside a git repository"
-            help: "Initialize a git repository before running dcs commands"
-        }
+def "main sync" [] {
+    let config_file = get-config-file
+    if not ($config_file | path exists) {
+        return "Fatal: Data control is not initialized"
     }
+
+    let config = open $config_file
+
+    let tmp_path = $"(get-config-dir)/filters"
+    let filters = $config.filters
+        | str join "\n"
+        | save $tmp_path
+    let root = get-root
+
+    rclone $"--include-from=($tmp_path)" sync $root $"($config.remote):($config.destination)"
+
+    rm $tmp_path
+}
+
+def "main status" [] {
+    let config_file = get-config-file
+    if not ($config_file | path exists) {
+        return "Fatal: Data control is not initialized"
+    }
+
+    let config = open $config_file
+
+    # TODO better printing
+    echo ($config | reject filters)
+    echo $config.filters
+    # echo ($config | table -e)
 }

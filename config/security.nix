@@ -4,7 +4,6 @@
 
   security.pam.mount.additionalSearchPaths = [pkgs.bindfs];
 
-  # security.pki.certificateFiles = [../secrets/crt/Starfield_Class_2_CA.crt];
   environment.etc = {
     # CK3 fix
     "ssl/certs/f387163d.0".source = "${pkgs.cacert.unbundled}/etc/ssl/certs/Starfield_Class_2_CA.crt";

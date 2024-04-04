@@ -12,10 +12,12 @@
     configFile.text = ''
       const scripts = ${../../scripts}
 
+      $env.MY_SCRIPT_DIR = $scripts
+
       # cannot use files directly as that would rename them to a hash
       # and would clash with nushell module system
       use $"($scripts)/comma.nu" ,
-      use $"($scripts)/vpnctl.nu"
+      use $"($scripts)/vpnctl"
       use $"($scripts)/all-to.nu"
       use $"($scripts)/superview.nu"
 

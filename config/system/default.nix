@@ -6,11 +6,9 @@
     ./networking.nix
     ./nix.nix
     ./pipewire.nix
+    ./secrets.nix
     ./users.nix
   ];
-
-  classified.keys.first = "/var/key";
-  classified.files.pia.encrypted = ../../secrets/pia/pia.enc;
 
   environment.interactiveShellInit = ''
     alias comojit='comoji commit'

@@ -58,7 +58,6 @@ const slugs = [
     streetsidesoftware.code-spell-checker-german
     tweag.vscode-nickel
     wcrichton.flowistry
-
 ]
 
 export def update [] {

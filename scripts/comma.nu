@@ -9,7 +9,7 @@ export def , [...pkgs: string] {
 }
 
 def comma [pkgs: list<string>] {
-    let $pkgs = $pkgs
+    let pkgs = $pkgs
         | each { |pkg| "nixpkgs#" + $pkg }
     nix shell ...$pkgs
 }

@@ -250,8 +250,14 @@
       };
     };
 
-    overlays.default = import ./pkgs/overlay.nix;
+    nixosModules.default = import ./modules;
     packages."${system}" = import ./pkgs pkgs;
-    devShells."${system}" = import ./shells {inherit pkgs;};
+    overlays.default = import ./pkgs/overlay.nix;
+    devShells."${system}".default = pkgs.mkShell {
+      buildInputs = with pkgs; [
+        classified.defaultPackage.${system}
+        unzip
+      ];
+    };
   };
 }
