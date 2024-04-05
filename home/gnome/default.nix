@@ -10,6 +10,7 @@
     # Rust GTK
     # czkawka # duplicate finder
     fclones-gui # find duplicate files
+    loupe # image viewer
     markets # gtk crypto market prices
     overskride # bluetooth client
 

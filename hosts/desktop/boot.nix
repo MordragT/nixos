@@ -23,7 +23,7 @@
   boot.runSize = "25%";
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
+  boot.kernelPackages = pkgs.linuxPackages_6_8; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
   boot.kernelParams = [
     # "i915.force_probe=!56a1"
     # "xe.force_probe=56a1"

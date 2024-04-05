@@ -102,11 +102,11 @@ The python packages are sadly not functional at the moment.
 
 ### 🍷 Wine Bottles
 
-With the constructs defined under `pkgs/wine-packages` you can create wine bottles for your windows programs.
+With the constructs defined under `pkgs/win-packages` you can create wine bottles for your windows programs.
 Here is an example for battle.net:
 
 ```nix
-# pkgs/wine-packages/battle-net.nix
+# pkgs/win-packages/battle-net.nix
 {
   mkBottle,
   wineWowPackages,

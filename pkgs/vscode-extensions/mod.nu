@@ -3,7 +3,7 @@
 module lib {
     export def update [file] {
         let extensions = open $file
-        let extensions = $extensions | each { |ext| get-vsixpkg $"($ext.publishder).($ext.name)" }
+        let extensions = $extensions | each { |ext| get-vsixpkg $"($ext.publisher).($ext.name)" }
         $extensions | save --force $file
     }
 
