@@ -3,7 +3,14 @@
     device = "none";
     neededForBoot = true;
     fsType = "tmpfs";
-    options = ["defaults" "size=50%" "mode=755"];
+    options = ["defaults" "size=20%" "mode=755"];
+  };
+
+  fileSystems."/home/tom" = {
+    device = "none";
+    neededForBoot = true;
+    fsType = "tmpfs";
+    options = ["defaults" "size=40%" "mode=777"];
   };
 
   fileSystems."/boot" = {
@@ -24,6 +31,7 @@
   # hdd
   fileSystems."/nix/state" = {
     device = "/dev/disk/by-label/state";
+    neededForBoot = true;
     fsType = "btrfs";
     options = [
       "noatime"
