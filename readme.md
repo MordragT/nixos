@@ -30,6 +30,11 @@ TODO: Show some basic examples on how to use the overlay/modules
 1. Create partitions
 2. Mount partitions, except for tmpfs partitions
 
+```bash
+nix-shell -p git
+sudo nixos-install --flake uri#system
+```
+
 ## ✨ Features
 
 ### 🤫 Impermanence

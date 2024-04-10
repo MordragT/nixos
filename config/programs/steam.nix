@@ -26,7 +26,7 @@
     };
     extraCompatPackages = with pkgs.steamPackages; [
       proton-ge-bin
-      proton-cachyos-bin
+      # proton-cachyos-bin
       luxtorpeda
       opengothic
       steamtinkerlaunch
