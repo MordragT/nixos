@@ -3,6 +3,7 @@
     mutableUsers = true;
 
     users.root = {
+      initialPassword = "toor";
       extraGroups = ["root"];
     };
 

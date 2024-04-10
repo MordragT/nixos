@@ -1,23 +1,40 @@
 {...}: {
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/29a924dc-05e9-4009-a9c7-f18059cbe6af";
-    fsType = "f2fs";
+    device = "none";
+    neededForBoot = true;
+    fsType = "tmpfs";
+    options = ["defaults" "size=50%" "mode=755"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6279-C816";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/1c993eac-9840-4539-8639-2c91454ff5a4";
+  # ssd
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix";
     fsType = "btrfs";
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+
+  # hdd
+  fileSystems."/nix/state" = {
+    device = "/dev/disk/by-label/state";
+    fsType = "btrfs";
+    options = [
+      "noatime"
+      "compress=zstd"
+      "autodefrag"
+    ];
   };
 
   swapDevices = [
     {
-      device = "/swapfile";
-      size = 4 * 1024;
+      device = "/dev/disk/by-label/swap";
     }
   ];
 }

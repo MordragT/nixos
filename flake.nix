@@ -185,7 +185,6 @@
             # ./config/programs/niri.nix
             # no security manager (wlroots issue https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/3339)
             # ./config/programs/hyprland.nix
-            ./config/impermanence.nix
             ./config/security.nix
             ./config/virtualisation.nix
             # ./config/desktop-manager/gnome.nix
@@ -257,6 +256,7 @@
       buildInputs = with pkgs; [
         classified.defaultPackage.${system}
         unzip
+        nixos-generators
       ];
     };
   };

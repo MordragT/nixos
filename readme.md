@@ -25,6 +25,11 @@ You probably want to use flakes to use the overlay and modules defined in this r
 
 TODO: Show some basic examples on how to use the overlay/modules
 
+### Install on new system
+
+1. Create partitions
+2. Mount partitions, except for tmpfs partitions
+
 ## ✨ Features
 
 ### 🤫 Impermanence

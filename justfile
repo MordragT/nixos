@@ -18,3 +18,6 @@ create-firefox:
 
 create-vscode:
     use pkgs/vscode-extensions; vscode-extensions create
+
+iso system:
+    nixos-generate --flake .#tom-{{ system }} --format iso
