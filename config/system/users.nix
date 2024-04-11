@@ -3,13 +3,13 @@
     mutableUsers = true;
 
     users.root = {
-      initialPassword = "toor";
+      initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";
       extraGroups = ["root"];
     };
 
     users.tom = {
       isNormalUser = true;
-      initialPassword = "tom";
+      initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";
       extraGroups = ["wheel" "docker" "gamemode"];
       shell = pkgs.nushellFull;
       openssh.authorizedKeys.keys = [
