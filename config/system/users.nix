@@ -2,6 +2,10 @@
   users = {
     mutableUsers = true;
 
+    # To generate a hash to put in initialHashedPassword
+    # you can do this:
+    # $ nix-shell --run 'mkpasswd -m SHA-512 -s' -p mkpasswd
+
     users.root = {
       initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";
       extraGroups = ["root"];
