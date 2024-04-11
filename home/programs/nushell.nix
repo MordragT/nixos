@@ -10,6 +10,9 @@
     enable = true;
     package = pkgs.nushellFull;
     configFile.text = ''
+      register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
+      register "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
+
       const scripts = ${../../scripts}
 
       $env.MY_SCRIPT_DIR = $scripts
@@ -20,9 +23,6 @@
       use $"($scripts)/vpnctl"
       use $"($scripts)/all-to.nu"
       use $"($scripts)/superview.nu"
-
-      register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
-      register "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
 
       $env.config.rm.always_trash = true
 
