@@ -27,8 +27,14 @@ TODO: Show some basic examples on how to use the overlay/modules
 
 ### Install on new system
 
-1. Create partitions
+1. Create partitions (with e.g. disko or parted)
 2. Mount partitions, except for tmpfs partitions
+3. Comment out machine-id (and potentially more) under impermanence
+4. Run nixos-install
+5. Copy machine-id and other needed files into the persisted directories
+6. Undo the comment out
+7. Run nixos-install again
+
 
 ```bash
 nix-shell -p git

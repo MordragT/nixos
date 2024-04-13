@@ -26,6 +26,10 @@ in {
     inherit callPackage;
   };
 
+  libdevice = callPackage ./libdevice.nix {
+    inherit callPackage;
+  };
+
   clang = callPackage ./clang.nix {};
   # pkgs.buildEnv ?
   env = pkgs.overrideCC pkgs.stdenv self.clang;

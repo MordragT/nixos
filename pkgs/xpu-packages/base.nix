@@ -2,7 +2,8 @@
   stdenv,
   name,
   cmakeFlags,
-  targetDir,
+  targetDir ? name,
+  extraBuildInputs ? [],
   fetchFromGitHub,
   cmake,
   pkg-config,
@@ -16,7 +17,9 @@ stdenv.mkDerivation rec {
   inherit cmakeFlags;
 
   pname = name;
+  # version = "18.0.0-nightly-2024-01-24";
   version = "nightly-2024-01-24";
+
   src = fetchFromGitHub {
     owner = "intel";
     repo = "llvm";
@@ -25,8 +28,8 @@ stdenv.mkDerivation rec {
   };
 
   passthru = {
-    isClang = targetDir == "llvm" || targetDir == "clang";
-    isLLVM = targetDir == "llvm";
+    isClang = name == "llvm" || name == "clang";
+    isLLVM = name == "llvm";
   };
 
   nativeBuildInputs = [
@@ -36,11 +39,13 @@ stdenv.mkDerivation rec {
     perl
   ];
 
-  buildInputs = [
-    libz
-    libxml2
-    ncurses
-  ];
+  buildInputs =
+    [
+      libz
+      libxml2
+      ncurses
+    ]
+    ++ extraBuildInputs;
 
   prePatch = ''
     cd ${targetDir}

@@ -1,13 +1,73 @@
 {...}: {
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/7686565f-995a-4cf9-8b58-19b6a7dd22ae";
-    fsType = "f2fs";
+  fileSystems = {
+    "/nix/state".neededForBoot = true;
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/558C-F05C";
-    fsType = "vfat";
-  };
+  disko.devices = {
+    nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "defaults"
+        "size=10%"
+        "mode=755"
+      ];
+    };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/89f26c8e-14ef-4fac-a379-96f538de5ef8";}];
+    nodev."/home/tom" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "defaults"
+        "size=20%"
+        "mode=777"
+      ];
+    };
+
+    disk.main = {
+      device = "/dev/sda";
+      type = "disk";
+
+      content = {
+        type = "gpt";
+        partitions.boot = {
+          type = "EF00";
+          name = "boot";
+          size = "500M";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+          };
+        };
+        partitions.data = {
+          end = "-4G";
+          content = {
+            type = "btrfs";
+            subvolumes.nix = {
+              type = "filesystem";
+              mountpoint = "/nix";
+              mountOptions = [
+                "noatime"
+                "compress=zstd"
+              ];
+            };
+            subvolumes.state = {
+              type = "filesystem";
+              mountpoint = "/nix/state";
+              mountOptions = [
+                "noatime"
+                "compress=zstd"
+              ];
+            };
+          };
+        };
+        partitions.swap = {
+          size = "100%";
+          content = {
+            type = "swap";
+            resumeDevice = true;
+          };
+        };
+      };
+    };
+  };
 }

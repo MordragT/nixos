@@ -6,6 +6,7 @@
   compiler-rt,
   pstl,
   libcxx,
+  libdevice,
 }:
 # not working: openmp libc;
 wrapCCWith {
@@ -20,6 +21,7 @@ wrapCCWith {
   extraPackages = [
     compiler-rt
     pstl
+    libdevice
     # openmp
   ];
 }

@@ -45,7 +45,6 @@
 in
   (callPackage ./base.nix {
     name = "llvm";
-    targetDir = "llvm";
 
     cmakeFlags = [
       "-DCMAKE_BUILD_TYPE=Release"

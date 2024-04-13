@@ -10,6 +10,10 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,11 +42,13 @@
   };
 
   outputs = {
+    self,
     templates,
     nixpkgs,
     nur,
     chaotic,
     cosmic,
+    disko,
     home-manager,
     classified,
     comoji,
@@ -66,7 +72,7 @@
       ];
     };
     lib = import ./lib.nix {
-      inherit nixpkgs home-manager templates;
+      inherit self nixpkgs home-manager templates;
     };
   in {
     nixosConfigurations = {
@@ -114,7 +120,7 @@
         };
 
       tom-server = let
-        stateVersion = "23.05";
+        stateVersion = "23.11";
       in
         lib.mkHost {
           inherit system stateVersion;
@@ -138,6 +144,7 @@
             classified.nixosModules.${system}.default
             chaotic.nixosModules.default
             cosmic.nixosModules.default
+            disko.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
           ];
 
@@ -254,8 +261,10 @@
     overlays.default = import ./pkgs/overlay.nix;
     devShells."${system}".default = pkgs.mkShell {
       buildInputs = with pkgs; [
+        disko.packages.${system}.default
         classified.defaultPackage.${system}
         unzip
+        git
         nixos-generators
       ];
     };

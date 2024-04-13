@@ -1,4 +1,5 @@
 {
+  self,
   nixpkgs,
   home-manager,
   templates,
@@ -46,6 +47,7 @@
       inherit username stateVersion homeDirectory;
     };
     nix.registry = {
+      self.flake = self;
       nixpkgs.flake = nixpkgs;
       templates.flake = templates;
     };
