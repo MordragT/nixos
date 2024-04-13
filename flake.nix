@@ -120,7 +120,7 @@
         };
 
       tom-server = let
-        stateVersion = "23.11";
+        stateVersion = "24.05";
       in
         lib.mkHost {
           inherit system stateVersion;
