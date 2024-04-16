@@ -6,17 +6,23 @@
   python3,
   libbacktrace,
   level-zero,
+  numactl,
+  unified-memory-framework,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation {
   pname = "unified-runtime";
-  version = "0.8.2";
+  version = "unstable";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = "unified-runtime";
-    rev = "v${finalAttrs.version}";
-    hash = "sha256-hIr8QfidMs4XjQ8CTqdph6peRUdmgP3WWZcE9+AZ1Vs=";
+    rev = "6ccaf38708cfa614ab7f9b34c351826cd74028f2";
+    hash = "sha256-Gcuh9mzV7X6yWqWmYYdhtySBySVVrxNEMChcrobg38c=";
   };
+
+  patches = [
+    ./umf.patch
+  ];
 
   nativeBuildInputs = [
     cmake
@@ -33,16 +39,18 @@ stdenv.mkDerivation (finalAttrs: {
     python3
     libbacktrace
     level-zero
+    numactl
+    unified-memory-framework
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
   doCheck = false;
 
   meta = {
-    changelog = "https://github.com/oneapi-src/unified-runtime/releases/tag/v${finalAttrs.version}";
+    # changelog = "https://github.com/oneapi-src/unified-runtime/releases/tag/v${finalAttrs.version}";
     description = "oneAPI unified runtime";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [mordrag];
     platforms = lib.platforms.all;
   };
-})
+}

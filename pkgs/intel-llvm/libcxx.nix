@@ -1,9 +1,9 @@
 {
-  envNoLibs,
-  callPackage,
+  stdenv,
+  mkLLVM,
 }:
-callPackage ./base.nix {
-  stdenv = envNoLibs;
+mkLLVM {
+  inherit stdenv;
 
   name = "libcxx";
   targetDir = "runtimes";

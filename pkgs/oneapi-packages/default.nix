@@ -9,4 +9,5 @@ in {
   tbb = pkgs.tbb_2021_8;
   level-zero = pkgs.level-zero;
   unified-runtime = callPackage ./unified-runtime.nix {};
+  unified-memory-framework = callPackage ./unified-memory-framework.nix {};
 }

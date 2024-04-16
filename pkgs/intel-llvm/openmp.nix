@@ -1,9 +1,9 @@
 {
-  envNoLibs,
-  callPackage,
+  mkLLVM,
+  stdenv,
 }:
-callPackage ./base.nix rec {
-  stdenv = envNoLibs;
+mkLLVM rec {
+  inherit stdenv;
 
   name = "openmp";
   targetDir = "runtimes";

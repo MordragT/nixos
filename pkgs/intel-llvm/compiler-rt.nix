@@ -1,9 +1,9 @@
 {
-  envNoLibs,
-  callPackage,
+  stdenv,
+  mkLLVM,
 }:
-callPackage ./base.nix rec {
-  stdenv = envNoLibs;
+mkLLVM rec {
+  inherit stdenv;
 
   name = "compiler-rt";
   targetDir = "runtimes";

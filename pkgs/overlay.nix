@@ -19,7 +19,7 @@ in
     vscode-extensions = pkgs.lib.recursiveUpdate pkgs.vscode-extensions (import ./vscode-extensions self.vscode-extensions pkgs);
     winPackages = import ./win-packages self.winPackages pkgs;
     x86-64-v3Packages = import ./x86-64-v3-packages self.x86-64-v3Packages pkgs;
-    xpuPackages = import ./xpu-packages self.xpuPackages pkgs;
+    llvmIntel = import ./intel-llvm self.llvmIntel pkgs;
     python3 = pkgs.python3.override {
       packageOverrides = pySelf: pyPkgs:
         import ./python-packages pySelf pyPkgs;
