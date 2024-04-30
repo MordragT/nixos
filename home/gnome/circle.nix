@@ -8,8 +8,8 @@
     # boatswain # control elgato stream deck
     cartridges # game launcher
     # not packaged chessclock
-    # broken citations # bibtex
-    # not packaged clairvoyant
+    citations # bibtex
+    clairvoyant
     # broken collision # check file hashes
     # not packaged commit
     curtail
@@ -22,9 +22,9 @@
     errands
     eyedropper # pick format colors
     raider # file shredder
-    # not packaged forge-sparks
+    forge-sparks
     fragments # torrent downloader
-    # not packaged fretboard
+    fretboard
     # broken gaphor # create diagrams and uml
     health # health tracker
     identity # image viewer
@@ -33,14 +33,14 @@
     khronos # track task time
     # komikku # read manga
     # not packaged letterpress # create ascii art
-    # not packaged lorem # generate placeholder text
+    lorem # generate placeholder text
     metadata-cleaner
     mousai # identitfy any song
     newsflash # modern feed reader
     gnome-obfuscate # censor private information
     # not packaged paperclip # edit pdf metadata
     pika-backup # simple backups
-    # broken plots # graph plotting
+    plots # graph plotting
     gnome-decoder # scan qr codes
     gnome-podcasts # listen to podcasts
     gnome.polari # irc client
@@ -48,10 +48,10 @@
     # not packaged sharepreview # test social media cards
     shortwave # internet radio
     gnome-solanum # pomodoro timer
-    # not packaged switcheroo
+    switcheroo
     # tangram # browser for pinned tabs
-    # not packaged telegraph # decode morse code
-    # broken textpieces
+    telegraph # decode morse code
+    textpieces
     video-trimmer
     warp # send and recieve files
     webfontkitgenerator

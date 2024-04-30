@@ -6,6 +6,7 @@
     nautilus
     gnome-system-monitor
     gnome-calculator
+    simple-scan
   ];
 
   programs.evince.enable = true;

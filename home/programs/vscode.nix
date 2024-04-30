@@ -181,6 +181,7 @@
       svelte.svelte-vscode
       tamasfe.even-better-toml
       thenuprojectcontributors.vscode-nushell-lang
+      tomoki1207.pdf
       twxs.cmake
 
       # vadimcn.vscode-lldb

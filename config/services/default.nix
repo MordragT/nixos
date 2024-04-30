@@ -6,11 +6,11 @@
     #./vaultwarden.nix
     #./sunshine.nix
     ./openssh.nix
+    ./printing.nix
     ./tailscale.nix
   ];
 
   services.flatpak.enable = true;
-  services.printing.enable = true;
   services.tor.enable = true;
 
   services.udev.packages = with pkgs; [

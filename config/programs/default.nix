@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./steam.nix
-    # broken ./valent.nix
+    ./valent.nix
   ];
 
   programs.adb.enable = true;

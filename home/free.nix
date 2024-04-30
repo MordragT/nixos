@@ -15,9 +15,9 @@
     xournalpp
 
     # Graphics
-    # broken blender
-    # broken electron16 blockbench-electron
-    # broken drawio
+    blender
+    # electron16 blockbench-electron
+    # drawio
     # glaxnimate
     inkscape
     krita
