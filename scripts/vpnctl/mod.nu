@@ -12,21 +12,72 @@ export def down [] {
 }
 
 export def up [id] {
-    # TODO FILE_PWD is really weird why do I have to do this ??
-    let cacert = $env.MY_SCRIPT_DIR | path join vpnctl ca.rsa.4096.crt
-
     let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
-    let record = $servers.regions | where {|region| $region.id | str starts-with $id}
+    let regions = $servers.regions
+    let server = find-by-id $regions $id
+    print ($server | table --expand)
+    enable $server
+}
 
-    if ($record | is-empty) {
+export def "up best" [--count = 1] {
+    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
+    let regions = $servers.regions
+    let server = find-best $regions $count
+    print ($server | table --expand)
+    enable $server
+}
+
+export def best [--count = 1] {
+    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
+    let regions = $servers.regions
+    let server = find-best $regions $count
+    print ($server | table --expand)
+}
+
+def ping-time [ip, count] {
+    let ping_table = ping -c $count $ip | lines | skip 1 | parse "{bytes} bytes from {ip}: icmp_seq={id} ttl={ttl} time={time} ms"
+    let time = (
+        $ping_table
+        | get time
+        | reduce --fold 0 { |it, acc| ($it | into int) + $acc }
+        | into float
+    ) / $count
+
+    return $time
+}
+
+def find-by-id [regions, id] {
+    let filtered = $regions | where {|region| $region.id | str starts-with $id}
+
+    if ($filtered | is-empty) {
         return $"Fatal: No record found for region: ($id)"
     }
 
-    let server = {
-        meta: $record.servers.meta.0.0
-        wg: $record.servers.wg.0.0
-    }
-    echo $server.meta
+    return (find-best $filtered 5)
+}
+
+def find-best [regions, count] {
+    let best = (
+        $regions
+        | par-each { |region|
+            let time = ping-time $region.servers.wg.0.ip $count
+
+            {
+                id: $region.id
+                meta: $region.servers.meta.0
+                wg: $region.servers.wg.0
+                time: $time
+            }
+        }
+        | sort-by time
+        | first
+    )
+    return $best
+}
+
+def enable [server] {
+    # TODO FILE_PWD is really weird why do I have to do this ??
+    let cacert = $env.MY_SCRIPT_DIR | path join vpnctl ca.rsa.4096.crt
 
     let user_pass = sudo cat /var/secrets/pia
     let response = (curl -s -u $user_pass

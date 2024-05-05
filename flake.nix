@@ -83,6 +83,7 @@
           inherit system stateVersion;
 
           imports = [
+            ./config/system/nix.nix
             ./hosts/installer.nix
           ];
 
