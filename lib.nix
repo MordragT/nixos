@@ -8,10 +8,10 @@
     system,
     stateVersion,
     imports ? [],
-    modules,
+    modules ? [],
     specialArgs ? {},
     specialHomeArgs ? {},
-    homes,
+    homes ? {},
   }:
     nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
@@ -41,7 +41,7 @@
       then "/root"
       else "/home/${username}",
     stateVersion,
-    imports,
+    imports ? [],
   }: {
     home = {
       inherit username stateVersion homeDirectory;

@@ -21,3 +21,6 @@ create-vscode:
 
 iso system:
     nixos-generate --flake .#tom-{{ system }} --format iso
+
+install-iso:
+    nix build .#nixosConfigurations.installer.config.system.build.isoImage

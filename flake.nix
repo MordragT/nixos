@@ -3,7 +3,7 @@
 
   inputs = {
     templates.url = "github:MordragT/nix-templates";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/63c3a29ca82437c87573e4c6919b09a24ea61b0f";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     cosmic = {
@@ -76,6 +76,32 @@
     };
   in {
     nixosConfigurations = {
+      installer = let
+        stateVersion = "24.05";
+      in
+        lib.mkHost {
+          inherit system stateVersion;
+
+          imports = [
+            ./hosts/installer.nix
+          ];
+
+          specialArgs = {
+            inherit pkgs;
+          };
+
+          homes = {
+            "nixos" = lib.mkHome {
+              inherit stateVersion;
+              username = "nixos";
+              imports = [
+                ./home/nix.nix
+                ./home/programs/git.nix
+              ];
+            };
+          };
+        };
+
       tom-laptop = let
         stateVersion = "23.11";
       in

@@ -8,6 +8,7 @@
     gnome-calendar
     gnome-calculator
     simple-scan
+    gnome-remote-desktop
   ];
 
   programs.evince.enable = true;
