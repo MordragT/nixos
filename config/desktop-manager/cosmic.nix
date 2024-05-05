@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs.gnome; [
     nautilus
     gnome-system-monitor
+    gnome-calendar
     gnome-calculator
     simple-scan
   ];

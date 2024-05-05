@@ -6,7 +6,6 @@
     planify # more advanced task manager
     foliate # book reader
     rnote # draw notes
-    paperwork
     pdfarranger
   ];
 }

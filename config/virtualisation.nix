@@ -12,7 +12,7 @@
       #enableHardening = false;
     };
     docker.enable = true;
-    # waydroid.enable = true;
+    waydroid.enable = true;
     # libvirtd.enable = true;
     # multipass.enable = true;
   };

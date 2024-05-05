@@ -8,8 +8,8 @@
   {
     "name": "texlab",
     "publisher": "efoerster",
-    "version": "5.14.1",
-    "sha256": "0396zhj9wjzw25qb8xdpmqnfl40705i2v64gn9ml1d2hijrxz8di"
+    "version": "5.16.0",
+    "sha256": "0srqy9fqj38yxrg9x9y2id6rrz1qc39ra589zhm3v2qzyqq6yxsm"
   },
   {
     "name": "kotlin",
@@ -20,8 +20,8 @@
   {
     "name": "parol-vscode",
     "publisher": "jsinger67",
-    "version": "0.1.15",
-    "sha256": "1y2fixz4jazac384wqv84grn0wbgq5n0jfw4hrdiv54gziqqf964"
+    "version": "0.2.0",
+    "sha256": "1xc64xn435in79ngky5nj28cy6vfygcpfvfkw4h37rzkbly3406j"
   },
   {
     "name": "one-dark-vibrant",
