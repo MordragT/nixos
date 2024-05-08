@@ -4,7 +4,6 @@
     ./git.nix
     ./nushell.nix
     ./obs.nix
-    ./steam.nix
     ./vscode.nix
     ./zsh.nix
   ];

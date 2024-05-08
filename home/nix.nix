@@ -13,6 +13,9 @@
     };
   };
 
+  programs.nix-index.enable = true;
+  programs.command-not-found.enable = false;
+
   home.packages = with pkgs; [
     alejandra # nix formater: files are everywhere anyways
     cachix # nix binary hosting

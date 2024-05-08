@@ -24,3 +24,6 @@ iso system:
 
 install-iso:
     nix build .#nixosConfigurations.installer.config.system.build.isoImage
+
+disko-image system:
+    nix build .#nixosConfigurations.tom-{{ system }}.config.system.build.diskoImages;

@@ -23,13 +23,21 @@
   # needed for protonvpn
   # https://github.com/NixOS/nixpkgs/issues/294750
   programs.nm-applet.enable = true;
-
   environment.systemPackages = with pkgs; [
     protonvpn-gui
   ];
 
-  # programs.steam.gamescopeSession.args = [
-  #   "-w 1920"
-  #   "-h 1080"
-  # ];
+  desktop.cosmic.enable = true;
+  mordrag.steam = {
+    enable = true;
+    gameFixes = false;
+  };
+  mordrag.samba.enable = true;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+    };
+  };
 }

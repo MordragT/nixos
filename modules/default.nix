@@ -1,6 +1,9 @@
 {...}: {
   imports = [
+    ./desktop
+    ./environment
+    ./mordrag
+    ./programs
     ./services
-    ./environment.nix
   ];
 }

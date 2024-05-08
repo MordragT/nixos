@@ -5,11 +5,7 @@ in
   packages
   // {
     # Pinned packages
-    onevpl-intel-gpu = pins.vpl.onevpl-intel-gpu;
-    ffmpeg-vpl = pins.vpl.ffmpeg-full.override {
-      withVpl = true;
-      withMfx = false;
-    };
+    # onevpl-intel-gpu = pins.vpl.onevpl-intel-gpu;
 
     # Namespaced packages
     firefoxAddons = import ./firefox-addons self.firefoxAddons pkgs;
@@ -27,6 +23,10 @@ in
     python3Packages = self.python3.pkgs;
 
     # Overrides
+    ffmpeg-vpl = pkgs.ffmpeg-full.override {
+      withVpl = true;
+      withMfx = false;
+    };
     llama-cpp = pkgs.llama-cpp.override {
       openclSupport = true;
       blasSupport = false;

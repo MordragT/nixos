@@ -1,0 +1,20 @@
+{pkgs, ...}: {
+  services.comfyui = {
+    enable = false;
+    # intel arc letzze goo ... soon hopefully
+    extraArgs = "--use-pytorch-cross-attention --highvram";
+    package = pkgs.comfyui.override {gpuBackend = "xpu";};
+  };
+  services.flatpak.enable = true;
+
+  services.tailscale.enable = true;
+  # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
+  networking.firewall.checkReversePath = "loose";
+
+  services.tor.enable = true;
+  services.udev.packages = with pkgs; [
+    platformio-core
+    # openocd # plugdev errors are polluting the logs
+  ];
+  services.xserver.wacom.enable = true;
+}

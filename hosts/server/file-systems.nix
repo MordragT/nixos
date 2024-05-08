@@ -23,6 +23,7 @@
     };
 
     disk.main = {
+      imageSize = "20G";
       device = "/dev/sda";
       type = "disk";
 
@@ -38,8 +39,15 @@
             mountpoint = "/boot";
           };
         };
+        partitions.swap = {
+          size = "4G";
+          content = {
+            type = "swap";
+            resumeDevice = true;
+          };
+        };
         partitions.data = {
-          end = "-4G";
+          size = "100%";
           content = {
             type = "btrfs";
             subvolumes.nix = {
@@ -58,13 +66,6 @@
                 "compress=zstd"
               ];
             };
-          };
-        };
-        partitions.swap = {
-          size = "100%";
-          content = {
-            type = "swap";
-            resumeDevice = true;
           };
         };
       };

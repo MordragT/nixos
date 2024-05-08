@@ -1,13 +1,21 @@
 {pkgs, ...}: {
   # General
+  desktop.cosmic.enable = true;
+  mordrag.steam = {
+    enable = true;
+    compatPackages = with pkgs.steamPackages; [
+      proton-ge-bin
+      proton-cachyos-bin
+      luxtorpeda
+      opengothic
+      steamtinkerlaunch
+    ];
+  };
+  mordrag.printing.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
 
   # Networking
   networking.hostName = "tom-desktop";
-  programs.captive-browser = {
-    enable = true;
-    interface = "wlp39s0";
-  };
   # https://github.com/NixOS/nixpkgs/issues/180175
   # systemd.network.wait-online.anyInterface = true;
   # systemd.network.wait-online.timeout = 5;
@@ -33,7 +41,6 @@
   #     onevpl-intel-gpu
   #   ];
   # };
-
   environment.systemPackages = with pkgs; [intel-gpu-tools ffmpeg-vpl];
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";
@@ -43,22 +50,22 @@
     capabilities = "cap_perfmon=ep";
   };
 
-  # Other
-  services.comfyui = {
-    enable = true;
-    # intel arc letzze goo ... soon hopefully
-    extraArgs = "--use-pytorch-cross-attention --highvram";
-    package = pkgs.comfyui.override {gpuBackend = "xpu";};
+  # Virtualisation
+  virtualisation = {
+    vmVariant.virtualisation = {
+      diskSize = 2048;
+      memorySize = 4096;
+      cores = 4;
+    };
+
+    virtualbox.host = {
+      enable = false;
+      #headless = true;
+      #enableHardening = false;
+    };
+    docker.enable = true;
+    waydroid.enable = true;
+    # libvirtd.enable = true;
+    # multipass.enable = true;
   };
-  # programs.gamescope.args = [
-  #   "-W 2560"
-  #   "-H 1440"
-  #   "-w 1920"
-  #   "-h 1080"
-  #   "-r 120"
-  #   "-f"
-  #   "--rt"
-  #   "--display-index 1"
-  #   "--immediate-flips"
-  # ];
 }

@@ -3,7 +3,7 @@
 
   inputs = {
     templates.url = "github:MordragT/nix-templates";
-    nixpkgs.url = "nixpkgs/63c3a29ca82437c87573e4c6919b09a24ea61b0f";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     cosmic = {
@@ -83,7 +83,7 @@
           inherit system stateVersion;
 
           imports = [
-            ./config/system/nix.nix
+            ./config/nix.nix
             ./hosts/installer.nix
           ];
 
@@ -110,13 +110,9 @@
           inherit system stateVersion;
 
           imports = [
-            ./modules
+            ./config
             ./hosts/laptop
-            ./config/system
-            ./config/services
-            ./config/programs
-            ./config/security.nix
-            ./config/desktop-manager/gnome.nix
+            ./modules
           ];
 
           modules = [
@@ -153,18 +149,9 @@
           inherit system stateVersion;
 
           imports = [
-            ./modules
+            ./config
             ./hosts/server
-            ./config/system
-            ./config/security.nix
-            ./config/services/openssh.nix
-            ./config/services/samba.nix
-            # ./config/services/maddy.nix
-            # ./config/services/nextcloud.nix
-            # ./config/services/gitea.nix
-            # ./config/services/vaultwarden.nix
-            ./config/programs/steam.nix
-            ./config/desktop-manager/cosmic.nix
+            ./modules
           ];
 
           modules = [
@@ -187,7 +174,6 @@
                 ./home/programs/git.nix
                 ./home/programs/nushell.nix
                 ./home/programs/firefox.nix
-                ./home/gaming.nix
                 ./home/nix.nix
                 ./home/gnome
               ];
@@ -210,19 +196,9 @@
           inherit system stateVersion;
 
           imports = [
-            ./modules
+            ./config
             ./hosts/desktop
-            ./config/system
-            ./config/services
-            ./config/programs
-            # no fractional scaling (https://github.com/YaLTeR/niri/issues/35)
-            # ./config/programs/niri.nix
-            # no security manager (wlroots issue https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/3339)
-            # ./config/programs/hyprland.nix
-            ./config/security.nix
-            ./config/virtualisation.nix
-            # ./config/desktop-manager/gnome.nix
-            ./config/desktop-manager/cosmic.nix
+            ./modules
           ];
 
           modules = [

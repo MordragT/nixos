@@ -6,6 +6,7 @@
 
     # Social
     discord
+    # xwaylandvideobridge # needed to fix discord video streaming
     teamspeak_client
     # broken teams-for-linux # microsoft teams
     zoom-us
