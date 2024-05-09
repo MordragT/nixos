@@ -96,8 +96,7 @@
               inherit stateVersion;
               username = "nixos";
               imports = [
-                ./home/nix.nix
-                ./home/programs/git.nix
+                ./home/installer.nix
               ];
             };
           };
@@ -131,14 +130,6 @@
               username = "tom";
               imports = [./home];
             };
-
-            "root" = lib.mkHome {
-              inherit stateVersion;
-              username = "root";
-              imports = [
-                ./home/programs/nushell.nix
-              ];
-            };
           };
         };
 
@@ -171,19 +162,7 @@
               inherit stateVersion;
               username = "tom";
               imports = [
-                ./home/programs/git.nix
-                ./home/programs/nushell.nix
-                ./home/programs/firefox.nix
-                ./home/nix.nix
-                ./home/gnome
-              ];
-            };
-
-            "root" = lib.mkHome {
-              inherit stateVersion;
-              username = "root";
-              imports = [
-                ./home/programs/nushell.nix
+                ./home/server.nix
               ];
             };
           };
@@ -217,18 +196,7 @@
               inherit stateVersion;
               username = "tom";
               imports = [
-                ./home
-                # ./home/window-manager/niri.nix
-                ./home/window-manager/hyprland.nix
-              ];
-            };
-
-            "root" = lib.mkHome {
-              inherit stateVersion;
-              username = "root";
-              imports = [
-                ./home/programs/git.nix
-                ./home/programs/nushell.nix
+                ./home/desktop.nix
               ];
             };
           };
@@ -253,12 +221,13 @@
 
             nix.package = pkgs.nixVersions.stable;
           })
-          ./home
+          ./home/laptop.nix
           chaotic.homeManagerModules.default
         ];
       };
     };
 
+    homeManagerModules.default = import ./home/modules;
     nixosModules.default = import ./modules;
     packages."${system}" = import ./pkgs pkgs;
     overlays.default = import ./pkgs/overlay.nix;

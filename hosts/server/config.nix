@@ -27,12 +27,12 @@
     protonvpn-gui
   ];
 
-  desktop.cosmic.enable = true;
-  mordrag.steam = {
-    enable = true;
+  mordrag.desktop.cosmic.enable = true;
+  mordrag.programs.steam = {
+    enable = false;
     gameFixes = false;
   };
-  mordrag.samba.enable = true;
+  # mordrag.services.samba.enable = true;
 
   services.openssh = {
     enable = true;

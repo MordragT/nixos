@@ -23,7 +23,7 @@
     };
 
     disk.main = {
-      imageSize = "20G";
+      imageSize = "12G";
       device = "/dev/sda";
       type = "disk";
 

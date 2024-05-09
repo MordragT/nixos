@@ -4,12 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.desktop.hyprland;
+  cfg = config.mordrag.desktop.hyprland;
 in {
-  options = {
-    desktop.hyprland = {
-      enable = lib.mkEnableOption "Hyprland";
-    };
+  options.mordrag.desktop.hyprland = {
+    enable = lib.mkEnableOption "Hyprland";
   };
 
   config = lib.mkIf cfg.enable {

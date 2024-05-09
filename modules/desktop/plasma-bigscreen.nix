@@ -4,12 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.desktop.plasma-bigscreen;
+  cfg = config.mordrag.desktop.plasma-bigscreen;
 in {
-  options = {
-    desktop.plasma-bigscreen = {
-      enable = lib.mkEnableOption "Plasma Bigscreen";
-    };
+  options.mordrag.desktop.plasma-bigscreen = {
+    enable = lib.mkEnableOption "Plasma Bigscreen";
   };
 
   config = lib.mkIf cfg.enable {

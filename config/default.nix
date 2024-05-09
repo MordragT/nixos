@@ -19,44 +19,26 @@
     shells = [pkgs.nushellFull];
 
     # This module contains mostly alternatives to POSIX utilities
+    # , aswell as core utilities
     systemPackages = with pkgs; [
-      # Rust Tools
+      alsa-utils # configure audio devices
+      clinfo # opencl info
+      dua # print file size of directories
+      fd # find replacement
       helix # Kakoune style editor
-      bottom # htop alike
+      htop # better top
+      hwloc
+      inetutils
+      just # make alike
+      libva-utils
+      parted
+      pciutils
+      psmisc
       tealdeer # tldr
       tokei # count lines of code
-      freshfetch # neofetch alternative
-      grex # create regular expressions
-      hyperfine # benchmarking
-      gping # ping with a graph
-      sd # sed and awk replacement using regex
-      fd # find replacement
-      pueue # send commands into queue to execute
-      nomino # batch renaming
-      ouch # (de)compressor with sane interface
-      ripgrep # grep alternative
-      procs # modern ps replacement
-      hurl # like curl but better
-      dua # print file size of directories
-
-      alsa-utils # configure audio devices
-      brightnessctl
-      htop # better top
-      cpufetch # fetch cpu information
-      clinfo # opencl info
-      vulkan-tools
-      mesa-demos
-      ventoy # create bootable usb drive for isos
       trash-cli # put files in trash
-      expect # automate interactive applications
       usbutils
-      pciutils
-      inetutils
-      libva-utils
-      psmisc
-      xorg.xlsclients
-      hwloc
-      parted
+      vulkan-tools
     ];
   };
 

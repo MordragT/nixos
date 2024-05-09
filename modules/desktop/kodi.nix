@@ -4,12 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.desktop.kodi;
+  cfg = config.mordrag.desktop.kodi;
 in {
-  options = {
-    desktop.kodi = {
-      enable = lib.mkEnableOption "Kodi";
-    };
+  options.mordrag.desktop.kodi = {
+    enable = lib.mkEnableOption "Kodi";
   };
 
   config = lib.mkIf cfg.enable {

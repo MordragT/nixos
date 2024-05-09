@@ -1,10 +1,12 @@
 {pkgs, ...}: {
-  services.comfyui = {
+  mordrag.services.printing.enable = true;
+  mordrag.services.comfyui = {
     enable = false;
     # intel arc letzze goo ... soon hopefully
     extraArgs = "--use-pytorch-cross-attention --highvram";
     package = pkgs.comfyui.override {gpuBackend = "xpu";};
   };
+
   services.flatpak.enable = true;
 
   services.tailscale.enable = true;

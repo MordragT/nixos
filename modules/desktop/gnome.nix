@@ -4,12 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.desktop.gnome;
+  cfg = config.mordrag.desktop.gnome;
 in {
-  options = {
-    desktop.gnome = {
-      enable = lib.mkEnableOption "Gnome";
-    };
+  options.mordrag.desktop.gnome = {
+    enable = lib.mkEnableOption "Gnome";
   };
 
   config = lib.mkIf cfg.enable {

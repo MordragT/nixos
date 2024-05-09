@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.environment.state;
+  cfg = config.mordrag.environment.state;
 in
   with lib; {
-    options.environment.state = {
+    options.mordrag.environment.state = {
       enable = mkEnableOption "Enable state loading";
       targets = mkOption {
         description = lib.mdDoc "List of source state trees and destination trees";

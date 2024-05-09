@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   # General
-  desktop.cosmic.enable = true;
-  mordrag.steam = {
+  mordrag.desktop.cosmic.enable = true;
+  mordrag.programs.steam = {
     enable = true;
     compatPackages = with pkgs.steamPackages; [
       proton-ge-bin
@@ -11,7 +11,7 @@
       steamtinkerlaunch
     ];
   };
-  mordrag.printing.enable = true;
+  mordrag.services.printing.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
 
   # Networking

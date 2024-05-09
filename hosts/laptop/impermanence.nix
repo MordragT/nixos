@@ -1,5 +1,5 @@
 {...}: {
-  environment.state = {
+  mordrag.environment.state = {
     enable = true;
     targets = [
       {
