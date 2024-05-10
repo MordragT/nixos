@@ -11,4 +11,5 @@ in {
   ipex = callPackage ./ipex.nix {
     inherit (build-support) fetchwheel;
   };
+  mdns-beacon = callPackage ./mdns-beacon.nix {};
 }

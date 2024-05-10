@@ -13,6 +13,8 @@
   mordrag.programs.vscode.enable = true;
   mordrag.programs.zsh.enable = true;
 
+  programs.chromium.enable = true;
+
   mordrag.collection.cli.enable = true;
   mordrag.collection.free.enable = true;
   mordrag.collection.gaming.enable = true;

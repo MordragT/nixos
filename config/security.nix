@@ -9,4 +9,9 @@
 
   # for sway
   security.polkit.enable = true;
+
+  security.pki.certificateFiles = [
+    ../certs/root_ca.crt
+    ../certs/intermediate_ca.crt
+  ];
 }

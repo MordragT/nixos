@@ -77,7 +77,7 @@ def find-best [regions, count] {
 
 def enable [server] {
     # TODO FILE_PWD is really weird why do I have to do this ??
-    let cacert = $env.MY_SCRIPT_DIR | path join vpnctl ca.rsa.4096.crt
+    let cacert = $env.CERTIFICATES | path join ca.rsa.4096.crt
 
     let user_pass = sudo cat /var/secrets/pia
     let response = (curl -s -u $user_pass

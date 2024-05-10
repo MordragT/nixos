@@ -27,7 +27,7 @@ in {
 
         const scripts = ${../../../scripts}
 
-        $env.MY_SCRIPT_DIR = $scripts
+        $env.CERTIFICATES = ${../../../certs}
 
         # cannot use files directly as that would rename them to a hash
         # and would clash with nushell module system

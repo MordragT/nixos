@@ -35,5 +35,8 @@
   #   "--immediate-flips"
   # ];
   programs.geary.enable = true;
-  programs.wireshark.enable = true;
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
 }

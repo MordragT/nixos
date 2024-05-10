@@ -14,6 +14,7 @@ in {
     home.packages = with pkgs; [
       distrobox
       hollywood # fake hacking
+      step-cli # generate certificates
       ventoy # create bootable usb drive for isos
       xorg.xlsclients
       yt-dlp # download youtube videos
