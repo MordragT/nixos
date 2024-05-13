@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./caddy.nix
     ./comfyui.nix
     ./forgejo.nix
     ./livebook.nix

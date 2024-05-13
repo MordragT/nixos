@@ -79,11 +79,10 @@ in {
       };
     };
 
-    environment.etc."systemd/dnssd/step-ca.dnssd".text = ''
-      [Service]
-      Name=Step CA %H
-      Type=_https._tcp
-      Port=${toString cfg.port}
-    '';
+    services.valhali.enable = true;
+    services.valhali.services.step-ca = {
+      inherit (cfg) port;
+      kind = "https";
+    };
   };
 }

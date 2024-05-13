@@ -1,17 +1,7 @@
 {pkgs, ...}: {
   # General
   mordrag.desktop.cosmic.enable = true;
-  mordrag.programs.steam = {
-    enable = true;
-    compatPackages = with pkgs.steamPackages; [
-      proton-ge-bin
-      proton-cachyos-bin
-      luxtorpeda
-      opengothic
-      steamtinkerlaunch
-    ];
-  };
-  mordrag.services.printing.enable = true;
+
   powerManagement.cpuFreqGovernor = "performance";
 
   # Networking
@@ -64,7 +54,7 @@
       #enableHardening = false;
     };
     docker.enable = true;
-    waydroid.enable = true;
+    # waydroid.enable = true;
     # libvirtd.enable = true;
     # multipass.enable = true;
   };

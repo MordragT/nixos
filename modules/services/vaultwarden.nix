@@ -15,41 +15,40 @@ in {
     ca = lib.mkOption {
       description = "Certificate Authority";
       default = "https://tom-desktop.local:8443/acme/acme/directory";
-      type = lib.types.str;
+      type = lib.types.nonEmptyStr;
+    };
+    fqdn = lib.mkOption {
+      description = "Domain";
+      default = "vault.local";
+      type = lib.types.nonEmptyStr;
     };
   };
 
-  config = let
-    fqdn = "vault.local";
-  in
-    lib.mkIf cfg.enable {
-      services.vaultwarden = {
-        enable = true;
-        config = {
-          DOMAIN = "https://${fqdn}";
-          ROCKET_ADDRESS = "127.0.0.1";
-          ROCKET_PORT = cfg.port;
-        };
+  config = lib.mkIf cfg.enable {
+    services.vaultwarden = {
+      enable = true;
+      config = {
+        DOMAIN = "https://${cfg.fqdn}";
+        ROCKET_ADDRESS = "127.0.0.1";
+        ROCKET_PORT = cfg.port;
       };
-
-      # mordrag.services.caddy.enable = true;
-      # mordrag.services.caddy.services.vault = "reverse_proxy :${toString cfg.port}";
-
-      services.caddy.enable = true;
-      services.caddy.virtualHosts."${fqdn}".extraConfig = ''
-        tls {
-          ca ${cfg.ca}
-          ca_root ${../../certs/root_ca.crt}
-        }
-
-        reverse_proxy :${toString cfg.port}
-      '';
-
-      # environment.etc."systemd/dnssd/vault.dnssd".text = ''
-      #   [Service]
-      #   Name=vault
-      #   Type=_https._tcp
-      #   Port=${toString cfg.port}
-      # '';
     };
+
+    services.caddy.enable = true;
+    services.caddy.virtualHosts."${cfg.fqdn}".extraConfig = ''
+      tls {
+        ca ${cfg.ca}
+        ca_root ${../../certs/root_ca.crt}
+      }
+
+      reverse_proxy :${toString cfg.port}
+    '';
+
+    services.valhali.enable = true;
+    services.valhali.services.vaultwarden = {
+      alias = cfg.fqdn;
+      kind = "https";
+      port = 443;
+    };
+  };
 }

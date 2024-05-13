@@ -12,8 +12,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      minecraft
-      optifine
+      # minecraft
+      # optifine
       moonlight-qt # game stream client ala steam link
       winPackages.battle-net
     ];

@@ -26,6 +26,10 @@
       url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    valhali = {
+      url = "github:MordragT/valhali";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +52,7 @@
     nur,
     chaotic,
     cosmic,
+    valhali,
     disko,
     home-manager,
     classified,
@@ -118,6 +123,7 @@
             classified.nixosModules.${system}.default
             chaotic.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
+            valhali.nixosModules.default
           ];
 
           specialArgs = {
@@ -151,6 +157,7 @@
             cosmic.nixosModules.default
             disko.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
+            valhali.nixosModules.default
           ];
 
           specialArgs = {
@@ -185,6 +192,7 @@
             chaotic.nixosModules.default
             cosmic.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
+            valhali.nixosModules.default
           ];
 
           specialArgs = {
