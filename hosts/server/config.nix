@@ -20,6 +20,11 @@
     ];
   };
 
+  nix.settings = {
+    substituters = ["https://store.local"];
+    trusted-public-keys = ["store.local:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
+  };
+
   # needed for protonvpn
   # https://github.com/NixOS/nixpkgs/issues/294750
   programs.nm-applet.enable = true;

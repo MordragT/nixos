@@ -2,6 +2,7 @@
   imports = [
     ./comfyui.nix
     ./forgejo.nix
+    ./harmonia.nix
     ./livebook.nix
     ./nextcloud.nix
     ./printing.nix

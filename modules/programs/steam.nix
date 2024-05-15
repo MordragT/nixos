@@ -41,6 +41,7 @@ in {
       package = cfg.package.override {
         extraEnv = {
           MANGOHUD = true;
+          MANGOHUD_DLSYM = true;
         };
         extraLibraries = pkgs:
           with pkgs; [

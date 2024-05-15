@@ -14,7 +14,7 @@ in {
     };
     ca = lib.mkOption {
       description = "Certificate Authority";
-      default = "https://tom-desktop.local:8443/acme/acme/directory";
+      default = "https://ca.local:8443/acme/acme/directory";
       type = lib.types.nonEmptyStr;
     };
     fqdn = lib.mkOption {
@@ -50,5 +50,7 @@ in {
       kind = "https";
       port = 443;
     };
+
+    networking.firewall.allowedTCPPorts = [443];
   };
 }

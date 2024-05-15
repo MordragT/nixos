@@ -7,10 +7,10 @@
 in {
   options.mordrag.services.step-ca = {
     enable = lib.mkEnableOption "Step CA";
-    port = lib.mkOption {
-      description = "Step CA Port";
-      default = 8443;
-      type = lib.types.port;
+    fqdn = lib.mkOption {
+      description = "Domain";
+      default = "ca.local";
+      type = lib.types.nonEmptyStr;
     };
   };
 
@@ -29,8 +29,8 @@ in {
     services.step-ca = {
       enable = true;
       intermediatePasswordFile = "/var/secrets/step-ca";
-      address = "${config.networking.hostName}.local";
-      port = cfg.port;
+      address = "0.0.0.0";
+      port = 8443;
       openFirewall = true;
       settings = {
         root = ../../certs/root_ca.crt;
@@ -38,7 +38,7 @@ in {
         crt = ../../certs/intermediate_ca.crt;
         key = "/var/secrets/intermediate-ca";
         dnsNames = [
-          "${config.networking.hostName}.local"
+          cfg.fqdn
           "localhost"
         ];
         logger.format = "text";
@@ -81,7 +81,8 @@ in {
 
     services.valhali.enable = true;
     services.valhali.services.step-ca = {
-      inherit (cfg) port;
+      alias = cfg.fqdn;
+      port = 8443;
       kind = "https";
     };
   };

@@ -3,13 +3,13 @@
   lib,
   ...
 }: let
-  cfg = config.mordrag.services.forgejo;
+  cfg = config.mordrag.services.harmonia;
 in {
-  options.mordrag.services.forgejo = {
-    enable = lib.mkEnableOption "Forgejo";
+  options.mordrag.services.harmonia = {
+    enable = lib.mkEnableOption "Harmonia";
     port = lib.mkOption {
-      description = "Forgejo HTTP Port";
-      default = 8030;
+      description = "Harmonia HTTP Port";
+      default = 8050;
       type = lib.types.port;
     };
     ca = lib.mkOption {
@@ -19,19 +19,20 @@ in {
     };
     fqdn = lib.mkOption {
       description = "Domain";
-      default = "git.local";
+      default = "store.local";
       type = lib.types.nonEmptyStr;
     };
   };
 
   config = lib.mkIf cfg.enable {
-    services.forgejo = {
+    classified.files.harmonia.encrypted = ../../secrets/harmonia.enc;
+
+    services.harmonia = {
       enable = true;
-      database.type = "sqlite3";
-      settings.server = {
-        DOMAIN = "https://${cfg.fqdn}";
-        HTTP_ADDR = "127.0.0.1";
-        HTTP_PORT = cfg.port;
+      # nix-store --generate-binary-cache-key ${cfg.fqdn} harmonia.secret harmonia.pub
+      signKeyPath = "/var/secrets/harmonia";
+      settings = {
+        bind = "127.0.0.1:${toString cfg.port}";
       };
     };
 
@@ -42,11 +43,13 @@ in {
         ca_root ${../../certs/root_ca.crt}
       }
 
+      encode zstd
+
       reverse_proxy :${toString cfg.port}
     '';
 
     services.valhali.enable = true;
-    services.valhali.services.forgejo = {
+    services.valhali.services.harmonia = {
       alias = cfg.fqdn;
       kind = "https";
       port = 443;

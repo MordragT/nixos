@@ -42,10 +42,8 @@ in {
           firefox-gnome-theme = pkgs.fetchFromGitHub {
             owner = "rafaelmardojai";
             repo = "firefox-gnome-theme";
-            rev = "33015314c12190230295cff61ced148e0f7ffe1c";
-            sha256 = "sha256-e1xuHAHgeC8EU7cAIa3XfvzgI4Y7rzyTkAt9sBsgrfc=";
-            # rev = "v122";
-            # sha256 = "sha256-QZk/qZQVt1X53peCqB2qmWhpA3xtAVgY95pebSKaTFU=";
+            rev = "c4eec329c464f3f89ab78a56a47eee6271ea9d19";
+            sha256 = "sha256-EACja6V2lNh67Xvmhr0eEM/VeqM7OlTTm/81LhRbsBE=";
           };
         in ''
           @import "${firefox-gnome-theme}/userChrome.css";
