@@ -13,14 +13,14 @@
       ];
     };
 
-    nodev."/home/tom" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "defaults"
-        "size=20%"
-        "mode=777"
-      ];
-    };
+    # nodev."/home/tom" = {
+    #   fsType = "tmpfs";
+    #   mountOptions = [
+    #     "defaults"
+    #     "size=20%"
+    #     "mode=777"
+    #   ];
+    # };
 
     disk.main = {
       imageSize = "12G";

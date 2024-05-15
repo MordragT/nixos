@@ -37,6 +37,7 @@
     enable = false;
     gameFixes = false;
   };
+  mordrag.programs.gnome-disks.enable = true;
   # mordrag.services.samba.enable = true;
 
   services.openssh = {
