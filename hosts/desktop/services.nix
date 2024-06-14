@@ -1,14 +1,18 @@
 {pkgs, ...}: {
   mordrag.services.comfyui = {
     enable = false;
-    # intel arc letzze goo ... soon hopefully
-    extraArgs = "--use-pytorch-cross-attention --highvram";
-    package = pkgs.comfyui.override {gpuBackend = "xpu";};
+    extraArgs = "--verbose";
+    # extraArgs = "--use-pytorch-cross-attention --highvram --force-fp16 --bf16-vae --bf16-unet";
+    # extraArgs = "--multi-user";
+    # extraArgs = "--disable-ipex-optimize";
+    package = pkgs.comfyui-xpu;
   };
   mordrag.services.printing.enable = true;
-  mordrag.services.step-ca.enable = true;
+  # mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;
-  mordrag.services.harmonia.enable = true;
+  # mordrag.services.harmonia.enable = true;
+  # mordrag.services.llama.enable = true;
+  # mordrag.services.stalwart.enable = true;
   # mordrag.services.vaultwarden.enable = true;
 
   services.flatpak.enable = true;
@@ -17,7 +21,7 @@
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
   networking.firewall.checkReversePath = "loose";
 
-  services.tor.enable = true;
+  # services.tor.enable = true;
   services.udev.packages = with pkgs; [
     platformio-core
     # openocd # plugdev errors are polluting the logs

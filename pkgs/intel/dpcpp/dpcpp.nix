@@ -5,65 +5,68 @@
   autoPatchelfHook,
   dpkg,
   level-zero,
-  tbb,
+  intel-tbb,
   zlib,
   libxml2,
   libffi_3_3,
   elfutils,
 }: let
-  major = "2024.0";
-  version = "2024.0.1-49878";
+  # major = "2024.0";
+  # version = "2024.0.1-49878";
+  major = "2024.1";
+  version = "2024.1.0-963";
 
   base = fetchdeb {
     package = "intel-oneapi-dpcpp-cpp-${major}-${version}_amd64";
-    hash = "sha256-Jrl/f5ihNB/U4EWXsRQcXimrpqBkMs7QTro8suYjgr4=";
+    hash = "sha256-bDuB5yQHzLSW3H9dmmyK/65bKsrgZTH35I3kQHxKS78=";
   };
   dpcpp = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-${major}-${version}_amd64";
-    hash = "sha256-Tg9OcEb/3xm6HGftcnzsm0XTZuAx3OHw2LveAVPuwIM=";
+    hash = "sha256-LaDDH3v0NbN6aKTbGrDRkMOQHJOpbX+lC35GhZWqSrI=";
   };
   dpcpp-runtime = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-runtime-${major}-${version}_amd64";
-    hash = "sha256-ylUWk+5z0GUUPXtpoSXvPadeRuW1zft9tUQb+eeyHkc=";
+    hash = "sha256-VAjAL6FgEtJ/gZ7xl5tj6T9MhS1lixmWMXV6smPIQWk=";
   };
   dpcpp-common = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-common-${major}-${version}_all";
-    hash = "sha256-t8IaRMoe0lwxIplROH7G9BgOJRsy6Du5gNcCVYXW0xY=";
+    hash = "sha256-f/fB12laU5dCtYHSUYHT/1Tmais4uPN+PRSDZXk6Gck=";
   };
   shared = fetchdeb {
     package = "intel-oneapi-compiler-shared-${major}-${version}_amd64";
-    hash = "sha256-wNhDjW4aGxxeK4otgIydjTSR9u4xV+1u1neDMiVb74k=";
+    hash = "sha256-8u+HeYfFHmkllKRWElUds8VfIBe8aDtn8+i9hT0UgqA=";
   };
   shared-runtime = fetchdeb {
     package = "intel-oneapi-compiler-shared-runtime-${major}-${version}_amd64";
-    hash = "sha256-YA4yCLz5WdQqYCvjDUieOROzXL3waM0vjLueZWJsS2U=";
+    hash = "sha256-MoIkBLT/k0jtgbxZXOYu5EGBAMGUQN79Z7O6Nsd6KuA=";
   };
   shared-common = fetchdeb {
     package = "intel-oneapi-compiler-shared-common-${major}-${version}_all";
-    hash = "sha256-GxoNvhBndvYGmuMt+auh6Bs88qZPgudw+6jdQfX81I8=";
+    hash = "sha256-rr9l6SPaVWsdcFILiuirjMNeAa7t5boxPlGt/ZI5DnE=";
   };
   openmp = fetchdeb {
     package = "intel-oneapi-openmp-${major}-${version}_amd64";
-    hash = "sha256-U8sKp16d2hqTqFymT72EGj4cLVZpOhL2CjgqrLe5de8=";
+    hash = "sha256-TgYajUyihTGYVVvaBzaObUilKHoy+4PICfFedy97sQY=";
   };
   openmp-common = fetchdeb {
     package = "intel-oneapi-openmp-common-${major}-${version}_all";
-    hash = "sha256-8I8PLGcfUiKFZCVAJXk+51N5Dj395NZ/ClGRoQBzfr4=";
+    hash = "sha256-13Sw3YL8NcHW4Eo47+Flcwc74aWz1ZdkWeeAjsOepXc=";
   };
 
-  classicVersion = "2023.2.3-2023.2.3-20";
+  # classicVersion = "2023.2.3-2023.2.3-20";
+  classicVersion = "2023.2.4-2023.2.4-49553";
 
   classic = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-${classicVersion}_amd64";
-    hash = "sha256-9TJyy9tdyNIJDw+/7AAMWB9FY6QPwnXbL2JoZbZoBUA=";
+    hash = "sha256-hqY7QJyah3A9/3uzvBTebAu6qBgj+QWTmilLL0a6idc=";
   };
   classic-runtime = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-${classicVersion}_amd64";
-    hash = "sha256-rIJdyjAxeSa2N3F4kZ7Y6c/GugQFER0vx5120O0crBE=";
+    hash = "sha256-OmzPp1RQoIMfQulwHujSvaBFSdhJRXcg/20wfXWI+q4=";
   };
   classic-common = fetchdeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-${classicVersion}_all";
-    hash = "sha256-eA2K2H4T1Zn10OW+/Z+e+SJ5fxqPekKukkGG5uz8NRU=";
+    hash = "sha256-svPb1QNVT3i14/Lv64R1sF1X+Z/ufJ4OyZmZk2jFNoU=";
   };
 in
   stdenvNoCC.mkDerivation {
@@ -71,10 +74,12 @@ in
     pname = "intel-dpcpp";
 
     # dontUnpack = true;
+    dontStrip = true;
+
     nativeBuildInputs = [autoPatchelfHook dpkg];
 
     buildInputs = [
-      tbb
+      intel-tbb
       stdenv.cc.cc.lib
       level-zero
       zlib
@@ -105,9 +110,18 @@ in
 
       mv bin $out/bin
       rm $out/bin/aocl
+
       mv env $out/env
+      mv etc/compiler $out/env/compiler
+
       mv include $out/include
+      mv opt/compiler/include $out/include/compiler
+
       mv lib $out/lib
+      mv opt/compiler/lib/* $out/lib/compiler/
+
       mv share $out/share
+
+      sed -r -i "s|^prefix=.*|prefix=$out|g" $out/lib/pkgconfig/openmp.pc
     '';
   }

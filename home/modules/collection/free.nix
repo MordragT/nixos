@@ -19,6 +19,7 @@ in {
       # jetbrains.idea-community
       # lapce # code editor
       # octaveFull # aims to be compatible with matlab
+      zed-editor
 
       # Documents
       # libreoffice-fresh
@@ -48,7 +49,7 @@ in {
       # tor-browser-bundle-bin
 
       # Other
-      dbeaver # sql client
+      dbeaver-bin # sql client
       # insomnia # make http requests against rest apis
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher

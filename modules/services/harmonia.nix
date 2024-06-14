@@ -9,7 +9,7 @@ in {
     enable = lib.mkEnableOption "Harmonia";
     port = lib.mkOption {
       description = "Harmonia HTTP Port";
-      default = 8050;
+      default = 8020;
       type = lib.types.port;
     };
     ca = lib.mkOption {

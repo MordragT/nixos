@@ -1,4 +1,4 @@
-#!/usr/bin/env -S nix shell nixpkgs#nushellFull nixpkgs#rclone --command nu
+#!/usr/bin/env -S nix shell nixpkgs#nushell nixpkgs#rclone --command nu
 
 use std log
 use lib.nu [init root-path add-object]

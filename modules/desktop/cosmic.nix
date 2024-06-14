@@ -15,6 +15,8 @@ in {
 
     security.pam.services.login.enableGnomeKeyring = true;
     services.gnome.gnome-keyring.enable = true;
+    # services.gnome.gnome-online-accounts.enable = true;
+    # services.accounts-daemon.enable = true;
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };

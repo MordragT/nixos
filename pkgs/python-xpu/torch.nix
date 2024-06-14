@@ -4,7 +4,7 @@
   fetchwheel,
   autoPatchelfHook,
   zlib,
-  intelPackages,
+  intel-mkl,
   astunparse,
   cffi,
   click,
@@ -21,18 +21,18 @@
   future,
   tensorboard,
   protobuf,
-  pybind11,
+  # pybind11,
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.1.0a0";
+  version = "2.1.0.post2";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
 
   src = fetchwheel {
     package = "${pname}-${version}";
-    sha256 = "sha256-CjX7U8hFxNMKYDyfDxbHol33Iw9mMfOeBmVnvrqpcp0=";
+    sha256 = "sha256-LMfbugymBz3XuEXTjj8q6SHwfOs/FEnZLN+L3cB1Ey8=";
   };
 
   nativeBuildInputs = [
@@ -41,7 +41,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     zlib
-    intelPackages.mkl
+    intel-mkl
   ];
 
   propagatedBuildInputs = [
@@ -67,7 +67,7 @@ buildPythonPackage rec {
     protobuf
 
     # torch/csrc requires `pybind11` at runtime
-    pybind11
+    # pybind11
   ];
 
   postInstall = ''
@@ -88,5 +88,14 @@ buildPythonPackage rec {
     mkdir $lib
     mv $out/${python.sitePackages}/torch/lib $lib/lib
     ln -s $lib/lib $out/${python.sitePackages}/torch/lib
+
+    # # remove version suffix for dependent packages
+    # substituteInPlace $out/${python.sitePackages}/torch/version.py \
+    #   --replace "__version__ = '${version}+cxx11.abi'" "__version__ = '${version}'"
+
+    # mv $out/${python.sitePackages}/torch-${version}+cxx11.abi.dist-info $out/${python.sitePackages}/torch-${version}.dist-info
+
+    # substituteInPlace $out/${python.sitePackages}/torch-${version}.dist-info/METADATA \
+    #   --replace "Version: ${version}+cxx11.abi" "Version: 2.1.0"
   '';
 }

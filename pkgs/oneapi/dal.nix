@@ -1,12 +1,12 @@
 {
   lib,
-  intelPackages,
+  dpcppStdenv,
   fetchFromGitHub,
   gnumake,
-  tbb,
+  intel-tbb,
 }:
 # requires dpcpp compiler
-intelPackages.env.mkDerivation (finalAttrs: {
+dpcppStdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dal";
   version = "2024.0.1";
 
@@ -22,11 +22,11 @@ intelPackages.env.mkDerivation (finalAttrs: {
   ];
 
   makeFlags = [
-    "TBBROOT=${tbb}"
+    "TBBROOT=${intel-tbb}"
   ];
 
   buildInputs = [
-    tbb
+    intel-tbb
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

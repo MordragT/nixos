@@ -40,7 +40,7 @@ in {
       gamescopeSession.enable = true;
       package = cfg.package.override {
         extraEnv = {
-          MANGOHUD = true;
+          MANGOHUD = false;
           MANGOHUD_DLSYM = true;
         };
         extraLibraries = pkgs:

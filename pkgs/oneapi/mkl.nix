@@ -1,10 +1,11 @@
 {
   lib,
-  intelPackages,
+  dpcppStdenv,
   fetchFromGitHub,
   cmake,
   level-zero,
-  tbb,
+  intel-tbb,
+  intel-mkl,
   blas,
   lapack,
   blas-reference,
@@ -21,7 +22,7 @@
 #   };
 # in
 # requires dpcpp compiler
-intelPackages.env.mkDerivation (finalAttrs: {
+dpcppStdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-mkl";
   # version = "0.3";
   version = "develop";
@@ -39,18 +40,18 @@ intelPackages.env.mkDerivation (finalAttrs: {
     cmake
   ];
 
-  cmakeFalgs = [
+  cmakeFlags = [
     "-DBUILD_FUNCTIONAL_TESTS=OFF"
     "-DREF_BLAS_ROOT=${blas-reference}"
     "-DREF_LAPACK_ROOT=${lapack-reference}"
-    "-DMKL_ROOT=${intelPackages.mkl}"
+    "-DMKL_ROOT=${intel-mkl}"
     # "-DBUILD_SHARED_LIBS=OFF"
   ];
 
   buildInputs = [
-    intelPackages.mkl
+    intel-mkl
     level-zero
-    tbb
+    intel-tbb
     blas.dev
     lapack.dev
   ];

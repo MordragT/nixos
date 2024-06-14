@@ -1,11 +1,11 @@
 {
   lib,
-  intelPackages,
+  dpcppStdenv,
   fetchFromGitHub,
   cmake,
-  tbb,
+  intel-tbb,
 }:
-intelPackages.env.mkDerivation (finalAttrs: {
+dpcppStdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dpl";
   version = "2022.3.0";
 
@@ -21,7 +21,7 @@ intelPackages.env.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    tbb
+    intel-tbb
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

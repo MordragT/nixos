@@ -50,6 +50,7 @@ in {
       fragments # torrent downloader
       # fretboard # guitar chords
       # broken gaphor # create diagrams and uml
+      # glide-media-player
       gnome-decoder # scan qr codes
       gnome-frog
       gnome-obfuscate # censor private information

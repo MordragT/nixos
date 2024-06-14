@@ -2,19 +2,19 @@
   buildPythonPackage,
   fetchwheel,
   autoPatchelfHook,
-  numpy,
-  pillow,
-  torchWithXpu,
-  scipy,
+  ffmpeg_4,
+  ffmpeg_5,
+  ffmpeg_6,
+  torch,
 }:
 buildPythonPackage rec {
-  pname = "torchvision";
-  version = "0.16.0a0";
+  pname = "torchaudio";
+  version = "2.1.0.post2";
   format = "wheel";
 
   src = fetchwheel {
     package = "${pname}-${version}";
-    sha256 = "sha256-gyHFDlIvXer9PMQz5i9WDpt4rUOJ7vhDBJiEs1IwEp4=";
+    sha256 = "sha256-3PE2z1/OGrFaj4ovz1OjnrURplgQvmRgaTCxpgJtXYU=";
   };
 
   nativeBuildInputs = [
@@ -22,13 +22,13 @@ buildPythonPackage rec {
   ];
 
   buildInputs = [
-    torchWithXpu.lib
+    torch.lib
+    ffmpeg_4.dev
+    ffmpeg_5.dev
+    ffmpeg_6.dev
   ];
 
   propagatedBuildInputs = [
-    numpy
-    pillow
-    torchWithXpu
-    scipy
+    torch
   ];
 }

@@ -8,6 +8,7 @@
     # ./niri.nix
     ./nushell.nix
     ./obs.nix
+    ./thunderbird.nix
     ./vscode.nix
     ./zsh.nix
   ];

@@ -6,15 +6,6 @@
 }:
 with lib; let
   cfg = config.mordrag.services.comfyui;
-  defaultUser = "comfyui";
-  defaultGroup = defaultUser;
-  mkComfyUIPackage = cfg:
-    cfg.package.override {
-      modelsPath = "${cfg.dataPath}/models";
-      inputPath = "${cfg.dataPath}/input";
-      outputPath = "${cfg.dataPath}/output";
-      customNodes = cfg.customNodes;
-    };
 in {
   options.mordrag.services.comfyui = {
     enable =
@@ -43,36 +34,27 @@ in {
 
     user = mkOption {
       type = types.str;
-      default = defaultUser;
+      default = "comfyui";
       example = "yourUser";
       description = mdDoc ''
         The user to run ComfyUI as.
-        By default, a user named `${defaultUser}` will be created whose home
+        By default, a user named `comfyui` will be created whose home
         directory will contain input, output, custom nodes and models.
       '';
     };
 
     group = mkOption {
       type = types.str;
-      default = defaultGroup;
+      default = "comfyui";
       example = "yourGroup";
       description = mdDoc ''
         The group to run ComfyUI as.
-        By default, a group named `${defaultUser}` will be created.
+        By default, a group named `comfyui` will be created.
       '';
     };
-
-    useCPU = mkOption {
-      type = types.bool;
-      default = false;
-      description = mdDoc ''
-        Uses the CPU for everything. Very slow, but needed if there is no hardware acceleration.
-      '';
-    };
-
     port = mkOption {
       type = types.int;
-      default = 8188;
+      default = 8000;
       description = mdDoc "Set the listen port for the Web UI and API.";
     };
 
@@ -93,46 +75,45 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.users = mkIf (cfg.user == defaultUser) {
-      ${defaultUser} = {
-        group = cfg.group;
-        home = cfg.dataPath;
-        createHome = true;
-        description = "ComfyUI daemon user";
-        isSystemUser = true;
-      };
-    };
+    # users.users = {
+    #   ${cfg.user} = {
+    #     group = cfg.group;
+    #     home = cfg.dataPath;
+    #     description = "ComfyUI daemon user";
+    #     isSystemUser = true;
+    #   };
+    # };
 
-    users.groups = mkIf (cfg.group == defaultGroup) {
-      ${defaultGroup} = {};
-    };
+    # users.groups = {
+    #   ${cfg.group} = {};
+    # };
+
+    # systemd.tmpfiles.rules = [
+    #   "d ${cfg.dataPath}/input - ${cfg.user} ${cfg.group}"
+    #   "d ${cfg.dataPath}/output - ${cfg.user} ${cfg.group}"
+    #   "d ${cfg.dataPath}/custom_nodes - ${cfg.user} ${cfg.group}"
+    #   "d ${cfg.dataPath}/models - ${cfg.user} ${cfg.group}"
+    #   "d ${cfg.dataPath}/temp - ${cfg.user} ${cfg.group}"
+    #   "d ${cfg.dataPath}/user - ${cfg.user} ${cfg.group}"
+    # ];
 
     systemd.services.comfyui = {
       description = "ComfyUI Service";
       wantedBy = ["multi-user.target"];
-      environment = {
-        DATA = cfg.dataPath;
-      };
-
-      preStart = ''
-        mkdir -p $DATA/input
-        mkdir -p $DATA/output
-        mkdir -p $DATA/custom_nodes
-        mkdir -p $DATA/models
-      '';
 
       serviceConfig = {
-        User = cfg.user;
-        Group = cfg.group;
+        # User = cfg.user;
+        # Group = cfg.group;
         ExecStart = let
           args = cli.toGNUCommandLine {} {
-            cpu = cfg.useCPU;
             port = cfg.port;
           };
         in ''
-          ${mkComfyUIPackage cfg}/bin/comfyui ${toString args} ${cfg.extraArgs}
+          ${cfg.package}/bin/comfyui ${toString args} ${cfg.extraArgs}
         '';
-        StateDirectory = cfg.dataPath;
+        StateDirectory = ["comfyui"];
+        RuntimeDirectory = ["comfyui"];
+        WorkingDirectory = "/run/comfyui";
         Restart = "always"; # comfyui is prone to crashing on long slow workloads.
       };
     };

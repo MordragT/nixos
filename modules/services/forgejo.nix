@@ -9,7 +9,7 @@ in {
     enable = lib.mkEnableOption "Forgejo";
     port = lib.mkOption {
       description = "Forgejo HTTP Port";
-      default = 8030;
+      default = 8010;
       type = lib.types.port;
     };
     ca = lib.mkOption {

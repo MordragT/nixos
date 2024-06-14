@@ -17,11 +17,17 @@
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-compute-runtime
+      intel-compute-runtime.drivers
       intel-media-driver
       intel-vaapi-driver
-      onevpl-intel-gpu
+      vpl-gpu-rt
     ];
   };
+  environment.sessionVariables.OCL_ICD_FILENAMES = [
+    "${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so"
+    "/run/opengl-driver/lib/intel-opencl/libigdrcl.so"
+  ];
+
   # chaotic.mesa-git = {
   #   enable = true;
   #   extraPackages = with pkgs; [
@@ -31,7 +37,9 @@
   #     onevpl-intel-gpu
   #   ];
   # };
-  environment.systemPackages = with pkgs; [intel-gpu-tools ffmpeg-vpl];
+  environment.systemPackages = with pkgs; [
+    ffmpeg-vpl
+  ];
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";
     owner = "root";

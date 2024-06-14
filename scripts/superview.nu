@@ -1,4 +1,4 @@
-#!/usr/bin/env -S nix shell nixpkgs#ffmpeg nixpkgs#nushellFull --command nu
+#!/usr/bin/env -S nix shell nixpkgs#ffmpeg nixpkgs#nushell --command nu
 
 def sequeeze [width, height, orig_width] {
     # let inv = 1.0 - ($tx | math abs)

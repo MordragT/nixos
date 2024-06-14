@@ -20,13 +20,14 @@ in {
 
     programs.nushell = {
       enable = true;
-      package = pkgs.nushellFull;
+      package = pkgs.nushell;
       configFile.text = ''
-        register "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
-        register "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
+        plugin add "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
+        plugin add "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
+        plugin use formats
+        plugin use gstat
 
         const scripts = ${../../../scripts}
-
         $env.CERTIFICATES = ${../../../certs}
 
         # cannot use files directly as that would rename them to a hash
@@ -36,13 +37,30 @@ in {
         use $"($scripts)/all-to.nu"
         use $"($scripts)/superview.nu"
 
-        $env.config.rm.always_trash = true
-
+        # alias code = codium
         alias comojit = comoji commit
         alias r = direnv reload
-        # alias code = codium
+
+        $env.config = {
+          show_banner: false
+
+          ls: {
+            use_ls_colors: true
+            clickable_links: true
+          }
+
+          rm: {
+            always_trash: true
+          }
+
+          table: {
+            mode: rounded
+            show_empty: true
+          }
+
+          error_style: "fancy"
+        }
       '';
-      envFile.text = "";
     };
 
     # vpnctl

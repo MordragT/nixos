@@ -67,7 +67,7 @@ in
       # 3. depending on method create activation scripts
 
       system.activationScripts.load-state.text = let
-        load-state = target: with target; "${pkgs.nushellFull}/bin/nu ${./load-state.nu} ${method} ${source} ${destination} ${owner} ${group} ${mode}\n";
+        load-state = target: with target; "${pkgs.nushell}/bin/nu ${./load-state.nu} ${method} ${source} ${destination} ${owner} ${group} ${mode}\n";
         script = concatMapStrings load-state cfg.targets;
       in
         script;

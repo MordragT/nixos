@@ -16,12 +16,13 @@
     #   alias comojit='comoji commit'
     # '';
     variables.EDITOR = "hx";
-    shells = [pkgs.nushellFull];
+    shells = [pkgs.nushell];
 
     # This module contains mostly alternatives to POSIX utilities
     # , aswell as core utilities
     systemPackages = with pkgs; [
       alsa-utils # configure audio devices
+      bintools
       clinfo # opencl info
       dua # print file size of directories
       fd # find replacement
@@ -32,6 +33,7 @@
       just # make alike
       libva-utils
       parted
+      pax-utils
       pciutils
       psmisc
       tealdeer # tldr

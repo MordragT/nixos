@@ -7,20 +7,20 @@
   level-zero,
   libfabric,
 }: let
-  major = "2021.11";
-  version = "2021.11.0-49493";
+  major = "2021.12";
+  version = "2021.12.1-5";
 
   mpi = fetchdeb {
     package = "intel-oneapi-mpi-${major}-${version}_amd64";
-    hash = "sha256-PaRmjyPrYXW3i4lab0TLN1IpcU8KLkL8MF2GUpQdxbk=";
+    hash = "sha256-SbPANSGlAu/9OcBiovp5TEJ9wp3fFHXXBL0gdshjZB0=";
   };
   mpi-devel = fetchdeb {
     package = "intel-oneapi-mpi-devel-${major}-${version}_amd64";
-    hash = "sha256-NuCtxFKDhPwInTV7vRmFQ3iXl2ytzLDoDvn1oS9YdWM=";
+    hash = "sha256-Eil/lPfGz86WJIZ2hqOss3tHIUOp1nFavkYZb5MphZ8=";
   };
   mpi-runtime = fetchdeb {
     package = "intel-oneapi-runtime-mpi-2021-${version}_amd64";
-    hash = "sha256-c1QriM1bPMFG787aVpcTq71fSHqPdMQHugtJUNSQhTI=";
+    hash = "sha256-DT2vut8qW20kh88eWToFoEO1Z7gWAEU0crfyJitnuIM=";
   };
 in
   stdenvNoCC.mkDerivation {
@@ -28,6 +28,8 @@ in
     pname = "intel-mpi";
 
     # dontUnpack = true;
+    dontStrip = true;
+
     nativeBuildInputs = [autoPatchelfHook dpkg];
 
     buildInputs = [

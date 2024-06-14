@@ -34,6 +34,7 @@ in {
         wine = true;
         winesync = true;
         present_mode = true;
+        position = "top-right";
         output_folder = "~/Desktop/MangoHud";
         fps_limit = [0 60 80 100 120];
         toggle_fps_limit = "Super_L+F1";

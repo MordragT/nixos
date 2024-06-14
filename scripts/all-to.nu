@@ -1,4 +1,4 @@
-#!/usr/bin/env -S nix shell nixpkgs#ffmpeg nixpkgs#nushellFull nixpkgs#imagemagick --command nu
+#!/usr/bin/env -S nix shell nixpkgs#ffmpeg nixpkgs#nushell nixpkgs#imagemagick --command nu
 
 export def hevc [path: string = ".", --extension(-e): string, --delete(-d), --recursive(-r)] {
     (convert-to

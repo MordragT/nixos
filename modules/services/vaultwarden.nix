@@ -9,7 +9,7 @@ in {
     enable = lib.mkEnableOption "Vaultwarden";
     port = lib.mkOption {
       description = "Vaultwarden HTTP Port";
-      default = 8080;
+      default = 8060;
       type = lib.types.port;
     };
     ca = lib.mkOption {

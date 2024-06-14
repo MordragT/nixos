@@ -4,6 +4,7 @@
     ./forgejo.nix
     ./harmonia.nix
     ./livebook.nix
+    ./llama.nix
     ./nextcloud.nix
     ./printing.nix
     ./samba.nix
