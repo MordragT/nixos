@@ -71,6 +71,7 @@ in {
       # identity # image comparison
       impression # create bootable drives
       junction # open with preview
+      keypunch # practice typing
       khronos # track task time
       kooha # screen recording
       # komikku # read manga
@@ -81,8 +82,10 @@ in {
       # markets # gtk crypto market prices
       # metadata-cleaner
       mousai # identitfy any song
+      mousam # weather app
       # newsflash # modern feed reader
       # overskride # bluetooth client
+      papers # succesor to evince
       paleta # extract dominant color from images
       pdfarranger
       # popsicle # flash usb with iso

@@ -21,7 +21,6 @@
   };
   programs.corectrl.enable = true;
   programs.corectrl.gpuOverclock.enable = true;
-  programs.evince.enable = true;
   programs.file-roller.enable = true;
   # programs.gamescope.args = [
   #   "-W 2560"

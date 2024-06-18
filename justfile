@@ -6,18 +6,18 @@ update: update-firefox update-vscode
     nix flake update
 
 update-firefox:
-    use pkgs/firefox-addons; firefox-addons update
+    use pkgs/by-scope/firefox-addons; firefox-addons update
 
 update-vscode:
-    use pkgs/vscode-extensions; vscode-extensions update
+    use pkgs/by-scope/vscode-extensions; vscode-extensions update
 
 create: create-firefox create-vscode
 
 create-firefox:
-    use pkgs/firefox-addons; firefox-addons create
+    use pkgs/by-scope/firefox-addons; firefox-addons create
 
 create-vscode:
-    use pkgs/vscode-extensions; vscode-extensions create
+    use pkgs/by-scope/vscode-extensions; vscode-extensions create
 
 iso system:
     nixos-generate --flake .#tom-{{ system }} --format iso

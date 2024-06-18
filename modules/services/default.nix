@@ -3,6 +3,7 @@
     ./comfyui.nix
     ./forgejo.nix
     ./harmonia.nix
+    ./invokeai.nix
     ./livebook.nix
     ./llama.nix
     ./nextcloud.nix

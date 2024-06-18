@@ -21,7 +21,6 @@
     enable = true;
     interface = "wlp2s0";
   };
-  programs.evince.enable = true;
   programs.file-roller.enable = true;
   programs.geary.enable = true;
 }

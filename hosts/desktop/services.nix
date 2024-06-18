@@ -7,6 +7,18 @@
     # extraArgs = "--disable-ipex-optimize";
     package = pkgs.comfyui-xpu;
   };
+  mordrag.services.invokeai = {
+    enable = true;
+    settings = {
+      device = "xpu";
+      precision = "float16";
+      lazy_offload = false;
+      log_memory_usage = true;
+      ram = 7.5;
+      attention_type = "sliced";
+      attention_slice_size = 4;
+    };
+  };
   mordrag.services.printing.enable = true;
   # mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;

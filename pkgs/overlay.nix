@@ -1,27 +1,18 @@
 self: pkgs: let
-  pins = import ./pins.nix {inherit (self) system;};
-  packages = import ./packages self pkgs;
-  intel = import ./intel self pkgs;
-  oneapi = import ./oneapi self pkgs;
+  pins = import ./pins.nix {inherit (pkgs) system;};
+  by-name = import ./by-name self pkgs;
+  by-prefix = import ./by-prefix self pkgs;
+  by-scope = import ./by-scope self pkgs;
 in
   pkgs.lib.mergeAttrsList [
-    packages
-    intel
-    oneapi
+    by-name
+    by-prefix
+    by-scope
     {
       # Pinned packages
       # onevpl-intel-gpu = pins.vpl.onevpl-intel-gpu;
-
-      # Namespaced packages
-      firefoxAddons = import ./firefox-addons self.firefoxAddons pkgs;
-      steamPackages = pkgs.steamPackages.overrideScope (_: _: import ./steam-packages self.steamPackages (pkgs // {inherit (self) x86-64-v3Packages;}));
-      vscode-extensions = pkgs.lib.recursiveUpdate pkgs.vscode-extensions (import ./vscode-extensions self.vscode-extensions pkgs);
-      winPackages = import ./win-packages self.winPackages pkgs;
-      x86-64-v3Packages = import ./x86-64-v3-packages self.x86-64-v3Packages pkgs;
-      python3-xpu = pkgs.python3.override {
-        packageOverrides = pySelf: pyPkgs:
-          import ./python-xpu pySelf pyPkgs;
-      };
+      # https://github.com/NixOS/nixpkgs/pull/317546
+      my-opencv = pins.opencv-typing.opencv;
 
       # Overrides
       ffmpeg-vpl = pkgs.ffmpeg-full.override {
