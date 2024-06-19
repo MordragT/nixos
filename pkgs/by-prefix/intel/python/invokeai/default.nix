@@ -1,5 +1,6 @@
 {
   stdenv,
+  coreutils,
   nodejs,
   pnpm,
   buildPythonPackage,
@@ -61,12 +62,15 @@
   send2trash,
   test-tube,
 }: let
-  version = "4.2.4";
+  # version = "4.2.4";
+  version = "unstable-2024-06-19";
   src = fetchFromGitHub {
     owner = "invoke-ai";
     repo = "InvokeAI";
-    rev = "v${version}";
-    hash = "sha256-eboJiYLqjfACA/4/efCYTbdDq44SivjtDR8P82UyKuQ=";
+    # rev = "v${version}";
+    # hash = "sha256-eboJiYLqjfACA/4/efCYTbdDq44SivjtDR8P82UyKuQ=";
+    rev = "a43d602f16b41c3023fa9556205af8173345f58b";
+    hash = "sha256-v3VloLb/hHn+eOQb5KYVPc2DGCDVfavjXPFSrX09y7E=";
   };
   web = stdenv.mkDerivation rec {
     pname = "invokeai-web";
@@ -81,7 +85,7 @@
 
     pnpmDeps = pnpm.fetchDeps {
       inherit pname src version sourceRoot;
-      hash = "sha256-zlJIq1msRZDllUmXiQKX13wvMRbkJ3Py3eJfzPxdVjc=";
+      hash = "sha256-ddCyap26TI4CpgYxxrzI40gN41bA9BkLRVGkWXuZqEo=";
     };
 
     buildPhase = ''
@@ -101,6 +105,9 @@ in
     nativeBuildInputs = [
       pythonRelaxDepsHook
     ];
+
+    # own custom wrapping with ipexrun
+    # dontWrapPythonPrograms = true;
 
     pythonRemoveDeps = [
       "pyreadline3"
@@ -144,6 +151,10 @@ in
     build-system = [
       setuptools
       pip
+    ];
+
+    propagatedBuildInputs = [
+      coreutils
     ];
 
     dependencies = [
@@ -213,36 +224,34 @@ in
     #   test = [ruff ruff-lsp mypy pre-commit pytest pytest-cov pytest-timeout pytest-datadir requests_testadapter httpx];
     # };
 
-    patchPhase = ''
-      substituteInPlace ./pyproject.toml \
-        --replace-warn 'setuptools~=65.5' 'setuptools' \
-        --replace-warn 'pip~=22.3' 'pip'
-
-      substituteInPlace ./invokeai/app/api_app.py \
-        --replace-fail 'import torch' $'import torch\nimport intel_extension_for_pytorch as ipex'
-
-      # Add subprocess to the imports
-      # shutil.copytree will inherit the permissions of files in the /nix/store
-      # which are read only, so we subprocess.call cp instead and tell it not to
-      # preserve the mode
-      substituteInPlace ./invokeai/app/services/config/config_default.py \
-        --replace-fail 'import shutil' $'import shutil\nimport subprocess' \
-        --replace-fail "shutil.copytree(configs_src, config.legacy_conf_path, dirs_exist_ok=True)" \
-          "subprocess.call('cp -r -n --no-preserve=mode {src}/* {dest}'.format(src=configs_src, dest=config.legacy_conf_path), shell=True)" \
-        --replace-fail 'DEVICE = Literal["auto", "cpu", "cuda", "cuda:1", "mps"]' \
-          'DEVICE = Literal["auto", "cpu", "cuda", "cuda:1", "mps", "xpu"]'
-
-      substituteInPlace ./invokeai/app/invocations/__init__.py \
-        --replace-fail 'import shutil' $'import shutil\nimport subprocess' \
-        --replace-fail 'shutil.copy(Path(__file__).parent / "custom_nodes/init.py", custom_nodes_init_path)' \
-          "subprocess.call('cp --no-preserve=mode {src} {dest}'.format(src=Path(__file__).parent / 'custom_nodes/init.py', dest=custom_nodes_init_path), shell=True)" \
-        --replace-fail 'shutil.copy(Path(__file__).parent / "custom_nodes/README.md", custom_nodes_readme_path)' \
-          "subprocess.call('cp --no-preserve=mode {src} {dest}'.format(src=Path(__file__).parent / 'custom_nodes/README.md', dest=custom_nodes_readme_path), shell=True)"
-    '';
+    patches = [
+      ./pyproject.patch
+      ./shutil-mode.patch
+      ./xpu.patch
+    ];
 
     postInstall = ''
       ln -s ${web} $out/${python.sitePackages}/invokeai/frontend/web/dist
     '';
+
+    # postFixup = ''
+    #   buildPythonPath "$out $pythonPath"
+
+    #   for bin in $out/bin/*; do
+    #     patchPythonScript "$bin"
+
+    #     local dest="$out/bin/.$(basename "$bin")-wrapped"
+
+    #     mv $bin $dest
+
+    #     makeWrapper "${lib.getExe ipex}" "$bin" \
+    #       --add-flags "xpu $dest" \
+    #       --prefix PATH : "$program_PATH" \
+    #       --prefix PYTHONPATH : "$program_PYTHONPATH" \
+    #       --set PYTHONNOUSERSITE "true" \
+    #       $makeWrapperArgs
+    #   done
+    # '';
 
     meta = {
       description = "Fancy Web UI for Stable Diffusion";

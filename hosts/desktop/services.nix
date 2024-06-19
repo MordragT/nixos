@@ -11,12 +11,14 @@
     enable = true;
     settings = {
       device = "xpu";
-      precision = "float16";
-      lazy_offload = false;
+      precision = "bfloat16";
+      lazy_offload = true;
       log_memory_usage = true;
-      ram = 7.5;
+      log_level = "info";
+      # ram = 7.5;
+      # vram = 0.5;
       attention_type = "sliced";
-      attention_slice_size = 4;
+      attention_slice_size = "balanced";
     };
   };
   mordrag.services.printing.enable = true;

@@ -76,4 +76,10 @@ buildPythonPackage rec {
     mv $out/${python.sitePackages}/${pname}/lib $lib/lib
     ln -s $lib/lib $out/${python.sitePackages}/${pname}/lib
   '';
+
+  meta = {
+    description = "A Python package for extending the official PyTorch that can easily obtain performance on Intel platform";
+    homepage = "https://github.com/intel/intel-extension-for-pytorch";
+    mainProgram = "ipexrun";
+  };
 }

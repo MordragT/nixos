@@ -21,7 +21,7 @@ buildPythonPackage rec {
     sha256 = "1r378mb167k2hynrn1wsi78xbh2aw6x68i8f70nmcqsxxp20rqii";
   };
 
-  patches = [./facexlib.patch];
+  patches = [./root.patch];
 
   buildInputs = [cython numpy];
 

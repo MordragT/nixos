@@ -69,7 +69,7 @@ in {
           precision = mkOption {
             description = "Set model precision.";
             default = "auto";
-            type = types.enum ["auto" "float32" "autocast" "float16"];
+            type = types.enum ["auto" "float32" "bfloat16" "float16"];
           };
         };
       };
@@ -101,7 +101,7 @@ in {
         environment = {
           HOME = "${cfg.root}";
           INVOKEAI_ROOT = "${cfg.root}";
-          NIXIFIED_AI_NONINTERACTIVE = "1";
+          # NIXIFIED_AI_NONINTERACTIVE = "1";
           # HUGGING_FACE_HUB_TOKEN = "";
           # SYCL_PI_TRACE = "-1";
           # ZE_DEBUG = "-1";
@@ -112,15 +112,15 @@ in {
 
           # Force 100% available VRAM size for compute-runtime.
           # See https://github.com/intel/compute-runtime/issues/586
-          NEOReadDebugKeys = "1";
-          ClDeviceGlobalMemSizeAvailablePercent = "100";
+          # NEOReadDebugKeys = "1";
+          # ClDeviceGlobalMemSizeAvailablePercent = "100";
 
           # ZE_RELAXED_ALLOCATION_LIMITS_EXP_FLAG_MAX_SIZE
 
           # Enable SYCL variables for cache reuse and single threaded mode.
           # See https://github.com/intel/llvm/blob/sycl/sycl/doc/EnvironmentVariables.md
-          SYCL_CACHE_PERSISTENT = "1";
-          SYCL_PI_LEVEL_ZERO_SINGLE_THREAD_MODE = "1";
+          # SYCL_CACHE_PERSISTENT = "1";
+          # SYCL_PI_LEVEL_ZERO_SINGLE_THREAD_MODE = "1";
 
           OCL_ICD_FILENAMES = "${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so:/run/opengl-driver/lib/intel-opencl/libigdrcl.so";
         };

@@ -1,0 +1,122 @@
+diff --git a/invokeai/app/api_app.py b/invokeai/app/api_app.py
+index e69d95af7..ee9d9a55c 100644
+--- a/invokeai/app/api_app.py
++++ b/invokeai/app/api_app.py
+@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
+ from pathlib import Path
+ 
+ import torch
++import intel_extension_for_pytorch as ipex
+ import uvicorn
+ from fastapi import FastAPI
+ from fastapi.middleware.cors import CORSMiddleware
+diff --git a/invokeai/app/services/config/config_default.py b/invokeai/app/services/config/config_default.py
+index 1dc75add1..9e0cd6ac5 100644
+--- a/invokeai/app/services/config/config_default.py
++++ b/invokeai/app/services/config/config_default.py
+@@ -26,7 +26,7 @@ LEGACY_INIT_FILE = Path("invokeai.init")
+ DEFAULT_RAM_CACHE = 10.0
+ DEFAULT_VRAM_CACHE = 0.25
+ DEFAULT_CONVERT_CACHE = 20.0
+-DEVICE = Literal["auto", "cpu", "cuda", "cuda:1", "mps"]
++DEVICE = Literal["auto", "cpu", "cuda", "cuda:1", "mps", "xpu"]
+ PRECISION = Literal["auto", "float16", "bfloat16", "float32"]
+ ATTENTION_TYPE = Literal["auto", "normal", "xformers", "sliced", "torch-sdp"]
+ ATTENTION_SLICE_SIZE = Literal["auto", "balanced", "max", 1, 2, 3, 4, 5, 6, 7, 8]
+diff --git a/invokeai/backend/model_manager/load/model_cache/model_cache_default.py b/invokeai/backend/model_manager/load/model_cache/model_cache_default.py
+index d48e45426..de81dbf30 100644
+--- a/invokeai/backend/model_manager/load/model_cache/model_cache_default.py
++++ b/invokeai/backend/model_manager/load/model_cache/model_cache_default.py
+@@ -228,7 +228,7 @@ class ModelCache(ModelCacheBase[AnyModel]):
+     def offload_unlocked_models(self, size_required: int) -> None:
+         """Move any unused models from VRAM."""
+         reserved = self._max_vram_cache_size * GIG
+-        vram_in_use = torch.cuda.memory_allocated() + size_required
++        vram_in_use = torch.xpu.memory_allocated() + size_required
+         self.logger.debug(f"{(vram_in_use/GIG):.2f}GB VRAM needed for models; max allowed={(reserved/GIG):.2f}GB")
+         for _, cache_entry in sorted(self._cached_models.items(), key=lambda x: x[1].size):
+             if vram_in_use <= reserved:
+@@ -238,9 +238,9 @@ class ModelCache(ModelCacheBase[AnyModel]):
+             if not cache_entry.locked:
+                 self.move_model_to_device(cache_entry, self.storage_device)
+                 cache_entry.loaded = False
+-                vram_in_use = torch.cuda.memory_allocated() + size_required
++                vram_in_use = torch.xpu.memory_allocated() + size_required
+                 self.logger.debug(
+-                    f"Removing {cache_entry.key} from VRAM to free {(cache_entry.size/GIG):.2f}GB; vram free = {(torch.cuda.memory_allocated()/GIG):.2f}GB"
++                    f"Removing {cache_entry.key} from VRAM to free {(cache_entry.size/GIG):.2f}GB; vram free = {(torch.xpu.memory_allocated()/GIG):.2f}GB"
+                 )
+ 
+         TorchDevice.empty_cache()
+@@ -327,7 +327,7 @@ class ModelCache(ModelCacheBase[AnyModel]):
+ 
+     def print_cuda_stats(self) -> None:
+         """Log CUDA diagnostics."""
+-        vram = "%4.2fG" % (torch.cuda.memory_allocated() / GIG)
++        vram = "%4.2fG" % (torch.xpu.memory_allocated() / GIG)
+         ram = "%4.2fG" % (self.cache_size() / GIG)
+ 
+         in_ram_models = 0
+diff --git a/invokeai/backend/model_manager/load/model_loaders/stable_diffusion.py b/invokeai/backend/model_manager/load/model_loaders/stable_diffusion.py
+index 3ca7a5b2e..aeb204363 100644
+--- a/invokeai/backend/model_manager/load/model_loaders/stable_diffusion.py
++++ b/invokeai/backend/model_manager/load/model_loaders/stable_diffusion.py
+@@ -3,6 +3,7 @@
+ 
+ from pathlib import Path
+ from typing import Optional
++import intel_extension_for_pytorch as ipex
+ 
+ from invokeai.backend.model_manager import (
+     AnyModel,
+@@ -68,7 +69,6 @@ class StableDiffusionDiffusersModel(GenericDiffusersLoader):
+                 result = load_class.from_pretrained(model_path, torch_dtype=self._torch_dtype)
+             else:
+                 raise e
+-
+         return result
+ 
+     def _needs_conversion(self, config: AnyModelConfig, model_path: Path, dest_path: Path) -> bool:
+diff --git a/invokeai/backend/util/devices.py b/invokeai/backend/util/devices.py
+index e8380dc8b..0cb37b30e 100644
+--- a/invokeai/backend/util/devices.py
++++ b/invokeai/backend/util/devices.py
+@@ -10,6 +10,7 @@ TorchPrecisionNames = Literal["float32", "float16", "bfloat16"]
+ CPU_DEVICE = torch.device("cpu")
+ CUDA_DEVICE = torch.device("cuda")
+ MPS_DEVICE = torch.device("mps")
++XPU_DEVICE = torch.device("xpu")
+ 
+ 
+ @deprecated("Use TorchDevice.choose_torch_dtype() instead.")  # type: ignore
+@@ -50,6 +51,8 @@ class TorchDevice:
+             device = torch.device(app_config.device)
+         elif torch.cuda.is_available():
+             device = CUDA_DEVICE
++        elif torch.xpu.is_available():
++            device = XPU_DEVICE
+         elif torch.backends.mps.is_available():
+             device = MPS_DEVICE
+         else:
+@@ -72,7 +75,11 @@ class TorchDevice:
+             else:
+                 # Use the user-defined precision
+                 return cls._to_dtype(config.precision)
+-
++        elif device.type == "xpu" and torch.xpu.is_available():
++            if config.precision == "auto":
++                return cls._to_dtype("bfloat16")
++            else:
++                return cls._to_dtype(config.precision)
+         elif device.type == "mps" and torch.backends.mps.is_available():
+             if config.precision == "auto":
+                 # Default to float16 for MPS devices
+@@ -104,6 +111,8 @@ class TorchDevice:
+             torch.mps.empty_cache()
+         if torch.cuda.is_available():
+             torch.cuda.empty_cache()
++        if torch.xpu.is_available():
++            torch.xpu.empty_cache()
+ 
+     @classmethod
+     def _to_dtype(cls, precision_name: TorchPrecisionNames) -> torch.dtype:
