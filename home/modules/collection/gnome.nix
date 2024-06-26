@@ -14,7 +14,7 @@ in {
     home.packages = with pkgs; [
       amberol # simple audio player
       # apostrophe # markdown editor
-      # not packaged audio-sharing
+      audio-sharing
       # authenticator # generate two-factor codes
       # blanket # listen to chill sounds
       # boatswain # control elgato stream deck
@@ -23,9 +23,9 @@ in {
       # calls # phone dialer and call handler
       celluloid # gtk mpv frontend
       # not packaged chessclock
-      # citations # bibtex
+      citations # bibtex
       # clairvoyant
-      # broken collision # check file hashes
+      collision # check file hashes
       # not packaged commit
       # contrast # gtk check contrast
       # curtail # image compressor
@@ -43,6 +43,7 @@ in {
       # errands # task manager
       eyedropper # pick format colors
       raider # file shredder
+      resources # monitor hardware resources
       fclones-gui # find duplicate files
       # foliate # book reader
       # forge-sparks
@@ -75,7 +76,7 @@ in {
       khronos # track task time
       kooha # screen recording
       # komikku # read manga
-      # not packaged letterpress # create ascii art
+      letterpress # create ascii art
       # lorem # generate placeholder text
       loupe # image viewer
       # lutris
@@ -90,16 +91,17 @@ in {
       pdfarranger
       # popsicle # flash usb with iso
       # not packaged paperclip # edit pdf metadata
-      # broken pitivi # video editor
+      pitivi # video editor
       # pika-backup # simple backups
       # planify # more advanced task manager
       plots # graph plotting
       rnote # draw notes
-      # not packaged sharepreview # test social media cards
+      share-preview # test social media cards
       shortwave # internet radio
       simple-scan
       gnome-solanum # pomodoro timer
-      switcheroo
+      switcheroo # image conversion
+      imagemagick # needed by switcheroo ??
       # tangram # browser for pinned tabs
       # telegraph # decode morse code
       textpieces

@@ -1,7 +1,23 @@
-self: pkgs: {
-  firefoxAddons = import ./firefox-addons self.firefoxAddons pkgs;
-  steamPackages = pkgs.steamPackages.overrideScope (_: _: import ./steam-packages self.steamPackages (pkgs // {inherit (self) x86-64-v3Packages;}));
-  vscode-extensions = pkgs.lib.recursiveUpdate pkgs.vscode-extensions (import ./vscode-extensions self.vscode-extensions pkgs);
-  winPackages = import ./win-packages self.winPackages pkgs;
-  x86-64-v3Packages = import ./x86-64-v3-packages self.x86-64-v3Packages pkgs;
+self: pkgs: let
+  makeScope = path: scope: (import path (self // scope) pkgs);
+in {
+  firefoxAddons = makeScope ./firefox-addons self.firefoxAddons;
+  intel-dpcpp = makeScope ./intel-dpcpp self.intel-dpcpp;
+  intel-llvm = makeScope ./intel-llvm self.intel-llvm;
+  intel-python = pkgs.python3.override {
+    packageOverrides = pySelf: pyPkgs:
+      (import ./intel-python pySelf pyPkgs)
+      // {
+        # https://github.com/NixOS/nixpkgs/pull/317546
+        opencv4 = pySelf.toPythonModule (self.my-opencv.override {
+          enablePython = true;
+          pythonPackages = pySelf;
+        });
+      };
+  };
+  pti-gpu = makeScope ./pti-gpu self.pti-gpu;
+  steamPackages = pkgs.steamPackages.overrideScope (_: _: makeScope ./steam-packages self.steamPackages);
+  vscode-extensions = pkgs.lib.recursiveUpdate pkgs.vscode-extensions (makeScope ./vscode-extensions self.vscode-extensions);
+  winPackages = makeScope ./win-packages self.winPackages;
+  x86-64-v3Packages = makeScope ./x86-64-v3-packages self.x86-64-v3Packages;
 }

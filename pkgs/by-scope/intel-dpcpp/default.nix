@@ -1,5 +1,5 @@
 self: pkgs: let
-  callPackage = pkgs.lib.callPackageWith (pkgs // self // (pkgs.callPackage ../build-support.nix {}));
+  callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
   bintools-unwrapped = callPackage ./bintools-unwrapped.nix {};
   bintools = pkgs.wrapBintoolsWith {

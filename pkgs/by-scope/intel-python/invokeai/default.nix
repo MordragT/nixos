@@ -85,7 +85,7 @@
 
     pnpmDeps = pnpm.fetchDeps {
       inherit pname src version sourceRoot;
-      hash = "sha256-ddCyap26TI4CpgYxxrzI40gN41bA9BkLRVGkWXuZqEo=";
+      hash = "sha256-zlJIq1msRZDllUmXiQKX13wvMRbkJ3Py3eJfzPxdVjc=";
     };
 
     buildPhase = ''

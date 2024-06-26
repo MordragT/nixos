@@ -11,10 +11,9 @@
   # systemd.network.wait-online.timeout = 5;
 
   # Hardware Acceleration
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       intel-compute-runtime
       intel-compute-runtime.drivers
@@ -39,6 +38,8 @@
   # };
   environment.systemPackages = with pkgs; [
     ffmpeg-vpl
+    # intel-sysmon
+    # nvtopPackages.intel
   ];
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";

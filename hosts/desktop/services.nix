@@ -18,7 +18,9 @@
       # ram = 7.5;
       # vram = 0.5;
       attention_type = "sliced";
-      attention_slice_size = "balanced";
+      attention_slice_size = 4;
+      sequential_guidance = true;
+      force_tiled_decode = false;
     };
   };
   mordrag.services.printing.enable = true;
@@ -31,7 +33,7 @@
 
   services.flatpak.enable = true;
   # services.private-gpt.enable = true;
-  services.tailscale.enable = true;
+  services.tailscale.enable = true; # trayscale gui ?
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
   networking.firewall.checkReversePath = "loose";
 

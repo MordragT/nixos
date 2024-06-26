@@ -134,6 +134,7 @@ in {
             };
           in "${lib.getExe cfg.package} ${toString args}";
           PrivateTmp = true;
+          # MemoryMax = "24G";
         };
       };
       systemd.tmpfiles.rules = [

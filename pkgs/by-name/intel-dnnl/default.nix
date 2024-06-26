@@ -1,7 +1,7 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchdeb,
+  fetchinteldeb,
   autoPatchelfHook,
   dpkg,
   intel-dpcpp,
@@ -9,11 +9,11 @@
   major = "2024.1";
   version = "2024.1.0-567";
 
-  dnnl = fetchdeb {
+  dnnl = fetchinteldeb {
     package = "intel-oneapi-dnnl-${major}-${version}_amd64";
     hash = "sha256-F+F2HOlhSKe9UjvW+FpFT6bJDfD7qiJp06EhsQiBDYw=";
   };
-  dnnl-devel = fetchdeb {
+  dnnl-devel = fetchinteldeb {
     package = "intel-oneapi-dnnl-devel-${major}-${version}_amd64";
     hash = "sha256-k8aTL+KA+sPT90HpWA5+MlwM565gFMY2yDiNhg2ReWM=";
   };

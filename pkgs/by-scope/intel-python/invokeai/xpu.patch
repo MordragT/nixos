@@ -23,6 +23,39 @@ index 1dc75add1..9e0cd6ac5 100644
  PRECISION = Literal["auto", "float16", "bfloat16", "float32"]
  ATTENTION_TYPE = Literal["auto", "normal", "xformers", "sliced", "torch-sdp"]
  ATTENTION_SLICE_SIZE = Literal["auto", "balanced", "max", 1, 2, 3, 4, 5, 6, 7, 8]
+diff --git a/invokeai/app/services/invocation_stats/invocation_stats_default.py b/invokeai/app/services/invocation_stats/invocation_stats_default.py
+index 5a41f1f5d..5fed0589d 100644
+--- a/invokeai/app/services/invocation_stats/invocation_stats_default.py
++++ b/invokeai/app/services/invocation_stats/invocation_stats_default.py
+@@ -53,8 +53,8 @@ class InvocationStatsService(InvocationStatsServiceBase):
+         # Record state before the invocation.
+         start_time = time.time()
+         start_ram = psutil.Process().memory_info().rss
+-        if torch.cuda.is_available():
+-            torch.cuda.reset_peak_memory_stats()
++        if torch.xpu.is_available():
++            torch.xpu.reset_peak_memory_stats()
+ 
+         assert services.model_manager.load is not None
+         services.model_manager.load.ram_cache.stats = self._cache_stats[graph_execution_state_id]
+@@ -70,7 +70,7 @@ class InvocationStatsService(InvocationStatsServiceBase):
+                 end_time=time.time(),
+                 start_ram_gb=start_ram / GB,
+                 end_ram_gb=psutil.Process().memory_info().rss / GB,
+-                peak_vram_gb=torch.cuda.max_memory_allocated() / GB if torch.cuda.is_available() else 0.0,
++                peak_vram_gb=torch.xpu.max_memory_allocated() / GB if torch.xpu.is_available() else 0.0,
+             )
+             self._stats[graph_execution_state_id].add_node_execution_stats(node_stats)
+ 
+@@ -82,7 +82,7 @@ class InvocationStatsService(InvocationStatsServiceBase):
+         graph_stats_summary = self._get_graph_summary(graph_execution_state_id)
+         node_stats_summaries = self._get_node_summaries(graph_execution_state_id)
+         model_cache_stats_summary = self._get_model_cache_summary(graph_execution_state_id)
+-        vram_usage_gb = torch.cuda.memory_allocated() / GB if torch.cuda.is_available() else None
++        vram_usage_gb = torch.xpu.memory_allocated() / GB if torch.xpu.is_available() else None
+ 
+         return InvocationStatsSummary(
+             graph_stats=graph_stats_summary,
 diff --git a/invokeai/backend/model_manager/load/model_cache/model_cache_default.py b/invokeai/backend/model_manager/load/model_cache/model_cache_default.py
 index d48e45426..de81dbf30 100644
 --- a/invokeai/backend/model_manager/load/model_cache/model_cache_default.py
