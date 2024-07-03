@@ -8,81 +8,74 @@
 in {
   options.mordrag.services.llama = {
     enable = lib.mkEnableOption "Llama";
+    settings = lib.mkOption {
+      description = "Generates command-line arguments";
+      default = {};
+      type = lib.types.submodule {
+        freeformType = with lib.types; let
+          atom = nullOr (oneOf [
+            bool
+            str
+            int
+            float
+          ]);
+        in
+          attrsOf (either atom (listOf atom));
+        options = {
+          host = lib.mkOption {
+            description = "Which IP address to listen on.";
+            default = "127.0.0.1";
+            type = lib.types.str;
+          };
+
+          port = lib.mkOption {
+            description = "Which port to listen on.";
+            default = 8030;
+            type = lib.types.port;
+          };
+
+          model = lib.mkOption {
+            description = "Which model to serve";
+            type = lib.types.str;
+          };
+
+          gpu-layers = lib.mkOption {
+            description = "Number of layers to store in VRAM";
+            default = 0;
+            type = lib.types.int;
+          };
+
+          split-mode = lib.mkOption {
+            description = "How to split the model across multiple GPUs";
+            default = "none";
+            type = lib.types.enum ["none" "layer" "row"];
+          };
+        };
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    services.llama-cpp = {
-      enable = true;
-      package = pkgs.llama-cpp.override {
-        vulkanSupport = true;
-      };
-      port = 8030;
-      model = "/var/lib/llama-cpp/Meta-Llama-3-8B-Instruct-Q4_K_M.gguf";
-    };
-
-    services.open-webui = {
-      enable = true;
-      port = 8040;
-      openFirewall = false;
+    systemd.services.llama-cpp = {
+      description = "LLaMA C++ server";
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
       environment = {
-        ANONYMIZED_TELEMETRY = "False";
-        DO_NOT_TRACK = "True";
-        SCARF_NO_ANALYTICS = "True";
-        OPENAI_API_BASE_URL = "http://127.0.0.1:8030/v1/";
-        TRANSFORMERS_CACHE = "/var/lib/open-webui/.cache/huggingface";
+        ZES_ENABLE_SYSMAN = "1";
+        OCL_ICD_FILENAMES = "${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so:/run/opengl-driver/lib/intel-opencl/libigdrcl.so";
+      };
+      serviceConfig = {
+        Type = "idle";
+        KillSignal = "SIGINT";
+        Restart = "on-failure";
+        RestartSec = 300;
+        WorkingDirectory = "%S/llama-cpp";
+        StateDirectory = ["llama-cpp"];
+        DynamicUser = true;
+        User = "llama-cpp";
+        Group = "llama-cpp";
+        ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${toString (lib.cli.toGNUCommandLine {} cfg.settings)}";
       };
     };
-
-    # systemd.services.llama-cpp = {
-    #   description = "LLaMA C++ server";
-    #   after = ["network.target"];
-    #   wantedBy = ["multi-user.target"];
-
-    #   serviceConfig = {
-    #     Type = "idle";
-    #     KillSignal = "SIGINT";
-    #     ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server --log-disable --host 127.0.0.1 --port 8030 -m /var/lib/llama-cpp/llama-2-7b.Q4_K_M.gguf";
-    #     Restart = "on-failure";
-    #     RestartSec = 300;
-
-    #     # for GPU acceleration
-    #     PrivateDevices = false;
-
-    #     # hardening
-    #     DynamicUser = true;
-    #     CapabilityBoundingSet = "";
-    #     RestrictAddressFamilies = [
-    #       "AF_INET"
-    #       "AF_INET6"
-    #       "AF_UNIX"
-    #     ];
-    #     NoNewPrivileges = true;
-    #     PrivateMounts = true;
-    #     PrivateTmp = true;
-    #     PrivateUsers = true;
-    #     ProtectClock = true;
-    #     ProtectControlGroups = true;
-    #     ProtectHome = true;
-    #     ProtectKernelLogs = true;
-    #     ProtectKernelModules = true;
-    #     ProtectKernelTunables = true;
-    #     ProtectSystem = "strict";
-    #     MemoryDenyWriteExecute = false; # this is changed to allow textrels inside oneapi shared objects to work
-    #     LockPersonality = true;
-    #     RemoveIPC = true;
-    #     RestrictNamespaces = true;
-    #     RestrictRealtime = true;
-    #     RestrictSUIDSGID = true;
-    #     SystemCallArchitectures = "native";
-    #     SystemCallFilter = [
-    #       "@system-service"
-    #       "~@privileged"
-    #     ];
-    #     SystemCallErrorNumber = "EPERM";
-    #     ProtectProc = "invisible";
-    #     ProtectHostname = true;
-    #     ProcSubset = "pid";
-    #   };
-    # };
   };
 }

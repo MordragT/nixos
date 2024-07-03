@@ -234,25 +234,6 @@ in
       ln -s ${web} $out/${python.sitePackages}/invokeai/frontend/web/dist
     '';
 
-    # postFixup = ''
-    #   buildPythonPath "$out $pythonPath"
-
-    #   for bin in $out/bin/*; do
-    #     patchPythonScript "$bin"
-
-    #     local dest="$out/bin/.$(basename "$bin")-wrapped"
-
-    #     mv $bin $dest
-
-    #     makeWrapper "${lib.getExe ipex}" "$bin" \
-    #       --add-flags "xpu $dest" \
-    #       --prefix PATH : "$program_PATH" \
-    #       --prefix PYTHONPATH : "$program_PYTHONPATH" \
-    #       --set PYTHONNOUSERSITE "true" \
-    #       $makeWrapperArgs
-    #   done
-    # '';
-
     meta = {
       description = "Fancy Web UI for Stable Diffusion";
       homepage = "https://invoke-ai.github.io/InvokeAI/";

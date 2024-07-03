@@ -17,7 +17,7 @@ mkLLVM {
     # "-DLLVM_INSTALL_BINUTILS_SYMLINKS=ON"
     # "-DLLVM_BUILD_STATIC=ON"
     # "-DLLVM_LINK_LLVM_DYLIB=ON"
-    "-DLLVM_ENABLE_PROJECTS=clang;llvm-spirv"
+    "-DLLVM_ENABLE_PROJECTS=llvm-spirv"
 
     # intrinsics
     "-DLLVMGenXIntrinsics_SOURCE_DIR=${pins.vc-intrinsics}"

@@ -21,7 +21,6 @@ in {
       bottles
       # cartridges # game launcher
       # calls # phone dialer and call handler
-      celluloid # gtk mpv frontend
       # not packaged chessclock
       citations # bibtex
       # clairvoyant
@@ -78,7 +77,6 @@ in {
       # komikku # read manga
       letterpress # create ascii art
       # lorem # generate placeholder text
-      loupe # image viewer
       # lutris
       # markets # gtk crypto market prices
       # metadata-cleaner
@@ -86,7 +84,6 @@ in {
       mousam # weather app
       # newsflash # modern feed reader
       # overskride # bluetooth client
-      papers # succesor to evince
       paleta # extract dominant color from images
       pdfarranger
       # popsicle # flash usb with iso

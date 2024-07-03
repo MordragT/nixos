@@ -111,6 +111,10 @@
     package = "intel-oneapi-mkl-classic-include-${major}-${version}_amd64";
     hash = "sha256-StJASIlO2rMzuJ38unQedg932S/n3myEtLGzuOeXGiQ=";
   };
+  mkl-classic-include-common = fetchinteldeb {
+    package = "intel-oneapi-mkl-classic-include-common-${major}-${version}_all";
+    hash = "sha256-cBbA2aHdgXLpVlC79c+TiKJz8cNONS0rVrzxtNQH5CE=";
+  };
 in
   stdenvNoCC.mkDerivation {
     inherit version;
@@ -154,6 +158,7 @@ in
       dpkg-deb -x ${mkl-classic} .
       dpkg-deb -x ${mkl-classic-devel} .
       dpkg-deb -x ${mkl-classic-include} .
+      dpkg-deb -x ${mkl-classic-include-common} .
     '';
 
     installPhase = ''

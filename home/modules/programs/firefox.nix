@@ -11,6 +11,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    xdg.mimeApps.defaultApplications = {
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "application/xhtml+xml" = "firefox.desktop";
+      "text/html" = "firefox.desktop";
+    };
+
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;

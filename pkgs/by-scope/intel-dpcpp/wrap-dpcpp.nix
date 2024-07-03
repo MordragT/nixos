@@ -46,6 +46,9 @@ in
 
       setup-hook = [
         "export ONEAPI_ROOT=${cc}"
+        "export CMPLR_ROOT=${cc}"
+        # "export SYCL_INCLUDE_DIR_HINT=${cc}/include"
+        # "export SYCL_LIBRARY_DIR_HINT=${cc}/lib"
       ];
     };
 

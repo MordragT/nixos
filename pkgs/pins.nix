@@ -14,4 +14,12 @@
     }) {
       inherit system;
     };
+
+  llama-cpp-3260 =
+    import (builtins.fetchTarball {
+      url = "https://github.com/xddxdd/nixpkgs/archive/134743c02aad682eff113d14cd84da66e8e5d193.tar.gz";
+      sha256 = "0zy7zjlf063xwk8qi2xbglzz4jv407jpv6siafjajda9chp1zzch";
+    }) {
+      inherit system;
+    };
 }

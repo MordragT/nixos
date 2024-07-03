@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./comfyui.nix
     ./forgejo.nix
     ./harmonia.nix
     ./invokeai.nix
@@ -11,6 +10,7 @@
     ./samba.nix
     ./stalwart.nix
     ./step-ca.nix
+    ./tabby.nix
     ./vaultwarden.nix
   ];
 }

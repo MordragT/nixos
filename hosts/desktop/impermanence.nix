@@ -54,7 +54,7 @@
   # files not yet supported by environment.state
   systemd.tmpfiles.rules = [
     "L /home/tom/.config/monitors.xml - - - - /nix/state/users/tom/config/monitors.xml"
-    "L /home/tom/.config/mimeapps.list - - - - /nix/state/users/tom/config/mimeapps.list"
+    # "L /home/tom/.config/mimeapps.list - - - - /nix/state/users/tom/config/mimeapps.list"
     # bind mounting trash does not seem to work
     # "L /home/tom/.local/share/Trash - - - - /nix/state/users/tom/trash"
   ];

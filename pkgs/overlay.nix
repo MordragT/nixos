@@ -10,9 +10,9 @@ in
     build-support
     {
       # Pinned packages
-      # onevpl-intel-gpu = pins.vpl.onevpl-intel-gpu;
       # https://github.com/NixOS/nixpkgs/pull/317546
       my-opencv = pins.opencv-typing.opencv;
+      llama-cpp = pins.llama-cpp-3260.llama-cpp;
 
       # Overrides and aliases
       dpcppStdenv = self.intel-dpcpp.stdenv;
@@ -20,7 +20,6 @@ in
         withVpl = true;
         withMfx = false;
       };
-      gamescope = pkgs.gamescope_git;
       invokeai = with self.intel-python.pkgs; toPythonApplication invokeai;
       oneapi-dnn = pkgs.oneDNN;
       oneapi-tbb = pkgs.tbb_2021_8;

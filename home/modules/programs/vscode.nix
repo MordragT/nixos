@@ -22,6 +22,33 @@ in {
       topiary
     ];
 
+    xdg.mimeApps.defaultApplications = let
+      applyToAll = list:
+        builtins.listToAttrs (map (key: {
+            name = key;
+            value = "code.desktop";
+          })
+          list);
+    in
+      applyToAll [
+        "application/x-shellscript"
+        "text/english"
+        "text/markdown"
+        "text/plain"
+        "text/x-c"
+        "text/x-c++"
+        "text/x-c++hdr"
+        "text/x-c++src"
+        "text/x-chdr"
+        "text/x-csrc"
+        "text/x-java"
+        "text/x-makefile"
+        "text/x-moc"
+        "text/x-pascal"
+        "text/x-tcl"
+        "text/x-tex"
+      ];
+
     programs.vscode = {
       package = pkgs.my-vscode;
       enable = true;
@@ -96,6 +123,8 @@ in {
 
         # "python.formatting.provider" = "black";
         "rust-analyzer.procMacro.enable" = false;
+        "tabby.api.endpoint" = "http://127.0.0.1:8000";
+        "tabby.inlineCompletion.triggerMode" = "manual";
         "terminal.integrated.fontSize" = 11;
         # "terminal.integrated.rendererType" = "dom";
         "typst-lsp.exportPdf" = "never";
@@ -191,6 +220,7 @@ in {
         streetsidesoftware.code-spell-checker
         streetsidesoftware.code-spell-checker-german
         svelte.svelte-vscode
+        tabbyml.vscode-tabby
         tamasfe.even-better-toml
         thenuprojectcontributors.vscode-nushell-lang
         tomoki1207.pdf

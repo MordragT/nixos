@@ -3,7 +3,6 @@ self: pkgs: let
 in {
   # astrofox = callPackage ./astrofox { };
   byfl = callPackage ./byfl {};
-  comfyui-xpu = callPackage ./comfyui-xpu {};
   dud = callPackage ./dud {};
   ensembles = callPackage ./ensembles {};
   epic-asset-manager = callPackage ./epic-asset-manager {};
@@ -25,6 +24,7 @@ in {
 
   oxen = callPackage ./oxen {};
   spflashtool = callPackage ./spflashtool {};
+  tabby = callPackage ./tabby {};
   tmfs = callPackage ./tmfs {};
 
   unified-runtime = callPackage ./unified-runtime {};

@@ -21,7 +21,9 @@ mkLLVM {
     # "-DLLVM_ENABLE_DOXYGEN=OFF"
     # "-DLLVM_ENABLE_SPHINX=OFF"
 
-    "-DLLVM_INCLUDE_DIRS=${llvm}/include:../llvm/include/llvm/SYCLLowerIR"
+    "-DLLVM_INSTALL_UTILS=ON"
+
+    # "-DLLVM_INCLUDE_DIRS=${llvm}/include:../llvm/include/llvm/SYCLLowerIR"
 
     # no idea why device_config is not found
     # "-DLLVM_TABLEGEN_FLAGS=-I/llvm/include/llvm/SYCLLowerIR/"

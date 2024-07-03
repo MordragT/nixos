@@ -48,6 +48,12 @@
     "sha256": "17nmgmvrdy5h2sbf4bphryn06q5km40fc1kfqif0z8hd4zmrqhz3"
   },
   {
+    "name": "vscode-tabby",
+    "publisher": "tabbyml",
+    "version": "1.7.4",
+    "sha256": "0zziapwd5j8m693a5japr9vvzrb3skhqcnhz67sq0pdhadmb6mdk"
+  },
+  {
     "name": "vscode-nickel",
     "publisher": "tweag",
     "version": "0.3.0",

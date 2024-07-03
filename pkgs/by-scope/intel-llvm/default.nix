@@ -9,9 +9,9 @@ in {
 
   # broken https://github.com/intel/llvm/issues/13396
   # therefore llvm includes both llvm and clang
-  # clang-unwrapped = callPackage ./clang-unwrapped.nix {
-  #   inherit (pkgs) stdenv;
-  # };
+  clang-unwrapped = callPackage ./clang-unwrapped.nix {
+    inherit (pkgs) stdenv;
+  };
 
   llvm = callPackage ./llvm.nix {
     inherit (pkgs) stdenv;
