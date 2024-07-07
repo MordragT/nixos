@@ -6,6 +6,7 @@
   dpkg,
   level-zero,
   intel-tbb,
+  ocl-icd,
   zlib,
   libxml2,
   libffi_3_3,
@@ -76,7 +77,10 @@ in
     # dontUnpack = true;
     dontStrip = true;
 
-    nativeBuildInputs = [autoPatchelfHook dpkg];
+    nativeBuildInputs = [
+      autoPatchelfHook
+      dpkg
+    ];
 
     buildInputs = [
       intel-tbb
@@ -86,6 +90,7 @@ in
       libxml2
       libffi_3_3
       elfutils
+      ocl-icd
     ];
 
     unpackPhase = ''
@@ -119,6 +124,11 @@ in
 
       mv lib $out/lib
       mv opt/compiler/lib/* $out/lib/compiler/
+
+      # remove libopencl to link against patched opencl-loader from nixos
+      rm $out/lib/libOpenCL.so
+      rm $out/lib/libOpenCL.so.1
+      rm $out/lib/libOpenCL.so.1.2
 
       mv share $out/share
 

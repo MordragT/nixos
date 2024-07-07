@@ -62,7 +62,6 @@ in {
       wantedBy = ["multi-user.target"];
       environment = {
         ZES_ENABLE_SYSMAN = "1";
-        OCL_ICD_FILENAMES = "${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so:/run/opengl-driver/lib/intel-opencl/libigdrcl.so";
       };
       serviceConfig = {
         Type = "idle";

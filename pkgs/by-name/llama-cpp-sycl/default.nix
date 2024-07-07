@@ -6,6 +6,7 @@
   intel-dpcpp,
   intel-mkl,
   intel-tbb,
+  ocl-icd,
   blas,
   pkg-config,
   ninja,
@@ -42,6 +43,7 @@ in
       blas
       intel-mkl
       intel-tbb
+      ocl-icd
     ];
 
     cmakeFlags = [

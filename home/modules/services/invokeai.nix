@@ -9,12 +9,7 @@
 in {
   options.mordrag.services.invokeai = {
     enable = lib.mkEnableOption "InvokeAI Web UI for Stable Diffusion";
-
-    package = mkOption {
-      description = "Which InvokeAI package to use.";
-      type = types.package;
-      default = pkgs.invokeai;
-    };
+    package = lib.mkPackageOption pkgs "invokeai" {};
 
     root = mkOption {
       description = "Where to store InvokeAI's state.";
@@ -73,7 +68,6 @@ in {
           Environment = [
             "INVOKEAI_ROOT=${cfg.root}"
             "ZES_ENABLE_SYSMAN=1"
-            "OCL_ICD_FILENAMES=${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so:/run/opengl-driver/lib/intel-opencl/libigdrcl.so"
           ];
 
           ExecStart = let

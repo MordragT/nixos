@@ -16,6 +16,7 @@ in {
   llama-cpp-sycl = callPackage ./llama-cpp-sycl {};
   lottieconv = callPackage ./lottieconv {};
   my-vscode = callPackage ./my-vscode {};
+  ollama-sycl = callPackage ./ollama-sycl {};
 
   oneapi-ccl = callPackage ./oneapi-ccl {};
   oneapi-dal = callPackage ./oneapi-dal {};

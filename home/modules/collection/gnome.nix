@@ -50,18 +50,18 @@ in {
       fragments # torrent downloader
       # fretboard # guitar chords
       # broken gaphor # create diagrams and uml
+      ghex # hex editor
       # glide-media-player
+      gnome-calculator
+      gnome-calendar
       gnome-decoder # scan qr codes
       gnome-frog
       gnome-obfuscate # censor private information
       # gnome-podcasts # listen to podcast
-      gnome.ghex # hex editor
+      gnome-system-monitor
       gnome.gnome-boxes
-      gnome.gnome-calculator
-      gnome.gnome-calendar
       # gnome.gnome-color-manager
       gnome.gnome-sound-recorder
-      gnome.gnome-system-monitor
       # gnome.gnome-tweaks
       gnome.polari # irc client
       # gnome-secrets # password manager

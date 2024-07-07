@@ -2,6 +2,7 @@
   stdenv,
   llvm,
   mkLLVM,
+  breakpointHook,
 }:
 mkLLVM {
   inherit stdenv;
@@ -9,6 +10,7 @@ mkLLVM {
   name = "clang";
   extraBuildInputs = [
     llvm
+    breakpointHook
   ];
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=Release"
@@ -21,7 +23,7 @@ mkLLVM {
     # "-DLLVM_ENABLE_DOXYGEN=OFF"
     # "-DLLVM_ENABLE_SPHINX=OFF"
 
-    "-DLLVM_INSTALL_UTILS=ON"
+    # "-DLLVM_INSTALL_UTILS=ON"
 
     # "-DLLVM_INCLUDE_DIRS=${llvm}/include:../llvm/include/llvm/SYCLLowerIR"
 

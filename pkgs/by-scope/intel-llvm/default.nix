@@ -7,13 +7,13 @@ in {
   # Stage 0
   ##########
 
-  # broken https://github.com/intel/llvm/issues/13396
-  # therefore llvm includes both llvm and clang
-  clang-unwrapped = callPackage ./clang-unwrapped.nix {
+  llvm = callPackage ./stage-0/llvm.nix {
     inherit (pkgs) stdenv;
   };
 
-  llvm = callPackage ./llvm.nix {
+  # broken https://github.com/intel/llvm/issues/13396
+  # therefore llvm includes both llvm and clang
+  clang-unwrapped = callPackage ./stage-0/clang-unwrapped.nix {
     inherit (pkgs) stdenv;
   };
 
@@ -23,16 +23,16 @@ in {
   # Stage 1
   ##########
 
-  compiler-rt = callPackage ./compiler-rt.nix {
+  compiler-rt = callPackage ./stage-1/compiler-rt.nix {
     stdenv = overrideCC pkgs.stdenv self.clangNoCompilerRt;
   };
 
-  lld = callPackage ./lld.nix {
+  lld = callPackage ./stage-1/lld.nix {
     stdenv = overrideCC pkgs.stdenv self.clangNoCompilerRt;
   };
 
-  bintools-unwrapped = callPackage ./bintools-unwrapped.nix {};
-  clangNoLibcxx = callPackage ./clang-no-libcxx.nix {};
+  bintools-unwrapped = callPackage ./stage-1/bintools-unwrapped.nix {};
+  clangNoLibcxx = callPackage ./stage-1/clang-no-libcxx.nix {};
 
   ##########
   # Stage 2
@@ -42,41 +42,41 @@ in {
   #   stdenv = overrideCC pkgs.stdenv self.clangNoLibcxx;
   # };
 
-  libcxx = callPackage ./libcxx.nix {
+  libcxx = callPackage ./stage-2/libcxx.nix {
     stdenv = overrideCC pkgs.stdenv self.clangNoLibcxx;
   };
 
-  clangLibcxx = callPackage ./clang-libcxx.nix {};
+  clangLibcxx = callPackage ./stage-2/clang-libcxx.nix {};
 
   ##########
   # Stage 3
   ##########
 
-  llvm-spirv = callPackage ./llvm-spirv.nix {
+  llvm-spirv = callPackage ./stage-3/llvm-spirv.nix {
     stdenv = overrideCC pkgs.stdenv self.clangLibcxx;
   };
 
-  openmp = callPackage ./openmp.nix {
+  openmp = callPackage ./stage-3/openmp.nix {
     stdenv = overrideCC pkgs.stdenv self.clangLibcxx;
   };
 
-  pstl = callPackage ./pstl.nix {
+  pstl = callPackage ./stage-3/pstl.nix {
     stdenv = overrideCC pkgs.stdenv self.clangLibcxx;
   };
 
-  sycl = callPackage ./sycl.nix {
+  sycl = callPackage ./stage-3/sycl.nix {
     stdenv = overrideCC pkgs.stdenv self.clangLibcxx;
   };
 
-  xpti = callPackage ./xpti.nix {
+  xpti = callPackage ./stage-3/xpti.nix {
     stdenv = overrideCC pkgs.stdenv self.clangLibcxx;
   };
 
-  xptifw = callPackage ./xptifw.nix {
+  xptifw = callPackage ./stage-3/xptifw.nix {
     stdenv = overrideCC pkgs.stdenv self.clangLibcxx;
   };
 
-  clang = callPackage ./clang.nix {};
+  clang = callPackage ./stage-3/clang.nix {};
 
   stdenv = overrideCC pkgs.stdenv self.clang;
 }

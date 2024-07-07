@@ -70,7 +70,6 @@ in {
         }
         // lib.optionalAttrs (cfg.acceleration == "sycl") {
           ZES_ENABLE_SYSMAN = "1";
-          OCL_ICD_FILENAMES = "${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so:/run/opengl-driver/lib/intel-opencl/libigdrcl.so";
         };
       preStart = "cp -f /etc/tabby/config.toml \${TABBY_ROOT}/config.toml";
       serviceConfig = {

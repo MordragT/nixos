@@ -12,7 +12,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = [
-      pkgs.gnome.totem # default gnome video player
+      pkgs.totem # default gnome video player
     ];
 
     xdg.mimeApps.defaultApplications = let

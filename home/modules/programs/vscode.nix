@@ -32,6 +32,7 @@ in {
     in
       applyToAll [
         "application/x-shellscript"
+        "application/toml"
         "text/english"
         "text/markdown"
         "text/plain"
@@ -48,6 +49,21 @@ in {
         "text/x-tcl"
         "text/x-tex"
       ];
+
+    # home.file.".continue/config.json".text = lib.strings.toJSON {
+    #   models = [
+    #     {
+    #       title = "Ollama";
+    #       provider = "ollama";
+    #       model = "deepseek-coder:6.7b-instruct-q3_K_S";
+    #     }
+    #   ];
+    #   tabAutocompleteOptions.disable = true;
+    #   embeddingsProvider = {
+    #     provider = "ollama";
+    #     model = "nomic-embed-text";
+    #   };
+    # };
 
     programs.vscode = {
       package = pkgs.my-vscode;
@@ -186,6 +202,7 @@ in {
         bmewburn.vscode-intelephense-client
         # catppuccin.catppuccin-vsc
         cesium.gltf-vscode
+        # continue.continue
         davidanson.vscode-markdownlint
         firefox-devtools.vscode-firefox-debug
         fwcd.kotlin

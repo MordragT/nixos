@@ -11,7 +11,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [pkgs.gnome.nautilus];
+    environment.systemPackages = [pkgs.nautilus];
 
     # quick previewer for nautilus
     services.gnome.sushi.enable = true;

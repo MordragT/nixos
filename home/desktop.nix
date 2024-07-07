@@ -15,6 +15,7 @@
   mordrag.programs.thunderbird.enable = true;
   mordrag.programs.totem.enable = true;
   mordrag.programs.vscode.enable = true;
+  mordrag.programs.zed-editor.enable = true;
   mordrag.programs.zsh.enable = true;
 
   programs.chromium.enable = true;

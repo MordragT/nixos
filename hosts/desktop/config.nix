@@ -22,11 +22,6 @@
       vpl-gpu-rt
     ];
   };
-  environment.sessionVariables.OCL_ICD_FILENAMES = [
-    "${pkgs.intel-dpcpp.runtime}/lib/libintelocl.so"
-    "/run/opengl-driver/lib/intel-opencl/libigdrcl.so"
-  ];
-
   # chaotic.mesa-git = {
   #   enable = true;
   #   extraPackages = with pkgs; [

@@ -19,7 +19,6 @@ in {
       # jetbrains.idea-community
       # lapce # code editor
       # octaveFull # aims to be compatible with matlab
-      zed-editor
 
       # Documents
       # libreoffice-fresh

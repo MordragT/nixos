@@ -14,6 +14,7 @@
     ./thunderbird.nix
     ./totem.nix
     ./vscode.nix
+    ./zed-editor.nix
     ./zsh.nix
   ];
 }
