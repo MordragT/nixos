@@ -12,7 +12,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      typst-lsp
+      # typst-lsp
       black
       # platformio-core
 
@@ -143,8 +143,7 @@ in {
         "tabby.inlineCompletion.triggerMode" = "manual";
         "terminal.integrated.fontSize" = 11;
         # "terminal.integrated.rendererType" = "dom";
-        "typst-lsp.exportPdf" = "never";
-        # "typst-lsp.serverPath" = "${pkgs.typst-lsp}/bin/typst-lsp";
+        # "typst-lsp.exportPdf" = "never";
         "window.zoomLevel" = 2;
         "window.menuBarVisibility" = "compact";
         "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
@@ -227,8 +226,9 @@ in {
         # ms-vscode-remote.remote-ssh
         # ms-vsliveshare.vsliveshare
 
-        mgt19937.typst-preview
-        nvarner.typst-lsp
+        # mgt19937.typst-preview
+        # broken myriad-dreamin.tinymist
+        # nvarner.typst-lsp
         piousdeer.adwaita-theme
         PolyMeilex.wgsl
         redhat.java

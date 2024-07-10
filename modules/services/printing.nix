@@ -13,7 +13,8 @@ in {
   config = lib.mkIf cfg.enable {
     hardware.sane = {
       enable = true;
-      extraBackends = [pkgs.hplipWithPlugin];
+      # extraBackends = [pkgs.hplipWithPlugin];
+      extraBackends = [pkgs.hplip];
     };
 
     services.printing = {

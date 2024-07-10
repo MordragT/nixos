@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   mordrag.services.invokeai = {
-    enable = true;
+    enable = false; # broken clip-anytorch
     settings = {
       device = "xpu";
       precision = "bfloat16";
@@ -15,10 +15,10 @@
       force_tiled_decode = false;
     };
   };
-  mordrag.services.printing.enable = true;
+  mordrag.services.printing.enable = false; # broken
   # mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;
-  # mordrag.services.harmonia.enable = true;
+  mordrag.services.harmonia.enable = true;
   # mordrag.services.stalwart.enable = true;
   mordrag.services.tabby = {
     enable = true;
@@ -74,9 +74,9 @@
   networking.firewall.checkReversePath = "loose";
 
   # services.tor.enable = true;
-  services.udev.packages = with pkgs; [
-    platformio-core
-    # openocd # plugdev errors are polluting the logs
-  ];
+  # services.udev.packages = with pkgs; [
+  #   platformio-core
+  #   # openocd # plugdev errors are polluting the logs
+  # ];
   services.xserver.wacom.enable = true;
 }

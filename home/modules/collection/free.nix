@@ -27,7 +27,7 @@ in {
       xournalpp
 
       # Graphics
-      blender
+      # broken blender
       # electron16 blockbench-electron
       # drawio
       # glaxnimate

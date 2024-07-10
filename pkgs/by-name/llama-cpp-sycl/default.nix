@@ -17,13 +17,13 @@
 in
   dpcppStdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
-    version = "3279";
+    version = "3358";
 
     src = fetchFromGitHub {
       owner = "ggerganov";
       repo = "llama.cpp";
       rev = "refs/tags/b${finalAttrs.version}";
-      hash = "sha256-+fAXQ/psf7TjEzbeJMhDRf6vjhOkOERTFFIdiMih5W8=";
+      hash = "sha256-mdbt3TBeCwFUgHsXqB6cji7BZYZD6HZWjkSFtHZfFzM=";
       leaveDotGit = true;
       postFetch = ''
         git -C "$out" rev-parse --short HEAD > $out/COMMIT

@@ -19,13 +19,12 @@
   acceleration ? null,
 }: let
   inherit (lib) cmakeBool cmakeFeature;
-  version = "unstable-2024-06-06";
+  version = "0.2.1";
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
-    # rev = "v${version}";
-    rev = "9ae146993e9ec834b95d038df1eecac68a744f18";
-    hash = "sha256-KnW/miKuuQPPe1oKYTfafpwiBZQSz2Rv4UphwBVTvUI=";
+    rev = "v${version}";
+    hash = "sha256-hzB/sS+6vsMuJfCPZucTQerytnq+TBzTtiWwwd+H+bE=";
     fetchSubmodules = true;
   };
 
@@ -39,7 +38,7 @@
     (preparePatch "02-clip-log.diff" "sha256-dabeuEr8+xq9NTi5FTtG7MqHa9LWMrOnshFTYkPYF4Q=")
     (preparePatch "03-load_exception.diff" "sha256-0S99aNLj59ljFtCuG+9Wbgp3Sv0fZy1YFfA/XA9J1nE=")
     (preparePatch "04-metal.diff" "sha256-l97rYGo8YFKw64bJ3TaJeXOtArKZ25wQp1ElplK/Yho=")
-    (preparePatch "05-default-pretokenizer.diff" "sha256-zdJs2ISSyFv6QVcKjQOd71wN2tlj9HBSpr2cnhe29xI=")
+    (preparePatch "05-default-pretokenizer.diff" "sha256-+WoTiVTRjAT8X5vl3dO51PAUapkWrgjYEWvawFLEgrU=")
     (preparePatch "06-qwen2.diff" "sha256-kIkfoJu4DJzKf+Vu+kEJDVDTARJo78qgk03QqenAijc=")
     (preparePatch "07-embeddings.diff" "sha256-HF+Fmkyw/zxP55vIsRJW3QwPMi/ZShErOR/bFgosBzs=")
     (preparePatch "08-clip-unicode.diff" "sha256-JWzOcJPf9opg4C4eNOhpZYHbpgkoIsxtE4DN+t6wf6U=")

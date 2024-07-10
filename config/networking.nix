@@ -5,7 +5,7 @@
     connectionConfig."connection.mdns" = 1;
     connectionConfig."connection.llmnr" = 0;
   };
-  # systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
   # systemd.network.wait-online.anyInterface = true;
   # systemd.network.wait-online.timeout = 5;
   services.resolved = {
@@ -22,6 +22,7 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    nssmdns6 = false;
     openFirewall = true;
     publish = {
       enable = true;
