@@ -78,7 +78,7 @@ in {
         "editor.minimap.enabled" = false;
         "editor.minimap.scale" = 2;
         "editor.fontLigatures" = true;
-        "editor.fontFamily" = "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'";
+        "editor.fontFamily" = "'Geist Mono'";
         "editor.fontSize" = 11;
         "editor.renderWhitespace" = "none";
         "editor.folding" = false;
@@ -139,7 +139,7 @@ in {
 
         # "python.formatting.provider" = "black";
         "rust-analyzer.procMacro.enable" = false;
-        "tabby.api.endpoint" = "http://127.0.0.1:8000";
+        "tabby.endpoint" = "http://127.0.0.1:8000";
         "tabby.inlineCompletion.triggerMode" = "manual";
         "terminal.integrated.fontSize" = 11;
         # "terminal.integrated.rendererType" = "dom";
@@ -227,7 +227,7 @@ in {
         # ms-vsliveshare.vsliveshare
 
         # mgt19937.typst-preview
-        # broken myriad-dreamin.tinymist
+        myriad-dreamin.tinymist
         # nvarner.typst-lsp
         piousdeer.adwaita-theme
         PolyMeilex.wgsl

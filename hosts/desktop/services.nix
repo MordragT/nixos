@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   mordrag.services.invokeai = {
     enable = false; # broken clip-anytorch
     settings = {
@@ -15,7 +19,7 @@
       force_tiled_decode = false;
     };
   };
-  mordrag.services.printing.enable = false; # broken
+  mordrag.services.printing.enable = true;
   # mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;
   mordrag.services.harmonia.enable = true;
@@ -31,18 +35,22 @@
       model.completion.http = {
         kind = "ollama/completion";
         api_endpoint = "http://127.0.0.1:11434";
-        model_name = "deepseek-coder:6.7b-instruct-q3_K_S";
-        prompt_template = "<｜fim▁begin｜>{prefix}<｜fim▁hole｜>{suffix}<｜fim▁end｜>";
+        #         model_name = "gemma2:2b-instruct-q6_K";
+        # prompt_template = "<|fim_prefix|>{prefix}<|fim_suffix|>{suffix}<|fim_middle|>";
+        # model_name = "deepseek-coder:6.7b-instruct-q3_K_S";
+        # prompt_template = "<｜fim▁begin｜>{prefix}<｜fim▁hole｜>{suffix}<｜fim▁end｜>";
+        model_name = "gemma2:9b-instruct-q4_K_S";
+        prompt_template = "<fim_prefix>{prefix}<fim_suffix>{suffix}<fim_middle>";
       };
       model.chat.http = {
-        kind = "ollama/chat";
-        api_endpoint = "http://127.0.0.1:11434";
-        model_name = "deepseek-coder:6.7b-instruct-q3_K_S";
+        kind = "openai/chat";
+        api_endpoint = "http://127.0.0.1:11434/v1";
+        model_name = "gemma2:9b-instruct-q4_K_S";
       };
       model.embedding.http = {
         kind = "ollama/embedding";
         api_endpoint = "http://127.0.0.1:11434";
-        model_name = "nomic-embed-text";
+        model_name = "mxbai-embed-large";
       };
       # model.chat.http = {
       #   kind = "openai/chat";
@@ -62,12 +70,18 @@
       OLLAMA_INTEL_GPU = "1";
       # OLLAMA_DEBUG = "1";
       OLLAMA_MAX_LOADED_MODELS = "2";
+      ZES_ENABLE_SYSMAN = "1";
     };
     loadModels = [
-      "deepseek-coder:6.7b-instruct-q3_K_S"
-      "nomic-embed-text"
+      # "deepseek-coder:6.7b-instruct-q3_K_S"
+      # "gemma2:2b-instruct-q6_K"
+      # "gemma2:9b-instruct-q4_K_S"
+      # "codeqwen:7b-chat-v1.5-q4_K_S"
+      # "nomic-embed-text"
+      # "mxbai-embed-large"
     ];
   };
+  systemd.services.ollama.serviceConfig.MemoryDenyWriteExecute = lib.mkForce false;
   # services.private-gpt.enable = true;
   services.tailscale.enable = true; # trayscale gui ?
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.

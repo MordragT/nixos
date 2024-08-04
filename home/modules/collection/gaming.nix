@@ -16,6 +16,7 @@ in {
       # optifine
       moonlight-qt # game stream client ala steam link
       winPackages.battle-net
+      # broken nexusmods-app-unfree
     ];
   };
 }

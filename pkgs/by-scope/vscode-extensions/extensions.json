@@ -2,8 +2,8 @@
   {
     "name": "gltf-vscode",
     "publisher": "cesium",
-    "version": "2.4.0",
-    "sha256": "0yvhnriwryxz37n89wphmy51r0r7p7q8jg6nz4wq7824lvb8hbyh"
+    "version": "2.5.0",
+    "sha256": "03i2a4xn5sgy7ggfqw28v6a03lk30q0vhbgrsckjgxwgaghpk2hf"
   },
   {
     "name": "texlab",
@@ -14,8 +14,8 @@
   {
     "name": "kotlin",
     "publisher": "fwcd",
-    "version": "0.2.34",
-    "sha256": "12d7nmbzpfaqif86hxw6qq3jv7q77h0b7mbn41y3rx80f9q7lwfk"
+    "version": "0.2.35",
+    "sha256": "0qxa7bilclshr3sjh8mkvd48w3z49xlsqcr4rrdwpcz3q5lqqa2k"
   },
   {
     "name": "parol-vscode",
@@ -50,8 +50,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.7.4",
-    "sha256": "0zziapwd5j8m693a5japr9vvzrb3skhqcnhz67sq0pdhadmb6mdk"
+    "version": "1.8.2",
+    "sha256": "1gjh9zva1k20jp841140lh0d3z3j7315ibq1gwjkycb8vc2cjgkg"
   },
   {
     "name": "vscode-nickel",
@@ -62,7 +62,7 @@
   {
     "name": "flowistry",
     "publisher": "wcrichton",
-    "version": "0.5.41",
-    "sha256": "02zqy59j6av8xspjdqqyzakplpkbagkzh2z7lnxlm4cygnmklamn"
+    "version": "0.5.42",
+    "sha256": "05p5as8nizr6wamjd8snfvkmfcswhyxm5nrvv1ri789fsbqi4ws8"
   }
 ]

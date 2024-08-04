@@ -3,22 +3,25 @@
     fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      fira
-      fira-code
-      fira-mono
-      jetbrains-mono
-      roboto
+      # caladea # similar to microsoft cambria
+      # cantarell-fonts # needed for steam adwaita theme
+      # fira
+      # fira-code
+      # fira-mono
+      geist-font
+      # inter
+      # iosevka
+      # jetbrains-mono
       noto-fonts
-      noto-fonts-emoji
-      caladea # similar to microsoft cambria
-      # needed for steam adwaita theme
-      cantarell-fonts
-      times-newer-roman
+      noto-fonts-color-emoji
+      # roboto
+      # times-newer-roman
+      # victor-mono
     ];
     fontconfig.defaultFonts = {
-      monospace = ["Fira Mono"];
-      serif = ["Noto Serif"];
-      sansSerif = ["Fira Sans"];
+      monospace = ["Geist Mono"];
+      serif = ["Geist"];
+      sansSerif = ["Geist"];
       emoji = ["Noto Color Emoji"];
     };
   };

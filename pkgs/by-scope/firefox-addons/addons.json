@@ -33,6 +33,17 @@
     "license": "MIT"
   },
   {
+    "slug": "csgofloat",
+    "name": "CSFloat Market Checker",
+    "version": "3.3.1",
+    "addonId": "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4259722/csgofloat-3.3.1.xpi",
+    "sha256": "sha256:24a903e27d9e137e8eb87ec83f8df0f26ed8c902c50c775d6c1b219dab9c1011",
+    "homepage": "https://csgofloat.com",
+    "description": "Shows the float value, paint seed, and screenshots of Counter-Strike (CS:GO &amp; CS2) items on the Steam Market or Inventories",
+    "license": "MIT"
+  },
+  {
     "slug": "private-internet-access-ext",
     "name": "Private Internet Access",
     "version": "3.2.5",
@@ -42,5 +53,16 @@
     "homepage": "https://privateinternetaccess.com/",
     "description": "Defeat censorship, unblock any website and access the open Internet the way it was meant to be with Private Internet Access®",
     "license": "MIT"
+  },
+  {
+    "slug": "skinport-plus",
+    "name": "Skinport Plus",
+    "version": "24.6.15",
+    "addonId": "{46da1da2-d8cd-42b2-b6d6-dfc312231d15}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4303778/skinport_plus-24.6.15.xpi",
+    "sha256": "sha256:ad40d6f2f56156c3dafa489b81ccb065d6a0fe6fce1bc06da7877136db25fead",
+    "homepage": "https://addons.mozilla.org/en-US/firefox/addon/skinport-plus/",
+    "description": "Enhance your trading experience on Skinport and Steam with Skinport Plus.",
+    "license": "all-rights-reserved"
   }
 ]

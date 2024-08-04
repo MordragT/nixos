@@ -28,7 +28,7 @@
 in
   rustPlatform.buildRustPackage rec {
     pname = "tabby";
-    version = "0.13.0";
+    version = "0.14.0";
 
     passthru = {
       inherit featureDevice;
@@ -38,14 +38,14 @@ in
       owner = "TabbyML";
       repo = "tabby";
       rev = "v${version}";
-      hash = "sha256-3GJve2BFTRvGIoWVt/H+0acHPtoZe8LX5h4O7eH18Tc=";
+      hash = "sha256-zB2+rMU0vRl06dQHER1H5Dty04vKYImg2VsLJAkqhjc=";
       fetchSubmodules = true;
     };
 
     cargoLock = {
       lockFile = fetchurl {
         url = "https://raw.githubusercontent.com/TabbyML/tabby/v${version}/Cargo.lock";
-        hash = "sha256-hvNWDoj9WtuEiqun/YJ76S+Vrmor/CBToE8iSGJpkA0=";
+        hash = "sha256-BWGaapDmCmzlK1XsXJ8ZE6X1FC4NqRJSWVk4EC5LWtc=";
       };
       allowBuiltinFetchGit = true;
     };

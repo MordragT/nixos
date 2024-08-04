@@ -28,8 +28,9 @@ in {
       default = {
         theme = "Zedokai Darker Classic";
         ui_font_size = 18;
-        ui_font_family = "Roboto";
-        buffer_font_size = 16;
+        ui_font_family = "Geist";
+        buffer_font_size = 14;
+        buffer_font_family = "Geist Mono";
         tab_bar.show = false;
         show_wrap_guides = true;
         indent_guides.enabled = false;
@@ -45,8 +46,8 @@ in {
           # Recommended setting to allow for model startup
           low_speed_timeout_in_seconds = 30;
           default_model = {
-            name = "deepseek-coder:6.7b-instruct-q3_K_S";
-            max_tokens = 4096;
+            name = "gemma2:9b-instruct-q4_K_S";
+            max_tokens = 8192;
             keep_alive = "10m";
           };
         };

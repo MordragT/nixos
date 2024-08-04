@@ -23,12 +23,18 @@ in {
       package = pkgs.firefox;
       profiles.options = {
         settings = {
+          "browser.aboutConfig.showWarning" = false;
           "browser.startup.homepage" = "https://search.brave.com";
           "browser.search.region" = "DE";
           "browser.search.isUS" = false;
           "browser.useragent.locale" = "de-DE";
           "browser.startup.page" = 3;
           "browser.download.useDownloadDir" = false;
+
+          "font.name.monospace.x-western" = "Geist Mono";
+          "font.name.sans-serif.x-western" = "Geist";
+          "font.name.serif.x-western" = "Geist";
+
           "signon.rememberSignons" = false;
           "services.sync.engine.passwords" = false;
           "services.sync.engine.addons" = false;
@@ -63,11 +69,13 @@ in {
           bibitnow
           bitwarden
           brave-search
+          csgofloat
           ghostery
           honey
           private-internet-access-ext
           rust-search-extension
           sidebery
+          skinport-plus
           sponsorblock
           # ublock-origin
           youtube-shorts-block

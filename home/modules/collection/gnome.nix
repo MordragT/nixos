@@ -34,7 +34,7 @@ in {
       # dialect # translate
       # deja-dup # backup tool
       eartag # tag audio files
-      easyeffects # audio effects
+      # broken easyeffects # audio effects
       # elastic # design spring animations
       # emblem
       # endeavour # task manager
@@ -47,7 +47,7 @@ in {
       # foliate # book reader
       # forge-sparks
       fractal-next # gtk matrix messaging
-      fragments # torrent downloader
+      # broken fragments # torrent downloader
       # fretboard # guitar chords
       # broken gaphor # create diagrams and uml
       ghex # hex editor
@@ -55,6 +55,7 @@ in {
       gnome-calculator
       gnome-calendar
       gnome-decoder # scan qr codes
+      gnome-font-viewer
       gnome-frog
       gnome-obfuscate # censor private information
       # gnome-podcasts # listen to podcast

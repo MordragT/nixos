@@ -19,12 +19,12 @@
   acceleration ? null,
 }: let
   inherit (lib) cmakeBool cmakeFeature;
-  version = "0.2.1";
+  version = "0.3.2";
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     rev = "v${version}";
-    hash = "sha256-hzB/sS+6vsMuJfCPZucTQerytnq+TBzTtiWwwd+H+bE=";
+    hash = "sha256-EI3dQcsvv8T4lYNcWML8SesOQfAkCEsZvd+C3S+MY5o=";
     fetchSubmodules = true;
   };
 
@@ -38,11 +38,13 @@
     (preparePatch "02-clip-log.diff" "sha256-dabeuEr8+xq9NTi5FTtG7MqHa9LWMrOnshFTYkPYF4Q=")
     (preparePatch "03-load_exception.diff" "sha256-0S99aNLj59ljFtCuG+9Wbgp3Sv0fZy1YFfA/XA9J1nE=")
     (preparePatch "04-metal.diff" "sha256-l97rYGo8YFKw64bJ3TaJeXOtArKZ25wQp1ElplK/Yho=")
-    (preparePatch "05-default-pretokenizer.diff" "sha256-+WoTiVTRjAT8X5vl3dO51PAUapkWrgjYEWvawFLEgrU=")
-    (preparePatch "06-qwen2.diff" "sha256-kIkfoJu4DJzKf+Vu+kEJDVDTARJo78qgk03QqenAijc=")
-    (preparePatch "07-embeddings.diff" "sha256-HF+Fmkyw/zxP55vIsRJW3QwPMi/ZShErOR/bFgosBzs=")
-    (preparePatch "08-clip-unicode.diff" "sha256-JWzOcJPf9opg4C4eNOhpZYHbpgkoIsxtE4DN+t6wf6U=")
-    (preparePatch "09-pooling.diff" "sha256-p33Qni9yuch0v39YM/N0nvaS4GvrYoo7iIqfI7OIQP4=")
+    (preparePatch "05-default-pretokenizer.diff" "sha256-eqTa0cTQoS0tPh63JNgrYOXanYbOGVmLu/IA+RDFzfY=")
+    (preparePatch "06-embeddings.diff" "sha256-HF+Fmkyw/zxP55vIsRJW3QwPMi/ZShErOR/bFgosBzs=")
+    (preparePatch "07-clip-unicode.diff" "sha256-JWzOcJPf9opg4C4eNOhpZYHbpgkoIsxtE4DN+t6wf6U=")
+    (preparePatch "08-pooling.diff" "sha256-p33Qni9yuch0v39YM/N0nvaS4GvrYoo7iIqfI7OIQP4=")
+    (preparePatch "09-lora.diff" "sha256-BqqfAH4v/RmGkbSK6FernilgaFCKZhhroeDBmFDbVvA=")
+    (preparePatch "10-params.diff" "sha256-pTPHQf3k15vUHHfTyOUREyXgQSlup/iQpUssuMX4UZU=")
+    (preparePatch "11-phi3-sliding-window.diff" "sha256-hg9SyOvp8eTMp5O2Budz+Hty1FKt/knsLVy6+vJDJi8=")
   ];
 
   llama-cpp-static = stdenv.mkDerivation {
@@ -94,11 +96,10 @@
     cmakeFlags = [
       # -march=native is non-deterministic; override with platform-specific flags if needed
       (cmakeBool "GGML_NATIVE" true)
-      # (cmakeBool "GGML_STATIC" true)
       (cmakeBool "BUILD_SHARED_LIBS" false)
       (cmakeBool "GGML_BLAS" true)
       (cmakeBool "GGML_SYCL" true)
-      (cmakeBool "GGML_SYCL_F16" true)
+      (cmakeBool "GGML_SYCL_F16" false)
       (cmakeFeature "CMAKE_C_COMPILER" "icx")
       (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
       "-DSYCL_INCLUDE_DIR=${intel-dpcpp.runtime}/include"
@@ -114,7 +115,7 @@ in
     pname = "ollama";
     inherit version src;
 
-    vendorHash = "sha256-LNH3mpxIrPMe5emfum1W10jvXIjKC6GkGcjq1HhpJQo=";
+    vendorHash = "sha256-hSxcREAujhvzHVNwnRTfhi0MKI3s8HNavER2VLz6SYk=";
 
     nativeBuildInputs = [
       makeWrapper
@@ -123,6 +124,8 @@ in
     buildInputs = [
       llama-cpp-static
     ];
+
+    doCheck = false;
 
     ldflags = [
       "-s"

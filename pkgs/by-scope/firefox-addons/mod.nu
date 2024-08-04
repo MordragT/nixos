@@ -20,6 +20,7 @@ module lib {
     def get-addon [slug] {
         let url = $'https://addons.mozilla.org/api/v5/addons/addon/($slug)/?app=firefox&lang=en-US'
         let response = http get $url
+
         let addon = {
             slug: $slug
             name: $response.name.en-US,
@@ -27,7 +28,7 @@ module lib {
             addonId: $response.guid,
             url: $response.current_version.file.url
             sha256: $response.current_version.file.hash
-            homepage: $response.homepage.url.en-US
+            homepage: ($response | get -i homepage.url.en-US | default $response.url)
             description: $response.summary.en-US
             license: $response.current_version.license.slug  
         }
@@ -44,7 +45,9 @@ const slugs = [
     bib-kit
     bibitnow
     brave-search
+    csgofloat
     private-internet-access-ext
+    skinport-plus
 ]
 
 export def update [] {

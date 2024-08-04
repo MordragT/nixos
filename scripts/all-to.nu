@@ -82,6 +82,52 @@ export def prefix [path: string = ".", --extension(-e): string, --prefix(-p): st
     )
 }
 
+export def replace [path: string = ".", --extension(-e): string, --replace(-p): string, --with(-w): string = "", --recursive(-r)] {
+    let extension = $extension | str trim --left --char '.'
+
+    (convert-to
+        { |entry, basename|
+            let source = $entry.name
+            let name = $"($basename).($extension)" | str replace $replace $with
+            let dest = $"($entry.name | path dirname)/($name)"
+
+            if ($source != $dest) {
+                mv $source $dest
+            }
+
+        }
+        $path
+        $extension
+        false
+        $recursive
+    )
+}
+
+export def replace-prefix [path: string = ".", --extension(-e): string, --prefix(-p): string, --with(-w): string = "" --recursive(-r)] {
+    let extension = $extension | str trim --left --char '.'
+
+    (convert-to
+        { |entry, basename|
+            let source = $entry.name
+
+            let basename = if ($basename | str starts-with $prefix) {
+                 let sub = $basename | str substring ($prefix | str length)..
+                 $with + $sub
+            } else {
+                $basename
+            }
+            let dest = $"($entry.name | path dirname)/($basename).($extension)"
+            
+            if ($source != $dest) {
+                mv $source $dest
+            }
+        }
+        $path
+        $extension
+        false
+        $recursive
+    )
+}
 
 def convert-to [f, path: string, extension: string, delete: bool, recursive: bool] {
     let extension = $extension | str trim --left --char '.'
@@ -97,7 +143,7 @@ def convert-to [f, path: string, extension: string, delete: bool, recursive: boo
         | each { |entry|
             let entry = $entry.item | merge ($entry.index | wrap index)
             let basename = $entry.name | path basename
-            let rpos = ($basename | str length) - ($extension | str length) - 1
+            let rpos = ($basename | str length) - ($extension | str length) - 2
             let basename = $basename | str substring 0..$rpos
 
             do $f $entry $basename
