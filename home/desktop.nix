@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./config
     ./modules
@@ -18,7 +18,9 @@
   mordrag.programs.zed-editor.enable = true;
   mordrag.programs.zsh.enable = true;
 
-  programs.chromium.enable = true;
+  programs.chromium = {
+    enable = true;
+  };
 
   mordrag.collection.cli.enable = true;
   mordrag.collection.cosmic.enable = true;
@@ -26,4 +28,8 @@
   mordrag.collection.gaming.enable = true;
   mordrag.collection.gnome.enable = true;
   mordrag.collection.nonfree.enable = true;
+
+  home.packages = with pkgs; [
+    microsoft-edge
+  ];
 }

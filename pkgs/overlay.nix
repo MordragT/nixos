@@ -12,7 +12,6 @@ in
       # Pinned packages
       # https://github.com/NixOS/nixpkgs/pull/317546
       my-opencv = pins.opencv-typing.opencv;
-      llama-cpp = pins.llama-cpp-3260.llama-cpp;
 
       # Overrides and aliases
       dpcppStdenv = self.intel-dpcpp.stdenv;

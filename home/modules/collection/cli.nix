@@ -25,7 +25,7 @@ in {
       # renderdoc # debug graphics
       # vkmark
       # vulkan-raytracing
-      # p7zip
+      p7zip
       # ollama # run large language models locally
       # nodePackages.reveal-md # create presentations from markdown
       # poppler_utils # utils for pdfs

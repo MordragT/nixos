@@ -38,6 +38,7 @@ in {
     programs.steam = {
       enable = true;
       gamescopeSession.enable = true;
+      protontricks.enable = true;
       package = cfg.package.override {
         extraEnv = {
           MANGOHUD = false;
@@ -61,7 +62,7 @@ in {
     };
     programs.gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
     };
 
     environment.etc = lib.mkIf cfg.gameFixes {
@@ -70,11 +71,21 @@ in {
     };
 
     networking.firewall = lib.mkIf cfg.gameFixes {
-      # Crusader Kings 3
-      allowedTCPPorts = [27015 27036];
-      allowedUDPPorts = [27015 27031 27032 27033 27034 27036 27036];
+      # https://help.steampowered.com/en/faqs/view/2EA8-4D75-DA21-31EB
+      allowedTCPPortRanges = [
+        {
+          from = 27015;
+          to = 27050;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 27015;
+          to = 27050;
+        }
+      ];
     };
 
-    environment.systemPackages = [pkgs.protontricks] ++ (lib.optional cfg.controller pkgs.sc-controller);
+    environment.systemPackages = lib.optional cfg.controller pkgs.sc-controller;
   };
 }

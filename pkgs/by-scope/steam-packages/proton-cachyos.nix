@@ -3,14 +3,15 @@
   lib,
   gnutar,
   zstd,
+  fetchurl,
 }:
 stdenvNoCC.mkDerivation rec {
-  pname = "proton-cachyos";
-  version = "9.0-11";
+  pname = "Proton Cachyos";
+  version = "9.0.20240708-1";
 
-  src = builtins.fetchurl {
-    url = "https://mirror.cachyos.org/repo/x86_64_v3/cachyos-v3/proton-cachyos-${version}-x86_64_v3.pkg.tar.zst";
-    sha256 = "1pnm9r04kiq6wc5rmvwjpbxr5g1alsgjd9iz53jnm2w4m3awpnb8";
+  src = fetchurl {
+    url = "https://mirror.cachyos.org/repo/x86_64_v3/cachyos-v3/proton-cachyos-1%3A${version}-x86_64_v3.pkg.tar.zst";
+    hash = "sha256-wKGTejwGaHS9da5mzfFGJyyVyte3N7JOfrnXi+37wno=";
   };
 
   nativeBuildInputs = [gnutar zstd];

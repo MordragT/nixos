@@ -69,13 +69,13 @@ in {
           bibitnow
           bitwarden
           brave-search
-          csgofloat
+          # csgofloat
           ghostery
           honey
           private-internet-access-ext
           rust-search-extension
           sidebery
-          skinport-plus
+          # skinport-plus
           sponsorblock
           # ublock-origin
           youtube-shorts-block
