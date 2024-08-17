@@ -5,6 +5,7 @@
   autoPatchelfHook,
   zlib,
   intel-mkl,
+  packaging,
   astunparse,
   cffi,
   click,
@@ -25,14 +26,14 @@
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.1.0.post2";
+  version = "2.1.0.post3";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
 
   src = fetchwheel {
     package = "${pname}-${version}";
-    sha256 = "sha256-LMfbugymBz3XuEXTjj8q6SHwfOs/FEnZLN+L3cB1Ey8=";
+    sha256 = "sha256-uOi0ccNP3AH4xh7pp5+6p9joFZuegkAIp1x9A+mbQ94=";
   };
 
   nativeBuildInputs = [
@@ -45,6 +46,7 @@ buildPythonPackage rec {
   ];
 
   dependencies = [
+    packaging
     astunparse
     cffi
     click
@@ -79,11 +81,15 @@ buildPythonPackage rec {
     # Fix up library paths for split outputs
     substituteInPlace \
       $dev/share/cmake/Torch/TorchConfig.cmake \
-      --replace \''${TORCH_INSTALL_PREFIX}/lib "$lib/lib"
+      --replace-fail \''${TORCH_INSTALL_PREFIX}/lib "$lib/lib"
 
     substituteInPlace \
       $dev/share/cmake/Caffe2/Caffe2Targets-release.cmake \
-      --replace \''${_IMPORT_PREFIX}/lib "$lib/lib"
+      --replace-fail \''${_IMPORT_PREFIX}/lib "$lib/lib"
+
+
+    substituteInPlace $out/${python.sitePackages}/${pname}/utils/cpp_extension.py \
+      --replace-fail "from pkg_resources import packaging" "import packaging"
 
     mkdir $lib
     mv $out/${python.sitePackages}/torch/lib $lib/lib
@@ -91,11 +97,11 @@ buildPythonPackage rec {
 
     # # remove version suffix for dependent packages
     # substituteInPlace $out/${python.sitePackages}/torch/version.py \
-    #   --replace "__version__ = '${version}+cxx11.abi'" "__version__ = '${version}'"
+    #   --replace-fail "__version__ = '${version}+cxx11.abi'" "__version__ = '${version}'"
 
     # mv $out/${python.sitePackages}/torch-${version}+cxx11.abi.dist-info $out/${python.sitePackages}/torch-${version}.dist-info
 
     # substituteInPlace $out/${python.sitePackages}/torch-${version}.dist-info/METADATA \
-    #   --replace "Version: ${version}+cxx11.abi" "Version: 2.1.0"
+    #   --replace-fail "Version: ${version}+cxx11.abi" "Version: 2.1.0"
   '';
 }

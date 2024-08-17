@@ -14,7 +14,7 @@
   mordrag.programs.valent.enable = true;
 
   programs.adb.enable = true;
-  programs.bandwhich.enable = true; # view network utilization
+  # broken programs.bandwhich.enable = true; # view network utilization
   programs.captive-browser = {
     enable = true;
     interface = "wlp39s0";

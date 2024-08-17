@@ -22,7 +22,7 @@
     cntr # container debugging for nix derivations
     nil # nix language server
     nix-tree # browse nix store path dependencies
-    nix-init
-    nix-melt
+    # broken nix-init
+    # broken nix-melt
   ];
 }

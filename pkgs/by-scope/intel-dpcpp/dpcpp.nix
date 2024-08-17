@@ -12,49 +12,46 @@
   libffi_3_3,
   elfutils,
 }: let
-  # major = "2024.0";
-  # version = "2024.0.1-49878";
-  major = "2024.1";
-  version = "2024.1.0-963";
+  major = "2024.2";
+  version = "2024.2.0-981";
 
   base = fetchinteldeb {
     package = "intel-oneapi-dpcpp-cpp-${major}-${version}_amd64";
-    hash = "sha256-bDuB5yQHzLSW3H9dmmyK/65bKsrgZTH35I3kQHxKS78=";
+    hash = "sha256-y4oaBheX2Q/73NGvu/gVpZjGvt7CfBTaLHMp/I3RMvU=";
   };
   dpcpp = fetchinteldeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-${major}-${version}_amd64";
-    hash = "sha256-LaDDH3v0NbN6aKTbGrDRkMOQHJOpbX+lC35GhZWqSrI=";
+    hash = "sha256-cYqInuZBnYEnhaCyavogKtUumGd8dx4MOHEcJ2YIArc=";
   };
   dpcpp-runtime = fetchinteldeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-runtime-${major}-${version}_amd64";
-    hash = "sha256-VAjAL6FgEtJ/gZ7xl5tj6T9MhS1lixmWMXV6smPIQWk=";
+    hash = "sha256-kVlkCSNIP/hcuTMI00fKZ6IqPOTaxZJd8cjfl7ThDg8=";
   };
   dpcpp-common = fetchinteldeb {
     package = "intel-oneapi-compiler-dpcpp-cpp-common-${major}-${version}_all";
-    hash = "sha256-f/fB12laU5dCtYHSUYHT/1Tmais4uPN+PRSDZXk6Gck=";
+    hash = "sha256-JmdEBQLaxSL9Rc7CXanMO+ULyEtJ3LOBiIf4yaIabZ8=";
   };
   shared = fetchinteldeb {
     package = "intel-oneapi-compiler-shared-${major}-${version}_amd64";
-    hash = "sha256-8u+HeYfFHmkllKRWElUds8VfIBe8aDtn8+i9hT0UgqA=";
+    hash = "sha256-gcGw7suZfwV6wSVj1m8UOvnelDAUcUJPhJkMHbR0vbU=";
   };
   shared-runtime = fetchinteldeb {
     package = "intel-oneapi-compiler-shared-runtime-${major}-${version}_amd64";
-    hash = "sha256-MoIkBLT/k0jtgbxZXOYu5EGBAMGUQN79Z7O6Nsd6KuA=";
+    hash = "sha256-d8MpTartoEsi8Lkd+IXZLKwmCmmzzaPJuMxd4Wn9BRg=";
   };
   shared-common = fetchinteldeb {
     package = "intel-oneapi-compiler-shared-common-${major}-${version}_all";
-    hash = "sha256-rr9l6SPaVWsdcFILiuirjMNeAa7t5boxPlGt/ZI5DnE=";
+    hash = "sha256-QdzjErosg91s8D4xI7qVetsyFYNF20Rb9oqodD907L4=";
   };
   openmp = fetchinteldeb {
     package = "intel-oneapi-openmp-${major}-${version}_amd64";
-    hash = "sha256-TgYajUyihTGYVVvaBzaObUilKHoy+4PICfFedy97sQY=";
+    hash = "sha256-T7Z1jXgDdJNMOAt5+Lev7PMRRSbEDkTvPgE9Goyftrw=";
   };
   openmp-common = fetchinteldeb {
     package = "intel-oneapi-openmp-common-${major}-${version}_all";
-    hash = "sha256-13Sw3YL8NcHW4Eo47+Flcwc74aWz1ZdkWeeAjsOepXc=";
+    hash = "sha256-7MfL19P5N2FAuikIvK9O45MxblLaC7DkqVxUlLlD29E=";
   };
 
-  # classicVersion = "2023.2.3-2023.2.3-20";
   classicVersion = "2023.2.4-2023.2.4-49553";
 
   classic = fetchinteldeb {
@@ -114,7 +111,6 @@ in
       cd ./opt/intel/oneapi/compiler/${major}
 
       mv bin $out/bin
-      rm $out/bin/aocl
 
       mv env $out/env
       mv etc/compiler $out/env/compiler

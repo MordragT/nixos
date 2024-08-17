@@ -4,7 +4,7 @@
   ...
 }: {
   mordrag.services.invokeai = {
-    enable = false; # broken clip-anytorch
+    enable = false;
     settings = {
       device = "xpu";
       precision = "bfloat16";
@@ -22,7 +22,7 @@
   mordrag.services.printing.enable = true;
   # mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;
-  mordrag.services.harmonia.enable = true;
+  # mordrag.services.harmonia.enable = true;
   # mordrag.services.stalwart.enable = true;
   mordrag.services.tabby = {
     enable = true;

@@ -10,13 +10,13 @@
 }:
 buildPythonPackage rec {
   pname = "oneccl_bind_pt";
-  version = "2.1.300";
+  version = "2.1.400";
   format = "wheel";
 
   src = fetchwheel {
     abi = "%2Bxpu";
     package = "${pname}-${version}";
-    sha256 = "sha256-UAOOwlBgIB19XuXjAdSZ1jhYtISPaEhLybbULLeXK/0=";
+    sha256 = "";
   };
 
   nativeBuildInputs = [

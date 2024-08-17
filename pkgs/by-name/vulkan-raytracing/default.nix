@@ -38,8 +38,8 @@
     # https://github.com/tinyobjloader/tinyobjloader/issues/336
     postPatch = ''
       substituteInPlace tinyobjloader.pc.in \
-        --replace '$'{prefix}/@TINYOBJLOADER_LIBRARY_DIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \
-        --replace '$'{prefix}/@TINYOBJLOADER_INCLUDE_DIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@
+        --replace-fail '$'{prefix}/@TINYOBJLOADER_LIBRARY_DIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \
+        --replace-fail '$'{prefix}/@TINYOBJLOADER_INCLUDE_DIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@
     '';
   };
 
@@ -66,7 +66,7 @@
 
     # preConfigure = ''
     #   substituteInPlace CMakeLists.txt \
-    #     --replace "ARCHIVE DESTINATION ''${CMAKE_INSTALL_LIBDIR}" "ARCHIVE DESTINATION ''${CMAKE_INSTALL_LIBDIR}\nINCLUDES DESTINATION include"
+    #     --replace-fail "ARCHIVE DESTINATION ''${CMAKE_INSTALL_LIBDIR}" "ARCHIVE DESTINATION ''${CMAKE_INSTALL_LIBDIR}\nINCLUDES DESTINATION include"
     # '';
 
     buildInputs = [
@@ -113,11 +113,11 @@ in
 
     preConfigure = ''
       substituteInPlace CMakeLists.txt \
-        --replace "find_package(Stb REQUIRED)" "find_package(Freetype REQUIRED)" \
-        --replace "find_package(tinyobjloader CONFIG REQUIRED)" "find_package(tinyobjloader REQUIRED)" \
+        --replace-fail "find_package(Stb REQUIRED)" "find_package(Freetype REQUIRED)" \
+        --replace-fail "find_package(tinyobjloader CONFIG REQUIRED)" "find_package(tinyobjloader REQUIRED)" \
 
       # substituteInPlace src/CMakeLists.txt \
-      #   --replace "imgui::imgui" "imgui"
+      #   --replace-fail "imgui::imgui" "imgui"
     '';
 
     buildInputs = [

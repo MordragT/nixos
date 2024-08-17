@@ -16,6 +16,7 @@ in {
       # apostrophe # markdown editor
       audio-sharing
       # authenticator # generate two-factor codes
+      baobab # disk usage analyzer
       # blanket # listen to chill sounds
       # boatswain # control elgato stream deck
       bottles

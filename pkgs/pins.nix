@@ -6,4 +6,11 @@
     }) {
       inherit system;
     };
+  # setuptools =
+  #   import (builtins.fetchTarball {
+  #     url = "https://github.com/frc4451/nixpkgs/archive/bbca5dc9905acfb592b436ce353be72bffb1edf0.tar.gz";
+  #     sha256 = "";
+  #   }) {
+  #     inherit system;
+  #   };
 }

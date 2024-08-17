@@ -20,14 +20,14 @@ libcxxStdenv.mkDerivation {
 
   postPatch = ''
     substituteInPlace lib/byfl/gen_opcode2name \
-      --replace "/bin/echo" "echo"
+      --replace-fail "/bin/echo" "echo"
 
     substituteInPlace tools/wrappers/make-bf-mpi \
-      --replace "#! /bin/bash" "#! ${bash}/bin/bash" \
-      --replace "#! /bin/sh" "#! ${bash}/bin/bash"
+      --replace-fail "#! /bin/bash" "#! ${bash}/bin/bash" \
+      --replace-fail "#! /bin/sh" "#! ${bash}/bin/bash"
 
     substituteInPlace tools/wrappers/bf-clang.in \
-      --replace "@CMAKE_INSTALL_FULL_BYFL_PLUGIN_DIR@/" "@CMAKE_INSTALL_FULL_LIBEXECDIR@/byfl/"
+      --replace-fail "@CMAKE_INSTALL_FULL_BYFL_PLUGIN_DIR@/" "@CMAKE_INSTALL_FULL_LIBEXECDIR@/byfl/"
   '';
 
   buildInputs = [
