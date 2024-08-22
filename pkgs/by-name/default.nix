@@ -11,7 +11,9 @@ in {
   intel-dnnl = callPackage ./intel-dnnl {};
   intel-mkl = callPackage ./intel-mkl {};
   intel-mpi = callPackage ./intel-mpi {};
+  intel-openmp = callPackage ./intel-openmp {};
   intel-tbb = callPackage ./intel-tbb {};
+  intel-tcm = callPackage ./intel-tcm {};
 
   llama-cpp-sycl = callPackage ./llama-cpp-sycl {};
   lottieconv = callPackage ./lottieconv {};

@@ -74,6 +74,8 @@ in
     # dontUnpack = true;
     dontStrip = true;
 
+    outputs = ["out" "lib" "dev" "rsrc"];
+
     nativeBuildInputs = [
       autoPatchelfHook
       dpkg
@@ -106,28 +108,30 @@ in
     '';
 
     installPhase = ''
-      mkdir -p $out
-
       cd ./opt/intel/oneapi/compiler/${major}
 
-      mv bin $out/bin
+      mv lib/clang/19 $rsrc
 
+      mkdir $out
+      mv bin $out/bin
       mv env $out/env
       mv etc/compiler $out/env/compiler
-
-      mv include $out/include
-      mv opt/compiler/include $out/include/compiler
-
-      mv lib $out/lib
-      mv opt/compiler/lib/* $out/lib/compiler/
-
-      # remove libopencl to link against patched opencl-loader from nixos
-      rm $out/lib/libOpenCL.so
-      rm $out/lib/libOpenCL.so.1
-      rm $out/lib/libOpenCL.so.1.2
-
       mv share $out/share
 
-      sed -r -i "s|^prefix=.*|prefix=$out|g" $out/lib/pkgconfig/openmp.pc
+      mkdir $dev
+      mv include $dev/include
+      mv opt/compiler/include $dev/include/compiler
+      mkdir $dev/lib
+      mv lib/pkgconfig $dev/lib/pkgconfig
+      mv lib/cmake $dev/lib/cmake
+      sed -r -i "s|^prefix=.*|prefix=$lib|g" $dev/lib/pkgconfig/openmp.pc
+
+      mkdir $lib
+      mv lib $lib/lib
+      mv opt/compiler/lib $lib/lib/compiler
+      # remove libopencl to link against patched opencl-loader from nixos
+      rm $lib/lib/libOpenCL.so*
+      rm $lib/lib/libhwloc.so*
+      rm $lib/lib/libtcm*
     '';
   }

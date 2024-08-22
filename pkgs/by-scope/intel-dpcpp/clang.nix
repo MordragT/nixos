@@ -1,11 +1,17 @@
 {
-  dpcpp-unwrapped,
   wrapCCWith,
+  symlinkJoin,
+  stdenv,
+  llvm,
+  intel-tcm,
+  hwloc,
   bintools,
   gcc,
-  stdenv,
 }: let
-  cc = dpcpp-unwrapped;
+  cc = symlinkJoin {
+    name = "clang-unwrapped";
+    paths = [llvm llvm.dev llvm.lib intel-tcm hwloc];
+  };
 in
   (wrapCCWith {
     inherit cc bintools;
@@ -16,26 +22,14 @@ in
 
       # Disable hardening by default
       echo "" > $out/nix-support/add-hardening.sh
-
-      # mkdir -p $out/resource-root
-      # ln -s ${cc}/lib/clang/17/{include, lib} $out/resource-root
     '';
 
     nixSupport = {
       cc-cflags = [
         "-isystem ${cc}/include"
-        "-isystem ${cc}/include/compiler"
-        "-isystem ${cc}/lib/clang/17/include"
-        # "-B${cc}/lib/clang/17"
-
+        "-isystem ${cc}/include/sycl"
+        "-resource-dir=${llvm.rsrc}"
         "--gcc-toolchain=${gcc.cc}"
-        # "--gcc-install-dir=${gcc.cc}"
-        # for e.g. openmp: omp.h
-        # "-isystem ${gcc.cc}/lib/gcc/${stdenv.targetPlatform.config}/${gcc.version}/include"
-        # "-isystem ${gcc.cc}/lib/gcc/${stdenv.targetPlatform.config}/${gcc.version}/include-fixed"
-
-        # "-resource-dir=$out/resource-root"
-        # "-nostdinc"
       ];
 
       cc-ldflags = [
@@ -47,12 +41,10 @@ in
       setup-hook = [
         "export ONEAPI_ROOT=${cc}"
         "export CMPLR_ROOT=${cc}"
-        # "export SYCL_INCLUDE_DIR_HINT=${cc}/include"
-        # "export SYCL_LIBRARY_DIR_HINT=${cc}/lib"
+        "export SYCL_INCLUDE_DIR_HINT=${cc}"
+        "export SYCL_LIBRARY_DIR_HINT=${cc}"
       ];
     };
-
-    # extraPackages = [cc];
   })
   .overrideAttrs (old: {
     installPhase =

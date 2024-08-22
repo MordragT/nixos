@@ -25,7 +25,7 @@
   # mordrag.services.harmonia.enable = true;
   # mordrag.services.stalwart.enable = true;
   mordrag.services.tabby = {
-    enable = true;
+    enable = false;
     package = pkgs.tabby;
     acceleration = "sycl";
     port = 8000;

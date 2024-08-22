@@ -126,7 +126,7 @@ in
     nativeBuildInputs = [autoPatchelfHook dpkg];
 
     buildInputs = [
-      intel-dpcpp.runtime
+      intel-dpcpp.llvm.lib
       intel-mpi
       stdenv.cc.cc.lib
       ocl-icd

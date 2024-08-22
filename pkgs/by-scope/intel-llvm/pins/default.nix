@@ -1,9 +1,12 @@
-{fetchFromGitHub}: {
+{
+  fetchFromGitHub,
+  applyPatches,
+}: {
   vc-intrinsics = fetchFromGitHub {
     owner = "intel";
     repo = "vc-intrinsics";
-    rev = "f9c34404d0ea9abad83875a10bd48d88cea90ebd";
-    hash = "sha256-F2GR3TDUUiygEhdQN+PsMT/CIYBATMQX5wkvwrziS2E=";
+    rev = "b2565a03eb3cac07f5e8000fde971f95dc782c75";
+    hash = "sha256-4odRQyF3wMJZWKTY/dWmb3RG4j5dP7Hvr2wo9dSfyN8=";
   };
   spirv-headers = fetchFromGitHub {
     owner = "KhronosGroup";
@@ -26,19 +29,24 @@
   mp11 = fetchFromGitHub {
     owner = "boostorg";
     repo = "mp11";
-    rev = "ef7608b463298b881bc82eae4f45a4385ed74fca";
-    hash = "sha256-5URdyIrJKilRmwQd9ajYgULRTCT1xXmJZbHcCl2EfbM=";
+    rev = "863d8b8d2b20f2acd0b5870f23e553df9ce90e6c";
+    hash = "sha256-yvK4F4Z+cr5YdORzLRgL+LyeKwvpY2MBynPIDFRATS0=";
   };
-  unified-runtime = fetchFromGitHub {
-    owner = "oneapi-src";
-    repo = "unified-runtime";
-    rev = "6ccaf38708cfa614ab7f9b34c351826cd74028f2";
-    hash = "sha256-Gcuh9mzV7X6yWqWmYYdhtySBySVVrxNEMChcrobg38c=";
+  unified-runtime = applyPatches {
+    src = fetchFromGitHub {
+      owner = "oneapi-src";
+      repo = "unified-runtime";
+      rev = "b0c64c8154a4b6ddf2442d944239e3d5e5ebda82";
+      hash = "sha256-A0BG7Us9Z8SLBSrdV5yexXV/XSk9mOWyvPqn9alOAJw=";
+    };
+    patches = [
+      ./umf.patch
+    ];
   };
   unified-memory-framework = fetchFromGitHub {
     owner = "oneapi-src";
     repo = "unified-memory-framework";
-    rev = "9bf7a0dc4dff76844e10edbb5c6e9d917536ef6d";
-    hash = "sha256-2yJqZXpqI/dEP+movt8h0hyFgxxPNuQ9lIjNa8+X6Ns=";
+    rev = "85e3bd72dbaa95e9e5fd2a4a787714b7cf1c6a16";
+    hash = "sha256-OMKGhVF5NMBaqPTfb722WSpOOjfR3pVUHvGj7zIXl04=";
   };
 }

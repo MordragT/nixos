@@ -41,7 +41,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     intel-mkl
-    intel-dpcpp.runtime
+    intel-dpcpp.llvm.lib
     torch.lib
     level-zero
     zstd

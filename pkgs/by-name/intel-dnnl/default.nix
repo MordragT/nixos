@@ -28,7 +28,7 @@ in
 
     buildInputs = [
       stdenv.cc.cc.lib
-      intel-dpcpp.runtime
+      intel-dpcpp.llvm.lib
     ];
 
     unpackPhase = ''

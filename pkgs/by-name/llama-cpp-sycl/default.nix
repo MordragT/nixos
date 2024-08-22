@@ -2,7 +2,6 @@
   lib,
   cmake,
   fetchFromGitHub,
-  dpcppStdenv,
   intel-dpcpp,
   intel-mkl,
   intel-tbb,
@@ -15,7 +14,7 @@
 }: let
   inherit (lib) cmakeBool cmakeFeature;
 in
-  dpcppStdenv.mkDerivation (finalAttrs: {
+  intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
     version = "3358";
 
@@ -56,8 +55,6 @@ in
       (cmakeBool "GGML_SYCL_F16" true)
       (cmakeFeature "CMAKE_C_COMPILER" "icx")
       (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
-      "-DSYCL_INCLUDE_DIR=${intel-dpcpp.runtime}/include"
-      "-DSYCL_LIBRARY_DIR=${intel-dpcpp.runtime}/lib"
     ];
 
     postPatch = ''

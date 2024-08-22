@@ -25,7 +25,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     intel-ccl
-    intel-dpcpp.runtime
+    intel-dpcpp.llvm.lib
     intel-mpi
     torch.lib
     ipex.lib

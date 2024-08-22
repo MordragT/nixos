@@ -102,8 +102,8 @@
       (cmakeBool "GGML_SYCL_F16" false)
       (cmakeFeature "CMAKE_C_COMPILER" "icx")
       (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
-      "-DSYCL_INCLUDE_DIR=${intel-dpcpp.runtime}/include"
-      "-DSYCL_LIBRARY_DIR=${intel-dpcpp.runtime}/lib"
+      "-DSYCL_INCLUDE_DIR=${intel-dpcpp.llvm.dev}/include"
+      "-DSYCL_LIBRARY_DIR=${intel-dpcpp.llvm.lib}/lib"
     ];
 
     prePatch = ''

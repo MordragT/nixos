@@ -90,7 +90,7 @@ in {
       pdfarranger
       # popsicle # flash usb with iso
       # not packaged paperclip # edit pdf metadata
-      pitivi # video editor
+      # broken pitivi # video editor
       # pika-backup # simple backups
       # planify # more advanced task manager
       plots # graph plotting

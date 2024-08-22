@@ -4,6 +4,7 @@ in {
   firefoxAddons = makeScope ./firefox-addons self.firefoxAddons;
   intel-dpcpp = makeScope ./intel-dpcpp self.intel-dpcpp;
   intel-llvm = makeScope ./intel-llvm self.intel-llvm;
+  intel-llvm-bin = makeScope ./intel-llvm-bin self.intel-llvm-bin;
   intel-python = pkgs.python311.override {
     packageOverrides = pySelf: pyPkgs:
       (import ./intel-python pySelf pyPkgs)
