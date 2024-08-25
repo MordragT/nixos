@@ -13,18 +13,17 @@
   pkg-config,
   ocl-icd,
   blas,
-  intel-dpcpp,
   intel-mkl,
   intel-tbb,
   acceleration ? null,
 }: let
   inherit (lib) cmakeBool cmakeFeature;
-  version = "0.3.2";
+  version = "0.3.6";
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     rev = "v${version}";
-    hash = "sha256-EI3dQcsvv8T4lYNcWML8SesOQfAkCEsZvd+C3S+MY5o=";
+    hash = "sha256-Nq2tZUy82JQ3mgR6j1wctolUSprURnOaUldGTi9hvZc=";
     fetchSubmodules = true;
   };
 
@@ -42,8 +41,7 @@
     (preparePatch "06-embeddings.diff" "sha256-HF+Fmkyw/zxP55vIsRJW3QwPMi/ZShErOR/bFgosBzs=")
     (preparePatch "07-clip-unicode.diff" "sha256-JWzOcJPf9opg4C4eNOhpZYHbpgkoIsxtE4DN+t6wf6U=")
     (preparePatch "08-pooling.diff" "sha256-p33Qni9yuch0v39YM/N0nvaS4GvrYoo7iIqfI7OIQP4=")
-    (preparePatch "09-lora.diff" "sha256-BqqfAH4v/RmGkbSK6FernilgaFCKZhhroeDBmFDbVvA=")
-    (preparePatch "10-params.diff" "sha256-pTPHQf3k15vUHHfTyOUREyXgQSlup/iQpUssuMX4UZU=")
+    (preparePatch "09-lora.diff" "sha256-g5KI1W412wLU2jrcpO0gz49+5AbnbSwT0VKzDeXRFDI=")
     (preparePatch "11-phi3-sliding-window.diff" "sha256-hg9SyOvp8eTMp5O2Budz+Hty1FKt/knsLVy6+vJDJi8=")
   ];
 
@@ -96,14 +94,12 @@
     cmakeFlags = [
       # -march=native is non-deterministic; override with platform-specific flags if needed
       (cmakeBool "GGML_NATIVE" true)
-      (cmakeBool "BUILD_SHARED_LIBS" false)
+      (cmakeBool "BUILD_SHARED_LIBS" true)
       (cmakeBool "GGML_BLAS" true)
       (cmakeBool "GGML_SYCL" true)
       (cmakeBool "GGML_SYCL_F16" false)
       (cmakeFeature "CMAKE_C_COMPILER" "icx")
       (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
-      "-DSYCL_INCLUDE_DIR=${intel-dpcpp.llvm.dev}/include"
-      "-DSYCL_LIBRARY_DIR=${intel-dpcpp.llvm.lib}/lib"
     ];
 
     prePatch = ''
@@ -123,6 +119,10 @@ in
 
     buildInputs = [
       llama-cpp-static
+    ];
+
+    propagatedBuildInputs = [
+      llama-cpp-sycl
     ];
 
     doCheck = false;

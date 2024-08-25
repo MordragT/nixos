@@ -16,13 +16,13 @@
 in
   intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
-    version = "3358";
+    version = "3620";
 
     src = fetchFromGitHub {
       owner = "ggerganov";
       repo = "llama.cpp";
       rev = "refs/tags/b${finalAttrs.version}";
-      hash = "sha256-mdbt3TBeCwFUgHsXqB6cji7BZYZD6HZWjkSFtHZfFzM=";
+      hash = "";
       leaveDotGit = true;
       postFetch = ''
         git -C "$out" rev-parse --short HEAD > $out/COMMIT

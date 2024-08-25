@@ -27,7 +27,6 @@
   mordrag.services.tabby = {
     enable = false;
     package = pkgs.tabby;
-    acceleration = "sycl";
     port = 8000;
     settings = {
       # model.completion.local.model_id = "MordragT/DeepseekCoder-1.3B-Q5";
@@ -35,10 +34,6 @@
       model.completion.http = {
         kind = "ollama/completion";
         api_endpoint = "http://127.0.0.1:11434";
-        #         model_name = "gemma2:2b-instruct-q6_K";
-        # prompt_template = "<|fim_prefix|>{prefix}<|fim_suffix|>{suffix}<|fim_middle|>";
-        # model_name = "deepseek-coder:6.7b-instruct-q3_K_S";
-        # prompt_template = "<｜fim▁begin｜>{prefix}<｜fim▁hole｜>{suffix}<｜fim▁end｜>";
         model_name = "gemma2:9b-instruct-q4_K_S";
         prompt_template = "<fim_prefix>{prefix}<fim_suffix>{suffix}<fim_middle>";
       };
@@ -52,12 +47,6 @@
         api_endpoint = "http://127.0.0.1:11434";
         model_name = "mxbai-embed-large";
       };
-      # model.chat.http = {
-      #   kind = "openai/chat";
-      #   model_name = "gemini-1.5-flash-latest";
-      #   api_endpoint = "https://generativelanguage.googleapis.com/v1beta/";
-      #   api_key = "<secret-key>";
-      # };
     };
   };
   # mordrag.services.vaultwarden.enable = true;
@@ -82,7 +71,6 @@
     ];
   };
   systemd.services.ollama.serviceConfig.MemoryDenyWriteExecute = lib.mkForce false;
-  # services.private-gpt.enable = true;
   services.tailscale.enable = true; # trayscale gui ?
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
   networking.firewall.checkReversePath = "loose";

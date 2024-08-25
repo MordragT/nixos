@@ -22,17 +22,6 @@
   programs.corectrl.enable = true;
   programs.corectrl.gpuOverclock.enable = true;
   programs.file-roller.enable = true;
-  # programs.gamescope.args = [
-  #   "-W 2560"
-  #   "-H 1440"
-  #   "-w 1920"
-  #   "-h 1080"
-  #   "-r 120"
-  #   "-f"
-  #   "--rt"
-  #   "--display-index 1"
-  #   "--immediate-flips"
-  # ];
   programs.geary.enable = true;
   programs.seahorse.enable = true;
   programs.wireshark = {

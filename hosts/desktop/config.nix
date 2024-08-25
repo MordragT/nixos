@@ -24,6 +24,7 @@
       intel-media-driver
       intel-vaapi-driver
       vpl-gpu-rt
+      gamescope-wsi
     ];
   };
   # chaotic.mesa-git = {

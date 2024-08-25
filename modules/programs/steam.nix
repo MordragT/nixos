@@ -33,6 +33,8 @@ in {
     };
   };
 
+  #SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0 %command% +exec mordrag.cfg -high -sdl_displayindex 1 -sdlaudiodriver pipewire -nojoy
+
   config = lib.mkIf cfg.enable {
     hardware.steam-hardware.enable = cfg.controller;
     programs.steam = {
@@ -40,10 +42,10 @@ in {
       gamescopeSession.enable = true;
       protontricks.enable = true;
       package = cfg.package.override {
-        extraEnv = {
-          MANGOHUD = true;
-          MANGOHUD_DLSYM = true;
-        };
+        # extraEnv = {
+        #   MANGOHUD = true;
+        #   MANGOHUD_DLSYM = true;
+        # };
         extraLibraries = pkgs:
           with pkgs; [
             libpulseaudio
@@ -63,6 +65,19 @@ in {
     programs.gamescope = {
       enable = true;
       capSysNice = false;
+      args = [
+        "-W 2560"
+        "-H 1440"
+        # "-w 1920"
+        # "-h 1080"
+        # "-r 120"
+        # "-f"
+        "--rt"
+        "--display-index 0"
+        "--immediate-flips"
+        "--backend sdl"
+        "--mangoapp"
+      ];
     };
 
     environment.etc = lib.mkIf cfg.gameFixes {
