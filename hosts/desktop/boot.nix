@@ -56,9 +56,14 @@
     "kvm-amd"
     "btintel"
     "v4l2loopback"
+    "zenpower"
     # "amd_pstate=active" _CPC object not present and no settings in bios
+  ];
+  boot.blacklistedKernelModules = [
+    "k10temp"
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
+    zenpower
   ];
 }

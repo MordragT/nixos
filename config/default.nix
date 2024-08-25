@@ -32,6 +32,7 @@
       inetutils
       just # make alike
       libva-utils
+      lm_sensors
       parted
       pax-utils
       pciutils

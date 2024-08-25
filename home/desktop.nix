@@ -16,6 +16,7 @@
   mordrag.programs.totem.enable = true;
   mordrag.programs.vscode.enable = true;
   mordrag.programs.zed-editor.enable = true;
+  mordrag.programs.zen-browser.enable = true;
   mordrag.programs.zsh.enable = true;
 
   programs.chromium = {

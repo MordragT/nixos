@@ -31,11 +31,13 @@ in {
           "browser.startup.page" = 3;
           "browser.download.useDownloadDir" = false;
 
-          "font.name.monospace.x-western" = "Geist Mono";
-          "font.name.sans-serif.x-western" = "Geist";
-          "font.name.serif.x-western" = "Geist";
+          # "font.name.monospace.x-western" = "Geist Mono";
+          # "font.name.sans-serif.x-western" = "Geist";
+          # "font.name.serif.x-western" = "Geist";
 
           "signon.rememberSignons" = false;
+          # "sidebar.revamp" = true;
+          # "sidebar.verticalTabs" = true;
           "services.sync.engine.passwords" = false;
           "services.sync.engine.addons" = false;
           "services.sync.engine.history" = false;

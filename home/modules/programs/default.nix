@@ -15,6 +15,7 @@
     ./totem.nix
     ./vscode.nix
     ./zed-editor.nix
+    ./zen-browser.nix
     ./zsh.nix
   ];
 }

@@ -41,7 +41,7 @@ in {
       protontricks.enable = true;
       package = cfg.package.override {
         extraEnv = {
-          MANGOHUD = false;
+          MANGOHUD = true;
           MANGOHUD_DLSYM = true;
         };
         extraLibraries = pkgs:

@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # General
   mordrag.desktop.cosmic.enable = true;
 
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   # Networking
   networking.hostName = "tom-desktop";
@@ -35,7 +39,9 @@
     ffmpeg-vpl
     # intel-sysmon
     # nvtopPackages.intel
+    config.boot.kernelPackages.turbostat
   ];
+
   security.wrappers.intel_gpu_top = {
     source = "${pkgs.intel-gpu-tools}/bin/intel_gpu_top";
     owner = "root";

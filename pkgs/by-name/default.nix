@@ -35,4 +35,5 @@ in {
 
   vulkan-raytracing = callPackage ./vulkan-raytracing {};
   webdesigner = callPackage ./webdesigner {};
+  zen-browser-bin = callPackage ./zen-browser-bin {};
 }
