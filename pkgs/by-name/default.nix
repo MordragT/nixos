@@ -1,7 +1,6 @@
 self: pkgs: let
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
-  # astrofox = callPackage ./astrofox { };
   byfl = callPackage ./byfl {};
   dud = callPackage ./dud {};
   ensembles = callPackage ./ensembles {};
@@ -25,7 +24,9 @@ in {
   oneapi-dpl = callPackage ./oneapi-dpl {};
   oneapi-mkl = callPackage ./oneapi-mkl.nix {};
 
+  opengothic = callPackage ./opengothic {};
   oxen = callPackage ./oxen {};
+  proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
   spflashtool = callPackage ./spflashtool {};
   tabby = callPackage ./tabby {};
   tmfs = callPackage ./tmfs {};
@@ -35,5 +36,6 @@ in {
 
   vulkan-raytracing = callPackage ./vulkan-raytracing {};
   webdesigner = callPackage ./webdesigner {};
+  wine-tkg = callPackage ./wine-tkg {};
   zen-browser-bin = callPackage ./zen-browser-bin {};
 }

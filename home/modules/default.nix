@@ -2,6 +2,6 @@
   imports = [
     ./collection
     ./programs
-    ./services
+    # ./bottles.nix
   ];
 }

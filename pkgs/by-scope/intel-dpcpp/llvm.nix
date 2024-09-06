@@ -1,7 +1,7 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchinteldeb,
+  fetchurl,
   autoPatchelfHook,
   dpkg,
   level-zero,
@@ -12,59 +12,47 @@
   libffi_3_3,
   elfutils,
 }: let
-  major = "2024.2";
-  version = "2024.2.0-981";
+  pins = builtins.fromJSON (builtins.readFile ./default.lock);
+  version = "2024.2";
 
-  base = fetchinteldeb {
-    package = "intel-oneapi-dpcpp-cpp-${major}-${version}_amd64";
-    hash = "sha256-y4oaBheX2Q/73NGvu/gVpZjGvt7CfBTaLHMp/I3RMvU=";
+  base = fetchurl {
+    inherit (pins."intel-oneapi-dpcpp-cpp-${version}") url hash;
   };
-  dpcpp = fetchinteldeb {
-    package = "intel-oneapi-compiler-dpcpp-cpp-${major}-${version}_amd64";
-    hash = "sha256-cYqInuZBnYEnhaCyavogKtUumGd8dx4MOHEcJ2YIArc=";
+  dpcpp = fetchurl {
+    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-${version}") url hash;
   };
-  dpcpp-runtime = fetchinteldeb {
-    package = "intel-oneapi-compiler-dpcpp-cpp-runtime-${major}-${version}_amd64";
-    hash = "sha256-kVlkCSNIP/hcuTMI00fKZ6IqPOTaxZJd8cjfl7ThDg8=";
+  dpcpp-runtime = fetchurl {
+    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-runtime-${version}") url hash;
   };
-  dpcpp-common = fetchinteldeb {
-    package = "intel-oneapi-compiler-dpcpp-cpp-common-${major}-${version}_all";
-    hash = "sha256-JmdEBQLaxSL9Rc7CXanMO+ULyEtJ3LOBiIf4yaIabZ8=";
+  dpcpp-common = fetchurl {
+    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-common-${version}") url hash;
   };
-  shared = fetchinteldeb {
-    package = "intel-oneapi-compiler-shared-${major}-${version}_amd64";
-    hash = "sha256-gcGw7suZfwV6wSVj1m8UOvnelDAUcUJPhJkMHbR0vbU=";
+  shared = fetchurl {
+    inherit (pins."intel-oneapi-compiler-shared-${version}") url hash;
   };
-  shared-runtime = fetchinteldeb {
-    package = "intel-oneapi-compiler-shared-runtime-${major}-${version}_amd64";
-    hash = "sha256-d8MpTartoEsi8Lkd+IXZLKwmCmmzzaPJuMxd4Wn9BRg=";
+  shared-runtime = fetchurl {
+    inherit (pins."intel-oneapi-compiler-shared-runtime-${version}") url hash;
   };
-  shared-common = fetchinteldeb {
-    package = "intel-oneapi-compiler-shared-common-${major}-${version}_all";
-    hash = "sha256-QdzjErosg91s8D4xI7qVetsyFYNF20Rb9oqodD907L4=";
+  shared-common = fetchurl {
+    inherit (pins."intel-oneapi-compiler-shared-common-${version}") url hash;
   };
-  openmp = fetchinteldeb {
-    package = "intel-oneapi-openmp-${major}-${version}_amd64";
-    hash = "sha256-T7Z1jXgDdJNMOAt5+Lev7PMRRSbEDkTvPgE9Goyftrw=";
+  openmp = fetchurl {
+    inherit (pins."intel-oneapi-openmp-${version}") url hash;
   };
-  openmp-common = fetchinteldeb {
-    package = "intel-oneapi-openmp-common-${major}-${version}_all";
-    hash = "sha256-7MfL19P5N2FAuikIvK9O45MxblLaC7DkqVxUlLlD29E=";
+  openmp-common = fetchurl {
+    inherit (pins."intel-oneapi-openmp-common-${version}") url hash;
   };
 
-  classicVersion = "2023.2.4-2023.2.4-49553";
+  classicVersion = "2023.2.4";
 
-  classic = fetchinteldeb {
-    package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-${classicVersion}_amd64";
-    hash = "sha256-hqY7QJyah3A9/3uzvBTebAu6qBgj+QWTmilLL0a6idc=";
+  classic = fetchurl {
+    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-${classicVersion}") url hash;
   };
-  classic-runtime = fetchinteldeb {
-    package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-${classicVersion}_amd64";
-    hash = "sha256-OmzPp1RQoIMfQulwHujSvaBFSdhJRXcg/20wfXWI+q4=";
+  classic-runtime = fetchurl {
+    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-${classicVersion}") url hash;
   };
-  classic-common = fetchinteldeb {
-    package = "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-${classicVersion}_all";
-    hash = "sha256-svPb1QNVT3i14/Lv64R1sF1X+Z/ufJ4OyZmZk2jFNoU=";
+  classic-common = fetchurl {
+    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-${classicVersion}") url hash;
   };
 in
   stdenvNoCC.mkDerivation {
@@ -108,7 +96,7 @@ in
     '';
 
     installPhase = ''
-      cd ./opt/intel/oneapi/compiler/${major}
+      cd ./opt/intel/oneapi/compiler/${version}
 
       mv lib/clang/19 $rsrc
 

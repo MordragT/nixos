@@ -43,6 +43,10 @@
       url = "github:NotLebedev/nuenv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nu-env = {
+      url = "github:MordragT/nu-env";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -60,6 +64,7 @@
     fenix,
     lanzaboote,
     nuenv,
+    nu-env,
     ...
   }: let
     system = "x86_64-linux";
@@ -73,6 +78,7 @@
         fenix.overlays.default
         nur.overlay
         nuenv.overlays.default
+        nu-env.overlays.default
         (import ./pkgs/overlay.nix)
       ];
     };
@@ -88,8 +94,8 @@
           inherit system stateVersion;
 
           imports = [
-            ./config/nix.nix
-            ./hosts/installer.nix
+            ./system/modules
+            ./system/config/installer
           ];
 
           specialArgs = {
@@ -101,7 +107,8 @@
               inherit stateVersion;
               username = "nixos";
               imports = [
-                ./home/installer.nix
+                ./home/modules
+                ./home/config/installer
               ];
             };
           };
@@ -114,9 +121,8 @@
           inherit system stateVersion;
 
           imports = [
-            ./config
-            ./hosts/laptop
-            ./modules
+            ./system/modules
+            ./system/config/laptop
           ];
 
           modules = [
@@ -134,7 +140,10 @@
             "tom" = lib.mkHome {
               inherit stateVersion;
               username = "tom";
-              imports = [./home];
+              imports = [
+                ./home/modules
+                ./home/config/laptop
+              ];
             };
           };
         };
@@ -146,9 +155,8 @@
           inherit system stateVersion;
 
           imports = [
-            ./config
-            ./hosts/server
-            ./modules
+            ./system/modules
+            ./system/config/server
           ];
 
           modules = [
@@ -169,7 +177,8 @@
               inherit stateVersion;
               username = "tom";
               imports = [
-                ./home/server.nix
+                ./home/modules
+                ./home/config/server
               ];
             };
           };
@@ -182,9 +191,8 @@
           inherit system stateVersion;
 
           imports = [
-            ./config
-            ./hosts/desktop
-            ./modules
+            ./system/modules
+            ./system/config/desktop
           ];
 
           modules = [
@@ -204,7 +212,8 @@
               inherit stateVersion;
               username = "tom";
               imports = [
-                ./home/desktop.nix
+                ./home/modules
+                ./home/config/desktop
               ];
             };
           };
@@ -220,6 +229,9 @@
         };
 
         modules = [
+          ./home/modules
+          ./home/config/laptop
+          chaotic.homeManagerModules.default
           ({pkgs, ...}: {
             home.username = "tom";
             home.homeDirectory = "/home/tom";
@@ -229,14 +241,12 @@
 
             nix.package = pkgs.nixVersions.stable;
           })
-          ./home/laptop.nix
-          chaotic.homeManagerModules.default
         ];
       };
     };
 
     homeManagerModules.default = import ./home/modules;
-    nixosModules.default = import ./modules;
+    nixosModules.default = import ./system/modules;
     packages."${system}" = import ./pkgs pkgs;
     overlays.default = import ./pkgs/overlay.nix;
     devShells."${system}".default = pkgs.mkShell {

@@ -1,21 +1,22 @@
 {...}: {
   imports = [
-    ./celluloid.nix
-    ./firefox.nix
-    ./git.nix
-    ./helix.nix
-    ./hyprland.nix
-    ./loupe.nix
-    ./mangohud.nix
-    # ./niri.nix
-    ./nushell.nix
-    ./obs.nix
-    ./papers.nix
-    ./thunderbird.nix
-    ./totem.nix
-    ./vscode.nix
-    ./zed-editor.nix
-    ./zen-browser.nix
-    ./zsh.nix
+    ./bottles
+    ./celluloid
+    ./firefox
+    ./git
+    ./helix
+    ./hyprland
+    ./loupe
+    ./mangohud
+    # ./niri
+    ./nushell
+    ./obs
+    ./papers
+    ./thunderbird
+    ./totem
+    ./vscode
+    ./zed-editor
+    ./zen-browser
+    ./zsh
   ];
 }

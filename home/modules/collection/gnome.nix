@@ -19,7 +19,6 @@ in {
       baobab # disk usage analyzer
       # blanket # listen to chill sounds
       # boatswain # control elgato stream deck
-      bottles
       # cartridges # game launcher
       # calls # phone dialer and call handler
       # not packaged chessclock
@@ -35,7 +34,7 @@ in {
       # dialect # translate
       # deja-dup # backup tool
       eartag # tag audio files
-      # broken easyeffects # audio effects
+      easyeffects # audio effects
       # elastic # design spring animations
       # emblem
       # endeavour # task manager
@@ -48,11 +47,12 @@ in {
       # foliate # book reader
       # forge-sparks
       fractal-next # gtk matrix messaging
-      # broken fragments # torrent downloader
+      fragments # torrent downloader
       # fretboard # guitar chords
       # broken gaphor # create diagrams and uml
       ghex # hex editor
       # glide-media-player
+      gnome-boxes
       gnome-calculator
       gnome-calendar
       gnome-decoder # scan qr codes
@@ -60,12 +60,10 @@ in {
       gnome-frog
       gnome-obfuscate # censor private information
       # gnome-podcasts # listen to podcast
+      gnome-sound-recorder
       gnome-system-monitor
-      gnome.gnome-boxes
       # gnome.gnome-color-manager
-      gnome.gnome-sound-recorder
       # gnome.gnome-tweaks
-      gnome.polari # irc client
       # gnome-secrets # password manager
       # health # health tracker
       helvum # patchbay for pipewire
@@ -88,9 +86,10 @@ in {
       # overskride # bluetooth client
       paleta # extract dominant color from images
       pdfarranger
+      polari # irc client
       # popsicle # flash usb with iso
       # not packaged paperclip # edit pdf metadata
-      # broken pitivi # video editor
+      # pitivi # video editor
       # pika-backup # simple backups
       # planify # more advanced task manager
       plots # graph plotting

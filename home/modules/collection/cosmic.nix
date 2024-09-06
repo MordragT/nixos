@@ -12,8 +12,12 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      cosmic-emoji-picker
+      cosmic-applet-emoji-selector
       cosmic-tasks
+      cosmic-player
+      cosmic-reader
+      quick-webapps
+      cosmic-calculator
       oboete
     ];
   };

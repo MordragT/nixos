@@ -1,5 +1,0 @@
-{...}: {
-  imports = [
-    ./invokeai.nix
-  ];
-}

@@ -12,11 +12,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      # minecraft
+      prismlauncher
+      # ferium
       # optifine
       moonlight-qt # game stream client ala steam link
-      winPackages.battle-net
-      # broken nexusmods-app-unfree
+      nexusmods-app-unfree
     ];
   };
 }

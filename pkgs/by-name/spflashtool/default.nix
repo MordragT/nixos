@@ -1,69 +1,51 @@
 {
   stdenv,
   lib,
-  makeDesktopItem,
-  fetchurl,
-  unzip,
+  fetchzip,
   libsForQt5,
-}: let
-  desktopItem = makeDesktopItem {
-    name = "spflashtool";
-    exec = "spflashtool";
-    comment = "SP Flash Tool is an application to flash your MediaTek (MTK) SmartPhone.";
-    desktopName = "SP Flash Tool";
-    genericName = "Anroid Flash Tool";
-    icon = "spflashtool.png";
-    categories = [];
+  autoPatchelfHook,
+}:
+stdenv.mkDerivation rec {
+  pname = "spflashtool";
+  version = "6.2228";
+
+  src = fetchzip {
+    url = "https://spflashtools.com/wp-content/uploads/SP_Flash_Tool_v${version}_Linux.zip";
+    sha256 = "sha256-UDLHA9MATJwMJ91/yqUnsC0+lhZNNsL5E/baT2YotTg=";
   };
-in
-  stdenv.mkDerivation rec {
-    pname = "spflashtool";
-    version = "6.2152";
 
-    src = fetchurl {
-      url = "https://spflashtools.com/wp-content/uploads/SP_Flash_Tool_v6.2152_Linux.zip";
-      sha256 = "8a6b5c756fda89b00672b7c246ec1f04ef755afb4a2a35940dbd3d2932661324";
-    };
+  nativeBuildInputs = [
+    autoPatchelfHook
+    libsForQt5.qt5.wrapQtAppsHook
+  ];
 
-    nativeBuildInputs = [
-      unzip
+  qtWrapperArgs = let
+    runtimeLibs = with libsForQt5.qt5; [
+      qtbase
+      qtserialport
+      qtxmlpatterns
     ];
+  in "--set LD_LIBRARY_PATH ${lib.makeLibraryPath runtimeLibs}";
 
-    buildInputs = [
-      libsForQt5.qt5.wrapQtAppsHook
-      libsForQt5.qt5.qtserialport
-      libsForQt5.qt5.qtxmlpatterns
-    ];
+  installPhase = ''
+    runHook preInstall
 
-    unpackPhase = ''
-      unzip ${src}
-    '';
+    mkdir -p $out/lib
+    cp $src/libflash.1.0.0.so $out/lib/libflash.1.0.0.so
+    cp $src/libimagechecker.1.0.0.so $out/lib/libimagechecker.1.0.0.so
+    cp $src/libsla_challenge.so $out/lib/libsla_challenge.so
 
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out/bin $out/share/applications
-      cp -r SP_Flash_Tool_v6.2152_Linux/* $out/
+    mkdir -p $out/bin
+    cp $src/SPFlashToolV6 $out/bin/spflashtool
+    chmod +x $out/bin/spflashtool
 
-      chmod +x $out/SPFlashToolV6
+    runHook postInstall
+  '';
 
-      wrapProgram $out/SPFlashToolV6 \
-      --prefix LD_LIBRARY_PATH : $out/lib
-
-      ln -s $out/SPFlashToolV6 $out/bin/spflashtool
-
-      # ln -s opt/spflashtool.png $out/share/pixmaps/spflashtool.png
-      runHook postInstall
-    '';
-
-    postInstall = ''
-      install -m 444 -D ${desktopItem}/share/applications/* -t $out/share/applications
-    '';
-
-    meta = with lib; {
-      license = licenses.unfree;
-      maintainers = with maintainers; [mordrag];
-      description = "SP Flash Tool is an application to flash your MediaTek (MTK) SmartPhone.";
-      platforms = platforms.linux;
-      broken = true;
-    };
-  }
+  meta = with lib; {
+    license = licenses.unfree;
+    maintainers = with maintainers; [mordrag];
+    description = "SP Flash Tool is an application to flash your MediaTek (MTK) SmartPhone.";
+    platforms = platforms.linux;
+  };
+}

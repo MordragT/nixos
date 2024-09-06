@@ -17,8 +17,6 @@ in {
       };
   };
   pti-gpu = makeScope ./pti-gpu self.pti-gpu;
-  steamPackages = pkgs.steamPackages.overrideScope (_: _: makeScope ./steam-packages self.steamPackages);
+  # steamPackages = pkgs.steamPackages.overrideScope (_: _: makeScope ./steam-packages self.steamPackages);
   vscode-extensions = pkgs.lib.recursiveUpdate pkgs.vscode-extensions (makeScope ./vscode-extensions self.vscode-extensions);
-  winPackages = makeScope ./win-packages self.winPackages;
-  x86-64-v3Packages = makeScope ./x86-64-v3-packages self.x86-64-v3Packages;
 }

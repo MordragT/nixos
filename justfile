@@ -2,22 +2,11 @@
 
 set shell := ["nu", "-c"]
 
-update: update-firefox update-vscode
+update:
+    use pkgs/by-scope/firefox-addons; firefox-addons
+    use pkgs/by-scope/vscode-extensions; vscode-extensions
+    use pkgs/by-scope/intel-dpcpp; intel-dpcpp
     nix flake update
-
-update-firefox:
-    use pkgs/by-scope/firefox-addons; firefox-addons update
-
-update-vscode:
-    use pkgs/by-scope/vscode-extensions; vscode-extensions update
-
-create: create-firefox create-vscode
-
-create-firefox:
-    use pkgs/by-scope/firefox-addons; firefox-addons create
-
-create-vscode:
-    use pkgs/by-scope/vscode-extensions; vscode-extensions create
 
 iso system:
     nixos-generate --flake .#tom-{{ system }} --format iso
