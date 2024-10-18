@@ -24,7 +24,7 @@ in {
       # libreoffice-fresh
       # okular
       onlyoffice-bin_latest
-      xournalpp
+      # xournalpp
 
       # Graphics
       blender
@@ -36,19 +36,19 @@ in {
 
       # Game Development
       # epic-asset-manager # manager for unreal engine and its assets
-      godot_4 # game engine
+      # godot_4 # game engine
 
       # Media
       # olive-editor # video editor
       # upscayl
-      spotube # use spotify to find music on youtube
+      # spotube # use spotify to find music on youtube
 
       # Security
       # (cutter.withPlugins (plugins: with plugins; [jsdec rz-ghidra]))
       # tor-browser-bundle-bin
 
       # Other
-      dbeaver-bin # sql client
+      # dbeaver-bin # sql client
       # insomnia # make http requests against rest apis
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher

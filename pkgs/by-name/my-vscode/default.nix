@@ -1,9 +1,9 @@
 {vscode}:
 vscode.overrideAttrs (old: {
   postInstall = ''
-    rm $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html
+    rm $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.esm.html
 
-    cat > $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html << EOF
+    cat > $out/lib/vscode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.esm.html << EOF
     <!DOCTYPE html>
       <head>
         <meta charset="utf-8" />

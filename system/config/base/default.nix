@@ -27,7 +27,7 @@
       dua # print file size of directories
       fd # find replacement
       helix # Kakoune style editor
-      htop # better top
+      btop # better top
       hwloc
       inetutils
       just # make alike

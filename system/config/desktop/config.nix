@@ -5,6 +5,7 @@
 }: {
   # General
   mordrag.desktop.cosmic.enable = true;
+  mordrag.desktop.gnome.enable = true;
 
   powerManagement.cpuFreqGovernor = "schedutil";
 
@@ -26,15 +27,9 @@
       vpl-gpu-rt
     ];
   };
-  # chaotic.mesa-git = {
-  #   enable = true;
-  #   extraPackages = with pkgs; [
-  #     intel-compute-runtime
-  #     intel-media-driver
-  #     intel-vaapi-driver
-  #     onevpl-intel-gpu
-  #   ];
-  # };
+
+  hardware.enableRedistributableFirmware = true;
+
   environment.systemPackages = with pkgs; [
     ffmpeg-vpl
     # intel-sysmon
@@ -58,12 +53,12 @@
       cores = 4;
     };
 
-    virtualbox.host = {
-      enable = false;
-      #headless = true;
-      #enableHardening = false;
-    };
-    docker.enable = true;
+    # virtualbox.host = {
+    #   enable = true;
+    #   #headless = true;
+    #   #enableHardening = false;
+    # };
+    # docker.enable = true;
     # waydroid.enable = true;
     # libvirtd.enable = true;
     # multipass.enable = true;

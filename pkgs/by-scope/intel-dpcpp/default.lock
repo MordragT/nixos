@@ -1,47 +1,47 @@
 {
-  "intel-oneapi-compiler-dpcpp-cpp-2024.2": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-2024.2-2024.2.0-981_amd64.deb",
-    "hash": "sha256-cYqInuZBnYEnhaCyavogKtUumGd8dx4MOHEcJ2YIArc="
-  },
-  "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-2023.2.4": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-2023.2.4-2023.2.4-49553_amd64.deb",
-    "hash": "sha256-hqY7QJyah3A9/3uzvBTebAu6qBgj+QWTmilLL0a6idc="
-  },
   "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-2023.2.4": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-2023.2.4-2023.2.4-49553_amd64.deb",
     "hash": "sha256-OmzPp1RQoIMfQulwHujSvaBFSdhJRXcg/20wfXWI+q4="
-  },
-  "intel-oneapi-dpcpp-cpp-2024.2": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-dpcpp-cpp-2024.2-2024.2.0-981_amd64.deb",
-    "hash": "sha256-y4oaBheX2Q/73NGvu/gVpZjGvt7CfBTaLHMp/I3RMvU="
-  },
-  "intel-oneapi-openmp-2024.2": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-openmp-2024.2-2024.2.0-981_amd64.deb",
-    "hash": "sha256-T7Z1jXgDdJNMOAt5+Lev7PMRRSbEDkTvPgE9Goyftrw="
-  },
-  "intel-oneapi-compiler-shared-2024.2": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-shared-2024.2-2024.2.0-981_amd64.deb",
-    "hash": "sha256-gcGw7suZfwV6wSVj1m8UOvnelDAUcUJPhJkMHbR0vbU="
   },
   "intel-oneapi-compiler-dpcpp-cpp-runtime-2024.2": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-runtime-2024.2-2024.2.0-981_amd64.deb",
     "hash": "sha256-kVlkCSNIP/hcuTMI00fKZ6IqPOTaxZJd8cjfl7ThDg8="
   },
+  "intel-oneapi-openmp-2024.2": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-openmp-2024.2-2024.2.0-981_amd64.deb",
+    "hash": "sha256-T7Z1jXgDdJNMOAt5+Lev7PMRRSbEDkTvPgE9Goyftrw="
+  },
+  "intel-oneapi-compiler-dpcpp-cpp-2024.2": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-2024.2-2024.2.0-981_amd64.deb",
+    "hash": "sha256-cYqInuZBnYEnhaCyavogKtUumGd8dx4MOHEcJ2YIArc="
+  },
+  "intel-oneapi-compiler-shared-2024.2": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-shared-2024.2-2024.2.0-981_amd64.deb",
+    "hash": "sha256-gcGw7suZfwV6wSVj1m8UOvnelDAUcUJPhJkMHbR0vbU="
+  },
   "intel-oneapi-compiler-shared-runtime-2024.2": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-shared-runtime-2024.2-2024.2.0-981_amd64.deb",
     "hash": "sha256-d8MpTartoEsi8Lkd+IXZLKwmCmmzzaPJuMxd4Wn9BRg="
+  },
+  "intel-oneapi-dpcpp-cpp-2024.2": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-dpcpp-cpp-2024.2-2024.2.0-981_amd64.deb",
+    "hash": "sha256-y4oaBheX2Q/73NGvu/gVpZjGvt7CfBTaLHMp/I3RMvU="
+  },
+  "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-2023.2.4": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-2023.2.4-2023.2.4-49553_amd64.deb",
+    "hash": "sha256-hqY7QJyah3A9/3uzvBTebAu6qBgj+QWTmilLL0a6idc="
   },
   "intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-2023.2.4": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-2023.2.4-2023.2.4-49553_all.deb",
     "hash": "sha256-svPb1QNVT3i14/Lv64R1sF1X+Z/ufJ4OyZmZk2jFNoU="
   },
-  "intel-oneapi-openmp-common-2024.2": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-openmp-common-2024.2-2024.2.0-981_all.deb",
-    "hash": "sha256-7MfL19P5N2FAuikIvK9O45MxblLaC7DkqVxUlLlD29E="
-  },
   "intel-oneapi-compiler-dpcpp-cpp-common-2024.2": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-dpcpp-cpp-common-2024.2-2024.2.0-981_all.deb",
     "hash": "sha256-JmdEBQLaxSL9Rc7CXanMO+ULyEtJ3LOBiIf4yaIabZ8="
+  },
+  "intel-oneapi-openmp-common-2024.2": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-openmp-common-2024.2-2024.2.0-981_all.deb",
+    "hash": "sha256-7MfL19P5N2FAuikIvK9O45MxblLaC7DkqVxUlLlD29E="
   },
   "intel-oneapi-compiler-shared-common-2024.2": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-compiler-shared-common-2024.2-2024.2.0-981_all.deb",

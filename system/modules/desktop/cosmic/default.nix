@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -19,5 +20,21 @@ in {
     # services.accounts-daemon.enable = true;
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    environment.systemPackages = with pkgs; [
+      cosmic-ext-applet-clipboard-manager
+      cosmic-ext-applet-emoji-selector
+      cosmic-ext-calculator
+      cosmic-ext-examine
+      cosmic-ext-forecast
+      cosmic-ext-tasks
+      cosmic-ext-tweaks
+      cosmic-player
+      cosmic-reader
+      chronos
+      oboete
+      quick-webapps
+      stellarshot
+    ];
   };
 }

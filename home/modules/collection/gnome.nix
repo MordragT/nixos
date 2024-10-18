@@ -14,7 +14,7 @@ in {
     home.packages = with pkgs; [
       amberol # simple audio player
       # apostrophe # markdown editor
-      audio-sharing
+      # audio-sharing
       # authenticator # generate two-factor codes
       baobab # disk usage analyzer
       # blanket # listen to chill sounds
@@ -22,91 +22,92 @@ in {
       # cartridges # game launcher
       # calls # phone dialer and call handler
       # not packaged chessclock
-      citations # bibtex
+      # citations # bibtex
       # clairvoyant
       collision # check file hashes
-      # not packaged commit
+      # commit
       # contrast # gtk check contrast
       # curtail # image compressor
       # czkawka # duplicate finder
-      # not packaged decibles
+      decibels
       # denaro # personal finance manager
-      # dialect # translate
       # deja-dup # backup tool
-      eartag # tag audio files
+      # dialect # translate
+      door-knocker
+      # eartag # tag audio files
       easyeffects # audio effects
       # elastic # design spring animations
       # emblem
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
-      eyedropper # pick format colors
-      raider # file shredder
+      # eyedropper # pick format colors
+      # raider # file shredder
       resources # monitor hardware resources
       fclones-gui # find duplicate files
       # foliate # book reader
       # forge-sparks
       fractal-next # gtk matrix messaging
-      fragments # torrent downloader
+      # fragments # torrent downloader
       # fretboard # guitar chords
       # broken gaphor # create diagrams and uml
-      ghex # hex editor
+      # ghex # hex editor
       # glide-media-player
       gnome-boxes
       gnome-calculator
       gnome-calendar
-      gnome-decoder # scan qr codes
-      gnome-font-viewer
-      gnome-frog
-      gnome-obfuscate # censor private information
+      # gnome-color-manager
+      # gnome-decoder # scan qr codes
+      # gnome-font-viewer
+      # gnome-frog # extract text from images
+      # gnome-obfuscate # censor private information
       # gnome-podcasts # listen to podcast
-      gnome-sound-recorder
-      gnome-system-monitor
-      # gnome.gnome-color-manager
-      # gnome.gnome-tweaks
       # gnome-secrets # password manager
+      # gnome-sound-recorder
+      # gnome-solanum # pomodoro timer
+      gnome-system-monitor
+      # gnome-tweaks
       # health # health tracker
       helvum # patchbay for pipewire
-      icon-library
+      # icon-library
       # identity # image comparison
       impression # create bootable drives
-      junction # open with preview
-      keypunch # practice typing
-      khronos # track task time
-      kooha # screen recording
+      # junction # open with preview
+      # keypunch # practice typing
+      # khronos # track task time
+      # kooha # screen recording
       # komikku # read manga
-      letterpress # create ascii art
+      # letterpress # create ascii art
       # lorem # generate placeholder text
       # lutris
       # markets # gtk crypto market prices
       # metadata-cleaner
-      mousai # identitfy any song
-      mousam # weather app
+      # mousai # identitfy any song
+      # mousam # weather app
       # newsflash # modern feed reader
       # overskride # bluetooth client
       paleta # extract dominant color from images
       pdfarranger
-      polari # irc client
+      # polari # irc client
       # popsicle # flash usb with iso
       # not packaged paperclip # edit pdf metadata
       # pitivi # video editor
       # pika-backup # simple backups
       # planify # more advanced task manager
-      plots # graph plotting
-      rnote # draw notes
-      share-preview # test social media cards
-      shortwave # internet radio
+      # plots # graph plotting
+      # rnote # draw notes
+      # share-preview # test social media cards
+      # shortwave # internet radio
+      showtime # video player
       simple-scan
-      gnome-solanum # pomodoro timer
       switcheroo # image conversion
-      imagemagick # needed by switcheroo ??
       # tangram # browser for pinned tabs
       # telegraph # decode morse code
-      textpieces
-      video-trimmer
+      # textpieces
+      # video-trimmer
       warp # send and recieve files
       # webfontkitgenerator
-      wike # search and read wikipedia
+      # wike # search and read wikipedia
       # zrythm # music daw
     ];
   };

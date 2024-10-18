@@ -8,8 +8,8 @@
   {
     "name": "texlab",
     "publisher": "efoerster",
-    "version": "5.19.0",
-    "sha256": "1nsgnawvc0jvza82vlh3my3ljgk01y5sylpc7hfq3viswsc72wnx"
+    "version": "5.20.0",
+    "sha256": "0fr82cgvsg5hk5n8xzvbswnfk0fyf8hjl9xynz9cym3d9kin29g6"
   },
   {
     "name": "kotlin",
@@ -50,8 +50,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.11.0",
-    "sha256": "0g8dycw94i3dzahxxy84r7awkgn36j17amyva8adhwch9nhahrw5"
+    "version": "1.12.3",
+    "sha256": "09djqfjliz8blblfalrkpgwvf494j7ilsmixblcmxms8nvb3r1zr"
   },
   {
     "name": "vscode-nickel",

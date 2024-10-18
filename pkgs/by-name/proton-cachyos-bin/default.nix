@@ -6,11 +6,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "proton-cachyos-bin";
-  version = "9.0.20240708-1";
+  version = "9.0.20240831-1";
 
   src = fetchzip {
     url = "https://mirror.cachyos.org/repo/x86_64_v3/cachyos-v3/proton-cachyos-1%3A${version}-x86_64_v3.pkg.tar.zst";
-    hash = "sha256-hEW2iNEvxOYAeEjoQkiFDEpFFejgnwxXupKQmWjw73Y=";
+    hash = "sha256-S4r4lMgnDIaoCJ7XlZS4J2zDreVXLAwOavEMuDXiakw=";
     nativeBuildInputs = [zstd];
     stripRoot = false;
   };

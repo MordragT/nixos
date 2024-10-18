@@ -15,8 +15,8 @@ in {
       prismlauncher
       # ferium
       # optifine
-      moonlight-qt # game stream client ala steam link
-      nexusmods-app-unfree
+      # moonlight-qt # game stream client ala steam link
+      # nexusmods-app-unfree
     ];
   };
 }

@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -29,6 +30,10 @@ in {
     security.pki.certificateFiles = [
       ./root_ca.crt
       ./intermediate_ca.crt
+    ];
+
+    environment.systemPackages = [
+      pkgs.step-cli # generate certificates
     ];
 
     services.step-ca = {

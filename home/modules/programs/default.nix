@@ -5,10 +5,8 @@
     ./firefox
     ./git
     ./helix
-    ./hyprland
     ./loupe
     ./mangohud
-    # ./niri
     ./nushell
     ./obs
     ./papers

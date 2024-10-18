@@ -54,7 +54,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = [
     "kvm-amd"
-    "btintel"
+    # "btintel"
     "v4l2loopback"
     "zenpower"
     # "amd_pstate=active" _CPC object not present and no settings in bios

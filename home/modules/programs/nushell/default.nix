@@ -5,6 +5,11 @@
   ...
 }: let
   cfg = config.mordrag.programs.nushell;
+  plugins = [
+    "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
+    "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
+    "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
+  ];
 in {
   options.mordrag.programs.nushell = {
     enable = lib.mkEnableOption "Nushell";
@@ -18,14 +23,40 @@ in {
     # programs.starship.enable = true;
     # programs.starship.enableNushellIntegration = true;
 
+    systemd.user.services = {
+      nu-plugin-setup = {
+        Unit = {
+          Description = "Set up nushell plugins";
+          # https://github.com/nix-community/home-manager/issues/3865
+          X-SwitchMethod = "restart";
+          X-Restart-Triggers = plugins;
+        };
+
+        Service = {
+          Type = "oneshot";
+          ExecStart = let
+            file = pkgs.writeTextFile {
+              name = "nu-plugin-setup.nu";
+              text = ''
+                # Remove each plugin
+                plugin list | get name | each {|x| (plugin rm $x)}
+
+                ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
+              '';
+            };
+          in ''${pkgs.nushell}/bin/nu ${file}'';
+        };
+
+        Install = {
+          WantedBy = ["default.target"];
+        };
+      };
+    };
+
     programs.nushell = {
       enable = true;
       package = pkgs.nushell;
       configFile.text = ''
-        plugin add "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
-        plugin add "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
-        plugin add "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
-
         plugin use formats
         plugin use gstat
         plugin use apt
@@ -62,6 +93,10 @@ in {
           }
 
           error_style: "fancy"
+
+          display_errors: {
+            exit_code: false
+          }
         }
       '';
     };

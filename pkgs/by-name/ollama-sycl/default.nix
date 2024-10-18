@@ -18,12 +18,12 @@
   acceleration ? null,
 }: let
   inherit (lib) cmakeBool cmakeFeature;
-  version = "0.3.6";
+  version = "0.3.10";
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     rev = "v${version}";
-    hash = "sha256-Nq2tZUy82JQ3mgR6j1wctolUSprURnOaUldGTi9hvZc=";
+    hash = "sha256-iNjqnhiM0L873BiBPAgI2Y0KEQyCInn2nEihzwLasFU=";
     fetchSubmodules = true;
   };
 
@@ -37,12 +37,9 @@
     (preparePatch "02-clip-log.diff" "sha256-dabeuEr8+xq9NTi5FTtG7MqHa9LWMrOnshFTYkPYF4Q=")
     (preparePatch "03-load_exception.diff" "sha256-0S99aNLj59ljFtCuG+9Wbgp3Sv0fZy1YFfA/XA9J1nE=")
     (preparePatch "04-metal.diff" "sha256-l97rYGo8YFKw64bJ3TaJeXOtArKZ25wQp1ElplK/Yho=")
-    (preparePatch "05-default-pretokenizer.diff" "sha256-eqTa0cTQoS0tPh63JNgrYOXanYbOGVmLu/IA+RDFzfY=")
-    (preparePatch "06-embeddings.diff" "sha256-HF+Fmkyw/zxP55vIsRJW3QwPMi/ZShErOR/bFgosBzs=")
+    (preparePatch "05-default-pretokenizer.diff" "sha256-J998wePQmOLHsmwfPgDlqKa9p6Sg4HXVDSfuptSpZL0=")
+    (preparePatch "06-embeddings.diff" "sha256-Ru/0Yt4Zm+e7H2s/Ygykq13p1WXe2EMfbZJ14gSiZ8c=")
     (preparePatch "07-clip-unicode.diff" "sha256-JWzOcJPf9opg4C4eNOhpZYHbpgkoIsxtE4DN+t6wf6U=")
-    (preparePatch "08-pooling.diff" "sha256-p33Qni9yuch0v39YM/N0nvaS4GvrYoo7iIqfI7OIQP4=")
-    (preparePatch "09-lora.diff" "sha256-g5KI1W412wLU2jrcpO0gz49+5AbnbSwT0VKzDeXRFDI=")
-    (preparePatch "11-phi3-sliding-window.diff" "sha256-hg9SyOvp8eTMp5O2Budz+Hty1FKt/knsLVy6+vJDJi8=")
   ];
 
   llama-cpp-static = stdenv.mkDerivation {

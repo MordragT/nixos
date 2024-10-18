@@ -20,10 +20,10 @@ in {
       force = true;
     };
 
-    home.file.".local/share/bottles/runners/wine-tkg-${lib.getVersion pkgs.wine-tkg}" = {
-      source = pkgs.wine-tkg;
-      recursive = true;
-      force = true;
-    };
+    # home.file.".local/share/bottles/runners/wine-tkg-${lib.getVersion pkgs.wine-tkg}" = {
+    #   source = pkgs.wine-tkg;
+    #   recursive = true;
+    #   force = true;
+    # };
   };
 }

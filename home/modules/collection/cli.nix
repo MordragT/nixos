@@ -12,21 +12,19 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      distrobox
+      # distrobox
       hollywood # fake hacking
-      step-cli # generate certificates
       oxen
       ventoy # create bootable usb drive for isos
       xorg.xlsclients
-      yt-dlp # download youtube videos
+      # yt-dlp # download youtube videos
 
       # byfl # compiler based application analysis
       # likwid # performance monitoring
       # renderdoc # debug graphics
       # vkmark
       # vulkan-raytracing
-      p7zip
-      # ollama # run large language models locally
+      # p7zip
       # nodePackages.reveal-md # create presentations from markdown
       # poppler_utils # utils for pdfs
       # difftastic # a diff tool
