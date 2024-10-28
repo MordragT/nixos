@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   mordrag.programs.gnome-disks.enable = true;
+  mordrag.programs.mediatek-utils.enable = true;
   mordrag.programs.nautilus.enable = true;
   mordrag.programs.steam = {
     enable = true;
@@ -12,9 +13,9 @@
       # steamtinkerlaunch
     ];
   };
-  mordrag.programs.valent.enable = true;
+  # broken mordrag.programs.valent.enable = true;
 
-  # programs.adb.enable = true;
+  programs.adb.enable = true;
   # programs.bandwhich.enable = true; # view network utilization
   # programs.captive-browser = {
   #   enable = true;

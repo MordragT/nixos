@@ -30,14 +30,11 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/lib
-    cp $src/libflash.1.0.0.so $out/lib/libflash.1.0.0.so
-    cp $src/libimagechecker.1.0.0.so $out/lib/libimagechecker.1.0.0.so
-    cp $src/libsla_challenge.so $out/lib/libsla_challenge.so
+    install -Dm0644 $src/libflash.1.0.0.so $out/lib/libflash.1.0.0.so
+    install -Dm0644 $src/libimagechecker.1.0.0.so $out/lib/libimagechecker.1.0.0.so
+    install -Dm0644 $src/libsla_challenge.so $out/lib/libsla_challenge.so
 
-    mkdir -p $out/bin
-    cp $src/SPFlashToolV6 $out/bin/spflashtool
-    chmod +x $out/bin/spflashtool
+    install -Dm0755 $src/SPFlashToolV6 $out/bin/spflashtool
 
     runHook postInstall
   '';

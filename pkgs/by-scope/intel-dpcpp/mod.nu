@@ -57,7 +57,7 @@ export def main [] {
     let sources = (
         $sources 
         | append $sources_all 
-        | reduce --fold {} { |it, acc| $acc | insert $it.package { url: $"https://apt.repos.intel.com/oneapi/($it.filename)", hash: (nix hash to-sri --type sha256 $it.sha256) } }
+        | reduce --fold {} { |it, acc| $acc | insert $it.package { url: $"https://apt.repos.intel.com/oneapi/($it.filename)", hash: (nix hash convert --hash-algo sha256 --to sri $it.sha256) } }
     )
     
     $sources | to json | save --force $file

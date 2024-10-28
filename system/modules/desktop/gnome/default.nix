@@ -17,7 +17,7 @@ in {
       space-bar
       rounded-window-corners
       task-widget
-      valent
+      # broken valent
       fly-pie
     ];
   };

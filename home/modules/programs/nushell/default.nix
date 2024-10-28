@@ -23,39 +23,16 @@ in {
     # programs.starship.enable = true;
     # programs.starship.enableNushellIntegration = true;
 
-    systemd.user.services = {
-      nu-plugin-setup = {
-        Unit = {
-          Description = "Set up nushell plugins";
-          # https://github.com/nix-community/home-manager/issues/3865
-          X-SwitchMethod = "restart";
-          X-Restart-Triggers = plugins;
-        };
-
-        Service = {
-          Type = "oneshot";
-          ExecStart = let
-            file = pkgs.writeTextFile {
-              name = "nu-plugin-setup.nu";
-              text = ''
-                # Remove each plugin
-                plugin list | get name | each {|x| (plugin rm $x)}
-
-                ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
-              '';
-            };
-          in ''${pkgs.nushell}/bin/nu ${file}'';
-        };
-
-        Install = {
-          WantedBy = ["default.target"];
-        };
-      };
-    };
-
     programs.nushell = {
       enable = true;
       package = pkgs.nushell;
+      loginFile.text = ''
+        # Remove each plugin
+        plugin list | get name | each {|x| (plugin rm $x)}
+
+        ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
+      '';
+      envFile.source = ./env.nu;
       configFile.text = ''
         plugin use formats
         plugin use gstat

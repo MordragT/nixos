@@ -11,13 +11,11 @@ System and home-manager configuration for my linux machines.
 
 ## 📦 Contents
 
-- `config/`: Nixos configuration
-- `home/`: Home-Manager configuration
-- `hosts/`: Machine specific configurations
-- `modules/`: Nixos modules
+- `system/config/`: Machine specific configurations
+- `system/modules/`: Nixos modules
+- `home/config/`: Home-Manager configurations
+- `home/modules/`: Home-Manager modules
 - `pkgs/`: Overlays for various packages
-- `scripts/`: Nushell scripts for inclusion into my configs
-- `secrets/`: Encrypted secrets used by some services
 
 ## 🚀 How to use ?
 
@@ -50,7 +48,7 @@ Say you have folders under `/nix/state/users/name/data` where you have all the f
 your home folders like `Desktop` or `Documents` under `/nix/state/users/name/home`. Then you can specify the following config:
 
 ```nix
-# config/impermanence.nix
+# system/config/<machine>/impermanence.nix
 environment.state = {
     enable = true;
     targets = [
@@ -90,93 +88,27 @@ Now `Desktop@` and `Documents@` will be mounted/symlinked at startup to your hom
 
 ### 🦊 Firefox Addons
 
-Under `pkgs/firefox-addons` are a bunch of firefox addons defined. But instead of manually creating derivations for each addon,
-the addons are generated via the `pkgs/firefox-addons/mod.nu` nushell script. The resulting `addons.json` is then used to create
+Under `pkgs/by-scope/firefox-addons` are a bunch of firefox addons defined. But instead of manually creating derivations for each addon,
+the addons are generated via the `pkgs/by-scope/firefox-addons/mod.nu` nushell script. The resulting `default.lock` is then used to create
 the respective derivations.
 
-Now to add addons you can just add the slugs into the `pkgs/firefox-addons/mod.nu` script and recreate the `addons.json` file
-by first deleting it and then running the `just create-firefox` command from the root of the repository.
-When you want to update the addons just run `just update-firefox`
+Now to add addons you can just add the slugs into the `pkgs/by-scope/firefox-addons/mod.nu` script and recreate the `default.lock` file
+by running `just update`
 
-*Disclaimer*: Due to some limitations of nushell, at the moment the path of `addons.json` is hardcoded into `pkgs/firefox-addons/mod.nu`.
+*Disclaimer*: Due to some limitations of nushell, at the moment the path of `default.lock` is hardcoded into `pkgs/by-scope/firefox-addons/mod.nu`.
     You ~~might~~ probably want to change that
 
 ### 💻 Vscode Extensions
 
-The vscode extensions are very similar to the firefox addons and are defined under `pkgs/vscode-extensions`.
+The vscode extensions are very similar to the firefox addons and are defined under `pkgs/by-scope/vscode-extensions`.
 The **disclaimer** also applies!
 
 ### 🚧 WIP Intel OneAPI
 
 In an effort to make the *Intel Extension for Pytorch* work, I created a multitude of packages.
-Under `pkgs/intel-packages` are lying the intel oneapi packages like *dpcpp* or *mkl* with the exception of the python specific
-packages wich are under `pkgs/python-packages`.
-The open source packages of the oneapi are defined under `pkgs/oneapi-packages` and the open source *intel llvm* project is currently in `pkgs/xpu-packages`.
+Under `pkgs/by-scope` and `pkgs/by-name` are lying the intel oneapi packages like *dpcpp* or *mkl*.
 
-To use the dpcpp compiler you may want to use `intelPackages.env.mkDerivation`, which is currently somewhat functional.
-The python packages are sadly not functional at the moment.
-
-### 🍷 Wine Bottles
-
-With the constructs defined under `pkgs/win-packages` you can create wine bottles for your windows programs.
-Here is an example for battle.net:
-
-```nix
-# pkgs/win-packages/battle-net.nix
-{
-  mkBottle,
-  wineWowPackages,
-}:
-mkBottle {
-  wine = wineWowPackages.waylandFull;
-  wineArch = 64;
-
-  name = "battle-net";
-
-  packages = [
-    "dxvk"
-    "tahoma"
-    "arial"
-  ];
-
-  registry = [
-    {
-      path = ''HKCU\Software\Wine\Drivers'';
-      key = "Graphics";
-      type = "REG_SZ";
-      value = "wayland";
-    }
-    {
-      path = ''HKCU\Software\Wine'';
-      key = "Version";
-      type = "REG_SZ";
-      value = "win10";
-    }
-    {
-      path = ''HKCU\Software\Wine\AppDefaults\BlizzardBrowser.exe'';
-      key = "version";
-      type = "REG_SZ";
-      value = "win7";
-    }
-    {
-      path = ''HKCU\Software\Wine\DXVA2'';
-      key = "backend";
-      type = "REG_SZ";
-      value = "va";
-    }
-  ];
-
-  workingDir = "drive_c/Program Files (x86)/Battle.net/";
-  exe = "Battle.net.exe";
-}
-```
-
-This will create a program `battle-net`:
-
-```bash
-battle-net run # by default executed if 'run' not specified
-battle-net setup <exe>
-```
+To use the dpcpp compiler you may want to use `dpcppStdenv`, which is currently somewhat functional.
 
 ### 🛑 Other packages
 

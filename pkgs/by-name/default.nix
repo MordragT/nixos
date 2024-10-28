@@ -16,6 +16,7 @@ in {
 
   llama-cpp-sycl = callPackage ./llama-cpp-sycl {};
   lottieconv = callPackage ./lottieconv {};
+  mtk-client = callPackage ./mtk-client {};
   my-vscode = callPackage ./my-vscode {};
   ollama-sycl = callPackage ./ollama-sycl {};
 

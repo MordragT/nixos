@@ -1,11 +1,4 @@
 {pkgs, ...}: {
-  # TODO
-  # remove when https://github.com/NixOS/nixpkgs/issues/338933 is fixed
-  # environment.sessionVariables = {
-  #   FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
-  #   FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts";
-  # };
-
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = true;

@@ -12,9 +12,6 @@
   ];
 
   environment = {
-    # interactiveShellInit = ''
-    #   alias comojit='comoji commit'
-    # '';
     variables.EDITOR = "hx";
     shells = [pkgs.nushell];
 
@@ -44,15 +41,4 @@
       vulkan-tools
     ];
   };
-
-  # xdg.mime = {
-  #   enable = true;
-  #   defaultApplications = {
-  #     "text/html" = "firefox.desktop";
-  #     "x-scheme-handler/http" = "firefox.desktop";
-  #     "x-scheme-handler/https" = "firefox.desktop";
-  #     "x-scheme-handler/about" = "firefox.desktop";
-  #     "x-scheme-handler/unknown" = "firefox.desktop";
-  #   };
-  # };
 }
