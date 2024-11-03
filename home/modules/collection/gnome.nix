@@ -30,6 +30,7 @@ in {
       # curtail # image compressor
       # czkawka # duplicate finder
       decibels
+      delineate # View and edit dot graph
       # denaro # personal finance manager
       # deja-dup # backup tool
       # dialect # translate
@@ -41,6 +42,7 @@ in {
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
+      # exhibit # 3D model viewer
       # eyedropper # pick format colors
       # raider # file shredder
       resources # monitor hardware resources
@@ -51,7 +53,7 @@ in {
       # fragments # torrent downloader
       # fretboard # guitar chords
       # broken gaphor # create diagrams and uml
-      # ghex # hex editor
+      ghex # hex editor
       # glide-media-player
       gnome-boxes
       gnome-calculator
@@ -69,6 +71,7 @@ in {
       # gnome-tweaks
       # health # health tracker
       helvum # patchbay for pipewire
+      hieroglyphic # finding LaTeX symbols from drawings
       # icon-library
       # identity # image comparison
       impression # create bootable drives
@@ -104,6 +107,8 @@ in {
       # tangram # browser for pinned tabs
       # telegraph # decode morse code
       # textpieces
+      turtle # gui for version control in nautilus
+      upscaler # frontend for upscayl-ncnn
       # video-trimmer
       warp # send and recieve files
       # webfontkitgenerator

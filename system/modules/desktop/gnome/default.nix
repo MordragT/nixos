@@ -15,7 +15,6 @@ in {
 
     environment.systemPackages = with pkgs.gnomeExtensions; [
       space-bar
-      rounded-window-corners
       task-widget
       # broken valent
       fly-pie

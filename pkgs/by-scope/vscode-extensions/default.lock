@@ -2,14 +2,14 @@
   {
     "name": "gltf-vscode",
     "publisher": "cesium",
-    "version": "2.5.0",
-    "sha256": "03i2a4xn5sgy7ggfqw28v6a03lk30q0vhbgrsckjgxwgaghpk2hf"
+    "version": "2.5.1",
+    "sha256": "0963mnvavpad5im5x2kr665lfyvhinvnq3krr8aszfy4xm01hn0h"
   },
   {
     "name": "texlab",
     "publisher": "efoerster",
-    "version": "5.20.0",
-    "sha256": "0fr82cgvsg5hk5n8xzvbswnfk0fyf8hjl9xynz9cym3d9kin29g6"
+    "version": "5.21.0",
+    "sha256": "15sbdv2h488wb459rz8p3hdvf3kwbv3rr0vpb9ask9cqdcr32rf4"
   },
   {
     "name": "kotlin",
@@ -50,8 +50,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.12.3",
-    "sha256": "09djqfjliz8blblfalrkpgwvf494j7ilsmixblcmxms8nvb3r1zr"
+    "version": "1.12.4",
+    "sha256": "1a6w18xn70a9jpl3as5p4d390hz66vzhgmn19paqfdrjmq0rhizv"
   },
   {
     "name": "vscode-nickel",

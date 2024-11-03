@@ -14,8 +14,8 @@ in {
     catppuccin = pkgs.fetchFromGitHub {
       owner = "catppuccin";
       repo = "obs";
-      rev = "985431cfc252c41fc151c50f91d265e16da03e83";
-      sha256 = "KCRteMD8DyanPPMZZoVTXHy6xt+1HjozGTnbER1AH0M=";
+      rev = "d90002a5315db3a43c39dc52c2a91a99c9330e1f";
+      sha256 = "sha256-rU4WTj+2E/+OblAeK0+nzJhisz2V2/KwHBiJVBRj+LQ=";
     };
   in
     lib.mkIf cfg.enable {

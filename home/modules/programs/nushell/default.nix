@@ -48,9 +48,9 @@ in {
         use $"($scripts)/all-to.nu"
         use $"($scripts)/superview.nu"
 
-        # alias code = codium
         alias comojit = comoji commit
         alias r = direnv reload
+        alias code = codium
 
         $env.config = {
           show_banner: false

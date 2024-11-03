@@ -66,7 +66,8 @@ in {
     # };
 
     programs.vscode = {
-      package = pkgs.my-vscode;
+      # package = pkgs.my-vscode;
+      package = pkgs.vscodium;
       enable = true;
       userSettings = {
         "breadcrumbs.enabled" = false;

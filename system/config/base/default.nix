@@ -39,6 +39,7 @@
       trash-cli # put files in trash
       usbutils
       vulkan-tools
+      v4l-utils
     ];
   };
 }

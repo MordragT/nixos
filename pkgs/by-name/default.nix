@@ -2,6 +2,7 @@ self: pkgs: let
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
   byfl = callPackage ./byfl {};
+  delineate = callPackage ./delineate {};
   dud = callPackage ./dud {};
   ensembles = callPackage ./ensembles {};
   epic-asset-manager = callPackage ./epic-asset-manager {};
@@ -29,9 +30,12 @@ in {
   oxen = callPackage ./oxen {};
   proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
   spflashtool = callPackage ./spflashtool {};
+  spflashtool-v5 = callPackage ./spflashtool-v5 {};
   tabby = callPackage ./tabby {};
   tmfs = callPackage ./tmfs {};
 
+  upscaler = callPackage ./upscaler {};
+  upscayl-ncnn = callPackage ./upscayl-ncnn {};
   unified-runtime = callPackage ./unified-runtime {};
   unified-memory-framework = callPackage ./unified-memory-framework {};
 

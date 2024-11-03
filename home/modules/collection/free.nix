@@ -27,7 +27,7 @@ in {
       # xournalpp
 
       # Graphics
-      blender
+      # broken blender
       # electron16 blockbench-electron
       # drawio
       # glaxnimate
@@ -40,7 +40,6 @@ in {
 
       # Media
       # olive-editor # video editor
-      # upscayl
       # spotube # use spotify to find music on youtube
 
       # Security

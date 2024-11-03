@@ -11,9 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.spflashtool
-      pkgs.mtk-client
+    environment.systemPackages = with pkgs; [
+      mtk-client
+      scrcpy
+      spflashtool
     ];
 
     services.udev.extraRules = ''
