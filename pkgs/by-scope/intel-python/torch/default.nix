@@ -26,14 +26,14 @@
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.1.0.post3";
+  version = "2.3.1";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
 
   src = fetchwheel {
     package = "${pname}-${version}";
-    sha256 = "sha256-uOi0ccNP3AH4xh7pp5+6p9joFZuegkAIp1x9A+mbQ94=";
+    sha256 = "sha256-yd5H0liod0FIRyoB89K49G2i9qSvPi+Ko4Md/6L9Ozo=";
   };
 
   nativeBuildInputs = [
@@ -87,21 +87,8 @@ buildPythonPackage rec {
       $dev/share/cmake/Caffe2/Caffe2Targets-release.cmake \
       --replace-fail \''${_IMPORT_PREFIX}/lib "$lib/lib"
 
-
-    substituteInPlace $out/${python.sitePackages}/${pname}/utils/cpp_extension.py \
-      --replace-fail "from pkg_resources import packaging" "import packaging"
-
     mkdir $lib
     mv $out/${python.sitePackages}/torch/lib $lib/lib
     ln -s $lib/lib $out/${python.sitePackages}/torch/lib
-
-    # # remove version suffix for dependent packages
-    # substituteInPlace $out/${python.sitePackages}/torch/version.py \
-    #   --replace-fail "__version__ = '${version}+cxx11.abi'" "__version__ = '${version}'"
-
-    # mv $out/${python.sitePackages}/torch-${version}+cxx11.abi.dist-info $out/${python.sitePackages}/torch-${version}.dist-info
-
-    # substituteInPlace $out/${python.sitePackages}/torch-${version}.dist-info/METADATA \
-    #   --replace-fail "Version: ${version}+cxx11.abi" "Version: 2.1.0"
   '';
 }

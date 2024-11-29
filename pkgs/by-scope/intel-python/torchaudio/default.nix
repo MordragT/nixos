@@ -9,12 +9,12 @@
 }:
 buildPythonPackage rec {
   pname = "torchaudio";
-  version = "2.1.0.post3";
+  version = "2.3.1";
   format = "wheel";
 
   src = fetchwheel {
     package = "${pname}-${version}";
-    sha256 = "";
+    sha256 = "sha256-nScE7PUXLPKPi0Ces9qcQme5IQqBbdkjOPn/yM+0Xfw=";
   };
 
   nativeBuildInputs = [
@@ -31,4 +31,6 @@ buildPythonPackage rec {
   dependencies = [
     torch
   ];
+
+  meta.broken = true;
 }

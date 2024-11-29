@@ -23,7 +23,7 @@
 }:
 buildPythonPackage rec {
   pname = "intel_extension_for_pytorch";
-  version = "2.1.40";
+  version = "2.3.110";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
@@ -31,7 +31,7 @@ buildPythonPackage rec {
   src = fetchwheel {
     abi = "%2Bxpu";
     package = "${pname}-${version}";
-    sha256 = "sha256-77FJoi8lhE4IUhd7pa3SwdYyDQboWa6o4NZNgTLJsL4=";
+    sha256 = "sha256-QvCKSx5wh7OzBLcFFgVCQgDDeXyPW67MXV1T6ej7bos=";
   };
 
   nativeBuildInputs = [

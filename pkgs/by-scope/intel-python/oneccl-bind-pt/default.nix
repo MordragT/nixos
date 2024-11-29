@@ -10,7 +10,7 @@
 }:
 buildPythonPackage rec {
   pname = "oneccl_bind_pt";
-  version = "2.1.400";
+  version = "2.3.100";
   format = "wheel";
 
   src = fetchwheel {
