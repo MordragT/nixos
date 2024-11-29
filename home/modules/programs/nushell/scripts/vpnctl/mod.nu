@@ -12,7 +12,7 @@ export def down [] {
 }
 
 export def up [id] {
-    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
+    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v6 | lines).0 | from json
     let regions = $servers.regions
     let server = find-by-id $regions $id
     print ($server | table --expand)
@@ -20,7 +20,7 @@ export def up [id] {
 }
 
 export def "up best" [--count = 1] {
-    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
+    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v6 | lines).0 | from json
     let regions = $servers.regions
     let server = find-best $regions $count
     print ($server | table --expand)
@@ -28,7 +28,7 @@ export def "up best" [--count = 1] {
 }
 
 export def best [--count = 1] {
-    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v4 | lines).0 | from json
+    let servers = (http get https://serverlist.piaservers.net/vpninfo/servers/v6 | lines).0 | from json
     let regions = $servers.regions
     let server = find-best $regions $count
     print ($server | table --expand)
@@ -106,6 +106,7 @@ def enable [server] {
         Address = ($response.peer_ip)
         PrivateKey = ($private)
         DNS = ($response.dns_servers.0)
+        MTU = 1350
         [Peer]
         PersistentKeepalive = 25
         PublicKey = ($response.server_key)

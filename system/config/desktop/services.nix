@@ -20,9 +20,9 @@
   #   };
   # };
   mordrag.services.printing.enable = true;
-  # mordrag.services.step-ca.enable = true;
+  mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;
-  # mordrag.services.harmonia.enable = true;
+  mordrag.services.harmonia.enable = true;
   # mordrag.services.stalwart.enable = true;
   # mordrag.services.tabby = {
   #   enable = true;
@@ -50,6 +50,7 @@
   #   };
   # };
   # mordrag.services.vaultwarden.enable = true;
+  mordrag.services.wg-quick.enable = true;
 
   # services.flatpak.enable = true;
   services.ollama = {

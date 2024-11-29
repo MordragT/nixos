@@ -3,6 +3,7 @@
   stdenv,
   fetchFromGitHub,
   cmake,
+  makeWrapper,
   alsa-lib,
   glslang,
   libglvnd,
@@ -27,6 +28,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     cmake
+    makeWrapper
     steamCompatToolHook
   ];
 
@@ -56,6 +58,8 @@ stdenv.mkDerivation rec {
   postInstall = ''
     mv opengothic/lib* $out/lib/
     mv $out/bin/Gothic2Notr $out/bin/opengothic
+    wrapProgram $out/bin/opengothic \
+      --set LD_PRELOAD "${lib.getLib alsa-lib}/lib/libasound.so.2"
   '';
 
   meta = with lib; {

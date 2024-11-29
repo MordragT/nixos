@@ -8,14 +8,6 @@
 in {
   options.mordrag.programs.steam = {
     enable = lib.mkEnableOption "Steam";
-    package = lib.mkOption {
-      description = "Package to use";
-      default =
-        if cfg.gameFixes
-        then pkgs.steam
-        else pkgs.steam-small;
-      type = lib.types.package;
-    };
     controller = lib.mkOption {
       description = "Enable Steam controller";
       default = true;
@@ -41,16 +33,22 @@ in {
       enable = true;
       gamescopeSession.enable = true;
       protontricks.enable = true;
-      package = cfg.package.override {
+      remotePlay.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+      dedicatedServer.openFirewall = false;
+      package = pkgs.steam.override {
         # extraEnv = {
         #   MANGOHUD = true;
         #   MANGOHUD_DLSYM = true;
         # };
-        extraLibraries = pkgs:
-          with pkgs; [
-            libpulseaudio
-            gamemode
-          ];
+        # extraLibraries = pkgs:
+        #   with pkgs; [
+        #     libpulseaudio
+        #   ];
+        # extraPackages = pkgs:
+        #   with pkgs; [
+        #     gamemode
+        #   ];
       };
       extraCompatPackages = cfg.compatPackages;
     };
@@ -84,22 +82,6 @@ in {
     environment.etc = lib.mkIf cfg.gameFixes {
       # Crusader Kings 3
       "ssl/certs/f387163d.0".source = "${pkgs.cacert.unbundled}/etc/ssl/certs/Starfield_Class_2_CA.crt";
-    };
-
-    networking.firewall = lib.mkIf cfg.gameFixes {
-      # https://help.steampowered.com/en/faqs/view/2EA8-4D75-DA21-31EB
-      allowedTCPPortRanges = [
-        {
-          from = 27015;
-          to = 27050;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 27015;
-          to = 27050;
-        }
-      ];
     };
 
     environment.systemPackages = lib.optional cfg.controller pkgs.sc-controller;

@@ -11,8 +11,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.displayManager.cosmic-greeter.enable = true;
-    # programs.regreet.enable = true;
     services.desktopManager.cosmic.enable = true;
 
     security.pam.services.login.enableGnomeKeyring = true;

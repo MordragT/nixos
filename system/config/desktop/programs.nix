@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   mordrag.programs.gnome-disks.enable = true;
+  # mordrag.programs.gnome-network-displays.enable = true;
   mordrag.programs.mediatek-utils.enable = true;
   mordrag.programs.nautilus.enable = true;
   mordrag.programs.steam = {
@@ -27,7 +28,6 @@
   programs.droidcam.enable = true;
   programs.file-roller.enable = true;
   # programs.geary.enable = true;
-  programs.gnome-terminal.enable = true;
   # programs.seahorse.enable = true;
   # programs.wireshark = {
   #   enable = true;

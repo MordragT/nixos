@@ -4,6 +4,8 @@
   ...
 }: {
   # General
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   mordrag.desktop.cosmic.enable = true;
   mordrag.desktop.gnome.enable = true;
 

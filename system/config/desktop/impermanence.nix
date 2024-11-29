@@ -1,7 +1,7 @@
 {...}: {
   mordrag.environment.state = {
     enable = true;
-    targets = [
+    user.targets = [
       {
         # For Documents, Picutres etc.
         # Trash does not play nice with bind mounts therefore symlink
@@ -13,6 +13,8 @@
         group = "users";
         mode = "0700";
       }
+    ];
+    targets = [
       {
         # For crappy software that does not adhere to XDG
         # and likes to pollute home
@@ -54,7 +56,7 @@
   # files not yet supported by environment.state
   systemd.tmpfiles.rules = [
     "L /home/tom/.config/monitors.xml - - - - /nix/state/users/tom/config/monitors.xml"
-    # "L /home/tom/.config/mimeapps.list - - - - /nix/state/users/tom/config/mimeapps.list"
+    "L /home/tom/.config/mimeapps.list - - - - /nix/state/users/tom/config/mimeapps.list"
     # bind mounting trash does not seem to work
     # "L /home/tom/.local/share/Trash - - - - /nix/state/users/tom/trash"
   ];

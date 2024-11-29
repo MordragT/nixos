@@ -81,10 +81,12 @@ in {
       # kooha # screen recording
       # komikku # read manga
       # letterpress # create ascii art
+      loupe # image viewer
       # lorem # generate placeholder text
       # lutris
       # markets # gtk crypto market prices
       # metadata-cleaner
+      # broken mission-center # monitor resources
       # mousai # identitfy any song
       # mousam # weather app
       # newsflash # modern feed reader

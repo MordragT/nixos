@@ -38,13 +38,12 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nuenv = {
-      # url = "github:DeterminateSystems/nuenv";
-      url = "github:NotLebedev/nuenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nu-env = {
       url = "github:MordragT/nu-env";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    private = {
+      url = "git+ssh://git@github.com/MordragT/nix-private";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -63,8 +62,8 @@
     comoji,
     fenix,
     lanzaboote,
-    nuenv,
     nu-env,
+    private,
     ...
   }: let
     system = "x86_64-linux";
@@ -77,8 +76,8 @@
         comoji.overlays.default
         fenix.overlays.default
         nur.overlay
-        nuenv.overlays.default
         nu-env.overlays.default
+        private.overlays.default
         (import ./pkgs/overlay.nix)
       ];
     };

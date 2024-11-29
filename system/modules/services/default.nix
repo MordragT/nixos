@@ -12,5 +12,6 @@
     ./step-ca
     ./tabby
     ./vaultwarden
+    ./wg-quick
   ];
 }

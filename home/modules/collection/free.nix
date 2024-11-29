@@ -49,6 +49,7 @@ in {
       # Other
       # dbeaver-bin # sql client
       # insomnia # make http requests against rest apis
+      protonvpn-cli
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher
     ];

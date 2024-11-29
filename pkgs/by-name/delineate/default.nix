@@ -15,7 +15,6 @@
   gtk4,
   gtksourceview5,
   webkitgtk_6_0,
-  # libpanel,
   desktop-file-utils,
 }:
 stdenv.mkDerivation rec {
@@ -51,7 +50,6 @@ stdenv.mkDerivation rec {
     gtk4
     gtksourceview5
     webkitgtk_6_0
-    # libpanel
     desktop-file-utils
   ];
 

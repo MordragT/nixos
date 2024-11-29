@@ -15,6 +15,7 @@ in {
   intel-tbb = callPackage ./intel-tbb {};
   intel-tcm = callPackage ./intel-tcm {};
 
+  linux-msft-wsl = callPackage ./linux-msft-wsl {};
   llama-cpp-sycl = callPackage ./llama-cpp-sycl {};
   lottieconv = callPackage ./lottieconv {};
   mtk-client = callPackage ./mtk-client {};

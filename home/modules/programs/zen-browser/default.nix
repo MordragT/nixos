@@ -46,6 +46,7 @@ in {
             ghostery
             honey
             private-internet-access-ext
+            proton-vpn
             rust-search-extension
             sponsorblock
             youtube-shorts-block

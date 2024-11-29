@@ -13,11 +13,21 @@ in {
   config = lib.mkIf cfg.enable {
     services.xserver.desktopManager.gnome.enable = true;
 
-    environment.systemPackages = with pkgs.gnomeExtensions; [
-      space-bar
-      task-widget
-      # broken valent
-      fly-pie
+    environment.gnome.excludePackages = with pkgs; [
+      totem
+      evince
     ];
+
+    environment.systemPackages = with pkgs;
+      [
+        showtime
+        papers
+      ]
+      ++ (with pkgs.gnomeExtensions; [
+        space-bar
+        task-widget
+        # broken valent
+        fly-pie
+      ]);
   };
 }

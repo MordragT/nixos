@@ -21,6 +21,7 @@ in {
       # zoom-us
       webex
       # whatsapp-for-linux
+      ookla-speedtest
     ];
   };
 }
