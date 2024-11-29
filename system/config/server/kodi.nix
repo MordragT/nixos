@@ -1,14 +1,5 @@
 {pkgs, ...}: let
-  kodi = pkgs.private.kodi.withPackages (p:
-    with p; [
-      # youtube # invidious
-      sponsorblock
-      netflix
-      steam-launcher
-      steam-controller
-      # broken osmc-skin
-      mediathekview
-    ]);
+  kodi = pkgs.private.kodi;
 in {
   specialisation.kodi.configuration = {
     system.nixos.tags = ["kodi"];
