@@ -43,7 +43,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     private = {
-      url = "git+ssh://git@github.com/MordragT/nix-private";
+      # url = "git+ssh://git@github.com/MordragT/nix-private";
+      url = "github:MordragT/nix-private";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

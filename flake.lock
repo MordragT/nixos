@@ -547,15 +547,15 @@
       "locked": {
         "lastModified": 1732890361,
         "narHash": "sha256-BWCJG45mXJgpvCNYOavQREENYA9r/fbT1kkwtXKO5b8=",
-        "ref": "refs/heads/master",
+        "owner": "MordragT",
+        "repo": "nix-private",
         "rev": "427fd524244eca4dc6c37b2590fa0bd63b71ddef",
-        "revCount": 1,
-        "type": "git",
-        "url": "ssh://git@github.com/MordragT/nix-private"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/MordragT/nix-private"
+        "owner": "MordragT",
+        "repo": "nix-private",
+        "type": "github"
       }
     },
     "root": {
