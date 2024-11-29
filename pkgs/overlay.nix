@@ -9,10 +9,6 @@ in
     by-scope
     build-support
     {
-      # Pinned packages
-      # https://github.com/NixOS/nixpkgs/pull/317546
-      my-opencv = pins.opencv-typing.opencv;
-
       # Overrides and aliases
       dpcppStdenv = self.intel-dpcpp.stdenv;
       ffmpeg-vpl = pkgs.ffmpeg-full.override {
