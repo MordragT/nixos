@@ -2,7 +2,6 @@ self: pkgs: let
   build-support = self.callPackage ./build-support.nix {};
   callPackage = self.callPackage;
 in {
-  blake3 = callPackage ./blake3 {};
   compel = callPackage ./compel {};
   controlnet-aux = callPackage ./controlnet-aux {};
   diffusers = callPackage ./diffusers {};
