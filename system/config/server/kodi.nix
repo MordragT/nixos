@@ -12,6 +12,7 @@ in {
       enable = true;
       user = "kodi";
       program = "${kodi}/bin/kodi-standalone";
+      extraArguments = ["-s"];
     };
 
     # Kodi Remote
