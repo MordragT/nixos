@@ -2,7 +2,7 @@
   stdenv,
   coreutils,
   nodejs,
-  pnpm,
+  pnpm_8,
   buildPythonPackage,
   fetchFromGitHub,
   pythonRelaxDepsHook,
@@ -14,6 +14,7 @@
   compel,
   controlnet-aux,
   diffusers,
+  gguf,
   invisible-watermark,
   mediapipe,
   numpy,
@@ -22,6 +23,8 @@
   opencv4,
   pytorch-lightning,
   safetensors,
+  sentencepiece,
+  spandrel,
   timm,
   ipex,
   torch,
@@ -62,15 +65,12 @@
   send2trash,
   test-tube,
 }: let
-  # version = "4.2.4";
-  version = "unstable-2024-06-19";
+  version = "5.4.2";
   src = fetchFromGitHub {
     owner = "invoke-ai";
     repo = "InvokeAI";
-    # rev = "v${version}";
-    # hash = "sha256-eboJiYLqjfACA/4/efCYTbdDq44SivjtDR8P82UyKuQ=";
-    rev = "a43d602f16b41c3023fa9556205af8173345f58b";
-    hash = "sha256-v3VloLb/hHn+eOQb5KYVPc2DGCDVfavjXPFSrX09y7E=";
+    rev = "v${version}";
+    hash = "sha256-uZ94eh9i0WnWjJG3a00uqMmYWFkb6vF6pYo/zJq7ZOE=";
   };
   web = stdenv.mkDerivation rec {
     pname = "invokeai-web";
@@ -80,12 +80,12 @@
 
     nativeBuildInputs = [
       nodejs
-      pnpm.configHook
+      pnpm_8.configHook
     ];
 
-    pnpmDeps = pnpm.fetchDeps {
+    pnpmDeps = pnpm_8.fetchDeps {
       inherit pname src version sourceRoot;
-      hash = "sha256-zlJIq1msRZDllUmXiQKX13wvMRbkJ3Py3eJfzPxdVjc=";
+      hash = "sha256-nsBB911Hk1Ef7HO8MpchHqSWIpfq0wlhv3bOa1Rdiww=";
     };
 
     buildPhase = ''
@@ -110,6 +110,7 @@ in
     # dontWrapPythonPrograms = true;
 
     pythonRemoveDeps = [
+      "bitsandbytes"
       "pyreadline3"
       "opencv-python"
     ];
@@ -118,7 +119,8 @@ in
       # "clip_anytorch"
       # "compel"
       # "controlnet-aux"
-      # "diffusers"
+      "diffusers"
+      # "gguf"
       "invisible-watermark"
       "mediapipe"
       "numpy"
@@ -127,6 +129,8 @@ in
       # "opencv-python"
       "pytorch-lightning"
       "safetensors"
+      # "sentencepiece"
+      # "spandrel"
       "timm"
       "torch"
       "torchmetrics"
@@ -163,6 +167,7 @@ in
       compel
       controlnet-aux
       diffusers.optional-dependencies.torch
+      gguf
       invisible-watermark
       mediapipe
       numpy
@@ -171,6 +176,8 @@ in
       opencv4
       pytorch-lightning
       safetensors
+      sentencepiece
+      spandrel
       timm
       ipex
       torch
@@ -225,7 +232,6 @@ in
     # };
 
     patches = [
-      ./pyproject.patch
       ./shutil-mode.patch
       ./xpu.patch
     ];

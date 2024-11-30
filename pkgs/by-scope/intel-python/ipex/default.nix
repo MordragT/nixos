@@ -20,6 +20,7 @@
   zstd,
   ocl-icd,
   util-linux,
+  ruamel-yaml,
 }:
 buildPythonPackage rec {
   pname = "intel_extension_for_pytorch";
@@ -61,6 +62,7 @@ buildPythonPackage rec {
     pydantic
     torch
     util-linux
+    ruamel-yaml
   ];
 
   postInstall = ''

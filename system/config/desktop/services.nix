@@ -3,22 +3,22 @@
   lib,
   ...
 }: {
-  # mordrag.services.invokeai = {
-  #   enable = true;
-  #   settings = {
-  #     device = "xpu";
-  #     precision = "bfloat16";
-  #     lazy_offload = true;
-  #     log_memory_usage = true;
-  #     log_level = "info";
-  #     # ram = 7.5;
-  #     # vram = 0.5;
-  #     attention_type = "sliced";
-  #     attention_slice_size = 4;
-  #     sequential_guidance = true;
-  #     force_tiled_decode = false;
-  #   };
-  # };
+  mordrag.services.invokeai = {
+    enable = true;
+    settings = {
+      device = "xpu";
+      precision = "bfloat16";
+      lazy_offload = true;
+      log_memory_usage = true;
+      log_level = "info";
+      # ram = 7.5;
+      # vram = 0.5;
+      attention_type = "sliced";
+      attention_slice_size = 4;
+      sequential_guidance = true;
+      force_tiled_decode = false;
+    };
+  };
   mordrag.services.printing.enable = true;
   mordrag.services.step-ca.enable = true;
   # mordrag.services.forgejo.enable = true;

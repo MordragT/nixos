@@ -20,7 +20,11 @@ buildPythonPackage rec {
     rev = "v${version}";
     sha256 = "sha256-cwY8gFcaHkyYI0y31WK76FKeq0jhYdbArHhh8Q6c3DE=";
   };
-  sourceRoot = "libs/spandrel";
+  sourceRoot = "source/libs/spandrel";
+
+  build-system = [
+    setuptools
+  ];
 
   buildInputs = [
     torch
@@ -31,9 +35,5 @@ buildPythonPackage rec {
     typing-extensions
   ];
 
-  natveBuildInputs = [
-    setuptools
-  ];
-
-  doCheck = false;
+  pythonImportsCheck = ["spandrel"];
 }

@@ -4,7 +4,6 @@ self: pkgs: let
 in {
   compel = callPackage ./compel {};
   controlnet-aux = callPackage ./controlnet-aux {};
-  diffusers = callPackage ./diffusers {};
   dynamicprompts = callPackage ./dynamicprompts {};
   easing-functions = callPackage ./easing-functions {};
   facexlib = callPackage ./facexlib {};
