@@ -91,4 +91,6 @@ buildPythonPackage rec {
     mv $out/${python.sitePackages}/torch/lib $lib/lib
     ln -s $lib/lib $out/${python.sitePackages}/torch/lib
   '';
+
+  pythonImportsCheck = ["torch"];
 }

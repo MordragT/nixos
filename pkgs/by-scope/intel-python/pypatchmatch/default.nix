@@ -55,11 +55,11 @@ in
       pillow
     ];
 
-    doCheck = false;
-
     postInstall = ''
       cp ${libpatchmatch}/lib/libpatchmatch.so $out/lib/*/site-packages/patchmatch/
     '';
+
+    pythonImportsCheck = ["patchmatch"];
 
     meta = {
       description = "This library implements the PatchMatch based inpainting algorithm.";

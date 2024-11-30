@@ -1,9 +1,8 @@
 {
+  python,
   buildPythonPackage,
   fetchwheel,
   autoPatchelfHook,
-  ffmpeg_4,
-  ffmpeg_5,
   ffmpeg_6,
   torch,
 }:
@@ -23,8 +22,6 @@ buildPythonPackage rec {
 
   buildInputs = [
     torch.lib
-    ffmpeg_4.dev
-    ffmpeg_5.dev
     ffmpeg_6.dev
   ];
 
@@ -32,5 +29,11 @@ buildPythonPackage rec {
     torch
   ];
 
-  meta.broken = true;
+  preFixup = ''
+    # TorchAudio loads the newest FFmpeg that works, so get rid of the
+    # old ones.
+    rm $out/${python.sitePackages}/torio/lib/{lib,_}torio_ffmpeg{4,5}.*
+  '';
+
+  pythonImportsCheck = ["torchaudio"];
 }

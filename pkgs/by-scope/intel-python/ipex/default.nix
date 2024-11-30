@@ -79,6 +79,8 @@ buildPythonPackage rec {
     ln -s $lib/lib $out/${python.sitePackages}/${pname}/lib
   '';
 
+  pythonImportsCheck = ["intel_extension_for_pytorch"];
+
   meta = {
     description = "A Python package for extending the official PyTorch that can easily obtain performance on Intel platform";
     homepage = "https://github.com/intel/intel-extension-for-pytorch";

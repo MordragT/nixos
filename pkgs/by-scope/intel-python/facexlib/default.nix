@@ -38,8 +38,7 @@ buildPythonPackage rec {
     tqdm
   ];
 
-  # TODO FIXME
-  doCheck = false;
+  pythonImportsCheck = ["facexlib"];
 
   meta = {
     description = "Basic face library";

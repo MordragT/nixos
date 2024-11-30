@@ -35,4 +35,6 @@ buildPythonPackage rec {
     torch
     ipex
   ];
+
+  pythonImportsCheck = ["oneccl_bind_pt"];
 }

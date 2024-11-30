@@ -28,8 +28,7 @@ buildPythonPackage rec {
     torch
   ];
 
-  # TODO FIXME
-  doCheck = false;
+  pythonImportsCheck = ["compel"];
 
   meta = {
     description = "A prompting enhancement library for transformers-type text embedding systems";

@@ -37,4 +37,6 @@ buildPythonPackage rec {
     torch
     scipy
   ];
+
+  pythonImportsCheck = ["torchvision"];
 }

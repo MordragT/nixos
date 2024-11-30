@@ -17,8 +17,7 @@ buildPythonPackage rec {
     setuptools
   ];
 
-  # TODO fix me
-  doCheck = false;
+  pythonImportsCheck = ["picklescan"];
 
   meta = {
     description = "Security scanner detecting Python Pickle files performing suspicious actions";
