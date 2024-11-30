@@ -62,6 +62,7 @@ in {
     inherit targets;
     enable = mkEnableOption "Enable state loading";
     user = {
+      enable = mkEnableOption "Enable user state loading";
       inherit targets;
     };
   };
@@ -79,7 +80,7 @@ in {
       in
         script;
 
-      systemd.services.state = {
+      systemd.services.state = mkIf cfg.user.enable {
         enable = true;
         description = "State Binding";
         after = ["systemd-logind.service"];

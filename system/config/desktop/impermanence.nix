@@ -1,6 +1,7 @@
 {...}: {
   mordrag.environment.state = {
     enable = true;
+    user.enable = true;
     user.targets = [
       {
         # For Documents, Picutres etc.
