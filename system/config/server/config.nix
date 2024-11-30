@@ -24,6 +24,10 @@
   #   trusted-public-keys = ["store.local:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
   # };
 
+  environment.systemPackages = with pkgs; [
+    pulsemixer
+  ];
+
   mordrag.programs.steam = {
     enable = false;
     gameFixes = false;
