@@ -19,10 +19,10 @@
     ];
   };
 
-  nix.settings = {
-    substituters = ["https://store.local"];
-    trusted-public-keys = ["store.local:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
-  };
+  # nix.settings = {
+  #   substituters = ["https://store.local"];
+  #   trusted-public-keys = ["store.local:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
+  # };
 
   mordrag.programs.steam = {
     enable = false;
