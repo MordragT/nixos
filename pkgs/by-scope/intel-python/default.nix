@@ -6,6 +6,14 @@ in {
   bitsandbytes = callPackage ./bitsandbytes {};
   compel = callPackage ./compel {};
   controlnet-aux = callPackage ./controlnet-aux {};
+  datasets = pkgs.datasets.overrideAttrs (old: {
+    postPatch =
+      ''
+        substituteInPlace src/datasets/utils/_dill.py \
+          --replace-fail "0.3.8" "0.3.9"
+      ''
+      + old.postPatch;
+  });
   dynamicprompts = callPackage ./dynamicprompts {};
   easing-functions = callPackage ./easing-functions {};
   facexlib = callPackage ./facexlib {};
