@@ -31,7 +31,7 @@ buildPythonPackage rec {
     owner = "outlines-dev";
     repo = pname;
     rev = "refs/tags/${version}";
-    hash = "";
+    hash = "sha256-zB+CMlEq3k+ca+Jy8YgH0RjA7GDAxWjnzhvS6OORDp8=";
   };
 
   nativeBuildInputs = [
@@ -58,6 +58,11 @@ buildPythonPackage rec {
     transformers
     pycountry
   ];
+
+  postPatch = ''
+    substituteInPlace pyproject.toml \
+      --replace-fail "outlines_core==0.1.20" "outlines_core==0.1.24"
+  '';
 
   checkPhase = ''
     export HOME=$(mktemp -d)
