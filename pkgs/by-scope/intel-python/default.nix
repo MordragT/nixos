@@ -2,6 +2,8 @@ self: pkgs: let
   build-support = self.callPackage ./build-support.nix {};
   callPackage = self.callPackage;
 in {
+  airportsdata = callPackage ./airportsdata {};
+  bitsandbytes = callPackage ./bitsandbytes {};
   compel = callPackage ./compel {};
   controlnet-aux = callPackage ./controlnet-aux {};
   dynamicprompts = callPackage ./dynamicprompts {};
@@ -16,6 +18,8 @@ in {
   oneccl-bind-pt = callPackage ./oneccl-bind-pt {
     inherit (build-support) fetchwheel;
   };
+  outlines = callPackage ./outlines {};
+  outlines-core = callPackage ./outlines-core {};
   picklescan = callPackage ./picklescan {};
   pypatchmatch = callPackage ./pypatchmatch {};
   spandrel = callPackage ./spandrel {};

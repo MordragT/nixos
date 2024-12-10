@@ -12,7 +12,7 @@
   typing-extensions,
   pydantic,
   torch,
-  addOpenGLRunpath,
+  addDriverRunpath,
   autoPatchelfHook,
   level-zero,
   intel-mkl,
@@ -36,7 +36,7 @@ buildPythonPackage rec {
   };
 
   nativeBuildInputs = [
-    addOpenGLRunpath
+    addDriverRunpath
     autoPatchelfHook
   ];
 

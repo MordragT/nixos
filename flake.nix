@@ -43,8 +43,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     private = {
-      # url = "git+ssh://git@github.com/MordragT/nix-private";
-      url = "github:MordragT/nix-private";
+      url = "git+ssh://git@github.com/MordragT/nix-private";
+      # url = "github:MordragT/nix-private";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -76,7 +76,7 @@
         cosmic.overlays.default
         comoji.overlays.default
         fenix.overlays.default
-        nur.overlay
+        nur.overlays.default
         nu-env.overlays.default
         private.overlays.default
         (import ./pkgs/overlay.nix)
