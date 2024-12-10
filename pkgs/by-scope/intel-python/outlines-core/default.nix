@@ -3,9 +3,11 @@
   buildPythonPackage,
   fetchPypi,
   pythonOlder,
-  cargo,
   rustPlatform,
+  cargo,
   rustc,
+  openssl,
+  pkg-config,
   setuptools-rust,
   setuptools-scm,
   interegular,
@@ -20,7 +22,7 @@
 }:
 buildPythonPackage rec {
   pname = "outlines-core";
-  version = "0.1.17";
+  version = "0.1.24";
   pyproject = true;
 
   disabled = pythonOlder "3.8";
@@ -28,7 +30,7 @@ buildPythonPackage rec {
   src = fetchPypi {
     inherit version;
     pname = "outlines_core";
-    hash = "sha256-CSWhKrHogYxvGJb+79tNTYySLmRhUVBi0b0+YEWbAoE=";
+    hash = "sha256-5vpvJviTZTQj6nQvPKTa67wygD8ET+aap/aoVjX0APk=";
   };
 
   cargoDeps = rustPlatform.importCargoLock {
@@ -39,10 +41,18 @@ buildPythonPackage rec {
     cp --no-preserve=mode ${./Cargo.lock} Cargo.lock
   '';
 
-  build-system = [
-    cargo
+  nativeBuildInputs = [
     rustPlatform.cargoSetupHook
+    cargo
     rustc
+    pkg-config
+  ];
+
+  buildInputs = [
+    openssl
+  ];
+
+  build-system = [
     setuptools-rust
     setuptools-scm
   ];
@@ -69,6 +79,7 @@ buildPythonPackage rec {
     # Tests that need to download from Hugging Face Hub.
     "test_create_fsm_index_tokenizer"
     "test_reduced_vocabulary_with_rare_tokens"
+    "test_complex_serialization"
   ];
 
   pythonImportsCheck = ["outlines_core"];
