@@ -1,8 +1,11 @@
 {
   buildPythonPackage,
+  python,
   fetchwheel,
   autoPatchelfHook,
   zlib,
+  level-zero,
+  intel-dpcpp,
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
@@ -24,4 +27,21 @@ buildPythonPackage rec {
   buildInputs = [
     zlib
   ];
+
+  propagatedBuildInputs = [
+    intel-dpcpp.llvm
+  ];
+
+  # for 3.2.0
+  #   postFixup = ''
+  #     substituteInPlace $out/${python.sitePackages}/triton/backends/intel/driver.py \
+  #       --replace-fail 'ze_root = os.getenv("ZE_PATH", default="/usr/local")' \
+  #       'ze_root = os.getenv("ZE_PATH", default="${level-zero}")'
+  #   '';
+
+  postFixup = ''
+    substituteInPlace $out/${python.sitePackages}/triton/backends/intel/driver.py \
+      --replace-fail 'dirname = os.getenv("ZE_PATH", default="/usr/local")' \
+      'dirname = os.getenv("ZE_PATH", default="${level-zero}")'
+  '';
 }
