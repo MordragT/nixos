@@ -6,6 +6,7 @@
   zlib,
   level-zero,
   intel-dpcpp,
+  spirv-headers,
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
@@ -28,9 +29,10 @@ buildPythonPackage rec {
     zlib
   ];
 
-  propagatedBuildInputs = [
-    intel-dpcpp.llvm
-  ];
+  # propagatedBuildInputs = [
+
+  #   spirv-headers
+  # ];
 
   # for 3.2.0
   #   postFixup = ''
@@ -43,5 +45,9 @@ buildPythonPackage rec {
     substituteInPlace $out/${python.sitePackages}/triton/backends/intel/driver.py \
       --replace-fail 'dirname = os.getenv("ZE_PATH", default="/usr/local")' \
       'dirname = os.getenv("ZE_PATH", default="${level-zero}")'
+
+    substituteInPlace $out/${python.sitePackages}/triton/runtime/build.py \
+      --replace-fail 'icpx = None' 'icpx = "${intel-dpcpp.llvm}/bin/icpx"' \
+      --replace-fail 'cxx = os.environ.get("CXX")' 'cxx = None'
   '';
 }
