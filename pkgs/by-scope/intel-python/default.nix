@@ -40,4 +40,7 @@ in {
   torchvision = callPackage ./torchvision {
     inherit (build-support) fetchwheel;
   };
+  triton-xpu = callPackage ./triton-xpu {
+    inherit (build-support) fetchwheel;
+  };
 }

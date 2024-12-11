@@ -1,5 +1,6 @@
 {fetchurl}: {
   fetchwheel = {
+    base ? "https://intel-extension-for-pytorch.s3.amazonaws.com/",
     dist ? "ipex_stable/xpu",
     abi ? "%2Bcxx11.abi",
     python ? "cp311-cp311",
@@ -8,6 +9,6 @@
   }:
     fetchurl {
       inherit sha256;
-      url = "https://intel-extension-for-pytorch.s3.amazonaws.com/${dist}/${package}${abi}-${python}-linux_x86_64.whl";
+      url = "${base}${dist}/${package}${abi}-${python}-linux_x86_64.whl";
     };
 }
