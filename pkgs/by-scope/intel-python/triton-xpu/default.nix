@@ -47,7 +47,7 @@ buildPythonPackage rec {
       'dirname = os.getenv("ZE_PATH", default="${level-zero}")'
 
     substituteInPlace $out/${python.sitePackages}/triton/runtime/build.py \
-      --replace-fail 'icpx = None' 'icpx = "${intel-dpcpp.llvm}/bin/icpx"' \
+      --replace-fail 'icpx = None' 'icpx = "${intel-dpcpp.clang.cc}/bin/icpx"' \
       --replace-fail 'cxx = os.environ.get("CXX")' 'cxx = icpx'
   '';
 }
