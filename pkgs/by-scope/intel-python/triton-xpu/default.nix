@@ -48,6 +48,6 @@ buildPythonPackage rec {
 
     substituteInPlace $out/${python.sitePackages}/triton/runtime/build.py \
       --replace-fail 'icpx = None' 'icpx = "${intel-dpcpp.llvm}/bin/icpx"' \
-      --replace-fail 'cxx = os.environ.get("CXX")' 'cxx = None'
+      --replace-fail 'cxx = os.environ.get("CXX")' 'cxx = icpx'
   '';
 }
