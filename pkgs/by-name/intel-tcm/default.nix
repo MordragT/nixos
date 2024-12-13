@@ -11,7 +11,7 @@
 
   tcm = fetchinteldeb {
     package = "intel-oneapi-tcm-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-f8ig6VULSJvcH8kP0NTdYX/+1GRvW/v+1pSpoeH/4rg=";
   };
   # tcm-runtime = fetchinteldeb {
   #   package = "intel-oneapi-runtime-tcm-1-${version}_amd64";
@@ -42,10 +42,8 @@ in
       cd ./opt/intel/oneapi/tcm/${major}
 
       rm lib/libhwloc.so*
-      rm lib32/libhwloc.so*
 
       mv lib $out/lib
-      mv lib32 $out/lib32
       mv share $out/share
     '';
   }
