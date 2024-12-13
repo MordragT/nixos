@@ -24,8 +24,10 @@ in {
 
   oneapi-ccl = callPackage ./oneapi-ccl {};
   oneapi-dal = callPackage ./oneapi-dal {};
+  oneapi-dnn = callPackage ./oneapi-dnn {};
   oneapi-dpl = callPackage ./oneapi-dpl {};
-  oneapi-mkl = callPackage ./oneapi-mkl.nix {};
+  oneapi-math = callPackage ./oneapi-math {};
+  oneapi-tbb = callPackage ./oneapi-tbb {};
 
   opengothic = callPackage ./opengothic {};
   oxen = callPackage ./oxen {};

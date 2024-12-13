@@ -3,21 +3,26 @@
   dpcppStdenv,
   fetchFromGitHub,
   cmake,
+  level-zero,
 }:
 # requires dpcpp compiler
 dpcppStdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
-  version = "2021.11.2";
+  version = "2021.14";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = "oneCCL";
     rev = finalAttrs.version;
-    hash = "sha256-Rpy9n9hvjYfg7+YdsjKRvJUogE4zl4V4O8NaH1IRSHo=";
+    hash = "sha256-fkq3iI+C7bgtz3TOFV7YbGtLaNh9l37NFJXdphp7XYI=";
   };
 
   nativeBuildInputs = [
     cmake
+  ];
+
+  buildInputs = [
+    level-zero
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
@@ -33,19 +38,11 @@ dpcppStdenv.mkDerivation (finalAttrs: {
     platforms = lib.platforms.all;
   };
 })
-# Search Compute Runtime by MODULES_PATH: /build/source/cmake
-# COMPUTE_BACKEND=dpcpp requested. Using DPC++ provider
-# DPCPP_ROOT prefix path hint is not defiend
-# Not OpenCL or L0
-# -- Performing Test INTEL_SYCL_SUPPORTED
-# -- Performing Test INTEL_SYCL_SUPPORTED - Success
-# CMake Error at /nix/store/17r6ld906midfv8y7997fd56s7a87vrg-cmake-3.28.3/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake:230 (message):
-#   Could NOT find IntelSYCL_level_zero (missing: INTEL_SYCL_LIBRARIES
-#   INTEL_SYCL_INCLUDE_DIRS)
-# Call Stack (most recent call first):
-#   /nix/store/17r6ld906midfv8y7997fd56s7a87vrg-cmake-3.28.3/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake:600 (_FPHSA_FAILURE_MESSAGE)
-#   cmake/FindIntelSYCL_level_zero.cmake:62 (find_package_handle_standard_args)
-#   cmake/helpers.cmake:201 (find_package)
-#   cmake/helpers.cmake:256 (activate_compute_backend)
-#   CMakeLists.txt:204 (set_compute_backend)
+# > CMake Error at src/cmake_install.cmake:185 (file):
+# >   file INSTALL cannot find "/build/source/deps/mpi/var/empty/mpi/etc": No
+# >   such file or directory.
+# > Call Stack (most recent call first):
+# >   cmake_install.cmake:131 (include)
+# >
+# >
 

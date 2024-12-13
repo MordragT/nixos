@@ -16,6 +16,8 @@ in (wrapCCWith {
   nixSupport = {
     cc-cflags = [
       "-isystem ${llvm.dev}/include"
+      "-isystem ${llvm.dev}/include/sycl"
+      "-resource-dir=${llvm.rsrc}"
       "--gcc-toolchain=${gcc.cc}"
     ];
 

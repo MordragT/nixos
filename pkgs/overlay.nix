@@ -16,8 +16,6 @@ in
         withMfx = false;
       };
       invokeai = with self.intel-python.pkgs; toPythonApplication invokeai;
-      oneapi-dnn = pkgs.oneDNN;
-      oneapi-tbb = pkgs.tbb_2021_8;
 
       steamtinkerlaunch = pkgs.steamtinkerlaunch.overrideAttrs (old: {
         # Prepare the proper files for the steam compatibility toolchain

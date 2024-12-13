@@ -2,10 +2,13 @@
   lib,
   cmake,
   fetchFromGitHub,
-  intel-dpcpp,
+  intel-llvm-bin,
   intel-mkl,
-  intel-tbb,
+  oneapi-tbb,
+  oneapi-dnn,
+  level-zero,
   ocl-icd,
+  opencl-headers,
   blas,
   pkg-config,
   ninja,
@@ -14,15 +17,15 @@
 }: let
   inherit (lib) cmakeBool cmakeFeature;
 in
-  intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
+  intel-llvm-bin.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
-    version = "3620";
+    version = "4320";
 
     src = fetchFromGitHub {
       owner = "ggerganov";
       repo = "llama.cpp";
       rev = "refs/tags/b${finalAttrs.version}";
-      hash = "";
+      hash = "sha256-N//Fw5pkxzrv+idk0vAHDLFNPtciFJbxlrOZdia3GTE=";
       leaveDotGit = true;
       postFetch = ''
         git -C "$out" rev-parse --short HEAD > $out/COMMIT
@@ -41,8 +44,11 @@ in
     buildInputs = [
       blas
       intel-mkl
-      intel-tbb
+      oneapi-tbb
+      oneapi-dnn
+      level-zero
       ocl-icd
+      opencl-headers
     ];
 
     cmakeFlags = [
@@ -53,8 +59,8 @@ in
       (cmakeBool "GGML_BLAS" true)
       (cmakeBool "GGML_SYCL" true)
       (cmakeBool "GGML_SYCL_F16" true)
-      (cmakeFeature "CMAKE_C_COMPILER" "icx")
-      (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
+      # (cmakeFeature "CMAKE_C_COMPILER" "icx")
+      # (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
     ];
 
     postPatch = ''

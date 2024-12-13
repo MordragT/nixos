@@ -6,7 +6,6 @@
   zlib,
   level-zero,
   intel-dpcpp,
-  spirv-headers,
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
@@ -28,11 +27,6 @@ buildPythonPackage rec {
   buildInputs = [
     zlib
   ];
-
-  # propagatedBuildInputs = [
-
-  #   spirv-headers
-  # ];
 
   # for 3.2.0
   #   postFixup = ''

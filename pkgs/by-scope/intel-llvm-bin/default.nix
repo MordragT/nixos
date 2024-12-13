@@ -16,4 +16,8 @@ in {
   };
 
   stdenv = pkgs.overrideCC pkgs.stdenv self.clang;
+
+  openmp = callPackage ./openmp.nix {
+    inherit (self) stdenv;
+  };
 }

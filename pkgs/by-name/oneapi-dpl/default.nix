@@ -1,19 +1,19 @@
 {
   lib,
-  dpcppStdenv,
+  intel-llvm-bin,
   fetchFromGitHub,
   cmake,
-  intel-tbb,
+  oneapi-tbb,
 }:
-dpcppStdenv.mkDerivation (finalAttrs: {
+intel-llvm-bin.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dpl";
-  version = "2022.3.0";
+  version = "2022.7.1";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = "oneDPL";
-    rev = "release/2022.3";
-    hash = "sha256-22fbB89iHJ9SJlvDOZ4g4mlFHuxC0uxe9HNl2HIPISs=";
+    rev = "release/${finalAttrs.version}";
+    hash = "sha256-mNQl9IILaZEeEFc0TVQnxSEVUrvenAY+W/q28Ts3uEE=";
   };
 
   nativeBuildInputs = [
@@ -21,7 +21,7 @@ dpcppStdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    intel-tbb
+    oneapi-tbb
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

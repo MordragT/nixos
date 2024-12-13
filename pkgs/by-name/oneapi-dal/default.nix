@@ -3,18 +3,19 @@
   dpcppStdenv,
   fetchFromGitHub,
   gnumake,
-  intel-tbb,
+  oneapi-tbb,
+  oneapi-math,
 }:
 # requires dpcpp compiler
 dpcppStdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dal";
-  version = "2024.0.1";
+  version = "2025.0.0";
 
   src = fetchFromGitHub {
-    owner = "oneapi-src";
+    owner = "uxlfoundation";
     repo = "oneDAL";
     rev = finalAttrs.version;
-    hash = "sha256-LdeeecnlBELXeVk/Qywl4qzFkcIs3sIGh9lnixfw0r8=";
+    hash = "sha256-FnF9wAESNez4ZUUjLKviJwgMH5RpYooGj4MltlxkZbo=";
   };
 
   nativeBuildInputs = [
@@ -22,19 +23,21 @@ dpcppStdenv.mkDerivation (finalAttrs: {
   ];
 
   makeFlags = [
-    "TBBROOT=${intel-tbb}"
+    "TBBROOT=${oneapi-tbb}"
+    "MKLROOT=${oneapi-math}"
   ];
 
   buildInputs = [
-    intel-tbb
+    oneapi-tbb
+    oneapi-math
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
   doCheck = false;
 
   meta = {
-    broken = true;
-    changelog = "https://github.com/oneapi-src/oneDAL/releases/tag/${finalAttrs.version}";
+    broken = true; # wait for sane build system changes before attempting it again
+    changelog = "https://github.com/uxlfoundation/oneDAL/releases/tag/${finalAttrs.version}";
     description = "oneAPI Data Analytics Library (oneDAL)";
     homepage = "https://01.org/oneDAL";
     license = lib.licenses.asl20;
