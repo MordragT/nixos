@@ -52,26 +52,26 @@
   # mordrag.services.vaultwarden.enable = true;
   mordrag.services.wg-quick.enable = true;
 
-  # services.flatpak.enable = true;
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-sycl;
-    environmentVariables = {
-      OLLAMA_INTEL_GPU = "1";
-      # OLLAMA_DEBUG = "1";
-      OLLAMA_MAX_LOADED_MODELS = "2";
-      ZES_ENABLE_SYSMAN = "1";
-    };
-    loadModels = [
-      # "deepseek-coder:6.7b-instruct-q3_K_S"
-      # "gemma2:2b-instruct-q6_K"
-      # "gemma2:9b-instruct-q4_K_S"
-      # "codeqwen:7b-chat-v1.5-q4_K_S"
-      # "nomic-embed-text"
-      # "mxbai-embed-large"
-    ];
-  };
-  systemd.services.ollama.serviceConfig.MemoryDenyWriteExecute = lib.mkForce false;
+  # # services.flatpak.enable = true;
+  # services.ollama = {
+  #   enable = true;
+  #   package = pkgs.ollama-sycl;
+  #   environmentVariables = {
+  #     OLLAMA_INTEL_GPU = "1";
+  #     # OLLAMA_DEBUG = "1";
+  #     OLLAMA_MAX_LOADED_MODELS = "2";
+  #     ZES_ENABLE_SYSMAN = "1";
+  #   };
+  #   loadModels = [
+  #     # "deepseek-coder:6.7b-instruct-q3_K_S"
+  #     # "gemma2:2b-instruct-q6_K"
+  #     # "gemma2:9b-instruct-q4_K_S"
+  #     # "codeqwen:7b-chat-v1.5-q4_K_S"
+  #     # "nomic-embed-text"
+  #     # "mxbai-embed-large"
+  #   ];
+  # };
+  # systemd.services.ollama.serviceConfig.MemoryDenyWriteExecute = lib.mkForce false;
 
   services.tailscale.enable = true; # trayscale gui ?
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.

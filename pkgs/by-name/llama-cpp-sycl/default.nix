@@ -15,7 +15,7 @@
   git,
   autoAddDriverRunpath,
 }: let
-  inherit (lib) cmakeBool cmakeFeature;
+  inherit (lib) cmakeBool;
 in
   intel-llvm-bin.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
