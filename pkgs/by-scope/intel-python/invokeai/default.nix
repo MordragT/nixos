@@ -26,7 +26,6 @@
   sentencepiece,
   spandrel,
   timm,
-  ipex,
   torch,
   torchmetrics,
   torchsde,
@@ -179,7 +178,6 @@ in
       sentencepiece
       spandrel
       timm
-      ipex
       torch
       torchmetrics
       torchsde

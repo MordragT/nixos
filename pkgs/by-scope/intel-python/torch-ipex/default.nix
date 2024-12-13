@@ -1,11 +1,10 @@
 {
   buildPythonPackage,
   python,
-  fetchtorch,
+  fetchipex,
   autoPatchelfHook,
   zlib,
   intel-mkl,
-  pti-gpu,
   packaging,
   astunparse,
   cffi,
@@ -27,14 +26,15 @@
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.6.0.dev20241213";
+  version = "2.3.1";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
 
-  src = fetchtorch {
+  src = fetchipex {
     package = "${pname}-${version}";
-    sha256 = "sha256-oPiOMc2F20V1rlkSOi5T8m0I4neQvoYPFAY1qo5vKVc=";
+    abi = "%2Bcxx11.abi";
+    sha256 = "sha256-yd5H0liod0FIRyoB89K49G2i9qSvPi+Ko4Md/6L9Ozo=";
   };
 
   nativeBuildInputs = [
@@ -44,7 +44,6 @@ buildPythonPackage rec {
   buildInputs = [
     zlib
     intel-mkl
-    pti-gpu.sdk
   ];
 
   dependencies = [
@@ -88,9 +87,6 @@ buildPythonPackage rec {
     substituteInPlace \
       $dev/share/cmake/Caffe2/Caffe2Targets-release.cmake \
       --replace-fail \''${_IMPORT_PREFIX}/lib "$lib/lib"
-
-    substituteInPlace $out/${python.sitePackages}/torch-${version}+xpu.dist-info/METADATA \
-      --replace-fail "Version: ${version}+xpu" "Version: 2.6.0"
 
     mkdir $lib
     mv $out/${python.sitePackages}/torch/lib $lib/lib

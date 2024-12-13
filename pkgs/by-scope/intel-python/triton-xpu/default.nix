@@ -1,7 +1,7 @@
 {
   buildPythonPackage,
   python,
-  fetchwheel,
+  fetchtorch,
   autoPatchelfHook,
   zlib,
   level-zero,
@@ -9,15 +9,14 @@
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
-  version = "3.0.0";
+  version = "3.2.0";
   format = "wheel";
 
-  src = fetchwheel {
-    base = "https://download.pytorch.org/";
+  src = fetchtorch {
     dist = "whl/nightly";
-    abi = "%2B1b2f15840e";
+    abi = "%2Bgite98b6fcb";
     package = "${pname}-${version}";
-    sha256 = "sha256-hwFG6wzEiaSam7mAh6xl30XF+TENGOadY5mgSIEY7D4=";
+    sha256 = "";
   };
 
   nativeBuildInputs = [
@@ -28,17 +27,10 @@ buildPythonPackage rec {
     zlib
   ];
 
-  # for 3.2.0
-  #   postFixup = ''
-  #     substituteInPlace $out/${python.sitePackages}/triton/backends/intel/driver.py \
-  #       --replace-fail 'ze_root = os.getenv("ZE_PATH", default="/usr/local")' \
-  #       'ze_root = os.getenv("ZE_PATH", default="${level-zero}")'
-  #   '';
-
   postFixup = ''
     substituteInPlace $out/${python.sitePackages}/triton/backends/intel/driver.py \
-      --replace-fail 'dirname = os.getenv("ZE_PATH", default="/usr/local")' \
-      'dirname = os.getenv("ZE_PATH", default="${level-zero}")'
+      --replace-fail 'ze_root = os.getenv("ZE_PATH", default="/usr/local")' \
+      'ze_root = os.getenv("ZE_PATH", default="${level-zero}")'
 
     substituteInPlace $out/${python.sitePackages}/triton/runtime/build.py \
       --replace-fail 'icpx = None' 'icpx = "${intel-dpcpp.clang}/bin/icpx"' \

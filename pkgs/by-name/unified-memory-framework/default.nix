@@ -6,16 +6,17 @@
   level-zero,
   hwloc,
   numactl,
+  oneapi-tbb,
 }:
 stdenv.mkDerivation rec {
   pname = "unified-memory-framework";
-  version = "unstable";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = pname;
-    rev = "9bf7a0dc4dff76844e10edbb5c6e9d917536ef6d";
-    hash = "sha256-2yJqZXpqI/dEP+movt8h0hyFgxxPNuQ9lIjNa8+X6Ns=";
+    rev = "v${version}";
+    hash = "sha256-r5H/7HJL/6Dduyuzluxq90EUE1D8eg/nduJcy4Wu0JA=";
   };
 
   nativeBuildInputs = [
@@ -26,12 +27,15 @@ stdenv.mkDerivation rec {
     level-zero
     hwloc
     numactl
+    oneapi-tbb
   ];
 
   cmakeFlags = [
     "-DUMF_BUILD_TESTS=OFF"
     "-DUMF_BUILD_EXAMPLES=OFF"
     "-DUMF_BUILD_LIBUMF_POOL_DISJOINT=ON"
+    "-DUMF_BUILD_LEVEL_ZERO_PROVIDER=OFF"
+    "-DUMF_BUILD_SHARED_LIBRARY=ON"
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

@@ -1,48 +1,22 @@
 #!/usr/bin/env -S nix shell nixpkgs#nushell --command nu
 
-# def fetch-debs [packages: list<string>] {
-#     let debs = (
-#         $packages
-#         | each { |package| { key: $package, val: (fetch-deb $package) } }
-#         | reduce --fold {} { |it, acc| $acc | insert $it.key $it.val}
-#     )
-#     return $debs
-# }
-
-# def fetch-deb [package: string] {
-#     let url = $"https://apt.repos.intel.com/oneapi/pool/main/($package).deb"
-#     let hash = nix store prefetch-file $url --json | from json | get hash
-
-#     return {
-#         url: $url,
-#         hash: $hash,
-#     }
-# }
-
 export def main [] {
     # change this when the following gets resolved
     # https://github.com/nushell/nushell/issues/12195
-    const file = "/home/tom/Desktop/Mordrag/nixos/pkgs/by-scope/intel-dpcpp/default.lock"
+    const file = "/home/tom/Desktop/Mordrag/nixos/pkgs/by-name/intel-tbb/default.lock"
 
-    const major = "2025.0"
-    const version = "2025.0.1-1240"
-    const classic_version = "2023.2.4-2023.2.4-49553"
+    const major = "2022.0"
+    const version = "2022.0.0-402"
 
     const packages = [
-        $"dpcpp-cpp-($major)-($version)"
-        $"compiler-dpcpp-cpp-($major)-($version)"
-        $"compiler-dpcpp-cpp-runtime-($major)-($version)"
-        $"compiler-shared-($major)-($version)"
-        $"compiler-shared-runtime-($major)-($version)"
-        $"openmp-($major)-($version)"
-        $"compiler-dpcpp-cpp-and-cpp-classic-($classic_version)"
-        $"compiler-dpcpp-cpp-and-cpp-classic-runtime-($classic_version)"
+        $"tbb-($major)-($version)"
+        $"tbb-devel-($major)-($version)"
+        $"runtime-tbb-($version)"
     ]
     const packages_all = [
-        $"compiler-dpcpp-cpp-common-($major)-($version)"
-        $"compiler-shared-common-($major)-($version)"
-        $"openmp-common-($major)-($version)"
-        $"compiler-dpcpp-cpp-and-cpp-classic-common-($classic_version)"
+        # $"tbb-common-($major)-($version)"
+        # $"tbb-common-devel-($major)-($version)"
+        # $"runtime-tbb-common-($version)"
     ]
 
     let index = http get https://apt.repos.intel.com/oneapi/dists/all/main/binary-amd64/Packages | from apt-packages | select package filename sha256
@@ -61,6 +35,7 @@ export def main [] {
     for $name in ($missing ++ $missing_all) {
         print $name
     }
+
     let sources = (
         $sources 
         | append $sources_all 

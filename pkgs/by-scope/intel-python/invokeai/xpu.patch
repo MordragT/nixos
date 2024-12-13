@@ -6,7 +6,7 @@ index bab5121b2..7a295e3c6 100644
  from pathlib import Path
  
  import torch
-+import intel_extension_for_pytorch as ipex
++#import intel_extension_for_pytorch as ipex
  import uvicorn
  from fastapi import FastAPI, Request
  from fastapi.middleware.cors import CORSMiddleware
@@ -98,7 +98,7 @@ index 1f57d5c19..fd0aa5705 100644
  
  from pathlib import Path
  from typing import Optional
-+import intel_extension_for_pytorch as ipex
++#import intel_extension_for_pytorch as ipex
  
  from diffusers import (
      StableDiffusionInpaintPipeline,

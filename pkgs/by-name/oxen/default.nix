@@ -9,17 +9,17 @@
 rustPlatform
 .buildRustPackage rec {
   pname = "oxen";
-  version = "0.19.3";
+  version = "0.23.3";
 
   src = fetchFromGitHub {
     owner = "oxen-ai";
     repo = "oxen";
     rev = "v${version}";
-    sha256 = "sha256-kx0w3EGKx7FtCQiihW4YX6LMqofcm9+lCTiFimg5LBI=";
+    sha256 = "sha256-odWxrL68SK1gitSFpwVz0PXIDMv5BnrziHN+k8PIQ2k=";
   };
 
   cargoBuildFlags = "--bin oxen --all-features";
-  cargoHash = "sha256-xL4tOWfXSfBtYV9EU7I9HG2ubYehCxMTd41xr8Y95s8=";
+  cargoHash = "sha256-aQvO3xwjV4UJ1Q/9qOYrsLlO5B0eHcYcvl/qBXVbx7U=";
 
   doCheck = false;
 

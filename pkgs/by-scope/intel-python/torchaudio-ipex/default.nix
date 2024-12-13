@@ -1,20 +1,20 @@
 {
   python,
   buildPythonPackage,
-  fetchtorch,
+  fetchipex,
   autoPatchelfHook,
   ffmpeg_6,
-  sox,
   torch,
 }:
 buildPythonPackage rec {
   pname = "torchaudio";
-  version = "2.5.0.dev20241213";
+  version = "2.3.1";
   format = "wheel";
 
-  src = fetchtorch {
+  src = fetchipex {
     package = "${pname}-${version}";
-    sha256 = "sha256-YDukH7wqgjVUEqcz7R4l7YUmbxcH0yy5xDCAB0MS1J0=";
+    abi = "%2Bcxx11.abi";
+    sha256 = "sha256-nScE7PUXLPKPi0Ces9qcQme5IQqBbdkjOPn/yM+0Xfw=";
   };
 
   nativeBuildInputs = [
@@ -23,7 +23,6 @@ buildPythonPackage rec {
 
   buildInputs = [
     torch.lib
-    sox.lib
     ffmpeg_6.dev
   ];
 

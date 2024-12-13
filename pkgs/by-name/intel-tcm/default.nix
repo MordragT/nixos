@@ -6,12 +6,12 @@
   dpkg,
   hwloc,
 }: let
-  major = "1.1";
-  version = "1.1.0-459";
+  major = "1.2";
+  version = "1.2.0-589";
 
   tcm = fetchinteldeb {
     package = "intel-oneapi-tcm-${major}-${version}_amd64";
-    hash = "sha256-B4FEMNGfusjXiTasAMA7s6O+5LL4ziL4B8I6Bm7lalQ=";
+    hash = "";
   };
   # tcm-runtime = fetchinteldeb {
   #   package = "intel-oneapi-runtime-tcm-1-${version}_amd64";

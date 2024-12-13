@@ -1,6 +1,6 @@
 {
   buildPythonPackage,
-  fetchtorch,
+  fetchipex,
   autoPatchelfHook,
   numpy,
   pillow,
@@ -12,12 +12,13 @@
 }:
 buildPythonPackage rec {
   pname = "torchvision";
-  version = "0.22.0.dev20241213";
+  version = "0.18.1";
   format = "wheel";
 
-  src = fetchtorch {
+  src = fetchipex {
     package = "${pname}-${version}";
-    sha256 = "sha256-kcIYUm7KDGxdkjdjf/yhR9cX150BUQfrlt/hZxrVl2I=";
+    abi = "%2Bcxx11.abi";
+    sha256 = "sha256-8ik1UtiFCl1lM61AcSGnrWrHODcl+lhcS3mtSyUqmGY=";
   };
 
   nativeBuildInputs = [

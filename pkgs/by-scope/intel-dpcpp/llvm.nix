@@ -11,49 +11,13 @@
   libxml2,
   libffi_3_3,
   elfutils,
+  unified-memory-framework,
+  lib,
 }: let
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
-  version = "2024.2";
+  version = "2025.0";
 
-  base = fetchurl {
-    inherit (pins."intel-oneapi-dpcpp-cpp-${version}") url hash;
-  };
-  dpcpp = fetchurl {
-    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-${version}") url hash;
-  };
-  dpcpp-runtime = fetchurl {
-    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-runtime-${version}") url hash;
-  };
-  dpcpp-common = fetchurl {
-    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-common-${version}") url hash;
-  };
-  shared = fetchurl {
-    inherit (pins."intel-oneapi-compiler-shared-${version}") url hash;
-  };
-  shared-runtime = fetchurl {
-    inherit (pins."intel-oneapi-compiler-shared-runtime-${version}") url hash;
-  };
-  shared-common = fetchurl {
-    inherit (pins."intel-oneapi-compiler-shared-common-${version}") url hash;
-  };
-  openmp = fetchurl {
-    inherit (pins."intel-oneapi-openmp-${version}") url hash;
-  };
-  openmp-common = fetchurl {
-    inherit (pins."intel-oneapi-openmp-common-${version}") url hash;
-  };
-
-  classicVersion = "2023.2.4";
-
-  classic = fetchurl {
-    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-${classicVersion}") url hash;
-  };
-  classic-runtime = fetchurl {
-    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-runtime-${classicVersion}") url hash;
-  };
-  classic-common = fetchurl {
-    inherit (pins."intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-common-${classicVersion}") url hash;
-  };
+  srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;
 in
   stdenvNoCC.mkDerivation {
     inherit version;
@@ -78,22 +42,10 @@ in
       libffi_3_3
       elfutils
       ocl-icd
+      unified-memory-framework
     ];
 
-    unpackPhase = ''
-      dpkg-deb -x ${base} .
-      dpkg-deb -x ${dpcpp} .
-      dpkg-deb -x ${dpcpp-runtime} .
-      dpkg-deb -x ${dpcpp-common} .
-      dpkg-deb -x ${shared} .
-      dpkg-deb -x ${shared-runtime} .
-      dpkg-deb -x ${shared-common} .
-      dpkg-deb -x ${openmp} .
-      dpkg-deb -x ${openmp-common} .
-      dpkg-deb -x ${classic} .
-      dpkg-deb -x ${classic-runtime} .
-      dpkg-deb -x ${classic-common} .
-    '';
+    unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
 
     installPhase = ''
       cd ./opt/intel/oneapi/compiler/${version}

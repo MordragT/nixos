@@ -1,6 +1,6 @@
 {
   buildPythonPackage,
-  fetchwheel,
+  fetchipex,
   autoPatchelfHook,
   intel-ccl,
   intel-mpi,
@@ -13,8 +13,7 @@ buildPythonPackage rec {
   version = "2.3.100";
   format = "wheel";
 
-  src = fetchwheel {
-    abi = "%2Bxpu";
+  src = fetchipex {
     package = "${pname}-${version}";
     sha256 = "";
   };

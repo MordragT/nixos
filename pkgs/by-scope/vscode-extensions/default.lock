@@ -14,8 +14,8 @@
   {
     "name": "kotlin",
     "publisher": "fwcd",
-    "version": "0.2.35",
-    "sha256": "0qxa7bilclshr3sjh8mkvd48w3z49xlsqcr4rrdwpcz3q5lqqa2k"
+    "version": "0.2.36",
+    "sha256": "1cwncjvarq3g0cmn9afdd15s81nms0kcawnj3midhr4hchap2aml"
   },
   {
     "name": "parol-vscode",
@@ -50,8 +50,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.12.4",
-    "sha256": "1a6w18xn70a9jpl3as5p4d390hz66vzhgmn19paqfdrjmq0rhizv"
+    "version": "1.15.2",
+    "sha256": "0j39gprzni9c88f5j1nrbdwfrpy6fn4faz3x3a41yzfrv63lw5k5"
   },
   {
     "name": "vscode-nickel",

@@ -1,7 +1,7 @@
 {
   buildPythonPackage,
   python,
-  fetchwheel,
+  fetchipex,
   expecttest,
   hypothesis,
   numpy,
@@ -29,8 +29,7 @@ buildPythonPackage rec {
 
   outputs = ["out" "dev" "lib"];
 
-  src = fetchwheel {
-    abi = "%2Bxpu";
+  src = fetchipex {
     package = "${pname}-${version}";
     sha256 = "sha256-QvCKSx5wh7OzBLcFFgVCQgDDeXyPW67MXV1T6ej7bos=";
   };

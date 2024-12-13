@@ -1,31 +1,19 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchinteldeb,
+  fetchurl,
   autoPatchelfHook,
   dpkg,
   level-zero,
   libfabric,
+  lib,
 }: let
-  major = "2021.12";
-  version = "2021.12.1-5";
-
-  mpi = fetchinteldeb {
-    package = "intel-oneapi-mpi-${major}-${version}_amd64";
-    hash = "sha256-SbPANSGlAu/9OcBiovp5TEJ9wp3fFHXXBL0gdshjZB0=";
-  };
-  mpi-devel = fetchinteldeb {
-    package = "intel-oneapi-mpi-devel-${major}-${version}_amd64";
-    hash = "sha256-Eil/lPfGz86WJIZ2hqOss3tHIUOp1nFavkYZb5MphZ8=";
-  };
-  mpi-runtime = fetchinteldeb {
-    package = "intel-oneapi-runtime-mpi-2021-${version}_amd64";
-    hash = "sha256-DT2vut8qW20kh88eWToFoEO1Z7gWAEU0crfyJitnuIM=";
-  };
+  pins = builtins.fromJSON (builtins.readFile ./default.lock);
+  srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;
 in
   stdenvNoCC.mkDerivation {
-    inherit version;
     pname = "intel-mpi";
+    version = "2021.14.1";
 
     # dontUnpack = true;
     dontStrip = true;
@@ -38,25 +26,20 @@ in
       libfabric
     ];
 
-    unpackPhase = ''
-      dpkg-deb -x ${mpi} .
-      dpkg-deb -x ${mpi-devel} .
-      dpkg-deb -x ${mpi-runtime} .
-    '';
+    autoPatchelfIgnoreMissingDeps = ["libiomp5.so"];
+
+    unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
 
     installPhase = ''
       mkdir -p $out
-      mkdir -p $out/share
 
-      cd ./opt/intel/oneapi/mpi/${major}
+      cd opt/intel/oneapi/redist
+
+      ls bin
 
       mv bin $out/bin
-      mv include $out/include
+      mv etc $out/etc
       mv lib $out/lib
-
-      cd share
-
-      mv doc $out/share/doc
-      mv man $out/share/man
+      mv share $out/share
     '';
   }

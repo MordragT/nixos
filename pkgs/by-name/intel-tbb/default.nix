@@ -1,38 +1,17 @@
 {
   stdenv,
   stdenvNoCC,
-  fetchinteldeb,
+  fetchurl,
   autoPatchelfHook,
   dpkg,
   hwloc,
+  lib,
 }: let
-  major = "2021.12";
-  version = "2021.12.0-495";
+  major = "2022.0";
+  version = "2022.0.0-402";
 
-  tbb = fetchinteldeb {
-    package = "intel-oneapi-tbb-${major}-${version}_amd64";
-    hash = "sha256-1O+Lw2fWJM1EIsCR9/SGzMv2Kkv/GsE43AafP7szzsU=";
-  };
-  tbb-devel = fetchinteldeb {
-    package = "intel-oneapi-tbb-devel-${major}-${version}_amd64";
-    hash = "sha256-Jm0A6mUvTZZF952Gx+ESKGK/UL9fl9lQXts9Eop9+nY=";
-  };
-  tbb-runtime = fetchinteldeb {
-    package = "intel-oneapi-runtime-tbb-2021-${version}_amd64";
-    hash = "sha256-CJE704zhWwAb2Xd5GABge9JuY9yibrvmbxn9p9R1uvI=";
-  };
-  tbb-common = fetchinteldeb {
-    package = "intel-oneapi-tbb-common-${major}-${version}_all";
-    hash = "sha256-GvU91yogZH9QDMZZrMF+sCvAG746UO11oa6AjOzC71c=";
-  };
-  tbb-common-devel = fetchinteldeb {
-    package = "intel-oneapi-tbb-common-devel-${major}-${version}_all";
-    hash = "sha256-IRw9A3ZaeZfVWAj9J1iID1pGIGXKtaEVcD5MVDms3Rk=";
-  };
-  tbb-common-runtime = fetchinteldeb {
-    package = "intel-oneapi-runtime-tbb-common-2021-${version}_all";
-    hash = "sha256-DpSuaVb58kD20mNrAZ5QIOtdSUFBWo3e6T7FUtyA/oA=";
-  };
+  pins = builtins.fromJSON (builtins.readFile ./default.lock);
+  srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;
 in
   stdenvNoCC.mkDerivation {
     inherit version;
@@ -50,23 +29,17 @@ in
 
     autoPatchelfIgnoreMissingDeps = ["libhwloc.so.5"];
 
-    unpackPhase = ''
-      dpkg-deb -x ${tbb} .
-      dpkg-deb -x ${tbb-devel} .
-      dpkg-deb -x ${tbb-runtime} .
-      dpkg-deb -x ${tbb-common} .
-      dpkg-deb -x ${tbb-common-devel} .
-      dpkg-deb -x ${tbb-common-runtime} .
-    '';
+    unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
 
     installPhase = ''
       mkdir -p $out
 
       cd ./opt/intel/oneapi/tbb/${major}
 
+      mv env $out/env
+      mv etc $out/etc
       mv include $out/include
       mv lib $out/lib
-      mv lib32 $out/lib32
       mv share $out/share
     '';
   }
