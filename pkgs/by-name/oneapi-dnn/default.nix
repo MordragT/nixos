@@ -2,12 +2,12 @@
   cmake,
   fetchFromGitHub,
   lib,
-  intel-llvm-bin,
+  intel-sycl,
   opencl-headers,
   ocl-icd,
   oneapi-tbb,
 }:
-intel-llvm-bin.stdenv.mkDerivation (finalAttrs: {
+intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dnn";
   version = "3.6.2";
 

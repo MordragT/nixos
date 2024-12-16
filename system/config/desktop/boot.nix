@@ -34,6 +34,7 @@
     "retbleed=off"
   ];
   boot.kernel.sysctl = {
+    "dev.i915.perf_stream_paranoid" = 0;
     # According to https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
     # these values are best of zram swap
     "vm.swappiness" = 180;

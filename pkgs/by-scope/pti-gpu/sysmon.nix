@@ -3,10 +3,10 @@
   version,
   stdenv,
   cmake,
+  python3,
   autoAddDriverRunpath,
   level-zero,
   ocl-icd,
-  python3,
 }:
 stdenv.mkDerivation {
   pname = "pti-gpu-sysmon";

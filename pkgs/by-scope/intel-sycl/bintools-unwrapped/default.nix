@@ -2,7 +2,7 @@
   runCommand,
   llvm,
 }:
-runCommand "intel-llvm-bin-bintools-${llvm.version}" {preferLocalBuild = true;} ''
+runCommand "intel-sycl-bintools-${llvm.version}" {preferLocalBuild = true;} ''
   mkdir -p $out/bin
 
   ln -s ${llvm}/bin/llvm-ar $out/bin/ar

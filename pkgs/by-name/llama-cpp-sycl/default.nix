@@ -2,7 +2,7 @@
   lib,
   cmake,
   fetchFromGitHub,
-  intel-llvm-bin,
+  intel-sycl,
   intel-mkl,
   oneapi-tbb,
   oneapi-dnn,
@@ -17,7 +17,7 @@
 }: let
   inherit (lib) cmakeBool;
 in
-  intel-llvm-bin.stdenv.mkDerivation (finalAttrs: {
+  intel-sycl.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
     version = "4320";
 

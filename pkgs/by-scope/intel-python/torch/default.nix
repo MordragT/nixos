@@ -3,9 +3,12 @@
   python,
   fetchtorch,
   autoPatchelfHook,
+  autoAddDriverRunpath,
   zlib,
   intel-mkl,
+  intel-sycl,
   pti-gpu,
+  ocl-icd,
   packaging,
   astunparse,
   cffi,
@@ -37,14 +40,19 @@ buildPythonPackage rec {
     sha256 = "sha256-oPiOMc2F20V1rlkSOi5T8m0I4neQvoYPFAY1qo5vKVc=";
   };
 
+  dontStrip = true;
+
   nativeBuildInputs = [
     autoPatchelfHook
+    autoAddDriverRunpath
   ];
 
   buildInputs = [
     zlib
     intel-mkl
+    intel-sycl.llvm.lib
     pti-gpu.sdk
+    ocl-icd
   ];
 
   dependencies = [
@@ -56,12 +64,12 @@ buildPythonPackage rec {
     pyyaml
 
     # From install_requires:
-    fsspec
     filelock
     typing-extensions
     sympy
     networkx
     jinja2
+    fsspec
 
     # the following are required for tensorboard support
     pillow
@@ -94,6 +102,8 @@ buildPythonPackage rec {
 
     mkdir $lib
     mv $out/${python.sitePackages}/torch/lib $lib/lib
+    rm $lib/lib/libOpenCL.so.1
+
     ln -s $lib/lib $out/${python.sitePackages}/torch/lib
   '';
 

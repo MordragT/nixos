@@ -4,8 +4,9 @@
   fetchurl,
   autoPatchelfHook,
   dpkg,
-  intel-dpcpp,
+  intel-sycl,
   intel-mpi,
+  oneapi-tbb,
   ocl-icd,
   lib,
 }: let
@@ -25,8 +26,9 @@ in
     nativeBuildInputs = [autoPatchelfHook dpkg];
 
     buildInputs = [
-      intel-dpcpp.llvm.lib
+      intel-sycl.llvm.lib
       intel-mpi
+      oneapi-tbb
       stdenv.cc.cc.lib
       ocl-icd
     ];

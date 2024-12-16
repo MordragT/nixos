@@ -1,6 +1,6 @@
 {
-  lib,
   stdenvNoCC,
+  version,
   fetchzip,
   autoPatchelfHook,
   stdenv,
@@ -8,14 +8,16 @@
   zlib,
   libxml2,
   ocl-icd,
+  lib,
 }:
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
+  inherit version;
+
   pname = "intel-llvm-bin";
-  version = "nightly-2024-12-12";
 
   src = fetchzip {
     url = "https://github.com/intel/llvm/releases/download/${version}/sycl_linux.tar.gz";
-    hash = "sha256-d321blBeYKJtcAbPbIT7IEybe4473kAwRp1nWbSJPZ0=";
+    hash = "sha256-BIwWPGHtOiXI3WMdFHGWoh/oAZzw4CHRiof5Z2hh/jo=";
     stripRoot = false;
   };
 
@@ -43,14 +45,13 @@ stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     mv lib/clang/20 $rsrc
+    rm -r lib/clang
 
     mkdir $out
     mv bin $out/bin
 
     mkdir $dev
     mv include $dev/include
-    mkdir -p $dev/lib/cmake/IntelSYCL
-    cp ${./IntelSYCLConfig.cmake} $dev/lib/cmake/IntelSYCL/IntelSYCLConfig.cmake
 
     mkdir $lib
     mv lib $lib/lib

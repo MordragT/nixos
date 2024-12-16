@@ -1,11 +1,11 @@
 {
   lib,
-  intel-llvm-bin,
+  intel-sycl,
   fetchFromGitHub,
   cmake,
   oneapi-tbb,
 }:
-intel-llvm-bin.stdenv.mkDerivation (finalAttrs: {
+intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dpl";
   version = "2022.7.1";
 

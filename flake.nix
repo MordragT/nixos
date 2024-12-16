@@ -256,6 +256,8 @@
         unzip
         git
         nixos-generators
+
+        (intel-python.withPackages (p: with p; [torch torchvision]))
       ];
     };
   };

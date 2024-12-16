@@ -9,6 +9,7 @@ in {
 
   intel-ccl = callPackage ./intel-ccl {};
   intel-dnnl = callPackage ./intel-dnnl {};
+  intel-metrics = callPackage ./intel-metrics {};
   intel-mkl = callPackage ./intel-mkl {};
   intel-mpi = callPackage ./intel-mpi {};
   intel-openmp = callPackage ./intel-openmp {};
