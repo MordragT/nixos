@@ -31,6 +31,7 @@ in {
   oneapi-tbb = callPackage ./oneapi-tbb {};
 
   opengothic = callPackage ./opengothic {};
+  openvino-tokenizers = callPackage ./openvino-tokenizers {};
   oxen = callPackage ./oxen {};
   proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
   spflashtool = callPackage ./spflashtool {};

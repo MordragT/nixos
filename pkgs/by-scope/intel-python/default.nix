@@ -46,20 +46,16 @@ in {
   };
 
   mediapipe = callPackage ./mediapipe {};
-
+  nncf = callPackage ./nncf {};
+  openvino-tokenizers = callPackage ./openvino-tokenizers {
+    openvino-tokenizers-native = self.pkgs.openvino-tokenizers;
+  };
+  optimum-intel = callPackage ./optimum-intel {};
   outlines = callPackage ./outlines {};
   outlines-core = callPackage ./outlines-core {};
   picklescan = callPackage ./picklescan {};
   pypatchmatch = callPackage ./pypatchmatch {};
   spandrel = callPackage ./spandrel {};
-  torchsde = pkgs.torchsde.overrideAttrs (_: {
-    postPatch = ''
-      substituteInPlace setup.py \
-        --replace "numpy==1.19.*" "numpy" \
-        --replace "scipy==1.5.*" "scipy" \
-        --replace "torch>=1.6.0" "torch"
-    '';
-  });
 
   torch = callPackage ./torch {
     inherit (build-support) fetchtorch;
