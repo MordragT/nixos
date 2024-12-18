@@ -1,6 +1,7 @@
 {
   stdenv,
-  fetchFromGitHub,
+  src,
+  version,
   cmake,
   pkg-config,
   python3,
@@ -10,25 +11,19 @@
   ncurses,
   hwloc,
   level-zero,
+  unified-memory-framework,
   opencl-headers,
   ocl-icd,
   boost,
   pins,
 }:
 stdenv.mkDerivation rec {
+  inherit src version;
   pname = "intel-llvm";
-  version = "nightly-2024-08-19";
-
-  src = fetchFromGitHub {
-    owner = "intel";
-    repo = "llvm";
-    rev = version;
-    hash = "sha256-MV1uCABvnJodOcnm5sDkH9WyJTvdNx3Xe3Wsv2m6XmM=";
-  };
 
   sourceRoot = "${src.name}/llvm";
 
-  outputs = ["out" "lib" "dev"];
+  outputs = ["out" "lib" "dev" "rsrc"];
 
   nativeBuildInputs = [
     cmake
@@ -43,6 +38,7 @@ stdenv.mkDerivation rec {
     libxml2
     ncurses
     hwloc
+    unified-memory-framework
   ];
 
   cmakeFlags = [
@@ -90,9 +86,12 @@ stdenv.mkDerivation rec {
     "-DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=${pins.spirv-headers}"
     "-DSYCL_UR_USE_FETCH_CONTENT=OFF"
     "-DSYCL_UR_SOURCE_DIR=${pins.unified-runtime}"
-    "-DUMF_SOURCE_DIR=${pins.unified-memory-framework}"
+    "-DUR_USE_EXTERNAL_UMF=ON"
+    # "-DUMF_SOURCE_DIR=${pins.unified-memory-framework}"
     "-DLEVEL_ZERO_INCLUDE_DIR=${level-zero}/include/level_zero"
     "-DLEVEL_ZERO_LIBRARY=${level-zero}/lib/libze_loader.so"
+    # "-DL0_LIBRARY=${level-zero}/lib/libze_loader.so"
+    # "-DL0_INCLUDE_DIR=${level-zero}/include"
     "-DOpenCL_HEADERS=${pins.ocl-headers}"
     "-DOpenCL_LIBRARY_SRC=${pins.ocl-loader}"
     "-DUR_OPENCL_INCLUDE_DIR=${opencl-headers}/include/CL"
@@ -107,17 +106,14 @@ stdenv.mkDerivation rec {
   '';
 
   postInstall = ''
-    mv $out/lib/clang/19 clang
-    mv clang/share $out/share
+    mv $out/lib/clang/20 $rsrc
+    rm -r $out/lib/clang
 
     mkdir $lib
     mv $out/lib $lib/lib
-    mv clang/lib $lib/lib/clang
 
     mkdir $dev
     mv $out/include $dev/include
-    mv clang/include $dev/include/clang
-
   '';
 
   passthru.isLLVM = true;

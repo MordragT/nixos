@@ -8,6 +8,10 @@ self: pkgs: let
   };
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
+  onetrace = callPackage ./onetrace.nix {
+    inherit src version;
+  };
+
   sysmon = callPackage ./sysmon.nix {
     inherit src version;
   };

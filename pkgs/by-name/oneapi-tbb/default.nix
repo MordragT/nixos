@@ -1,10 +1,10 @@
 {
   lib,
-  intel-sycl,
+  clangStdenv,
   fetchFromGitHub,
   cmake,
 }:
-intel-sycl.stdenv.mkDerivation rec {
+clangStdenv.mkDerivation rec {
   pname = "oneapi-tbb";
   version = "2022.0.0";
 

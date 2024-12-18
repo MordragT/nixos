@@ -6,7 +6,7 @@ self: pkgs: let
     owner = "intel";
     repo = "llvm";
     rev = version;
-    hash = "";
+    hash = "sha256-yb4+VMGHSLz11sERBb/YTvql2UE419bXAdKGzKTabS0=";
   };
 in {
   llvm-bin = callPackage ./llvm-bin {
@@ -14,7 +14,7 @@ in {
   };
 
   # llvm = callPackage ./llvm {
-  #   inherit pins;
+  #   inherit src version pins;
   # };
   llvm = self.llvm-bin;
 

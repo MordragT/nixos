@@ -17,7 +17,7 @@ stdenvNoCC.mkDerivation {
 
   src = fetchzip {
     url = "https://github.com/intel/llvm/releases/download/${version}/sycl_linux.tar.gz";
-    hash = "sha256-BIwWPGHtOiXI3WMdFHGWoh/oAZzw4CHRiof5Z2hh/jo=";
+    hash = "sha256-IdrsJtX7JnimB9ZcsRwOtGkgakgwzZ2TFStycY1l70I=";
     stripRoot = false;
   };
 
