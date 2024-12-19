@@ -257,7 +257,7 @@
         git
         nixos-generators
 
-        (intel-python.withPackages (p: with p; [torch torchvision]))
+        (intel-python.withPackages (p: with p; [torch torchvision optimum-intel] ++ optimum.optional-dependencies.exporters ++ optimum-intel.optional-dependencies.openvino))
       ];
     };
   };

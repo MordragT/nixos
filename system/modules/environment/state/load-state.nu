@@ -77,7 +77,7 @@ def "main mount" [source, destination, owner, group, mode] {
             if not ($dest | path exists) {
                 create-dir $dest $owner $group $mode
             }
-            mount -o x-gvfs-hide --bind $src $dest
+            mount -o x-gvfs-hide,x-gvfs-trash --bind $src $dest
         }
     }
     load-paths $f $source $destination

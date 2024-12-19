@@ -3,7 +3,6 @@
   buildPythonPackage,
   fetchFromGitHub,
   setuptools,
-  black,
   torch,
   optimum,
   transformers,
@@ -31,7 +30,6 @@ buildPythonPackage rec {
   };
   build-system = [
     setuptools
-    black
   ];
 
   dependencies = [
@@ -70,9 +68,13 @@ buildPythonPackage rec {
     "transformers"
   ];
 
+  postInstall = ''
+    rm -r $out/bin
+  '';
+
   doCheck = false; # tests require CUDA and also GPU access
 
-  pythonImportsCheck = ["optimum.intel"];
+  pythonImportsCheck = ["optimum.intel" "optimum.exporters"];
 
   meta = {
     description = "Accelerate inference with Intel optimization tools";
