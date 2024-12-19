@@ -68,6 +68,7 @@ buildPythonPackage rec {
     "transformers"
   ];
 
+  # collision with optimum-cli and does import that only anyways
   postInstall = ''
     rm -r $out/bin
   '';

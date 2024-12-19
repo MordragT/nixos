@@ -12,6 +12,7 @@ in {
       };
     })) {};
   airportsdata = callPackage ./airportsdata {};
+  argbind = callPackage ./argbind {};
   bitsandbytes = callPackage ./bitsandbytes {};
   compel = callPackage ./compel {};
   controlnet-aux = callPackage ./controlnet-aux {};
@@ -23,6 +24,8 @@ in {
       ''
       + old.postPatch;
   });
+  descript-audio-codec = callPackage ./descript-audio-codec {};
+  descript-audiotools = callPackage ./descript-audiotools {};
   dynamicprompts = callPackage ./dynamicprompts {};
   easing-functions = callPackage ./easing-functions {};
   facexlib = callPackage ./facexlib {};
@@ -46,6 +49,7 @@ in {
   };
 
   mediapipe = callPackage ./mediapipe {};
+  moviepy = callPackage ./moviepy {};
   nncf = callPackage ./nncf {};
   openvino-tokenizers = callPackage ./openvino-tokenizers {
     openvino-tokenizers-native = self.pkgs.openvino-tokenizers;
@@ -53,8 +57,10 @@ in {
   optimum-intel = callPackage ./optimum-intel {};
   outlines = callPackage ./outlines {};
   outlines-core = callPackage ./outlines-core {};
+  parler-tts = callPackage ./parler-tts {};
   picklescan = callPackage ./picklescan {};
   pypatchmatch = callPackage ./pypatchmatch {};
+  randomname = callPackage ./randomname {};
   spandrel = callPackage ./spandrel {};
 
   torch = callPackage ./torch {
