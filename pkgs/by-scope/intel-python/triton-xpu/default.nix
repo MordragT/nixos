@@ -16,7 +16,7 @@ buildPythonPackage rec {
     dist = "whl/nightly";
     abi = "%2Bgite98b6fcb";
     package = "${pname}-${version}";
-    sha256 = "sha256-XQmx6wmovp6JMFMibFMC6tfKp+zBVR5fZz/Vj36ASUc=";
+    sha256 = "sha256-VA4xzhEnAPfUDnr0DQe2knoTuEcLVC28psrHnT4b1Dw=";
   };
 
   nativeBuildInputs = [
