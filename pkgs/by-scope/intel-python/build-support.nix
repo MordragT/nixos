@@ -1,28 +1,31 @@
 {fetchurl}: {
   fetchipex = {
-    # base ? "https://intel-extension-for-pytorch.s3.amazonaws.com/",
-    base ? "https://intel-optimized-pytorch.s3.cn-north-1.amazonaws.com.cn/",
+    pname,
+    version,
+    suffix ? "",
     dist ? "ipex_stable/xpu",
-    abi ? "%2Bxpu",
-    python ? "cp311-cp311",
-    package,
-    sha256,
+    python ? "cp312",
+    abi ? "cp312",
+    platform ? "linux_x86_64",
+    hash,
   }:
     fetchurl {
-      inherit sha256;
-      url = "${base}${dist}/${package}${abi}-${python}-linux_x86_64.whl";
+      inherit hash;
+      url = "https://intel-optimized-pytorch.s3.cn-north-1.amazonaws.com.cn/${dist}/${pname}-${version}${suffix}-${python}-${abi}-${platform}.whl";
     };
 
   fetchtorch = {
-    base ? "https://download.pytorch.org/",
+    pname,
+    version,
+    suffix ? "",
     dist ? "whl/nightly/xpu",
-    abi ? "%2Bxpu",
-    python ? "cp311-cp311",
-    package,
-    sha256,
+    python ? "cp312",
+    abi ? "cp312",
+    platform ? "linux_x86_64",
+    hash,
   }:
     fetchurl {
-      inherit sha256;
-      url = "${base}${dist}/${package}${abi}-${python}-linux_x86_64.whl";
+      inherit hash;
+      url = "https://download.pytorch.org/${dist}/${pname}-${version}${suffix}-${python}-${abi}-${platform}.whl";
     };
 }

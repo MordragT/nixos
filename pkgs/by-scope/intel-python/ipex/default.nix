@@ -30,8 +30,9 @@ buildPythonPackage rec {
   outputs = ["out" "dev" "lib"];
 
   src = fetchipex {
-    package = "${pname}-${version}";
-    sha256 = "sha256-+pKKgqRzvzufz06LO0bEDWRyJQCWYROTUIaxcfUL//w=";
+    inherit pname version;
+    suffix = "%2Bxpu";
+    hash = "sha256-B32gp/z04rT1Xnlpt+f/xhtnVvJWlFgXSUbsAtaJGag=";
   };
 
   nativeBuildInputs = [

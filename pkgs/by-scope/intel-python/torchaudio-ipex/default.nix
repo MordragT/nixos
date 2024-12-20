@@ -12,9 +12,9 @@ buildPythonPackage rec {
   format = "wheel";
 
   src = fetchipex {
-    package = "${pname}-${version}";
-    abi = "%2Bcxx11.abi";
-    sha256 = "sha256-wd+pcN6SULATBJZeSWh1pGRSkKksfTRv7/9vypdIqGE=";
+    inherit pname version;
+    suffix = "%2Bcxx11.abi";
+    hash = "sha256-OZKMZm16OMpZrR0WVybLhrhzbSsTC3rJLPDl50+WDQI=";
   };
 
   nativeBuildInputs = [

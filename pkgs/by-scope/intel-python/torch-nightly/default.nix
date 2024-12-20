@@ -36,8 +36,8 @@ buildPythonPackage rec {
   outputs = ["out" "dev" "lib"];
 
   src = fetchtorch {
-    package = "${pname}-${version}";
-    sha256 = "sha256-bCv35V7seIFh76h3RB2nrZITQNzK/DPil9JgHWFWSrE=";
+    inherit pname version;
+    sha256 = "sha256-cf/1FVNaD+oi6E1jEpXx7yc8Y1Y8HFMg67ZGZS6gNfw=";
   };
 
   dontStrip = true;

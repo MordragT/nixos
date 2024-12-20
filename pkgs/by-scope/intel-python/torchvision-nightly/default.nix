@@ -16,8 +16,8 @@ buildPythonPackage rec {
   format = "wheel";
 
   src = fetchtorch {
-    package = "${pname}-${version}";
-    sha256 = "sha256-8yAWfy0z2VqfBwFSHBnsjGqNXdoSmkmCGr5Y/PUCX8k=";
+    inherit pname version;
+    hash = "sha256-w/Bn1AYQc6v0zaXGaTV2Cy94AkZnrzKFjmV/SQPqr2M=";
   };
 
   nativeBuildInputs = [

@@ -1,6 +1,6 @@
 {
   lib,
-  fetchurl,
+  fetchPypi,
   buildPythonPackage,
   protobuf,
   numpy,
@@ -9,14 +9,18 @@
   matplotlib,
   autoPatchelfHook,
 }:
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "mediapipe";
-  version = "0.10.8";
+  version = "0.10.20";
   format = "wheel";
 
-  src = fetchurl {
-    url = "https://files.pythonhosted.org/packages/b9/9c/91262b3c43a4938fce2349ad0acd7463770604f4d964dfaabbd070761bb9/mediapipe-0.10.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
-    sha256 = "sha256-K5u5w895+ISdtDwRk7XmIAp0BsjLVsBtyf8w2LCztbs=";
+  src = fetchPypi {
+    inherit pname version format;
+    dist = "cp312";
+    python = "cp312";
+    abi = "cp312";
+    platform = "manylinux_2_28_x86_64";
+    hash = "sha256-8EUrfIY+wM0cY2DwuB/iSSxWCI3oCt+PNkLFe0Xh8dM=";
   };
 
   nativeBuildInputs = [autoPatchelfHook];
