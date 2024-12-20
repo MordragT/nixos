@@ -4,13 +4,13 @@
   autoPatchelfHook,
   intel-ccl,
   intel-mpi,
-  intel-dpcpp,
+  intel-sycl,
   torch,
   ipex,
 }:
 buildPythonPackage rec {
   pname = "oneccl_bind_pt";
-  version = "2.3.100";
+  version = "2.5.0";
   format = "wheel";
 
   src = fetchipex {
@@ -24,7 +24,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     intel-ccl
-    intel-dpcpp.llvm.lib
+    intel-sycl.llvm.lib
     intel-mpi
     torch.lib
     ipex.lib

@@ -11,7 +11,7 @@
   scipy,
   typing-extensions,
   pydantic,
-  torch,
+  torch-ipex,
   addDriverRunpath,
   autoPatchelfHook,
   level-zero,
@@ -24,14 +24,14 @@
 }:
 buildPythonPackage rec {
   pname = "intel_extension_for_pytorch";
-  version = "2.3.110";
+  version = "2.5.10";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
 
   src = fetchipex {
     package = "${pname}-${version}";
-    sha256 = "sha256-QvCKSx5wh7OzBLcFFgVCQgDDeXyPW67MXV1T6ej7bos=";
+    sha256 = "sha256-+pKKgqRzvzufz06LO0bEDWRyJQCWYROTUIaxcfUL//w=";
   };
 
   nativeBuildInputs = [
@@ -42,7 +42,7 @@ buildPythonPackage rec {
   buildInputs = [
     intel-mkl
     intel-dpcpp.llvm.lib
-    torch.lib
+    torch-ipex.lib
     level-zero
     zstd
     ocl-icd
@@ -59,7 +59,7 @@ buildPythonPackage rec {
     # types-dataclasses
     typing-extensions
     pydantic
-    torch
+    torch-ipex
     util-linux
     ruamel-yaml
   ];

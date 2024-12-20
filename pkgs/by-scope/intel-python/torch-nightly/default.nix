@@ -30,14 +30,14 @@
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.6.0.dev20241213";
+  version = "2.6.0.dev20241220";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
 
   src = fetchtorch {
     package = "${pname}-${version}";
-    sha256 = "sha256-oPiOMc2F20V1rlkSOi5T8m0I4neQvoYPFAY1qo5vKVc=";
+    sha256 = "sha256-bCv35V7seIFh76h3RB2nrZITQNzK/DPil9JgHWFWSrE=";
   };
 
   dontStrip = true;

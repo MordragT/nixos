@@ -10,7 +10,6 @@ in
     build-support
     {
       # Overrides and aliases
-      dpcppStdenv = self.intel-dpcpp.stdenv;
       ffmpeg-vpl = pkgs.ffmpeg-full.override {
         withVpl = true;
         withMfx = false;

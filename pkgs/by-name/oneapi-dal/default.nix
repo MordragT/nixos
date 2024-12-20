@@ -1,13 +1,13 @@
 {
   lib,
-  dpcppStdenv,
+  intel-dpcpp,
   fetchFromGitHub,
   gnumake,
   oneapi-tbb,
   oneapi-math,
 }:
 # requires dpcpp compiler
-dpcppStdenv.mkDerivation (finalAttrs: {
+intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dal";
   version = "2025.0.0";
 

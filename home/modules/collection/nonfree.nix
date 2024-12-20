@@ -17,7 +17,7 @@ in {
       # spotify # spotube is far better # listen to music
       teamspeak_client
       # broken teams-for-linux # microsoft teams
-      # unigine-superposition
+      unigine-superposition
       # zoom-us
       webex
       # whatsapp-for-linux

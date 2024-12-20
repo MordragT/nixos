@@ -22,7 +22,7 @@ in {
       # byfl # compiler based application analysis
       # likwid # performance monitoring
       # renderdoc # debug graphics
-      # vkmark
+      vkmark
       # vulkan-raytracing
       # p7zip
       # nodePackages.reveal-md # create presentations from markdown

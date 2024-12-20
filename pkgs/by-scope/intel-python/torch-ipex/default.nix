@@ -5,6 +5,9 @@
   autoPatchelfHook,
   zlib,
   intel-mkl,
+  intel-dpcpp,
+  pti-gpu,
+  zstd-native,
   packaging,
   astunparse,
   cffi,
@@ -26,7 +29,7 @@
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.3.1";
+  version = "2.5.1";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
@@ -34,7 +37,7 @@ buildPythonPackage rec {
   src = fetchipex {
     package = "${pname}-${version}";
     abi = "%2Bcxx11.abi";
-    sha256 = "sha256-yd5H0liod0FIRyoB89K49G2i9qSvPi+Ko4Md/6L9Ozo=";
+    sha256 = "sha256-sXYHoHvTtCiZLFsBUY4vMCayJkJrpyc2I9vXoUng/Bc=";
   };
 
   nativeBuildInputs = [
@@ -44,6 +47,8 @@ buildPythonPackage rec {
   buildInputs = [
     zlib
     intel-mkl
+    (pti-gpu.sdk.override {intel-sycl = intel-dpcpp;})
+    zstd-native.dev
   ];
 
   dependencies = [

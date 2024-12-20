@@ -4,7 +4,6 @@
   fetchFromGitHub,
   fetchpatch,
   stdenv,
-  dpcppStdenv,
   makeWrapper,
   autoAddDriverRunpath,
   addDriverRunpath,
@@ -13,6 +12,7 @@
   pkg-config,
   ocl-icd,
   blas,
+  intel-dpcpp,
   intel-mkl,
   intel-tbb,
   acceleration ? null,
@@ -66,7 +66,7 @@
       echo 'add_subdirectory(../ext_server ext_server) # ollama' >> CMakeLists.txt
     '';
   };
-  llama-cpp-sycl = dpcppStdenv.mkDerivation {
+  llama-cpp-sycl = intel-dpcpp.stdenv.mkDerivation {
     pname = "ollama-cpp-sycl";
     inherit version src;
 

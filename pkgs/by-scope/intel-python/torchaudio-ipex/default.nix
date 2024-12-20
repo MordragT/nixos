@@ -4,17 +4,17 @@
   fetchipex,
   autoPatchelfHook,
   ffmpeg_6,
-  torch,
+  torch-ipex,
 }:
 buildPythonPackage rec {
   pname = "torchaudio";
-  version = "2.3.1";
+  version = "2.5.1";
   format = "wheel";
 
   src = fetchipex {
     package = "${pname}-${version}";
     abi = "%2Bcxx11.abi";
-    sha256 = "sha256-nScE7PUXLPKPi0Ces9qcQme5IQqBbdkjOPn/yM+0Xfw=";
+    sha256 = "";
   };
 
   nativeBuildInputs = [
@@ -22,12 +22,12 @@ buildPythonPackage rec {
   ];
 
   buildInputs = [
-    torch.lib
+    torch-ipex.lib
     ffmpeg_6.dev
   ];
 
   dependencies = [
-    torch
+    torch-ipex
   ];
 
   preFixup = ''

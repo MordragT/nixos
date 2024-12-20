@@ -1,12 +1,12 @@
 {
   lib,
-  dpcppStdenv,
+  intel-dpcpp,
   fetchFromGitHub,
   cmake,
   level-zero,
 }:
 # requires dpcpp compiler
-dpcppStdenv.mkDerivation (finalAttrs: {
+intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
   version = "2021.14";
 
