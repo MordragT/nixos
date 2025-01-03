@@ -1,28 +1,7 @@
 #!/usr/bin/env -S nix shell nixpkgs#nushell --command nu
 
-# def fetch-debs [packages: list<string>] {
-#     let debs = (
-#         $packages
-#         | each { |package| { key: $package, val: (fetch-deb $package) } }
-#         | reduce --fold {} { |it, acc| $acc | insert $it.key $it.val}
-#     )
-#     return $debs
-# }
-
-# def fetch-deb [package: string] {
-#     let url = $"https://apt.repos.intel.com/oneapi/pool/main/($package).deb"
-#     let hash = nix store prefetch-file $url --json | from json | get hash
-
-#     return {
-#         url: $url,
-#         hash: $hash,
-#     }
-# }
-
 export def main [] {
-    # change this when the following gets resolved
-    # https://github.com/nushell/nushell/issues/12195
-    const file = "/home/tom/Desktop/Mordrag/nixos/pkgs/by-scope/intel-dpcpp/default.lock"
+    const file = path self ./default.lock
 
     const major = "2025.0"
     const version = "2025.0.1-1240"

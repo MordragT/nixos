@@ -1,10 +1,7 @@
 #!/usr/bin/env -S nix shell nixpkgs#nushell --command nu
 
 export def main [] {
-    # change this when the following gets resolved
-    # https://github.com/nushell/nushell/issues/12195
-    const file = "/home/tom/Desktop/Mordrag/nixos/pkgs/by-name/intel-mkl/default.lock"
-
+    const file = path self ./default.lock
 
     const major = "2025.0"
     const version = "2025.0.1-14"

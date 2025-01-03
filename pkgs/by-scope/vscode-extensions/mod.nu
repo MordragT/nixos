@@ -31,9 +31,7 @@ def fetch-vsixpkg [slug] {
 
 
 export def main [] {
-    # change this when the following gets resolved
-    # https://github.com/nushell/nushell/issues/12195
-    const file = "/home/tom/Desktop/Mordrag/nixos/pkgs/by-scope/vscode-extensions/default.lock"
+    const file = path self ./default.lock
     # can be gathered with code --list-extensions
     const slugs = [
         cesium.gltf-vscode

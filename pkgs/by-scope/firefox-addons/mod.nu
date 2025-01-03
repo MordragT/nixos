@@ -24,9 +24,7 @@ def fetch-addon [slug] {
 }
 
 export def main [] {
-    # change this when the following gets resolved
-    # https://github.com/nushell/nushell/issues/12195
-    const file = "/home/tom/Desktop/Mordrag/nixos/pkgs/by-scope/firefox-addons/default.lock"
+    const file = path self ./default.lock
     const slugs = [
         bib-kit
         bibitnow

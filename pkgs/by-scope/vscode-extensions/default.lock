@@ -20,8 +20,8 @@
   {
     "name": "parol-vscode",
     "publisher": "jsinger67",
-    "version": "0.3.0",
-    "sha256": "17hms16mpj6xa0rbggpr80pjnixwi1ap0v675nhxd2kyxi4knd8w"
+    "version": "0.3.2",
+    "sha256": "106prkx9sdl957d1gl24ypg4k9ylkih5bspa1ya5mylhy6d2k7qh"
   },
   {
     "name": "one-dark-vibrant",
@@ -50,8 +50,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.15.2",
-    "sha256": "0j39gprzni9c88f5j1nrbdwfrpy6fn4faz3x3a41yzfrv63lw5k5"
+    "version": "1.17.2",
+    "sha256": "0im142ygds98cwbp2jzn7ynaqyhidmks9clh74f1gxa3rws7ngsa"
   },
   {
     "name": "vscode-nickel",
