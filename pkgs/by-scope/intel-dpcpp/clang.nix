@@ -6,8 +6,9 @@
   intel-tcm,
   hwloc,
   bintools,
-  gcc,
+  gcc13,
 }: let
+  gcc = gcc13;
   cc = symlinkJoin {
     name = "clang-unwrapped";
     paths = [llvm llvm.dev llvm.lib intel-tcm hwloc];

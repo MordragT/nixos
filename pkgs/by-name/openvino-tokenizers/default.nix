@@ -6,7 +6,7 @@
   cmake,
   python3,
   openvino,
-  tbb_2021_5,
+  tbb_2022_0,
 }: let
   sentencepiece = fetchFromGitHub {
     owner = "google";
@@ -53,7 +53,7 @@ in
 
     buildInputs = [
       openvino
-      tbb_2021_5
+      tbb_2022_0
     ];
 
     postInstall = ''

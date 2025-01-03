@@ -3,7 +3,7 @@
     ../base
   ];
 
-  mordrag.programs.bottles.enable = true;
+  mordrag.programs.bottles.enable = false; # TODO broken
   mordrag.programs.firefox.enable = true;
   mordrag.programs.git.enable = true;
   mordrag.programs.helix.enable = true;

@@ -13,7 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       # distrobox
-      hollywood # fake hacking
+      # broken hollywood # fake hacking
       oxen
       ventoy # create bootable usb drive for isos
       xorg.xlsclients

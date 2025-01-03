@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  environment.systemPackages = [pkgs.adwaita-icon-theme];
+  xdg.icons.enable = true;
+  xdg.icons.fallbackCursorThemes = ["Adwaita"];
+
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = true;
