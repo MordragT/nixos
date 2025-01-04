@@ -44,7 +44,6 @@ in {
             bitwarden
             brave-search
             ghostery
-            honey
             private-internet-access-ext
             proton-vpn
             rust-search-extension

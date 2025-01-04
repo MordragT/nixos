@@ -66,7 +66,6 @@ in {
           brave-search
           # csgofloat
           ghostery
-          honey
           private-internet-access-ext
           rust-search-extension
           sidebery
