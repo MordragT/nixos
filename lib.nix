@@ -7,6 +7,7 @@
   mkHost = {
     system,
     stateVersion,
+    pkgs,
     imports ? [],
     modules ? [],
     specialArgs ? {},
@@ -20,12 +21,16 @@
         [
           {
             system.stateVersion = stateVersion;
+            # nixpkgs.overlays = overlays;
+            # nixpkgs.config.allowUnfree = true;
+            nixpkgs.pkgs = pkgs;
             inherit imports;
           }
           home-manager.nixosModules.home-manager
           {
             # maybe ? https://github.com/nix-community/home-manager/issues/2701
             home-manager.useGlobalPkgs = true;
+            # By default packages will be installed to $HOME/.nix-profile but they can be installed to /etc/profiles if
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialHomeArgs;
             home-manager.users = homes;

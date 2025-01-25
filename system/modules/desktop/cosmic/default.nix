@@ -21,6 +21,7 @@ in {
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     environment.systemPackages = with pkgs; [
+      andromeda
       cosmic-ext-applet-clipboard-manager
       cosmic-ext-applet-emoji-selector
       cosmic-ext-calculator

@@ -50,8 +50,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.17.2",
-    "sha256": "0im142ygds98cwbp2jzn7ynaqyhidmks9clh74f1gxa3rws7ngsa"
+    "version": "1.19.1",
+    "sha256": "1g9ysxz2kac1ppy8fj00wkwag3c84g6pc43d5m0qjk8326vj626k"
   },
   {
     "name": "vscode-nickel",

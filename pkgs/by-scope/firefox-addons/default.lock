@@ -46,10 +46,10 @@
   {
     "slug": "private-internet-access-ext",
     "name": "Private Internet Access",
-    "version": "3.2.5",
+    "version": "4.0.5",
     "addonId": "{3e4d2037-d300-4e95-859d-3cba866f46d3}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4073898/private_internet_access_ext-3.2.5.xpi",
-    "sha256": "sha256:27a705cc11d0bee468e687ad0cad990dc5d47b1df7181a036fb813a212db1aa9",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4409196/private_internet_access_ext-4.0.5.xpi",
+    "sha256": "sha256:21cc78a366a1dea1e230b22e81b5be3d0d2b05064513398437ff43c501b727dd",
     "homepage": "https://privateinternetaccess.com/",
     "description": "Defeat censorship, unblock any website and access the open Internet the way it was meant to be with Private Internet Access®",
     "license": "MIT"

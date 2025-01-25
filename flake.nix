@@ -3,11 +3,12 @@
 
   inputs = {
     templates.url = "github:MordragT/nix-templates";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.follows = "cosmic/nixpkgs";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
+      url = "github:lilyinstarlight/nixos-cosmic/";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
@@ -70,7 +71,6 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      config.allowUnfree = true;
       overlays = [
         chaotic.overlays.default
         cosmic.overlays.default
@@ -81,6 +81,7 @@
         private.overlays.default
         (import ./pkgs/overlay.nix)
       ];
+      config.allowUnfree = true;
     };
     lib = import ./lib.nix {
       inherit self nixpkgs home-manager templates;
@@ -91,16 +92,12 @@
         stateVersion = "24.05";
       in
         lib.mkHost {
-          inherit system stateVersion;
+          inherit system stateVersion pkgs;
 
           imports = [
             ./system/modules
             ./system/config/installer
           ];
-
-          specialArgs = {
-            inherit pkgs;
-          };
 
           homes = {
             "nixos" = lib.mkHome {
@@ -118,7 +115,7 @@
         stateVersion = "23.11";
       in
         lib.mkHost {
-          inherit system stateVersion;
+          inherit system stateVersion pkgs;
 
           imports = [
             ./system/modules
@@ -131,10 +128,6 @@
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];
-
-          specialArgs = {
-            inherit pkgs;
-          };
 
           homes = {
             "tom" = lib.mkHome {
@@ -152,7 +145,7 @@
         stateVersion = "24.05";
       in
         lib.mkHost {
-          inherit system stateVersion;
+          inherit system stateVersion pkgs;
 
           imports = [
             ./system/modules
@@ -167,10 +160,6 @@
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];
-
-          specialArgs = {
-            inherit pkgs;
-          };
 
           homes = {
             "tom" = lib.mkHome {
@@ -188,7 +177,7 @@
         stateVersion = "23.11";
       in
         lib.mkHost {
-          inherit system stateVersion;
+          inherit system stateVersion pkgs;
 
           imports = [
             ./system/modules
@@ -202,10 +191,6 @@
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];
-
-          specialArgs = {
-            inherit pkgs;
-          };
 
           homes = {
             "tom" = lib.mkHome {
@@ -256,8 +241,6 @@
         unzip
         git
         nixos-generators
-
-        (intel-python.withPackages (p: with p; [ipex torch torchvision optimum-intel]))
       ];
     };
   };

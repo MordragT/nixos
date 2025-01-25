@@ -8,12 +8,12 @@
   environment.systemPackages = [pkgs.sbctl];
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
   # boot.plymouth.enable = true;
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot";
+    pkiBundle = "/var/lib/sbctl";
   };
 
   # Tmpfs
@@ -23,7 +23,7 @@
   boot.runSize = "25%";
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
+  boot.kernelPackages = pkgs.linuxPackages_6_12; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
   boot.kernelParams = [
     # "i915.force_probe=!56a1"
     # "xe.force_probe=56a1"
