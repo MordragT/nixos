@@ -60,8 +60,18 @@ in {
       inherit root;
       # config = "${config-file}";
     };
+    app = pkgs.makeChromiumApp {
+      name = "invokeai";
+      desktopName = "Invoke AI";
+      app = "http://${cfg.settings.host}:${toString cfg.settings.port}";
+      icon = "${cfg.package}/share/icons/invokeai/scalable/favicon.svg";
+    };
   in
     lib.mkIf cfg.enable {
+      environment.systemPackages = [
+        app
+      ];
+
       systemd.services.invokeai = {
         after = ["network.target"];
         wantedBy = ["multi-user.target"];

@@ -3,4 +3,5 @@ self: pkgs: let
 in {
   fetchinteldeb = callPackage ./fetch-intel-deb {};
   steamCompatToolHook = callPackage ./steam-compat-tool-hook {};
+  makeChromiumApp = callPackage ./make-chromium-app {};
 }

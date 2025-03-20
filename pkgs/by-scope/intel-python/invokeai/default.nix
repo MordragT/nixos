@@ -120,7 +120,7 @@ in
       # "compel"
       # "controlnet-aux"
       "diffusers"
-      # "gguf"
+      "gguf"
       "invisible-watermark"
       "mediapipe"
       "numpy"
@@ -238,6 +238,11 @@ in
 
     postInstall = ''
       ln -s ${web} $out/${python.sitePackages}/invokeai/frontend/web/dist
+
+      mkdir -p $out/share/icons/invokeai/scalable
+
+      cp $out/${python.sitePackages}/invokeai/frontend/web/dist/assets/images/invoke-favicon.svg \
+        $out/share/icons/invokeai/scalable/favicon.svg
     '';
 
     meta = {

@@ -1,71 +1,11 @@
 {
-  "intel-oneapi-mkl-core-devel-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-devel-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-d6b+DS4RWTq4oGo1EO9xu89jFCvoUwEj3HdzCuLNRPs="
-  },
-  "intel-oneapi-mkl-cluster-devel-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-devel-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-jKySI8blxTl5mqcWctr+kjftMqIbTJlwsxIHHiJZMZ4="
-  },
   "intel-oneapi-mkl-sycl-2025.0": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-2025.0-2025.0.1-14_amd64.deb",
     "hash": "sha256-J6j074zYFi7Ld9OHoVg65jn+ne7xlGkQW38YS/YOBiY="
   },
-  "intel-oneapi-runtime-mkl": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-mkl-2025.0.1-14_amd64.deb",
-    "hash": "sha256-S3btqcz4xvJvd/FktzAfZyJ2byFA84Hl4wNQyooxoPA="
-  },
-  "intel-oneapi-mkl-sycl-devel-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-devel-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-eUYwghqz3EM0YcMIC+0gS/hEYLUVylKEqrjER8RynHI="
-  },
-  "intel-oneapi-mkl-sycl-data-fitting-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-data-fitting-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-zGpwLhxAko7hgSQ2H6z8GCrCT2dAgog/9GYCt1GVDgY="
-  },
-  "intel-oneapi-mkl-devel-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-devel-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-TiewO1rxJCi9OQnn1rncqoRRnE3OjG7ppDyIwXc61Wk="
-  },
-  "intel-oneapi-mkl-classic-devel-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-devel-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-36n+KhO7VSxIFzStsA+l879gdbUU2tudGz+6oTLa0N4="
-  },
-  "intel-oneapi-mkl-sycl-include-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-include-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-XkcppGfQQZIX2BhCAMFZUxNBYZmQb+DStxRm5C2kOsw="
-  },
-  "intel-oneapi-mkl-sycl-blas-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-blas-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-GSpzDe2wzp5RNzXlY2T3gnbINakX7UBUI5s+gfO54WQ="
-  },
-  "intel-oneapi-mkl-sycl-sparse-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-sparse-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-zCjYM06mZdvwzSJYnrVNR72EjuXITJ+Z5JBWM+7rSP8="
-  },
-  "intel-oneapi-mkl-sycl-lapack-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-lapack-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-UsDf1HNnqSzkl4iii8BDmI9o2s/BRr4JCUsLMwnszdY="
-  },
-  "intel-oneapi-mkl-classic-include-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-include-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-aJIjocYWpW2ubBC4bv9IiFwqT7SI036fk+eTYwcnWHQ="
-  },
-  "intel-oneapi-mkl-sycl-rng-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-rng-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-5WSW/sgSl1W1Ek0PrNEyG6OkHKxyhGckaFeAexkK0ug="
-  },
-  "intel-oneapi-mkl-classic-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-sdrg7g/QYiglFG+vGrZxOsafkGGYZykfGqPKKwyM5MU="
-  },
-  "intel-oneapi-mkl-sycl-stats-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-stats-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-en0e5Qq+JVn60DxrI/iTeYppVjgzVKXonB5ccslErAc="
-  },
-  "intel-oneapi-mkl-core-2025.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-2025.0-2025.0.1-14_amd64.deb",
-    "hash": "sha256-Jtk0sTx+W64Bm19Fv95f2goWvu328Y8XIAfFMIR4SUI="
+  "intel-oneapi-mkl-cluster-devel-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-devel-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-jKySI8blxTl5mqcWctr+kjftMqIbTJlwsxIHHiJZMZ4="
   },
   "intel-oneapi-mkl-2025.0": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-2025.0-2025.0.1-14_amd64.deb",
@@ -75,9 +15,69 @@
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-vm-2025.0-2025.0.1-14_amd64.deb",
     "hash": "sha256-eLDtIMYkDi+VRjOKvKZCfdyXeftn+7DFJ+caAclI//4="
   },
+  "intel-oneapi-runtime-mkl": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-mkl-2025.0.1-14_amd64.deb",
+    "hash": "sha256-S3btqcz4xvJvd/FktzAfZyJ2byFA84Hl4wNQyooxoPA="
+  },
+  "intel-oneapi-mkl-classic-include-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-include-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-aJIjocYWpW2ubBC4bv9IiFwqT7SI036fk+eTYwcnWHQ="
+  },
+  "intel-oneapi-mkl-sycl-data-fitting-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-data-fitting-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-zGpwLhxAko7hgSQ2H6z8GCrCT2dAgog/9GYCt1GVDgY="
+  },
+  "intel-oneapi-mkl-devel-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-devel-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-TiewO1rxJCi9OQnn1rncqoRRnE3OjG7ppDyIwXc61Wk="
+  },
+  "intel-oneapi-mkl-sycl-rng-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-rng-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-5WSW/sgSl1W1Ek0PrNEyG6OkHKxyhGckaFeAexkK0ug="
+  },
+  "intel-oneapi-mkl-classic-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-sdrg7g/QYiglFG+vGrZxOsafkGGYZykfGqPKKwyM5MU="
+  },
+  "intel-oneapi-mkl-sycl-include-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-include-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-XkcppGfQQZIX2BhCAMFZUxNBYZmQb+DStxRm5C2kOsw="
+  },
+  "intel-oneapi-mkl-sycl-blas-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-blas-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-GSpzDe2wzp5RNzXlY2T3gnbINakX7UBUI5s+gfO54WQ="
+  },
   "intel-oneapi-mkl-cluster-2025.0": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-2025.0-2025.0.1-14_amd64.deb",
     "hash": "sha256-kEFZu7q34fnsMOyYkCFvORldWIIM1sOSjCGRiv3bjHo="
+  },
+  "intel-oneapi-mkl-sycl-sparse-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-sparse-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-zCjYM06mZdvwzSJYnrVNR72EjuXITJ+Z5JBWM+7rSP8="
+  },
+  "intel-oneapi-mkl-sycl-lapack-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-lapack-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-UsDf1HNnqSzkl4iii8BDmI9o2s/BRr4JCUsLMwnszdY="
+  },
+  "intel-oneapi-mkl-sycl-devel-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-devel-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-eUYwghqz3EM0YcMIC+0gS/hEYLUVylKEqrjER8RynHI="
+  },
+  "intel-oneapi-mkl-classic-devel-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-devel-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-36n+KhO7VSxIFzStsA+l879gdbUU2tudGz+6oTLa0N4="
+  },
+  "intel-oneapi-mkl-sycl-stats-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-stats-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-en0e5Qq+JVn60DxrI/iTeYppVjgzVKXonB5ccslErAc="
+  },
+  "intel-oneapi-mkl-core-devel-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-devel-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-d6b+DS4RWTq4oGo1EO9xu89jFCvoUwEj3HdzCuLNRPs="
+  },
+  "intel-oneapi-mkl-core-2025.0": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-2025.0-2025.0.1-14_amd64.deb",
+    "hash": "sha256-Jtk0sTx+W64Bm19Fv95f2goWvu328Y8XIAfFMIR4SUI="
   },
   "intel-oneapi-mkl-sycl-dft-2025.0": {
     "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-dft-2025.0-2025.0.1-14_amd64.deb",

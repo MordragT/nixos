@@ -19,7 +19,7 @@ buildPythonPackage rec {
 
   doCheck = false;
 
-  nativeBuildInputs = [
+  build-system = [
     setuptools
     wheel
   ];

@@ -80,6 +80,7 @@ in {
       # khronos # track task time
       # kooha # screen recording
       # komikku # read manga
+      lact # linux gpu configuration tool
       # letterpress # create ascii art
       loupe # image viewer
       # lorem # generate placeholder text

@@ -14,6 +14,8 @@ in {
 
   airportsdata = callPackage ./airportsdata {};
 
+  aniposelib = callPackage ./aniposelib {};
+
   argbind = callPackage ./argbind {};
 
   bitsandbytes = callPackage ./bitsandbytes {};
@@ -21,6 +23,8 @@ in {
   compel = callPackage ./compel {};
 
   controlnet-aux = callPackage ./controlnet-aux {};
+
+  deffcode = callPackage ./deffcode {};
 
   datasets = pkgs.datasets.overrideAttrs (old: {
     postPatch =
@@ -42,6 +46,10 @@ in {
   facexlib = callPackage ./facexlib {};
 
   fastapi-events = callPackage ./fastapi-events {};
+
+  freemocap = callPackage ./freemocap {};
+
+  freemocap-blender-addon = callPackage ./freemocap-blender-addon {};
 
   invokeai = callPackage ./invokeai {};
 
@@ -78,6 +86,16 @@ in {
   pypatchmatch = callPackage ./pypatchmatch {};
 
   randomname = callPackage ./randomname {};
+
+  skelly-synchronize = callPackage ./skelly-synchronize {};
+
+  skelly-viewer = callPackage ./skelly-viewer {};
+
+  skellycam = callPackage ./skellycam {};
+
+  skellyforge = callPackage ./skellyforge {};
+
+  skellytracker = callPackage ./skellytracker {};
 
   spandrel = callPackage ./spandrel {};
 

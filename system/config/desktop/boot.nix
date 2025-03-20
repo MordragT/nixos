@@ -23,7 +23,7 @@
   boot.runSize = "25%";
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_6_12; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
+  boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
   boot.kernelParams = [
     # "i915.force_probe=!56a1"
     # "xe.force_probe=56a1"
@@ -34,7 +34,7 @@
     "retbleed=off"
   ];
   boot.kernel.sysctl = {
-    "dev.i915.perf_stream_paranoid" = 0; # needed for intel arc metrics ??
+    # "dev.i915.perf_stream_paranoid" = 0; # needed for intel arc metrics ??
     # According to https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
     # these values are best of zram swap
     "vm.swappiness" = 180;

@@ -26,9 +26,12 @@ buildPythonPackage rec {
   };
 
   nativeBuildInputs = [
+    pythonRelaxDepsHook
+  ];
+
+  build-system = [
     setuptools
     wheel
-    pythonRelaxDepsHook
   ];
 
   dependencies = [

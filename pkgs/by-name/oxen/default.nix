@@ -19,7 +19,8 @@ rustPlatform
   };
 
   cargoBuildFlags = "--bin oxen --all-features";
-  cargoHash = "sha256-aQvO3xwjV4UJ1Q/9qOYrsLlO5B0eHcYcvl/qBXVbx7U=";
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-omy/GD+iavEBNzITEJVud66yLmqNFyanEgla+Gd6pgM=";
 
   doCheck = false;
 

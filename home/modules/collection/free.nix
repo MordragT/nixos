@@ -22,7 +22,7 @@ in {
 
       # Documents
       # libreoffice-fresh
-      # okular
+      kdePackages.okular
       onlyoffice-bin_latest
       # xournalpp
 

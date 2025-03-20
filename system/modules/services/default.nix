@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./forgejo
+    ./gitlab
     ./harmonia
     ./invokeai
     ./livebook

@@ -25,16 +25,16 @@ in {
       cosmic-ext-applet-clipboard-manager
       cosmic-ext-applet-emoji-selector
       cosmic-ext-calculator
-      cosmic-ext-examine
-      cosmic-ext-forecast
-      cosmic-ext-tasks
       cosmic-ext-tweaks
       cosmic-player
       cosmic-reader
       chronos
+      examine
+      forecast
       oboete
       quick-webapps
       stellarshot
+      tasks
     ];
   };
 }

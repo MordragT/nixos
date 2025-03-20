@@ -15,6 +15,23 @@ in {
       enable = true;
       package = pkgs.firefox;
       profiles.options = {
+        extensions.packages = with pkgs.firefoxAddons; [
+          bib-kit
+          bibitnow
+          bitwarden
+          brave-search
+          # csgofloat
+          ghostery
+          private-internet-access-ext
+          rust-search-extension
+          sidebery
+          # skinport-plus
+          sponsorblock
+          # ublock-origin
+          youtube-shorts-block
+          # pkgs.nur.repos.bandithedoge.firefoxAddons.augmented-steam
+        ];
+
         settings = {
           "browser.aboutConfig.showWarning" = false;
           "browser.startup.homepage" = "https://search.brave.com";
@@ -59,22 +76,6 @@ in {
               visibility: collapse !important;
           }
         '';
-        extensions = with pkgs.firefoxAddons; [
-          bib-kit
-          bibitnow
-          bitwarden
-          brave-search
-          # csgofloat
-          ghostery
-          private-internet-access-ext
-          rust-search-extension
-          sidebery
-          # skinport-plus
-          sponsorblock
-          # ublock-origin
-          youtube-shorts-block
-          # pkgs.nur.repos.bandithedoge.firefoxAddons.augmented-steam
-        ];
       };
     };
   };

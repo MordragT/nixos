@@ -13,6 +13,11 @@
 
   # Networking
   networking.hostName = "tom-desktop";
+
+  networking.hosts = {
+    "127.0.0.1" = ["argocd.local"];
+  };
+
   # https://github.com/NixOS/nixpkgs/issues/180175
   # systemd.network.wait-online.anyInterface = true;
   # systemd.network.wait-online.timeout = 5;
@@ -55,14 +60,16 @@
       cores = 4;
     };
 
-    # virtualbox.host = {
-    #   enable = true;
-    #   #headless = true;
-    #   #enableHardening = false;
-    # };
-    # docker.enable = true;
+    virtualbox.host = {
+      enable = true;
+      #headless = true;
+      #enableHardening = false;
+    };
+    docker.enable = true;
     # waydroid.enable = true;
     # libvirtd.enable = true;
     # multipass.enable = true;
   };
+  # k3d
+  networking.firewall.allowedTCPPorts = [6443];
 }

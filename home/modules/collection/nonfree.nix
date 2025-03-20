@@ -18,7 +18,7 @@ in {
       teamspeak_client
       # broken teams-for-linux # microsoft teams
       unigine-superposition
-      # zoom-us
+      zoom-us
       webex
       # whatsapp-for-linux
       ookla-speedtest

@@ -39,14 +39,10 @@ in {
         plugin use apt
 
         const scripts = "${./scripts}"
-        $env.CERTIFICATES = "${./scripts/vpnctl}"
 
         # cannot use files directly as that would rename them to a hash
         # and would clash with nushell module system
         use $"($scripts)/comma.nu" ,
-        use $"($scripts)/vpnctl"
-        use $"($scripts)/all-to.nu"
-        use $"($scripts)/superview.nu"
 
         alias comojit = comoji commit
         alias r = direnv reload
@@ -80,8 +76,9 @@ in {
 
     # vpnctl
     home.packages = with pkgs; [
-      openconnect
-      wireguard-tools
+      vpnctl
+      superview
+      all-to
     ];
   };
 }
