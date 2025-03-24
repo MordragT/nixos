@@ -47,5 +47,5 @@ export def main [] {
         wcrichton.flowistry
     ]
     let extensions = fetch-vsixpkgs $slugs
-    $extensions | to json | save --force $file
+    $extensions | sort | to json | save --force $file
 }

@@ -28,11 +28,22 @@ in {
         "zedokai"
         "zig"
       ];
+      userKeymaps = [
+        {
+          context = "Editor && mode == full";
+          bindings = {
+            ctrl-shift-enter = [
+              "assistant::InlineAssist"
+              {prompt = "Generate Documentation";}
+            ];
+          };
+        }
+      ];
       userSettings = {
         theme = "Zedokai Darker Classic";
-        ui_font_size = 18;
+        ui_font_size = 20;
         ui_font_family = "Geist";
-        buffer_font_size = 14;
+        buffer_font_size = 16;
         buffer_font_family = "Geist Mono";
         tab_bar.show = false;
         show_wrap_guides = true;
@@ -42,17 +53,16 @@ in {
           quick_actions = true;
           selections_menu = true;
         };
+        language_models.ollama = {
+          api_url = "http://localhost:11434";
+          available_models = [];
+        };
+        language_models.lamma-cpp.api_url = "http://localhost:8030";
         assistant.enabled = true;
-        assistant.version = "1";
-        assistant.provider = {
-          name = "ollama";
-          # Recommended setting to allow for model startup
-          low_speed_timeout_in_seconds = 30;
-          default_model = {
-            name = "gemma2:9b-instruct-q4_K_S";
-            max_tokens = 8192;
-            keep_alive = "10m";
-          };
+        assistant.version = "2";
+        assistant.default_model = {
+          provider = "zed.dev"; # google
+          model = "claude-3-7-sonnet-latest"; # gemini-1.5-flash
         };
         # base_keymap = "SublimeText";
       };

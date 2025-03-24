@@ -10,8 +10,8 @@
   ocl-icd,
   lib,
 }: let
-  major = "2025.0";
-  version = "2025.0.1";
+  major = "2025.1";
+  version = "2025.1.0";
 
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
   srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;

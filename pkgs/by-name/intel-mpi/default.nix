@@ -26,7 +26,7 @@ in
       libfabric
     ];
 
-    autoPatchelfIgnoreMissingDeps = ["libiomp5.so"];
+    autoPatchelfIgnoreMissingDeps = ["libiomp5.so" "libcuda.so.1"];
 
     unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
 
@@ -35,10 +35,7 @@ in
 
       cd opt/intel/oneapi/redist
 
-      ls bin
-
       mv bin $out/bin
-      mv etc $out/etc
       mv lib $out/lib
       mv share $out/share
     '';

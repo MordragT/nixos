@@ -9,13 +9,13 @@
 }:
 intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dnn";
-  version = "3.6.2";
+  version = "3.7.2";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = "oneDNN";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-HEQVUnuVFd7/qgD19KLNF/qhVgah7Yhv8hLd5TmLE78=";
+    hash = "sha256-buOrJOPI2Fe5fqyaFjC+Wai4BX2RhQ+41+VR2Kyi8+A=";
   };
 
   outputs = ["out" "dev" "doc"];

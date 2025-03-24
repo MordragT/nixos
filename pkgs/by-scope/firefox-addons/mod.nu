@@ -34,5 +34,5 @@ export def main [] {
         skinport-plus
     ]
     let addons = fetch-addons $slugs
-    $addons | to json | save --force $file
+    $addons | sort | to json | save --force $file
 }

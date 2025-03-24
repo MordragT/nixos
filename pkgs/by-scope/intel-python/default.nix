@@ -2,18 +2,6 @@ self: pkgs: let
   build-support = self.callPackage ./build-support.nix {};
   callPackage = self.callPackage;
 in {
-  accelerate = callPackage ({fetchFromGitHub}:
-    pkgs.accelerate.overrideAttrs (_: {
-      src = fetchFromGitHub {
-        owner = "dvrogozh";
-        repo = "accelerate";
-        rev = "623a9e126c8eaa9cfaeedb4069362baf032a7268";
-        hash = "sha256-M5tTN3+ESMWnxl4fo4bmwDmP9GO22g2oTmm6Y/bXRbI=";
-      };
-    })) {};
-
-  airportsdata = callPackage ./airportsdata {};
-
   aniposelib = callPackage ./aniposelib {};
 
   argbind = callPackage ./argbind {};
@@ -59,8 +47,6 @@ in {
 
   mediapipe = callPackage ./mediapipe {};
 
-  moviepy = callPackage ./moviepy {};
-
   nncf = callPackage ./nncf {};
 
   oneccl-bind-pt = callPackage ./oneccl-bind-pt {
@@ -74,10 +60,6 @@ in {
   optimum-intel = callPackage ./optimum-intel {};
 
   oute-tts = callPackage ./oute-tts {};
-
-  outlines = callPackage ./outlines {};
-
-  outlines-core = callPackage ./outlines-core {};
 
   parler-tts = callPackage ./parler-tts {};
 
@@ -99,34 +81,15 @@ in {
 
   spandrel = callPackage ./spandrel {};
 
-  torch = self.torch-ipex;
-
-  torch-ipex = callPackage ./torch-ipex {
-    inherit (build-support) fetchipex;
-    zstd-native = self.pkgs.zstd;
-  };
-
-  torch-nightly = callPackage ./torch-nightly {
+  torch = callPackage ./torch {
     inherit (build-support) fetchtorch;
   };
 
-  torchaudio = self.torchaudio-ipex;
-
-  torchaudio-ipex = callPackage ./torchaudio-ipex {
-    inherit (build-support) fetchipex;
-  };
-
-  torchaudio-nightly = callPackage ./torchaudio-nightly {
+  torchaudio = callPackage ./torchaudio {
     inherit (build-support) fetchtorch;
   };
 
-  torchvision = self.torchvision-ipex;
-
-  torchvision-ipex = callPackage ./torchvision-ipex {
-    inherit (build-support) fetchipex;
-  };
-
-  torchvision-nightly = callPackage ./torchvision-nightly {
+  torchvision = callPackage ./torchvision {
     inherit (build-support) fetchtorch;
   };
 

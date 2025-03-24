@@ -18,7 +18,7 @@
     pname,
     version,
     suffix ? "",
-    dist ? "whl/nightly/xpu",
+    dist ? "whl/xpu",
     python ? "cp312",
     abi ? "cp312",
     platform ? "linux_x86_64",

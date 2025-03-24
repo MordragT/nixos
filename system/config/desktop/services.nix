@@ -21,7 +21,7 @@
   };
   mordrag.services.printing.enable = true;
   mordrag.services.step-ca.enable = true;
-  mordrag.services.gitlab.enable = true;
+  # mordrag.services.gitlab.enable = true;
   # mordrag.services.forgejo.enable = true;
   mordrag.services.harmonia.enable = true;
   # mordrag.services.stalwart.enable = true;

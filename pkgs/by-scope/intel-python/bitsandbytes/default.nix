@@ -10,14 +10,14 @@
 }:
 buildPythonPackage {
   pname = "bitsandbytes";
-  version = "multi-backend-refactor-2024-10-12";
+  version = "multi-backend-refactor-2025-03-18";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "bitsandbytes-foundation";
     repo = "bitsandbytes";
-    rev = "994833378a51a96db6a74ee8071654def47007b2";
-    hash = "sha256-e9zGXsTkIppVI0zOqb+XzhtZklpqOv0iNd21HY0OI/M=";
+    rev = "8fe63259d21fff9387926aa86547414b67060536";
+    hash = "";
   };
 
   nativeBuildInputs = [

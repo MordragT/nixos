@@ -1,12 +1,12 @@
 self: pkgs: let
   callPackage = pkgs.callPackage;
   pins = pkgs.callPackage ./pins {};
-  version = "nightly-2024-12-16";
+  version = "nightly-2025-03-24";
   src = pkgs.fetchFromGitHub {
     owner = "intel";
     repo = "llvm";
     rev = version;
-    hash = "sha256-yb4+VMGHSLz11sERBb/YTvql2UE419bXAdKGzKTabS0=";
+    hash = "";
   };
 in {
   llvm-bin = callPackage ./llvm-bin {

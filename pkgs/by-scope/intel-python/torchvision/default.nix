@@ -12,12 +12,13 @@
 }:
 buildPythonPackage rec {
   pname = "torchvision";
-  version = "0.22.0.dev20241220";
+  version = "0.21.0";
   format = "wheel";
 
   src = fetchtorch {
     inherit pname version;
-    hash = "sha256-w/Bn1AYQc6v0zaXGaTV2Cy94AkZnrzKFjmV/SQPqr2M=";
+    suffix = "%2Bxpu";
+    hash = "sha256-4LeAG+ehZt6YCuehtOJyDkUJrLWdEvV2ee3zmVKd2eI=";
   };
 
   nativeBuildInputs = [

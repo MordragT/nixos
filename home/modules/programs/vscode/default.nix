@@ -200,6 +200,7 @@ in {
           }
         ];
         extensions = with pkgs.vscode-extensions; [
+          antfu.slidev
           bierner.markdown-mermaid
           bmewburn.vscode-intelephense-client
           # catppuccin.catppuccin-vsc
@@ -212,7 +213,7 @@ in {
           jnoortheen.nix-ide
           jsinger67.parol-vscode
           kamadorueda.alejandra
-          marp-team.marp-vscode
+          # marp-team.marp-vscode
           matangover.mypy
           Mordrag.one-dark-vibrant
 
@@ -235,7 +236,7 @@ in {
           piousdeer.adwaita-theme
           PolyMeilex.wgsl
           redhat.java
-          rust-lang.rust-analyzer-nightly
+          # broken rust-lang.rust-analyzer-nightly
           # rust-lang.rust-analyzer
           skellock.just
           streetsidesoftware.code-spell-checker
@@ -247,6 +248,7 @@ in {
           tomoki1207.pdf
           twxs.cmake
 
+          vue.volar
           # vadimcn.vscode-lldb
           # valentjn.vscode-ltex
           vscjava.vscode-gradle

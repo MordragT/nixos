@@ -3,8 +3,8 @@
 export def main [] {
     const file = path self ./default.lock
 
-    const major = "2025.0"
-    const version = "2025.0.1-14"
+    const major = "2025.1"
+    const version = "2025.1.0-801"
 
     const packages = [
         $"mkl-($major)-($version)"
@@ -60,5 +60,5 @@ export def main [] {
         | reduce --fold {} { |it, acc| $acc | insert $it.package { url: $"https://apt.repos.intel.com/oneapi/($it.filename)", hash: (nix hash convert --hash-algo sha256 --to sri $it.sha256) } }
     )
     
-    $sources | to json | save --force $file
+    $sources | sort | to json | save --force $file
 }

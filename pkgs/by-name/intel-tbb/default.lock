@@ -1,14 +1,14 @@
 {
   "intel-oneapi-runtime-tbb": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-tbb-2022.0.0-402_amd64.deb",
-    "hash": "sha256-tmdMCXKiC+2P3Pjfb+jaDwyYeknVxUSRvQeasmZnuxA="
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-tbb-2022.1.0-425_amd64.deb",
+    "hash": "sha256-nJFQjus8vPD2gQJ/t/0ZkD3gcoAYZln7h0pRGWTLTWM="
   },
-  "intel-oneapi-tbb-devel-2022.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-tbb-devel-2022.0-2022.0.0-402_amd64.deb",
-    "hash": "sha256-kGIpUkwblqFva5xKJMviRQ923ikCXxJ7+qMn2RKAPnM="
+  "intel-oneapi-tbb-2022.1": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-tbb-2022.1-2022.1.0-425_amd64.deb",
+    "hash": "sha256-BFA29SeMA1OjOSUR5WXk1HP/sNJ/RKEcFfeM8XAY9zU="
   },
-  "intel-oneapi-tbb-2022.0": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-tbb-2022.0-2022.0.0-402_amd64.deb",
-    "hash": "sha256-9P4Y1oJY5sij3Lg/J39XtiYUuvXjCN/5IPVb4mHBEV4="
+  "intel-oneapi-tbb-devel-2022.1": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-tbb-devel-2022.1-2022.1.0-425_amd64.deb",
+    "hash": "sha256-O9fmBgTg7URso3NRk6bEkSC7I59AQTXITShX3o9LnQ0="
   }
 }

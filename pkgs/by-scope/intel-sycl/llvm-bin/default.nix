@@ -17,7 +17,7 @@ stdenvNoCC.mkDerivation {
 
   src = fetchzip {
     url = "https://github.com/intel/llvm/releases/download/${version}/sycl_linux.tar.gz";
-    hash = "sha256-IdrsJtX7JnimB9ZcsRwOtGkgakgwzZ2TFStycY1l70I=";
+    hash = "sha256-6VnQZNNZ+DKrSirmraFeaeX0am8r/Um6CrDecci6NUY=";
     stripRoot = false;
   };
 
@@ -44,7 +44,7 @@ stdenvNoCC.mkDerivation {
   dontBuild = true;
 
   installPhase = ''
-    mv lib/clang/20 $rsrc
+    mv lib/clang/21 $rsrc
     rm -r lib/clang
 
     mkdir $out

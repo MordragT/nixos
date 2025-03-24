@@ -9,13 +9,13 @@
 # requires dpcpp compiler
 intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dal";
-  version = "2025.0.0";
+  version = "2025.2.0";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneDAL";
     rev = finalAttrs.version;
-    hash = "sha256-FnF9wAESNez4ZUUjLKviJwgMH5RpYooGj4MltlxkZbo=";
+    hash = "";
   };
 
   nativeBuildInputs = [

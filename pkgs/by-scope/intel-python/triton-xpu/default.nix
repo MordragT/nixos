@@ -9,14 +9,12 @@
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
-  version = "3.1.0";
+  version = "3.2.0";
   format = "wheel";
 
   src = fetchtorch {
     inherit pname version;
-    dist = "whl/nightly";
-    suffix = "%2B91b14bf559";
-    hash = "sha256-+L6UiQjAUhoxSVpxss48o7H00VPJth+aa0TJzuGRoAk=";
+    hash = "";
   };
 
   nativeBuildInputs = [

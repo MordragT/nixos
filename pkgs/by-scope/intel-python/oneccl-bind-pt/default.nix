@@ -10,13 +10,13 @@
 }:
 buildPythonPackage rec {
   pname = "oneccl_bind_pt";
-  version = "2.5.0";
+  version = "2.6.0";
   format = "wheel";
 
   src = fetchipex {
     inherit pname version;
     suffix = "%2Bxpu";
-    hash = "sha256-E9GxHwHEvlH0JD2G9/bap04WLo6QUs8u0lt4YmcepiY=";
+    hash = "";
   };
 
   nativeBuildInputs = [

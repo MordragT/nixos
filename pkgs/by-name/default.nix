@@ -34,7 +34,6 @@ in {
   openvino-tokenizers = callPackage ./openvino-tokenizers {};
   oxen = callPackage ./oxen {};
   proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
-  slidev = callPackage ./slidev {};
   spflashtool = callPackage ./spflashtool {};
   spflashtool-v5 = callPackage ./spflashtool-v5 {};
   tabby = callPackage ./tabby {};

@@ -4,7 +4,7 @@ export def main [] {
     const file = path self ./default.lock
 
     const major = "2025.0"
-    const version = "2025.0.1-1240"
+    const version = "2025.0.3-1401"
     const classic_version = "2023.2.4-2023.2.4-49553"
 
     const packages = [
@@ -46,5 +46,5 @@ export def main [] {
         | reduce --fold {} { |it, acc| $acc | insert $it.package { url: $"https://apt.repos.intel.com/oneapi/($it.filename)", hash: (nix hash convert --hash-algo sha256 --to sri $it.sha256) } }
     )
     
-    $sources | to json | save --force $file
+    $sources | sort | to json | save --force $file
 }
