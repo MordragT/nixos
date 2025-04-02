@@ -15,12 +15,10 @@ in {
   deffcode = callPackage ./deffcode {};
 
   datasets = pkgs.datasets.overrideAttrs (old: {
-    postPatch =
-      ''
-        substituteInPlace src/datasets/utils/_dill.py \
-          --replace-fail "0.3.8" "0.3.9"
-      ''
-      + old.postPatch;
+    postPatch = ''
+      substituteInPlace src/datasets/utils/_dill.py \
+        --replace-fail "0.3.8" "0.3.9"
+    '';
   });
 
   descript-audio-codec = callPackage ./descript-audio-codec {};

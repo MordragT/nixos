@@ -3,18 +3,18 @@
   fetchFromGitHub,
   buildGoModule,
 }:
-buildGoModule {
+buildGoModule rec {
   pname = "dud";
-  version = "master";
+  version = "0.4.5";
 
   src = fetchFromGitHub {
     owner = "kevin-hanselman";
     repo = "dud";
-    rev = "a3057b1a937a306a980aed200a7ec9ded08ac5a0";
-    sha256 = "sha256-itxyYzuj1RGrGwgYqbxZ72cMNoARElkTkunDEuAokR4=";
+    rev = "v${version}";
+    sha256 = "";
   };
 
-  vendorHash = "sha256-7223uF2c3sXLLQHn1YvSuE3Z5BHUv4W4Ga1KjqsJzAg=";
+  vendorHash = "";
 
   meta = with lib; {
     description = "A lightweight CLI tool for versioning data alongside source code and building data pipelines.";

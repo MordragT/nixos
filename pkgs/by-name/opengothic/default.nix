@@ -14,13 +14,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "opengothic";
-  version = "unstable-2025-24-02";
+  version = "unstable-2025-27-03";
 
   src = fetchFromGitHub {
     owner = "Try";
     repo = "OpenGothic";
-    rev = "9f8e47965d3370dae745497255a828ea824b3c0e";
-    sha256 = "sha256-galZq7CycdhSOuxk9ccbYakWmfyEIsFYVMLpZL4g1aM=";
+    rev = "379bef748420df5bda142251b95d829e4f6cfed3";
+    sha256 = "sha256-RkIuP283kEKugENQcCp9LOo4jyLdCSvocoTz2N2qmzg=";
     fetchSubmodules = true;
   };
 

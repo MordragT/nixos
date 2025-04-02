@@ -20,7 +20,6 @@ in {
   llama-cpp-sycl = callPackage ./llama-cpp-sycl {};
   lottieconv = callPackage ./lottieconv {};
   mtk-client = callPackage ./mtk-client {};
-  my-vscode = callPackage ./my-vscode {};
   ollama-sycl = callPackage ./ollama-sycl {};
 
   oneapi-ccl = callPackage ./oneapi-ccl {};
@@ -39,13 +38,10 @@ in {
   tabby = callPackage ./tabby {};
   tmfs = callPackage ./tmfs {};
 
-  upscaler = callPackage ./upscaler {};
-  upscayl-ncnn = callPackage ./upscayl-ncnn {};
   unified-runtime = callPackage ./unified-runtime {};
   unified-memory-framework = callPackage ./unified-memory-framework {};
 
   vulkan-raytracing = callPackage ./vulkan-raytracing {};
-  webdesigner = callPackage ./webdesigner {};
   wine-tkg = callPackage ./wine-tkg {};
   zen-browser-bin = callPackage ./zen-browser-bin {};
 }

@@ -16,6 +16,7 @@ in {
     environment.gnome.excludePackages = with pkgs; [
       totem
       evince
+      gnome-color-manager
     ];
 
     environment.systemPackages = with pkgs;

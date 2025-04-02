@@ -22,6 +22,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       andromeda
+      cosmic-ext-applet-caffeine
       cosmic-ext-applet-clipboard-manager
       cosmic-ext-applet-emoji-selector
       cosmic-ext-calculator
@@ -31,6 +32,7 @@ in {
       chronos
       examine
       forecast
+      observatory
       oboete
       quick-webapps
       stellarshot

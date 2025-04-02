@@ -57,7 +57,7 @@
     "kvm-amd"
     # "btintel"
     "v4l2loopback"
-    "zenpower"
+    # "zenpower"
     # "amd_pstate=active" _CPC object not present and no settings in bios
   ];
   boot.blacklistedKernelModules = [
@@ -65,7 +65,7 @@
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
-    zenpower
+    # zenpower
   ];
   boot.extraModprobeConfig = ''
     options v4l2loopback devices=1 video_nr=2 card_label="Loopback Camera" exclusive_caps=1

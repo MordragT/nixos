@@ -16,16 +16,16 @@
   libpanel,
   desktop-file-utils,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "epic-asset-manager";
-  version = "3.8.3";
+  version = "3.8.6";
 
   src = let
     source = fetchFromGitHub {
       owner = "AchetaGames";
       repo = "Epic-Asset-Manager";
-      rev = "a07c4591fcc1584b599dc5aafc725b22b483397d";
-      sha256 = "CrRB+MKszNsI55SICHRd85PPb5Ss/OYrPZRCigkUyMc=";
+      rev = "${version}";
+      sha256 = "";
     };
   in
     runCommand "source" {} ''

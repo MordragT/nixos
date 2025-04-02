@@ -46,7 +46,7 @@ in {
 
         alias comojit = comoji commit
         alias r = direnv reload
-        # alias code = codium
+        alias code = zeditor
 
         $env.config = {
           show_banner: false

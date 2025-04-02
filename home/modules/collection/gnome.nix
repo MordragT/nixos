@@ -43,7 +43,7 @@ in {
       # ensembles # live DAW
       # errands # task manager
       # exhibit # 3D model viewer
-      # eyedropper # pick format colors
+      eyedropper # pick format colors
       # raider # file shredder
       resources # monitor hardware resources
       fclones-gui # find duplicate files
@@ -80,7 +80,7 @@ in {
       # khronos # track task time
       # kooha # screen recording
       # komikku # read manga
-      lact # linux gpu configuration tool
+      # lact # linux gpu configuration tool
       # letterpress # create ascii art
       loupe # image viewer
       # lorem # generate placeholder text

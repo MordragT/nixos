@@ -26,11 +26,11 @@
 }:
 stdenv.mkDerivation {
   pname = "ensembles";
-  version = "master";
+  version = "unstable-2022-09-10";
 
   src = fetchFromGitHub {
-    owner = "SubhadeepJasu";
-    repo = "Ensembles";
+    owner = "ensemblesaw";
+    repo = "ensembles-app";
     rev = "b16631a36882b6df9253a77d992eb78e9e0eedd2";
     sha256 = "pMg3xGMsqCHLDy5Fp2FK3cb9CMc606oNtZApREEfGQs=";
   };

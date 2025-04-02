@@ -1,15 +1,21 @@
 [
   {
+    "name": "code-spell-checker-german",
+    "publisher": "streetsidesoftware",
+    "version": "2.3.2",
+    "sha256": "17nmgmvrdy5h2sbf4bphryn06q5km40fc1kfqif0z8hd4zmrqhz3"
+  },
+  {
+    "name": "flowistry",
+    "publisher": "wcrichton",
+    "version": "0.5.42",
+    "sha256": "05p5as8nizr6wamjd8snfvkmfcswhyxm5nrvv1ri789fsbqi4ws8"
+  },
+  {
     "name": "gltf-vscode",
     "publisher": "cesium",
     "version": "2.5.1",
     "sha256": "0963mnvavpad5im5x2kr665lfyvhinvnq3krr8aszfy4xm01hn0h"
-  },
-  {
-    "name": "texlab",
-    "publisher": "efoerster",
-    "version": "5.22.2",
-    "sha256": "1vn14vc8ninvafni1spahfcsf7fr0pi9dn735dy965qn47yif2sa"
   },
   {
     "name": "kotlin",
@@ -18,16 +24,16 @@
     "sha256": "1cwncjvarq3g0cmn9afdd15s81nms0kcawnj3midhr4hchap2aml"
   },
   {
-    "name": "parol-vscode",
-    "publisher": "jsinger67",
-    "version": "0.4.0",
-    "sha256": "0axp9ry8z4z2i19h9lmfhk772dd84m0kw4bdwinkn3xm3hsy7f1m"
-  },
-  {
     "name": "one-dark-vibrant",
     "publisher": "Mordrag",
     "version": "0.0.4",
     "sha256": "0wd3ik6aspmdbylwshbkw2cmckyyf6n98d3anai5mvwyvidfymwb"
+  },
+  {
+    "name": "parol-vscode",
+    "publisher": "jsinger67",
+    "version": "0.4.0",
+    "sha256": "0axp9ry8z4z2i19h9lmfhk772dd84m0kw4bdwinkn3xm3hsy7f1m"
   },
   {
     "name": "sublime-keybindings",
@@ -36,22 +42,10 @@
     "sha256": "0zfyv2l9q5vqy2knvlyxzsmlwaji4mz2q5az2fnzz641gdx20njy"
   },
   {
-    "name": "wgsl",
-    "publisher": "PolyMeilex",
-    "version": "0.1.17",
-    "sha256": "1320ykimlbxl9jn9rcjqa376n5x28ir3lwg23jxd3h7pp9baysmw"
-  },
-  {
-    "name": "code-spell-checker-german",
-    "publisher": "streetsidesoftware",
-    "version": "2.3.2",
-    "sha256": "17nmgmvrdy5h2sbf4bphryn06q5km40fc1kfqif0z8hd4zmrqhz3"
-  },
-  {
-    "name": "vscode-tabby",
-    "publisher": "tabbyml",
-    "version": "1.25.0",
-    "sha256": "1m2bbr5njybraxgjgzw47pbp4r00ifgk68hn21c5n6i807z2bkii"
+    "name": "texlab",
+    "publisher": "efoerster",
+    "version": "5.22.2",
+    "sha256": "1vn14vc8ninvafni1spahfcsf7fr0pi9dn735dy965qn47yif2sa"
   },
   {
     "name": "vscode-nickel",
@@ -60,9 +54,15 @@
     "sha256": "1vfy0b142xq54yjy0l8vzhcyn2j7l0xa6k1xk2vxsgbca5m4yvl6"
   },
   {
-    "name": "flowistry",
-    "publisher": "wcrichton",
-    "version": "0.5.42",
-    "sha256": "05p5as8nizr6wamjd8snfvkmfcswhyxm5nrvv1ri789fsbqi4ws8"
+    "name": "vscode-tabby",
+    "publisher": "tabbyml",
+    "version": "1.25.1",
+    "sha256": "1xj70jwbrh5m89hg4g9b5arms9x1cnps60njgcayvm06m4w4lqgd"
+  },
+  {
+    "name": "wgsl",
+    "publisher": "PolyMeilex",
+    "version": "0.1.17",
+    "sha256": "1320ykimlbxl9jn9rcjqa376n5x28ir3lwg23jxd3h7pp9baysmw"
   }
 ]

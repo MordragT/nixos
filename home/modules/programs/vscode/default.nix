@@ -66,8 +66,7 @@ in {
     # };
 
     programs.vscode = {
-      # package = pkgs.my-vscode;
-      package = pkgs.vscode;
+      package = pkgs.vscodium;
       enable = true;
       mutableExtensionsDir = true;
 
