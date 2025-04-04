@@ -59,11 +59,11 @@
 in
   stdenv.mkDerivation rec {
     pname = "zen-browser-bin";
-    version = "1.10.2b";
+    version = "1.11b";
 
     src = fetchzip {
       url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
-      hash = "sha256-N/uyeIcF8ScoN05zvY06Z10glFPLz7DsCQUT5BhZBv0=";
+      hash = "sha256-RBZSyTpr8J4eYJDYYH5HdpcoBNOhzuhQOnXJwC0hwR0=";
     };
 
     desktopItems = [

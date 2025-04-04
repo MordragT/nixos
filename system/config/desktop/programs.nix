@@ -14,7 +14,7 @@
       # steamtinkerlaunch
     ];
   };
-  # broken mordrag.programs.valent.enable = true;
+  mordrag.programs.valent.enable = true;
 
   programs.adb.enable = true;
   programs.ausweisapp.enable = true;

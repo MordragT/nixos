@@ -34,6 +34,23 @@ in {
         Default = 1;
       };
     };
+
+    home.file.".zen/default/chrome/userChrome.css".text = ''
+      #nav-bar {
+        margin-top: var(--zen-element-separation) !important;
+        margin-bottom: var(--zen-element-separation) !important;
+      }
+
+      #zen-sidebar-top-buttons {
+        margin-top: var(--zen-element-separation) !important;
+        margin-bottom: var(--zen-element-separation) !important;
+      }
+
+      .titlebar-buttonbox-container {
+        margin-right: var(--zen-element-separation) !important;
+      }
+    '';
+
     home.file.".zen/default/extensions" = {
       source = let
         env = pkgs.buildEnv {
