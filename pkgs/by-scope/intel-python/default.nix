@@ -65,6 +65,8 @@ in {
 
   pypatchmatch = callPackage ./pypatchmatch {};
 
+  pystoi = callPackage ./pystoi {};
+
   randomname = callPackage ./randomname {};
 
   skelly-synchronize = callPackage ./skelly-synchronize {};
@@ -82,6 +84,8 @@ in {
   torch = callPackage ./torch {
     inherit (build-support) fetchtorch;
   };
+
+  torch-stoi = callPackage ./torch-stoi {};
 
   torchaudio = callPackage ./torchaudio {
     inherit (build-support) fetchtorch;

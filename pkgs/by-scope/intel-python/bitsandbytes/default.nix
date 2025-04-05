@@ -4,20 +4,21 @@
   fetchFromGitHub,
   cmake,
   setuptools,
+  setuptools-scm,
   torch,
   scipy,
   ipex,
 }:
 buildPythonPackage {
   pname = "bitsandbytes";
-  version = "multi-backend-refactor-2025-03-18";
+  version = "multi-backend-refactor-2025-04-02";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "bitsandbytes-foundation";
     repo = "bitsandbytes";
-    rev = "8fe63259d21fff9387926aa86547414b67060536";
-    hash = "";
+    rev = "d180d8e87b1cb19eccd2d73006e750ee3f5b3b1e";
+    hash = "sha256-qrW87OATh0y1XAJQ1C/OXXtlCEvgHUT6cyVTxdQbzMA=";
   };
 
   nativeBuildInputs = [
@@ -26,6 +27,7 @@ buildPythonPackage {
 
   build-system = [
     setuptools
+    setuptools-scm
   ];
 
   cmakeFlags = [
@@ -34,9 +36,9 @@ buildPythonPackage {
 
   postPatch = ''
     substituteInPlace setup.py \
-      --replace-fail "version=get_version_and_write_to_file()" 'version="0.45.0"'
+      --replace-fail "version=write_version_file(VERSION)" "version=VERSION"
 
-    echo '__version__ = "0.45.0"' >> bitsandbytes/_version.py
+    echo '__version__ = "1.0.0"' >> bitsandbytes/_version.py
   '';
 
   preBuild = ''

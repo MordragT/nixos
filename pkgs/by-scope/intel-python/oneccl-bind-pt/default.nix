@@ -5,7 +5,7 @@
   intel-ccl,
   intel-mpi,
   intel-sycl,
-  torch-ipex,
+  torch,
   ipex,
 }:
 buildPythonPackage rec {
@@ -16,7 +16,7 @@ buildPythonPackage rec {
   src = fetchipex {
     inherit pname version;
     suffix = "%2Bxpu";
-    hash = "";
+    hash = "sha256-Y7kb0OeDO7bbZ4kZD3/GlowZcRsJYlv80WY0w5wBr9U=";
   };
 
   nativeBuildInputs = [
@@ -27,14 +27,14 @@ buildPythonPackage rec {
     intel-ccl
     intel-sycl.llvm.lib
     intel-mpi
-    torch-ipex.lib
+    torch.lib
     ipex.lib
   ];
 
   dependencies = [
-    torch-ipex
+    torch
     ipex
   ];
 
-  pythonImportsCheck = ["oneccl_bind_pt"];
+  pythonImportsCheck = ["oneccl_bindings_for_pytorch"];
 }

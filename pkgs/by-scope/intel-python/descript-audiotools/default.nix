@@ -15,6 +15,8 @@
   rich,
   matplotlib,
   librosa,
+  pystoi,
+  torch-stoi,
   flatten-dict,
   markdown2,
   randomname,
@@ -51,8 +53,8 @@ buildPythonPackage rec {
     rich
     matplotlib
     librosa
-    # "pystoi",
-    # "torch_stoi",
+    pystoi
+    torch-stoi
     flatten-dict
     markdown2
     randomname
@@ -63,8 +65,6 @@ buildPythonPackage rec {
 
   pythonRemoveDeps = [
     "pyloudnorm"
-    "pystoi"
-    "torch-stoi"
   ];
 
   pythonRelaxDeps = [

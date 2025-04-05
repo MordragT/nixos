@@ -14,7 +14,8 @@ buildPythonPackage rec {
 
   src = fetchtorch {
     inherit pname version;
-    hash = "";
+    dist = "whl";
+    hash = "sha256-vTQJA9A0cHCN80QkOKy4t+CAh6ueYfvjSbKHK/klerA=";
   };
 
   nativeBuildInputs = [

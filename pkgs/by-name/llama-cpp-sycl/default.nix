@@ -19,13 +19,13 @@
 in
   intel-sycl.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
-    version = "4977";
+    version = "5054";
 
     src = fetchFromGitHub {
       owner = "ggerganov";
       repo = "llama.cpp";
       rev = "refs/tags/b${finalAttrs.version}";
-      hash = "";
+      hash = "sha256-6ny9TVzUArxzJA5qsxBo1mJSjKqyFDw04f7ujsNSCX8=";
       leaveDotGit = true;
       postFetch = ''
         git -C "$out" rev-parse --short HEAD > $out/COMMIT

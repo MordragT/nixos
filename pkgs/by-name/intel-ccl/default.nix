@@ -11,11 +11,11 @@
 
   ccl = fetchinteldeb {
     package = "intel-oneapi-ccl-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-ZNMyXR139v/AmqgQ2cuaAlnMFLe5vOozR5UyKJbAdtc=";
   };
   ccl-devel = fetchinteldeb {
     package = "intel-oneapi-ccl-devel-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-fzW2xXLkujKOPGyxXqO+yb5CE3VYvaGUWZh1sdzvh84=";
   };
 in
   stdenvNoCC.mkDerivation {
