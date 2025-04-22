@@ -41,6 +41,7 @@ in {
 
   ipex = callPackage ./ipex {
     inherit (build-support) fetchipex;
+    inherit (self.pkgs) zstd;
   };
 
   mediapipe = callPackage ./mediapipe {};

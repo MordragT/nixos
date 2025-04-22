@@ -148,6 +148,7 @@ in
       "pydantic"
       "dnspython"
       "requests"
+      "rich"
       "scikit-image"
       "test-tube"
     ];

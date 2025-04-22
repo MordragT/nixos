@@ -1,0 +1,16 @@
+diff --git a/sycl/cmake/modules/FetchUnifiedRuntime.cmake b/sycl/cmake/modules/FetchUnifiedRuntime.cmake
+--- a/sycl/cmake/modules/FetchUnifiedRuntime.cmake
++++ b/sycl/cmake/modules/FetchUnifiedRuntime.cmake
+@@ -313,10 +313,5 @@
+   else()
+     message(WARNING "Compiling Native CPU adapter without OCK support.
+     Some valid SYCL programs may not build or may have low performance.")
+   endif()
+-endif()
+-
+-install(TARGETS umf
+-  LIBRARY DESTINATION "lib${LLVM_LIBDIR_SUFFIX}" COMPONENT unified-memory-framework
+-  ARCHIVE DESTINATION "lib${LLVM_LIBDIR_SUFFIX}" COMPONENT unified-memory-framework
+-  RUNTIME DESTINATION "bin" COMPONENT unified-memory-framework)
++endif()
+\ No newline at end of file

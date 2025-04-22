@@ -2,8 +2,8 @@
   {
     "name": "code-spell-checker-german",
     "publisher": "streetsidesoftware",
-    "version": "2.3.2",
-    "sha256": "17nmgmvrdy5h2sbf4bphryn06q5km40fc1kfqif0z8hd4zmrqhz3"
+    "version": "2.3.3",
+    "sha256": "1k9v9as0pq1s4qf8yspzsidf10kqs7v9dpxymc16h5834kqnnixh"
   },
   {
     "name": "flowistry",
@@ -56,8 +56,8 @@
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.25.1",
-    "sha256": "1xj70jwbrh5m89hg4g9b5arms9x1cnps60njgcayvm06m4w4lqgd"
+    "version": "1.27.0",
+    "sha256": "0ifnq5msc5b5y2h69qva3fv49228ijw4m7y8cgyq9ywp3rcxjk05"
   },
   {
     "name": "wgsl",

@@ -3,14 +3,9 @@
 
   inputs = {
     templates.url = "github:MordragT/nix-templates";
-    # nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs.follows = "cosmic/nixpkgs";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fenix = {
-      url = "github:nix-community/fenix";
+      url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -56,7 +51,6 @@
     nixpkgs,
     nur,
     chaotic,
-    cosmic,
     valhali,
     disko,
     home-manager,
@@ -73,7 +67,6 @@
       inherit system;
       overlays = [
         chaotic.overlays.default
-        cosmic.overlays.default
         comoji.overlays.default
         fenix.overlays.default
         nur.overlays.default
@@ -155,7 +148,6 @@
           modules = [
             classified.nixosModules.${system}.default
             chaotic.nixosModules.default
-            cosmic.nixosModules.default
             disko.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
@@ -187,7 +179,6 @@
           modules = [
             classified.nixosModules.${system}.default
             chaotic.nixosModules.default
-            cosmic.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];

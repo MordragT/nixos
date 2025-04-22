@@ -15,7 +15,7 @@
   lib,
 }: let
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
-  version = "2025.0";
+  version = "2025.1";
 
   srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;
 in
@@ -50,7 +50,7 @@ in
     installPhase = ''
       cd ./opt/intel/oneapi/compiler/${version}
 
-      mv lib/clang/19 $rsrc
+      mv lib/clang/20 $rsrc
 
       mkdir $out
       mv bin $out/bin

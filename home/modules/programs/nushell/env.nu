@@ -33,7 +33,7 @@ def create_right_prompt [] {
             $branch
             (ansi reset)
         ] | str join
-        
+
         let staging_worktree = ($status
             | where ($it | str starts-with '1') or ($it | str starts-with '2')
             | split column ' '
@@ -171,3 +171,5 @@ $env.NU_PLUGIN_DIRS = [
 # $env.XDG_DATA_HOME = "~/.local/share"
 # $env.XDG_CONFIG_HOME = "~/.config"
 # $env.XDG_CACHE_HOME = "~/.cache"
+
+$env.VAGRANT_HOME = $env.HOME | path join ".local" "share" "vagrant"

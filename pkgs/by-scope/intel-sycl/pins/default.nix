@@ -5,14 +5,14 @@
   vc-intrinsics = fetchFromGitHub {
     owner = "intel";
     repo = "vc-intrinsics";
-    rev = "dpcpp_staging";
-    hash = "sha256-sbmLl+bOOMwr/tbtnXt19qIT3qmrCw7SLefZ4/gEsYw=";
+    rev = "4e51b2467104a257c22788e343dafbdde72e28bb";
+    hash = "sha256-AHXeKbih4bzmcuu+tx2TeS7Ixmk54uS1vKFVxI6ZP8g=";
   };
   spirv-headers = fetchFromGitHub {
     owner = "KhronosGroup";
     repo = "SPIRV-Headers";
-    rev = "efb6b4099ddb8fa60f62956dee592c4b94ec6a49";
-    hash = "sha256-07ROnZ+0xrZRoqUbLJAhqERV3X8E6iBEfMYfhWMfuyA=";
+    rev = "2b2e05e088841c63c0b6fd4c9fb380d8688738d3";
+    hash = "sha256-EZrWquud9CFrDNdskObCQQCR0HsXOZmJohh/0ybaT7g=";
   };
   ocl-headers = fetchFromGitHub {
     owner = "KhronosGroup";
@@ -32,28 +32,36 @@
     rev = "863d8b8d2b20f2acd0b5870f23e553df9ce90e6c";
     hash = "sha256-yvK4F4Z+cr5YdORzLRgL+LyeKwvpY2MBynPIDFRATS0=";
   };
-  unified-runtime = fetchFromGitHub {
-    owner = "oneapi-src";
-    repo = "unified-runtime";
-    rev = "b7047f6c36ec17b8560c2f1cd9ac9521715a9127";
-    hash = "sha256-AtHvwvcVy5JvJqqT7hFMze1OqtgEzk+c5lSnIAaRaSo=";
+  unified-runtime = applyPatches {
+    src = fetchFromGitHub {
+      owner = "oneapi-src";
+      repo = "unified-runtime";
+      rev = "d03f19a88e42cb98be9604ff24b61190d1e48727";
+      hash = "sha256-gbOWgwFDbT/y8cXZHv6yEAP2EZvTxNeKmcY3OQsnXGA=";
+    };
+    patches = [
+      ./compute-runtime.patch
+    ];
   };
-
-  # unified-runtime = applyPatches {
-  #   src = fetchFromGitHub {
-  #     owner = "oneapi-src";
-  #     repo = "unified-runtime";
-  #     rev = "b7047f6c36ec17b8560c2f1cd9ac9521715a9127";
-  #     hash = "sha256-AtHvwvcVy5JvJqqT7hFMze1OqtgEzk+c5lSnIAaRaSo=";
-  #   };
-  #   patches = [
-  #     ./umf.patch
-  #   ];
-  # };
-  # unified-memory-framework = fetchFromGitHub {
-  #   owner = "oneapi-src";
-  #   repo = "unified-memory-framework";
-  #   rev = "85e3bd72dbaa95e9e5fd2a4a787714b7cf1c6a16";
-  #   hash = "sha256-OMKGhVF5NMBaqPTfb722WSpOOjfR3pVUHvGj7zIXl04=";
-  # };
+  compute-runtime = fetchFromGitHub {
+    owner = "intel";
+    repo = "compute-runtime";
+    rev = "25.05.32567.17";
+    hash = "sha256-iH0F++2xlh68Q28B2QHK/jcOhgPOT0IQKRp58axZHA8=";
+    sparseCheckout = [
+      "level_zero/include"
+    ];
+  };
+  emhash = fetchFromGitHub {
+    owner = "ktprime";
+    repo = "emhash";
+    rev = "96dcae6fac2f5f90ce97c9efee61a1d702ddd634";
+    hash = "sha256-yvnu8TMIX6KJZlYJv3ggLf9kOViKXeUp4NyhRg4m5Dg=";
+  };
+  parallel-hashmap = fetchFromGitHub {
+    owner = "greg7mdp";
+    repo = "parallel-hashmap";
+    rev = "8a889d3699b3c09ade435641fb034427f3fd12b6";
+    hash = "sha256-hcA5sjL0LHuddEJdJdFGRbaEXOAhh78wRa6csmxi4Rk=";
+  };
 }

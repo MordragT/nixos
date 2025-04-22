@@ -7,15 +7,15 @@
   clang,
   bash,
 }:
-libcxxStdenv.mkDerivation {
+libcxxStdenv.mkDerivation rec {
   pname = "byfl";
-  version = "master";
+  version = "1.8.0";
 
   src = fetchFromGitHub {
-    sha256 = "jGmhQwBwJ9oA8PsEL19iekZeaUjy4XWSMASvkfzRJBs=";
-    rev = "9e6c255bf6044feb74b54ef97ef56df3d3b17e91";
     owner = "lanl";
     repo = "Byfl";
+    sha256 = "jGmhQwBwJ9oA8PsEL19iekZeaUjy4XWSMASvkfzRJBs=";
+    rev = "v${version}";
   };
 
   postPatch = ''

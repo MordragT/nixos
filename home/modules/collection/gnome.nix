@@ -21,7 +21,7 @@ in {
       # boatswain # control elgato stream deck
       # cartridges # game launcher
       # calls # phone dialer and call handler
-      # not packaged chessclock
+      chess-clock
       # citations # bibtex
       # clairvoyant
       collision # check file hashes
@@ -29,16 +29,18 @@ in {
       # contrast # gtk check contrast
       # curtail # image compressor
       # czkawka # duplicate finder
-      decibels
+      decibels # play audio
       delineate # View and edit dot graph
       # denaro # personal finance manager
       # deja-dup # backup tool
       # dialect # translate
-      door-knocker
+      diebahn # train info
+      door-knocker # xdg-desktop-portal info
+      drum-machine # create drum patterns
       # eartag # tag audio files
       easyeffects # audio effects
       # elastic # design spring animations
-      # emblem
+      emblem # generate project icons
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
@@ -52,7 +54,7 @@ in {
       fractal-next # gtk matrix messaging
       # fragments # torrent downloader
       # fretboard # guitar chords
-      # broken gaphor # create diagrams and uml
+      gaphor # create diagrams and uml
       ghex # hex editor
       # glide-media-player
       gnome-boxes
@@ -76,7 +78,7 @@ in {
       # identity # image comparison
       impression # create bootable drives
       # junction # open with preview
-      # keypunch # practice typing
+      keypunch # practice typing
       # khronos # track task time
       # kooha # screen recording
       # komikku # read manga
@@ -87,16 +89,17 @@ in {
       # lutris
       # markets # gtk crypto market prices
       # metadata-cleaner
-      # broken mission-center # monitor resources
-      # mousai # identitfy any song
+      mission-center # monitor resources
+      mousai # identitfy any song
       # mousam # weather app
       # newsflash # modern feed reader
       # overskride # bluetooth client
       paleta # extract dominant color from images
       pdfarranger
+      pinta # draw/editing
       # polari # irc client
       # popsicle # flash usb with iso
-      # not packaged paperclip # edit pdf metadata
+      paper-clip # edit pdf metadata
       # pitivi # video editor
       # pika-backup # simple backups
       # planify # more advanced task manager
@@ -111,7 +114,7 @@ in {
       # telegraph # decode morse code
       # textpieces
       turtle # gui for version control in nautilus
-      upscaler # frontend for upscayl-ncnn
+      # broken upscaler # frontend for upscayl-ncnn
       # video-trimmer
       warp # send and recieve files
       # webfontkitgenerator

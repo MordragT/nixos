@@ -14,9 +14,10 @@ in {
     home.packages = with pkgs; [
       # Must haves
       anarchism
+      brave
 
       # Editors
-      # jetbrains.idea-community
+      jetbrains.idea-community
       # lapce # code editor
       # octaveFull # aims to be compatible with matlab
 
@@ -33,6 +34,7 @@ in {
       # glaxnimate
       inkscape
       krita
+      gimp3
 
       # Game Development
       # epic-asset-manager # manager for unreal engine and its assets

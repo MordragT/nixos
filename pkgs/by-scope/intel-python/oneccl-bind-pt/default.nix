@@ -4,7 +4,7 @@
   autoPatchelfHook,
   intel-ccl,
   intel-mpi,
-  intel-sycl,
+  intel-dpcpp,
   torch,
   ipex,
 }:
@@ -25,7 +25,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     intel-ccl
-    intel-sycl.llvm.lib
+    intel-dpcpp.llvm.lib
     intel-mpi
     torch.lib
     ipex.lib

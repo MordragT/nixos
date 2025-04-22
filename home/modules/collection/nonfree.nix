@@ -16,7 +16,7 @@ in {
       # matlab
       # spotify # spotube is far better # listen to music
       teamspeak_client
-      # broken teams-for-linux # microsoft teams
+      teams-for-linux # microsoft teams
       unigine-superposition
       zoom-us
       webex

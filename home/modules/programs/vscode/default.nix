@@ -216,7 +216,7 @@ in {
           matangover.mypy
           Mordrag.one-dark-vibrant
 
-          # broken ms-python.python
+          ms-python.python
           ms-python.vscode-pylance
           ms-dotnettools.csharp
           ms-toolsai.jupyter

@@ -10,13 +10,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "unified-memory-framework";
-  version = "0.10.1";
+  version = "0.11.0-rc1";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-57n/IDlskUNHR1QSqpomKQ2tcaKFBMMWabAzmso5SdQ=";
+    hash = "sha256-sR7Gkxl9jrtHGBls+9qkRt/rxFIvJPRUCkh30vEXjnk=";
   };
 
   nativeBuildInputs = [
@@ -31,12 +31,14 @@ stdenv.mkDerivation rec {
   ];
 
   cmakeFlags = [
-    "-DUMF_BUILD_TESTS=OFF"
-    "-DUMF_BUILD_EXAMPLES=OFF"
-    "-DUMF_BUILD_LIBUMF_POOL_DISJOINT=ON"
+    "-DUMF_BUILD_SHARED_LIBRARY=ON"
     "-DUMF_BUILD_LEVEL_ZERO_PROVIDER=ON"
     "-DUMF_BUILD_CUDA_PROVIDER=OFF"
-    "-DUMF_BUILD_SHARED_LIBRARY=ON"
+
+    "-DUMF_BUILD_TESTS=OFF"
+    "-DUMF_BUILD_EXAMPLES=OFF"
+
+    "-DUMF_BUILD_LIBUMF_POOL_DISJOINT=ON"
     "-DUMF_LEVEL_ZERO_INCLUDE_DIR=${level-zero}/include/level_zero"
   ];
 

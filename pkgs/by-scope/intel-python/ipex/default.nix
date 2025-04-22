@@ -45,7 +45,7 @@ buildPythonPackage rec {
     intel-dpcpp.llvm.lib
     torch.lib
     level-zero
-    zstd
+    zstd.dev
     ocl-icd
   ];
 

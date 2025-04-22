@@ -8,6 +8,7 @@
   zlib,
   libxml2,
   ocl-icd,
+  hwloc,
   lib,
 }:
 stdenvNoCC.mkDerivation {
@@ -17,7 +18,7 @@ stdenvNoCC.mkDerivation {
 
   src = fetchzip {
     url = "https://github.com/intel/llvm/releases/download/${version}/sycl_linux.tar.gz";
-    hash = "sha256-6VnQZNNZ+DKrSirmraFeaeX0am8r/Um6CrDecci6NUY=";
+    hash = "sha256-CHHkV4WsfqLHRuFwP0k86Ul4Or7MkmvIJ5cvycZNiJg=";
     stripRoot = false;
   };
 
@@ -33,12 +34,14 @@ stdenvNoCC.mkDerivation {
     zlib
     libxml2
     ocl-icd
+    hwloc
   ];
 
   autoPatchelfIgnoreMissingDeps = [
     "libamd_comgr.so.2"
     "libamdhip64.so.6"
     "libcuda.so.1"
+    "libnvidia-ml.so.1"
   ];
 
   dontBuild = true;

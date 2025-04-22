@@ -16,13 +16,15 @@ in {
     programs.zed-editor = {
       enable = true;
       extensions = [
-        "scheme"
+        "ansible"
         "html"
         "java"
         "just"
         "kotlin"
         "nix"
         "nu"
+        "ruby"
+        "scheme"
         "toml"
         "typst"
         "wgsl"
@@ -72,9 +74,15 @@ in {
           enabled = true;
           dock = "left";
           version = "2";
+
           default_model = {
-            provider = "zed.dev"; # google
-            model = "claude-3-7-sonnet-latest"; # gemini-1.5-flash
+            provider = "google"; # zed.dev
+            model = "gemini-2.0-flash-thinking-exp"; # claude-3-7-sonnet-latest
+          };
+
+          inline_assistant_model = {
+            provider = "google"; # zed.dev
+            model = "gemini-2.0-flash-preview"; # claude-3-5-sonnet-latest
           };
         };
         terminal = {
@@ -82,6 +90,13 @@ in {
           default_width = 480;
           toolbar.breadcrumbs = false;
         };
+        # language_models.google.available_models = [
+        #   {
+        #     name = "gemini-2.5-flash-preview-04-17";
+        #     display_name = "Gemini 2.5 Flash Preview";
+        #     max_tokens = 1000000;
+        #   }
+        # ];
         language_models.ollama = {
           api_url = "http://localhost:11434";
           available_models = [];
@@ -101,7 +116,6 @@ in {
         ];
         features = {
           edit_prediction_provider = "zed";
-
         };
         edit_predictions.mode = "subtle";
         # base_keymap = "SublimeText";

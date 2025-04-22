@@ -15,7 +15,7 @@
   networking.hostName = "tom-desktop";
 
   networking.hosts = {
-    "127.0.0.1" = ["argocd.local"];
+    "127.0.0.1" = ["tom-desktop.local"];
   };
 
   # https://github.com/NixOS/nixpkgs/issues/180175
@@ -70,6 +70,7 @@
     # libvirtd.enable = true;
     # multipass.enable = true;
   };
-  # k3d
-  networking.firewall.allowedTCPPorts = [6443];
+
+  # workaround for virtualbox
+  boot.kernelParams = ["kvm.enable_virt_at_load=0"];
 }
