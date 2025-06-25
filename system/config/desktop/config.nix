@@ -4,8 +4,8 @@
   ...
 }: {
   # General
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
   mordrag.desktop.cosmic.enable = true;
   mordrag.desktop.gnome.enable = true;
 
@@ -61,7 +61,7 @@
     };
 
     virtualbox.host = {
-      enable = true;
+      # enable = true;
       #headless = true;
       #enableHardening = false;
     };

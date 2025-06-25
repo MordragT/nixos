@@ -29,6 +29,8 @@ in {
 
   easing-functions = callPackage ./easing-functions {};
 
+  einops = pkgs.einops.overridePythonAttrs (a: {doCheck = false;});
+
   facexlib = callPackage ./facexlib {};
 
   fastapi-events = callPackage ./fastapi-events {};

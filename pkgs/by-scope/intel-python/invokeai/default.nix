@@ -202,7 +202,7 @@ in
       dnspython
       dynamicprompts
       easing-functions
-      einops
+      einops # broken test
       facexlib
       matplotlib
       npyscreen

@@ -15,8 +15,9 @@ in {
       # distrobox
       hollywood # fake hacking
       oxen
-      ventoy # create bootable usb drive for isos
+      # broken ventoy # create bootable usb drive for isos
       xorg.xlsclients
+      xorg.xeyes
       # yt-dlp # download youtube videos
 
       # byfl # compiler based application analysis

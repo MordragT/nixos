@@ -1,6 +1,5 @@
 {
   llvmPackages_20,
-  stdenv,
   src,
   version,
   cmake,
@@ -11,10 +10,7 @@
   libxml2,
   ncurses,
   hwloc,
-  # level-zero,
-  addDriverRunpath,
-  fetchFromGitHub,
-  #
+  level-zero,
   unified-memory-framework,
   opencl-headers,
   ocl-icd,
@@ -22,27 +18,6 @@
   pins,
 }: let
   llvmPackages = llvmPackages_20;
-  # until level-zero is updated https://github.com/NixOS/nixpkgs/pull/394178
-  level-zero = stdenv.mkDerivation {
-    pname = "level-zero";
-    version = "1.21.2";
-
-    src = fetchFromGitHub {
-      owner = "oneapi-src";
-      repo = "level-zero";
-      tag = "v1.21.2";
-      hash = "sha256-hFunZgjTMWsHEcDt4AuuE0WEpKs9XCb2heBdPyQidZA=";
-    };
-
-    nativeBuildInputs = [
-      cmake
-      addDriverRunpath
-    ];
-
-    postFixup = ''
-      addDriverRunpath $out/lib/libze_loader.so
-    '';
-  };
 in
   llvmPackages.libcxxStdenv.mkDerivation {
     inherit src version;
@@ -168,7 +143,7 @@ in
     '';
 
     postInstall = ''
-      mv $out/lib/clang/21 $rsrc
+      mv $out/lib/clang/20 $rsrc
       rm -r $out/lib/clang
 
       mkdir $lib

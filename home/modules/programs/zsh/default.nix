@@ -25,7 +25,7 @@ in {
         "..." = "../..";
       };
 
-      initExtra = ''
+      initContent = ''
         export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
 
         # Rust

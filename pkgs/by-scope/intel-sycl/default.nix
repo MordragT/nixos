@@ -1,16 +1,12 @@
 self: pkgs: let
   callPackage = pkgs.callPackage;
   pins = pkgs.callPackage ./pins {};
-  # wait for next proper release so that
-  # I do not have to reverse changes to cmake variables
-  # version = "6.0.1";
-  version = "nightly-2025-04-05";
+  version = "6.1.0";
   src = pkgs.fetchFromGitHub {
     owner = "intel";
     repo = "llvm";
-    # rev = "v${version}";
-    rev = version;
-    hash = "sha256-xW4OON6Zm6IibaN6L7b32nzbvG4K51YO3OnjFodBK5A=";
+    rev = "v${version}";
+    hash = "";
   };
 in {
   llvm-bin = callPackage ./llvm-bin {

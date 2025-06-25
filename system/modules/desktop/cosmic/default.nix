@@ -18,8 +18,16 @@ in {
     # services.gnome.gnome-online-accounts.enable = true;
     # services.accounts-daemon.enable = true;
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables = {
+      # home-manager pointerCursor
+      # XCURSOR_THEME = "Cosmic";
+      # XCURSOR_SIZE = 24;
+      NIXOS_OZONE_WL = "1";
+    };
 
+    # not packaged:
+    # https://github.com/wiiznokes/fan-control
+    # https://github.com/cosmic-utils/minimon-applet
     environment.systemPackages = with pkgs; [
       # andromeda
       # cosmic-ext-applet-caffeine

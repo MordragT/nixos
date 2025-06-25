@@ -27,6 +27,7 @@ in {
       collision # check file hashes
       # commit
       # contrast # gtk check contrast
+      crosswords
       # curtail # image compressor
       # czkawka # duplicate finder
       decibels # play audio
@@ -35,6 +36,7 @@ in {
       # deja-dup # backup tool
       # dialect # translate
       diebahn # train info
+      distroshelf # distrobox manager
       door-knocker # xdg-desktop-portal info
       drum-machine # create drum patterns
       # eartag # tag audio files
@@ -54,7 +56,7 @@ in {
       fractal-next # gtk matrix messaging
       # fragments # torrent downloader
       # fretboard # guitar chords
-      gaphor # create diagrams and uml
+      # broken gaphor # create diagrams and uml
       ghex # hex editor
       # glide-media-player
       gnome-boxes
@@ -71,6 +73,7 @@ in {
       # gnome-solanum # pomodoro timer
       gnome-system-monitor
       # gnome-tweaks
+      halftone # create pixel art images
       # health # health tracker
       helvum # patchbay for pipewire
       hieroglyphic # finding LaTeX symbols from drawings
@@ -114,7 +117,8 @@ in {
       # telegraph # decode morse code
       # textpieces
       turtle # gui for version control in nautilus
-      # broken upscaler # frontend for upscayl-ncnn
+      typewriter # create typst docs
+      upscaler # frontend for upscayl-ncnn
       # video-trimmer
       warp # send and recieve files
       # webfontkitgenerator

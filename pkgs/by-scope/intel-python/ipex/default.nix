@@ -24,7 +24,7 @@
 }:
 buildPythonPackage rec {
   pname = "intel_extension_for_pytorch";
-  version = "2.6.10";
+  version = "2.7.10";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
@@ -32,7 +32,7 @@ buildPythonPackage rec {
   src = fetchipex {
     inherit pname version;
     suffix = "%2Bxpu";
-    hash = "sha256-NHk2d9uc2Ar8aXTn+CRGS3J/oKmYuDSAKXtBKjCkg6Q=";
+    hash = "sha256-L2Wxz/rJ002BIseU6w5EHpKMr7Te9kIMlr6G2gkjlLE=";
   };
 
   nativeBuildInputs = [

@@ -7,7 +7,7 @@ def find-paths [source] {
         return [$source]
     } else {
         let results = ls -a $source
-        | filter { |entry| $entry.type == dir }
+        | where { |entry| $entry.type == dir }
         | each { |entry| find-paths $entry.name}
 
         let paths = if ($results | is-empty) {

@@ -2,7 +2,6 @@ self: pkgs: let
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
   byfl = callPackage ./byfl {};
-  delineate = callPackage ./delineate {};
   dud = callPackage ./dud {};
   ensembles = callPackage ./ensembles {};
   epic-asset-manager = callPackage ./epic-asset-manager {};

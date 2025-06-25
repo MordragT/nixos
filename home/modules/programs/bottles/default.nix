@@ -6,13 +6,16 @@
 }: let
   cfg = config.mordrag.programs.bottles;
   wine = pkgs.wineWowPackages.stagingFull;
+  bottles = pkgs.bottles.override {
+    removeWarningPopup = true;
+  };
 in {
   options.mordrag.programs.bottles = {
     enable = lib.mkEnableOption "Bottles";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [pkgs.bottles];
+    home.packages = [bottles];
 
     home.file.".local/share/bottles/runners/wine-system-${lib.getVersion wine}" = {
       source = wine;

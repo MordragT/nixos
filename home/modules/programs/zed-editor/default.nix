@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -15,6 +16,13 @@ in {
   config = mkIf cfg.enable {
     programs.zed-editor = {
       enable = true;
+      package = pkgs.zed-editor;
+      # package = pkgs.zed-editor_git; # remove when inline assistant is fixed
+
+      extraPackages = [
+        pkgs.copilot-language-server
+      ];
+
       extensions = [
         "ansible"
         "html"
@@ -70,20 +78,29 @@ in {
         git_panel.dock = "right";
         notification_panel.dock = "left";
         chat_panel.dock = "left";
-        assistant = {
+        agent = {
           enabled = true;
           dock = "left";
           version = "2";
 
+          default_profile = "ask";
+
           default_model = {
-            provider = "google"; # zed.dev
-            model = "gemini-2.0-flash-thinking-exp"; # claude-3-7-sonnet-latest
+            # zed.dev, mistral, google, copilot_chat
+            provider = "copilot_chat";
+            # claude-sonnet-4, codestral-latest, gemini-2.0-flash-thinking-exp, claude-sonnet-4
+            model = "claude-sonnet-4";
           };
 
-          inline_assistant_model = {
-            provider = "google"; # zed.dev
-            model = "gemini-2.0-flash-preview"; # claude-3-5-sonnet-latest
-          };
+          # editor_model = {
+          #   provider = "zed.dev";
+          #   model = "claude-3-7-sonnet";
+          # };
+
+          # inline_assistant_model = {
+          #   provider = "copilot_chat";
+          #   model = "claude-3-7-sonnet";
+          # };
         };
         terminal = {
           dock = "left";
@@ -115,7 +132,7 @@ in {
           "**/.direnv"
         ];
         features = {
-          edit_prediction_provider = "zed";
+          edit_prediction_provider = "copilot"; # zed
         };
         edit_predictions.mode = "subtle";
         # base_keymap = "SublimeText";

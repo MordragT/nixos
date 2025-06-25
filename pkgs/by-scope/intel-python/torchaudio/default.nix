@@ -9,13 +9,14 @@
 }:
 buildPythonPackage rec {
   pname = "torchaudio";
-  version = "2.6.0";
+  version = "2.7.1";
   format = "wheel";
 
   src = fetchtorch {
     inherit pname version;
     suffix = "%2Bxpu";
-    hash = "sha256-+h80XlWUdfBxHP5j3XiM+ltsWoUB2KgGNC79tIEM4wc=";
+    platform = "manylinux_2_28_x86_64";
+    hash = "";
   };
 
   nativeBuildInputs = [

@@ -44,20 +44,20 @@
   {
     "name": "texlab",
     "publisher": "efoerster",
-    "version": "5.22.2",
-    "sha256": "1vn14vc8ninvafni1spahfcsf7fr0pi9dn735dy965qn47yif2sa"
+    "version": "5.23.0",
+    "sha256": "117zqqcay3j0a76r7z3z9fn81286qq4j3hv2dcypni95lr2m5ba1"
   },
   {
     "name": "vscode-nickel",
     "publisher": "tweag",
-    "version": "0.4.0",
-    "sha256": "1vfy0b142xq54yjy0l8vzhcyn2j7l0xa6k1xk2vxsgbca5m4yvl6"
+    "version": "0.5.0",
+    "sha256": "19p4k1pr3aw9dkbi4d74qmp47p9mm6f3v31rk8dsw8kzqaqn6shn"
   },
   {
     "name": "vscode-tabby",
     "publisher": "tabbyml",
-    "version": "1.27.0",
-    "sha256": "0ifnq5msc5b5y2h69qva3fv49228ijw4m7y8cgyq9ywp3rcxjk05"
+    "version": "1.28.0",
+    "sha256": "05ns1bi1zb28k19pdsrdmmlwxhw9sncz876w7ykcgs4gqjv0dqa2"
   },
   {
     "name": "wgsl",

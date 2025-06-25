@@ -11,7 +11,7 @@
   }:
     fetchurl {
       inherit hash;
-      url = "https://intel-optimized-pytorch.s3.cn-north-1.amazonaws.com.cn/${dist}/${pname}-${version}${suffix}-${python}-${abi}-${platform}.whl";
+      url = "https://download.pytorch-extension.intel.com/${dist}/${pname}-${version}${suffix}-${python}-${abi}-${platform}.whl";
     };
 
   fetchtorch = {
@@ -22,6 +22,7 @@
     python ? "cp312",
     abi ? "cp312",
     platform ? "linux_x86_64",
+    # platform ? "manylinux_2_28_x86_64",
     hash,
   }:
     fetchurl {

@@ -35,10 +35,10 @@
   {
     "slug": "csgofloat",
     "name": "CSFloat Market Checker",
-    "version": "5.3.0",
+    "version": "5.6.1",
     "addonId": "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4441910/csgofloat-5.3.0.xpi",
-    "sha256": "sha256:63cad284426e1b23085d3386700e5043edcf05c017343da5e87ef0ef29972625",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4507157/csgofloat-5.6.1.xpi",
+    "sha256": "sha256:d60d09ddc1202d2e1601dc94d6a3af61ce803ee6bc0e4bcea29c5808df635341",
     "homepage": "https://csgofloat.com",
     "description": "Shows the float value, paint seed, and screenshots of Counter-Strike (CS:GO &amp; CS2) items on the Steam Market or Inventories",
     "license": "MIT"
@@ -57,10 +57,10 @@
   {
     "slug": "skinport-plus",
     "name": "Skinport Plus",
-    "version": "25.3.27",
+    "version": "25.5.1",
     "addonId": "{46da1da2-d8cd-42b2-b6d6-dfc312231d15}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4463614/skinport_plus-25.3.27.xpi",
-    "sha256": "sha256:965e49b5005d6351c167814414ff8ae586866f74ce8549176abec098745c1675",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4484878/skinport_plus-25.5.1.xpi",
+    "sha256": "sha256:dc4ee91c9751e4b1ab7cb3083803fe7b53631f4fe4af2a9dfa60c35359aab6f1",
     "homepage": "https://addons.mozilla.org/en-US/firefox/addon/skinport-plus/",
     "description": "Enhance your trading experience on Skinport and Steam with Skinport Plus.",
     "license": "all-rights-reserved"
