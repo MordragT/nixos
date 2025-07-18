@@ -42,23 +42,23 @@ export def main [] {
 
     let filenames = $packages | each { |package| $"pool/main/intel-oneapi-($package)_amd64.deb" }
     let filenames_all = $packages_all | each { |package| $"pool/main/intel-oneapi-($package)_all.deb" }
-    
+
     let sources = $index | where { |src| $src.filename in $filenames }
     let sources_all = $index_all | where { |src| $src.filename in $filenames_all }
 
-    let missing = $filenames | filter { |filename| $filename not-in ($sources | get filename) }
-    let missing_all = $filenames_all | filter { |filename| $filename not-in ($sources_all | get filename) }
-    
+    let missing = $filenames | where { |filename| $filename not-in ($sources | get filename) }
+    let missing_all = $filenames_all | where { |filename| $filename not-in ($sources_all | get filename) }
+
     print "Missing:"
     for $name in ($missing ++ $missing_all) {
         print $name
     }
 
     let sources = (
-        $sources 
-        | append $sources_all 
+        $sources
+        | append $sources_all
         | reduce --fold {} { |it, acc| $acc | insert $it.package { url: $"https://apt.repos.intel.com/oneapi/($it.filename)", hash: (nix hash convert --hash-algo sha256 --to sri $it.sha256) } }
     )
-    
+
     $sources | sort | to json | save --force $file
 }

@@ -7,14 +7,14 @@
 }:
 buildPythonPackage rec {
   pname = "fastapi-events";
-  version = "0.11.0";
+  version = "0.12.2";
   format = "pyproject";
 
   src = fetchFromGitHub {
     owner = "melvinkcx";
     repo = "fastapi-events";
     rev = "v${version}";
-    hash = "sha256-mmy5druNksOVo7LSlyWS5/eQE/Na1O5dV7UL60YUBNc=";
+    hash = "sha256-YOaUWv8luypHzKs7kDLl0Z9f34HPmhMoExagkYiwdl8=";
   };
 
   doCheck = false;

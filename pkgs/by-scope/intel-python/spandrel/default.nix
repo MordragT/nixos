@@ -11,14 +11,14 @@
 }:
 buildPythonPackage rec {
   pname = "spandrel";
-  version = "0.3.4";
+  version = "0.4.1";
   format = "pyproject";
 
   src = fetchFromGitHub {
     owner = "chaiNNer-org";
     repo = "spandrel";
     rev = "v${version}";
-    sha256 = "sha256-cwY8gFcaHkyYI0y31WK76FKeq0jhYdbArHhh8Q6c3DE=";
+    sha256 = "sha256-saRSosJ/pXmhLX5VqK3IBwT1yo14kD4nwNw0bCT2o5w=";
   };
   sourceRoot = "source/libs/spandrel";
 

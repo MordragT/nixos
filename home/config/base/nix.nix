@@ -22,11 +22,8 @@
   programs.command-not-found.enable = false;
 
   home.packages = with pkgs; [
-    alejandra # nix formater: files are everywhere anyways
     cachix # nix binary hosting
     cntr # container debugging for nix derivations
-    nil # nix language server
-    nixd # TODO needed because of https://github.com/zed-industries/zed/issues/23368
     nix-tree # browse nix store path dependencies
     nix-init
     nix-melt

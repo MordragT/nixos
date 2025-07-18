@@ -4,7 +4,7 @@
   ...
 }: {
   mordrag.services.invokeai = {
-    enable = true;
+    enable = false;
     settings = {
       device = "xpu";
       precision = "bfloat16";

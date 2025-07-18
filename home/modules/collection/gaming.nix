@@ -12,7 +12,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      prismlauncher
+      # broken openjdk-8 prismlauncher
       # ferium
       # optifine
       # moonlight-qt # game stream client ala steam link

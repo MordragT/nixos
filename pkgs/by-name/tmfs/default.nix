@@ -12,10 +12,10 @@ stdenv.mkDerivation {
   version = "0.7";
 
   src = fetchFromGitHub {
-    sha256 = "55iQz5EFJlxDCOIwt1YbbBOaVOWjiVySDmekIhyV4sg=";
-    rev = "27d5749";
     owner = "abique";
     repo = "tmfs";
+    rev = "27d5749";
+    sha256 = "55iQz5EFJlxDCOIwt1YbbBOaVOWjiVySDmekIhyV4sg=";
   };
 
   buildInputs = [

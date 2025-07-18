@@ -9,6 +9,7 @@
   mordrag.programs.helix.enable = true;
   mordrag.programs.mangohud.enable = true;
   mordrag.programs.nushell.enable = true;
+  mordrag.programs.nvim.enable = true;
   mordrag.programs.obs.enable = true;
   mordrag.programs.thunderbird.enable = true;
   mordrag.programs.vscode.enable = true;

@@ -17,7 +17,10 @@
   mordrag.programs.valent.enable = true;
 
   programs.adb.enable = true;
-  programs.ausweisapp.enable = true;
+  programs.ausweisapp = {
+    enable = true;
+    openFirewall = true;
+  };
   # programs.bandwhich.enable = true; # view network utilization
   # programs.captive-browser = {
   #   enable = true;

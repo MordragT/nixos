@@ -40,13 +40,14 @@ in
   buildPythonPackage {
     pname = "pypatchmatch";
     version = "129863937a8ab37f6bbcec327c994c0f932abdbc";
+    format = "pyproject";
 
     src = fetchzip {
       url = "https://github.com/invoke-ai/PyPatchMatch/archive/129863937a8ab37f6bbcec327c994c0f932abdbc.zip";
       sha256 = "sha256-kHYih9fjhtYfyNYzW4kwzm62N+GaOQQOOlSkO4PH3lw=";
     };
 
-    nativeBuildInputs = [
+    build-system = [
       setuptools
     ];
 

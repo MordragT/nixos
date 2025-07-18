@@ -9,12 +9,12 @@
 }:
 buildPythonPackage rec {
   pname = "compel";
-  version = "2.0.2";
+  version = "2.1.1";
   format = "pyproject";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-Lp3mS26l+d9Z+Prn662aV9HzadzJU8hkWICkm7GcLHw=";
+    sha256 = "sha256-miAYGXIxk6Cz71wJChUOZLTvXgFxUmLc5yPr0ysi33w=";
   };
 
   build-system = [

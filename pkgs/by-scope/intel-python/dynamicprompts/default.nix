@@ -13,12 +13,14 @@
 }:
 buildPythonPackage rec {
   pname = "dynamicprompts";
-  version = "0.27.1";
-  format = "pyproject";
+  version = "0.31.0";
+  format = "wheel";
 
   src = fetchPypi {
-    inherit pname version;
-    hash = "sha256-lS/UgfZoR4wWozdtSAFBenIRljuPxnL8fMQT3dIA7WE=";
+    inherit pname version format;
+    python = "py3";
+    dist = "py3";
+    hash = "sha256-oH84wpXsK3eQXOy6iw9Dm7GoSUK/todP9rVUSOLMlQ4=";
   };
 
   build-system = [

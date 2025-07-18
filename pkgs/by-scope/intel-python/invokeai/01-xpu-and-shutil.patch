@@ -1,0 +1,361 @@
+diff --git a/invokeai/app/api_app.py b/invokeai/app/api_app.py
+index 2c467ca6a..638635d8c 100644
+--- a/invokeai/app/api_app.py
++++ b/invokeai/app/api_app.py
+@@ -3,6 +3,8 @@ import logging
+ from contextlib import asynccontextmanager
+ from pathlib import Path
+ 
++import intel_extension_for_pytorch as ipex
++
+ from fastapi import FastAPI, Request
+ from fastapi.middleware.cors import CORSMiddleware
+ from fastapi.middleware.gzip import GZipMiddleware
+diff --git a/invokeai/app/invocations/load_custom_nodes.py b/invokeai/app/invocations/load_custom_nodes.py
+index a3a8194a3..9d09cd0fb 100644
+--- a/invokeai/app/invocations/load_custom_nodes.py
++++ b/invokeai/app/invocations/load_custom_nodes.py
+@@ -1,5 +1,5 @@
+ import logging
+-import shutil
++import subprocess
+ import sys
+ import traceback
+ from importlib.util import module_from_spec, spec_from_file_location
+@@ -28,7 +28,7 @@ def load_custom_nodes(custom_nodes_path: Path, logger: logging.Logger):
+     target_custom_nodes_readme_path = Path(custom_nodes_path) / "README.md"
+ 
+     # copy our custom nodes README to the custom nodes directory
+-    shutil.copy(source_custom_nodes_readme_path, target_custom_nodes_readme_path)
++    subprocess.call('cp --no-preserve=mode {src} {dest}'.format(src=source_custom_nodes_readme_path, dest=target_custom_nodes_readme_path), shell=True)
+ 
+     loaded_packs: list[str] = []
+     failed_packs: list[str] = []
+diff --git a/invokeai/app/services/config/config_default.py b/invokeai/app/services/config/config_default.py
+index 4dabac964..01faa2ff6 100644
+--- a/invokeai/app/services/config/config_default.py
++++ b/invokeai/app/services/config/config_default.py
+@@ -8,7 +8,7 @@ import filecmp
+ import locale
+ import os
+ import re
+-import shutil
++import subprocess
+ from functools import lru_cache
+ from pathlib import Path
+ from typing import Any, Literal, Optional
+@@ -175,7 +175,7 @@ class InvokeAIAppConfig(BaseSettings):
+     pytorch_cuda_alloc_conf: Optional[str] = Field(default=None,            description="Configure the Torch CUDA memory allocator. This will impact peak reserved VRAM usage and performance. Setting to \"backend:cudaMallocAsync\" works well on many systems. The optimal configuration is highly dependent on the system configuration (device type, VRAM, CUDA driver version, etc.), so must be tuned experimentally.")
+ 
+     # DEVICE
+-    device:                      str = Field(default="auto",                description="Preferred execution device. `auto` will choose the device depending on the hardware platform and the installed torch capabilities.<br>Valid values: `auto`, `cpu`, `cuda`, `mps`, `cuda:N` (where N is a device number)", pattern=r"^(auto|cpu|mps|cuda(:\d+)?)$")
++    device:                      str = Field(default="auto",                description="Preferred execution device. `auto` will choose the device depending on the hardware platform and the installed torch capabilities.<br>Valid values: `auto`, `cpu`, `cuda`, `mps`, 'xpu', `cuda:N` (where N is a device number)", pattern=r"^(auto|cpu|mps|xpu|cuda(:\d+)?)$")
+     precision:                PRECISION = Field(default="auto",             description="Floating point precision. `float16` will consume half the memory of `float32` but produce slightly lower-quality images. The `auto` setting will guess the proper precision based on your video card and operating system.")
+ 
+     # GENERATION
+@@ -470,13 +470,13 @@ def load_and_migrate_config(config_path: Path) -> InvokeAIAppConfig:
+         loaded_config_dict = migrate_v4_0_1_to_4_0_2_config_dict(loaded_config_dict)
+ 
+     if migrated:
+-        shutil.copy(config_path, config_path.with_suffix(".yaml.bak"))
++        subprocess.call('cp --no-preserve=mode {src} {dest}'.format(src=config_path, dest=config_path.with_suffix(".yaml.bak")), shell=True)
+         try:
+             # load and write without environment variables
+             migrated_config = DefaultInvokeAIAppConfig.model_validate(loaded_config_dict)
+             migrated_config.write_file(config_path)
+         except Exception as e:
+-            shutil.copy(config_path.with_suffix(".yaml.bak"), config_path)
++            subprocess.call('cp --no-preserve=mode {src} {dest}'.format(src=config_path.with_suffix(".yaml.bak"), dest=config_path), shell=True)
+             raise RuntimeError(f"Failed to load and migrate v3 config file {config_path}: {e}") from e
+ 
+     try:
+@@ -551,7 +551,7 @@ def get_config() -> InvokeAIAppConfig:
+         dest_mode = dest_path.stat().st_mode
+ 
+         # Copy directory tree
+-        shutil.copytree(configs_src, dest_path, dirs_exist_ok=True)
++        subprocess.call('cp -r -n --no-preserve=mode {src}/* {dest}'.format(src=configs_src, dest=dest_path), shell=True)
+ 
+         # Set permissions on copied files to match destination directory
+         dest_path.chmod(dest_mode)
+diff --git a/invokeai/app/services/invocation_stats/invocation_stats_default.py b/invokeai/app/services/invocation_stats/invocation_stats_default.py
+index 0219d5036..7c90a5e5a 100644
+--- a/invokeai/app/services/invocation_stats/invocation_stats_default.py
++++ b/invokeai/app/services/invocation_stats/invocation_stats_default.py
+@@ -54,6 +54,8 @@ class InvocationStatsService(InvocationStatsServiceBase):
+         start_ram = psutil.Process().memory_info().rss
+         if torch.cuda.is_available():
+             torch.cuda.reset_peak_memory_stats()
++        elif torch.xpu.is_available():
++            torch.xpu.reset_peak_memory_stats()
+ 
+         assert services.model_manager.load is not None
+         services.model_manager.load.ram_cache.stats = self._cache_stats[graph_execution_state_id]
+@@ -62,6 +64,12 @@ class InvocationStatsService(InvocationStatsServiceBase):
+             # Let the invocation run.
+             yield None
+         finally:
++            if torch.cuda.is_available():
++                peak_vram_gb = torch.cuda.max_memory_allocated() / GB
++            elif torch.xpu.is_available():
++                peak_vram_gb = torch.xpu.max_memory_allocated() / GB
++            else:
++                peak_vram_gb = 0.0
+             # Record state after the invocation.
+             node_stats = NodeExecutionStats(
+                 invocation_type=invocation.get_type(),
+@@ -69,7 +77,7 @@ class InvocationStatsService(InvocationStatsServiceBase):
+                 end_time=time.time(),
+                 start_ram_gb=start_ram / GB,
+                 end_ram_gb=psutil.Process().memory_info().rss / GB,
+-                peak_vram_gb=torch.cuda.max_memory_allocated() / GB if torch.cuda.is_available() else 0.0,
++                peak_vram_gb=peak_vram_gb,
+             )
+             self._stats[graph_execution_state_id].add_node_execution_stats(node_stats)
+ 
+@@ -81,7 +89,14 @@ class InvocationStatsService(InvocationStatsServiceBase):
+         graph_stats_summary = self._get_graph_summary(graph_execution_state_id)
+         node_stats_summaries = self._get_node_summaries(graph_execution_state_id)
+         model_cache_stats_summary = self._get_model_cache_summary(graph_execution_state_id)
+-        vram_usage_gb = torch.cuda.memory_allocated() / GB if torch.cuda.is_available() else None
++
++        if torch.cuda.is_available():
++            vram_usage_gb = torch.cuda.memory_allocated() / GB
++        elif torch.xpu.is_available():
++            vram_usage_gb = torch.xpu.memory_allocated() / GB
++        else:
++            vram_usage_gb = None
++
+ 
+         return InvocationStatsSummary(
+             graph_stats=graph_stats_summary,
+diff --git a/invokeai/backend/model_manager/load/memory_snapshot.py b/invokeai/backend/model_manager/load/memory_snapshot.py
+index 7b693bf83..f34fa2f7b 100644
+--- a/invokeai/backend/model_manager/load/memory_snapshot.py
++++ b/invokeai/backend/model_manager/load/memory_snapshot.py
+@@ -49,6 +49,8 @@ class MemorySnapshot:
+ 
+         if torch.cuda.is_available():
+             vram = torch.cuda.memory_allocated()
++        elif torch.xpu.is_available():
++            vram = torch.xpu.memory_allocated()
+         else:
+             # TODO: We could add support for mps.current_allocated_memory() as well. Leaving out for now until we have
+             # time to test it properly.
+diff --git a/invokeai/backend/model_manager/load/model_cache/dev_utils.py b/invokeai/backend/model_manager/load/model_cache/dev_utils.py
+index 4e1bac689..9db8995ce 100644
+--- a/invokeai/backend/model_manager/load/model_cache/dev_utils.py
++++ b/invokeai/backend/model_manager/load/model_cache/dev_utils.py
+@@ -16,16 +16,29 @@ def log_operation_vram_usage(operation_name: str):
+         some_operation()
+     ```
+     """
+-    torch.cuda.synchronize()
+-    torch.cuda.reset_peak_memory_stats()
+-    max_allocated_before = torch.cuda.max_memory_allocated()
+-    max_reserved_before = torch.cuda.max_memory_reserved()
++
++    if torch.xpu.is_available():
++        torch.xpu.synchronize()
++        torch.xpu.reset_peak_memory_stats()
++
++        max_allocated_before = torch.xpu.max_memory_allocated()
++        max_reserved_before = torch.xpu.max_memory_reserved()
++    else:
++        torch.cuda.synchronize()
++        torch.cuda.reset_peak_memory_stats()
++        max_allocated_before = torch.cuda.max_memory_allocated()
++        max_reserved_before = torch.cuda.max_memory_reserved()
+     try:
+         yield
+     finally:
+-        torch.cuda.synchronize()
+-        max_allocated_after = torch.cuda.max_memory_allocated()
+-        max_reserved_after = torch.cuda.max_memory_reserved()
++        if torch.xpu.is_available():
++            torch.xpu.synchronize()
++            max_allocated_after = torch.xpu.max_memory_allocated()
++            max_reserved_after = torch.xpu.max_memory_reserved()
++        else:
++            torch.cuda.synchronize()
++            max_allocated_after = torch.cuda.max_memory_allocated()
++            max_reserved_after = torch.cuda.max_memory_reserved()
+         logger = InvokeAILogger.get_logger()
+         logger.info(
+             f">>>{operation_name} Peak VRAM allocated: {(max_allocated_after - max_allocated_before) / 2**20} MB, "
+diff --git a/invokeai/backend/model_manager/load/model_cache/model_cache.py b/invokeai/backend/model_manager/load/model_cache/model_cache.py
+index c9f464f18..9900c7267 100644
+--- a/invokeai/backend/model_manager/load/model_cache/model_cache.py
++++ b/invokeai/backend/model_manager/load/model_cache/model_cache.py
+@@ -474,6 +474,10 @@ class ModelCache:
+             vram_allocated = torch.cuda.memory_allocated(self._execution_device)
+             vram_free, _vram_total = torch.cuda.mem_get_info(self._execution_device)
+             vram_available_to_process = vram_free + vram_allocated
++        elif self._execution_device.type == "xpu":
++            vram_allocated = torch.xpu.memory_allocated(self._execution_device)
++            vram_free, _vram_total = torch.xpu.mem_get_info(self._execution_device)
++            vram_available_to_process = vram_free + vram_allocated
+         elif self._execution_device.type == "mps":
+             vram_reserved = torch.mps.driver_allocated_memory()
+             # TODO(ryand): Is it accurate that MPS shares memory with the CPU?
+@@ -490,6 +494,8 @@ class ModelCache:
+         """Get the amount of VRAM currently in use by the cache."""
+         if self._execution_device.type == "cuda":
+             return torch.cuda.memory_allocated()
++        elif self._execution_device.type == "xpu":
++            return torch.xpu.memory_allocated()
+         elif self._execution_device.type == "mps":
+             return torch.mps.current_allocated_memory()
+         else:
+@@ -528,6 +534,8 @@ class ModelCache:
+         total_cuda_vram_bytes: int | None = None
+         if self._execution_device.type == "cuda":
+             _, total_cuda_vram_bytes = torch.cuda.mem_get_info(self._execution_device)
++        elif self._execution_device.type == "xpu":
++            _, total_cuda_vram_bytes = torch.xpu.mem_get_info(self._execution_device)
+ 
+         # Apply heuristic 1.
+         # ------------------
+@@ -657,6 +665,9 @@ class ModelCache:
+ 
+         if torch.cuda.is_available():
+             log += "  {:<30} {:.1f} MB\n".format("CUDA Memory Allocated:", torch.cuda.memory_allocated() / MB)
++        elif torch.xpu.is_available():
++            log += "  {:<30} {:.1f} MB\n".format("XPU Memory Allocated:", torch.xpu.memory_allocated() / MB)
++
+         log += "  {:<30} {}\n".format("Total models:", len(self._cached_models))
+ 
+         if include_entry_details and len(self._cached_models) > 0:
+diff --git a/invokeai/backend/stable_diffusion/diffusers_pipeline.py b/invokeai/backend/stable_diffusion/diffusers_pipeline.py
+index de5253f07..349ef3ef6 100644
+--- a/invokeai/backend/stable_diffusion/diffusers_pipeline.py
++++ b/invokeai/backend/stable_diffusion/diffusers_pipeline.py
+@@ -221,6 +221,8 @@ class StableDiffusionGeneratorPipeline(StableDiffusionPipeline):
+             mem_free = psutil.virtual_memory().free
+         elif self.unet.device.type == "cuda":
+             mem_free, _ = torch.cuda.mem_get_info(TorchDevice.normalize(self.unet.device))
++        elif self.unet.device.type == "xpu":
++            mem_free, _ = torch.xpu.mem_get_info(TorchDevice.normalize(self.unet.device))
+         else:
+             raise ValueError(f"unrecognized device {self.unet.device}")
+         # input tensor of [1, 4, h/8, w/8]
+diff --git a/invokeai/backend/textual_inversion.py b/invokeai/backend/textual_inversion.py
+index b83d769a8..c884265b7 100644
+--- a/invokeai/backend/textual_inversion.py
++++ b/invokeai/backend/textual_inversion.py
+@@ -67,7 +67,7 @@ class TextualInversionModelRaw(RawModel):
+         return result
+ 
+     def to(self, device: Optional[torch.device] = None, dtype: Optional[torch.dtype] = None) -> None:
+-        if not torch.cuda.is_available():
++        if not torch.cuda.is_available() and not torch.xpu.is_available():
+             return
+         for emb in [self.embedding, self.embedding_2]:
+             if emb is not None:
+diff --git a/invokeai/backend/util/attention.py b/invokeai/backend/util/attention.py
+index 88dc6e5ce..f89c46417 100644
+--- a/invokeai/backend/util/attention.py
++++ b/invokeai/backend/util/attention.py
+@@ -22,6 +22,8 @@ def auto_detect_slice_size(latents: torch.Tensor) -> str:
+         mem_free = psutil.virtual_memory().free
+     elif latents.device.type == "cuda":
+         mem_free, _ = torch.cuda.mem_get_info(latents.device)
++    elif latents.device.type == "xpu":
++        mem_free, _ = torch.xpu.mem_get_info(latents.device)
+     else:
+         raise ValueError(f"unrecognized device {latents.device}")
+ 
+diff --git a/invokeai/backend/util/devices.py b/invokeai/backend/util/devices.py
+index 83ce05502..066969c59 100644
+--- a/invokeai/backend/util/devices.py
++++ b/invokeai/backend/util/devices.py
+@@ -8,6 +8,7 @@ from invokeai.app.services.config.config_default import get_config
+ # legacy APIs
+ TorchPrecisionNames = Literal["float32", "float16", "bfloat16"]
+ CPU_DEVICE = torch.device("cpu")
++XPU_DEVICE = torch.device("xpu")
+ CUDA_DEVICE = torch.device("cuda")
+ MPS_DEVICE = torch.device("mps")
+ 
+@@ -43,6 +44,7 @@ class TorchDevice:
+     """Abstraction layer for torch devices."""
+ 
+     CPU_DEVICE = torch.device("cpu")
++    XPU_DEVICE = torch.device("xpu")
+     CUDA_DEVICE = torch.device("cuda")
+     MPS_DEVICE = torch.device("mps")
+ 
+@@ -54,6 +56,8 @@ class TorchDevice:
+             device = torch.device(app_config.device)
+         elif torch.cuda.is_available():
+             device = CUDA_DEVICE
++        elif torch.xpu.is_available():
++            device = XPU_DEVICE
+         elif torch.backends.mps.is_available():
+             device = MPS_DEVICE
+         else:
+@@ -77,6 +81,14 @@ class TorchDevice:
+                 # Use the user-defined precision
+                 return cls._to_dtype(config.precision)
+ 
++        elif device.type == "xpu" and torch.xpu.is_available():
++            if config.precision == "auto":
++                # Default to float16 for XPU devices
++                return cls._to_dtype("float16")
++            else:
++                # Use the user-defined precision
++                return cls._to_dtype(config.precision)
++
+         elif device.type == "mps" and torch.backends.mps.is_available():
+             if config.precision == "auto":
+                 # Default to float16 for MPS devices
+@@ -91,7 +103,10 @@ class TorchDevice:
+     def get_torch_device_name(cls) -> str:
+         """Return the device name for the current torch device."""
+         device = cls.choose_torch_device()
+-        return torch.cuda.get_device_name(device) if device.type == "cuda" else device.type.upper()
++        if device.type == "cuda":
++            return torch.cuda.get_device_name(device)
++        else:
++            return device.type.upper()
+ 
+     @classmethod
+     def normalize(cls, device: Union[str, torch.device]) -> torch.device:
+@@ -108,6 +123,8 @@ class TorchDevice:
+             torch.mps.empty_cache()
+         if torch.cuda.is_available():
+             torch.cuda.empty_cache()
++        if torch.xpu.is_available():
++            torch.xpu.empty_cache()
+ 
+     @classmethod
+     def _to_dtype(cls, precision_name: TorchPrecisionNames) -> torch.dtype:
+diff --git a/invokeai/backend/util/test_utils.py b/invokeai/backend/util/test_utils.py
+index add394e71..9344e168b 100644
+--- a/invokeai/backend/util/test_utils.py
++++ b/invokeai/backend/util/test_utils.py
+@@ -12,7 +12,12 @@ from invokeai.backend.model_manager import BaseModelType, LoadedModel, ModelType
+ 
+ @pytest.fixture(scope="session")
+ def torch_device():
+-    return "cuda" if torch.cuda.is_available() else "cpu"
++    if torch.cuda.is_available():
++        return "cuda"
++    elif torch.xpu.is_available():
++        return "xpu"
++    else:
++        return "cpu"
+ 
+ 
+ def install_and_load_model(
+diff --git a/invokeai/frontend/web/pnpm-workspace.yaml b/invokeai/frontend/web/pnpm-workspace.yaml
+index 7c326294a..e20027479 100644
+--- a/invokeai/frontend/web/pnpm-workspace.yaml
++++ b/invokeai/frontend/web/pnpm-workspace.yaml
+@@ -1,3 +1,6 @@
+ onlyBuiltDependencies:
+   - '@swc/core'
+   - esbuild
++
++packages:
++  - .

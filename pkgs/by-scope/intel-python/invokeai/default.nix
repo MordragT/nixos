@@ -2,7 +2,7 @@
   stdenv,
   coreutils,
   nodejs,
-  pnpm_8,
+  pnpm_10,
   buildPythonPackage,
   fetchFromGitHub,
   pythonRelaxDepsHook,
@@ -10,9 +10,7 @@
   pip,
   python,
   accelerate,
-  clip-anytorch,
   compel,
-  controlnet-aux,
   diffusers,
   gguf,
   invisible-watermark,
@@ -25,7 +23,6 @@
   safetensors,
   sentencepiece,
   spandrel,
-  timm,
   ipex,
   torch,
   torchmetrics,
@@ -38,39 +35,25 @@
   pydantic-settings,
   python-socketio,
   uvicorn,
-  albumentations,
   blake3,
-  click,
-  datasets,
   deprecated,
   dnspython,
   dynamicprompts,
-  easing-functions,
   einops,
-  facexlib,
-  matplotlib,
-  npyscreen,
-  omegaconf,
   picklescan,
   pillow,
   prompt-toolkit,
-  pympler,
   pypatchmatch,
-  pyperclip,
   python-multipart,
   requests,
-  rich,
-  scikit-image,
   semver,
-  send2trash,
-  test-tube,
 }: let
-  version = "5.4.2";
+  version = "6.0.2";
   src = fetchFromGitHub {
     owner = "invoke-ai";
     repo = "InvokeAI";
     rev = "v${version}";
-    hash = "sha256-uZ94eh9i0WnWjJG3a00uqMmYWFkb6vF6pYo/zJq7ZOE=";
+    hash = "sha256-XmzjsBISi875aoMlya+E78yBGRVs73cy78C2hm6Exfo=";
   };
   web = stdenv.mkDerivation rec {
     pname = "invokeai-web";
@@ -80,12 +63,13 @@
 
     nativeBuildInputs = [
       nodejs
-      pnpm_8.configHook
+      pnpm_10.configHook
     ];
 
-    pnpmDeps = pnpm_8.fetchDeps {
+    pnpmDeps = pnpm_10.fetchDeps {
       inherit pname src version sourceRoot;
-      hash = "sha256-nsBB911Hk1Ef7HO8MpchHqSWIpfq0wlhv3bOa1Rdiww=";
+      hash = "sha256-sjVQqSVxeljk5NO9NN0e7N1Vhft0QIA8+Pq9Nr+zAiw=";
+      fetcherVersion = 2;
     };
 
     buildPhase = ''
@@ -106,51 +90,17 @@ in
       pythonRelaxDepsHook
     ];
 
-    # own custom wrapping with ipexrun
-    # dontWrapPythonPrograms = true;
-
     pythonRemoveDeps = [
       "bitsandbytes"
-      "pyreadline3"
-      "opencv-python"
+      "opencv-contrib-python"
     ];
     pythonRelaxDeps = [
-      "accelerate"
-      # "clip_anytorch"
-      # "compel"
-      # "controlnet-aux"
       "diffusers"
-      "gguf"
-      "invisible-watermark"
       "mediapipe"
       "numpy"
       "onnx"
       "onnxruntime"
-      # "opencv-python"
-      "pytorch-lightning"
-      "safetensors"
-      # "sentencepiece"
-      # "spandrel"
-      "timm"
-      "torch"
-      "torchmetrics"
-      "torchsde"
-      "torchvision"
-      "transformers"
-
-      # "fastapi-events"
-      "fastapi"
-      "huggingface-hub"
-      "pydantic-settings"
-      "python-socketio"
-      "uvicorn"
-
-      "pydantic"
-      "dnspython"
-      "requests"
-      "rich"
-      "scikit-image"
-      "test-tube"
+      "torch" # no idea why invokeai thinkgs torch is version 2.6.0
     ];
 
     build-system = [
@@ -164,10 +114,8 @@ in
 
     dependencies = [
       accelerate
-      clip-anytorch
       compel
-      controlnet-aux
-      diffusers.optional-dependencies.torch
+      diffusers
       gguf
       invisible-watermark
       mediapipe
@@ -179,7 +127,6 @@ in
       safetensors
       sentencepiece
       spandrel
-      timm
       ipex
       torch
       torchmetrics
@@ -194,32 +141,18 @@ in
       python-socketio
       uvicorn
 
-      albumentations
       blake3
-      click
-      datasets
       deprecated
       dnspython
       dynamicprompts
-      easing-functions
       einops # broken test
-      facexlib
-      matplotlib
-      npyscreen
-      omegaconf
       picklescan
       pillow
       prompt-toolkit
-      pympler
       pypatchmatch
-      pyperclip
       python-multipart
       requests
-      rich
-      scikit-image
       semver
-      send2trash
-      test-tube
     ];
     # optional-dependencies = {
     #   xformers = [xformers triton];
@@ -233,8 +166,7 @@ in
     # };
 
     patches = [
-      ./shutil-mode.patch
-      ./xpu.patch
+      ./01-xpu-and-shutil.patch
     ];
 
     postInstall = ''

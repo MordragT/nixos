@@ -33,8 +33,8 @@ export def main [] {
     let sources = $index | where { |src| $src.filename in $filenames }
     let sources_all = $index_all | where { |src| $src.filename in $filenames_all }
 
-    let missing = $filenames | filter { |filename| $filename not-in ($sources | get filename) }
-    let missing_all = $filenames_all | filter { |filename| $filename not-in ($sources_all | get filename) }
+    let missing = $filenames | where { |filename| $filename not-in ($sources | get filename) }
+    let missing_all = $filenames_all | where { |filename| $filename not-in ($sources_all | get filename) }
 
     print "Missing:"
     for $name in ($missing ++ $missing_all) {

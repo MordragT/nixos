@@ -17,7 +17,7 @@ in {
       brave
 
       # Editors
-      jetbrains.idea-community
+      # jetbrains.idea-community
       # lapce # code editor
       # octaveFull # aims to be compatible with matlab
 

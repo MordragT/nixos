@@ -6,6 +6,7 @@
     ./helix
     ./mangohud
     ./nushell
+    ./nvim
     ./obs
     ./thunderbird
     ./vscode

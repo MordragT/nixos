@@ -5,12 +5,12 @@
 }:
 buildPythonPackage rec {
   pname = "picklescan";
-  version = "0.0.7";
+  version = "0.0.26";
   format = "pyproject";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-5HFpf+VPVIL/IvGDpOP9q0pdleNshiSW3QffX8qJVAk=";
+    sha256 = "sha256-3XiXYVECTwpsYX3LLDHkVEHp6Vcn2xQoJIKzdQ40zMU=";
   };
 
   nativeBuildInputs = [
