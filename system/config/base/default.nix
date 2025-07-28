@@ -21,6 +21,7 @@
       alsa-utils # configure audio devices
       bintools
       clinfo # opencl info
+      drm_info
       dua # print file size of directories
       fd # find replacement
       helix # Kakoune style editor

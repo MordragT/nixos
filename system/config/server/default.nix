@@ -6,7 +6,8 @@
     ./cosmic.nix
     ./file-systems.nix
     ./impermanence.nix
-    ./kodi.nix
+    # ./kodi.nix
+    ./steam.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 }

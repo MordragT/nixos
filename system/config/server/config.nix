@@ -29,8 +29,7 @@
   ];
 
   mordrag.programs.steam = {
-    enable = false;
-    gameFixes = false;
+    enable = true;
   };
 
   services.openssh = {

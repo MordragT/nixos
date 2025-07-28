@@ -4,10 +4,11 @@
   ...
 }: {
   # General
-  # services.xserver.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
+
   mordrag.desktop.cosmic.enable = true;
   mordrag.desktop.gnome.enable = true;
+  mordrag.desktop.niri.enable = true;
 
   powerManagement.cpuFreqGovernor = "schedutil";
 

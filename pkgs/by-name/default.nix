@@ -2,6 +2,8 @@ self: pkgs: let
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
   byfl = callPackage ./byfl {};
+  cosmic-ext-alternative-startup = callPackage ./cosmic-ext-alternative-startup {};
+  cosmic-ext-niri = callPackage ./cosmic-ext-niri {};
   dud = callPackage ./dud {};
   ensembles = callPackage ./ensembles {};
   epic-asset-manager = callPackage ./epic-asset-manager {};

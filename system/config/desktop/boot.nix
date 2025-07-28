@@ -7,7 +7,11 @@
   # Boot Loader
   environment.systemPackages = [pkgs.sbctl];
 
-  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.systemd-boot = {
+    enable = lib.mkForce false;
+    editor = false;
+    consoleMode = "max";
+  };
   boot.loader.efi.canTouchEfiVariables = false;
 
   # boot.plymouth.enable = true;

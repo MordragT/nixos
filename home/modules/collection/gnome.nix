@@ -19,6 +19,7 @@ in {
       baobab # disk usage analyzer
       # blanket # listen to chill sounds
       # boatswain # control elgato stream deck
+      bustle # inspect dbus messages
       # cartridges # game launcher
       # calls # phone dialer and call handler
       chess-clock

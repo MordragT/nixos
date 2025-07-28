@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   specialisation.cosmic.configuration = {
     system.nixos.tags = ["cosmic"];
 
@@ -7,6 +7,11 @@
     mordrag.desktop.cosmic.enable = true;
 
     mordrag.programs.gnome-disks.enable = true;
-    # mordrag.services.samba.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      loupe
+      showtime
+      papers
+    ];
   };
 }

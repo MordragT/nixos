@@ -2,64 +2,82 @@
   description = "My system configuration";
 
   inputs = {
-    templates.url = "github:MordragT/nix-templates";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     classified = {
       url = "github:GoldsteinE/classified";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     comoji = {
       url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    valhali = {
-      url = "github:MordragT/valhali";
+
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     fenix = {
       url = "github:nix-community/fenix/monthly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-Nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+
     nu-env = {
       url = "github:MordragT/nu-env";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur.url = "github:nix-community/NUR";
+
     private = {
       url = "git+ssh://git@github.com/MordragT/nix-private";
       # url = "github:MordragT/nix-private";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    templates.url = "github:MordragT/nix-templates";
+
+    valhali = {
+      url = "github:MordragT/valhali";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     self,
-    templates,
-    nixpkgs,
-    nur,
     chaotic,
-    valhali,
-    disko,
-    home-manager,
     classified,
     comoji,
+    disko,
     fenix,
+    home-manager,
+    jovian,
     lanzaboote,
+    nixpkgs,
     nu-env,
+    nur,
     private,
+    templates,
+    valhali,
     ...
   }: let
     system = "x86_64-linux";
@@ -69,8 +87,9 @@
         chaotic.overlays.default
         comoji.overlays.default
         fenix.overlays.default
-        nur.overlays.default
+        jovian.overlays.default
         nu-env.overlays.default
+        nur.overlays.default
         private.overlays.default
         (import ./pkgs/overlay.nix)
       ];
@@ -82,7 +101,7 @@
   in {
     nixosConfigurations = {
       installer = let
-        stateVersion = "24.05";
+        stateVersion = "25.11";
       in
         lib.mkHost {
           inherit system stateVersion pkgs;
@@ -116,8 +135,8 @@
           ];
 
           modules = [
-            classified.nixosModules.${system}.default
             chaotic.nixosModules.default
+            classified.nixosModules.${system}.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];
@@ -146,9 +165,10 @@
           ];
 
           modules = [
-            classified.nixosModules.${system}.default
             chaotic.nixosModules.default
+            classified.nixosModules.${system}.default
             disko.nixosModules.default
+            jovian.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];
@@ -177,8 +197,8 @@
           ];
 
           modules = [
-            classified.nixosModules.${system}.default
             chaotic.nixosModules.default
+            classified.nixosModules.${system}.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];
@@ -211,7 +231,7 @@
           ({pkgs, ...}: {
             home.username = "tom";
             home.homeDirectory = "/home/tom";
-            home.stateVersion = "23.11";
+            home.stateVersion = "25.11";
             programs.home-manager.enable = true;
             targets.genericLinux.enable = true;
 
@@ -223,8 +243,10 @@
 
     homeManagerModules.default = import ./home/modules;
     nixosModules.default = import ./system/modules;
+
     packages."${system}" = import ./pkgs pkgs;
     overlays.default = import ./pkgs/overlay.nix;
+
     devShells."${system}".default = pkgs.mkShell {
       buildInputs = with pkgs; [
         disko.packages.${system}.default

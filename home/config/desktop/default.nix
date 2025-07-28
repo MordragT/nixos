@@ -8,6 +8,7 @@
   mordrag.programs.git.enable = true;
   mordrag.programs.helix.enable = true;
   mordrag.programs.mangohud.enable = true;
+  mordrag.programs.niri.enable = true;
   mordrag.programs.nushell.enable = true;
   mordrag.programs.nvim.enable = true;
   mordrag.programs.obs.enable = true;

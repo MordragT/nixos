@@ -4,7 +4,10 @@
     ./firefox
     ./git
     ./helix
+    ./hyprland
+    ./labwc
     ./mangohud
+    ./niri
     ./nushell
     ./nvim
     ./obs

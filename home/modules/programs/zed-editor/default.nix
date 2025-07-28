@@ -36,6 +36,7 @@ in {
         "html"
         "java"
         "just"
+        "kdl"
         "kotlin"
         "mcp-server-github"
         "nix"
@@ -67,6 +68,8 @@ in {
         buffer_font_size = 15;
         buffer_font_family = "Geist Mono";
         tab_bar.show = false;
+        soft_wrap = "preferred_line_length";
+        preferred_line_length = 120;
         show_wrap_guides = true;
         indent_guides.enabled = false;
         inlay_hints = {

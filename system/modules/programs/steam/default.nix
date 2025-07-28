@@ -8,27 +8,17 @@
 in {
   options.mordrag.programs.steam = {
     enable = lib.mkEnableOption "Steam";
-    controller = lib.mkOption {
-      description = "Enable Steam controller";
-      default = true;
-      type = lib.types.bool;
-    };
     compatPackages = lib.mkOption {
       description = "Enable compatibility tools";
       default = [];
       type = lib.types.listOf lib.types.package;
-    };
-    gameFixes = lib.mkOption {
-      description = "Enable game specific fixes";
-      default = true;
-      type = lib.types.bool;
     };
   };
 
   #SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0 %command% +exec mordrag.cfg -high -sdl_displayindex 1 -sdlaudiodriver pipewire -nojoy
 
   config = lib.mkIf cfg.enable {
-    hardware.steam-hardware.enable = cfg.controller;
+    hardware.steam-hardware.enable = true;
     programs.steam = {
       enable = true;
       gamescopeSession.enable = true;
@@ -65,8 +55,8 @@ in {
       capSysNice = false;
       package = pkgs.gamescope;
       args = [
-        "-W 2560"
-        "-H 1440"
+        # "-W 2560"
+        # "-H 1440"
         # "-w 1920"
         # "-h 1080"
         # "-r 120"
@@ -79,11 +69,9 @@ in {
       ];
     };
 
-    environment.etc = lib.mkIf cfg.gameFixes {
+    environment.etc = {
       # Crusader Kings 3
       "ssl/certs/f387163d.0".source = "${pkgs.cacert.unbundled}/etc/ssl/certs/Starfield_Class_2_CA.crt";
     };
-
-    environment.systemPackages = lib.optional cfg.controller pkgs.sc-controller;
   };
 }
