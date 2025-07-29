@@ -1,6 +1,6 @@
 {
   lib,
-  buildGo122Module,
+  buildGoModule,
   fetchFromGitHub,
   fetchpatch,
   stdenv,
@@ -104,7 +104,7 @@
     '';
   };
 in
-  buildGo122Module {
+  buildGoModule {
     pname = "ollama";
     inherit version src;
 
