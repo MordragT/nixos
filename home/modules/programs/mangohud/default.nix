@@ -19,6 +19,7 @@ in {
         cpu_temp = true;
         cpu_power = true;
         engine_version = true;
+        font_size = 16;
         frame_count = true;
         frametime = true;
         gpu_temp = true;
@@ -26,6 +27,7 @@ in {
         gpu_power = true;
         gpu_core_clock = true;
         gpu_mem_clock = true;
+        hud_compact = true;
         io_read = true;
         io_write = true;
         procmem = true;

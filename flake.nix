@@ -29,11 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-Nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,11 +43,10 @@
 
     nur.url = "github:nix-community/NUR";
 
-    private = {
-      url = "git+ssh://git@github.com/MordragT/nix-private";
-      # url = "github:MordragT/nix-private";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # private = {
+    #   url = "git+ssh://git@github.com/MordragT/nix-private";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     templates.url = "github:MordragT/nix-templates";
 
@@ -70,12 +64,11 @@
     disko,
     fenix,
     home-manager,
-    jovian,
     lanzaboote,
     nixpkgs,
     nu-env,
     nur,
-    private,
+    # private,
     templates,
     valhali,
     ...
@@ -87,10 +80,10 @@
         chaotic.overlays.default
         comoji.overlays.default
         fenix.overlays.default
-        jovian.overlays.default
+        # jovian.overlays.default # jovian is kind of weird and imports its own overlay via the module
         nu-env.overlays.default
         nur.overlays.default
-        private.overlays.default
+        # private.overlays.default
         (import ./pkgs/overlay.nix)
       ];
       config.allowUnfree = true;
@@ -168,7 +161,6 @@
             chaotic.nixosModules.default
             classified.nixosModules.${system}.default
             disko.nixosModules.default
-            jovian.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
           ];

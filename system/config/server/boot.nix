@@ -13,6 +13,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "usbhid" "sd_mod" "rtsx_usb_sdmmc" "sdhci_pci"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
+  boot.kernelModules = ["ntsync"];
   boot.extraModulePackages = [];
 }
