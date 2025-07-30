@@ -27,7 +27,7 @@ in {
         gpu_power = true;
         gpu_core_clock = true;
         gpu_mem_clock = true;
-        hud_compact = true;
+        # hud_compact = true;
         io_read = true;
         io_write = true;
         procmem = true;

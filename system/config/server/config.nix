@@ -34,6 +34,12 @@
     loupe
     showtime
     papers
+    (
+      pkgs.writeShellScriptBin "steamos-session-select" ''
+        steam -shutdown
+        exec cosmic-session
+      ''
+    )
   ];
 
   mordrag.programs.steam = {
