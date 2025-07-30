@@ -11,6 +11,11 @@
 
   programs.chromium.enable = true;
 
+  home.packages = with pkgs; [
+    superTuxKart
+    heroic
+  ];
+  
   # The steam controller really doesn't like non steam games so just use retroarch of steam itsself
   
   # home.packages = with pkgs; [
