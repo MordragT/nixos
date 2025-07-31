@@ -35,6 +35,7 @@
     showtime
     papers
     (
+      # TODO create desktop file for this
       pkgs.writeShellScriptBin "steamos-session-select" ''
         echo $XDG_RUNTIME_DIR
         SESSION_SWITCH_FILE="$XDG_RUNTIME_DIR/steamos-session/switch"
@@ -48,7 +49,9 @@
         else
           touch "$SESSION_SWITCH_FILE"
           # systemctl --user start steam-session.service
-          exec steam-gamescope
+          cosmic-osd log-out
+          # No need to execute steam-gamescope here, as it will be executed by greetd
+          # exec steam-gamescope
         fi
       ''
     )
