@@ -40,6 +40,33 @@
         exec cosmic-session
       ''
     )
+    (
+      pkgs.writeShellScriptBin "steamos-select-branch" ''
+        case "$1" in
+          "-c")
+            # Current Branch
+            echo "main"
+            ;;
+          "-l")
+            # List Branches
+            echo "main"
+            ;;
+          *)
+            # Switch Branch
+            ;;
+        esac
+      ''
+    )
+    (
+      pkgs.writeShellScriptBin "steamos-update" ''
+        # Exit codes according to vendor:
+        # 0 - update success
+        # 1 - update error
+        # 7 - no update available
+        # 8 - need reboot
+        exit 7
+      ''
+    )
   ];
 
   mordrag.programs.steam = {
@@ -57,6 +84,11 @@
       "--mangoapp"
       "--fullscreen" # gamescope introduces a lot of latency if not fullscreen
     ];
+    steamArgs = [
+      "-steamos3"
+      "-tenfoot"
+      "-pipewire-dmabuf"
+    ];
     # somehow --mangoapp on gamescope doesn't find default config
     env.MANGOHUD_CONFIGFILE = "/home/tom/.config/MangoHud/MangoHud.conf";
   };
@@ -66,6 +98,7 @@
     settings.default_session = {
       user = "tom";
       command = "steam-gamescope";
+      # command = "cosmic-session";
     };
   };
 

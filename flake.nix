@@ -80,7 +80,6 @@
         chaotic.overlays.default
         comoji.overlays.default
         fenix.overlays.default
-        # jovian.overlays.default # jovian is kind of weird and imports its own overlay via the module
         nu-env.overlays.default
         nur.overlays.default
         # private.overlays.default
@@ -111,6 +110,36 @@
               imports = [
                 ./home/modules
                 ./home/config/installer
+              ];
+            };
+          };
+        };
+
+      tom-desktop = let
+        stateVersion = "23.11";
+      in
+        lib.mkHost {
+          inherit system stateVersion pkgs;
+
+          imports = [
+            ./system/modules
+            ./system/config/desktop
+          ];
+
+          modules = [
+            chaotic.nixosModules.default
+            classified.nixosModules.${system}.default
+            lanzaboote.nixosModules.lanzaboote
+            valhali.nixosModules.default
+          ];
+
+          homes = {
+            "tom" = lib.mkHome {
+              inherit stateVersion;
+              username = "tom";
+              imports = [
+                ./home/modules
+                ./home/config/desktop
               ];
             };
           };
@@ -176,36 +205,6 @@
             };
           };
         };
-
-      tom-desktop = let
-        stateVersion = "23.11";
-      in
-        lib.mkHost {
-          inherit system stateVersion pkgs;
-
-          imports = [
-            ./system/modules
-            ./system/config/desktop
-          ];
-
-          modules = [
-            chaotic.nixosModules.default
-            classified.nixosModules.${system}.default
-            lanzaboote.nixosModules.lanzaboote
-            valhali.nixosModules.default
-          ];
-
-          homes = {
-            "tom" = lib.mkHome {
-              inherit stateVersion;
-              username = "tom";
-              imports = [
-                ./home/modules
-                ./home/config/desktop
-              ];
-            };
-          };
-        };
     };
 
     homeConfigurations = {
@@ -236,7 +235,31 @@
     homeManagerModules.default = import ./home/modules;
     nixosModules.default = import ./system/modules;
 
-    packages."${system}" = import ./pkgs pkgs;
+    packages."${system}" =
+      (import ./pkgs pkgs)
+      // {
+        # tom-desktop-vm = nixos-generators.nixosGenerate {
+        #   inherit system;
+        #   format = "vm";
+        #   modules = [];
+        # };
+
+        # tom-server-vm = nixos-generators.nixosGenerate {
+        #   inherit system;
+        #   format = "vm";
+        #   modules = [];
+        # };
+
+        # tom-laptop-vm = nixos-generators.nixosGenerate {
+        #   inherit system;
+        #   format = "vm";
+        #   modules = [];
+        # };
+
+        tom-desktop-vm = self.nixosConfigurations.tom-desktop.config.system.build.vm;
+        tom-laptop-vm = self.nixosConfigurations.tom-laptop.config.system.build.vm;
+        tom-server-vm = self.nixosConfigurations.tom-server.config.system.build.vm;
+      };
     overlays.default = import ./pkgs/overlay.nix;
 
     devShells."${system}".default = pkgs.mkShell {

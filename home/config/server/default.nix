@@ -12,12 +12,12 @@
   programs.chromium.enable = true;
 
   home.packages = with pkgs; [
-    superTuxKart
+    # superTuxKart
     heroic
   ];
-  
+
   # The steam controller really doesn't like non steam games so just use retroarch of steam itsself
-  
+
   # home.packages = with pkgs; [
   #   (retroarch.withCores (cores:
   #     with cores; [
@@ -32,7 +32,6 @@
   #     import sys
   #     import vdf
 
-
   #     def json2vdf(data):
   #         if isinstance(data, dict):
   #             return {k: json2vdf(v) for k, v in data.items()}
@@ -40,7 +39,6 @@
   #             return {str(k): json2vdf(v) for k, v in enumerate(data)}
   #         else:
   #             return data
-
 
   #     with open(sys.argv[1]) as fp:
   #         data = json.load(fp)
