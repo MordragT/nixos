@@ -36,8 +36,20 @@
     papers
     (
       pkgs.writeShellScriptBin "steamos-session-select" ''
-        steam -shutdown
-        exec cosmic-session
+        echo $XDG_RUNTIME_DIR
+        SESSION_SWITCH_FILE="$XDG_RUNTIME_DIR/steamos-session/switch"
+        mkdir -p "$(dirname "$SESSION_SWITCH_FILE")"
+
+        if [ -f "$SESSION_SWITCH_FILE" ]; then
+          rm "$SESSION_SWITCH_FILE"
+          # systemctl --user start cosmic-session.service
+          steam -shutdown
+          exec cosmic-session
+        else
+          touch "$SESSION_SWITCH_FILE"
+          # systemctl --user start steam-session.service
+          exec steam-gamescope
+        fi
       ''
     )
     (
@@ -93,21 +105,44 @@
     env.MANGOHUD_CONFIGFILE = "/home/tom/.config/MangoHud/MangoHud.conf";
   };
 
+  # Simple user services don't work because sessions need special permission e.g. to get drm master via loginctl activate-session (if I understand it correctly)
+  # maybe uwsm can help here but not sure if it works with cosmic
+  # systemd.user.services.steam-session = {
+  #   description = "Steam Session";
+  #   conflicts = ["cosmic-session.service"];
+  #   requires = ["graphical-session.target"];
+  #   after = ["graphical-session.target"];
+
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "steam-gamescope";
+  #   };
+  # };
+
+  # systemd.user.services.cosmic-session = {
+  #   description = "Cosmic Session";
+  #   conflicts = ["steam-session.service"];
+  #   requires = ["graphical-session.target"];
+  #   after = ["graphical-session.target"];
+
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.cosmic-session}/bin/cosmic-session";
+  #   };
+  # };
+
   services.greetd = {
     enable = true;
+    # settings.initial_session = {
+    #   user = "tom";
+    #   command = "cosmic-session";
+    # };
+
     settings.default_session = {
       user = "tom";
       command = "steam-gamescope";
-      # command = "cosmic-session";
     };
   };
-
-  # jovian.steam = {
-  #   enable = true;
-  #   autoStart = true;
-  #   user = "tom";
-  #   desktopSession = "cosmic";
-  # };
 
   services.openssh = {
     enable = true;

@@ -167,9 +167,9 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-# $env.XDG_STATE_HOME = "~/.local/state"
-# $env.XDG_DATA_HOME = "~/.local/share"
-# $env.XDG_CONFIG_HOME = "~/.config"
-# $env.XDG_CACHE_HOME = "~/.cache"
+$env.XDG_STATE_HOME = "~/.local/state"
+$env.XDG_DATA_HOME = "~/.local/share"
+$env.XDG_CONFIG_HOME = "~/.config"
+$env.XDG_CACHE_HOME = "~/.cache"
 
 $env.VAGRANT_HOME = $env.HOME | path join ".local" "share" "vagrant"
