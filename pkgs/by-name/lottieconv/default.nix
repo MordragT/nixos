@@ -16,7 +16,6 @@ rustPlatform
     sha256 = "";
   };
   cargoBuildFlags = "--bin lottie2webp --all-features";
-  useFetchCargoVendor = true;
   cargoHash = "";
 
   PKG_CONFIG_PATH = "${rlottie}/lib/pkgconfig";

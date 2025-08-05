@@ -31,10 +31,13 @@ in {
         #   MANGOHUD = true;
         #   MANGOHUD_DLSYM = true;
         # };
-        # extraLibraries = pkgs:
-        #   with pkgs; [
-        #     libpulseaudio
-        #   ];
+        extraLibraries = pkgs:
+          with pkgs; [
+            # Plague Inc Evolved
+            libGLU
+            # BattleBlock Theater
+            sdl2-compat
+          ];
         # extraPackages = pkgs:
         #   with pkgs; [
         #     gamemode

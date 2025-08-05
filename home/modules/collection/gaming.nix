@@ -12,11 +12,13 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      # broken openjdk-8 prismlauncher
-      # ferium
+      # heroic # game launcher works pretty bad on nixos
+      prismlauncher
+      # ferium # minecraft cli
       # optifine
       # moonlight-qt # game stream client ala steam link
       # nexusmods-app-unfree
+      steam-rom-manager
     ];
   };
 }

@@ -1,8 +1,9 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ../base
   ];
 
+  mordrag.programs.bottles.enable = true;
   mordrag.programs.git.enable = true;
   mordrag.programs.helix.enable = true;
   mordrag.programs.mangohud.enable = true;
@@ -11,10 +12,7 @@
 
   programs.chromium.enable = true;
 
-  home.packages = with pkgs; [
-    # superTuxKart
-    heroic
-  ];
+  mordrag.collection.gaming.enable = true;
 
   # The steam controller really doesn't like non steam games so just use retroarch of steam itsself
 

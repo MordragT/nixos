@@ -57,10 +57,10 @@
   {
     "slug": "skinport-plus",
     "name": "Skinport Plus",
-    "version": "25.7.23",
+    "version": "25.7.30",
     "addonId": "{46da1da2-d8cd-42b2-b6d6-dfc312231d15}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4540857/skinport_plus-25.7.23.xpi",
-    "sha256": "sha256:ef8facd4d45269ef6e886dd9f12d9f2acdb6c222fb7f790caeb88631e8c64f41",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4545888/skinport_plus-25.7.30.xpi",
+    "sha256": "sha256:886dd66e8df7f6c8ddc334df9ca8ad4cba16df54af2fbc443a8e27f2710546f7",
     "homepage": "https://addons.mozilla.org/en-US/firefox/addon/skinport-plus/",
     "description": "Enhance your trading experience on Skinport and Steam with Skinport Plus.",
     "license": "all-rights-reserved"
