@@ -8,6 +8,7 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       adwaita-fonts
+      corefonts
       # caladea # similar to microsoft cambria
       # cantarell-fonts # needed for steam adwaita theme
       fira

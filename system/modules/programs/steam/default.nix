@@ -22,7 +22,7 @@ in {
     programs.steam = {
       enable = true;
       gamescopeSession.enable = true;
-      protontricks.enable = true;
+      # broken protontricks.enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       dedicatedServer.openFirewall = false;
@@ -33,10 +33,18 @@ in {
         # };
         extraLibraries = pkgs:
           with pkgs; [
-            # Plague Inc Evolved
-            libGLU
-            # BattleBlock Theater
-            sdl2-compat
+            # Extra Steam game dependencies go here
+            #libGLU # Plague Inc Evolved
+            #sdl2-compat # BattleBlock Theater
+
+            # Needed for GTK file dialogs in certain games.
+            # gtk3
+            # pango
+            # cairo
+            # atk
+            # zlib
+            # glib
+            # gdk-pixbuf
           ];
         # extraPackages = pkgs:
         #   with pkgs; [

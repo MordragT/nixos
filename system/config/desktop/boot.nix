@@ -29,8 +29,8 @@
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
   boot.kernelParams = [
-    # "i915.force_probe=!56a1"
-    # "xe.force_probe=56a1"
+    "i915.force_probe=!56a1"
+    "xe.force_probe=56a1"
     # https://wiki.archlinux.org/title/Gaming#Improve_clock_gettime_throughput
     # already default ?
     # "tsc=reliable"

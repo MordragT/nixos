@@ -13,9 +13,10 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       discord
+      chatgpt
       # matlab
       # spotify # spotube is far better # listen to music
-      teamspeak_client
+      # teamspeak_client
       teams-for-linux # microsoft teams
       unigine-superposition
       zoom-us

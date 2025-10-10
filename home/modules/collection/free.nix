@@ -30,7 +30,7 @@ in {
       # Graphics
       blender
       # electron16 blockbench-electron
-      # drawio
+      drawio
       # glaxnimate
       inkscape
       krita
@@ -50,7 +50,9 @@ in {
 
       # Other
       # dbeaver-bin # sql client
+      dorion # rust written discord alternative
       # insomnia # make http requests against rest apis
+      mattermost-desktop
       protonvpn-cli
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher

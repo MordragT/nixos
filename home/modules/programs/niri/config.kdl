@@ -258,7 +258,7 @@ layout {
 
 //spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 spawn-at-startup "xwayland-satellite"
-//spawn-at-startup "cosmic-ext-alternative-startup"
+//spawn-at-startup "-alternative-startup"
 //spawn-at-startup "cosmic-notifications"
 spawn-at-startup "cosmic-bg"
 spawn-at-startup "cosmic-panel"

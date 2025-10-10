@@ -16,9 +16,9 @@ def fetch-addon [slug] {
         addonId: $response.guid,
         url: $response.current_version.file.url
         sha256: $response.current_version.file.hash
-        homepage: ($response | get -i homepage.url.en-US | default $response.url)
+        homepage: ($response | get -o homepage.url.en-US | default $response.url)
         description: $response.summary.en-US
-        license: $response.current_version.license.slug  
+        license: $response.current_version.license.slug
     }
     return $addon
 }

@@ -27,7 +27,7 @@ in {
       ++ (with pkgs.gnomeExtensions; [
         space-bar
         task-widget
-        # broken valent
+        valent
         fly-pie
       ]);
   };

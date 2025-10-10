@@ -8,8 +8,8 @@
   {
     "name": "flowistry",
     "publisher": "wcrichton",
-    "version": "0.5.42",
-    "sha256": "05p5as8nizr6wamjd8snfvkmfcswhyxm5nrvv1ri789fsbqi4ws8"
+    "version": "0.5.44",
+    "sha256": "0ralknnhhb1ckiznvhyyf0scnyllh4m9x76chqzc6krv0mb79qhs"
   },
   {
     "name": "gltf-vscode",
@@ -32,8 +32,8 @@
   {
     "name": "parol-vscode",
     "publisher": "jsinger67",
-    "version": "0.4.0",
-    "sha256": "0axp9ry8z4z2i19h9lmfhk772dd84m0kw4bdwinkn3xm3hsy7f1m"
+    "version": "0.5.0",
+    "sha256": "15ygrf94ql0zdm03lpk085xiwqp2mz571zg7c3pxqy6zqdyp2zak"
   },
   {
     "name": "sublime-keybindings",

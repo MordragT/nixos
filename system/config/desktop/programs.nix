@@ -9,7 +9,7 @@
       # proton-ge-bin
       proton-ge-custom
       luxtorpeda
-      proton-cachyos-bin
+      # proton-cachyos-bin
       opengothic
       # steamtinkerlaunch
     ];

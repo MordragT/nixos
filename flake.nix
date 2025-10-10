@@ -14,6 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cosmic-unstable.url = "github:ninelore/nixpkgs-cosmic-unstable";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +63,7 @@
     chaotic,
     classified,
     comoji,
+    cosmic-unstable,
     disko,
     fenix,
     home-manager,
@@ -79,6 +82,7 @@
       overlays = [
         chaotic.overlays.default
         comoji.overlays.default
+        # cosmic-unstable.overlays.default
         fenix.overlays.default
         nu-env.overlays.default
         nur.overlays.default

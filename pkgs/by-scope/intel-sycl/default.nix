@@ -1,7 +1,7 @@
 self: pkgs: let
   callPackage = pkgs.callPackage;
   pins = pkgs.callPackage ./pins {};
-  version = "6.1.0";
+  version = "6.2.0";
   src = pkgs.fetchFromGitHub {
     owner = "intel";
     repo = "llvm";

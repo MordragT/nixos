@@ -47,7 +47,7 @@ in {
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
-      # exhibit # 3D model viewer
+      exhibit # 3D model viewer
       eyedropper # pick format colors
       # raider # file shredder
       resources # monitor hardware resources
@@ -57,7 +57,7 @@ in {
       fractal-next # gtk matrix messaging
       # fragments # torrent downloader
       # fretboard # guitar chords
-      # broken gaphor # create diagrams and uml
+      # gaphor # create diagrams and uml
       ghex # hex editor
       # glide-media-player
       gnome-boxes
@@ -104,6 +104,7 @@ in {
       # polari # irc client
       # popsicle # flash usb with iso
       paper-clip # edit pdf metadata
+      # piper # mouse manager
       # pitivi # video editor
       # pika-backup # simple backups
       # planify # more advanced task manager

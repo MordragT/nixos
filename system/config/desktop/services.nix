@@ -20,10 +20,10 @@
     };
   };
   mordrag.services.printing.enable = true;
-  mordrag.services.step-ca.enable = true;
+  # mordrag.services.step-ca.enable = true;
   # mordrag.services.gitlab.enable = true;
   # mordrag.services.forgejo.enable = true;
-  mordrag.services.harmonia.enable = true;
+  # mordrag.services.harmonia.enable = true;
   # mordrag.services.stalwart.enable = true;
   # mordrag.services.tabby = {
   #   enable = true;
@@ -74,7 +74,9 @@
   # };
   # systemd.services.ollama.serviceConfig.MemoryDenyWriteExecute = lib.mkForce false;
 
-  services.tailscale.enable = true; # trayscale gui ?
+  # services.ratbagd.enable = true;  # for piper
+
+  # services.tailscale.enable = true; # trayscale gui ?
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
   networking.firewall.checkReversePath = "loose";
 

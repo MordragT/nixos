@@ -23,6 +23,18 @@
   # systemd.network.wait-online.anyInterface = true;
   # systemd.network.wait-online.timeout = 5;
 
+  chaotic.mesa-git = {
+    enable = true;
+    replaceBasePackage = true;
+    extraPackages = with pkgs; [
+      intel-compute-runtime
+      intel-compute-runtime.drivers
+      intel-media-driver
+      intel-vaapi-driver
+      vpl-gpu-rt
+    ];
+  };
+
   # Hardware Acceleration
   hardware.graphics = {
     enable = true;

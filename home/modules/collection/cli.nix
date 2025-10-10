@@ -18,11 +18,13 @@ in {
       # broken ventoy # create bootable usb drive for isos
       xorg.xlsclients
       xorg.xeyes
+      wayland-utils
+      lswt
       # yt-dlp # download youtube videos
 
       # byfl # compiler based application analysis
       # likwid # performance monitoring
-      # renderdoc # debug graphics
+      # broken (renderdoc.override {waylandSupport = true;}) # debug graphics
       vkmark
       # vulkan-raytracing
       # p7zip
@@ -40,7 +42,7 @@ in {
       # rclone # sync data with cloud
 
       # Media
-      # asciinema # record terminals
+      asciinema_3 # record terminals
       # ffmpeg_6-full
       # silicon # rust tool to create beautiful code images
 

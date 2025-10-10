@@ -2,6 +2,7 @@ self: pkgs: let
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {
   byfl = callPackage ./byfl {};
+  chatgpt = callPackage ./chatgpt {};
   cosmic-ext-alternative-startup = callPackage ./cosmic-ext-alternative-startup {};
   cosmic-ext-niri = callPackage ./cosmic-ext-niri {};
   dud = callPackage ./dud {};
