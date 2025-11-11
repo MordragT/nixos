@@ -76,7 +76,7 @@
 
   # services.ratbagd.enable = true;  # for piper
 
-  # services.tailscale.enable = true; # trayscale gui ?
+  services.tailscale.enable = true; # trayscale gui ?
   # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
   networking.firewall.checkReversePath = "loose";
 

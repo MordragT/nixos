@@ -6,6 +6,7 @@ in {
 
   cosmic-ext-accounts = callPackage ./cosmic-ext-accounts {};
   cosmic-ext-alternative-startup = callPackage ./cosmic-ext-alternative-startup {};
+  cosmic-ext-applet-clipboard-manager = callPackage ./cosmic-ext-applet-clipboard-manager {};
   cosmic-ext-applet-connect = callPackage ./cosmic-ext-applet-connect {};
   cosmic-ext-applet-emoji-selector = callPackage ./cosmic-ext-applet-emoji-selector {};
   cosmic-ext-applet-gamemode-status = callPackage ./cosmic-ext-applet-gamemode-status {};
@@ -17,6 +18,7 @@ in {
   cosmic-ext-applet-system-monitor = callPackage ./cosmic-ext-applet-system-monitor {};
   cosmic-ext-applet-tailscale = callPackage ./cosmic-ext-applet-tailscale {};
   cosmic-ext-applet-weather = callPackage ./cosmic-ext-applet-weather {};
+  cosmic-ext-bg-theme = callPackage ./cosmic-ext-bg-theme {};
   cosmic-ext-calendar = callPackage ./cosmic-ext-calendar {};
   cosmic-ext-niri = callPackage ./cosmic-ext-niri {};
 

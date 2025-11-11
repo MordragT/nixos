@@ -11,6 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    # mordrag.services.cosmic-bg-theme.enable = true;
+
     services.desktopManager.cosmic.enable = true;
 
     services.gnome.gnome-keyring.enable = true;
@@ -19,11 +21,12 @@ in {
 
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
+      COSMIC_DATA_CONTROL_ENABLED = "1"; # needed for cosmic-ext-applet-clipboard-manager
     };
 
     environment.systemPackages = with pkgs; [
       cosmic-ext-applet-caffeine
-      # cosmic-ext-applet-clipboard-manager # requires unsafe environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
+      cosmic-ext-applet-clipboard-manager
       # cosmic-ext-applet-connect
       cosmic-ext-applet-external-monitor-brightness
       cosmic-ext-applet-emoji-selector
@@ -31,10 +34,10 @@ in {
       cosmic-ext-applet-git-work
       cosmic-ext-applet-logomenu
       cosmic-ext-applet-minimon
-      # cosmic-ext-applet-music-player
+      cosmic-ext-applet-music-player
       cosmic-ext-applet-privacy-indicator
       cosmic-ext-applet-system-monitor
-      # cosmic-ext-applet-tailscale
+      cosmic-ext-applet-tailscale
       cosmic-ext-applet-weather
 
       # cosmic-ext-accounts
@@ -50,16 +53,11 @@ in {
       examine
       fan-control
       forecast
-      # observatory
       oboete
       # quick-webapps
       # starrydex
       # stellarshot
       tasks
     ];
-
-    # required for observatory to work
-    # systemd.packages = [pkgs.observatory];
-    # systemd.services.monitord.wantedBy = ["multi-user.target"];
   };
 }

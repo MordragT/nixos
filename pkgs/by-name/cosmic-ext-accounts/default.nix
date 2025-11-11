@@ -5,24 +5,29 @@
   fetchFromGitHub,
   libcosmicAppHook,
   just,
+  openssl,
   nix-update-script,
 }:
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-accounts";
-  version = "unstable-2025-10-01";
+  version = "unstable-2025-11-11";
 
   src = fetchFromGitHub {
-    owner = "cosmic-utils";
+    owner = "mordragt";
     repo = "accounts";
-    rev = "eca21c7912041538748a46f54f322511d87030f1";
-    hash = "sha256-8zxjBV69twMICH3HiDpTPU0pIYZuuCC6i9oByRo+YLk=";
+    rev = "3e876332e9ba05838cc641c8f29a745b1da29d9e";
+    hash = "sha256-yj786cPIByHKiozq8jJkTC14LHf5Zv/PT4jYUOGk50w=";
   };
 
-  cargoHash = "";
+  cargoHash = "sha256-XnJnFlC4Ws8AYZ60a6CZ577FGj5viTLKFqzAZSCJvEY=";
 
   nativeBuildInputs = [
     libcosmicAppHook
     just
+  ];
+
+  buildInputs = [
+    openssl
   ];
 
   dontUseJustBuild = true;
@@ -33,8 +38,11 @@ rustPlatform.buildRustPackage {
     "prefix"
     (placeholder "out")
     "--set"
-    "bin-src"
-    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-accounts"
+    "bin1-src"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/accounts-daemon"
+    "--set"
+    "bin2-src"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/accounts-ui"
   ];
 
   passthru.updateScript = nix-update-script {};
@@ -46,6 +54,6 @@ rustPlatform.buildRustPackage {
     mainProgram = "cosmic-ext-accounts";
     maintainers = with lib.maintainers; [mordrag];
     platforms = lib.platforms.linux;
-    broken = true; # Cargo.lock not included in git
+    broken = true;
   };
 }

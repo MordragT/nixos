@@ -13,10 +13,11 @@ rustPlatform.buildRustPackage {
 
   src = fetchFromGitHub {
     owner = "hepp3n";
-    repo = "cosmic-ext-applet-connect";
-    rev = "a5e1d2b7bf79c3c972cc5109325c1f18a7f9d257";
-    hash = "sha256-bN2MiTRVVAFd7ghr06z5wri+t3mL8hu82eQ4C4nFmGw=";
+    repo = "kdeconnect";
+    rev = "0eb739e52c4d3d383d0e1f3fbe2fcfaef2f01b19";
+    hash = "sha256-mlUJ+ViRB8uz3MlJhjmiEIZoxVPpVDsMUlT3FM913eA=";
   };
+  sourceDir = "source/cosmic-ext-applet-connect";
 
   cargoHash = "";
 
@@ -43,10 +44,10 @@ rustPlatform.buildRustPackage {
   passthru.updateScript = nix-update-script {};
 
   meta = {
-    homepage = "https://github.com/hepp3n/cosmic-ext-applet-connect";
+    homepage = "https://github.com/hepp3n/kdeconnect";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [mordrag];
     mainProgram = "cosmic-ext-applet-connect";
-    broken = true; # Cargo.lock not included in git
+    broken = true;
   };
 }

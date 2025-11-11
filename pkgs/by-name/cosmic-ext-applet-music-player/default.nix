@@ -4,21 +4,23 @@
   libcosmicAppHook,
   rustPlatform,
   just,
+  openssl,
+  dbus,
   stdenv,
   nix-update-script,
 }:
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-music-player";
-  version = "unstable-2025-10-08";
+  version = "unstable-2025-11-11";
 
   src = fetchFromGitHub {
-    owner = "ebbo";
+    owner = "mordragt";
     repo = "cosmic-applet-music-player";
-    rev = "1fe94a89a85be34b867ee94268e46e7fd72e88b8";
-    hash = "sha256-GAIzV/BdU4SOV6P+qNGWmPzF5mvNym9D99/7Hg5/Amc=";
+    rev = "ccdae7c068770498e4abffdc807cebce2cc1fd91";
+    hash = "sha256-LWnC2CQv/0YVeVIz7VUnqqDLdB9DOJmwa9tDWEi1jwQ=";
   };
 
-  cargoHash = "sha256-Cs9g2w480jquSNyEG41WqOEMPQ/BJKcOgN8VnCfZBLQ=";
+  cargoHash = "sha256-ujV43a5mbPeyKDrAoPyJ/1H0YsUM3dJWIezp0mdSzf0=";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -26,6 +28,8 @@ rustPlatform.buildRustPackage {
   ];
 
   buildInputs = [
+    openssl
+    dbus.dev
   ];
 
   dontUseJustBuild = true;
@@ -47,6 +51,5 @@ rustPlatform.buildRustPackage {
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [mordrag];
     mainProgram = "cosmic-ext-applet-music-player";
-    broken = true; # libcosmic problem?
   };
 }

@@ -9,13 +9,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-gamemode-status";
-  version = "unstable-2025-11-10";
+  version = "unstable-2025-11-11";
 
   src = fetchFromGitHub {
-    owner = "mordragt";
+    owner = "d-brox";
     repo = "cosmic-ext-applet-gamemode-status";
     # rev = "v${version}";
-    rev = "0bf9518112d3e5af5a4b65dd24758ebea926b714";
+    rev = "a5fe0b8af4af01675511e0f125c1533e03a8d313";
     hash = "sha256-QspiYxWVOW6pMs64bWrxxWQVfGp8hFNHBFtQwTPjzQs=";
   };
 

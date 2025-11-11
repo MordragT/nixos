@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./cosmic-bg-theme
     ./forgejo
     ./gitlab
     ./harmonia
