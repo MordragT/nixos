@@ -54,7 +54,7 @@ in {
       fclones-gui # find duplicate files
       # foliate # book reader
       # forge-sparks
-      fractal-next # gtk matrix messaging
+      fractal # gtk matrix messaging
       # fragments # torrent downloader
       # fretboard # guitar chords
       # gaphor # create diagrams and uml
@@ -109,8 +109,8 @@ in {
       # pika-backup # simple backups
       # planify # more advanced task manager
       # plots # graph plotting
-      # rnote # draw notes
-      # share-preview # test social media cards
+      rnote # draw notes
+      share-preview # test social media cards
       # shortwave # internet radio
       showtime # video player
       simple-scan

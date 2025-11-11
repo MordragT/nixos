@@ -32,6 +32,7 @@
   programs.file-roller.enable = true;
   # programs.geary.enable = true;
   # programs.seahorse.enable = true;
+  # programs.ssh.startAgent = true;
   # programs.wireshark = {
   #   enable = true;
   #   package = pkgs.wireshark;

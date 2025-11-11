@@ -3,11 +3,27 @@ self: pkgs: let
 in {
   byfl = callPackage ./byfl {};
   chatgpt = callPackage ./chatgpt {};
+
+  cosmic-ext-accounts = callPackage ./cosmic-ext-accounts {};
   cosmic-ext-alternative-startup = callPackage ./cosmic-ext-alternative-startup {};
+  cosmic-ext-applet-connect = callPackage ./cosmic-ext-applet-connect {};
+  cosmic-ext-applet-emoji-selector = callPackage ./cosmic-ext-applet-emoji-selector {};
+  cosmic-ext-applet-gamemode-status = callPackage ./cosmic-ext-applet-gamemode-status {};
+  cosmic-ext-applet-git-work = callPackage ./cosmic-ext-applet-git-work {};
+  cosmic-ext-applet-logomenu = callPackage ./cosmic-ext-applet-logomenu {};
+  cosmic-ext-applet-minimon = callPackage ./cosmic-ext-applet-minimon {};
+  cosmic-ext-applet-music-player = callPackage ./cosmic-ext-applet-music-player {};
+  cosmic-ext-applet-privacy-indicator = callPackage ./cosmic-ext-applet-privacy-indicator {};
+  cosmic-ext-applet-system-monitor = callPackage ./cosmic-ext-applet-system-monitor {};
+  cosmic-ext-applet-tailscale = callPackage ./cosmic-ext-applet-tailscale {};
+  cosmic-ext-applet-weather = callPackage ./cosmic-ext-applet-weather {};
+  cosmic-ext-calendar = callPackage ./cosmic-ext-calendar {};
   cosmic-ext-niri = callPackage ./cosmic-ext-niri {};
+
   dud = callPackage ./dud {};
   ensembles = callPackage ./ensembles {};
   epic-asset-manager = callPackage ./epic-asset-manager {};
+  fan-control = callPackage ./fan-control {};
 
   intel-ccl = callPackage ./intel-ccl {};
   intel-dnnl = callPackage ./intel-dnnl {};
@@ -37,6 +53,7 @@ in {
   proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
   spflashtool = callPackage ./spflashtool {};
   spflashtool-v5 = callPackage ./spflashtool-v5 {};
+  starrydex = callPackage ./starrydex {};
   tabby = callPackage ./tabby {};
   tmfs = callPackage ./tmfs {};
 

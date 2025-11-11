@@ -14,6 +14,7 @@ in {
     home.packages = with pkgs; [
       # Must haves
       anarchism
+      # android-translation-layer # translation layer similar to wine, very wip
       brave
 
       # Editors
@@ -22,9 +23,9 @@ in {
       # octaveFull # aims to be compatible with matlab
 
       # Documents
-      # libreoffice-fresh
-      kdePackages.okular
-      # onlyoffice-bin_latest
+      # kdePackages.okular
+      # onlyoffice-desktopeditors
+      # libreoffice-qt6-fresh
       # xournalpp
 
       # Graphics
@@ -53,7 +54,7 @@ in {
       dorion # rust written discord alternative
       # insomnia # make http requests against rest apis
       mattermost-desktop
-      protonvpn-cli
+      protonvpn-gui
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher
     ];

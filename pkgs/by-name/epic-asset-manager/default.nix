@@ -3,7 +3,6 @@
   lib,
   fetchFromGitHub,
   wrapGAppsHook,
-  runCommand,
   meson,
   ninja,
   pkg-config,
@@ -16,27 +15,18 @@
   libpanel,
   desktop-file-utils,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "epic-asset-manager";
-  version = "3.8.6";
+  version = "unstable-2025-05-19";
 
-  src = let
-    source = fetchFromGitHub {
-      owner = "AchetaGames";
-      repo = "Epic-Asset-Manager";
-      rev = "${version}";
-      sha256 = "";
-    };
-  in
-    runCommand "source" {} ''
-      cp -R ${source} $out
-      chmod +w $out
-      cp ${./Cargo.lock} $out/Cargo.lock
-    '';
-
-  cargoDeps = rustPlatform.importCargoLock {
-    lockFile = ./Cargo.lock;
+  src = fetchFromGitHub {
+    owner = "AchetaGames";
+    repo = "Epic-Asset-Manager";
+    rev = "$b8b36b88c145398a3938faa59eda15b3551d3400";
+    sha256 = "";
   };
+
+  cargoHash = "";
 
   nativeBuildInputs = [
     wrapGAppsHook

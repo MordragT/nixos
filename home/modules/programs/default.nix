@@ -11,6 +11,7 @@
     ./nushell
     ./nvim
     ./obs
+    ./radicle
     ./thunderbird
     ./vscode
     ./zed-editor

@@ -24,7 +24,7 @@ in {
 
       # byfl # compiler based application analysis
       # likwid # performance monitoring
-      # broken (renderdoc.override {waylandSupport = true;}) # debug graphics
+      (renderdoc.override {waylandSupport = true;}) # debug graphics
       vkmark
       # vulkan-raytracing
       # p7zip

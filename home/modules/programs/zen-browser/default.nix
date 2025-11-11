@@ -57,11 +57,11 @@ in {
           name = "zen-extensions";
           paths = with pkgs.firefoxAddons; [
             bib-kit
-            bibitnow
+            # bibitnow
             bitwarden
             brave-search
+            csgofloat
             ghostery
-            private-internet-access-ext
             proton-vpn
             rust-search-extension
             sponsorblock

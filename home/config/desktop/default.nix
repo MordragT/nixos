@@ -12,6 +12,7 @@
   mordrag.programs.nushell.enable = true;
   mordrag.programs.nvim.enable = true;
   mordrag.programs.obs.enable = true;
+  mordrag.programs.radicle.enable = true;
   mordrag.programs.thunderbird.enable = true;
   mordrag.programs.vscode.enable = true;
   mordrag.programs.zed-editor.enable = true;

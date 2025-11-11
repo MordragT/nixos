@@ -13,8 +13,15 @@ in {
   config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
-      userName = "Thomas Wehmöller";
-      userEmail = "connect.mordrag@gmx.de";
+      settings.user = {
+        name = "Thomas Wehmöller";
+        email = "connect.mordrag@gmx.de";
+      };
+      signing = {
+        format = "ssh";
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN40eH/59LSYNIaNsBfsvQYVbbpitikNRPxS5VyRyEda";
+        signByDefault = true;
+      };
     };
     home.packages = with pkgs; [
       comoji # emoji conventional commits

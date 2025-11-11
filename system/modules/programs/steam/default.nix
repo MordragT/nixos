@@ -22,7 +22,7 @@ in {
     programs.steam = {
       enable = true;
       gamescopeSession.enable = true;
-      # broken protontricks.enable = true;
+      protontricks.enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       dedicatedServer.openFirewall = false;

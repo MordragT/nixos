@@ -12,7 +12,6 @@ in {
   config = lib.mkIf cfg.enable {
     services.desktopManager.cosmic.enable = true;
 
-    security.pam.services.login.enableGnomeKeyring = true;
     services.gnome.gnome-keyring.enable = true;
 
     environment.sessionVariables = {

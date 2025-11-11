@@ -173,3 +173,5 @@ $env.XDG_CONFIG_HOME = $env.HOME | path join ".config"
 $env.XDG_CACHE_HOME = $env.HOME | path join ".cache"
 
 $env.VAGRANT_HOME = $env.HOME | path join ".local" "share" "vagrant"
+
+$env.SSH_AUTH_SOCK = $env.XDG_RUNTIME_DIR | path join "gcr" "ssh" # https://github.com/pop-os/cosmic-session/issues/148

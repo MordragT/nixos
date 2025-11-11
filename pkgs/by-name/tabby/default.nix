@@ -1,7 +1,6 @@
 {
   lib,
   rustPlatform,
-  fetchurl,
   fetchFromGitHub,
   makeWrapper,
   git,
@@ -16,7 +15,7 @@
 in
   rustPlatform.buildRustPackage rec {
     pname = "tabby";
-    version = "0.15.0";
+    version = "0.31.2";
 
     passthru = {
       featureDevice = "vulkan";
@@ -30,13 +29,7 @@ in
       fetchSubmodules = true;
     };
 
-    cargoLock = {
-      lockFile = fetchurl {
-        url = "https://raw.githubusercontent.com/TabbyML/tabby/v${version}/Cargo.lock";
-        hash = "";
-      };
-      allowBuiltinFetchGit = true;
-    };
+    cargoHash = "";
 
     # https://github.com/TabbyML/tabby/blob/v0.7.0/.github/workflows/release.yml#L39
     cargoBuildFlags = [

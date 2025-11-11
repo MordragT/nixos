@@ -1,9 +1,11 @@
-{...}: {
+{pkgs, ...}: {
   networking.networkmanager = {
     enable = true;
     dns = "systemd-resolved";
     connectionConfig."connection.mdns" = 1;
     connectionConfig."connection.llmnr" = 0;
+
+    plugins = with pkgs; [networkmanager-openvpn];
   };
   systemd.services.NetworkManager-wait-online.enable = false;
   # systemd.network.wait-online.anyInterface = true;

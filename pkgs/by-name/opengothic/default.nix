@@ -15,14 +15,14 @@
 stdenv.mkDerivation rec {
   pname = "opengothic";
   # broken some problem with ZenKit and phoenix include dir
-  # version = "unstable-2025-13-09";
+  # version = "unstable-2025-20-10";
   version = "unstable-2025-27-03";
 
   src = fetchFromGitHub {
     owner = "Try";
     repo = "OpenGothic";
-    # rev = "a47ed54f8ae9ed6665bcc4c5764e044421184e8f";
-    # sha256 = "sha256-wNeNI1zU5+sheRcnQrpfRvINfowt2HlMCHoRzg2L30g=";
+    # rev = "99a0c866d95b584beecca9976d17dd8fe0464675";
+    # sha256 = "sha256-8PMYowmQAeFGH0tNiKppEoQHPzFy7oLPAtAQrXRYr/s=";
     rev = "379bef748420df5bda142251b95d829e4f6cfed3";
     sha256 = "sha256-RkIuP283kEKugENQcCp9LOo4jyLdCSvocoTz2N2qmzg=";
     fetchSubmodules = true;

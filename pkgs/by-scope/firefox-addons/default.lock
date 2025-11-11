@@ -35,10 +35,10 @@
   {
     "slug": "csgofloat",
     "name": "CSFloat Market Checker",
-    "version": "5.8.1",
+    "version": "5.9.0",
     "addonId": "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4575548/csgofloat-5.8.1.xpi",
-    "sha256": "sha256:6bfcfb61d0a0b026fcf75cc55ccd13904dd421a32bc3f158e4414a9be7b65013",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4605795/csgofloat-5.9.0.xpi",
+    "sha256": "sha256:e5936bc6ce150435a21e58e156529d8040f547e0581705f146658add06b19717",
     "homepage": "https://csgofloat.com",
     "description": "Shows the float value, paint seed, and screenshots of Counter-Strike (CS:GO &amp; CS2) items on the Steam Market or Inventories",
     "license": "MIT"
