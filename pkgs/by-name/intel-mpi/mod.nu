@@ -3,8 +3,8 @@
 export def main [] {
     const file = path self ./default.lock
 
-    const major = "2021.15"
-    const version = "2021.15.0-493"
+    const major = "2021.17"
+    const version = "2021.17.0-376"
 
     const packages = [
         $"mpi-($version)"

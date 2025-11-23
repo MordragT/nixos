@@ -13,7 +13,7 @@
 in
   stdenvNoCC.mkDerivation {
     pname = "intel-mpi";
-    version = "2021.15.0";
+    version = "2021.17.0";
 
     # dontUnpack = true;
     dontStrip = true;

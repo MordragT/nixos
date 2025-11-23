@@ -3,8 +3,8 @@
 export def main [] {
     const file = path self ./default.lock
 
-    const major = "2022.1"
-    const version = "2022.1.0-425"
+    const major = "2022.3"
+    const version = "2022.3.0-381"
 
     const packages = [
         $"tbb-($major)-($version)"

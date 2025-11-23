@@ -8,13 +8,13 @@
 # requires dpcpp compiler
 intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
-  version = "2021.15";
+  version = "2021.16.2";
 
   src = fetchFromGitHub {
-    owner = "oneapi-src";
+    owner = "uxlfoundation";
     repo = "oneCCL";
     rev = finalAttrs.version;
-    hash = "sha256-ipmelJhbrj3fCzKjj4b/UsP5bxetjnTDJVQWZu0c6xA=";
+    hash = "";
   };
 
   nativeBuildInputs = [
@@ -29,7 +29,7 @@ intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
   doCheck = false;
 
   meta = {
-    broken = true; # I don't know why a Install rule for mpi fails...
+    # broken = true; # I don't know why a Install rule for mpi fails...
     changelog = "https://github.com/oneapi-src/oneCCL/releases/tag/${finalAttrs.version}";
     description = "oneAPI Collective Communications Library (oneCCL)";
     homepage = "https://01.org/oneCCL";

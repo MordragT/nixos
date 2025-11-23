@@ -7,7 +7,7 @@
 }:
 intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dpl";
-  version = "2022.7.1";
+  version = "2022.10.0";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";

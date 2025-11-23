@@ -1,86 +1,86 @@
 {
-  "intel-oneapi-mkl-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-oyjCThggDxhiz94yWm8xLDBjJ8yYuCd+cIjZgOwM5os="
+  "intel-oneapi-mkl-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-asU42W3KPrUcQkr+yWHicezPVUDq08qsrUWraLxBZMU="
   },
-  "intel-oneapi-mkl-classic-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-96t7gZFdYP/MvRyRNA8btdJxQA6UNewmAkQz0QqsGZM="
+  "intel-oneapi-mkl-classic-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-C1rvcso34kLS1BCVzxNIZgUG1K3dIcTxS3ZwtCYoTu8="
   },
-  "intel-oneapi-mkl-classic-devel-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-devel-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-ho7azNE0dEQaDTsGm8yadDwQ7RnlYjk0GLCocQ8/0Ig="
+  "intel-oneapi-mkl-classic-devel-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-devel-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-DbW7ztFW0GU7/f2N1HWrL0YpirmYdEEbGWhG3uBZ1+U="
   },
-  "intel-oneapi-mkl-classic-include-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-include-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-evCKg+3sFSAMD+lukdR0I9drdWohM5qCzWDe7fBsKdA="
+  "intel-oneapi-mkl-classic-include-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-classic-include-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-pbUREZGVQwW0zvrOCZyEKulHF0UQxruhwECQMJ9uYHw="
   },
-  "intel-oneapi-mkl-cluster-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-xJp8dj+lK57aC/vE+Vd7Q/5+e60Mp5kWZero+YXaY+I="
+  "intel-oneapi-mkl-cluster-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-o69E2+tzfqNYqZ3PKnE3bfs5HCfYzqy/cLuf2soFFw8="
   },
-  "intel-oneapi-mkl-cluster-devel-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-devel-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-4ePbjGAGSzpcHhqM9NDPM5wbxf/Hb6DCpNXh9Y75+es="
+  "intel-oneapi-mkl-cluster-devel-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-cluster-devel-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-6j7njkwAMOdCJXuOviw47DvrnGoxlH0iE+vvyTJU9JM="
   },
-  "intel-oneapi-mkl-core-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-wd0QXyOv5nflA0jO7FHfcJvoGrAsnA0DOXi4hEq9x84="
+  "intel-oneapi-mkl-core-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-b33o8giK15GlEVXrfCu2P0Fa2lptIMcH7vWlbqehl+4="
   },
-  "intel-oneapi-mkl-core-devel-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-devel-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-qka4BpNAT2VOM/cja7E3lYfHOnrOPhIFjPjCmBF7mV0="
+  "intel-oneapi-mkl-core-devel-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-core-devel-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-6K1aEA/3Adnnj0smmMhTFXRqCvVdYJONqQv5oPVx7bo="
   },
-  "intel-oneapi-mkl-devel-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-devel-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-Vflav/5/Kk2Cl8kIiOp0IQ6wxvxpFjBI6uy91zQSph4="
+  "intel-oneapi-mkl-devel-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-devel-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-Iec9etn6NKDdynDYMAVoHOXWA0827FIm1R+Bdg3P9Mk="
   },
-  "intel-oneapi-mkl-sycl-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-oPJF9gz170e2O3m1Y6IJADVk9v2YdKN+LnZLKvsKW6I="
+  "intel-oneapi-mkl-sycl-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-R6Dl6PFNYrVus2UnWM234pyZdWFEzZXoArfJl470dMQ="
   },
-  "intel-oneapi-mkl-sycl-blas-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-blas-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-laYiID7WId0t9Pce/G6LV1Lamau9daBHDe4FTvYX4eM="
+  "intel-oneapi-mkl-sycl-blas-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-blas-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-HoaqX5ojfcRPa0UnOqbb52cG8eLqOJg173+ERvmgsSY="
   },
-  "intel-oneapi-mkl-sycl-data-fitting-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-data-fitting-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-LV4Qy0wPinAogrgxbyy7rzKvL5krM294wq2dpygBWdY="
+  "intel-oneapi-mkl-sycl-data-fitting-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-data-fitting-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-qGedmKaspMrBEVQkCrACky5LHezuLwZV/NaRofx2cpw="
   },
-  "intel-oneapi-mkl-sycl-devel-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-devel-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-CYPMQHh+T41CooUOGksGqa9QdtENYBYHjVMSuXGYd+M="
+  "intel-oneapi-mkl-sycl-devel-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-devel-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-WSaLJs822ANxWlKyS5BXHxoPkSqRGxLiYUvqDGXTsZQ="
   },
-  "intel-oneapi-mkl-sycl-dft-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-dft-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-nwNYUImNQHl4oTWqG3zRhOUZRzfX08x3ywl7pOcHyPA="
+  "intel-oneapi-mkl-sycl-dft-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-dft-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-6l/5I6aYMZtGDP+ea0S1nJ+jreZF1Bdi9FZZmMn65Vg="
   },
-  "intel-oneapi-mkl-sycl-include-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-include-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-frU7g/Lwx85kfCW7+mV4iMzL5XRwXcPwfXaOmn64dMA="
+  "intel-oneapi-mkl-sycl-include-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-include-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-nqNcabsIus14dvVlZbX5Ar6gAy9zDZkxV4V9O+P6Mxo="
   },
-  "intel-oneapi-mkl-sycl-lapack-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-lapack-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-6kGmMeOIqCg/1NySVJId4PGQNufM+kvjTKvjhEsImkg="
+  "intel-oneapi-mkl-sycl-lapack-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-lapack-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-+y7HBW9I7PRTnRf5cLUKn4APT8jubYofH4B1xE/hdq0="
   },
-  "intel-oneapi-mkl-sycl-rng-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-rng-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-yzgxDOtnuY4D03ULEgUNID13AQx0giMQx0Y1d4gpCrQ="
+  "intel-oneapi-mkl-sycl-rng-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-rng-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-OMBtcGj8u1N7s5cd0hEQtVevZMA1674agGsa3mDiHcI="
   },
-  "intel-oneapi-mkl-sycl-sparse-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-sparse-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-oJlaPOE9BQrEAWRF37jI61iVcQwvk/PkjfzLxUH4tI4="
+  "intel-oneapi-mkl-sycl-sparse-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-sparse-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-r4l0AprqHz9T7Avq1qW7PZg6wJTwVxwAk0//nWEI0rI="
   },
-  "intel-oneapi-mkl-sycl-stats-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-stats-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-95yYuryKU2BMKO4E4enjbQdESGudFi1DRR1zf6zvF78="
+  "intel-oneapi-mkl-sycl-stats-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-stats-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-21Upv5qRwCoLmbtT+S7OBSYfZxlb/1d5Ne+RhzmgIPs="
   },
-  "intel-oneapi-mkl-sycl-vm-2025.1": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-vm-2025.1-2025.1.0-801_amd64.deb",
-    "hash": "sha256-snhC7n9atE9eL2WfcPIZOHUFtOEqOOKUb+N5xrmWNGo="
+  "intel-oneapi-mkl-sycl-vm-2025.3": {
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mkl-sycl-vm-2025.3-2025.3.0-461_amd64.deb",
+    "hash": "sha256-Yt9zeNWZnpHwwSJAGAAPBpv3z344xTo6I/GmA7A1RxA="
   },
   "intel-oneapi-runtime-mkl": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-mkl-2025.1.0-801_amd64.deb",
-    "hash": "sha256-z6QeYsfgF6BI+FOxbzXKhXnJDBRr5kKIb7AL2+ZO7+o="
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-mkl-2025.3.0-461_amd64.deb",
+    "hash": "sha256-eHZbxH4xzFcslSaH6KU0u25wGG5OoVzmeI9416pEMC0="
   }
 }

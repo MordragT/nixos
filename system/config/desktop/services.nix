@@ -53,7 +53,7 @@
   # mordrag.services.vaultwarden.enable = true;
   mordrag.services.wg-quick.enable = true;
 
-  # services.flatpak.enable = true;
+  services.flatpak.enable = true;
   # services.ollama = {
   #   enable = true;
   #   package = pkgs.ollama-sycl;

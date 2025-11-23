@@ -10,13 +10,13 @@
 # requires dpcpp compiler
 buildBazelPackage.override {inherit (intel-dpcpp) stdenv;} rec {
   pname = "oneapi-dal";
-  version = "2025.4.0";
+  version = "2025.9.0";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneDAL";
     rev = version;
-    hash = "sha256-Kbt7PSsmCFpI0QL5ximePUKM3DDh0V6LPiSWUk87M8k=";
+    hash = "";
   };
 
   bazel = bazel_7;

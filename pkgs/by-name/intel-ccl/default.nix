@@ -6,16 +6,16 @@
   dpkg,
   intel-dpcpp,
 }: let
-  major = "2021.15";
-  version = "2021.15.0-397";
+  major = "2021.17";
+  version = "2021.17.0-271";
 
   ccl = fetchinteldeb {
     package = "intel-oneapi-ccl-${major}-${version}_amd64";
-    hash = "sha256-ZNMyXR139v/AmqgQ2cuaAlnMFLe5vOozR5UyKJbAdtc=";
+    hash = "";
   };
   ccl-devel = fetchinteldeb {
     package = "intel-oneapi-ccl-devel-${major}-${version}_amd64";
-    hash = "sha256-fzW2xXLkujKOPGyxXqO+yb5CE3VYvaGUWZh1sdzvh84=";
+    hash = "";
   };
 in
   stdenvNoCC.mkDerivation {

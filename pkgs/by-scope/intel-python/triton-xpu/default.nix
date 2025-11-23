@@ -9,7 +9,7 @@
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
-  version = "3.3.1";
+  version = "3.5.0";
   format = "wheel";
 
   src = fetchtorch {

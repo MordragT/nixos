@@ -1,25 +1,25 @@
 {
   lib,
-  intel-dpcpp,
+  intel-sycl,
   fetchFromGitHub,
   cmake,
-  level-zero,
+  # level-zero,
   oneapi-tbb,
-  intel-mkl,
-  blas,
-  lapack,
-  ocl-icd,
+  # blas,
+  # lapack,
+  # ocl-icd,
+  opencl-headers,
+  oneapi-math-sycl-blas,
 }:
-# requires dpcpp compiler
-intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
+intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-math";
-  version = "0.6";
+  version = "0.9";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneMath";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-f9eXjL2qLpIfNxU3pFUMWE3ztZE2S0uv1PHLQfvyiSk=";
+    hash = "";
   };
 
   nativeBuildInputs = [
@@ -27,18 +27,26 @@ intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
   ];
 
   cmakeFlags = [
-    "-DMKL_ROOT=${intel-mkl}"
-    "-DBUILD_FUNCTIONAL_TESTS=OFF"
+    (lib.cmakeBool "ENABLE_GENERIC_BLAS_BACKEND" true)
+
+    (lib.cmakeBool "ENABLE_MKLCPU_BACKEND" false)
+    (lib.cmakeBool "ENABLE_MKLGPU_BACKEND" false)
+    (lib.cmakeBool "ENABLE_MKLCPU_THREAD_TBB" true)
+
+    (lib.cmakeBool "BUILD_FUNCTIONAL_TESTS" false)
+    (lib.cmakeBool "BUILD_EXAMPLES" false)
   ];
 
   buildInputs = [
-    intel-dpcpp.llvm.lib
-    intel-mkl
-    level-zero
+    # intel-dpcpp.llvm.lib
+    # intel-mkl
+    # level-zero
     oneapi-tbb
-    blas.dev
-    lapack.dev
-    ocl-icd
+    # blas.dev
+    # lapack.dev
+    # ocl-icd
+    opencl-headers
+    oneapi-math-sycl-blas
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

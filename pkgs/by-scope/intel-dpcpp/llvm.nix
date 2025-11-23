@@ -15,7 +15,7 @@
   lib,
 }: let
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
-  version = "2025.1";
+  version = "2025.3";
 
   srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;
 in

@@ -6,16 +6,16 @@
   dpkg,
   intel-dpcpp,
 }: let
-  major = "2025.1";
-  version = "2025.1.0-643";
+  major = "2025.3";
+  version = "2025.3.0-409";
 
   dnnl = fetchinteldeb {
     package = "intel-oneapi-dnnl-${major}-${version}_amd64";
-    hash = "sha256-OvU238WlcgyPbE1RiD7WruXv8LwvQozuGpv4AIOcSek=";
+    hash = "";
   };
   dnnl-devel = fetchinteldeb {
     package = "intel-oneapi-dnnl-devel-${major}-${version}_amd64";
-    hash = "sha256-3tKcBvIVGvf9YlbGLzSqNq5eUub1CoAyhFxLcrZ2tQg=";
+    hash = "";
   };
 in
   stdenvNoCC.mkDerivation {

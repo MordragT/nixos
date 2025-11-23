@@ -9,16 +9,16 @@
   scipy,
   ipex,
 }:
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "bitsandbytes";
-  version = "multi-backend-refactor-2025-04-02";
+  version = "0.48.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "bitsandbytes-foundation";
     repo = "bitsandbytes";
-    rev = "d180d8e87b1cb19eccd2d73006e750ee3f5b3b1e";
-    hash = "sha256-qrW87OATh0y1XAJQ1C/OXXtlCEvgHUT6cyVTxdQbzMA=";
+    rev = version;
+    hash = "";
   };
 
   nativeBuildInputs = [
@@ -31,7 +31,7 @@ buildPythonPackage {
   ];
 
   cmakeFlags = [
-    (lib.cmakeFeature "COMPUTE_BACKEND" "cpu")
+    (lib.cmakeFeature "COMPUTE_BACKEND" "xpu")
   ];
 
   postPatch = ''

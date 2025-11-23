@@ -7,8 +7,8 @@
   hwloc,
   lib,
 }: let
-  major = "2022.1";
-  version = "2022.1.0-425";
+  major = "2022.3";
+  version = "2022.3.0-381";
 
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
   srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;

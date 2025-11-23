@@ -19,7 +19,7 @@
 in
   intel-sycl.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
-    version = "5898";
+    version = "7058";
 
     src = fetchFromGitHub {
       owner = "ggerganov";
@@ -58,6 +58,7 @@ in
       (cmakeBool "BUILD_SHARED_LIBS" true)
       (cmakeBool "GGML_BLAS" true)
       (cmakeBool "GGML_SYCL" true)
+      (cmakeBool "GGML_SYCL_DNNL" true)
       (cmakeBool "GGML_SYCL_F16" true)
       # (cmakeFeature "CMAKE_C_COMPILER" "icx")
       # (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")

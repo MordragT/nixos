@@ -22,7 +22,9 @@ in {
   cosmic-ext-calendar = callPackage ./cosmic-ext-calendar {};
   cosmic-ext-niri = callPackage ./cosmic-ext-niri {};
 
+  cutecosmic = callPackage ./cutecosmic {};
   dud = callPackage ./dud {};
+  emhash = callPackage ./emhash {};
   ensembles = callPackage ./ensembles {};
   epic-asset-manager = callPackage ./epic-asset-manager {};
   fan-control = callPackage ./fan-control {};
@@ -47,6 +49,7 @@ in {
   oneapi-dnn = callPackage ./oneapi-dnn {};
   oneapi-dpl = callPackage ./oneapi-dpl {};
   oneapi-math = callPackage ./oneapi-math {};
+  oneapi-math-sycl-blas = callPackage ./oneapi-math-sycl-blas {};
   oneapi-tbb = callPackage ./oneapi-tbb {};
 
   opengothic = callPackage ./opengothic {};
@@ -57,11 +60,13 @@ in {
   spflashtool-v5 = callPackage ./spflashtool-v5 {};
   starrydex = callPackage ./starrydex {};
   tabby = callPackage ./tabby {};
+  teamfight-tactics = callPackage ./teamfight-tactics {};
   tmfs = callPackage ./tmfs {};
 
   unified-runtime = callPackage ./unified-runtime {};
   unified-memory-framework = callPackage ./unified-memory-framework {};
 
+  vc-intrinsics = callPackage ./vc-intrinsics {};
   vulkan-raytracing = callPackage ./vulkan-raytracing {};
   wine-tkg = callPackage ./wine-tkg {};
   zen-browser-bin = callPackage ./zen-browser-bin {};

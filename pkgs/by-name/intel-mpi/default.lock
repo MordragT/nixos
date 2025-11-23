@@ -1,14 +1,14 @@
 {
   "intel-oneapi-mpi": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mpi-2021.15.0-493_amd64.deb",
-    "hash": "sha256-TTyHOL8li0IHNA5IInLxVXWcuH8P3Vuyld64dlv3AGE="
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mpi-2021.17.0-376_amd64.deb",
+    "hash": "sha256-88LotKe5oAVmEUjn0NEvm8j++GDmSygvACQz5kMMwJw="
   },
   "intel-oneapi-mpi-devel": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mpi-devel-2021.15.0-493_amd64.deb",
-    "hash": "sha256-ZQB7axt9tF8GK2apa0plx0AIYXXpArYjWZCumeX0UrU="
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-mpi-devel-2021.17.0-376_amd64.deb",
+    "hash": "sha256-+CghZ6PL6l2rD+6MI0BKqTyu39hBqHqsjBypoKXp068="
   },
   "intel-oneapi-runtime-mpi": {
-    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-mpi-2021.15.0-493_amd64.deb",
-    "hash": "sha256-WilLqImDISLhcVlROQmGzxGXaTPebldNt1zq5yv6g1Q="
+    "url": "https://apt.repos.intel.com/oneapi/pool/main/intel-oneapi-runtime-mpi-2021.17.0-376_amd64.deb",
+    "hash": "sha256-7PDyEfwhrOMAQoyL8OlYOosUcSezQQNjH8h1W9lPA7Q="
   }
 }

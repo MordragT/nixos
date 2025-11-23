@@ -30,7 +30,7 @@
 }:
 buildPythonPackage rec {
   pname = "torch";
-  version = "2.7.1";
+  version = "2.9.1";
   format = "wheel";
 
   outputs = ["out" "dev" "lib"];
@@ -38,7 +38,7 @@ buildPythonPackage rec {
   src = fetchtorch {
     inherit pname version;
     suffix = "%2Bxpu";
-    hash = "sha256-tEPfQLyct9ZIqfj57R1cOhID5WHr0KYd1V+4pYgz1ew=";
+    hash = "";
   };
 
   dontStrip = true;

@@ -109,7 +109,7 @@ in {
       # pika-backup # simple backups
       # planify # more advanced task manager
       # plots # graph plotting
-      rnote # draw notes
+      # rnote # draw notes
       share-preview # test social media cards
       # shortwave # internet radio
       showtime # video player
@@ -120,7 +120,7 @@ in {
       # textpieces
       turtle # gui for version control in nautilus
       typewriter # create typst docs
-      upscaler # frontend for upscayl-ncnn
+      # broken upscaler # frontend for upscayl-ncnn
       # video-trimmer
       warp # send and recieve files
       # webfontkitgenerator

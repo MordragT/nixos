@@ -6,7 +6,7 @@
 }:
 clangStdenv.mkDerivation rec {
   pname = "oneapi-tbb";
-  version = "2022.0.0";
+  version = "2022.3.0";
 
   outputs = ["out" "dev"];
 
@@ -14,7 +14,7 @@ clangStdenv.mkDerivation rec {
     owner = "uxlfoundation";
     repo = "oneTBB";
     rev = "v${version}";
-    hash = "sha256-XOlC1+rf65oEGKDba9N561NuFo1YJhn3Q1CTGtvkn7A=";
+    hash = "sha256-HIHF6KHlEI4rgQ9Epe0+DmNe1y95K9iYa4V/wFnJfEU=";
   };
 
   # Fix undefined reference errors with version script under LLVM.

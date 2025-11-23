@@ -19,6 +19,7 @@ in {
       # moonlight-qt # game stream client ala steam link
       # nexusmods-app-unfree
       steam-rom-manager
+      teamfight-tactics
     ];
   };
 }

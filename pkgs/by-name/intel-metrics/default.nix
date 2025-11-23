@@ -7,13 +7,13 @@
 }:
 stdenv.mkDerivation (self: {
   pname = "metrics-discovery";
-  version = "1.13.179";
+  version = "1.14.182";
 
   src = fetchFromGitHub {
     owner = "intel";
     repo = self.pname;
     rev = "${self.pname}-${self.version}";
-    hash = "sha256-RmLFPW9DOp4KMIY8jEHsNuxgV9Qhi1encX71AnqzOtY=";
+    hash = "sha256-AgrCJR10B1rtk/VLx7k5I3A4ZVhHoF3p4oxyiY4yAnI=";
   };
 
   nativeBuildInputs = [cmake];

@@ -23,14 +23,14 @@ in {
       # octaveFull # aims to be compatible with matlab
 
       # Documents
-      # kdePackages.okular
+      kdePackages.okular
       # onlyoffice-desktopeditors
       # libreoffice-qt6-fresh
       # xournalpp
 
       # Graphics
       blender
-      # electron16 blockbench-electron
+      blockbench
       drawio
       # glaxnimate
       inkscape
@@ -54,7 +54,7 @@ in {
       dorion # rust written discord alternative
       # insomnia # make http requests against rest apis
       mattermost-desktop
-      protonvpn-gui
+      # broken protonvpn-gui
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher
     ];

@@ -3,8 +3,8 @@
 export def main [] {
     const file = path self ./default.lock
 
-    const major = "2025.1"
-    const version = "2025.1.0-801"
+    const major = "2025.3"
+    const version = "2025.3.0-461"
 
     const packages = [
         $"mkl-($major)-($version)"

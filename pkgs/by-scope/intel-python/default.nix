@@ -46,10 +46,6 @@ in {
 
   nncf = callPackage ./nncf {};
 
-  oneccl-bind-pt = callPackage ./oneccl-bind-pt {
-    inherit (build-support) fetchipex;
-  };
-
   openvino-tokenizers = callPackage ./openvino-tokenizers {
     openvino-tokenizers-native = self.pkgs.openvino-tokenizers;
   };

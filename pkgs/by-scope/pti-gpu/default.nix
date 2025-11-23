@@ -1,10 +1,10 @@
 self: pkgs: let
-  version = "0.10.1";
+  version = "0.14.0";
   src = pkgs.fetchFromGitHub {
     owner = "intel";
     repo = "pti-gpu";
     rev = "pti-${version}";
-    hash = "sha256-fJkLEaUvhWw2vyQvO0bTHBnH/g//gbVCLmJfRumM598=";
+    hash = "";
   };
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 in {

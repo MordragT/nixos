@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   mordrag.programs.gnome-disks.enable = true;
   # mordrag.programs.gnome-network-displays.enable = true;
+  mordrag.programs.lsfg-vk.enable = true;
   mordrag.programs.mediatek-utils.enable = true;
   mordrag.programs.nautilus.enable = true;
   mordrag.programs.steam = {
@@ -14,7 +15,7 @@
       # steamtinkerlaunch
     ];
   };
-  mordrag.programs.valent.enable = true;
+  # broken mordrag.programs.valent.enable = true;
 
   programs.adb.enable = true;
   programs.ausweisapp = {

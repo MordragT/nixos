@@ -39,6 +39,7 @@ in {
         "kdl"
         "kotlin"
         "mcp-server-github"
+        "neocmake"
         "nix"
         "nu"
         "ruby"

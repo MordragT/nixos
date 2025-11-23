@@ -3,8 +3,8 @@
 export def main [] {
     const file = path self ./default.lock
 
-    const major = "2025.1"
-    const version = "2025.1.0-973"
+    const major = "2025.3"
+    const version = "2025.3.1-760"
     const classic_version = "2023.2.4-2023.2.4-49553"
 
     const packages = [

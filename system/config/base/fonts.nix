@@ -18,6 +18,7 @@
       # inter
       # iosevka
       # jetbrains-mono
+      lucide
       noto-fonts
       noto-fonts-color-emoji
       # roboto
