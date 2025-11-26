@@ -16,6 +16,11 @@ self: pkgs: let
     hash = "sha256-a07jm+N1UuvUkLcd1C0BFqyG9JV0gRC2aJokvr/nA54=";
   };
 in {
+  lld = callPackage ./lld {
+    inherit (self) llvm;
+    inherit src version;
+  };
+
   llvm-bin = callPackage ./llvm-bin {
     inherit version;
   };
@@ -25,7 +30,7 @@ in {
   };
 
   bintools-unwrapped = callPackage ./bintools-unwrapped {
-    inherit (self) llvm;
+    inherit (self) llvm lld;
   };
 
   bintools = pkgs.wrapBintoolsWith {

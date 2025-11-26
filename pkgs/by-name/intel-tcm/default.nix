@@ -11,7 +11,7 @@
 
   tcm = fetchinteldeb {
     package = "intel-oneapi-tcm-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-xoMbGaP06RHtqAGpW/QH3EpwQ2jiZR6kT+QwaC1o5bI=";
   };
   # tcm-runtime = fetchinteldeb {
   #   package = "intel-oneapi-runtime-tcm-1-${version}_amd64";

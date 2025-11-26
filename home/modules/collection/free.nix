@@ -54,7 +54,7 @@ in {
       dorion # rust written discord alternative
       # insomnia # make http requests against rest apis
       mattermost-desktop
-      # broken protonvpn-gui
+      protonvpn-gui
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher
     ];

@@ -4,8 +4,6 @@
   cmake,
   ninja,
   lib,
-  # INTEL_GPU, NVIDIA_GPU, AMD_GPU
-  gpuTarget ? "DEFAULT",
 }:
 intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-math-sycl-blas";
@@ -28,6 +26,6 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
   sourceRoot = "source/onemath/sycl/blas";
 
   cmakeFlags = [
-    (lib.cmakeFeature "TUNING_TARGET" gpuTarget)
+    (lib.cmakeFeature "TUNING_TARGET" "INTEL_GPU")
   ];
 })

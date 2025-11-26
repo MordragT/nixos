@@ -13,6 +13,11 @@ in (wrapCCWith {
     echo "" > $out/nix-support/add-hardening.sh
   '';
 
+  extraPackages = [
+    llvm.dev
+    llvm.lib
+  ];
+
   nixSupport = {
     cc-cflags = [
       "-isystem ${llvm.dev}/include"
@@ -27,9 +32,9 @@ in (wrapCCWith {
       "-L${gcc.cc.lib}/lib"
     ];
 
-    setup-hook = [
-      "export ONEAPI_ROOT=${cc}"
-      "export CMPLR_ROOT=${cc}"
-    ];
+    # setup-hook = [
+    #   "export ONEAPI_ROOT=${cc}"
+    #   "export CMPLR_ROOT=${cc}"
+    # ];
   };
 })

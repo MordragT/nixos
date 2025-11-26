@@ -3,8 +3,6 @@
   src,
   version,
   cmake,
-  pkg-config,
-  python3,
 }:
 stdenv.mkDerivation {
   inherit src version;
@@ -12,9 +10,12 @@ stdenv.mkDerivation {
 
   sourceRoot = "${src.name}/xpti";
 
+  outputs = [
+    "out"
+    "dev"
+  ];
+
   nativeBuildInputs = [
     cmake
-    pkg-config
-    python3
   ];
 }

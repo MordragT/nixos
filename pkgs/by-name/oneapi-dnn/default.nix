@@ -5,17 +5,18 @@
   intel-sycl,
   opencl-headers,
   ocl-icd,
+  level-zero,
   oneapi-tbb,
 }:
 intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dnn";
-  version = "3.10";
+  version = "3.10.1";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneDNN";
     rev = "v${finalAttrs.version}";
-    hash = "";
+    hash = "sha256-v1A9bOjcveTg97RBI2Y/gikoeQKYN8ZfFrqJmD3lVys=";
   };
 
   outputs = ["out" "dev" "doc"];
@@ -23,9 +24,11 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [cmake];
 
   buildInputs = [
+    level-zero
     ocl-icd
     opencl-headers
     oneapi-tbb
+    intel-sycl.openmp
   ];
 
   cmakeFlags = [

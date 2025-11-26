@@ -3,7 +3,7 @@ self: pkgs: let
 in {
   firefoxAddons = makeScope ./firefox-addons self.firefoxAddons;
   intel-dpcpp = makeScope ./intel-dpcpp self.intel-dpcpp;
-  intel-python = pkgs.python314.override {
+  intel-python = pkgs.python313.override {
     packageOverrides = import ./intel-python;
   };
   intel-sycl = makeScope ./intel-sycl self.intel-sycl;

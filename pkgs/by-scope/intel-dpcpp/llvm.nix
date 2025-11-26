@@ -50,7 +50,7 @@ in
     installPhase = ''
       cd ./opt/intel/oneapi/compiler/${version}
 
-      mv lib/clang/20 $rsrc
+      mv lib/clang/21 $rsrc
 
       mkdir $out
       mv bin $out/bin

@@ -24,6 +24,13 @@
   # mordrag.services.gitlab.enable = true;
   # mordrag.services.forgejo.enable = true;
   # mordrag.services.harmonia.enable = true;
+  mordrag.services.llama = {
+    enable = true;
+    settings = {
+      model = "DeepseekCoder-6.7-Instruct-Q4.gguf";
+      gpu-layers = 33;
+    };
+  };
   # mordrag.services.stalwart.enable = true;
   # mordrag.services.tabby = {
   #   enable = true;

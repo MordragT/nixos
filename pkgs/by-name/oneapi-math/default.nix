@@ -3,11 +3,7 @@
   intel-sycl,
   fetchFromGitHub,
   cmake,
-  # level-zero,
   oneapi-tbb,
-  # blas,
-  # lapack,
-  # ocl-icd,
   opencl-headers,
   oneapi-math-sycl-blas,
 }:
@@ -19,7 +15,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     owner = "uxlfoundation";
     repo = "oneMath";
     rev = "v${finalAttrs.version}";
-    hash = "";
+    hash = "sha256-jVcrpne6OyOeUlQHg07zZXEyFXvEGCYW88sWnYgEeu8=";
   };
 
   nativeBuildInputs = [
@@ -38,13 +34,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    # intel-dpcpp.llvm.lib
-    # intel-mkl
-    # level-zero
     oneapi-tbb
-    # blas.dev
-    # lapack.dev
-    # ocl-icd
     opencl-headers
     oneapi-math-sycl-blas
   ];

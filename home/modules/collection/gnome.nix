@@ -52,6 +52,7 @@ in {
       # raider # file shredder
       resources # monitor hardware resources
       fclones-gui # find duplicate files
+      file-roller # archive manager
       # foliate # book reader
       # forge-sparks
       fractal # gtk matrix messaging
@@ -120,7 +121,7 @@ in {
       # textpieces
       turtle # gui for version control in nautilus
       typewriter # create typst docs
-      # broken upscaler # frontend for upscayl-ncnn
+      upscaler # frontend for upscayl-ncnn
       # video-trimmer
       warp # send and recieve files
       # webfontkitgenerator

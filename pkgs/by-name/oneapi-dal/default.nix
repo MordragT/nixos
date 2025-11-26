@@ -1,26 +1,27 @@
 {
   lib,
-  bazel_7,
+  bazel_8,
   buildBazelPackage,
+  # bazelPackage, # somehow not in package set
   fetchFromGitHub,
-  intel-dpcpp,
+  intel-sycl,
   oneapi-tbb,
   oneapi-math,
 }:
 # requires dpcpp compiler
-buildBazelPackage.override {inherit (intel-dpcpp) stdenv;} rec {
-  pname = "oneapi-dal";
+buildBazelPackage.override {inherit (intel-sycl) stdenv;} rec {
+  name = "oneapi-dal";
   version = "2025.9.0";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneDAL";
     rev = version;
-    hash = "";
+    hash = "sha256-RhRqENQh/Ro0aqHCHeTGv+42sSn58E9Dm9bjQpolnQg=";
   };
 
-  bazel = bazel_7;
-  bazelTargets = [
+  bazel = bazel_8;
+  targets = [
     "//:release"
   ];
 
@@ -33,13 +34,18 @@ buildBazelPackage.override {inherit (intel-dpcpp) stdenv;} rec {
   ];
 
   postPatch = ''
-    # bazel 7.6 should work just as well as bazel 7.4.1
+    # bazel 8.4.2 should work just as well as bazel 8.4.0
     rm -f .bazelversion
     patchShebangs .
   '';
 
-  fetchAttrs.sha256 = "";
-  buildAttrs = {};
+  # fetchAttrs.sha256 = "";
+  # buildAttrs = {};
+
+  bazelRepoCacheFOD = {
+    outputHash = "";
+    outputHashAlgo = "sha256";
+  };
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
   doCheck = false;

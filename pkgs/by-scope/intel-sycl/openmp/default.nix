@@ -3,7 +3,6 @@
   src,
   version,
   cmake,
-  pkg-config,
   python3,
 }:
 stdenv.mkDerivation {
@@ -12,9 +11,13 @@ stdenv.mkDerivation {
 
   sourceRoot = "${src.name}/openmp";
 
+  outputs = [
+    "out"
+    "dev"
+  ];
+
   nativeBuildInputs = [
     cmake
-    pkg-config
     python3
   ];
 }

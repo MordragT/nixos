@@ -1,13 +1,9 @@
 {
   stdenv,
   gcc,
-  llvmPackages_21,
   breakpointHook,
   writeShellApplication,
-  writeShellScriptBin,
-  symlinkJoin,
   wrapCCWith,
-  wrapBintoolsWith,
   src,
   version,
   cmake,
@@ -25,58 +21,11 @@
   spirv-headers,
   opencl-headers,
   ocl-icd,
-  vc-intrinsics,
-  # boost,
+  # vc-intrinsics,
   pins,
 }: let
-  # llvmPackages = llvmPackages_21;
-  # TODO I definitely need to wrap this otherwise again cstddef file not found
-  # Maybe I have to also provide symlinks to clang and clang++ so that they are wrapped ?
-  # [ 89%] Linking CXX static library ../../../lib/liblldWasm.a
-  # [ 89%] Built target lldWasm
-  # /build/source/libdevice/imf/../imf_impl_utils.hpp:12:10: fatal error: 'cstddef' file not found
-  #    12 | #include <cstddef>
-  #       |          ^~~~~~~~~
-  # 1 error generated.
-  # make[3]: *** [tools/libdevice/CMakeFiles/imf_fallback_fp64_bc.dir/build.make:89: lib/libsycl-fallback-imf-fp64.bc] Error 1
-  # make[2]: *** [CMakeFiles/Makefile2:83586: tools/libdevice/CMakeFiles/imf_fallback_fp64_bc.dir/all] Error 2
-  # make[2]: *** Waiting for unfinished jobs....
-  # ccWrapperStub = wrapCC (
-  #   writeShellApplication {
-  #     name = "clang";
-  #     text = ''
-  #       exec /build/source/build/bin/clang-21 "$@"
-  #     '';
-  #     passthru.isClang = true;
-  #   }
-  # );
   root = "/build/source";
-
-  bintools = wrapBintoolsWith {
-    # inherit (llvmPackages) libc;
-    bintools = symlinkJoin {
-      inherit version;
-      pname = "bintools";
-
-      paths = [
-        (writeShellScriptBin "ar" "exec ${root}/build/bin/llvm-ar $@")
-        (writeShellScriptBin "objcopy" "exec ${root}/build/bin/llvm-objcopy $@")
-        (writeShellScriptBin "size" "exec ${root}/build/bin/llvm-size $@")
-        (writeShellScriptBin "ld" "exec ${root}/build/bin/ld $@") # TODO not compiled yet ??
-
-        (writeShellScriptBin "cov" "exec ${root}/build/bin/llvm-cov $@")
-        (writeShellScriptBin "foreach" "exec ${root}/build/bin/llvm-foreach $@")
-        (writeShellScriptBin "link" "exec ${root}/build/bin/llvm-link $@")
-        (writeShellScriptBin "profdata" "exec ${root}/build/bin/llvm-profdata $@")
-        (writeShellScriptBin "spirv" "exec ${root}/build/bin/llvm-spirv $@")
-      ];
-    };
-  };
-
   cc = wrapCCWith {
-    inherit bintools;
-    # inherit (llvmPackages) libc;
-
     cc = writeShellApplication {
       name = "clang";
       text = ''
@@ -84,8 +33,6 @@
       '';
       passthru.isClang = true;
     };
-
-    # libc = null;
 
     extraBuildCommands = ''
       # Disable hardening by default because of `zerocallusedregs`
@@ -108,33 +55,23 @@
     };
   };
 in
-  # llvmPackages.libcxxStdenv.mkDerivation {
   stdenv.mkDerivation {
     inherit src version;
     pname = "intel-llvm";
 
-    # sourceRoot = "${src.name}/llvm";
-
     NIX_CFLAGS_COMPILE = [
-      #   "-I${llvmPackages.libcxx.dev}/include/c++/v1"
-      #   "-B${llvmPackages.libcxx}/lib" # https://github.com/NixOS/nixpkgs/issues/370217
       "-Wno-unused-command-line-argument" #'-stdlib=libc++' is unused
     ];
 
-    # # This hardening option causes compilation errors when compiling for amdgcn, spirv and others
-    # # TODO: Can the cc wrapper be made aware of this somehow?
+    # This hardening option causes compilation errors when compiling for amdgcn, spirv and others
+    # Fixed by cc-wrapper
     # hardeningDisable = ["zerocallusedregs"];
 
     patches = [
       ./gnu-install-dirs.patch
-      # ./umf.patch
-      # ./xptifw.patch
-      # ./install.patch # https://github.com/intel/llvm/pull/20394
-      # ./emhash.patch # https://github.com/intel/llvm/commit/357f96b7e19d8acb972eb2f1fb276dbc6aa2060b
     ];
 
-    outputs = ["out" "lib" "dev" "rsrc"];
-    # setOutputFlags = false;
+    outputs = ["out" "lib" "dev" "rsrc" "python"];
 
     nativeBuildInputs = [
       cmake
@@ -145,9 +82,6 @@ in
     ];
 
     buildInputs = [
-      # llvmPackages.libcxx # libcxx
-      # llvmPackages.libcxx.dev # libcxx
-      # stdenv.cc.cc # libgcc .lib libstdc++
       libz
       libxml2
       ncurses
@@ -188,78 +122,30 @@ in
       "-DLLVM_ENABLE_DOXYGEN=OFF"
       "-DLLVM_ENABLE_SPHINX=OFF"
 
-      # sycl tests
-      # "-DSYCL_INCLUDE_TESTS=OFF"
-      # "-DSYCL_PI_TESTS=OFF"
-
-      # plugins
-      # "-DSYCL_BUILD_PI_HIP_PLATFORM=''"
-      # "-DSYCL_BUILD_PI_ESIMD_CPU=OFF"
-
-      # options
-      "-DSYCL_ENABLE_WERROR=OFF"
-      "-DSYCL_ENABLE_XPTI_TRACING=ON"
-      # "-DSYCL_ENABLE_BACKENDS=opencl;level_zero;"
-      # "-DSYCL_ENABLE_KERNEL_FUSION=ON"
-      # "-DSYCL_ENABLE_MAJOR_RELEASE_PREVIEW_LIB=ON"
-
-      # found in https://github.com/intel/llvm/issues/19632
-      # "-DSYCL_JIT_ENABLE_WERROR=OFF"
-      # "-DSYCL_LIBDEVICE_CXX_FLAGS=$NIX_CFLAGS_COMPILE"
-
-      # Override clang resource directory to use build-time path during build
-      # I am in /build/source/build/bin for whatever reason so this creates then /build/source/build/lib/clang/22
-      "-DCLANG_RESOURCE_DIR=../lib/clang/22"
-
       # projects
       "-DLLVM_EXTERNAL_PROJECTS=sycl;sycl-jit;llvm-spirv;opencl;xpti;xptifw;libdevice"
+      "-DLLVM_EXTERNAL_SYCL_SOURCE_DIR=/build/source/sycl"
+      "-DLLVM_EXTERNAL_SYCL_JIT_SOURCE_DIR=/build/source/sycl-jit"
       "-DLLVM_EXTERNAL_LLVM_SPIRV_SOURCE_DIR=/build/source/llvm-spirv"
       "-DLLVM_EXTERNAL_XPTI_SOURCE_DIR=/build/source/xpti"
       "-DLLVM_EXTERNAL_XPTIFW_SOURCE_DIR=/build/source/xptifw"
       "-DLLVM_EXTERNAL_LIBDEVICE_SOURCE_DIR=/build/source/libdevice"
-      "-DLLVM_EXTERNAL_SYCL_SOURCE_DIR=/build/source/sycl"
-      "-DLLVM_EXTERNAL_SYCL_JIT_SOURCE_DIR=/build/source/sycl-jit"
-      "-DLLVM_ENABLE_PROJECTS=clang;clang-tools-extra;lld;sycl;sycl-jit;llvm-spirv;opencl;xpti;xptifw;libdevice;openmp"
-      # "-DLLVM_ENABLE_RUNTIMES=libc;libunwind;libcxxabi;pstl;libcxx;compiler-rt;openmp;llvm-libgcc;offload"
-      # "-DLLVM_ENABLE_RUNTIMES=all"
+      "-DLLVM_ENABLE_PROJECTS=clang;clang-tools-extra;sycl;sycl-jit;llvm-spirv;opencl;xpti;xptifw;libdevice"
+
+      # options
+      "-DSYCL_ENABLE_XPTI_TRACING=ON"
+      "-DSYCL_COMPILER_VERSION=20251104" # TODO find a better way to set this
+
+      # Override clang resource directory to use build-time path during build to match cc-wrapper
+      "-DCLANG_RESOURCE_DIR=../lib/clang/22"
 
       # sources
       "-DFETCHCONTENT_SOURCE_DIR_VC-INTRINSICS=${pins.vc-intrinsics}"
       "-DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=${spirv-headers}"
 
-      # intree is used
-      # "-DSYCL_UR_USE_FETCH_CONTENT=OFF"
-      # "-DSYCL_UR_SOURCE_DIR=${pins.unified-runtime}"
-
-      # /build/source/unified-runtime/source/loader/layers/sanitizer/msan/msan_libdevice.hpp:71:11: error: no type named 'size_t' i>
-      #    71 | constexpr std::size_t MSAN_PRIVATE_SIZE = 0xffffffULL + 1;
-      #       |           ^~~~~~~~~~~
-      #       |           size_t
-      # "-DUR_ENABLE_SANITIZER=OFF"
-      # "-DUR_ENABLE_SYMBOLIZER=OFF"
-
       # TODO vielleicht pins.compute-runtime headers mit einem richtigen package ersetzen ?
       "-DUR_USE_EXTERNAL_UMF=ON"
       "-DL0_COMPUTE_RUNTIME_HEADERS=${pins.compute-runtime}/level_zero/include"
-
-      # "-DUR_OPENCL_INCLUDE_DIR=${opencl-headers}/include/CL"
-      # "-DUR_LEVEL_ZERO_LOADER_LIBRARY=${level-zero}/lib/libze_loader.so"
-      # "-DUR_LEVEL_ZERO_INCLUDE_DIR=${level-zero}/include"
-
-      # "-DLEVEL_ZERO_INCLUDE_DIR=${level-zero}/include/level_zero"
-      # "-DLEVEL_ZERO_LIBRARY=${level-zero}/lib/libze_loader.so"
-
-      # "-DOpenCL_HEADERS=${pins.ocl-headers}"
-      # "-DOpenCL_LIBRARY_SRC=${pins.ocl-loader}"
-      # "-DOpenCL-ICD=${ocl-icd}/lib/libOpenCL.so"
-
-      # "-DBOOST_MP11_SOURCE_DIR=${pins.mp11}"
-      # "-DBOOST_MODULE_SRC_DIR=${boost.dev}"
-
-      # "-DSYCL_EMHASH_DIR=${pins.emhash}"
-      # "-DFETCHCONTENT_FULLY_DISCONNECTED=ON"
-      # "-DFETCHCONTENT_SOURCE_DIR_PARALLEL_HASHMAP=${pins.parallel-hashmap}"
-      # "-DXPTIFW_PARALLEL_HASHMAP_HEADERS=${pins.parallel-hashmap}"
     ];
 
     postPatch = ''
@@ -278,40 +164,27 @@ in
         --replace-fail "NO_CMAKE_PACKAGE_REGISTRY" ""
     '';
 
-    # preConfigure = ''
-    #   cd llvm
-    # '';
-
-    # fixed by install.patch
-    # # https://github.com/intel/llvm/issues/6937
-    # buildPhase = ''
-    #   cmake --build /build/source/llvm/build --parallel $NIX_BUILD_CORES --target=deploy-sycl-toolchain
-    # '';
-
-    # dontMoveToDev = true;
-
-    # postInstall = ''
-    #   mkdir -p $rsrc
-    #   mv $out/lib/clang/21/include $rsrc/include
-    #   rm -r $out/lib/clang
-
-    #   mkdir -p $dev
-    #   mv $out/include $dev/include
-    #   # mv $out/lib/cmake $dev/lib/cmake
-    #   # mv $out/share/pkgconfig $dev/share/pkgconfig
-
-    #   mkdir -p $lib
-    #   mv $out/lib $lib/lib
-    # '';
-
     postInstall = ''
+      mkdir -p $python/share
+      mv $out/share/opt-viewer $python/share/opt-viewer
+
       # If this stays in $out/bin, it'll create a circular reference
       moveToOutput "bin/llvm-config*" "$dev"
+
+      substituteInPlace "$dev/lib/cmake/llvm/LLVMExports-release.cmake" \
+        --replace-fail "$out/bin/llvm-config" "$dev/bin/llvm-config"
+
+      substituteInPlace "$dev/lib/cmake/llvm/LLVMExports.cmake" \
+        --replace-fail "\''${_IMPORT_PREFIX}/include" "$dev/include"
+
+      substituteInPlace "$dev/lib/cmake/llvm/LLVMConfig.cmake" \
+        --replace-fail 'set(LLVM_BINARY_DIR "''${LLVM_INSTALL_PREFIX}")' 'set(LLVM_BINARY_DIR "'"$lib"'")'
     '';
 
     postFixup = ''
       mkdir -p $rsrc
       mv $out/lib/clang/22/include $rsrc/include
+      rm -rf $out/lib/clang
     '';
 
     passthru.isLLVM = true;

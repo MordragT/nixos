@@ -30,7 +30,6 @@
   # programs.corectrl.enable = true;
   # programs.corectrl.gpuOverclock.enable = true;
   # programs.droidcam.enable = true; # this enables v4l2loopback
-  programs.file-roller.enable = true;
   # programs.geary.enable = true;
   # programs.seahorse.enable = true;
   # programs.ssh.startAgent = true;

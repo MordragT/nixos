@@ -13,7 +13,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     owner = "oneapi-src";
     repo = "oneDPL";
     rev = "release/${finalAttrs.version}";
-    hash = "sha256-mNQl9IILaZEeEFc0TVQnxSEVUrvenAY+W/q28Ts3uEE=";
+    hash = "sha256-3njRmH89NnyfzOA9m/YREdaR9tloDc83xo0C2F1QVAM=";
   };
 
   nativeBuildInputs = [

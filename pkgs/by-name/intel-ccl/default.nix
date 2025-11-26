@@ -5,17 +5,18 @@
   autoPatchelfHook,
   dpkg,
   intel-dpcpp,
+  intel-mpi,
 }: let
   major = "2021.17";
   version = "2021.17.0-271";
 
   ccl = fetchinteldeb {
     package = "intel-oneapi-ccl-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-1SoHfmMESAc8Bhs9RroYzyKiBXybOITTWA7qWUjclSk=";
   };
   ccl-devel = fetchinteldeb {
     package = "intel-oneapi-ccl-devel-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-eS2C2oktwZYDqiH3QN3xebeAqFFxg9iqsky08hEhHz0=";
   };
 in
   stdenvNoCC.mkDerivation {
@@ -29,6 +30,7 @@ in
     buildInputs = [
       stdenv.cc.cc.lib
       intel-dpcpp.llvm.lib
+      intel-mpi
     ];
 
     unpackPhase = ''

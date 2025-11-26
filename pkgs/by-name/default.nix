@@ -56,6 +56,7 @@ in {
   openvino-tokenizers = callPackage ./openvino-tokenizers {};
   oxen = callPackage ./oxen {};
   proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
+
   spflashtool = callPackage ./spflashtool {};
   spflashtool-v5 = callPackage ./spflashtool-v5 {};
   starrydex = callPackage ./starrydex {};
@@ -63,9 +64,7 @@ in {
   teamfight-tactics = callPackage ./teamfight-tactics {};
   tmfs = callPackage ./tmfs {};
 
-  unified-runtime = callPackage ./unified-runtime {};
   unified-memory-framework = callPackage ./unified-memory-framework {};
-
   vc-intrinsics = callPackage ./vc-intrinsics {};
   vulkan-raytracing = callPackage ./vulkan-raytracing {};
   wine-tkg = callPackage ./wine-tkg {};

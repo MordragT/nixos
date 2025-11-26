@@ -28,15 +28,15 @@ in {
       cosmic-ext-applet-caffeine
       cosmic-ext-applet-clipboard-manager
       # cosmic-ext-applet-connect
-      cosmic-ext-applet-external-monitor-brightness
-      cosmic-ext-applet-emoji-selector
+      # cosmic-ext-applet-external-monitor-brightness
+      # cosmic-ext-applet-emoji-selector
       cosmic-ext-applet-gamemode-status
-      cosmic-ext-applet-git-work
+      # cosmic-ext-applet-git-work
       cosmic-ext-applet-logomenu
       cosmic-ext-applet-minimon
       cosmic-ext-applet-music-player
       cosmic-ext-applet-privacy-indicator
-      cosmic-ext-applet-system-monitor
+      # cosmic-ext-applet-system-monitor
       cosmic-ext-applet-tailscale
       cosmic-ext-applet-weather
 

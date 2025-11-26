@@ -2,14 +2,15 @@
   lib,
   cmake,
   fetchFromGitHub,
+  fetchpatch,
   intel-sycl,
-  intel-mkl,
   oneapi-tbb,
   oneapi-dnn,
+  oneapi-math,
   level-zero,
   ocl-icd,
   opencl-headers,
-  blas,
+  curl,
   pkg-config,
   ninja,
   git,
@@ -19,19 +20,27 @@
 in
   intel-sycl.stdenv.mkDerivation (finalAttrs: {
     pname = "llama-cpp";
-    version = "7058";
+    version = "7157";
 
     src = fetchFromGitHub {
       owner = "ggerganov";
       repo = "llama.cpp";
       rev = "refs/tags/b${finalAttrs.version}";
-      hash = "";
+      hash = "sha256-5rXOz1VzBC+kiNxwwhpdG5atqWLeHaWysmouCmIQC5w=";
       leaveDotGit = true;
       postFetch = ''
         git -C "$out" rev-parse --short HEAD > $out/COMMIT
         find "$out" -name .git -print0 | xargs -0 rm -rf
       '';
     };
+
+    patches = [
+      # sycl: Use oneMath on non-WIN32
+      (fetchpatch {
+        url = "https://patch-diff.githubusercontent.com/raw/ggml-org/llama.cpp/pull/13503.patch";
+        hash = "sha256-3UU4nrOnJVVz8TLdtsfg/zLub37Y73IyhBRUqD547iA=";
+      })
+    ];
 
     nativeBuildInputs = [
       cmake
@@ -42,26 +51,22 @@ in
     ];
 
     buildInputs = [
-      blas
-      intel-mkl
       oneapi-tbb
       oneapi-dnn
+      oneapi-math
       level-zero
       ocl-icd
       opencl-headers
+      curl
     ];
 
     cmakeFlags = [
-      # -march=native is non-deterministic; override with platform-specific flags if needed
       (cmakeBool "GGML_NATIVE" true)
       (cmakeBool "LLAMA_BUILD_SERVER" true)
       (cmakeBool "BUILD_SHARED_LIBS" true)
-      (cmakeBool "GGML_BLAS" true)
       (cmakeBool "GGML_SYCL" true)
       (cmakeBool "GGML_SYCL_DNNL" true)
       (cmakeBool "GGML_SYCL_F16" true)
-      # (cmakeFeature "CMAKE_C_COMPILER" "icx")
-      # (cmakeFeature "CMAKE_CXX_COMPILER" "icpx")
     ];
 
     postPatch = ''

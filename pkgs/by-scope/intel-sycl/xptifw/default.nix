@@ -2,10 +2,9 @@
   stdenv,
   src,
   version,
-  pins,
   cmake,
-  pkg-config,
-  python3,
+  parallel-hashmap,
+  emhash,
 }:
 stdenv.mkDerivation {
   inherit src version;
@@ -13,18 +12,17 @@ stdenv.mkDerivation {
 
   sourceRoot = "${src.name}/xptifw";
 
+  outputs = [
+    "out"
+    "dev"
+  ];
+
   nativeBuildInputs = [
     cmake
-    pkg-config
-    python3
   ];
 
-  cmakeFlags = [
-    "-DXPTIFW_EMHASH_HEADERS=${pins.emhash}"
-    "-DXPTIFW_PARALLEL_HASHMAP_HEADERS=${pins.parallel-hashmap}"
-  ];
-
-  patches = [
-    ./cmake.patch
+  buildInputs = [
+    emhash
+    parallel-hashmap
   ];
 }

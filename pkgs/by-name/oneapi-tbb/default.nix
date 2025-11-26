@@ -8,14 +8,14 @@ clangStdenv.mkDerivation rec {
   pname = "oneapi-tbb";
   version = "2022.3.0";
 
-  outputs = ["out" "dev"];
-
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneTBB";
     rev = "v${version}";
     hash = "sha256-HIHF6KHlEI4rgQ9Epe0+DmNe1y95K9iYa4V/wFnJfEU=";
   };
+
+  outputs = ["out" "dev"];
 
   # Fix undefined reference errors with version script under LLVM.
   NIX_LDFLAGS = "--undefined-version";

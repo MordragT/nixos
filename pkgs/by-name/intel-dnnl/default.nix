@@ -11,11 +11,11 @@
 
   dnnl = fetchinteldeb {
     package = "intel-oneapi-dnnl-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-RGgEKhN3B3Ib5ZaGG0BY3uUZDPPXs6osEtZDIorGNgw=";
   };
   dnnl-devel = fetchinteldeb {
     package = "intel-oneapi-dnnl-devel-${major}-${version}_amd64";
-    hash = "";
+    hash = "sha256-JWzB8jR8iCoFNb5VLiBI8RVE4cT6jAJK4tzVTyzoHoc=";
   };
 in
   stdenvNoCC.mkDerivation {

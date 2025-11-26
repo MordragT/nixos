@@ -1,12 +1,12 @@
 {
   lib,
-  intel-dpcpp,
+  intel-sycl,
   fetchFromGitHub,
   cmake,
   level-zero,
 }:
 # requires dpcpp compiler
-intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
+intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
   version = "2021.16.2";
 
@@ -14,8 +14,10 @@ intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
     owner = "uxlfoundation";
     repo = "oneCCL";
     rev = finalAttrs.version;
-    hash = "";
+    hash = "sha256-WGTSBaKo0cdWVircM05hmMHIT1anURjUL62smP1f0Bw=";
   };
+
+  outputs = ["out" "dev"];
 
   nativeBuildInputs = [
     cmake
@@ -25,11 +27,18 @@ intel-dpcpp.stdenv.mkDerivation (finalAttrs: {
     level-zero
   ];
 
+  cmakeFlags = [
+    "-DBUILD_EXAMPLES=OFF"
+    "-DBUILD_FT=OFF" # functional tests
+    "-DCCL_ENABLE_ZE=ON"
+    "-DCOMPUTE_BACKEND=dpcpp"
+  ];
+
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
   doCheck = false;
 
   meta = {
-    # broken = true; # I don't know why a Install rule for mpi fails...
+    broken = true;
     changelog = "https://github.com/oneapi-src/oneCCL/releases/tag/${finalAttrs.version}";
     description = "oneAPI Collective Communications Library (oneCCL)";
     homepage = "https://01.org/oneCCL";
