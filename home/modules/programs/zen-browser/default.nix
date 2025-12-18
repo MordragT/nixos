@@ -56,13 +56,14 @@ in {
         env = pkgs.buildEnv {
           name = "zen-extensions";
           paths = with pkgs.firefoxAddons; [
+            addon-7tv-extension
             bib-kit
             # bibitnow
-            bitwarden
+            bitwarden-password-manager
             brave-search
             csgofloat
             ghostery
-            proton-vpn
+            proton-vpn-firefox-extension
             rust-search-extension
             sponsorblock
             youtube-shorts-block

@@ -21,7 +21,7 @@ in {
       brscan4.netDevices.brother = {
         model = "DCP-1610W";
         # nodename = "BRWA86BAD4E4C62";
-        ip = "192.168.0.13";
+        ip = "192.168.0.60";
       };
     };
 

@@ -4,7 +4,7 @@
   ];
 
   mordrag.programs.bottles.enable = true;
-  mordrag.programs.firefox.enable = true;
+  # mordrag.programs.firefox.enable = true;
   mordrag.programs.git.enable = true;
   mordrag.programs.helix.enable = true;
   mordrag.programs.mangohud.enable = true;
@@ -17,7 +17,9 @@
   mordrag.programs.vscode.enable = true;
   mordrag.programs.zed-editor.enable = true;
   mordrag.programs.zen-browser.enable = true;
-  mordrag.programs.zsh.enable = true;
+  # mordrag.programs.zsh.enable = true;
+
+  mordrag.services.espanso.enable = true;
 
   programs.chromium = {
     enable = true;

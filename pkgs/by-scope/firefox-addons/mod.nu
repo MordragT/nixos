@@ -9,6 +9,13 @@ def fetch-addon [slug] {
     let url = $'https://addons.mozilla.org/api/v5/addons/addon/($slug)/?app=firefox&lang=en-US'
     let response = http get $url
 
+
+    let slug = if (($slug | split chars | first) in ['0' '1' '2' '3' '4' '5' '6' '7' '8' '9']) {
+        $'addon-($slug)'
+    } else {
+        $slug
+    }
+
     let addon = {
         slug: $slug
         name: $response.name.en-US,
@@ -26,12 +33,21 @@ def fetch-addon [slug] {
 export def main [] {
     const file = path self ./default.lock
     const slugs = [
+        7tv-extension
         bib-kit
         bibitnow
+        bitwarden-password-manager
         brave-search
         csgofloat
+        ghostery
         private-internet-access-ext
+        proton-vpn-firefox-extension
+        rust-search-extension
+        sidebery
         skinport-plus
+        sponsorblock
+        ublock-origin
+        youtube-shorts-block
     ]
     let addons = fetch-addons $slugs
     $addons | sort | to json | save --force $file

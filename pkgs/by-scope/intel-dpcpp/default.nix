@@ -12,7 +12,11 @@ in {
   };
 
   clang = callPackage ./clang.nix {
-    inherit (self) bintools llvm;
+    inherit (self) bintools compiler-tools llvm;
+  };
+
+  compiler-tools = callPackage ./compiler-tools.nix {
+    inherit (self) llvm;
   };
 
   stdenv = pkgs.overrideCC pkgs.stdenv self.clang;

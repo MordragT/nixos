@@ -1,5 +1,5 @@
 self: pkgs: let
-  pins = import ./pins.nix {inherit (pkgs) system;};
+  pins = import ./pins.nix {inherit (pkgs.stdenv.hostPlatform) system;};
   build-support = import ./build-support self pkgs;
   by-name = import ./by-name self pkgs;
   by-scope = import ./by-scope self pkgs;
@@ -9,12 +9,10 @@ in
     by-scope
     build-support
     {
-      # Overrides and aliases
-      ffmpeg-vpl = pkgs.ffmpeg-full.override {
-        withVpl = true;
-        withMfx = false;
-      };
+      # stirling-pdf = pins.stirling-pdf.stirling-pdf;
       invokeai = with self.intel-python.pkgs; toPythonApplication invokeai;
+
+      marker-pdf = with self.intel-python.pkgs; toPythonApplication marker-pdf;
 
       steamtinkerlaunch = pkgs.steamtinkerlaunch.overrideAttrs (old: {
         # Prepare the proper files for the steam compatibility toolchain

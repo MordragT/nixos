@@ -1,18 +1,15 @@
 {...}: {
   imports = [
+    ./caddy
     ./cosmic-bg-theme
     ./forgejo
-    ./gitlab
     ./harmonia
     ./invokeai
-    ./livebook
     ./llama
-    ./nextcloud
     ./printing
-    ./samba
+    ./radicle
     ./stalwart
     ./step-ca
-    ./tabby
     ./vaultwarden
     ./wg-quick
   ];

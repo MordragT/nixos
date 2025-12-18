@@ -1,0 +1,11 @@
+--- a/marker/settings.py
++++ b/marker/settings.py
+@@ -6,7 +6,7 @@
+ class Settings(BaseSettings):
+     # Paths
+     BASE_DIR: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+-    OUTPUT_DIR: str = os.path.join(BASE_DIR, "conversion_results")
++    OUTPUT_DIR: str = "/tmp/marker_conversion_results"
+     FONT_DIR: str = os.path.join(BASE_DIR, "static", "fonts")
+     DEBUG_DATA_FOLDER: str = os.path.join(BASE_DIR, "debug_data")
+     ARTIFACT_URL: str = "https://models.datalab.to/artifacts"

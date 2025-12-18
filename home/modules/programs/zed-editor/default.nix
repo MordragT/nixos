@@ -17,12 +17,11 @@ in {
     programs.zed-editor = {
       enable = true;
       package = pkgs.zed-editor;
-      # package = pkgs.zed-editor_git; # remove when inline assistant is fixed
 
       extraPackages = with pkgs; [
         alejandra # nix formater
         copilot-language-server
-        #github-mcp-server # context provider for github
+        harper
         nil # nix language server
         nixd # TODO needed because of https://github.com/zed-industries/zed/issues/23368
         rust-analyzer-nightly
@@ -33,6 +32,7 @@ in {
         "ansible"
         "crates-lsp"
         "elm"
+        "harper"
         "html"
         "java"
         "just"
@@ -63,44 +63,9 @@ in {
         }
       ];
       userSettings = {
-        theme = "Zedokai Darker Classic";
-        ui_font_size = 19;
-        ui_font_family = "Geist";
-        buffer_font_size = 15;
-        buffer_font_family = "Geist Mono";
-        tab_bar.show = false;
-        soft_wrap = "preferred_line_length";
-        preferred_line_length = 120;
-        show_wrap_guides = true;
-        indent_guides.enabled = false;
-        inlay_hints = {
-          enabled = true;
-          show_parameter_hints = false;
-        };
-        toolbar = {
-          breadcrumbs = true;
-          quick_actions = true;
-          selections_menu = true;
-        };
-        project_panel = {
-          dock = "right";
-          entry_spacing = "standard";
-          indent_guides.show = "never";
-        };
-        outline_panel.dock = "right";
-        collaboration_panel.dock = "right";
-        git_panel.dock = "right";
-        notification_panel.dock = "left";
-        chat_panel.dock = "left";
-        terminal = {
-          dock = "left";
-          default_width = 480;
-          toolbar.breadcrumbs = false;
-        };
         agent = {
           enabled = true;
           dock = "left";
-          version = "2";
 
           default_model = {
             # zed.dev, mistral, google, copilot_chat
@@ -188,29 +153,24 @@ in {
             };
           };
         };
+        buffer_font_family = "Geist Mono";
+        buffer_font_size = 15;
+        collaboration_panel.dock = "right";
         context_servers = {
-          mcp-server-github.command = let
+          mcp-server-github = let
             github-mcp-server-wrapped = pkgs.writeShellScriptBin "github-mcp-server-wrapped" ''
               export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat /var/secrets/github-mcp-token)
               ${pkgs.github-mcp-server}/bin/github-mcp-server "$@"
             '';
           in {
-            path = "${github-mcp-server-wrapped}/bin/github-mcp-server-wrapped";
+            command = "${github-mcp-server-wrapped}/bin/github-mcp-server-wrapped";
             args = ["stdio"];
           };
         };
-        # language_models.google.available_models = [
-        #   {
-        #     name = "gemini-2.5-flash-preview-04-17";
-        #     display_name = "Gemini 2.5 Flash Preview";
-        #     max_tokens = 1000000;
-        #   }
-        # ];
-        language_models.ollama = {
-          api_url = "http://localhost:11434";
-          available_models = [];
+        edit_predictions.mode = "subtle";
+        features = {
+          edit_prediction_provider = "copilot"; # zed
         };
-        language_models.lamma-cpp.api_url = "http://localhost:8030";
         file_scan_exclusions = [
           "**/.git"
           "**/.svn"
@@ -223,23 +183,65 @@ in {
           "**/.settings"
           "**/.direnv"
         ];
-        features = {
-          edit_prediction_provider = "copilot"; # zed
+        git_panel.dock = "right";
+        indent_guides.enabled = false;
+        inlay_hints = {
+          enabled = true;
+          show_parameter_hints = false;
         };
-        edit_predictions.mode = "subtle";
-        # base_keymap = "SublimeText";
-        lsp = {
-          rust_analyzer.binary.path_lookup = true;
+        # language_models.google.available_models = [
+        #   {
+        #     name = "gemini-2.5-flash-preview-04-17";
+        #     display_name = "Gemini 2.5 Flash Preview";
+        #     max_tokens = 1000000;
+        #   }
+        # ];
+        language_models.ollama = {
+          api_url = "http://localhost:11434";
+          available_models = [];
+        };
+        language_models.openai_compatible.lamma-cpp = {
+          api_url = "http://localhost:8030";
+          available_models = [];
         };
         languages = {
           Nix = {
-            language-servers = ["!nixd" "nil"];
+            language_servers = ["!nixd" "nil"];
             formatter.external = {
               command = "alejandra";
               arguments = ["--quiet" "--"];
             };
           };
         };
+        notification_panel.dock = "left";
+        outline_panel.dock = "right";
+        preferred_line_length = 120;
+        project_panel = {
+          dock = "right";
+          entry_spacing = "standard";
+          indent_guides.show = "never";
+        };
+        show_wrap_guides = true;
+        soft_wrap = "preferred_line_length";
+        tab_bar.show = false;
+        terminal = {
+          dock = "left";
+          default_width = 480;
+          toolbar.breadcrumbs = false;
+        };
+        theme = "Zedokai Darker Classic";
+        toolbar = {
+          breadcrumbs = true;
+          quick_actions = true;
+          selections_menu = true;
+        };
+        ui_font_family = "Geist";
+        ui_font_size = 19;
+        # base_keymap = "SublimeText";
+        # Zed not by defaults look's in the PATH for rust-analyzer
+        # lsp = {
+        #   rust_analyzer.binary.path_lookup = true;
+        # };
       };
     };
   };

@@ -1,5 +1,16 @@
 [
   {
+    "slug": "addon-7tv-extension",
+    "name": "7TV",
+    "version": "3.1.15",
+    "addonId": "moz-addon-prod@7tv.app",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4629657/7tv_extension-3.1.15.xpi",
+    "sha256": "sha256:eebcbd93cfd727c576b52789d978f1aff8dc03b6dab1d38d5acd5f4e4b6c974d",
+    "homepage": "https://7tv.app",
+    "description": "Improve your viewing experience on Twitch &amp; YouTube with new features, emotes, vanity and performance.",
+    "license": "Apache-2.0"
+  },
+  {
     "slug": "bib-kit",
     "name": "Bib Kit",
     "version": "0.1.2",
@@ -22,6 +33,17 @@
     "license": "MPL-2.0"
   },
   {
+    "slug": "bitwarden-password-manager",
+    "name": "Bitwarden Password Manager",
+    "version": "2025.12.0",
+    "addonId": "{446900e4-71c2-419f-a6a7-df9c091e268b}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4640726/bitwarden_password_manager-2025.12.0.xpi",
+    "sha256": "sha256:0256a61e84e23903fd379f5971150a8b23a53a126da62d276d57e514408839cd",
+    "homepage": "https://bitwarden.com",
+    "description": "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.",
+    "license": "GPL-3.0-only"
+  },
+  {
     "slug": "brave-search",
     "name": "Brave search - Private Search Engine",
     "version": "1.3.0",
@@ -35,13 +57,24 @@
   {
     "slug": "csgofloat",
     "name": "CSFloat Market Checker",
-    "version": "5.9.0",
+    "version": "5.9.3",
     "addonId": "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4605795/csgofloat-5.9.0.xpi",
-    "sha256": "sha256:e5936bc6ce150435a21e58e156529d8040f547e0581705f146658add06b19717",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4627404/csgofloat-5.9.3.xpi",
+    "sha256": "sha256:e95fa49cee8640756e6b4ee7176889621b755df0c296a1439b2e7f7da06a8c4b",
     "homepage": "https://csgofloat.com",
     "description": "Shows the float value, paint seed, and screenshots of Counter-Strike (CS:GO &amp; CS2) items on the Steam Market or Inventories",
     "license": "MIT"
+  },
+  {
+    "slug": "ghostery",
+    "name": "Ghostery – Privacy Ad Blocker",
+    "version": "10.5.23",
+    "addonId": "firefox@ghostery.com",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4643108/ghostery-10.5.23.xpi",
+    "sha256": "sha256:263b5cfb2afaa04a7e363490cc25ddc9a5b4b98d589fa1fc1ee856877463d688",
+    "homepage": "http://www.ghostery.com/",
+    "description": "The best privacy tool and ad blocker extension for Firefox. Stop trackers, speed up websites and block ads everywhere including YouTube and Facebook.",
+    "license": "MPL-2.0"
   },
   {
     "slug": "private-internet-access-ext",
@@ -55,6 +88,39 @@
     "license": "MIT"
   },
   {
+    "slug": "proton-vpn-firefox-extension",
+    "name": "Proton VPN: Fast & Secure",
+    "version": "1.2.10",
+    "addonId": "vpn@proton.ch",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4580763/proton_vpn_firefox_extension-1.2.10.xpi",
+    "sha256": "sha256:63063ab30bf1b02aaaa54d3f3e7902811683093b10fdd55dc410345a8dcae1d5",
+    "homepage": "https://protonvpn.com/",
+    "description": "Secure your internet and protect your online privacy in one click.",
+    "license": "GPL-3.0-only"
+  },
+  {
+    "slug": "rust-search-extension",
+    "name": "Rust Search Extension",
+    "version": "2.0.2",
+    "addonId": "{04188724-64d3-497b-a4fd-7caffe6eab29}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4435641/rust_search_extension-2.0.2.xpi",
+    "sha256": "sha256:10f521001a9fd9c7b8c5f8133daa74de01a5db33fb283b6b472b49c183e8418c",
+    "homepage": "https://rust.extension.sh",
+    "description": "The ultimate search extension for Rust\n\nSearch std docs, crates, builtin attributes, official books, and error codes, etc in your address bar instantly.\nhttps://rust.extension.sh",
+    "license": "MPL-2.0"
+  },
+  {
+    "slug": "sidebery",
+    "name": "Sidebery",
+    "version": "5.4.0",
+    "addonId": "{3c078156-979c-498b-8990-85f7987dd929}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4613339/sidebery-5.4.0.xpi",
+    "sha256": "sha256:184a3157df4c5b018daff5c63b8bea120f6d34e6f298c0fbed968b092508f599",
+    "homepage": "https://github.com/mbnuqw/sidebery",
+    "description": "Vertical tabs tree and bookmarks in sidebar with advanced containers configuration, grouping and many other features.",
+    "license": "MIT"
+  },
+  {
     "slug": "skinport-plus",
     "name": "Skinport Plus",
     "version": "25.9.26",
@@ -64,5 +130,38 @@
     "homepage": "https://addons.mozilla.org/en-US/firefox/addon/skinport-plus/",
     "description": "Enhance your trading experience on Skinport and Steam with Skinport Plus.",
     "license": "all-rights-reserved"
+  },
+  {
+    "slug": "sponsorblock",
+    "name": "SponsorBlock - Skip Sponsorships on YouTube",
+    "version": "6.1.2",
+    "addonId": "sponsorBlocker@ajay.app",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4644570/sponsorblock-6.1.2.xpi",
+    "sha256": "sha256:598f66c9eb6bbab2bd5f87376b632a5860f442d3694e233610f5b37f8b6e3f10",
+    "homepage": "https://sponsor.ajay.app",
+    "description": "Easily skip YouTube video sponsors. When you visit a YouTube video, the extension will check the database for reported sponsors and automatically skip known sponsors. You can also report sponsors in videos. Other browsers: https://sponsor.ajay.app",
+    "license": "LGPL-3.0-only"
+  },
+  {
+    "slug": "ublock-origin",
+    "name": "uBlock Origin",
+    "version": "1.68.0",
+    "addonId": "uBlock0@raymondhill.net",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4629131/ublock_origin-1.68.0.xpi",
+    "sha256": "sha256:5caf4abda494018841222a12156919bbdd8cad82a783c38c36b22dd642704315",
+    "homepage": "https://github.com/gorhill/uBlock#ublock-origin",
+    "description": "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.",
+    "license": "GPL-3.0-only"
+  },
+  {
+    "slug": "youtube-shorts-block",
+    "name": "Youtube-shorts block",
+    "version": "1.5.3",
+    "addonId": "{34daeb50-c2d2-4f14-886a-7160b24d66a4}",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4487339/youtube_shorts_block-1.5.3.xpi",
+    "sha256": "sha256:774896393bc782db2d79992a337d782963766365723c4bbab73d53a63feb2043",
+    "homepage": "https://addons.mozilla.org/en-US/firefox/addon/youtube-shorts-block/",
+    "description": "Play the Youtube shorts video as if it were a normal video.\nand hide \"shorts\"tab and videos (optional).",
+    "license": "MIT"
   }
 ]

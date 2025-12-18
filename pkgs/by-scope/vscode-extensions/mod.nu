@@ -42,7 +42,6 @@ export def main [] {
         ms-vscode.sublime-keybindings
         PolyMeilex.wgsl
         streetsidesoftware.code-spell-checker-german
-        tabbyml.vscode-tabby
         tweag.vscode-nickel
         wcrichton.flowistry
     ]

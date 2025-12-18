@@ -32,8 +32,8 @@
   {
     "name": "parol-vscode",
     "publisher": "jsinger67",
-    "version": "0.5.2",
-    "sha256": "0qz3bx15a78mlyjhf5plfxjccsrgzjqpdgha4vjqffvlghssf45m"
+    "version": "0.5.3",
+    "sha256": "0slmrbifbwpyazqg3kspsq9vn3l5dcx6da8kx4zdj6yjwbysgkb4"
   },
   {
     "name": "sublime-keybindings",
@@ -52,12 +52,6 @@
     "publisher": "tweag",
     "version": "0.5.0",
     "sha256": "19p4k1pr3aw9dkbi4d74qmp47p9mm6f3v31rk8dsw8kzqaqn6shn"
-  },
-  {
-    "name": "vscode-tabby",
-    "publisher": "tabbyml",
-    "version": "1.28.0",
-    "sha256": "05ns1bi1zb28k19pdsrdmmlwxhw9sncz876w7ykcgs4gqjv0dqa2"
   },
   {
     "name": "wgsl",

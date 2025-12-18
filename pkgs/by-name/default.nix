@@ -52,15 +52,16 @@ in {
   oneapi-math-sycl-blas = callPackage ./oneapi-math-sycl-blas {};
   oneapi-tbb = callPackage ./oneapi-tbb {};
 
+  open-plc-utils = callPackage ./open-plc-utils {};
   opengothic = callPackage ./opengothic {};
   openvino-tokenizers = callPackage ./openvino-tokenizers {};
   oxen = callPackage ./oxen {};
+  pla-util = callPackage ./pla-util {};
   proton-cachyos-bin = callPackage ./proton-cachyos-bin {};
 
   spflashtool = callPackage ./spflashtool {};
   spflashtool-v5 = callPackage ./spflashtool-v5 {};
   starrydex = callPackage ./starrydex {};
-  tabby = callPackage ./tabby {};
   teamfight-tactics = callPackage ./teamfight-tactics {};
   tmfs = callPackage ./tmfs {};
 

@@ -15,7 +15,8 @@ buildPythonPackage rec {
   src = fetchtorch {
     inherit pname version;
     dist = "whl";
-    hash = "";
+    platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64";
+    hash = "sha256-DSTBcWCI8nZNDSTGQidzIZW2pCcGw8X8ie60kEv6CBg=";
   };
 
   nativeBuildInputs = [
@@ -32,7 +33,6 @@ buildPythonPackage rec {
       'ze_root = os.getenv("ZE_PATH", default="${level-zero}")'
 
     substituteInPlace $out/${python.sitePackages}/triton/runtime/build.py \
-      --replace-fail 'icpx = None' 'icpx = "${intel-dpcpp.clang}/bin/icpx"' \
-      --replace-fail 'cxx = os.environ.get("CXX")' 'cxx = icpx'
+      --replace-fail 'icpx = shutil.which("icpx")' 'icpx = "${intel-dpcpp.clang}/bin/icpx"'
   '';
 }

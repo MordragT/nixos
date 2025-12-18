@@ -10,16 +10,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-system-monitor";
-  version = "0.2.6";
+  version = "0.2.7";
 
   src = fetchFromGitHub {
     owner = "d-brox";
     repo = "cosmic-ext-applet-system-monitor";
     rev = "v${version}";
-    hash = "sha256-L1XkRgsTvaMFPn5a4+rSNj13x9jXx6eeWssICp0Rqco=";
+    hash = "";
   };
 
-  cargoHash = "sha256-yiBaP5USaQJFpMuJZyXjDEZeZuBUY+3viV9hfccdoJc=";
+  cargoHash = "";
 
   nativeBuildInputs = with pkgs; [
     libcosmicAppHook

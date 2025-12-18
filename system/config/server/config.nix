@@ -20,10 +20,10 @@
     ];
   };
 
-  # nix.settings = {
-  #   substituters = ["https://store.local"];
-  #   trusted-public-keys = ["store.local:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
-  # };
+  nix.settings = {
+    substituters = ["https://harmonia.mordrag.de"];
+    trusted-public-keys = ["harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
+  };
 
   mordrag.desktop.cosmic.enable = true;
 
@@ -87,7 +87,7 @@
   mordrag.programs.steam = {
     enable = true;
     compatPackages = with pkgs; [
-      proton-ge-custom
+      proton-ge-bin
     ];
   };
   # TODO add as argument to own steam module

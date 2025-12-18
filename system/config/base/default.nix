@@ -21,11 +21,12 @@
       alsa-utils # configure audio devices
       bintools
       clinfo # opencl info
+      doggo # dig alternative
       drm_info
       dua # print file size of directories
       fd # find replacement
       helix # Kakoune style editor
-      btop # better top
+      bottom # better top
       hwloc
       inetutils
       just # make alike

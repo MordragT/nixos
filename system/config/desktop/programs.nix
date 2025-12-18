@@ -7,9 +7,8 @@
   mordrag.programs.steam = {
     enable = true;
     compatPackages = with pkgs; [
-      # proton-ge-bin
-      proton-ge-custom
-      luxtorpeda
+      proton-ge-bin
+      # luxtorpeda # broken: sadly chaotic nyx is discontinued
       # proton-cachyos-bin
       opengothic
       # steamtinkerlaunch

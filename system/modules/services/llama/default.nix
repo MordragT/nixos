@@ -53,6 +53,12 @@ in {
         };
       };
     };
+
+    fqdn = lib.mkOption {
+      description = "Domain";
+      default = "llama.mordrag.de";
+      type = lib.types.nonEmptyStr;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -76,5 +82,12 @@ in {
         ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${toString (lib.cli.toGNUCommandLine {} cfg.settings)}";
       };
     };
+
+    mordrag.services.caddy.enable = true;
+    services.caddy.virtualHosts."${cfg.fqdn}".extraConfig = ''
+      import cloudflare
+      encode zstd
+      reverse_proxy :${toString cfg.settings.port}
+    '';
   };
 }

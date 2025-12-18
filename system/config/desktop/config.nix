@@ -19,22 +19,6 @@
     "127.0.0.1" = ["tom-desktop.local"];
   };
 
-  # https://github.com/NixOS/nixpkgs/issues/180175
-  # systemd.network.wait-online.anyInterface = true;
-  # systemd.network.wait-online.timeout = 5;
-
-  chaotic.mesa-git = {
-    enable = true;
-    replaceBasePackage = true;
-    extraPackages = with pkgs; [
-      intel-compute-runtime
-      intel-compute-runtime.drivers
-      intel-media-driver
-      intel-vaapi-driver
-      vpl-gpu-rt
-    ];
-  };
-
   # Hardware Acceleration
   hardware.graphics = {
     enable = true;
@@ -51,7 +35,7 @@
   hardware.enableRedistributableFirmware = true;
 
   environment.systemPackages = with pkgs; [
-    ffmpeg-vpl
+    ffmpeg-full
     # intel-sysmon
     # nvtopPackages.intel
     config.boot.kernelPackages.turbostat

@@ -29,7 +29,11 @@ in {
       # vulkan-raytracing
       # p7zip
       # nodePackages.reveal-md # create presentations from markdown
-      # poppler_utils # utils for pdfs
+      # poppler-utils # utils for pdfs
+      pdfcpu
+      marker-pdf # convert pdf to markdown
+      # ghostscript # pdf converters
+      imagemagick
       # difftastic # a diff tool
       # hexyl # hex viewer
       # fzf # fuzzy file finder TODO if used copy to system
@@ -55,7 +59,7 @@ in {
       # sn0int # semi automatic osint framework
 
       # Utils
-      # freshfetch # neofetch alternative
+      macchina # neofetch alternative
       # grex # create regular expressions
       # hyperfine # benchmarking
       # gping # ping with a graph

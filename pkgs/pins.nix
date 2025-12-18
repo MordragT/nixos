@@ -1,4 +1,12 @@
 {system}: {
+  # https://github.com/NixOS/nixpkgs/pull/466665
+  stirling-pdf =
+    import (builtins.fetchTarball {
+      url = "https://github.com/Chaostheorie/nixpkgs/archive/db6e151a4c6668964c9d298748063360893acfbf.tar.gz";
+      sha256 = "04ll6ndbglcvacdgsghz0p155gpwr6rjc113r68wgrbzxfg99d3l";
+    }) {
+      inherit system;
+    };
   # opencv-typing =
   #   import (builtins.fetchTarball {
   #     url = "https://github.com/frc4451/nixpkgs/archive/5add1fa44d485393925d5cb6e3370037866826b2.tar.gz";

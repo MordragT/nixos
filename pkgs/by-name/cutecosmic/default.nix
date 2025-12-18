@@ -21,6 +21,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-40Ftca9MKDMNLO2lOV0yNi1bPzhGI6QIAZ4HOvbRHKY=";
   };
 
+  patches = [
+    ./cmake.patch
+  ];
+
   cargoRoot = "bindings";
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit pname version src cargoRoot;
@@ -43,7 +47,6 @@ stdenv.mkDerivation rec {
     qt6.qtwebengine
   ];
 
-  # TODO platformTheme/CMakeLists.txt patchen
   cmakeFlags = [
     "-DQT_INSTALL_PLUGINS=${qt6.qtbase.qtPluginPrefix}"
   ];
@@ -53,6 +56,5 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/IgKh/cutecosmic";
     license = licenses.gpl3Plus;
     platforms = platforms.linux;
-    broken = true;
   };
 }

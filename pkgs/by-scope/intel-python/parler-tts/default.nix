@@ -10,7 +10,7 @@
 }:
 buildPythonPackage {
   pname = "parler-tts";
-  version = "unstable-2024-12-02";
+  version = "unstable-2024-11-29";
   format = "pyproject";
 
   src = fetchFromGitHub {

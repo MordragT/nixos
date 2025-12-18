@@ -42,6 +42,8 @@ in {
     inherit (self.pkgs) zstd;
   };
 
+  marker-pdf = callPackage ./marker-pdf {};
+
   mediapipe = callPackage ./mediapipe {};
 
   nncf = callPackage ./nncf {};
@@ -55,6 +57,8 @@ in {
   oute-tts = callPackage ./oute-tts {};
 
   parler-tts = callPackage ./parler-tts {};
+
+  pdftext = callPackage ./pdftext {};
 
   picklescan = callPackage ./picklescan {};
 
@@ -76,9 +80,13 @@ in {
 
   spandrel = callPackage ./spandrel {};
 
+  surya-ocr = callPackage ./surya-ocr {};
+
   torch = callPackage ./torch {
     inherit (build-support) fetchtorch;
   };
+
+  torch-src = callPackage ./torch-src {};
 
   torch-stoi = callPackage ./torch-stoi {};
 

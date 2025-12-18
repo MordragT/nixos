@@ -72,8 +72,8 @@ environment.state = {
 }
 ```
 
-Now to include the right folders you can just put an **@** behind every folder you want to overlay into the destination.
-For example your folder structure might look like the following:
+Now to include the right folders you can just put a **@** behind every folder you want to overlay into the destination.
+For example, your folder structure might look like the following:
 
 ```
 /nix/state/users/name/home

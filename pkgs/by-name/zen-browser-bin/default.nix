@@ -12,7 +12,7 @@
   xorg,
   pciutils,
   libva,
-  ffmpeg,
+  ffmpeg_7,
   pipewire,
   libglvnd,
 }: let
@@ -59,11 +59,11 @@
 in
   stdenv.mkDerivation rec {
     pname = "zen-browser-bin";
-    version = "1.17.9b";
+    version = "1.17.11b";
 
     src = fetchzip {
       url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
-      hash = "sha256-6VHGssZzMBKEMkI03B+YdM9mGYh0e40a9nQaoZdT9XM=";
+      hash = "sha256-O6AKbbRMJ3jolVhKt1+3+zP/PCGEs+WhqSlsI6qwfB0=";
     };
 
     desktopItems = [
@@ -109,7 +109,7 @@ in
         pipewire
         libva
         libglvnd
-        ffmpeg
+        ffmpeg_7 # https://github.com/zen-browser/desktop/issues/10698
       ]}"
       )
       gappsWrapperArgs+=(--set MOZ_LEGACY_PROFILES 1)

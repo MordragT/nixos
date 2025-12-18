@@ -7,9 +7,9 @@
   setuptools-scm,
   torch,
   scipy,
-  ipex,
+  intel-dpcpp,
 }:
-buildPythonPackage rec {
+(buildPythonPackage.override {inherit (intel-dpcpp) stdenv;}) rec {
   pname = "bitsandbytes";
   version = "0.48.2";
   pyproject = true;
@@ -18,7 +18,7 @@ buildPythonPackage rec {
     owner = "bitsandbytes-foundation";
     repo = "bitsandbytes";
     rev = version;
-    hash = "";
+    hash = "sha256-gtNOMxLeYTCZK5MVdpjOFOw6rxvqS+XJmY1Meiuz0Rw=";
   };
 
   nativeBuildInputs = [
@@ -34,12 +34,12 @@ buildPythonPackage rec {
     (lib.cmakeFeature "COMPUTE_BACKEND" "xpu")
   ];
 
-  postPatch = ''
-    substituteInPlace setup.py \
-      --replace-fail "version=write_version_file(VERSION)" "version=VERSION"
+  # postPatch = ''
+  #   substituteInPlace setup.py \
+  #     --replace-fail "version=write_version_file(VERSION)" "version=VERSION"
 
-    echo '__version__ = "1.0.0"' >> bitsandbytes/_version.py
-  '';
+  #   echo '__version__ = "1.0.0"' >> bitsandbytes/_version.py
+  # '';
 
   preBuild = ''
     make -j $NIX_BUILD_CORES
@@ -49,7 +49,7 @@ buildPythonPackage rec {
   dependencies = [
     scipy
     torch
-    ipex
+    # ipex
   ];
 
   doCheck = false; # tests require CUDA and also GPU access
@@ -57,6 +57,7 @@ buildPythonPackage rec {
   pythonImportsCheck = ["bitsandbytes"];
 
   meta = {
+    broken = true; # missing ocloc llvm-foreach ?
     description = "8-bit CUDA functions for PyTorch";
     homepage = "https://github.com/bitsandbytes-foundation/bitsandbytes";
     changelog = "https://github.com/bitsandbytes-foundation/bitsandbytes/releases/tag/continous-release_multi-backed-refactor";

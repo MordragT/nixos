@@ -32,7 +32,7 @@ buildPythonPackage rec {
   src = fetchipex {
     inherit pname version;
     suffix = "%2Bxpu";
-    hash = "";
+    hash = "sha256-gVsTY+crjH4uWfsD12Im2gAfflnSW7bBqMdfLU7ctcw=";
   };
 
   nativeBuildInputs = [

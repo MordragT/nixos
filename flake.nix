@@ -2,7 +2,7 @@
   description = "My system configuration";
 
   inputs = {
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     classified = {
       url = "github:GoldsteinE/classified";
@@ -60,7 +60,7 @@
 
   outputs = {
     self,
-    chaotic,
+    # chaotic,
     classified,
     comoji,
     cosmic-unstable,
@@ -80,7 +80,7 @@
     pkgs = import nixpkgs {
       inherit system;
       overlays = [
-        chaotic.overlays.default
+        # chaotic.overlays.default
         comoji.overlays.default
         # cosmic-unstable.overlays.default
         fenix.overlays.default
@@ -131,7 +131,7 @@
           ];
 
           modules = [
-            chaotic.nixosModules.default
+            # chaotic.nixosModules.default
             classified.nixosModules.${system}.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
@@ -161,7 +161,7 @@
           ];
 
           modules = [
-            chaotic.nixosModules.default
+            # chaotic.nixosModules.default
             classified.nixosModules.${system}.default
             lanzaboote.nixosModules.lanzaboote
             valhali.nixosModules.default
@@ -191,7 +191,7 @@
           ];
 
           modules = [
-            chaotic.nixosModules.default
+            # chaotic.nixosModules.default
             classified.nixosModules.${system}.default
             disko.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
@@ -222,7 +222,7 @@
         modules = [
           ./home/modules
           ./home/config/laptop
-          chaotic.homeManagerModules.default
+          # chaotic.homeManagerModules.default
           ({pkgs, ...}: {
             home.username = "tom";
             home.homeDirectory = "/home/tom";

@@ -11,70 +11,16 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # typst-lsp
-      black
-      # platformio-core
-
-      # nickel support
-      nickel
-      nls
-      topiary
-    ];
-
-    xdg.mimeApps.defaultApplications = let
-      applyToAll = list:
-        builtins.listToAttrs (map (key: {
-            name = key;
-            value = "code.desktop";
-          })
-          list);
-    in
-      applyToAll [
-        "application/x-shellscript"
-        "application/toml"
-        "text/english"
-        "text/markdown"
-        "text/plain"
-        "text/x-c"
-        "text/x-c++"
-        "text/x-c++hdr"
-        "text/x-c++src"
-        "text/x-chdr"
-        "text/x-csrc"
-        "text/x-java"
-        "text/x-makefile"
-        "text/x-moc"
-        "text/x-pascal"
-        "text/x-tcl"
-        "text/x-tex"
-      ];
-
-    # home.file.".continue/config.json".text = lib.strings.toJSON {
-    #   models = [
-    #     {
-    #       title = "Ollama";
-    #       provider = "ollama";
-    #       model = "deepseek-coder:6.7b-instruct-q3_K_S";
-    #     }
-    #   ];
-    #   tabAutocompleteOptions.disable = true;
-    #   embeddingsProvider = {
-    #     provider = "ollama";
-    #     model = "nomic-embed-text";
-    #   };
-    # };
-
     programs.vscode = {
       package = pkgs.vscodium;
       enable = true;
-      mutableExtensionsDir = true;
+      mutableExtensionsDir = false;
 
       profiles.default = {
         userSettings = {
           "breadcrumbs.enabled" = false;
-          "cSpell.language" = "en,de";
-          "cSpell.enableFiletypes" = ["typst"];
+          # "cSpell.language" = "en,de";
+          # "cSpell.enableFiletypes" = ["typst"];
           "debug.allowBreakpointsEverywhere" = true;
           "debug.showBreakpointsInOverviewRuler" = true;
 
@@ -120,33 +66,13 @@ in {
           "git.enableSmartCommit" = true;
           "git.autofetch" = true;
           "http.proxySupport" = "off";
-          #"java.import.gradle.wrapper.enabled" = false;
-          "jupyter.allowUnauthorizedRemoteConnection" = true;
-          "kotlin.java.home" = "$JAVA_HOME";
-          # "lldb.verboseLogging" = true;
-          # "ltex.language" = "de-DE";
-          # "latex-workshop.latex.recipes" = [
-          #   {
-          #     "name" = "tectonic";
-          #     "tools" = [ "tectonic" ];
-          #   }
-          # ];
 
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
 
-          # "platformio-ide.customPATH" = "/nix/store/9ak4j7mjxxqwp85a0dwa381acx3i5zrz-platformio-fhs";
-          # "platformio-ide.useBuiltinPIOCore" = false;
-          # "platformio-ide.useBuiltinPython" = false;
-          # "platformio-ide.pioHomeServerHttpHost" = "0.0.0.0";
-
-          # "python.formatting.provider" = "black";
           "rust-analyzer.procMacro.enable" = false;
-          "tabby.endpoint" = "http://127.0.0.1:8000";
-          "tabby.inlineCompletion.triggerMode" = "manual";
           "terminal.integrated.fontSize" = 11;
           # "terminal.integrated.rendererType" = "dom";
-          # "typst-lsp.exportPdf" = "never";
           "window.zoomLevel" = 2;
           "window.menuBarVisibility" = "compact";
           "window.title" = "\${dirty}\${activeEditorShort}\${separator}\${rootName}";
@@ -201,16 +127,15 @@ in {
         extensions = with pkgs.vscode-extensions; [
           antfu.slidev
           bierner.markdown-mermaid
-          bmewburn.vscode-intelephense-client
+          # bmewburn.vscode-intelephense-client
           # catppuccin.catppuccin-vsc
-          cesium.gltf-vscode
-          # continue.continue
-          davidanson.vscode-markdownlint
-          firefox-devtools.vscode-firefox-debug
-          fwcd.kotlin
-          gruntfuggly.todo-tree
+          # cesium.gltf-vscode
+          # davidanson.vscode-markdownlint
+          # firefox-devtools.vscode-firefox-debug
+          # fwcd.kotlin
+          # gruntfuggly.todo-tree
           jnoortheen.nix-ide
-          jsinger67.parol-vscode
+          # jsinger67.parol-vscode
           kamadorueda.alejandra
           # marp-team.marp-vscode
           matangover.mypy
@@ -229,30 +154,28 @@ in {
           # ms-vscode-remote.remote-ssh
           # ms-vsliveshare.vsliveshare
 
-          # mgt19937.typst-preview
           myriad-dreamin.tinymist
           # nvarner.typst-lsp
           piousdeer.adwaita-theme
-          PolyMeilex.wgsl
-          redhat.java
-          rust-lang.rust-analyzer-nightly
+          # PolyMeilex.wgsl
+          # redhat.java
+          # broken rust-lang.rust-analyzer-nightly
           # rust-lang.rust-analyzer
           skellock.just
-          streetsidesoftware.code-spell-checker
-          streetsidesoftware.code-spell-checker-german
-          svelte.svelte-vscode
-          tabbyml.vscode-tabby
+          # streetsidesoftware.code-spell-checker
+          # streetsidesoftware.code-spell-checker-german
+          # svelte.svelte-vscode
           tamasfe.even-better-toml
           thenuprojectcontributors.vscode-nushell-lang
           tomoki1207.pdf
           twxs.cmake
 
-          vue.volar
+          # vue.volar
           # vadimcn.vscode-lldb
           # valentjn.vscode-ltex
-          vscjava.vscode-gradle
-          yzhang.markdown-all-in-one
-          ziglang.vscode-zig
+          # vscjava.vscode-gradle
+          # yzhang.markdown-all-in-one
+          # ziglang.vscode-zig
         ];
       };
     };

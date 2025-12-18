@@ -2,5 +2,6 @@
   imports = [
     ./collection
     ./programs
+    ./services
   ];
 }

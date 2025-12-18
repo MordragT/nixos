@@ -9,13 +9,13 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-connect";
-  version = "unstable-2025-10-25";
+  version = "unstable-2025-11-25";
 
   src = fetchFromGitHub {
     owner = "hepp3n";
     repo = "kdeconnect";
-    rev = "0eb739e52c4d3d383d0e1f3fbe2fcfaef2f01b19";
-    hash = "sha256-mlUJ+ViRB8uz3MlJhjmiEIZoxVPpVDsMUlT3FM913eA=";
+    rev = "18791fe1fff3e5b66dc4f1fd6cbdda6c6a802595";
+    hash = "";
   };
   sourceDir = "source/cosmic-ext-applet-connect";
 

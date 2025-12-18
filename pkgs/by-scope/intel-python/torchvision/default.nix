@@ -19,7 +19,7 @@ buildPythonPackage rec {
     inherit pname version;
     suffix = "%2Bxpu";
     platform = "manylinux_2_28_x86_64";
-    hash = "";
+    hash = "sha256-2cWe5a49BWDwJAHI39gFTVCBOo27XTOod33n0C9vy3s=";
   };
 
   nativeBuildInputs = [

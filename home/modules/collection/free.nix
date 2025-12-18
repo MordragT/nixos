@@ -23,8 +23,9 @@ in {
       # octaveFull # aims to be compatible with matlab
 
       # Documents
-      kdePackages.okular
-      # onlyoffice-desktopeditors
+      # kdePackages.okular
+      onlyoffice-desktopeditors
+      # stirling-pdf
       # libreoffice-qt6-fresh
       # xournalpp
 
@@ -36,6 +37,8 @@ in {
       inkscape
       krita
       gimp3
+      material-maker
+      pixelorama
 
       # Game Development
       # epic-asset-manager # manager for unreal engine and its assets
@@ -51,9 +54,9 @@ in {
 
       # Other
       # dbeaver-bin # sql client
-      dorion # rust written discord alternative
+      # dorion # rust written discord alternative
       # insomnia # make http requests against rest apis
-      mattermost-desktop
+      # mattermost-desktop
       protonvpn-gui
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher

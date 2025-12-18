@@ -16,7 +16,7 @@ buildPythonPackage rec {
     inherit pname version;
     suffix = "%2Bxpu";
     platform = "manylinux_2_28_x86_64";
-    hash = "";
+    hash = "sha256-CrEpTR7Qv0chlbkMioYckFBvWMJ6Qy1zQ9zKVV5+h2k=";
   };
 
   nativeBuildInputs = [
@@ -32,12 +32,6 @@ buildPythonPackage rec {
   dependencies = [
     torch
   ];
-
-  preFixup = ''
-    # TorchAudio loads the newest FFmpeg that works, so get rid of the
-    # old ones.
-    rm $out/${python.sitePackages}/torio/lib/{lib,_}torio_ffmpeg{4,5}.*
-  '';
 
   pythonImportsCheck = ["torchaudio"];
 }

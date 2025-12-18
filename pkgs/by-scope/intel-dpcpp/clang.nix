@@ -2,6 +2,7 @@
   wrapCCWith,
   symlinkJoin,
   stdenv,
+  compiler-tools,
   llvm,
   intel-tcm,
   hwloc,
@@ -11,7 +12,13 @@
   gcc = gcc13;
   cc = symlinkJoin {
     name = "clang-unwrapped";
-    paths = [llvm llvm.dev llvm.lib intel-tcm hwloc];
+    paths = [
+      llvm
+      llvm.dev
+      llvm.lib
+      intel-tcm
+      hwloc
+    ];
   };
 in
   (wrapCCWith {
@@ -54,4 +61,6 @@ in
         export named_cc="icx"
         export named_cxx="icpx"
       '';
+
+    propagatedBuildInputs = [compiler-tools] ++ old.propagatedBuildInputs;
   })

@@ -12,6 +12,7 @@
     ./nvim
     ./obs
     ./radicle
+    # ./rclone
     ./thunderbird
     ./vscode
     ./zed-editor

@@ -43,6 +43,7 @@ in {
         # cannot use files directly as that would rename them to a hash
         # and would clash with nushell module system
         use $"($scripts)/comma.nu" ,
+        use $"($scripts)/compress-pdf.nu" "compress pdf"
 
         alias comojit = comoji commit
         alias r = direnv reload
