@@ -1,0 +1,27 @@
+diff --git a/ggml/src/ggml-sycl/CMakeLists.txt b/ggml/src/ggml-sycl/CMakeLists.txt
+--- a/ggml/src/ggml-sycl/CMakeLists.txt
++++ b/ggml/src/ggml-sycl/CMakeLists.txt
+@@ -150,10 +150,12 @@
+ if (GGML_SYCL_GRAPH)
+     target_compile_definitions(ggml-sycl PRIVATE GGML_SYCL_GRAPH)
+ endif()
+ 
++find_package(oneMath QUIET)
++
+ # Link against Intel oneMKL or oneMath
+-if (GGML_SYCL_TARGET STREQUAL "INTEL")
++if (WIN32 AND NOT oneMath_FOUND AND GGML_SYCL_TARGET STREQUAL "INTEL")
+     # Intel devices use Intel oneMKL directly instead of oneMath to avoid the limitation of linking Intel oneMKL statically
+     # See https://github.com/uxlfoundation/oneMath/issues/654
+     if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+         set(SYCL_COMPILER ON)
+@@ -161,9 +163,8 @@
+     find_package(MKL REQUIRED)
+     target_link_libraries(ggml-sycl PRIVATE MKL::MKL_SYCL::BLAS)
+     target_compile_definitions(ggml-sycl PRIVATE GGML_SYCL_USE_INTEL_ONEMKL)
+ else()
+-    find_package(oneMath QUIET)
+     if (NOT oneMath_FOUND)
+         message(STATUS "oneMath not found: oneMath will be automatically downloaded")
+         # Use FetchContent to automatically pull and build oneMath
+         include(FetchContent)

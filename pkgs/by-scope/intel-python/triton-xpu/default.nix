@@ -5,7 +5,7 @@
   autoPatchelfHook,
   zlib,
   level-zero,
-  intel-dpcpp,
+  intel-sycl,
 }:
 buildPythonPackage rec {
   pname = "pytorch_triton_xpu";
@@ -33,6 +33,6 @@ buildPythonPackage rec {
       'ze_root = os.getenv("ZE_PATH", default="${level-zero}")'
 
     substituteInPlace $out/${python.sitePackages}/triton/runtime/build.py \
-      --replace-fail 'icpx = shutil.which("icpx")' 'icpx = "${intel-dpcpp.clang}/bin/icpx"'
+      --replace-fail 'icpx = shutil.which("icpx")' 'icpx = "${intel-sycl.clang}/bin/clang++"'
   '';
 }

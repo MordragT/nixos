@@ -123,10 +123,10 @@ index 518220188f96..d8b046fdca4c 100644
  
    if(ARG_PREFIX)
 diff --git a/compiler-rt/cmake/Modules/CompilerRTAIXUtils.cmake b/compiler-rt/cmake/Modules/CompilerRTAIXUtils.cmake
-index 53aa750d934d..e111ec77f5a2 100644
+index 20400014869e..a4fe2fafe616 100644
 --- a/compiler-rt/cmake/Modules/CompilerRTAIXUtils.cmake
 +++ b/compiler-rt/cmake/Modules/CompilerRTAIXUtils.cmake
-@@ -55,7 +55,7 @@ macro(archive_aix_libatomic name libname)
+@@ -53,7 +53,7 @@ macro(archive_aix_libatomic name libname)
      # setting _install_rpath on AIX for reference.
      if(LLVM_LIBRARY_OUTPUT_INTDIR AND CMAKE_INSTALL_PREFIX)
        set(output_dir "${LLVM_LIBRARY_OUTPUT_INTDIR}")
@@ -150,26 +150,6 @@ index ca233103ccdb..3e4dd9a58c5f 100644
          RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
  
        if (NOT LLVM_ENABLE_IDE)
-diff --git a/libclc/CMakeLists.txt b/libclc/CMakeLists.txt
-index 8458f4f24234..0d0f04b26985 100644
---- a/libclc/CMakeLists.txt
-+++ b/libclc/CMakeLists.txt
-@@ -630,13 +630,13 @@ foreach( t ${LIBCLC_TARGETS_TO_BUILD} )
- endforeach( t )
- 
- install(DIRECTORY ${LIBCLC_LIBRARY_OUTPUT_INTDIR}
--  DESTINATION lib${LLVM_LIBDIR_SUFFIX}
-+  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-   COMPONENT libspirv-builtins
-   FILES_MATCHING PATTERN "libspirv-*")
- 
- if( LIBCLC_GENERATE_REMANGLED_VARIANTS )
-   install(DIRECTORY ${LIBCLC_LIBRARY_OUTPUT_INTDIR}
--    DESTINATION lib${LLVM_LIBDIR_SUFFIX}
-+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
-     COMPONENT libspirv-builtins
-     FILES_MATCHING PATTERN "remangled-*libspirv-*")
- endif()
 diff --git a/libclc/libclc.pc.in b/libclc/libclc.pc.in
 index 3a9e58b3ef0c..60f8c0fdf75d 100644
 --- a/libclc/libclc.pc.in
@@ -181,7 +161,7 @@ index 3a9e58b3ef0c..60f8c0fdf75d 100644
  Name: libclc
  Description: Library requirements of the OpenCL C programming language
 diff --git a/libcxx/test/configs/armv7m-picolibc-libc++.cfg.in b/libcxx/test/configs/armv7m-picolibc-libc++.cfg.in
-index 9bff5021494e..b8c95375550c 100644
+index f0782c28ce3e..32fc542db557 100644
 --- a/libcxx/test/configs/armv7m-picolibc-libc++.cfg.in
 +++ b/libcxx/test/configs/armv7m-picolibc-libc++.cfg.in
 @@ -1,6 +1,6 @@
@@ -193,7 +173,7 @@ index 9bff5021494e..b8c95375550c 100644
  config.substitutions.append(('%{flags}', '--sysroot=@CMAKE_INSTALL_PREFIX@'))
  
 diff --git a/libcxxabi/test/configs/armv7m-picolibc-libc++abi.cfg.in b/libcxxabi/test/configs/armv7m-picolibc-libc++abi.cfg.in
-index b4744f935ad8..af880e9621df 100644
+index e61efbb303fc..a73c58584567 100644
 --- a/libcxxabi/test/configs/armv7m-picolibc-libc++abi.cfg.in
 +++ b/libcxxabi/test/configs/armv7m-picolibc-libc++abi.cfg.in
 @@ -1,6 +1,6 @@
@@ -205,7 +185,7 @@ index b4744f935ad8..af880e9621df 100644
  config.substitutions.append(('%{flags}', '--sysroot=@CMAKE_INSTALL_PREFIX@'))
  
 diff --git a/libdevice/cmake/modules/SYCLLibdevice.cmake b/libdevice/cmake/modules/SYCLLibdevice.cmake
-index 8b7eaa3a723a..312e7dafcd31 100644
+index 21989df43c00..36aee071dd96 100644
 --- a/libdevice/cmake/modules/SYCLLibdevice.cmake
 +++ b/libdevice/cmake/modules/SYCLLibdevice.cmake
 @@ -12,16 +12,16 @@ else()
@@ -230,7 +210,7 @@ index 8b7eaa3a723a..312e7dafcd31 100644
  string(CONCAT sycl_targets_opt
    "-fsycl-targets="
 diff --git a/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in b/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in
-index e8f68a51fc53..159d7c38a0e6 100644
+index 6ffdd70c6177..fadb6b3cb02f 100644
 --- a/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in
 +++ b/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in
 @@ -1,6 +1,6 @@
@@ -257,7 +237,7 @@ index 37f73afa915f..1f70cfe4fc05 100644
  
      if (NOT CMAKE_CONFIGURATION_TYPES)
 diff --git a/lldb/cmake/modules/AddLLDB.cmake b/lldb/cmake/modules/AddLLDB.cmake
-index 28bf8d816d89..f7ae2b938573 100644
+index 5d58abf237f5..fd2edc4e3a66 100644
 --- a/lldb/cmake/modules/AddLLDB.cmake
 +++ b/lldb/cmake/modules/AddLLDB.cmake
 @@ -106,7 +106,7 @@ function(add_lldb_library name)
@@ -294,10 +274,10 @@ index 814c59251611..7188084e8061 100644
  Name: LLVMSPIRVLib
  Description: LLVM/SPIR-V bi-directional translator
 diff --git a/llvm/CMakeLists.txt b/llvm/CMakeLists.txt
-index 315dfd5c3277..8901458b2784 100644
+index 9bbd39abd558..78b8da693007 100644
 --- a/llvm/CMakeLists.txt
 +++ b/llvm/CMakeLists.txt
-@@ -1204,9 +1204,9 @@ if (NOT TENSORFLOW_AOT_PATH STREQUAL "")
+@@ -1207,9 +1207,9 @@ if (NOT TENSORFLOW_AOT_PATH STREQUAL "")
    add_subdirectory(${TENSORFLOW_AOT_PATH}/xla_aot_runtime_src
      ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/tf_runtime)
    install(TARGETS tf_xla_runtime EXPORT LLVMExports
@@ -310,7 +290,7 @@ index 315dfd5c3277..8901458b2784 100644
    # Once we add more modules, we should handle this more automatically.
    if (DEFINED LLVM_OVERRIDE_MODEL_HEADER_INLINERSIZEMODEL)
 diff --git a/llvm/cmake/modules/AddLLVM.cmake b/llvm/cmake/modules/AddLLVM.cmake
-index c98e78da97b3..743a14be12a1 100644
+index 7d40d309d538..5844f0f2a2fa 100644
 --- a/llvm/cmake/modules/AddLLVM.cmake
 +++ b/llvm/cmake/modules/AddLLVM.cmake
 @@ -974,8 +974,8 @@ macro(add_llvm_library name)
@@ -324,7 +304,7 @@ index c98e78da97b3..743a14be12a1 100644
                RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT ${name})
  
        if (NOT LLVM_ENABLE_IDE)
-@@ -2278,7 +2278,7 @@ function(llvm_install_library_symlink name dest type)
+@@ -2284,7 +2284,7 @@ function(llvm_install_library_symlink name dest type)
      set(LLVM_LINK_OR_COPY copy)
    endif()
  
@@ -333,7 +313,7 @@ index c98e78da97b3..743a14be12a1 100644
    if((WIN32 OR CYGWIN) AND "${type}" STREQUAL "SHARED")
      set(output_dir "${CMAKE_INSTALL_BINDIR}")
    endif()
-@@ -2560,10 +2560,10 @@ function(llvm_setup_rpath name)
+@@ -2566,10 +2566,10 @@ function(llvm_setup_rpath name)
      # Since BUILD_SHARED_LIBS is only recommended for use by developers,
      # hardcode the rpath to build/install lib dir first in this mode.
      # FIXME: update this when there is better solution.
@@ -410,18 +390,18 @@ index e4e1d449bf4d..890e1f164d97 100644
  #define LLVM_INSTALL_PACKAGE_DIR "@LLVM_INSTALL_PACKAGE_DIR@"
  #define LLVM_TARGETS_BUILT "@LLVM_TARGETS_BUILT@"
 diff --git a/llvm/tools/llvm-config/llvm-config.cpp b/llvm/tools/llvm-config/llvm-config.cpp
-index 49df8fdcb7f7..06c6fdf37209 100644
+index 020b1b5e093d..bfb58ce73a2b 100644
 --- a/llvm/tools/llvm-config/llvm-config.cpp
 +++ b/llvm/tools/llvm-config/llvm-config.cpp
-@@ -365,7 +365,7 @@ int main(int argc, char **argv) {
-       sys::fs::make_absolute(ActivePrefix, Path);
+@@ -364,7 +364,7 @@ int main(int argc, char **argv) {
+       sys::path::make_absolute(ActivePrefix, Path);
        ActiveBinDir = std::string(Path);
      }
 -    ActiveLibDir = ActivePrefix + "/lib" + LLVM_LIBDIR_SUFFIX;
 +    ActiveLibDir = LLVM_INSTALL_FULL_LIBDIR;
      {
        SmallString<256> Path(LLVM_INSTALL_PACKAGE_DIR);
-       sys::fs::make_absolute(ActivePrefix, Path);
+       sys::path::make_absolute(ActivePrefix, Path);
 diff --git a/mlir/cmake/modules/AddMLIR.cmake b/mlir/cmake/modules/AddMLIR.cmake
 index 6589458ab789..9bff1af30631 100644
 --- a/mlir/cmake/modules/AddMLIR.cmake
@@ -444,10 +424,10 @@ index 6589458ab789..9bff1af30631 100644
  
      if (NOT LLVM_ENABLE_IDE)
 diff --git a/mlir/cmake/modules/AddMLIRPython.cmake b/mlir/cmake/modules/AddMLIRPython.cmake
-index 2b883558d33c..bbb721acf49b 100644
+index fa6aec8a603a..4e1b61ff12fe 100644
 --- a/mlir/cmake/modules/AddMLIRPython.cmake
 +++ b/mlir/cmake/modules/AddMLIRPython.cmake
-@@ -455,7 +455,7 @@ function(mlir_python_setup_extension_rpath target)
+@@ -567,7 +567,7 @@ function(mlir_python_setup_extension_rpath target)
      set_property(TARGET ${target} APPEND PROPERTY
        BUILD_RPATH "${_real_lib_dir}")
      set_property(TARGET ${target} APPEND PROPERTY
@@ -456,28 +436,6 @@ index 2b883558d33c..bbb721acf49b 100644
    endif()
  endfunction()
  
-diff --git a/offload/DeviceRTL/CMakeLists.txt b/offload/DeviceRTL/CMakeLists.txt
-index e4916f4d4975..642ae6cf64e1 100644
---- a/offload/DeviceRTL/CMakeLists.txt
-+++ b/offload/DeviceRTL/CMakeLists.txt
-@@ -140,7 +140,7 @@ function(compileDeviceRTLLibrary target_name target_triple)
-                       "-fuse-ld=lld" "-march=" "-mcpu=")
-   install(TARGETS libomptarget-${target_name}
-           PERMISSIONS OWNER_WRITE OWNER_READ GROUP_READ WORLD_READ
--          DESTINATION "lib${LLVM_LIBDIR_SUFFIX}/${target_triple}")
-+          DESTINATION ${CMAKE_INSTALL_LIBDIR}/${target_triple})
- 
-   add_library(omptarget.${target_name}.all_objs OBJECT IMPORTED)
-   set_property(TARGET omptarget.${target_name}.all_objs APPEND PROPERTY IMPORTED_OBJECTS
-@@ -160,7 +160,7 @@ function(compileDeviceRTLLibrary target_name target_triple)
-                        "-Wl,--lto-emit-llvm" "-fuse-ld=lld" "-march=" "-mcpu=")
- 
-   install(TARGETS omptarget.${target_name}
--          ARCHIVE DESTINATION "lib${LLVM_LIBDIR_SUFFIX}/${target_triple}")
-+          ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/${target_triple})
- 
-   if (CMAKE_EXPORT_COMPILE_COMMANDS)
-     set(ide_target_name omptarget-ide-${target_name})
 diff --git a/offload/liboffload/CMakeLists.txt b/offload/liboffload/CMakeLists.txt
 index 62480dad1cac..d6f0a0282c47 100644
 --- a/offload/liboffload/CMakeLists.txt
@@ -517,18 +475,25 @@ index 9bd7b0b0ea59..1232f5f0d748 100644
        COMPONENT ${name})
    endif()
 diff --git a/sycl/CMakeLists.txt b/sycl/CMakeLists.txt
-index ae3fa0335ab1..dabefa27e6a2 100644
+index cb2220e9fbc1..eec767d4f874 100644
 --- a/sycl/CMakeLists.txt
 +++ b/sycl/CMakeLists.txt
-@@ -361,7 +361,7 @@ if (NOT WIN32)
+@@ -362,13 +362,13 @@ if (NOT WIN32)
    install(FILES
      "${CMAKE_CURRENT_SOURCE_DIR}/gdb/libsycl.so-gdb.py"
      RENAME "libsycl.so.${SYCL_VERSION_STRING}-gdb.py"
 -    DESTINATION "lib${LLVM_LIBDIR_SUFFIX}/"
 +    DESTINATION ${CMAKE_INSTALL_LIBDIR}/
      COMPONENT sycl-headers-extras)
+   if (SYCL_ENABLE_MAJOR_RELEASE_PREVIEW_LIB)
+     install(FILES
+       "${CMAKE_CURRENT_SOURCE_DIR}/gdb/libsycl.so-gdb.py"
+       RENAME "libsycl-preview.so.${SYCL_VERSION_STRING}-gdb.py"
+-      DESTINATION "lib${LLVM_LIBDIR_SUFFIX}/"
++      DESTINATION ${CMAKE_INSTALL_LIBDIR}/
+       COMPONENT sycl-headers-extras)
+   endif()
  endif()
- 
 diff --git a/sycl/cmake/modules/BuildUnifiedRuntime.cmake b/sycl/cmake/modules/BuildUnifiedRuntime.cmake
 index 73e52e59f2be..aa0eac5c1dee 100644
 --- a/sycl/cmake/modules/BuildUnifiedRuntime.cmake
@@ -602,10 +567,10 @@ index f469b2604760..a8728bdfb5b1 100644
              COMPONENT ${ARG_TARGET_NAME}
              OPTIONAL)
 diff --git a/sycl/source/CMakeLists.txt b/sycl/source/CMakeLists.txt
-index 4159303f87d1..5d9d826b36f4 100644
+index be262a28d809..36da90e63179 100644
 --- a/sycl/source/CMakeLists.txt
 +++ b/sycl/source/CMakeLists.txt
-@@ -175,7 +175,7 @@ function(add_sycl_rt_library LIB_NAME LIB_OBJ_NAME)
+@@ -191,7 +191,7 @@ function(add_sycl_rt_library LIB_NAME LIB_OBJ_NAME)
          COMMENT "Creating version-agnostic copy of the import library.")
        install(
          FILES ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${ARG_IMPLIB_NAME}.lib
@@ -614,7 +579,7 @@ index 4159303f87d1..5d9d826b36f4 100644
      endif()
    endif()
  
-@@ -414,6 +414,6 @@ if (WIN32)
+@@ -430,6 +430,6 @@ if (WIN32)
  endif()
  
  install(TARGETS ${SYCL_RT_LIBS}

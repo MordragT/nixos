@@ -8,12 +8,13 @@ self: pkgs: let
   #   rev = "v${version}";
   #   hash = "sha256-j8+DmGKO0qDF5JjH+DlkLKs1kBz6dS7ukwySd/Crqv0=";
   # };
-  version = "nightly-2025-11-04";
+  version = "nightly-2025-11-12";
   src = pkgs.fetchFromGitHub {
     owner = "intel";
     repo = "llvm";
-    rev = version;
-    hash = "sha256-a07jm+N1UuvUkLcd1C0BFqyG9JV0gRC2aJokvr/nA54=";
+    # rev = version;
+    rev = "ab3dc98de0fd1ada9df12b138de1e1f8b715cc27";
+    hash = "sha256-oHk8kQVNsyC9vrOsDqVoFLYl2yMMaTgpQnAW9iHZLfE=";
   };
 in {
   lld = callPackage ./lld {

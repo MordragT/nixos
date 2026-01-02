@@ -14,7 +14,7 @@ in {
     home.packages = with pkgs; [
       # distrobox
       hollywood # fake hacking
-      oxen
+      # broken oxen
       # broken ventoy # create bootable usb drive for isos
       xorg.xlsclients
       xorg.xeyes
@@ -25,13 +25,13 @@ in {
       # byfl # compiler based application analysis
       # likwid # performance monitoring
       (renderdoc.override {waylandSupport = true;}) # debug graphics
-      vkmark
+      # broken vkmark
       # vulkan-raytracing
       # p7zip
       # nodePackages.reveal-md # create presentations from markdown
       # poppler-utils # utils for pdfs
       pdfcpu
-      marker-pdf # convert pdf to markdown
+      # marker-pdf # convert pdf to markdown
       # ghostscript # pdf converters
       imagemagick
       # difftastic # a diff tool

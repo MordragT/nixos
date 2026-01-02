@@ -21,6 +21,7 @@
   spirv-headers,
   opencl-headers,
   ocl-icd,
+  intel-compute-runtime,
   # vc-intrinsics,
   pins,
 }: let
@@ -134,7 +135,7 @@ in
 
       # options
       "-DSYCL_ENABLE_XPTI_TRACING=ON"
-      "-DSYCL_COMPILER_VERSION=20251104" # TODO find a better way to set this
+      "-DSYCL_COMPILER_VERSION=20251112" # TODO find a better way to set this
 
       # Override clang resource directory to use build-time path during build to match cc-wrapper
       "-DCLANG_RESOURCE_DIR=../lib/clang/22"
@@ -145,7 +146,7 @@ in
 
       # TODO vielleicht pins.compute-runtime headers mit einem richtigen package ersetzen ?
       "-DUR_USE_EXTERNAL_UMF=ON"
-      "-DL0_COMPUTE_RUNTIME_HEADERS=${pins.compute-runtime}/level_zero/include"
+      "-DL0_COMPUTE_RUNTIME_HEADERS=${intel-compute-runtime.src}/level_zero/include"
     ];
 
     postPatch = ''

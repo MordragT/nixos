@@ -68,10 +68,10 @@
   {
     "slug": "ghostery",
     "name": "Ghostery – Privacy Ad Blocker",
-    "version": "10.5.23",
+    "version": "10.5.24",
     "addonId": "firefox@ghostery.com",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4643108/ghostery-10.5.23.xpi",
-    "sha256": "sha256:263b5cfb2afaa04a7e363490cc25ddc9a5b4b98d589fa1fc1ee856877463d688",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4653652/ghostery-10.5.24.xpi",
+    "sha256": "sha256:e1410f10b5f699c75beb5a965b6e728bb77827ccaea8bbf0e8dca4c0b0321cef",
     "homepage": "http://www.ghostery.com/",
     "description": "The best privacy tool and ad blocker extension for Firefox. Stop trackers, speed up websites and block ads everywhere including YouTube and Facebook.",
     "license": "MPL-2.0"
@@ -90,10 +90,10 @@
   {
     "slug": "proton-vpn-firefox-extension",
     "name": "Proton VPN: Fast & Secure",
-    "version": "1.2.10",
+    "version": "1.2.13",
     "addonId": "vpn@proton.ch",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4580763/proton_vpn_firefox_extension-1.2.10.xpi",
-    "sha256": "sha256:63063ab30bf1b02aaaa54d3f3e7902811683093b10fdd55dc410345a8dcae1d5",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4643086/proton_vpn_firefox_extension-1.2.13.xpi",
+    "sha256": "sha256:f300dea219aa183102c35d5f3d5cc82f7ab78e5545380853bd09dc8662aac147",
     "homepage": "https://protonvpn.com/",
     "description": "Secure your internet and protect your online privacy in one click.",
     "license": "GPL-3.0-only"

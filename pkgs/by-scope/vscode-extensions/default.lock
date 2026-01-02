@@ -32,8 +32,8 @@
   {
     "name": "parol-vscode",
     "publisher": "jsinger67",
-    "version": "0.5.3",
-    "sha256": "0slmrbifbwpyazqg3kspsq9vn3l5dcx6da8kx4zdj6yjwbysgkb4"
+    "version": "0.5.4",
+    "sha256": "1msrjgswc0sq8fvyvarm9jxjngbwvq7p1za1bzfrzmwq71k54g6j"
   },
   {
     "name": "sublime-keybindings",
@@ -44,8 +44,8 @@
   {
     "name": "texlab",
     "publisher": "efoerster",
-    "version": "5.24.1",
-    "sha256": "1m8f2ldr4bmaz0fqv8pzispgxag19h268qdnf1mljgrrwr3ibhvp"
+    "version": "5.25.1",
+    "sha256": "10zz4x35v8skvjwl48zipvp2agsppg48cy27i31qjcyjqdsvq1bc"
   },
   {
     "name": "vscode-nickel",

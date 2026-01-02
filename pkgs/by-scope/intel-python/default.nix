@@ -82,11 +82,12 @@ in {
 
   surya-ocr = callPackage ./surya-ocr {};
 
-  torch = callPackage ./torch {
+  torch-bin = callPackage ./torch-bin {
     inherit (build-support) fetchtorch;
   };
 
-  torch-src = callPackage ./torch-src {};
+  # torch = self.torch-bin;
+  torch = callPackage ./torch {};
 
   torch-stoi = callPackage ./torch-stoi {};
 

@@ -1,15 +1,14 @@
 {
   lib,
   bazel_8,
-  buildBazelPackage,
-  # bazelPackage, # somehow not in package set
+  bazelPackage,
   fetchFromGitHub,
   intel-sycl,
   oneapi-tbb,
   oneapi-math,
 }:
 # requires dpcpp compiler
-buildBazelPackage.override {inherit (intel-sycl) stdenv;} rec {
+bazelPackage.override {inherit (intel-sycl) stdenv;} rec {
   name = "oneapi-dal";
   version = "2025.9.0";
 
@@ -18,6 +17,13 @@ buildBazelPackage.override {inherit (intel-sycl) stdenv;} rec {
     repo = "oneDAL";
     rev = version;
     hash = "sha256-RhRqENQh/Ro0aqHCHeTGv+42sSn58E9Dm9bjQpolnQg=";
+  };
+
+  registry = fetchFromGitHub {
+    owner = "bazelbuild";
+    repo = "bazel-central-registry";
+    rev = "ffe6744fa1973c113dd73d46bc6ee0e82341052b";
+    hash = "";
   };
 
   bazel = bazel_8;
@@ -38,9 +44,6 @@ buildBazelPackage.override {inherit (intel-sycl) stdenv;} rec {
     rm -f .bazelversion
     patchShebangs .
   '';
-
-  # fetchAttrs.sha256 = "";
-  # buildAttrs = {};
 
   bazelRepoCacheFOD = {
     outputHash = "";

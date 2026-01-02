@@ -12,7 +12,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      # pyside broken: mtk-client
+      mtkclient
       scrcpy
       spflashtool
     ];

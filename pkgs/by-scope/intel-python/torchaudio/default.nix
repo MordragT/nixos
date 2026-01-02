@@ -1,5 +1,4 @@
 {
-  python,
   buildPythonPackage,
   fetchtorch,
   autoPatchelfHook,

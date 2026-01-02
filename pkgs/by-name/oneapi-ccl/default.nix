@@ -8,13 +8,13 @@
 # requires dpcpp compiler
 intel-sycl.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
-  version = "2021.16.2";
+  version = "2021.17";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneCCL";
     rev = finalAttrs.version;
-    hash = "sha256-WGTSBaKo0cdWVircM05hmMHIT1anURjUL62smP1f0Bw=";
+    hash = "sha256-m+TQYtSs8qD2/5YzW/WRtl6Eg8nhGMVuSVi3Tz2ZQBQ=";
   };
 
   outputs = ["out" "dev"];
@@ -26,6 +26,8 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     level-zero
   ];
+
+  # env.DPCPP_ROOT = intel-sycl.stdenv.cc.cc;
 
   cmakeFlags = [
     "-DBUILD_EXAMPLES=OFF"

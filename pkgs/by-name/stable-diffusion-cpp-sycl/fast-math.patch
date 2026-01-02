@@ -1,0 +1,21 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -141,17 +141,8 @@
+     message("-- Use SYCL as backend stable-diffusion")
+     set(GGML_SYCL ON)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-narrowing -fsycl")
+     add_definitions(-DSD_USE_SYCL)
+-    # disable fast-math on host, see:
+-    # https://www.intel.com/content/www/us/en/docs/cpp-compiler/developer-guide-reference/2021-10/fp-model-fp.html
+-    if (WIN32)
+-        set(SYCL_COMPILE_OPTIONS /fp:precise)
+-    else()
+-        set(SYCL_COMPILE_OPTIONS -fp-model=precise)
+-    endif()
+-    message("-- Turn off fast-math for host in SYCL backend")
+-    target_compile_options(${SD_LIB} PRIVATE ${SYCL_COMPILE_OPTIONS})
+ endif()
+ 
+ set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+ 
