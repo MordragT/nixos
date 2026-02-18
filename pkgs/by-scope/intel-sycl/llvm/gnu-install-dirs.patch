@@ -185,19 +185,11 @@ index e61efbb303fc..a73c58584567 100644
  config.substitutions.append(('%{flags}', '--sysroot=@CMAKE_INSTALL_PREFIX@'))
  
 diff --git a/libdevice/cmake/modules/SYCLLibdevice.cmake b/libdevice/cmake/modules/SYCLLibdevice.cmake
-index 21989df43c00..36aee071dd96 100644
 --- a/libdevice/cmake/modules/SYCLLibdevice.cmake
 +++ b/libdevice/cmake/modules/SYCLLibdevice.cmake
-@@ -12,16 +12,16 @@ else()
-   set(obj-suffix o)
-   set(obj-new-offload-suffix new.o)
-   set(spv_binary_dir "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
--  set(install_dest_spv lib${LLVM_LIBDIR_SUFFIX})
-+  set(install_dest_spv ${CMAKE_INSTALL_LIBDIR})
-   set(devicelib_host_static_obj libsycl-devicelib-host.a)
-   set(devicelib_host_static_obj-new-offload libsycl-devicelib-host.new.a)
+@@ -13,11 +13,11 @@
+ set(devicelib_host_static_obj-new-offload libsycl-devicelib-host.new.a)
  endif()
- set(spv-suffix spv)
  set(bc-suffix bc)
  set(bc_binary_dir "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
 -set(install_dest_obj lib${LLVM_LIBDIR_SUFFIX})
@@ -206,9 +198,11 @@ index 21989df43c00..36aee071dd96 100644
 +set(install_dest_obj ${CMAKE_INSTALL_LIBDIR})
 +set(install_dest_obj-new-offload ${CMAKE_INSTALL_LIBDIR})
 +set(install_dest_bc ${CMAKE_INSTALL_LIBDIR})
- 
+
  string(CONCAT sycl_targets_opt
-   "-fsycl-targets="
+ "-fsycl-targets="
+ "spir64_x86_64-unknown-unknown,"
+
 diff --git a/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in b/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in
 index 6ffdd70c6177..fadb6b3cb02f 100644
 --- a/libunwind/test/configs/armv7m-picolibc-libunwind.cfg.in

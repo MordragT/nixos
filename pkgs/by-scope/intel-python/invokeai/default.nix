@@ -93,6 +93,7 @@ in
     pythonRemoveDeps = [
       "bitsandbytes"
       "opencv-contrib-python"
+      "mediapipe"
     ];
     pythonRelaxDeps = [
       "diffusers"
@@ -118,7 +119,7 @@ in
       diffusers
       gguf
       invisible-watermark
-      mediapipe
+      # mediapipe # not in python3.13
       numpy
       onnx
       onnxruntime
@@ -127,7 +128,7 @@ in
       safetensors
       sentencepiece
       spandrel
-      ipex
+      # ipex
       torch
       torchmetrics
       torchsde

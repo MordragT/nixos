@@ -25,7 +25,7 @@ def create_right_prompt [] {
             | where ($it | str starts-with "# branch.head")
             | first
             | split column ' '
-            | get column3
+            | get column2
         )
         let branch_prompt = [
             (char space)

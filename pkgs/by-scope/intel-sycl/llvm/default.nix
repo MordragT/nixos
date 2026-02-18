@@ -135,7 +135,7 @@ in
 
       # options
       "-DSYCL_ENABLE_XPTI_TRACING=ON"
-      "-DSYCL_COMPILER_VERSION=20251112" # TODO find a better way to set this
+      "-DSYCL_COMPILER_VERSION=20260101" # TODO find a better way to set this
 
       # Override clang resource directory to use build-time path during build to match cc-wrapper
       "-DCLANG_RESOURCE_DIR=../lib/clang/22"

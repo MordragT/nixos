@@ -40,6 +40,7 @@ in
         url = "https://patch-diff.githubusercontent.com/raw/ggml-org/llama.cpp/pull/13503.patch";
         hash = "sha256-3UU4nrOnJVVz8TLdtsfg/zLub37Y73IyhBRUqD547iA=";
       })
+      ./remove-syclcompat.patch
     ];
 
     nativeBuildInputs = [

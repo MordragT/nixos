@@ -12,12 +12,13 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      android-tools
       # distrobox
       hollywood # fake hacking
       # broken oxen
       # broken ventoy # create bootable usb drive for isos
-      xorg.xlsclients
-      xorg.xeyes
+      xlsclients
+      xeyes
       wayland-utils
       lswt
       # yt-dlp # download youtube videos

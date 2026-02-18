@@ -8,7 +8,7 @@
   plugins = [
     "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
     "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
-    "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
+    # broken https://github.com/nushell/nushell/issues/17510: "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
   ];
 in {
   options.mordrag.programs.nushell = {

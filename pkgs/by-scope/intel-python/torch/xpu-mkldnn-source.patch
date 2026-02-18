@@ -1,0 +1,32 @@
+diff --git a/cmake/Modules/FindMKLDNN.cmake b/cmake/Modules/FindMKLDNN.cmake
+--- a/cmake/Modules/FindMKLDNN.cmake
++++ b/cmake/Modules/FindMKLDNN.cmake
+@@ -27,10 +27,10 @@
+       set(DNNL_LIB_NAME "dnnl.lib")
+     elseif(LINUX)
+       # Linux
+       # g++ is soft linked to /usr/bin/cxx, oneDNN would not treat it as an absolute path
+-      set(DNNL_HOST_COMPILER "g++")
+-      set(SYCL_CXX_DRIVER "icpx")
++      set(DNNL_HOST_COMPILER "DEFAULT")
++      set(SYCL_CXX_DRIVER "@clang++_exe@")
+       set(DNNL_LIB_NAME "libdnnl.a")
+     else()
+       MESSAGE(FATAL_ERROR "OneDNN for Intel GPU in PyTorch currently supports only Windows and Linux.
+                            Detected system '${CMAKE_SYSTEM_NAME}' is not supported.")
+@@ -45,13 +45,12 @@
+         list(APPEND DNNL_MAKE_COMMAND "--" "-l" "$ENV{MAX_JOBS}")
+       endif()
+     endif()
+     ExternalProject_Add(xpu_mkldnn_proj
+-      GIT_REPOSITORY https://github.com/uxlfoundation/oneDNN
+-      GIT_TAG v3.9.1
++      DOWNLOAD_COMMAND cp -r @xpu_mkldnn_source@/. <SOURCE_DIR>
+       PREFIX ${XPU_MKLDNN_DIR_PREFIX}
+       BUILD_IN_SOURCE 0
+-      CMAKE_ARGS  -DCMAKE_C_COMPILER=icx
++      CMAKE_ARGS  -DCMAKE_C_COMPILER=@clang_exe@
+       -DCMAKE_CXX_COMPILER=${SYCL_CXX_DRIVER}
+       -DDNNL_GPU_RUNTIME=SYCL
+       -DDNNL_CPU_RUNTIME=THREADPOOL
+       -DDNNL_BUILD_TESTS=OFF

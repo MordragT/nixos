@@ -68,6 +68,9 @@ in {
       wantedBy = ["multi-user.target"];
       environment = {
         ZES_ENABLE_SYSMAN = "1";
+        # level-zero discovery has been changed and somehow doesn't work anymore
+        # https://github.com/oneapi-src/level-zero/pull/402/files
+        LD_LIBRARY_PATH = "/run/opengl-driver/lib/";
       };
       serviceConfig = {
         Type = "idle";
@@ -79,7 +82,7 @@ in {
         DynamicUser = true;
         User = "llama-cpp";
         Group = "llama-cpp";
-        ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${toString (lib.cli.toGNUCommandLine {} cfg.settings)}";
+        ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${toString (lib.cli.toCommandLineGNU {} cfg.settings)}";
       };
     };
 

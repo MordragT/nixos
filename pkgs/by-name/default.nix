@@ -64,6 +64,5 @@ in {
 
   unified-memory-framework = callPackage ./unified-memory-framework {};
   vulkan-raytracing = callPackage ./vulkan-raytracing {};
-  wine-tkg = callPackage ./wine-tkg {};
   zen-browser-bin = callPackage ./zen-browser-bin {};
 }

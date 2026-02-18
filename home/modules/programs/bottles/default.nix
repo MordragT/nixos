@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.mordrag.programs.bottles;
-  wine = pkgs.wineWowPackages.stagingFull;
+  wine = pkgs.wineWow64Packages.stagingFull;
   bottles = pkgs.bottles.override {
     removeWarningPopup = true;
   };

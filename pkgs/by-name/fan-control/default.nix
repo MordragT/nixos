@@ -6,7 +6,8 @@
   libxkbcommon,
   vulkan-loader,
   lm_sensors,
-  xorg,
+  libX11,
+  libXi,
 }: let
   src = fetchFromGitHub {
     owner = "wiiznokes";
@@ -36,8 +37,8 @@ in
 
     buildInputs = [
       libxkbcommon
-      xorg.libX11
-      xorg.libXi
+      libX11
+      libXi
       sensors
       vulkan-loader
     ];

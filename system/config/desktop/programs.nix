@@ -16,7 +16,6 @@
   };
   # broken mordrag.programs.valent.enable = true;
 
-  programs.adb.enable = true;
   programs.ausweisapp = {
     enable = true;
     openFirewall = true;

@@ -23,13 +23,14 @@
 
   services.resolved = {
     enable = true;
-    llmnr = "false";
-    dnssec = "allow-downgrade";
-    dnsovertls = "true";
-    extraConfig = ''
-      MulticastDNS=false
-      DNSStubListener=true
-    '';
+
+    settings.Resolve = {
+      LLMNR = false;
+      MulticastDNS = false;
+      DNSStubListener = true;
+      DNSSEC = "allow-downgrade";
+      DNSOverTLS = true;
+    };
   };
 
   networking.nftables.enable = true;

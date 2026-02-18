@@ -56,7 +56,7 @@ in {
   config = let
     root = "/var/lib/invokeai";
     config-file = builtins.toFile "invokeai.yaml" (lib.generators.toYAML {} cfg.settings);
-    args = lib.cli.toGNUCommandLine {} {
+    args = lib.cli.toCommandLineGNU {} {
       inherit root;
       # config = "${config-file}";
     };

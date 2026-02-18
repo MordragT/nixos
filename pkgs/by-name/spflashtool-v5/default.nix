@@ -6,7 +6,11 @@
   fontconfig,
   freetype,
   glib,
-  xorg,
+  libXrender,
+  libXext,
+  libX11,
+  libSM,
+  libICE,
   zlib,
 }:
 stdenv.mkDerivation rec {
@@ -27,11 +31,11 @@ stdenv.mkDerivation rec {
     fontconfig
     freetype
     glib
-    xorg.libXrender
-    xorg.libXext
-    xorg.libX11
-    xorg.libSM
-    xorg.libICE
+    libXrender
+    libXext
+    libX11
+    libSM
+    libICE
     zlib
   ];
 

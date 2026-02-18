@@ -31,10 +31,5 @@ in (wrapCCWith {
       "-L${gcc.cc}/lib/gcc/${stdenv.targetPlatform.config}/${gcc.version}"
       "-L${gcc.cc.lib}/lib"
     ];
-
-    # setup-hook = [
-    #   "export ONEAPI_ROOT=${cc}"
-    #   "export CMPLR_ROOT=${cc}"
-    # ];
   };
 })

@@ -36,6 +36,11 @@
     # "tsc=reliable"
     # "clocksource=tsc"
     "retbleed=off"
+    # THP transparently collapses large regions of separately allocated memory
+    # into hugepages which can lead to significant performance benefits.
+    # By default, it only does this for processes which explicitly ask for it,
+    # this makes it do that for any process
+    "transparent_hugepage=always"
   ];
   boot.kernel.sysctl = {
     # "dev.i915.perf_stream_paranoid" = 0; # needed for intel arc metrics ??

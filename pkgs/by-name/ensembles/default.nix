@@ -21,7 +21,7 @@
   suil,
   fluidsynth,
   portmidi,
-  xorg,
+  libX11,
   desktop-file-utils,
 }:
 stdenv.mkDerivation {
@@ -59,7 +59,7 @@ stdenv.mkDerivation {
     suil
     fluidsynth
     portmidi
-    xorg.libX11
+    libX11
   ];
 
   meta = with lib; {

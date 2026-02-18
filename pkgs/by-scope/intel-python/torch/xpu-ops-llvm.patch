@@ -1,0 +1,116 @@
+diff --git a/cmake/BuildFlags.cmake b/cmake/BuildFlags.cmake
+--- a/cmake/BuildFlags.cmake
++++ b/cmake/BuildFlags.cmake
+@@ -84,9 +84,8 @@
+     set(SYCL_KERNEL_OPTIONS ${SYCL_KERNEL_OPTIONS} -fhonor-infinities)
+     set(SYCL_KERNEL_OPTIONS ${SYCL_KERNEL_OPTIONS} -fno-associative-math)
+     set(SYCL_KERNEL_OPTIONS ${SYCL_KERNEL_OPTIONS} -fno-approx-func)
+     set(SYCL_KERNEL_OPTIONS ${SYCL_KERNEL_OPTIONS} -Wno-absolute-value)
+-    set(SYCL_KERNEL_OPTIONS ${SYCL_KERNEL_OPTIONS} -no-ftz)
+   endif()
+ 
+   if(CMAKE_BUILD_TYPE MATCHES Debug)
+     set(SYCL_KERNEL_OPTIONS ${SYCL_KERNEL_OPTIONS} -g -O0 -Rno-debug-disables-optimization)
+diff --git a/cmake/Modules/FindSYCL.cmake b/cmake/Modules/FindSYCL.cmake
+--- a/cmake/Modules/FindSYCL.cmake
++++ b/cmake/Modules/FindSYCL.cmake
+@@ -74,9 +74,9 @@
+ # Parse HOST_COMPILATION mode.
+ option(SYCL_HOST_COMPILATION_CXX "Generated file extension" ON)
+ 
+ # SYCL_VERBOSE_BUILD
+-option(SYCL_VERBOSE_BUILD "Print out the commands run while compiling the SYCL source file.  With the Makefile generator this defaults to VERBOSE variable specified on the command line, but can be forced on with this option." OFF)
++option(SYCL_VERBOSE_BUILD "Print out the commands run while compiling the SYCL source file.  With the Makefile generator this defaults to VERBOSE variable specified on the command line, but can be forced on with this option." ON)
+ 
+ macro(SYCL_INCLUDE_EXTERNAL_DEPENDENCIES dependency_file)
+   list(APPEND SYCL_EXTERNAL_DEPEND ${dependency_file})
+ endmacro()
+diff --git a/cmake/Modules/FindSYCLToolkit.cmake b/cmake/Modules/FindSYCLToolkit.cmake
+--- a/cmake/Modules/FindSYCLToolkit.cmake
++++ b/cmake/Modules/FindSYCLToolkit.cmake
+@@ -215,39 +215,6 @@
+   # Include in Cache
+   set(SYCL_LANGUAGE_VERSION "${SYCL_LANGUAGE_VERSION}" CACHE STRING "SYCL Language version")
+ endif()
+ 
+-# Create a clean working directory.
+-set(SYCL_CMPLR_TEST_DIR "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/TESTSYCLCMPLR")
+-file(REMOVE_RECURSE ${SYCL_CMPLR_TEST_DIR})
+-file(MAKE_DIRECTORY ${SYCL_CMPLR_TEST_DIR})
+-# Create the test source file
+-set(TEST_SRC_FILE "${SYCL_CMPLR_TEST_DIR}/llvm_features.cpp")
+-set(TEST_EXE "${TEST_SRC_FILE}.exe")
+-SYCL_CMPLR_TEST_WRITE(${TEST_SRC_FILE} "__INTEL_LLVM_COMPILER")
+-# Build the test and create test executable
+-SYCL_CMPLR_TEST_BUILD(error ${TEST_SRC_FILE} ${TEST_EXE})
+-if(error)
+-  message(FATAL_ERROR "Can not build SYCL_CMPLR_TEST")
+-endif()
+-# Execute the test to extract information
+-SYCL_CMPLR_TEST_RUN(error ${TEST_EXE})
+-if(error)
+-  message(FATAL_ERROR "Can not run SYCL_CMPLR_TEST")
+-endif()
+-# Extract test output for information
+-SYCL_CMPLR_TEST_EXTRACT(${test_output} "__INTEL_LLVM_COMPILER")
+-
+-# Check whether the value of __INTEL_LLVM_COMPILER macro was successfully extracted
+-string(COMPARE EQUAL "${__INTEL_LLVM_COMPILER}" "" nosycllang)
+-if(nosycllang)
+-  set(SYCLTOOLKIT_FOUND False)
+-  set(SYCL_REASON_FAILURE "Can not find __INTEL_LLVM_COMPILER}")
+-  set(SYCL_NOT_FOUND_MESSAGE "${SYCL_REASON_FAILURE}")
+-endif()
+-
+-
+-# Include in Cache
+-set(__INTEL_LLVM_COMPILER "${__INTEL_LLVM_COMPILER}" CACHE STRING "Intel llvm compiler")
+-
+ message(DEBUG "The SYCL compiler is ${SYCL_COMPILER}")
+ message(DEBUG "The SYCL Flags are ${SYCL_FLAGS}")
+diff --git a/cmake/SYCL.cmake b/cmake/SYCL.cmake
+--- a/cmake/SYCL.cmake
++++ b/cmake/SYCL.cmake
+@@ -45,16 +45,8 @@
+     string(STRIP "${drv_ver_contents}" IGC_OCLOC_VERSION)
+   endif()
+ endif()
+ 
+-# find detailed date of compiler
+-execute_process(
+-  COMMAND icpx --version
+-  OUTPUT_VARIABLE ICX_VERSION_OUTPUT
+-  OUTPUT_STRIP_TRAILING_WHITESPACE
+-)
+-string(REGEX REPLACE ".*\\.([0-9]+)\\).*" "\\1" ICX_DATE ${ICX_VERSION_OUTPUT})
+-
+ find_package(SYCL REQUIRED)
+ if(NOT SYCL_FOUND)
+   message("Can NOT find SYCL cmake helpers module!")
+   return()
+diff --git a/cmake/Codegen.cmake b/cmake/Codegen.cmake
+--- a/cmake/Codegen.cmake
++++ b/cmake/Codegen.cmake
+@@ -14,21 +14,10 @@
+ set(XPUFallback_TEMPLATE ${TORCH_XPU_OPS_ROOT}/src/ATen/native/xpu/XPUFallback.template)
+ set(XPU_AOTI_INSTALL_DIR ${TORCH_ROOT}/torch/csrc/inductor/aoti_torch/generated/extend)
+ set(XPU_AOTI_SHIM_HEADER ${XPU_AOTI_INSTALL_DIR}/c_shim_xpu.h)
+ set(XPU_AOTI_SHIM_SOURCE ${XPU_AOTI_INSTALL_DIR}/c_shim_xpu.cpp)
+-set(CODEGEN_XPU_YAML_DIR ${TORCH_XPU_OPS_ROOT}/yaml)
++set(CODEGEN_XPU_YAML_DIR ${CMAKE_BINARY_DIR}/codegen_xpu)
+
+-# Codegen prepare process
+-if(WIN32)
+-  file(TO_NATIVE_PATH "${CODEGEN_XPU_YAML_DIR}/templates" DestPATH)
+-  file(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/aten/src/ATen/templates" SrcPATH)
+-  # Copy pytorch templates
+-  execute_process(COMMAND cmd /c xcopy ${SrcPATH} ${DestPATH} /E /H /C /I /Y > nul)
+-else()
+-  # soft link to pytorch templates
+-  execute_process(COMMAND ln -sf ${CMAKE_SOURCE_DIR}/aten/src/ATen/templates ${CODEGEN_XPU_YAML_DIR})
+-endif()
+-
+ set(XPU_CODEGEN_COMMAND
+   "${Python_EXECUTABLE}" -m torchgen.gen
+   --source-path ${CODEGEN_XPU_YAML_DIR}
+   --install-dir ${BUILD_TORCH_XPU_ATEN_GENERATED}

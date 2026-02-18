@@ -78,12 +78,12 @@
       freetype
       zlib
       SDL2
-      xorg.libXext
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXfixes
-      xorg.libXrandr
-      xorg.libXScrnSaver
+      libXext
+      libXcursor
+      libXi
+      libXfixes
+      libXrandr
+      libXScrnSaver
     ];
 
     meta.broken = true;
@@ -136,10 +136,10 @@ in
       tinyobjloader
       libGL
       libGLU
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXinerama
+      libX11
+      libXcursor
+      libXrandr
+      libXinerama
     ];
 
     meta = with lib; {

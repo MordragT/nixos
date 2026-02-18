@@ -47,7 +47,7 @@ in {
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
-      exhibit # 3D model viewer
+      # broken exhibit # 3D model viewer
       eyedropper # pick format colors
       # raider # file shredder
       resources # monitor hardware resources
@@ -71,7 +71,7 @@ in {
       # gnome-obfuscate # censor private information
       # gnome-podcasts # listen to podcast
       # gnome-secrets # password manager
-      # gnome-sound-recorder
+      gnome-sound-recorder
       # gnome-solanum # pomodoro timer
       gnome-system-monitor
       # gnome-tweaks

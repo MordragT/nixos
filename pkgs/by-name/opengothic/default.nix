@@ -9,7 +9,8 @@
   libglvnd,
   vulkan-headers,
   vulkan-loader,
-  xorg,
+  libX11,
+  libXcursor,
   steamCompatToolHook,
 }:
 stdenv.mkDerivation rec {
@@ -56,8 +57,8 @@ stdenv.mkDerivation rec {
     libglvnd
     vulkan-headers
     vulkan-loader
-    xorg.libX11
-    xorg.libXcursor
+    libX11
+    libXcursor
   ];
 
   postInstall = ''

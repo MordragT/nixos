@@ -8,13 +8,12 @@ self: pkgs: let
   #   rev = "v${version}";
   #   hash = "sha256-j8+DmGKO0qDF5JjH+DlkLKs1kBz6dS7ukwySd/Crqv0=";
   # };
-  version = "nightly-2025-11-12";
+  version = "nightly-2026-01-01";
   src = pkgs.fetchFromGitHub {
     owner = "intel";
     repo = "llvm";
-    # rev = version;
-    rev = "ab3dc98de0fd1ada9df12b138de1e1f8b715cc27";
-    hash = "sha256-oHk8kQVNsyC9vrOsDqVoFLYl2yMMaTgpQnAW9iHZLfE=";
+    rev = version;
+    hash = "sha256-OkSyn2KdAzptgKpTAnw//+6x8fbk/5Rjh1/6soQAjWc=";
   };
 in {
   lld = callPackage ./lld {
@@ -43,6 +42,12 @@ in {
   };
 
   stdenv = pkgs.overrideCC pkgs.stdenv self.clang;
+
+  dpcpp-compat = callPackage ./dpcpp-compat {
+    inherit (self) clang llvm openmp;
+  };
+
+  compatStdenv = pkgs.overrideCC pkgs.stdenv self.dpcpp-compat;
 
   openmp = callPackage ./openmp {
     inherit (self) stdenv;

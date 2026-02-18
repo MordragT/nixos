@@ -35,19 +35,13 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     # "-DDNNL_LIBRARY_TYPE=STATIC"
     "-DDNNL_CPU_RUNTIME=SYCL"
     "-DDNNL_GPU_RUNTIME=SYCL"
-    # "-DDNNL_BUILD_DOC=OFF"
-    # "-DDNNL_BUILD_EXAMPLES=OFF"
-    # "-DDNNL_BUILD_TESTS=OFF"
+    "-DDNNL_BUILD_DOC=OFF"
+    "-DDNNL_BUILD_EXAMPLES=OFF"
+    "-DDNNL_BUILD_TESTS=OFF"
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.
   doCheck = false;
-
-  # postPatch = ''
-  #   substituteInPlace src/CMakeLists.txt \
-  #     --replace-fail 'if(DNNL_GPU_RUNTIME STREQUAL "OCL")' \
-  #     'if(DNNL_GPU_RUNTIME STREQUAL "OCL" OR DNNL_GPU_RUNTIME STREQUAL "SYCL")'
-  # '';
 
   # Fixup bad cmake paths
   postInstall = ''

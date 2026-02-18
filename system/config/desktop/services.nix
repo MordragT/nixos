@@ -35,7 +35,7 @@
   mordrag.services.wg-quick.enable = true;
 
   services.espanso = {
-    enable = true;
+    enable = false;
     package = pkgs.espanso-wayland;
   };
   services.flatpak.enable = true;

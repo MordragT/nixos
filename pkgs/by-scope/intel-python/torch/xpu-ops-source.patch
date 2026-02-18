@@ -1,0 +1,58 @@
+diff --git a/caffe2/CMakeLists.txt b/caffe2/CMakeLists.txt
+--- a/caffe2/CMakeLists.txt
++++ b/caffe2/CMakeLists.txt
+@@ -1149,36 +1149,8 @@
+   add_library(torch_xpu ${Caffe2_XPU_SRCS})
+   torch_compile_options(torch_xpu)  # see cmake/public/utils.cmake
+   target_compile_definitions(torch_xpu PRIVATE USE_XPU)
+ 
+-  # ATen XPU implementation
+-  set(TORCH_XPU_OPS_DIR ${TORCH_ROOT}/third_party/torch-xpu-ops)
+-  set(TORCH_XPU_OPS_REPO_URL https://github.com/intel/torch-xpu-ops.git)
+-  file(READ "${TORCH_ROOT}/third_party/xpu.txt" TORCH_XPU_OPS_COMMIT)
+-  string(REGEX REPLACE "\n$" "" TORCH_XPU_OPS_COMMIT "${TORCH_XPU_OPS_COMMIT}")
+-  if(NOT EXISTS "${TORCH_XPU_OPS_DIR}/.git")
+-    execute_process(
+-      COMMAND git clone --quiet ${TORCH_XPU_OPS_REPO_URL} ${TORCH_XPU_OPS_DIR}
+-      RESULT_VARIABLE _exitcode)
+-    if(NOT _exitcode EQUAL 0)
+-      message(FATAL_ERROR "Fail to clone ${TORCH_XPU_OPS_REPO_URL}")
+-    endif()
+-  endif()
+-  execute_process(
+-    COMMAND git fetch --quiet
+-    WORKING_DIRECTORY ${TORCH_XPU_OPS_DIR}
+-    RESULT_VARIABLE _exitcode)
+-  if(NOT _exitcode EQUAL 0)
+-    message(FATAL_ERROR "Fail to fetch ${TORCH_XPU_OPS_REPO_URL}")
+-  endif()
+-  execute_process(
+-    COMMAND git checkout --quiet ${TORCH_XPU_OPS_COMMIT}
+-    WORKING_DIRECTORY ${TORCH_XPU_OPS_DIR}
+-    RESULT_VARIABLE _exitcode)
+-  if(NOT _exitcode EQUAL 0)
+-    message(FATAL_ERROR "Fail to checkout ${TORCH_XPU_OPS_REPO_URL} to ${TORCH_XPU_OPS_COMMIT}")
+-  endif()
+-
+   set(TORCH_XPU_OPS_INCLUDE_DIRS
+       ${TORCH_SRC_DIR}/csrc/api
+       ${TORCH_SRC_DIR}/csrc/api/include
+       ${Caffe2_CPU_INCLUDE}
+@@ -1190,10 +1162,15 @@
+   #    compilation. add_custom_command requires an explicit dependency.
+   list(APPEND ${Caffe2_XPU_INCLUDE} ${TORCH_XPU_OPS_DIR}/src/ATen/)
+   set(TORCH_XPU_OPS_PYTORCH_DEPS ATEN_CPU_FILES_GEN_TARGET)
+ 
+-  add_subdirectory(${TORCH_ROOT}/third_party/torch-xpu-ops
+-      ${CMAKE_BINARY_DIR}/caffe2/aten_xpu)
++  set(TORCH_XPU_OPS_DIR "@torch_xpu_ops_path@")
++
++  if(NOT TORCH_XPU_OPS_DIR)
++    message(FATAL_ERROR "TORCH_XPU_OPS_DIR ist nicht definiert")
++  endif()
++
++  add_subdirectory(${TORCH_XPU_OPS_DIR} ${CMAKE_BINARY_DIR}/caffe2/aten_xpu)
+   if(NOT TARGET torch_xpu_ops)
+     message(WARNING "Failed to include ATen XPU implementation target")
+   else()
+     # USE_C10D_XCCL to decide if XCCL backend is enabled in torch-xpu-ops build.

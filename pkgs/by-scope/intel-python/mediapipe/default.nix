@@ -23,11 +23,11 @@ in
 
     src = fetchPypi {
       inherit pname version format;
-      dist = "cp312";
-      python = "cp312";
-      abi = "cp312";
+      dist = "cp313";
+      python = "cp313";
+      abi = "cp313";
       platform = "manylinux_2_28_x86_64";
-      hash = "sha256-8EUrfIY+wM0cY2DwuB/iSSxWCI3oCt+PNkLFe0Xh8dM=";
+      hash = "";
     };
 
     nativeBuildInputs = [autoPatchelfHook];

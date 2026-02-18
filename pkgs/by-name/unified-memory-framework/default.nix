@@ -10,13 +10,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "unified-memory-framework";
-  version = "1.0.3";
+  version = "1.1.0-dev4";
 
   src = fetchFromGitHub {
     owner = "oneapi-src";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-j7qQwBetICf1sTz+ssZQLm9P0SiH68lcEvtV1YLuW5s=";
+    hash = "sha256-PE2p4cDtIuw8RzMBG/QJwUK9UZ51hQMjKPR/cCWkMEE=";
   };
 
   nativeBuildInputs = [

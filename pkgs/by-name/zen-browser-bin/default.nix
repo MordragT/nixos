@@ -9,7 +9,7 @@
   gtk3,
   alsa-lib,
   dbus-glib,
-  xorg,
+  libXtst,
   pciutils,
   libva,
   ffmpeg_7,
@@ -80,7 +80,7 @@ in
       gtk3
       alsa-lib
       dbus-glib
-      xorg.libXtst
+      libXtst
     ];
 
     installPhase = ''

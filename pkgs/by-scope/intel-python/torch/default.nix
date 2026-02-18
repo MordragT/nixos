@@ -8,18 +8,22 @@
   python,
   runCommand,
   writeShellScript,
-  config,
-  autoAddDriverRunpath,
   callPackage,
+  applyPatches,
   # Native build inputs
   cmake,
-  symlinkJoin,
   which,
   pybind11,
   pkg-config,
+  breakpointHook,
   # Build inputs
   openssl,
-  numactl,
+  oneapi-dnn,
+  pti-gpu,
+  intel-compute-runtime,
+  ocl-icd,
+  opencl-headers,
+  level-zero,
   # dependencies
   astunparse,
   binutils,
@@ -45,33 +49,24 @@
   tensorboard,
   protobuf,
 }: let
-  inherit
-    (lib)
-    attrsets
-    lists
-    strings
-    trivial
-    ;
-
   setBool = v:
     if v
     then "1"
     else "0";
-
-  unroll-src = writeShellScript "unroll-src" ''
-    echo "{
-      version,
-      fetchFromGitLab,
-      fetchFromGitHub,
-      runCommand,
-    }:
-    assert version == "'"'$1'"'";"
-    ${lib.getExe git-unroll} https://github.com/pytorch/pytorch v$1
-    echo
-    echo "# Update using: unroll-src [version]"
-  '';
+  sycl_compiler_version = "20260101"; # todo expose via passthruu for intel-sycl.llvm or soemthing
+  torch-xpu-ops-source = applyPatches {
+    src = fetchFromGitHub {
+      owner = "intel";
+      repo = "torch-xpu-ops";
+      rev = "789f59d8261b521282a26025c4a7a201621b4683";
+      hash = "sha256-CzSqypAX15FmGXriGzK6t/oOkbaRS6DxPXCHRmptbV4=";
+    };
+    patches = [
+      ./xpu-ops-llvm.patch
+    ];
+  };
 in
-  buildPythonPackage.override {inherit (intel-sycl) stdenv;} rec {
+  buildPythonPackage.override {stdenv = intel-sycl.compatStdenv;} rec {
     pname = "torch";
     version = "2.9.1";
     pyproject = true;
@@ -80,7 +75,6 @@ in
       "out" # output standard python package
       "dev" # output libtorch headers
       "lib" # output libtorch libraries
-      "cxxdev" # propagated deps for the cmake consumers of torch
     ];
 
     src = callPackage ./src.nix {
@@ -94,15 +88,31 @@ in
 
     patches = [
       ./clang19-template-warning.patch
-      # Propagate CUPTI to Kineto by overriding the search path with environment variables.
-      # https://github.com/pytorch/pytorch/pull/108847
-      ./pytorch-pr-108847.patch
+      ./find-sycl.patch
+      ./xpu-mkldnn-source.patch
+      ./xpu-ops-source.patch
     ];
 
     postPatch =
       ''
         substituteInPlace pyproject.toml \
           --replace-fail "setuptools>=70.1.0,<80.0" "setuptools"
+      ''
+      # What is more idiomatic ? Using subst-var-by or $ENV{...} in cmake ?
+      + ''
+        substituteInPlace caffe2/CMakeLists.txt \
+          --subst-var-by torch_xpu_ops_path ${torch-xpu-ops-source}
+      ''
+      + ''
+        substituteInPlace cmake/Modules/FindSYCLToolkit.cmake \
+          --subst-var-by sycl_compiler_version ${sycl_compiler_version} \
+          --subst-var-by clang_root "${intel-sycl.stdenv.cc}"
+      ''
+      + ''
+        substituteInPlace cmake/Modules/FindMKLDNN.cmake \
+          --subst-var-by xpu_mkldnn_source ${oneapi-dnn.src} \
+          --subst-var-by clang_exe "${intel-sycl.stdenv.cc}/bin/clang" \
+          --subst-var-by clang++_exe "${intel-sycl.stdenv.cc}/bin/clang++"
       ''
       # Provide path to openssl binary for inductor code cache hash
       # InductorError: FileNotFoundError: [Errno 2] No such file or directory: 'openssl'
@@ -128,16 +138,23 @@ in
           '"${lib.getExe' intel-sycl.stdenv.cc "${intel-sycl.stdenv.cc.targetPrefix}c++"}"'
       '';
 
+    preConfigure = ''
+      # Erstelle einen dedizierten Ordner für den Codegen
+      mkdir -p build/codegen_xpu
+
+      # 1. Kopiere die Basis-Templates von PyTorch
+      cp -r aten/src/ATen/templates build/codegen_xpu/
+
+      # 2. Kopiere die XPU-spezifischen YAMLs darüber
+      cp -r ${torch-xpu-ops-source}/yaml/* build/codegen_xpu/
+    '';
+
     # Use pytorch's custom configurations
     dontUseCmakeConfigure = true;
 
     BUILD_NAMEDTENSOR = setBool true;
     BUILD_DOCS = setBool false;
     BUILD_TEST = setBool false;
-
-    # ninja hook doesn't automatically turn on ninja
-    # because pytorch setup.py is responsible for this
-    CMAKE_GENERATOR = "Ninja";
 
     # Unlike MKL, oneDNN (née MKLDNN) is FOSS, so we enable support for
     # it by default. PyTorch currently uses its own vendored version
@@ -146,15 +163,20 @@ in
     USE_MKLDNN_CBLAS = setBool true;
 
     USE_XPU = setBool true;
+    USE_ONEMKL_XPU = setBool false; # muss aktiviert sein?
+    USE_CUDA = setBool false;
     USE_NCCL = setBool false;
+    USE_NINJA = setBool true;
 
     # Avoid using pybind11 from git submodule
     # Also avoids pytorch exporting the headers of pybind11
     USE_SYSTEM_PYBIND11 = true;
 
-    cmakeFlags = [
-      (lib.cmakeFeature "PYTHON_SIX_SOURCE_DIR" "${six.src}")
-    ];
+    # cmakeFlags = [
+    #   (lib.cmakeFeature "PYTHON_SIX_SOURCE_DIR" "${six.src}")
+    #   # (lib.cmakeFeature "XPU_MKLDNN_SOURCE_DIR" "${oneapi-dnn.src}")
+    #   # (lib.cmakeFeature "SYCL_COMPILER_VERSION" "20260101")
+    # ];
 
     preBuild = ''
       export MAX_JOBS=$NIX_BUILD_CORES
@@ -184,10 +206,15 @@ in
       ninja
       pybind11
       pkg-config
+      breakpointHook
     ];
 
     buildInputs = [
       intel-sycl.openmp
+      pti-gpu.sdk
+      ocl-icd
+      opencl-headers
+      level-zero
     ];
 
     pythonRelaxDeps = [
@@ -207,7 +234,6 @@ in
       hypothesis
       jinja2
       networkx
-      ninja
       packaging
       psutil
       pyyaml
@@ -224,7 +250,6 @@ in
 
       # torch/csrc requires `pybind11` at runtime
       pybind11
-
       triton-xpu
     ];
 
@@ -257,11 +282,6 @@ in
       mkdir $lib
       mv $out/${python.sitePackages}/torch/lib $lib/lib
       ln -s $lib/lib $out/${python.sitePackages}/torch/lib
-    '';
-
-    postFixup = ''
-      mkdir -p "$cxxdev/nix-support"
-      printWords "''${propagatedCxxBuildInputs[@]}" >> "$cxxdev/nix-support/propagated-build-inputs"
     '';
 
     # Builds in 2+h with 2 cores, and ~15m with a big-parallel builder.
