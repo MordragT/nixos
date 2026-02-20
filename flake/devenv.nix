@@ -34,7 +34,14 @@
               enable = true;
               id = "statix";
             };
-            yamllint.enable = true;
+            yamllint = {
+              enable = true;
+              settings.configuration = ''
+                rules:
+                  truthy:
+                    check-keys: false
+              '';
+            };
           };
         };
       };
