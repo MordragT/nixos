@@ -1,17 +1,20 @@
-{ ... }:
-{
-  mordrag.core.enable = true;
-
-  mordrag.programs.firefox.enable = true;
-  mordrag.programs.git.enable = true;
-  mordrag.programs.helix.enable = true;
-  mordrag.programs.mangohud.enable = true;
-  mordrag.programs.nushell.enable = true;
-  mordrag.programs.vscode.enable = true;
-  mordrag.programs.zsh.enable = true;
-
-  mordrag.collection.cli.enable = true;
-  mordrag.collection.free.enable = true;
-  mordrag.collection.gnome.enable = true;
-  mordrag.collection.nonfree.enable = true;
+_: {
+  mordrag = {
+    collection = {
+      cli.enable = true;
+      free.enable = true;
+      gnome.enable = true;
+      nonfree.enable = true;
+    };
+    core.enable = true;
+    programs = {
+      firefox.enable = true;
+      git.enable = true;
+      helix.enable = true;
+      mangohud.enable = true;
+      nushell.enable = true;
+      vscode.enable = true;
+      zsh.enable = true;
+    };
+  };
 }

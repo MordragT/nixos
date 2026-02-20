@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   imports = [
     ./gnome-disks
     ./gnome-network-displays

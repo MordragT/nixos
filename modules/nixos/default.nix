@@ -7,10 +7,12 @@
       valhali.nixosModules.default
       ./desktop
       ./environment
+      ./hardware
       ./programs
       ./secrets
       ./services
       ./bluetooth.nix
+      ./boot.nix
       ./core.nix
       ./fonts.nix
       ./locale.nix
@@ -20,6 +22,7 @@
       ./security.nix
       ./users.nix
       ./virtualisation.nix
+      ./zram.nix
     ];
   };
 }

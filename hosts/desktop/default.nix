@@ -4,7 +4,6 @@
     stateVersion = "23.11";
     modules = [
       ./configuration.nix
-      ./boot.nix
       ./file-systems.nix
       ./impermanence.nix
       ./programs.nix

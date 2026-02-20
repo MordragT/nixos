@@ -1,6 +1,4 @@
 {
-  lib,
-  config,
   pkgs,
   ...
 }:
@@ -17,26 +15,13 @@
   mordrag.users.enable = true;
   mordrag.virtualisation.enable = true;
 
-  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
+  mordrag.boot.enable = true;
+  mordrag.hardware.intel-n4100 = true;
 
-  networking.hostName = "tom-server";
-
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      intel-compute-runtime
-      intel-media-driver
-      intel-vaapi-driver
-    ];
-  };
-
-  nix.settings = {
-    substituters = [ "https://harmonia.mordrag.de" ];
-    trusted-public-keys = [ "harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8=" ];
-  };
+  # nix.settings = {
+  #   substituters = [ "https://harmonia.mordrag.de" ];
+  #   trusted-public-keys = [ "harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8=" ];
+  # };
 
   mordrag.desktop.cosmic.enable = true;
 

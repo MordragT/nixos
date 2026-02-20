@@ -17,8 +17,6 @@ in
     };
   };
 
-  #SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0 %command% +exec mordrag.cfg -high -sdl_displayindex 1 -sdlaudiodriver pipewire -nojoy
-
   config = lib.mkIf cfg.enable {
     hardware.steam-hardware.enable = true;
     programs.steam = {

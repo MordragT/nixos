@@ -1,39 +1,25 @@
 { pkgs, ... }:
 {
-  mordrag.programs.gnome-disks.enable = true;
-  # mordrag.programs.gnome-network-displays.enable = true;
-  mordrag.programs.lsfg-vk.enable = true;
-  mordrag.programs.mediatek-utils.enable = true;
-  mordrag.programs.nautilus.enable = true;
-  mordrag.programs.steam = {
-    enable = true;
-    compatPackages = with pkgs; [
-      proton-ge-bin
-      # luxtorpeda # broken: sadly chaotic nyx is discontinued
-      # proton-cachyos-bin
-      opengothic
-      # steamtinkerlaunch
-    ];
+  mordrag = {
+    programs = {
+      gnome-disks.enable = true;
+      lsfg-vk.enable = true;
+      mediatek-utils.enable = true;
+      nautilus.enable = true;
+      steam = {
+        enable = true;
+        compatPackages = with pkgs; [
+          proton-ge-bin
+          # luxtorpeda # broken: sadly chaotic nyx is discontinued
+          opengothic
+        ];
+      };
+      valent.enable = true;
+    };
   };
-  # broken mordrag.programs.valent.enable = true;
 
   programs.ausweisapp = {
     enable = true;
     openFirewall = true;
   };
-  # programs.bandwhich.enable = true; # view network utilization
-  # programs.captive-browser = {
-  #   enable = true;
-  #   interface = "wlp39s0";
-  # };
-  # programs.corectrl.enable = true;
-  # programs.corectrl.gpuOverclock.enable = true;
-  # programs.droidcam.enable = true; # this enables v4l2loopback
-  # programs.geary.enable = true;
-  # programs.seahorse.enable = true;
-  # programs.ssh.startAgent = true;
-  # programs.wireshark = {
-  #   enable = true;
-  #   package = pkgs.wireshark;
-  # };
 }

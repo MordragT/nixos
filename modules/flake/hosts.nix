@@ -44,7 +44,7 @@
   };
 
   config.flake.nixosConfigurations = lib.mapAttrs (
-    _name: host:
+    hostName: host:
     withSystem host.system (
       {
         pkgs,
@@ -65,6 +65,7 @@
             home-manager.nixosModules.default
             {
               system = { inherit (host) stateVersion; };
+              networking = { inherit hostName; };
               nixpkgs.pkgs = pkgs;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

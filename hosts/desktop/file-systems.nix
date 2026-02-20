@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" = {
@@ -49,5 +48,14 @@
   zramSwap = {
     enable = true;
     writebackDevice = "/dev/disk/by-label/SwapWriteback";
+  };
+
+  boot.kernel.sysctl = {
+    # According to https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
+    # these values are best of zram swap
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
   };
 }

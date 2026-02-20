@@ -20,6 +20,7 @@ in
       # This module contains mostly alternatives to POSIX utilities
       # , aswell as core utilities
       systemPackages = with pkgs; [
+        config.boot.kernelPackages.turbostat
         alsa-utils # configure audio devices
         bintools
         clinfo # opencl info

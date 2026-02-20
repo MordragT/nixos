@@ -16,9 +16,9 @@
   mordrag.users.enable = true;
   mordrag.virtualisation.enable = true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  mordrag.boot.enable = true;
 
-  networking.hostName = "tom-laptop";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   hardware.graphics = {
     enable = true;
