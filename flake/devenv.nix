@@ -34,6 +34,7 @@
               enable = true;
               id = "statix";
             };
+            yamllint.enable = true;
           };
         };
       };
