@@ -1,39 +1,41 @@
 _: {
   boot.supportedFilesystems = [ "ntfs" ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/Nixos";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/Nixos";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
 
-  fileSystems."/home" = {
-    device = "none";
-    neededForBoot = true;
-    fsType = "tmpfs";
-    options = [
-      "defaults"
-      "size=50%"
-      "mode=755"
-    ];
-  };
+    "/home" = {
+      device = "none";
+      neededForBoot = true;
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=50%"
+        "mode=755"
+      ];
+    };
 
-  fileSystems."/run/media/Media" = {
-    device = "/dev/disk/by-label/Media";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-      "autodefrag"
-    ];
+    "/run/media/Media" = {
+      device = "/dev/disk/by-label/Media";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+        "autodefrag"
+      ];
+    };
   };
 
   swapDevices = [

@@ -7,36 +7,43 @@
   level-zero,
   libfabric,
   lib,
-}: let
+}:
+let
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
-  srcs = builtins.mapAttrs (_name: value: fetchurl value) pins;
+  srcs = builtins.mapAttrs fetchurl pins;
 in
-  stdenvNoCC.mkDerivation {
-    pname = "intel-mpi";
-    version = "2021.17.0";
+stdenvNoCC.mkDerivation {
+  pname = "intel-mpi";
+  version = "2021.17.0";
 
-    # dontUnpack = true;
-    dontStrip = true;
+  # dontUnpack = true;
+  dontStrip = true;
 
-    nativeBuildInputs = [autoPatchelfHook dpkg];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    dpkg
+  ];
 
-    buildInputs = [
-      stdenv.cc.cc.lib
-      level-zero
-      libfabric
-    ];
+  buildInputs = [
+    stdenv.cc.cc.lib
+    level-zero
+    libfabric
+  ];
 
-    autoPatchelfIgnoreMissingDeps = ["libiomp5.so" "libcuda.so.1"];
+  autoPatchelfIgnoreMissingDeps = [
+    "libiomp5.so"
+    "libcuda.so.1"
+  ];
 
-    unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
+  unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
 
-    installPhase = ''
-      mkdir -p $out
+  installPhase = ''
+    mkdir -p $out
 
-      cd opt/intel/oneapi/redist
+    cd opt/intel/oneapi/redist
 
-      mv bin $out/bin
-      mv lib $out/lib
-      mv share $out/share
-    '';
-  }
+    mv bin $out/bin
+    mv lib $out/lib
+    mv share $out/share
+  '';
+}

@@ -27,31 +27,37 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.forgejo = {
-      enable = true;
-      database.type = "sqlite3";
-      settings.server = {
-        DOMAIN = "https://${cfg.fqdn}";
-        HTTP_ADDR = "127.0.0.1";
-        HTTP_PORT = cfg.port;
+    services = {
+      forgejo = {
+        enable = true;
+        database.type = "sqlite3";
+        settings.server = {
+          DOMAIN = "https://${cfg.fqdn}";
+          HTTP_ADDR = "127.0.0.1";
+          HTTP_PORT = cfg.port;
+        };
       };
-    };
 
-    services.caddy.enable = true;
-    services.caddy.virtualHosts."${cfg.fqdn}".extraConfig = ''
-      tls {
-        ca ${cfg.ca}
-        ca_root ${../step-ca/root_ca.crt}
-      }
+      caddy = {
+        enable = true;
+        virtualHosts."${cfg.fqdn}".extraConfig = ''
+          tls {
+            ca ${cfg.ca}
+            ca_root ${../step-ca/root_ca.crt}
+          }
 
-      reverse_proxy :${toString cfg.port}
-    '';
+          reverse_proxy :${toString cfg.port}
+        '';
+      };
 
-    services.valhali.enable = true;
-    services.valhali.services.forgejo = {
-      alias = cfg.fqdn;
-      kind = "https";
-      port = 443;
+      valhali = {
+        enable = true;
+        services.forgejo = {
+          alias = cfg.fqdn;
+          kind = "https";
+          port = 443;
+        };
+      };
     };
 
     networking.firewall.allowedTCPPorts = [ 443 ];

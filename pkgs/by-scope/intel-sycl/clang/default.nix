@@ -4,9 +4,11 @@
   bintools,
   gcc,
   stdenv,
-}: let
+}:
+let
   cc = llvm;
-in (wrapCCWith {
+in
+wrapCCWith {
   inherit cc bintools;
   extraBuildCommands = ''
     # Disable hardening by default
@@ -32,4 +34,4 @@ in (wrapCCWith {
       "-L${gcc.cc.lib}/lib"
     ];
   };
-})
+}

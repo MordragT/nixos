@@ -207,6 +207,9 @@ in
           available_models = [ ];
         };
         languages = {
+          Kola = {
+            language_servers = [ "kola-ls" ];
+          };
           Nix = {
             language_servers = [
               "!nixd"
@@ -229,6 +232,7 @@ in
           entry_spacing = "standard";
           indent_guides.show = "never";
         };
+        semantic_tokens = "full";
         show_wrap_guides = true;
         soft_wrap = "preferred_line_length";
         tab_bar.show = false;

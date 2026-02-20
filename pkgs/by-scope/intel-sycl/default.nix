@@ -1,6 +1,7 @@
-self: pkgs: let
-  callPackage = pkgs.callPackage;
-  pins = pkgs.callPackage ./pins {};
+self: pkgs:
+let
+  inherit (pkgs) callPackage;
+  pins = pkgs.callPackage ./pins { };
   # version = "6.2.0";
   # src = pkgs.fetchFromGitHub {
   #   owner = "intel";
@@ -15,7 +16,8 @@ self: pkgs: let
     rev = version;
     hash = "sha256-OkSyn2KdAzptgKpTAnw//+6x8fbk/5Rjh1/6soQAjWc=";
   };
-in {
+in
+{
   lld = callPackage ./lld {
     inherit (self) llvm;
     inherit src version;

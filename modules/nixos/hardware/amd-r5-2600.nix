@@ -9,15 +9,18 @@
   config = lib.mkIf config.mordrag.hardware.amd-r5-2600 {
     powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 
-    hardware.enableRedistributableFirmware = true;
-    hardware.cpu.amd.updateMicrocode = true;
+    hardware = {
+      enableRedistributableFirmware = true;
+      cpu.amd.updateMicrocode = true;
+    };
 
-    boot.kernelParams = [
-      # Disable Retbleed mitigations on Zen+ (Ryzen 5 2600) for 5-20% perf gain.
-      # Low risk on single-user home setups (needs local code exec); safe for gaming.
-      "retbleed=off"
-    ];
-
-    boot.kernelModules = [ "kvm-amd" ];
+    boot = {
+      kernelModules = [ "kvm-amd" ];
+      kernelParams = [
+        # Disable Retbleed mitigations on Zen+ (Ryzen 5 2600) for 5-20% perf gain.
+        # Low risk on single-user home setups (needs local code exec); safe for gaming.
+        "retbleed=off"
+      ];
+    };
   };
 }

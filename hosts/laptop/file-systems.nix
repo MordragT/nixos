@@ -1,52 +1,54 @@
-{ ... }:
-{
-  fileSystems."/" = {
-    device = "none";
-    neededForBoot = true;
-    fsType = "tmpfs";
-    options = [
-      "defaults"
-      "size=20%"
-      "mode=755"
-    ];
-  };
+_: {
 
-  fileSystems."/home/tom" = {
-    device = "none";
-    neededForBoot = true;
-    fsType = "tmpfs";
-    options = [
-      "defaults"
-      "size=40%"
-      "mode=777"
-    ];
-  };
+  fileSystems = {
+    "/" = {
+      device = "none";
+      neededForBoot = true;
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=20%"
+        "mode=755"
+      ];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
+    "/home/tom" = {
+      device = "none";
+      neededForBoot = true;
+      fsType = "tmpfs";
+      options = [
+        "defaults"
+        "size=40%"
+        "mode=777"
+      ];
+    };
 
-  # ssd
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-label/nix";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+    "/boot" = {
+      device = "/dev/disk/by-label/boot";
+      fsType = "vfat";
+    };
 
-  # hdd
-  fileSystems."/nix/state" = {
-    device = "/dev/disk/by-label/state";
-    neededForBoot = true;
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-      "autodefrag"
-    ];
+    # ssd
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
+    };
+
+    # hdd
+    "/nix/state" = {
+      device = "/dev/disk/by-label/state";
+      neededForBoot = true;
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd"
+        "autodefrag"
+      ];
+    };
   };
 
   swapDevices = [

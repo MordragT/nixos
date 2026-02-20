@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   fileSystems = {
     "/nix/state".neededForBoot = true;
   };
@@ -30,42 +29,44 @@
 
       content = {
         type = "gpt";
-        partitions.boot = {
-          type = "EF00";
-          name = "boot";
-          size = "500M";
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountpoint = "/boot";
-          };
-        };
-        partitions.swap = {
-          size = "4G";
-          content = {
-            type = "swap";
-            resumeDevice = true;
-          };
-        };
-        partitions.data = {
-          size = "100%";
-          content = {
-            type = "btrfs";
-            subvolumes.nix = {
+        partitions = {
+          boot = {
+            type = "EF00";
+            name = "boot";
+            size = "500M";
+            content = {
               type = "filesystem";
-              mountpoint = "/nix";
-              mountOptions = [
-                "noatime"
-                "compress=zstd"
-              ];
+              format = "vfat";
+              mountpoint = "/boot";
             };
-            subvolumes.state = {
-              type = "filesystem";
-              mountpoint = "/nix/state";
-              mountOptions = [
-                "noatime"
-                "compress=zstd"
-              ];
+          };
+          swap = {
+            size = "4G";
+            content = {
+              type = "swap";
+              resumeDevice = true;
+            };
+          };
+          data = {
+            size = "100%";
+            content = {
+              type = "btrfs";
+              subvolumes.nix = {
+                type = "filesystem";
+                mountpoint = "/nix";
+                mountOptions = [
+                  "noatime"
+                  "compress=zstd"
+                ];
+              };
+              subvolumes.state = {
+                type = "filesystem";
+                mountpoint = "/nix/state";
+                mountOptions = [
+                  "noatime"
+                  "compress=zstd"
+                ];
+              };
             };
           };
         };

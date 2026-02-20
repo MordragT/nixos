@@ -4,38 +4,52 @@
   ...
 }:
 {
-  mordrag.bluetooth.enable = true;
-  mordrag.core.enable = true;
-  mordrag.fonts.enable = true;
-  mordrag.locale.enable = true;
-  mordrag.networking.enable = true;
-  mordrag.nix.enable = true;
-  mordrag.pipewire.enable = true;
-  mordrag.secrets.enable = true;
-  mordrag.security.enable = true;
-  mordrag.users.enable = true;
-  mordrag.virtualisation.enable = true;
-
-  mordrag.boot.enable = true;
+  mordrag = {
+    bluetooth.enable = true;
+    core.enable = true;
+    fonts.enable = true;
+    locale.enable = true;
+    networking.enable = true;
+    nix.enable = true;
+    pipewire.enable = true;
+    secrets.enable = true;
+    security.enable = true;
+    users.enable = true;
+    virtualisation.enable = true;
+    boot.enable = true;
+    desktop = {
+      gnome.enable = true;
+    };
+    programs = {
+      gnome-disks.enable = true;
+      nautilus.enable = true;
+    };
+  };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    cpu = {
+      intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    };
   };
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  # Desktop and Display Manager
-  services.displayManager.gdm.enable = true;
-  mordrag.desktop.gnome.enable = true;
-
-  # Programs
-  mordrag.programs.gnome-disks.enable = true;
-  mordrag.programs.nautilus.enable = true;
-  programs.captive-browser = {
-    enable = true;
-    interface = "wlp2s0";
+  services = {
+    displayManager = {
+      gdm.enable = true;
+    };
   };
-  programs.geary.enable = true;
+
+  programs = {
+    captive-browser = {
+      enable = true;
+      interface = "wlp2s0";
+    };
+    geary.enable = true;
+  };
+
 }

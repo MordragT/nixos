@@ -12,11 +12,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    classified.keys.first = "/nix/state/system/config/key";
-    classified.files.pia.encrypted = ./pia.enc;
-    classified.files.github-mcp-token = {
-      encrypted = ./github-mcp-token.enc;
-      user = config.users.users.tom.name;
+    classified = {
+      keys.first = "/nix/state/system/config/key";
+      files = {
+        pia.encrypted = ./pia.enc;
+        github-mcp-token = {
+          encrypted = ./github-mcp-token.enc;
+          user = config.users.users.tom.name;
+        };
+      };
     };
   };
 }

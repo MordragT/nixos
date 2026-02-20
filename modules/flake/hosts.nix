@@ -67,32 +67,34 @@
               system = { inherit (host) stateVersion; };
               networking = { inherit hostName; };
               nixpkgs.pkgs = pkgs;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users = lib.mapAttrs (
-                username: module:
-                let
-                  homeDirectory = if username == "root" then "/root" else "/home/${username}";
-                in
-                (_: {
-                  imports = [
-                    module
-                    self.homeModules.default
-                    (_: {
-                      home = {
-                        inherit (host) stateVersion;
-                        inherit username homeDirectory;
-                      };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = lib.mapAttrs (
+                  username: module:
+                  let
+                    homeDirectory = if username == "root" then "/root" else "/home/${username}";
+                  in
+                  _: {
+                    imports = [
+                      module
+                      self.homeModules.default
+                      (_: {
+                        home = {
+                          inherit (host) stateVersion;
+                          inherit username homeDirectory;
+                        };
 
-                      nix.registry = {
-                        self.flake = self;
-                        nixpkgs.flake = nixpkgs;
-                        templates.flake = templates;
-                      };
-                    })
-                  ];
-                })
-              ) host.homes;
+                        nix.registry = {
+                          self.flake = self;
+                          nixpkgs.flake = nixpkgs;
+                          templates.flake = templates;
+                        };
+                      })
+                    ];
+                  }
+                ) host.homes;
+              };
             }
           ]
           ++ host.modules;

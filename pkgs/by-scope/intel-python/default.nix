@@ -1,18 +1,20 @@
-self: pkgs: let
-  build-support = self.callPackage ./build-support.nix {};
-  callPackage = self.callPackage;
-in {
-  aniposelib = callPackage ./aniposelib {};
+self: pkgs:
+let
+  build-support = self.callPackage ./build-support.nix { };
+  inherit (self) callPackage;
+in
+{
+  aniposelib = callPackage ./aniposelib { };
 
-  argbind = callPackage ./argbind {};
+  argbind = callPackage ./argbind { };
 
-  bitsandbytes = callPackage ./bitsandbytes {};
+  bitsandbytes = callPackage ./bitsandbytes { };
 
-  compel = callPackage ./compel {};
+  compel = callPackage ./compel { };
 
-  controlnet-aux = callPackage ./controlnet-aux {};
+  controlnet-aux = callPackage ./controlnet-aux { };
 
-  deffcode = callPackage ./deffcode {};
+  deffcode = callPackage ./deffcode { };
 
   datasets = pkgs.datasets.overrideAttrs (old: {
     postPatch = ''
@@ -21,75 +23,77 @@ in {
     '';
   });
 
-  descript-audio-codec = callPackage ./descript-audio-codec {};
+  descript-audio-codec = callPackage ./descript-audio-codec { };
 
-  descript-audiotools = callPackage ./descript-audiotools {};
+  descript-audiotools = callPackage ./descript-audiotools { };
 
-  dynamicprompts = callPackage ./dynamicprompts {};
+  dynamicprompts = callPackage ./dynamicprompts { };
 
-  einops = pkgs.einops.overridePythonAttrs (a: {doCheck = false;});
+  einops = pkgs.einops.overridePythonAttrs (a: {
+    doCheck = false;
+  });
 
-  fastapi-events = callPackage ./fastapi-events {};
+  fastapi-events = callPackage ./fastapi-events { };
 
-  freemocap = callPackage ./freemocap {};
+  freemocap = callPackage ./freemocap { };
 
-  freemocap-blender-addon = callPackage ./freemocap-blender-addon {};
+  freemocap-blender-addon = callPackage ./freemocap-blender-addon { };
 
-  invokeai = callPackage ./invokeai {};
+  invokeai = callPackage ./invokeai { };
 
   ipex = callPackage ./ipex {
     inherit (build-support) fetchipex;
     inherit (self.pkgs) zstd;
   };
 
-  marker-pdf = callPackage ./marker-pdf {};
+  marker-pdf = callPackage ./marker-pdf { };
 
-  mediapipe = callPackage ./mediapipe {};
+  mediapipe = callPackage ./mediapipe { };
 
-  nncf = callPackage ./nncf {};
+  nncf = callPackage ./nncf { };
 
   openvino-tokenizers = callPackage ./openvino-tokenizers {
     openvino-tokenizers-native = self.pkgs.openvino-tokenizers;
   };
 
-  optimum-intel = callPackage ./optimum-intel {};
+  optimum-intel = callPackage ./optimum-intel { };
 
-  oute-tts = callPackage ./oute-tts {};
+  oute-tts = callPackage ./oute-tts { };
 
-  parler-tts = callPackage ./parler-tts {};
+  parler-tts = callPackage ./parler-tts { };
 
-  pdftext = callPackage ./pdftext {};
+  pdftext = callPackage ./pdftext { };
 
-  picklescan = callPackage ./picklescan {};
+  picklescan = callPackage ./picklescan { };
 
-  pypatchmatch = callPackage ./pypatchmatch {};
+  pypatchmatch = callPackage ./pypatchmatch { };
 
-  pystoi = callPackage ./pystoi {};
+  pystoi = callPackage ./pystoi { };
 
-  randomname = callPackage ./randomname {};
+  randomname = callPackage ./randomname { };
 
-  skelly-synchronize = callPackage ./skelly-synchronize {};
+  skelly-synchronize = callPackage ./skelly-synchronize { };
 
-  skelly-viewer = callPackage ./skelly-viewer {};
+  skelly-viewer = callPackage ./skelly-viewer { };
 
-  skellycam = callPackage ./skellycam {};
+  skellycam = callPackage ./skellycam { };
 
-  skellyforge = callPackage ./skellyforge {};
+  skellyforge = callPackage ./skellyforge { };
 
-  skellytracker = callPackage ./skellytracker {};
+  skellytracker = callPackage ./skellytracker { };
 
-  spandrel = callPackage ./spandrel {};
+  spandrel = callPackage ./spandrel { };
 
-  surya-ocr = callPackage ./surya-ocr {};
+  surya-ocr = callPackage ./surya-ocr { };
 
   torch-bin = callPackage ./torch-bin {
     inherit (build-support) fetchtorch;
   };
 
   # torch = self.torch-bin;
-  torch = callPackage ./torch {};
+  torch = callPackage ./torch { };
 
-  torch-stoi = callPackage ./torch-stoi {};
+  torch-stoi = callPackage ./torch-stoi { };
 
   torchaudio = callPackage ./torchaudio {
     inherit (build-support) fetchtorch;

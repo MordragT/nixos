@@ -27,30 +27,42 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.vaultwarden = {
-      enable = true;
-      config = {
-        DOMAIN = "https://${cfg.fqdn}";
-        ROCKET_ADDRESS = "127.0.0.1";
-        ROCKET_PORT = cfg.port;
+    services = {
+      vaultwarden = {
+        enable = true;
+        config = {
+          DOMAIN = "https://${cfg.fqdn}";
+          ROCKET_ADDRESS = "127.0.0.1";
+          ROCKET_PORT = cfg.port;
+        };
       };
-    };
 
-    services.caddy.enable = true;
-    services.caddy.virtualHosts."${cfg.fqdn}".extraConfig = ''
-      tls {
-        ca ${cfg.ca}
-        ca_root ${../step-ca/root_ca.crt}
-      }
+      caddy = {
+        enable = true;
+        virtualHosts = {
+          "${cfg.fqdn}" = {
+            extraConfig = ''
+              tls {
+                ca ${cfg.ca}
+                ca_root ${../step-ca/root_ca.crt}
+              }
 
-      reverse_proxy :${toString cfg.port}
-    '';
+              reverse_proxy :${toString cfg.port}
+            '';
+          };
+        };
+      };
 
-    services.valhali.enable = true;
-    services.valhali.services.vaultwarden = {
-      alias = cfg.fqdn;
-      kind = "https";
-      port = 443;
+      valhali = {
+        enable = true;
+        services = {
+          vaultwarden = {
+            alias = cfg.fqdn;
+            kind = "https";
+            port = 443;
+          };
+        };
+      };
     };
 
     networking.firewall.allowedTCPPorts = [ 443 ];

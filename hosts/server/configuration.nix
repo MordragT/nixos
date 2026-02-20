@@ -3,29 +3,34 @@
   ...
 }:
 {
-  mordrag.bluetooth.enable = true;
-  mordrag.core.enable = true;
-  mordrag.fonts.enable = true;
-  mordrag.locale.enable = true;
-  mordrag.networking.enable = true;
-  mordrag.nix.enable = true;
-  mordrag.pipewire.enable = true;
-  mordrag.secrets.enable = true;
-  mordrag.security.enable = true;
-  mordrag.users.enable = true;
-  mordrag.virtualisation.enable = true;
-
-  mordrag.boot.enable = true;
-  mordrag.hardware.intel-n4100 = true;
+  mordrag = {
+    bluetooth.enable = true;
+    boot.enable = true;
+    core.enable = true;
+    desktop = {
+      cosmic.enable = true;
+    };
+    fonts.enable = true;
+    hardware = {
+      intel-n4100 = true;
+    };
+    locale.enable = true;
+    networking.enable = true;
+    nix.enable = true;
+    pipewire.enable = true;
+    programs = {
+      gnome-disks.enable = true;
+    };
+    secrets.enable = true;
+    security.enable = true;
+    users.enable = true;
+    virtualisation.enable = true;
+  };
 
   # nix.settings = {
   #   substituters = [ "https://harmonia.mordrag.de" ];
   #   trusted-public-keys = [ "harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8=" ];
   # };
-
-  mordrag.desktop.cosmic.enable = true;
-
-  mordrag.programs.gnome-disks.enable = true;
 
   environment.systemPackages = with pkgs; [
     pulsemixer
@@ -128,23 +133,27 @@
   #   };
   # };
 
-  services.greetd = {
-    enable = true;
-    # settings.initial_session = {
-    #   user = "tom";
-    #   command = "cosmic-session";
-    # };
+  services = {
+    greetd = {
+      enable = true;
+      # settings.initial_session = {
+      #   user = "tom";
+      #   command = "cosmic-session";
+      # };
 
-    settings.default_session = {
-      user = "tom";
-      command = "steam-gamescope";
+      settings = {
+        default_session = {
+          user = "tom";
+          command = "steam-gamescope";
+        };
+      };
     };
-  };
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+      };
     };
   };
 }

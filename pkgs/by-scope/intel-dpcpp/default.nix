@@ -1,7 +1,9 @@
-self: pkgs: let
-  callPackage = pkgs.callPackage;
-in {
-  llvm = callPackage ./llvm.nix {};
+self: pkgs:
+let
+  inherit (pkgs) callPackage;
+in
+{
+  llvm = callPackage ./llvm.nix { };
 
   bintools-unwrapped = callPackage ./bintools-unwrapped.nix {
     inherit (self) llvm;

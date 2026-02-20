@@ -13,32 +13,42 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.desktopManager.cosmic.enable = true;
-
-    services.gnome.gnome-keyring.enable = true;
-
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
+    environment = {
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+      };
+      systemPackages = with pkgs; [
+        niri
+        xwayland-satellite
+        # cosmic-ext-alternative-startup
+      ];
     };
 
-    #programs.niri.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      niri
-      xwayland-satellite
-      # cosmic-ext-alternative-startup
-    ];
-    services.displayManager.sessionPackages = with pkgs; [
-      niri
-      # cosmic-ext-niri
-    ];
+    services = {
+      desktopManager = {
+        cosmic.enable = true;
+      };
+      displayManager = {
+        sessionPackages = with pkgs; [
+          niri
+          # cosmic-ext-niri
+        ];
+      };
+      gnome = {
+        gnome-keyring.enable = true;
+      };
+    };
 
     systemd.packages = [ pkgs.niri ];
 
-    #xdg.portal.enable = true;
-    #xdg.portal.config.niri = {
-    #  default = ["cosmic"];
-    #  "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+    #programs.niri.enable = true;
+
+    #xdg.portal = {
+    #  enable = true;
+    #  config.niri = {
+    #    default = ["cosmic"];
+    #    "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+    #  };
     #};
   };
 }

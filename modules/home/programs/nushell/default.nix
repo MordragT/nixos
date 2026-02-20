@@ -18,63 +18,69 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.direnv.enable = true;
-    programs.direnv.nix-direnv.enable = true;
-    # programs.direnv.enableNushellIntegration = false;
+    programs = {
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+        # enableNushellIntegration = false;
+      };
 
-    # programs.starship.enable = true;
-    # programs.starship.enableNushellIntegration = true;
+      # starship = {
+      #   enable = true;
+      #   enableNushellIntegration = true;
+      # };
 
-    programs.nushell = {
-      enable = true;
-      package = pkgs.nushell;
-      loginFile.text = ''
-        # Remove each plugin
-        plugin list | get name | each {|x| (plugin rm $x)}
+      nushell = {
+        enable = true;
+        package = pkgs.nushell;
+        loginFile.text = ''
+          # Remove each plugin
+          plugin list | get name | each {|x| (plugin rm $x)}
 
-        ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
-      '';
-      envFile.source = ./env.nu;
-      configFile.text = ''
-        plugin use formats
-        plugin use gstat
-        # plugin use apt
+          ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
+        '';
+        envFile.source = ./env.nu;
+        configFile.text = ''
+          plugin use formats
+          plugin use gstat
+          # plugin use apt
 
-        const scripts = "${./scripts}"
+          const scripts = "${./scripts}"
 
-        # cannot use files directly as that would rename them to a hash
-        # and would clash with nushell module system
-        use $"($scripts)/comma.nu" ,
-        use $"($scripts)/compress-pdf.nu" "compress pdf"
+          # cannot use files directly as that would rename them to a hash
+          # and would clash with nushell module system
+          use $"($scripts)/comma.nu" ,
+          use $"($scripts)/compress-pdf.nu" "compress pdf"
 
-        alias comojit = comoji commit
-        alias r = direnv reload
-        alias code = zeditor
+          alias comojit = comoji commit
+          alias r = direnv reload
+          alias code = zeditor
 
-        $env.config = {
-          show_banner: false
+          $env.config = {
+            display_errors: {
+              exit_code: false
+            }
 
-          ls: {
-            use_ls_colors: true
-            clickable_links: true
+            error_style: "fancy"
+
+            ls: {
+              clickable_links: true
+              use_ls_colors: true
+            }
+
+            rm: {
+              always_trash: true
+            }
+
+            show_banner: false
+
+            table: {
+              mode: rounded
+              show_empty: true
+            }
           }
-
-          rm: {
-            always_trash: true
-          }
-
-          table: {
-            mode: rounded
-            show_empty: true
-          }
-
-          error_style: "fancy"
-
-          display_errors: {
-            exit_code: false
-          }
-        }
-      '';
+        '';
+      };
     };
 
     # vpnctl
