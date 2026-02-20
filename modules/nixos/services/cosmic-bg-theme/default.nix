@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.cosmic-bg-theme;
-in {
+in
+{
   options.mordrag.services.cosmic-bg-theme = {
     enable = lib.mkEnableOption "COSMIC Background Theme Extension";
   };
@@ -14,9 +16,9 @@ in {
     systemd.user.services.cosmic-bg-theme = {
       description = "COSMIC Background Theme Extension";
 
-      documentation = ["man:cosmic-ext-bg-theme(1)"];
-      partOf = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
+      documentation = [ "man:cosmic-ext-bg-theme(1)" ];
+      partOf = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
 
       serviceConfig = {
         Type = "simple";

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./caddy
     ./cosmic-bg-theme

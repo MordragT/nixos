@@ -3,9 +3,11 @@
   lib,
   # pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.espanso;
-in {
+in
+{
   options.mordrag.services.espanso = {
     enable = lib.mkEnableOption "Espanso";
   };

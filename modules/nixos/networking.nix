@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.networking;
-in {
+in
+{
   options.mordrag.networking = {
     enable = lib.mkEnableOption "Networking";
   };
@@ -14,7 +16,7 @@ in {
     networking.networkmanager = {
       enable = true;
       dns = "systemd-resolved";
-      plugins = with pkgs; [networkmanager-openvpn];
+      plugins = with pkgs; [ networkmanager-openvpn ];
     };
 
     systemd.services.NetworkManager-wait-online.enable = false;
@@ -55,7 +57,7 @@ in {
 
     # Bridge Lab interface (br0) for VMs and Containers
     # Can be used nicely togehter with qemu-bridge-helper
-    networking.bridges.br0.interfaces = [];
+    networking.bridges.br0.interfaces = [ ];
     networking.interfaces.br0.ipv4.addresses = [
       {
         address = "10.10.0.1";
@@ -67,7 +69,7 @@ in {
     networking.nat = {
       enable = true;
       externalInterface = "enp35s0";
-      internalInterfaces = ["br0"];
+      internalInterfaces = [ "br0" ];
     };
 
     # Source: https://github.com/microvm-nix/microvm.nix/blob/f5c1bbfd4cf686ec1822ccaeb634a8b93ee5120f/nixos-modules/host/default.nix

@@ -4,48 +4,58 @@
   inputs,
   withSystem,
   ...
-}: {
+}:
+{
   options.mordrag.hosts = lib.mkOption {
-    type = with lib.types;
-      attrsOf (submodule ({name, ...}: {
-        options = {
-          name = lib.mkOption {
-            type = str;
-            default = name;
-            readOnly = true;
-          };
+    type =
+      with lib.types;
+      attrsOf (
+        submodule (
+          { name, ... }:
+          {
+            options = {
+              name = lib.mkOption {
+                type = str;
+                default = name;
+                readOnly = true;
+              };
 
-          system = lib.mkOption {
-            type = str;
-            default = "x86_64-linux";
-          };
+              system = lib.mkOption {
+                type = str;
+                default = "x86_64-linux";
+              };
 
-          stateVersion = lib.mkOption {
-            type = str;
-          };
+              stateVersion = lib.mkOption {
+                type = str;
+              };
 
-          modules = lib.mkOption {
-            type = listOf deferredModule;
-            default = {};
-          };
+              modules = lib.mkOption {
+                type = listOf deferredModule;
+                default = { };
+              };
 
-          homes = lib.mkOption {
-            type = lazyAttrsOf deferredModule;
-          };
-        };
-      }));
+              homes = lib.mkOption {
+                type = lazyAttrsOf deferredModule;
+              };
+            };
+          }
+        )
+      );
   };
 
-  config.flake.nixosConfigurations = lib.mapAttrs (_name: host:
-    withSystem host.system ({
-      pkgs,
-      system,
-      ...
-    }:
+  config.flake.nixosConfigurations = lib.mapAttrs (
+    _name: host:
+    withSystem host.system (
+      {
+        pkgs,
+        system,
+        ...
+      }:
       inputs.nixpkgs.lib.nixosSystem {
         inherit system;
 
-        modules = with inputs;
+        modules =
+          with inputs;
           [
             self.nixosModules.default
             # TODO: This is sadly necessary as classified doesn't follow conventions
@@ -54,17 +64,16 @@
             # TODO only import of home-manager option is enabled ??
             home-manager.nixosModules.default
             {
-              system = {inherit (host) stateVersion;};
+              system = { inherit (host) stateVersion; };
               nixpkgs.pkgs = pkgs;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users =
-                lib.mapAttrs (username: module: let
-                  homeDirectory =
-                    if username == "root"
-                    then "/root"
-                    else "/home/${username}";
-                in (_: {
+              home-manager.users = lib.mapAttrs (
+                username: module:
+                let
+                  homeDirectory = if username == "root" then "/root" else "/home/${username}";
+                in
+                (_: {
                   imports = [
                     module
                     self.homeModules.default
@@ -81,11 +90,12 @@
                       };
                     })
                   ];
-                }))
-                host.homes;
+                })
+              ) host.homes;
             }
           ]
           ++ host.modules;
-      }))
-  config.mordrag.hosts;
+      }
+    )
+  ) config.mordrag.hosts;
 }

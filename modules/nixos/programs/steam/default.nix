@@ -3,14 +3,16 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.steam;
-in {
+in
+{
   options.mordrag.programs.steam = {
     enable = lib.mkEnableOption "Steam";
     compatPackages = lib.mkOption {
       description = "Enable compatibility tools";
-      default = [];
+      default = [ ];
       type = lib.types.listOf lib.types.package;
     };
   };
@@ -31,8 +33,8 @@ in {
         #   MANGOHUD = true;
         #   MANGOHUD_DLSYM = true;
         # };
-        extraLibraries = pkgs:
-          with pkgs; [
+        extraLibraries =
+          pkgs: with pkgs; [
             # Extra Steam game dependencies go here
             #libGLU # Plague Inc Evolved
             #sdl2-compat # BattleBlock Theater

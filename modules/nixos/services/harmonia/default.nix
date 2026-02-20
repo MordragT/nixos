@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.harmonia;
-in {
+in
+{
   options.mordrag.services.harmonia = {
     enable = lib.mkEnableOption "Harmonia";
     port = lib.mkOption {
@@ -25,7 +27,7 @@ in {
     services.harmonia = {
       enable = true;
       # nix-store --generate-binary-cache-key ${cfg.fqdn} harmonia.secret harmonia.pub
-      signKeyPaths = ["/var/secrets/harmonia"];
+      signKeyPaths = [ "/var/secrets/harmonia" ];
       settings = {
         bind = "127.0.0.1:${toString cfg.port}";
       };

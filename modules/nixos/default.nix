@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   flake.nixosModules.default = {
     imports = with inputs; [
       disko.nixosModules.default

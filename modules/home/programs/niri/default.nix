@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.niri;
-in {
+in
+{
   options.mordrag.programs.niri = {
     enable = lib.mkEnableOption "Niri";
   };

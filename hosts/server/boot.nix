@@ -2,7 +2,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -19,8 +20,15 @@
 
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "usbhid" "sd_mod" "rtsx_usb_sdmmc" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["ntsync"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "ahci"
+    "xhci_pci"
+    "usbhid"
+    "sd_mod"
+    "rtsx_usb_sdmmc"
+    "sdhci_pci"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "ntsync" ];
+  boot.extraModulePackages = [ ];
 }

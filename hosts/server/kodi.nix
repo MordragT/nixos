@@ -1,8 +1,10 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   kodi = pkgs.private.kodi;
-in {
+in
+{
   specialisation.kodi.configuration = {
-    system.nixos.tags = ["kodi"];
+    system.nixos.tags = [ "kodi" ];
 
     # Define a user account
     users.extraUsers.kodi.isNormalUser = true;
@@ -12,11 +14,11 @@ in {
       enable = true;
       user = "kodi";
       program = "${kodi}/bin/kodi-standalone";
-      extraArguments = ["-s"];
+      extraArguments = [ "-s" ];
     };
 
     # Kodi Remote
-    networking.firewall.allowedTCPPorts = [8080];
-    networking.firewall.allowedUDPPorts = [8080];
+    networking.firewall.allowedTCPPorts = [ 8080 ];
+    networking.firewall.allowedUDPPorts = [ 8080 ];
   };
 }

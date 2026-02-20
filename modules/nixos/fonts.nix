@@ -3,17 +3,19 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.fonts;
-in {
+in
+{
   options.mordrag.fonts = {
     enable = lib.mkEnableOption "Fonts";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [pkgs.adwaita-icon-theme];
+    environment.systemPackages = [ pkgs.adwaita-icon-theme ];
     xdg.icons.enable = true;
-    xdg.icons.fallbackCursorThemes = ["Adwaita"];
+    xdg.icons.fallbackCursorThemes = [ "Adwaita" ];
 
     fonts = {
       fontDir.enable = true;
@@ -38,10 +40,10 @@ in {
         # victor-mono
       ];
       fontconfig.defaultFonts = {
-        monospace = ["Geist Mono"];
-        serif = ["Geist"];
-        sansSerif = ["Geist"];
-        emoji = ["Noto Color Emoji"];
+        monospace = [ "Geist Mono" ];
+        serif = [ "Geist" ];
+        sansSerif = [ "Geist" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };

@@ -3,14 +3,16 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.nushell;
   plugins = [
     "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
     "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
     # broken https://github.com/nushell/nushell/issues/17510: "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
   ];
-in {
+in
+{
   options.mordrag.programs.nushell = {
     enable = lib.mkEnableOption "Nushell";
   };

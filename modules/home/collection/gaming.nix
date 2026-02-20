@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.collection.gaming;
-in {
+in
+{
   options.mordrag.collection.gaming = {
     enable = lib.mkEnableOption "Gaming";
   };

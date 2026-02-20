@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.firefox;
-in {
+in
+{
   options.mordrag.programs.firefox = {
     enable = lib.mkEnableOption "Firefox";
   };

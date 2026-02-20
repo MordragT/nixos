@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.forgejo;
-in {
+in
+{
   options.mordrag.services.forgejo = {
     enable = lib.mkEnableOption "Forgejo";
     port = lib.mkOption {
@@ -52,6 +54,6 @@ in {
       port = 443;
     };
 
-    networking.firewall.allowedTCPPorts = [443];
+    networking.firewall.allowedTCPPorts = [ 443 ];
   };
 }

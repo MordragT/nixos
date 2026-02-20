@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.desktop.labwc;
-in {
+in
+{
   options.mordrag.desktop.labwc = {
     enable = lib.mkEnableOption "labwc";
   };

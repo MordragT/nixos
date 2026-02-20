@@ -3,21 +3,24 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.obs;
-in {
+in
+{
   options.mordrag.programs.obs = {
     enable = lib.mkEnableOption "OBS";
   };
 
-  config = let
-    catppuccin = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "obs";
-      rev = "05c55ffe499c183c98be469147f602c3f8e84b87";
-      hash = "sha256-ezz3euxO5lxyVaVFDPjNowpivAm9tRGHt8SbflAdkA8=";
-    };
-  in
+  config =
+    let
+      catppuccin = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "obs";
+        rev = "05c55ffe499c183c98be469147f602c3f8e84b87";
+        hash = "sha256-ezz3euxO5lxyVaVFDPjNowpivAm9tRGHt8SbflAdkA8=";
+      };
+    in
     lib.mkIf cfg.enable {
       programs.obs-studio = {
         enable = true;

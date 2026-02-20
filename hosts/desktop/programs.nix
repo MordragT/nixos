@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   mordrag.programs.gnome-disks.enable = true;
   # mordrag.programs.gnome-network-displays.enable = true;
   mordrag.programs.lsfg-vk.enable = true;

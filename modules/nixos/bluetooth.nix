@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.bluetooth;
-in {
+in
+{
   options.mordrag.bluetooth = {
     enable = lib.mkEnableOption "Bluetooth";
   };
@@ -13,7 +15,7 @@ in {
   config = lib.mkIf cfg.enable {
     hardware.bluetooth = {
       enable = true;
-      package = pkgs.bluez; #pkgs.bluez5-experimental;
+      package = pkgs.bluez; # pkgs.bluez5-experimental;
       powerOnBoot = false;
 
       settings = {

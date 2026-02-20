@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.vaultwarden;
-in {
+in
+{
   options.mordrag.services.vaultwarden = {
     enable = lib.mkEnableOption "Vaultwarden";
     port = lib.mkOption {
@@ -51,6 +53,6 @@ in {
       port = 443;
     };
 
-    networking.firewall.allowedTCPPorts = [443];
+    networking.firewall.allowedTCPPorts = [ 443 ];
   };
 }

@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   mordrag.services.invokeai = {
     enable = false;
     settings = {

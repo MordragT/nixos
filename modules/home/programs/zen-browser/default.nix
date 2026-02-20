@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.zen-browser;
-in {
+in
+{
   options.mordrag.programs.zen-browser = {
     enable = lib.mkEnableOption "Zen Browser";
   };
@@ -18,9 +20,9 @@ in {
       "text/html" = "zen-browser.desktop";
     };
 
-    home.packages = [pkgs.zen-browser-bin];
+    home.packages = [ pkgs.zen-browser-bin ];
 
-    home.file.".zen/profiles.ini".text = lib.generators.toINI {} {
+    home.file.".zen/profiles.ini".text = lib.generators.toINI { } {
       General = {
         StartWithLastProfile = 1;
         Version = 2;
@@ -52,24 +54,26 @@ in {
     '';
 
     home.file.".zen/default/extensions" = {
-      source = let
-        env = pkgs.buildEnv {
-          name = "zen-extensions";
-          paths = with pkgs.firefoxAddons; [
-            addon-7tv-extension
-            bib-kit
-            # bibitnow
-            bitwarden-password-manager
-            brave-search
-            csgofloat
-            ghostery
-            proton-vpn-firefox-extension
-            rust-search-extension
-            sponsorblock
-            youtube-shorts-block
-          ];
-        };
-      in "${env}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}";
+      source =
+        let
+          env = pkgs.buildEnv {
+            name = "zen-extensions";
+            paths = with pkgs.firefoxAddons; [
+              addon-7tv-extension
+              bib-kit
+              # bibitnow
+              bitwarden-password-manager
+              brave-search
+              csgofloat
+              ghostery
+              proton-vpn-firefox-extension
+              rust-search-extension
+              sponsorblock
+              youtube-shorts-block
+            ];
+          };
+        in
+        "${env}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}";
       recursive = true;
       force = true;
     };

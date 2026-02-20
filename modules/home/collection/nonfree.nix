@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.collection.nonfree;
-in {
+in
+{
   options.mordrag.collection.nonfree = {
     enable = lib.mkEnableOption "Non-Free Software";
   };

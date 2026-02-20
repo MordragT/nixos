@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.security;
-in {
+in
+{
   options.mordrag.security = {
     enable = lib.mkEnableOption "Security";
   };

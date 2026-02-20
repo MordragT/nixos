@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.secrets;
-in {
+in
+{
   options.mordrag.secrets = {
     enable = lib.mkEnableOption "Secrets";
   };

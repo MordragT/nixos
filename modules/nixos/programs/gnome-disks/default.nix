@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.gnome-disks;
-in {
+in
+{
   options.mordrag.programs.gnome-disks = {
     enable = lib.mkEnableOption "Gnome Disks";
   };

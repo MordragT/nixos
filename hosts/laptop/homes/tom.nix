@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   mordrag.core.enable = true;
 
   mordrag.programs.firefox.enable = true;

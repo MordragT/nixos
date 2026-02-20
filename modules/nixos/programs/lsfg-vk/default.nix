@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.lsfg-vk;
-in {
+in
+{
   options.mordrag.programs.lsfg-vk = {
     enable = lib.mkEnableOption "LSFG-VK";
   };
@@ -16,6 +18,7 @@ in {
       lsfg-vk
     ];
 
-    environment.etc."vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json".source = "${pkgs.lsfg-vk}/share/vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json";
+    environment.etc."vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json".source =
+      "${pkgs.lsfg-vk}/share/vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json";
   };
 }

@@ -3,26 +3,30 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) types mkOption;
   cfg = config.mordrag.services.invokeai;
-in {
+in
+{
   options.mordrag.services.invokeai = {
     enable = lib.mkEnableOption "InvokeAI Web UI for Stable Diffusion";
-    package = lib.mkPackageOption pkgs "invokeai" {};
+    package = lib.mkPackageOption pkgs "invokeai" { };
 
     settings = mkOption {
       description = "Generates `invokeai.yaml` configuration file";
-      default = {};
+      default = { };
       type = types.submodule {
-        freeformType = with types; let
-          atom = nullOr (oneOf [
-            bool
-            str
-            int
-            float
-          ]);
-        in
+        freeformType =
+          with types;
+          let
+            atom = nullOr (oneOf [
+              bool
+              str
+              int
+              float
+            ]);
+          in
           attrsOf (either atom (listOf atom));
         options = {
           schema_version = mkOption {
@@ -46,43 +50,49 @@ in {
           precision = mkOption {
             description = "Set model precision.";
             default = "auto";
-            type = types.enum ["auto" "float32" "bfloat16" "float16"];
+            type = types.enum [
+              "auto"
+              "float32"
+              "bfloat16"
+              "float16"
+            ];
           };
         };
       };
     };
   };
 
-  config = let
-    root = "/var/lib/invokeai";
-    config-file = builtins.toFile "invokeai.yaml" (lib.generators.toYAML {} cfg.settings);
-    args = lib.cli.toCommandLineGNU {} {
-      inherit root;
-      # config = "${config-file}";
-    };
-    app = pkgs.makeChromiumApp {
-      name = "invokeai";
-      desktopName = "Invoke AI";
-      app = "http://${cfg.settings.host}:${toString cfg.settings.port}";
-      icon = "${cfg.package}/share/icons/invokeai/scalable/favicon.svg";
-    };
-  in
+  config =
+    let
+      root = "/var/lib/invokeai";
+      config-file = builtins.toFile "invokeai.yaml" (lib.generators.toYAML { } cfg.settings);
+      args = lib.cli.toCommandLineGNU { } {
+        inherit root;
+        # config = "${config-file}";
+      };
+      app = pkgs.makeChromiumApp {
+        name = "invokeai";
+        desktopName = "Invoke AI";
+        app = "http://${cfg.settings.host}:${toString cfg.settings.port}";
+        icon = "${cfg.package}/share/icons/invokeai/scalable/favicon.svg";
+      };
+    in
     lib.mkIf cfg.enable {
       environment.systemPackages = [
         app
       ];
 
       systemd.services.invokeai = {
-        after = ["network.target"];
-        wantedBy = ["multi-user.target"];
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
         environment = {
           HOME = "%C/invokeai";
           ZES_ENABLE_SYSMAN = "1";
         };
         serviceConfig = {
           WorkingDirectory = root;
-          StateDirectory = ["invokeai"];
-          CacheDirectory = ["invokeai"];
+          StateDirectory = [ "invokeai" ];
+          CacheDirectory = [ "invokeai" ];
           DynamicUser = true;
           User = "invokeai";
           Group = "invokeai";

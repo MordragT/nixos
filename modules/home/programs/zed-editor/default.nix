@@ -4,13 +4,13 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.mordrag.programs.zed-editor;
-in {
+in
+{
   options.mordrag.programs.zed-editor = {
-    enable =
-      mkEnableOption
-      "Zed, the high performance, multiplayer code editor from the creators of Atom and Tree-sitter";
+    enable = mkEnableOption "Zed, the high performance, multiplayer code editor from the creators of Atom and Tree-sitter";
   };
 
   config = mkIf cfg.enable {
@@ -57,7 +57,7 @@ in {
           bindings = {
             ctrl-shift-enter = [
               "assistant::InlineAssist"
-              {prompt = "Generate Documentation";}
+              { prompt = "Generate Documentation"; }
             ];
           };
         }
@@ -157,15 +157,17 @@ in {
         buffer_font_size = 15;
         collaboration_panel.dock = "right";
         context_servers = {
-          mcp-server-github = let
-            github-mcp-server-wrapped = pkgs.writeShellScriptBin "github-mcp-server-wrapped" ''
-              export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat /var/secrets/github-mcp-token)
-              ${pkgs.github-mcp-server}/bin/github-mcp-server "$@"
-            '';
-          in {
-            command = "${github-mcp-server-wrapped}/bin/github-mcp-server-wrapped";
-            args = ["stdio"];
-          };
+          mcp-server-github =
+            let
+              github-mcp-server-wrapped = pkgs.writeShellScriptBin "github-mcp-server-wrapped" ''
+                export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat /var/secrets/github-mcp-token)
+                ${pkgs.github-mcp-server}/bin/github-mcp-server "$@"
+              '';
+            in
+            {
+              command = "${github-mcp-server-wrapped}/bin/github-mcp-server-wrapped";
+              args = [ "stdio" ];
+            };
         };
         edit_predictions.mode = "subtle";
         features = {
@@ -198,18 +200,24 @@ in {
         # ];
         language_models.ollama = {
           api_url = "http://localhost:11434";
-          available_models = [];
+          available_models = [ ];
         };
         language_models.openai_compatible.lamma-cpp = {
           api_url = "http://localhost:8030";
-          available_models = [];
+          available_models = [ ];
         };
         languages = {
           Nix = {
-            language_servers = ["!nixd" "nil"];
+            language_servers = [
+              "!nixd"
+              "nil"
+            ];
             formatter.external = {
-              command = "alejandra";
-              arguments = ["--quiet" "--"];
+              command = "nixfmt";
+              arguments = [
+                "--quiet"
+                "--"
+              ];
             };
           };
         };

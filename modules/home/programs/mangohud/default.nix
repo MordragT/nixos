@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.mangohud;
-in {
+in
+{
   options.mordrag.programs.mangohud = {
     enable = lib.mkEnableOption "MangoHud";
   };
@@ -38,7 +40,13 @@ in {
         present_mode = true;
         position = "top-right";
         output_folder = "~/Desktop/MangoHud";
-        fps_limit = [0 60 80 100 120];
+        fps_limit = [
+          0
+          60
+          80
+          100
+          120
+        ];
         toggle_fps_limit = "Super_L+F1";
         toggle_hud = "Super_L+F3";
         toggle_logging = "Super_L+F4";

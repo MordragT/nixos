@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.mediatek-utils;
-in {
+in
+{
   options.mordrag.programs.mediatek-utils = {
     enable = lib.mkEnableOption "Mediatek Utils";
   };

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.rclone;
-in {
+in
+{
   options.mordrag.programs.rclone = {
     enable = lib.mkEnableOption "Rclone";
   };

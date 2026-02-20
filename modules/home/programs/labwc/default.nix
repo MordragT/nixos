@@ -3,15 +3,17 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.labwc;
-in {
+in
+{
   options.mordrag.programs.labwc = {
     enable = lib.mkEnableOption "labwc";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [pkgs.wlr-randr];
+    home.packages = [ pkgs.wlr-randr ];
 
     wayland.windowManager.labwc = {
       enable = true;

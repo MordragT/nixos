@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.collection.gnome;
-in {
+in
+{
   options.mordrag.collection.gnome = {
     enable = lib.mkEnableOption "Gnome";
   };

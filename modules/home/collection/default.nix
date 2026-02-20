@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./cli.nix
     ./free.nix

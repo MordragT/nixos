@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.stalwart;
-in {
+in
+{
   options.mordrag.services.stalwart = {
     enable = lib.mkEnableOption "Stalwart";
   };

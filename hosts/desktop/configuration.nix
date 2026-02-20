@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   mordrag.bluetooth.enable = true;
   mordrag.core.enable = true;
   mordrag.fonts.enable = true;
@@ -28,7 +29,7 @@
   networking.hostName = "tom-desktop";
 
   networking.hosts = {
-    "127.0.0.1" = ["tom-desktop.local"];
+    "127.0.0.1" = [ "tom-desktop.local" ];
   };
 
   # Hardware Acceleration
@@ -75,5 +76,5 @@
   };
 
   # workaround for virtualbox
-  boot.kernelParams = ["kvm.enable_virt_at_load=0"];
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
 }

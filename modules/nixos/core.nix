@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.core;
-in {
+in
+{
   options.mordrag.core = {
     enable = lib.mkEnableOption "Core";
   };
@@ -13,7 +15,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment = {
       variables.EDITOR = "hx";
-      shells = [pkgs.nushell];
+      shells = [ pkgs.nushell ];
 
       # This module contains mostly alternatives to POSIX utilities
       # , aswell as core utilities

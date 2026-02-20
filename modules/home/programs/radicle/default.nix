@@ -3,11 +3,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.radicle;
 
   radicleHome = config.home.homeDirectory + "/.radicle";
-in {
+in
+{
   options.mordrag.programs.radicle = {
     enable = lib.mkEnableOption "Radicle";
   };
@@ -54,9 +56,9 @@ in {
     systemd.user.services."radicle-httpd" = {
       Unit = {
         Description = "Radicle HTTP gateway (user)";
-        Documentation = ["man:radicle-httpd(1)"];
-        After = ["radicle-node.service"];
-        Requires = ["radicle-node.service"];
+        Documentation = [ "man:radicle-httpd(1)" ];
+        After = [ "radicle-node.service" ];
+        Requires = [ "radicle-node.service" ];
       };
       Service = lib.mkMerge [
         {
@@ -85,7 +87,11 @@ in {
             "-/etc/resolv.conf"
             "/run/systemd"
           ];
-          RestrictAddressFamilies = ["AF_UNIX" "AF_INET" "AF_INET6"];
+          RestrictAddressFamilies = [
+            "AF_UNIX"
+            "AF_INET"
+            "AF_INET6"
+          ];
           AmbientCapabilities = "";
           CapabilityBoundingSet = "";
           NoNewPrivileges = true;
@@ -99,7 +105,7 @@ in {
           ProtectClock = true;
         }
       ];
-      Install.WantedBy = ["default.target"];
+      Install.WantedBy = [ "default.target" ];
     };
   };
 }

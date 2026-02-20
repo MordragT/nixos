@@ -4,13 +4,14 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   # Boot Loader
-  environment.systemPackages = [pkgs.sbctl];
+  environment.systemPackages = [ pkgs.sbctl ];
 
   boot.loader.systemd-boot = {
     enable = lib.mkForce false;
@@ -32,7 +33,7 @@
   boot.runSize = "25%";
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
+  boot.kernelPackages = pkgs.linuxPackages_latest; # pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
   boot.kernelParams = [
     "i915.force_probe=!56a1"
     "xe.force_probe=56a1"
@@ -65,8 +66,17 @@
   };
 
   # Kernel Modules
-  boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ehci_pci"
+    "ahci"
+    "nvme"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+    "sr_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [
     # "kvm-amd"
     # "btintel"

@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.desktop.niri;
-in {
+in
+{
   options.mordrag.desktop.niri = {
     enable = lib.mkEnableOption "Niri";
   };
@@ -31,7 +33,7 @@ in {
       # cosmic-ext-niri
     ];
 
-    systemd.packages = [pkgs.niri];
+    systemd.packages = [ pkgs.niri ];
 
     #xdg.portal.enable = true;
     #xdg.portal.config.niri = {

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./bottles
     ./firefox

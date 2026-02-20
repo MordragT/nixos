@@ -1,5 +1,6 @@
-{...}: {
-  boot.supportedFilesystems = ["ntfs"];
+{ ... }:
+{
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/Nixos";
@@ -19,7 +20,11 @@
     device = "none";
     neededForBoot = true;
     fsType = "tmpfs";
-    options = ["defaults" "size=50%" "mode=755"];
+    options = [
+      "defaults"
+      "size=50%"
+      "mode=755"
+    ];
   };
 
   fileSystems."/run/media/Media" = {

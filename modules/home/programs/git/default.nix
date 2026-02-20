@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.git;
-in {
+in
+{
   options.mordrag.programs.git = {
     enable = lib.mkEnableOption "Git";
   };

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.collection.free;
-in {
+in
+{
   options.mordrag.collection.free = {
     enable = lib.mkEnableOption "Free Software";
   };

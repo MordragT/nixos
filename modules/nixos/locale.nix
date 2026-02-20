@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.locale;
-in {
+in
+{
   options.mordrag.locale = {
     enable = lib.mkEnableOption "Locale";
   };

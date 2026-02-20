@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.desktop.cosmic;
-in {
+in
+{
   options.mordrag.desktop.cosmic = {
     enable = lib.mkEnableOption "Cosmic";
   };

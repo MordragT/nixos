@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.hyprland;
-in {
+in
+{
   options.mordrag.programs.hyprland = {
     enable = lib.mkEnableOption "hyprland";
   };

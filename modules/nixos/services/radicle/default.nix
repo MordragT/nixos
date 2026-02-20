@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.radicle;
 
   radicle-explorer' = pkgs.radicle-explorer.withConfig {
@@ -15,7 +16,8 @@
       }
     ];
   };
-in {
+in
+{
   options.mordrag.services.radicle = {
     enable = lib.mkEnableOption "Radicle";
 

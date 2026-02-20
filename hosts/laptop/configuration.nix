@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   mordrag.bluetooth.enable = true;
   mordrag.core.enable = true;
   mordrag.fonts.enable = true;

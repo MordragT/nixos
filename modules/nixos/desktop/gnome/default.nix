@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.desktop.gnome;
-in {
+in
+{
   options.mordrag.desktop.gnome = {
     enable = lib.mkEnableOption "Gnome";
   };
@@ -19,7 +21,8 @@ in {
       gnome-color-manager
     ];
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         showtime
         papers

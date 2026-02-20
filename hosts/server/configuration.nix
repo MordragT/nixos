@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   mordrag.bluetooth.enable = true;
   mordrag.core.enable = true;
   mordrag.fonts.enable = true;
@@ -33,8 +34,8 @@
   };
 
   nix.settings = {
-    substituters = ["https://harmonia.mordrag.de"];
-    trusted-public-keys = ["harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8="];
+    substituters = [ "https://harmonia.mordrag.de" ];
+    trusted-public-keys = [ "harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8=" ];
   };
 
   mordrag.desktop.cosmic.enable = true;
@@ -67,33 +68,29 @@
         fi
       ''
     )
-    (
-      pkgs.writeShellScriptBin "steamos-select-branch" ''
-        case "$1" in
-          "-c")
-            # Current Branch
-            echo "main"
-            ;;
-          "-l")
-            # List Branches
-            echo "main"
-            ;;
-          *)
-            # Switch Branch
-            ;;
-        esac
-      ''
-    )
-    (
-      pkgs.writeShellScriptBin "steamos-update" ''
-        # Exit codes according to vendor:
-        # 0 - update success
-        # 1 - update error
-        # 7 - no update available
-        # 8 - need reboot
-        exit 7
-      ''
-    )
+    (pkgs.writeShellScriptBin "steamos-select-branch" ''
+      case "$1" in
+        "-c")
+          # Current Branch
+          echo "main"
+          ;;
+        "-l")
+          # List Branches
+          echo "main"
+          ;;
+        *)
+          # Switch Branch
+          ;;
+      esac
+    '')
+    (pkgs.writeShellScriptBin "steamos-update" ''
+      # Exit codes according to vendor:
+      # 0 - update success
+      # 1 - update error
+      # 7 - no update available
+      # 8 - need reboot
+      exit 7
+    '')
   ];
 
   mordrag.programs.steam = {

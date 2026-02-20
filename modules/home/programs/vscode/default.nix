@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.vscode;
-in {
+in
+{
   options.mordrag.programs.vscode = {
     enable = lib.mkEnableOption "VSCode";
   };

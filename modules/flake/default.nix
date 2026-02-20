@@ -1,11 +1,13 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   flakeModules.default = {
     imports = [
       ./homes.nix
       ./hosts.nix
     ];
   };
-in {
+in
+{
   imports = [
     flakeModules.default
     inputs.flake-parts.flakeModules.flakeModules

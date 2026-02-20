@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.valent;
-in {
+in
+{
   options.mordrag.programs.valent = {
     enable = lib.mkEnableOption "Valent";
   };

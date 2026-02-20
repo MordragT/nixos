@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.virtualisation;
-in {
+in
+{
   options.mordrag.virtualisation = {
     enable = lib.mkEnableOption "Virtualisation";
   };

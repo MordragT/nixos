@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.printing;
-in {
+in
+{
   options.mordrag.services.printing = {
     enable = lib.mkEnableOption "Printing";
   };
@@ -14,7 +16,7 @@ in {
     hardware.sane = {
       enable = true;
       # extraBackends = [pkgs.hplipWithPlugin];
-      extraBackends = [pkgs.hplip];
+      extraBackends = [ pkgs.hplip ];
     };
 
     services.printing = {

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.zsh;
-in {
+in
+{
   options.mordrag.programs.zsh = {
     enable = lib.mkEnableOption "Zsh";
   };
@@ -18,7 +20,11 @@ in {
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
-        plugins = ["git" "colorize" "z"];
+        plugins = [
+          "git"
+          "colorize"
+          "z"
+        ];
       };
 
       shellAliases = {

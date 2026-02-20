@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.helix;
-in {
+in
+{
   options.mordrag.programs.helix = {
     enable = lib.mkEnableOption "Helix";
   };

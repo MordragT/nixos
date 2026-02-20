@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   fileSystems = {
     "/nix/state".neededForBoot = true;
   };

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.core;
-in {
+in
+{
   options.mordrag.core = {
     enable = lib.mkEnableOption "Enable core settings";
   };

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.nvim;
-in {
+in
+{
   options.mordrag.programs.nvim = {
     enable = lib.mkEnableOption "Neovim";
   };

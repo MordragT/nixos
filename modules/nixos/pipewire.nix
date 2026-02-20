@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.pipewire;
-in {
+in
+{
   options.mordrag.pipewire = {
     enable = lib.mkEnableOption "Pipewire";
   };

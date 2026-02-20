@@ -3,23 +3,27 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.services.llama;
-in {
+in
+{
   options.mordrag.services.llama = {
     enable = lib.mkEnableOption "Llama";
     settings = lib.mkOption {
       description = "Generates command-line arguments";
-      default = {};
+      default = { };
       type = lib.types.submodule {
-        freeformType = with lib.types; let
-          atom = nullOr (oneOf [
-            bool
-            str
-            int
-            float
-          ]);
-        in
+        freeformType =
+          with lib.types;
+          let
+            atom = nullOr (oneOf [
+              bool
+              str
+              int
+              float
+            ]);
+          in
           attrsOf (either atom (listOf atom));
         options = {
           host = lib.mkOption {
@@ -48,7 +52,11 @@ in {
           split-mode = lib.mkOption {
             description = "How to split the model across multiple GPUs";
             default = "none";
-            type = lib.types.enum ["none" "layer" "row"];
+            type = lib.types.enum [
+              "none"
+              "layer"
+              "row"
+            ];
           };
         };
       };
@@ -64,8 +72,8 @@ in {
   config = lib.mkIf cfg.enable {
     systemd.services.llama-cpp = {
       description = "LLaMA C++ server";
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
       environment = {
         ZES_ENABLE_SYSMAN = "1";
         # level-zero discovery has been changed and somehow doesn't work anymore
@@ -78,11 +86,13 @@ in {
         Restart = "on-failure";
         RestartSec = 300;
         WorkingDirectory = "%S/llama-cpp";
-        StateDirectory = ["llama-cpp"];
+        StateDirectory = [ "llama-cpp" ];
         DynamicUser = true;
         User = "llama-cpp";
         Group = "llama-cpp";
-        ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${toString (lib.cli.toCommandLineGNU {} cfg.settings)}";
+        ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${
+          toString (lib.cli.toCommandLineGNU { } cfg.settings)
+        }";
       };
     };
 

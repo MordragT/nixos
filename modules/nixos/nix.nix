@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.nix;
-in {
+in
+{
   options.mordrag.nix = {
     enable = lib.mkEnableOption "Nix settings";
   };

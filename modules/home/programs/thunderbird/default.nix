@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.programs.thunderbird;
 
   gnome-theme = pkgs.fetchFromGitHub {
@@ -12,7 +13,8 @@
     rev = "65d5c03fc9172d549a3ea72fd366d544981a002b";
     sha256 = "sha256-nQBz2PW3YF3+RTflPzDoAcs6vH1PTozESIYUGAwvSdA=";
   };
-in {
+in
+{
   options.mordrag.programs.thunderbird = {
     enable = lib.mkEnableOption "Thunderbird";
   };

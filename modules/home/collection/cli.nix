@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mordrag.collection.cli;
-in {
+in
+{
   options.mordrag.collection.cli = {
     enable = lib.mkEnableOption "CLI";
   };
@@ -25,7 +27,7 @@ in {
 
       # byfl # compiler based application analysis
       # likwid # performance monitoring
-      (renderdoc.override {waylandSupport = true;}) # debug graphics
+      (renderdoc.override { waylandSupport = true; }) # debug graphics
       # broken vkmark
       # vulkan-raytracing
       # p7zip
