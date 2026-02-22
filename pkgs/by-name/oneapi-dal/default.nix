@@ -8,7 +8,7 @@
   oneapi-math,
 }:
 # requires dpcpp compiler
-bazelPackage.override {inherit (intel-sycl) stdenv;} rec {
+bazelPackage.override { inherit (intel-sycl) stdenv; } rec {
   name = "oneapi-dal";
   version = "2025.9.0";
 
@@ -45,6 +45,8 @@ bazelPackage.override {inherit (intel-sycl) stdenv;} rec {
     patchShebangs .
   '';
 
+  installPhase = ""; # TODO
+
   bazelRepoCacheFOD = {
     outputHash = "";
     outputHashAlgo = "sha256";
@@ -59,7 +61,7 @@ bazelPackage.override {inherit (intel-sycl) stdenv;} rec {
     description = "oneAPI Data Analytics Library (oneDAL)";
     homepage = "https://01.org/oneDAL";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.all;
   };
 }

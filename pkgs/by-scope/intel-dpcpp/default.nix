@@ -1,15 +1,15 @@
-self: pkgs:
+global: self:
 let
-  inherit (pkgs) callPackage;
+  inherit (global) callPackage;
 in
 {
-  llvm = callPackage ./llvm.nix { };
+  llvm = global.callPackage ./llvm.nix { };
 
   bintools-unwrapped = callPackage ./bintools-unwrapped.nix {
     inherit (self) llvm;
   };
 
-  bintools = pkgs.wrapBintoolsWith {
+  bintools = global.wrapBintoolsWith {
     bintools = self.bintools-unwrapped;
   };
 
@@ -21,5 +21,5 @@ in
     inherit (self) llvm;
   };
 
-  stdenv = pkgs.overrideCC pkgs.stdenv self.clang;
+  stdenv = global.overrideCC global.stdenv self.clang;
 }

@@ -59,7 +59,7 @@ in
             let
               env = pkgs.buildEnv {
                 name = "zen-extensions";
-                paths = with pkgs.firefoxAddons; [
+                paths = with pkgs.firefox-addons; [
                   addon-7tv-extension
                   bib-kit
                   # bibitnow

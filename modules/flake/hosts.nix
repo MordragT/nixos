@@ -57,7 +57,7 @@
         modules =
           with inputs;
           [
-            self.nixosModules.default
+            config.flake.nixosModules.default
             # TODO: This is sadly necessary as classified doesn't follow conventions
             # It would be great if this could just be added to the nixpkgs overlay instead
             classified.nixosModules.${system}.default
@@ -66,7 +66,10 @@
             {
               system = { inherit (host) stateVersion; };
               networking = { inherit hostName; };
-              nixpkgs.pkgs = pkgs;
+              nixpkgs = {
+                inherit pkgs;
+                overlays = [ config.flake.overlays.default ];
+              };
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;

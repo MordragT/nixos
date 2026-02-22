@@ -19,9 +19,17 @@
   SDL2,
   libGL,
   libGLU,
-  xorg,
+  libX11,
+  libXinerama,
+  libXext,
+  libXcursor,
+  libXi,
+  libXfixes,
+  libXrandr,
+  libXScrnSaver,
   zlib,
-}: let
+}:
+let
   tinyobjloader = stdenv.mkDerivation rec {
     pname = "tinyobjloader";
     version = "2.0-rc1";
@@ -33,7 +41,7 @@
       sha256 = "sha256-UscZW0T3EVcG4OJX5hMdqQ0d2RvUBg5u7RsQ0y/tiJw=";
     };
 
-    nativeBuildInputs = [cmake];
+    nativeBuildInputs = [ cmake ];
 
     # https://github.com/tinyobjloader/tinyobjloader/issues/336
     postPatch = ''
@@ -89,65 +97,65 @@
     meta.broken = true;
   };
 in
-  stdenv.mkDerivation {
-    pname = "vulkan-raytracing";
-    version = "master";
+stdenv.mkDerivation {
+  pname = "vulkan-raytracing";
+  version = "master";
 
-    src = fetchFromGitHub {
-      owner = "GPSnoopy";
-      repo = "RayTracingInVulkan";
-      rev = "master";
-      hash = "sha256-GiKkM9k6guT/rz1UynD0JO05th5LhCzssoNSspRf63M=";
-    };
+  src = fetchFromGitHub {
+    owner = "GPSnoopy";
+    repo = "RayTracingInVulkan";
+    rev = "master";
+    hash = "sha256-GiKkM9k6guT/rz1UynD0JO05th5LhCzssoNSspRf63M=";
+  };
 
-    nativeBuildInputs = [
-      cmake
-      ninja
-      pkg-config
-    ];
+  nativeBuildInputs = [
+    cmake
+    ninja
+    pkg-config
+  ];
 
-    cmakeFlags = [
-      "-DIMGUI_DIR=${imgui}/include/imgui"
-      "-DSTB_INCLUDE_DIRS=${stb}/include/stb"
-    ];
+  cmakeFlags = [
+    "-DIMGUI_DIR=${imgui}/include/imgui"
+    "-DSTB_INCLUDE_DIRS=${stb}/include/stb"
+  ];
 
-    preConfigure = ''
-      substituteInPlace CMakeLists.txt \
-        --replace-fail "find_package(Stb REQUIRED)" "find_package(Freetype REQUIRED)" \
-        --replace-fail "find_package(tinyobjloader CONFIG REQUIRED)" "find_package(tinyobjloader REQUIRED)" \
+  preConfigure = ''
+    substituteInPlace CMakeLists.txt \
+      --replace-fail "find_package(Stb REQUIRED)" "find_package(Freetype REQUIRED)" \
+      --replace-fail "find_package(tinyobjloader CONFIG REQUIRED)" "find_package(tinyobjloader REQUIRED)" \
 
-      # substituteInPlace src/CMakeLists.txt \
-      #   --replace-fail "imgui::imgui" "imgui"
-    '';
+    # substituteInPlace src/CMakeLists.txt \
+    #   --replace-fail "imgui::imgui" "imgui"
+  '';
 
-    buildInputs = [
-      glslang
-      vulkan-loader
-      vulkan-headers
-      vulkan-tools
-      vulkan-validation-layers
-      boost
-      stb
-      freetype
-      SDL2
-      imgui # does not provide cmake files
-      glfw
-      glm
-      tinyobjloader
-      libGL
-      libGLU
-      libX11
-      libXcursor
-      libXrandr
-      libXinerama
-    ];
+  buildInputs = [
+    glslang
+    vulkan-loader
+    vulkan-headers
+    vulkan-tools
+    vulkan-validation-layers
+    boost
+    stb
+    freetype
+    SDL2
+    imgui # does not provide cmake files
+    glfw
+    glm
+    tinyobjloader
+    libGL
+    libGLU
+    libX11
+    libXcursor
+    libXrandr
+    libXinerama
+  ];
 
-    meta = with lib; {
-      broken = true;
-      description = "Implementation of Peter Shirley's Ray Tracing In One Weekend book using Vulkan and NVIDIA's RTX extension.";
-      homepage = "https://github.com/GPSnoopy/RayTracingInVulkan";
-      license = [licenses.bsd3];
-      platforms = platforms.unix;
-      maintainers = with maintainers; [mordrag];
-    };
-  }
+  meta = with lib; {
+    broken = true;
+    description = "Implementation of Peter Shirley's Ray Tracing In One Weekend book using Vulkan and NVIDIA's RTX extension.";
+    homepage = "https://github.com/GPSnoopy/RayTracingInVulkan";
+    license = [ licenses.bsd3 ];
+    platforms = platforms.unix;
+    maintainers = with maintainers; [ mordrag ];
+  };
+}

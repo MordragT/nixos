@@ -10,16 +10,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-git-work";
-  version = "unstable-2025-10-05";
+  version = "unstable-2026-02-12";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "git-work";
-    rev = "12854a17141e67ba460fbc6de24a433b1b22b389";
-    hash = "sha256-v+cwvtjhgPsoFQPXgdAanSNCmqHJpZUhFXmgkdwiBqg=";
+    rev = "5421ee3a57da47f96f601ed7ae0e93a331218dff";
+    hash = "";
   };
 
-  cargoHash = "sha256-BIA3Az8PqBM12mcEDEI2X/BflXF3wY8P18wN39AhIC8=";
+  cargoHash = "";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -44,13 +44,13 @@ rustPlatform.buildRustPackage rec {
 
   env.VERGEN_GIT_SHA = src.rev;
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "A GitHub notifications applet for the COSMIC desktop.";
     homepage = "https://github.com/cosmic-utils/git-work";
     # license = lib.licenses.gpl3Only; TODO none specified yet
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     mainProgram = "git-work";
   };
 }

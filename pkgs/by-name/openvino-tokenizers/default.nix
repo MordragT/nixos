@@ -6,8 +6,9 @@
   cmake,
   python3,
   openvino,
-  tbb_2022_0,
-}: let
+  onetbb,
+}:
+let
   sentencepiece = fetchFromGitHub {
     owner = "google";
     repo = "sentencepiece";
@@ -25,59 +26,62 @@
     hash = "sha256-u3OvEGhUaiC8G7s3ze0D4QGgRLfmAKhr4r5NAAD3nks=";
   };
 in
-  stdenv.mkDerivation (self: {
-    pname = "openvino-tokenizers";
-    version = "2024.5.0.0";
+stdenv.mkDerivation (self: {
+  pname = "openvino-tokenizers";
+  version = "2024.5.0.0";
 
-    src = fetchFromGitHub {
-      owner = "openvinotoolkit";
-      repo = "openvino_tokenizers";
-      rev = "${self.version}";
-      hash = "sha256-xi7ngCOD9/qEmC6v0+XbaPqX2yoDeTbW8w+0FXVahV8=";
-    };
+  src = fetchFromGitHub {
+    owner = "openvinotoolkit";
+    repo = "openvino_tokenizers";
+    rev = "${self.version}";
+    hash = "sha256-xi7ngCOD9/qEmC6v0+XbaPqX2yoDeTbW8w+0FXVahV8=";
+  };
 
-    outputs = ["out" "python"];
+  outputs = [
+    "out"
+    "python"
+  ];
 
-    cmakeFlags = [
-      "-DOpenVINO_DIR=${openvino}/runtime/cmake"
-      "-DFETCHCONTENT_SOURCE_DIR_SENTENCEPIECE=${sentencepiece}"
-      "-DFETCHCONTENT_SOURCE_DIR_FAST_TOKENIZER=${fast-tokenizer}"
-      "-DFETCHCONTENT_SOURCE_DIR_PRCE2=${pcre2}"
-      "-DENABLE_PYTHON=ON"
-    ];
+  cmakeFlags = [
+    "-DOpenVINO_DIR=${openvino}/runtime/cmake"
+    "-DFETCHCONTENT_SOURCE_DIR_SENTENCEPIECE=${sentencepiece}"
+    "-DFETCHCONTENT_SOURCE_DIR_FAST_TOKENIZER=${fast-tokenizer}"
+    "-DFETCHCONTENT_SOURCE_DIR_PRCE2=${pcre2}"
+    "-DENABLE_PYTHON=ON"
+  ];
 
-    nativeBuildInputs = [
-      cmake
-      python3
-    ];
+  nativeBuildInputs = [
+    cmake
+    python3
+  ];
 
-    buildInputs = [
-      openvino
-      tbb_2022_0
-    ];
+  buildInputs = [
+    openvino
+    onetbb
+  ];
 
-    postInstall = ''
-      cp -r $src/python $python
-    '';
+  postInstall = ''
+    cp -r $src/python $python
+  '';
 
-    # postInstall = ''
-    #   mkdir -p $python
-    #   mv python/* $python/
-    # '';
+  # postInstall = ''
+  #   mkdir -p $python
+  #   mv python/* $python/
+  # '';
 
-    # postInstall = ''
-    #   mkdir -p $python
+  # postInstall = ''
+  #   mkdir -p $python
 
-    #   cp -r $src/python/* $python/
-    #   rm $python/openvino_tokenizers/__version__.py
-    #   mv python/__version__.py $python/openvino_tokenizers/__version__.py
-    # '';
+  #   cp -r $src/python/* $python/
+  #   rm $python/openvino_tokenizers/__version__.py
+  #   mv python/__version__.py $python/openvino_tokenizers/__version__.py
+  # '';
 
-    meta = {
-      description = "OpenVINO Tokenizers extension";
-      homepage = "https://github.com/openvinotoolkit/openvino_tokenizers/tree/main";
-      changelog = "https://github.com/openvinotoolkit/openvino_tokenizers/releases/tag/${self.version}";
-      license = lib.licenses.asl20;
-      maintainers = with lib.maintainers; [mordrag];
-    };
-  })
+  meta = {
+    description = "OpenVINO Tokenizers extension";
+    homepage = "https://github.com/openvinotoolkit/openvino_tokenizers/tree/main";
+    changelog = "https://github.com/openvinotoolkit/openvino_tokenizers/releases/tag/${self.version}";
+    license = lib.licenses.asl20;
+    maintainers = with lib.maintainers; [ mordrag ];
+  };
+})

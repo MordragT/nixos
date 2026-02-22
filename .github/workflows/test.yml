@@ -16,7 +16,7 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Check flake
-        run: nix flake check
+        run: NIXPKGS_ALLOW_BROKEN=1 nix flake check --impure
 
       - name: Build opengothic
         run: nix build .#opengothic

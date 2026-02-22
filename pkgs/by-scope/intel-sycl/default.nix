@@ -1,7 +1,7 @@
-self: pkgs:
+global: self:
 let
-  inherit (pkgs) callPackage;
-  pins = pkgs.callPackage ./pins { };
+  inherit (global) callPackage;
+  pins = callPackage ./pins { };
   # version = "6.2.0";
   # src = pkgs.fetchFromGitHub {
   #   owner = "intel";
@@ -10,7 +10,7 @@ let
   #   hash = "sha256-j8+DmGKO0qDF5JjH+DlkLKs1kBz6dS7ukwySd/Crqv0=";
   # };
   version = "nightly-2026-01-01";
-  src = pkgs.fetchFromGitHub {
+  src = global.fetchFromGitHub {
     owner = "intel";
     repo = "llvm";
     rev = version;
@@ -35,7 +35,7 @@ in
     inherit (self) llvm lld;
   };
 
-  bintools = pkgs.wrapBintoolsWith {
+  bintools = global.wrapBintoolsWith {
     bintools = self.bintools-unwrapped;
   };
 
@@ -43,13 +43,13 @@ in
     inherit (self) bintools llvm;
   };
 
-  stdenv = pkgs.overrideCC pkgs.stdenv self.clang;
+  stdenv = global.overrideCC global.stdenv self.clang;
 
   dpcpp-compat = callPackage ./dpcpp-compat {
     inherit (self) clang llvm openmp;
   };
 
-  compatStdenv = pkgs.overrideCC pkgs.stdenv self.dpcpp-compat;
+  compatStdenv = global.overrideCC global.stdenv self.dpcpp-compat;
 
   openmp = callPackage ./openmp {
     inherit (self) stdenv;

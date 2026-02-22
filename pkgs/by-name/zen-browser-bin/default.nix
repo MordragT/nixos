@@ -15,12 +15,16 @@
   ffmpeg_7,
   pipewire,
   libglvnd,
-}: let
+}:
+let
   desktopItem = makeDesktopItem {
     name = "zen-browser";
     desktopName = "Zen Browser";
     genericName = "Web Browser";
-    categories = ["Network" "WebBrowser"];
+    categories = [
+      "Network"
+      "WebBrowser"
+    ];
     keywords = [
       "internet"
       "www"
@@ -57,70 +61,72 @@
     };
   };
 in
-  stdenv.mkDerivation rec {
-    pname = "zen-browser-bin";
-    version = "1.17.15b";
+stdenv.mkDerivation rec {
+  pname = "zen-browser-bin";
+  version = "1.18.9b";
 
-    src = fetchzip {
-      url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
-      hash = "sha256-utI3bD6zIAC5oO2wPDCJjPRqeHZj+16EfsCFBslS5oE=";
-    };
+  src = fetchzip {
+    url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
+    hash = "sha256-mQDgb+NMVLyXqKS1erELxaC1NAgTZZ1ilPlDVh4DbNg=";
+  };
 
-    desktopItems = [
-      desktopItem
-    ];
+  desktopItems = [
+    desktopItem
+  ];
 
-    nativeBuildInputs = [
-      autoPatchelfHook
-      wrapGAppsHook3
-      copyDesktopItems
-    ];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    wrapGAppsHook3
+    copyDesktopItems
+  ];
 
-    buildInputs = [
-      gtk3
-      alsa-lib
-      dbus-glib
-      libXtst
-    ];
+  buildInputs = [
+    gtk3
+    alsa-lib
+    dbus-glib
+    libXtst
+  ];
 
-    installPhase = ''
-      runHook preInstall
+  installPhase = ''
+    runHook preInstall
 
-      mkdir -p $out/lib
-      cp -r $src $out/lib/zen/
+    mkdir -p $out/lib
+    cp -r $src $out/lib/zen/
 
-      mkdir -p $out/bin
-      ln -s $out/lib/zen/zen $out/bin/zen
+    mkdir -p $out/bin
+    ln -s $out/lib/zen/zen $out/bin/zen
 
-      for n in {16,32,48,64,128}; do
-        size=$n"x"$n
-        mkdir -p $out/share/icons/hicolor/$size/apps
-        file="default"$n".png"
-        cp $out/lib/zen/browser/chrome/icons/default/$file $out/share/icons/hicolor/$size/apps/zen.png
-      done
+    for n in {16,32,48,64,128}; do
+      size=$n"x"$n
+      mkdir -p $out/share/icons/hicolor/$size/apps
+      file="default"$n".png"
+      cp $out/lib/zen/browser/chrome/icons/default/$file $out/share/icons/hicolor/$size/apps/zen.png
+    done
 
-      runHook postInstall
-    '';
+    runHook postInstall
+  '';
 
-    preFixup = ''
-      gappsWrapperArgs+=(
-        --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [
-        pciutils
-        pipewire
-        libva
-        libglvnd
-        ffmpeg_7 # https://github.com/zen-browser/desktop/issues/10698
-      ]}"
-      )
-      gappsWrapperArgs+=(--set MOZ_LEGACY_PROFILES 1)
-      wrapGApp $out/lib/zen/zen
-    '';
+  preFixup = ''
+    gappsWrapperArgs+=(
+      --prefix LD_LIBRARY_PATH : "${
+        lib.makeLibraryPath [
+          pciutils
+          pipewire
+          libva
+          libglvnd
+          ffmpeg_7 # https://github.com/zen-browser/desktop/issues/10698
+        ]
+      }"
+    )
+    gappsWrapperArgs+=(--set MOZ_LEGACY_PROFILES 1)
+    wrapGApp $out/lib/zen/zen
+  '';
 
-    meta = with lib; {
-      license = licenses.mpl20;
-      maintainers = with maintainers; [mordrag];
-      description = "Experience tranquillity while browsing the web without people tracking you! ";
-      platforms = platforms.linux;
-      mainProgram = "zen";
-    };
-  }
+  meta = with lib; {
+    license = licenses.mpl20;
+    maintainers = with maintainers; [ mordrag ];
+    description = "Experience tranquillity while browsing the web without people tracking you! ";
+    platforms = platforms.linux;
+    mainProgram = "zen";
+  };
+}

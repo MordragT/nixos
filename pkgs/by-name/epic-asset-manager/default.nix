@@ -2,7 +2,7 @@
   stdenv,
   lib,
   fetchFromGitHub,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   meson,
   ninja,
   pkg-config,
@@ -29,7 +29,7 @@ stdenv.mkDerivation {
   cargoHash = "";
 
   nativeBuildInputs = [
-    wrapGAppsHook
+    wrapGAppsHook3
     meson
     pkg-config
     openssl
@@ -48,7 +48,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     license = licenses.mit;
-    maintainers = with maintainers; [mordrag];
+    maintainers = with maintainers; [ mordrag ];
     description = "A frontend to Assets purchased on Epic Games Store";
     platforms = platforms.linux;
   };

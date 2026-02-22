@@ -33,6 +33,7 @@
           }
         )
       );
+    default = { };
   };
 
   config.flake.homeConfigurations = lib.mapAttrs (
@@ -47,7 +48,7 @@
         inherit pkgs;
         modules = [
           home.module
-          inputs.self.homeModules.default
+          config.flake.homeModules.default
         ];
       }
     )

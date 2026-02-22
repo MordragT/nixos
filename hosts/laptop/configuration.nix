@@ -6,24 +6,24 @@
 {
   mordrag = {
     bluetooth.enable = true;
+    boot.enable = true;
     core.enable = true;
+    desktop = {
+      gnome.enable = true;
+    };
     fonts.enable = true;
     locale.enable = true;
     networking.enable = true;
     nix.enable = true;
     pipewire.enable = true;
-    secrets.enable = true;
-    security.enable = true;
-    users.enable = true;
-    virtualisation.enable = true;
-    boot.enable = true;
-    desktop = {
-      gnome.enable = true;
-    };
     programs = {
       gnome-disks.enable = true;
       nautilus.enable = true;
     };
+    secrets.enable = true;
+    security.enable = true;
+    users.enable = true;
+    virtualisation.enable = true;
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

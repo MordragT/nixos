@@ -9,16 +9,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-clipboard-manager";
-  version = "unstable-2025-11-27";
+  version = "unstable-2026-02-15";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "clipboard-manager";
-    rev = "4e509f5dd9513db58a699748314f388ed4664348";
-    hash = "sha256-a96jEzbKlgScnFzbqs6ckpm8m19l4/mZt074GeOsUHI=";
+    rev = "d8840236acbaf3679acd7c4b10102b86e7da27f6";
+    hash = "sha256-GTSz0NRRImdweLx0PdgrwJ/iL5ujeyysbxAuHlX5AUQ=";
   };
 
-  cargoHash = "sha256-DmxrlYhxC1gh5ZoPwYqJcAPu70gzivFaZQ7hVMwz3aY=";
+  cargoHash = "sha256-0CziruLYJrku1FO7tBSJRNtS5JyhjDWxTEcOwUVYmSk=";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -42,13 +42,13 @@ rustPlatform.buildRustPackage rec {
 
   # env.CLIPBOARD_MANAGER_COMMIT = src.rev;
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Clipboard manager for COSMIC";
     homepage = "https://github.com/cosmic-utils/clipboard-manager";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     mainProgram = "cosmic-ext-applet-clipboard-manager";
   };
 }

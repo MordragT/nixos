@@ -2,7 +2,7 @@
   stdenv,
   lib,
   fetchFromGitHub,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   meson,
   ninja,
   pkg-config,
@@ -11,7 +11,7 @@
   gtk3,
   glib,
   gobject-introspection,
-  libsoup,
+  libsoup_3,
   json-glib,
   libhandy,
   gst_all_1,
@@ -39,7 +39,7 @@ stdenv.mkDerivation {
     meson
     ninja
     pkg-config
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   buildInputs = [
@@ -49,7 +49,7 @@ stdenv.mkDerivation {
     gtk3
     glib
     gobject-introspection
-    libsoup
+    libsoup_3
     json-glib
     libhandy
     gst_all_1.gstreamer
@@ -64,7 +64,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     license = licenses.gpl3;
-    maintainers = with maintainers; [mordrag];
+    maintainers = with maintainers; [ mordrag ];
     description = "A digital arranger workstation powered by FluidSynth";
     platforms = platforms.linux;
   };

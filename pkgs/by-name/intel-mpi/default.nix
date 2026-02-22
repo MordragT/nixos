@@ -10,9 +10,11 @@
 }:
 let
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
-  srcs = builtins.mapAttrs fetchurl pins;
+  srcs = lib.mapAttrsToList (_: fetchurl) pins;
 in
 stdenvNoCC.mkDerivation {
+  inherit srcs;
+
   pname = "intel-mpi";
   version = "2021.17.0";
 
@@ -35,7 +37,11 @@ stdenvNoCC.mkDerivation {
     "libcuda.so.1"
   ];
 
-  unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
+  unpackPhase = ''
+    for src in $srcs; do
+      dpkg-deb -x "$src" .
+    done
+  '';
 
   installPhase = ''
     mkdir -p $out

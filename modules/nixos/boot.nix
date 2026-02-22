@@ -24,7 +24,7 @@ in
     boot = {
       loader = {
         systemd-boot = {
-          enable = lib.mkForce false;
+          enable = !cfg.secure-boot;
           editor = false;
           consoleMode = "max";
         };

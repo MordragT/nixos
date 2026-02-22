@@ -1,13 +1,15 @@
-self: pkgs: let
+global: self:
+let
+  inherit (global) callPackage;
   version = "0.15.0";
-  src = pkgs.fetchFromGitHub {
+  src = global.fetchFromGitHub {
     owner = "intel";
     repo = "pti-gpu";
     rev = "pti-${version}";
     hash = "sha256-wBVSsCWh7oB7Hpthn4adQsHRJ98XnYCJWP0qrynrTAQ=";
   };
-  callPackage = pkgs.lib.callPackageWith (pkgs // self);
-in {
+in
+{
   onetrace = callPackage ./onetrace.nix {
     inherit src version;
   };

@@ -12,13 +12,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "cutecosmic";
-  version = "unstable-2025-11-10";
+  version = "unstable-2026-01-21";
 
   src = fetchFromGitHub {
     owner = "IgKh";
     repo = "cutecosmic";
-    rev = "1469fa3a8890b74a7189d10de737150678b57418";
-    hash = "sha256-40Ftca9MKDMNLO2lOV0yNi1bPzhGI6QIAZ4HOvbRHKY=";
+    rev = "8e584418f69eeeaee8574c4a48cc92ef27fd610e";
+    hash = "sha256-jKiO+WlNHM1xavKdB6PrGd3HmTgnyL1vjh0Ps1HcWx4=";
   };
 
   patches = [
@@ -27,8 +27,13 @@ stdenv.mkDerivation rec {
 
   cargoRoot = "bindings";
   cargoDeps = rustPlatform.fetchCargoVendor {
-    inherit pname version src cargoRoot;
-    hash = "sha256-f8/ZgYMg9q6ClPHI70f609XJCooHsoaBR2l6SBQ4IyU=";
+    inherit
+      pname
+      version
+      src
+      cargoRoot
+      ;
+    hash = "sha256-+1z0VoxDeOYSmb7BoFSdrwrfo1mmwkxeuEGP+CGFc8Y=";
   };
 
   nativeBuildInputs = [

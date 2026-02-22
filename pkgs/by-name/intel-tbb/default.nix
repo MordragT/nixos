@@ -12,10 +12,10 @@ let
   version = "2022.3.0-381";
 
   pins = builtins.fromJSON (builtins.readFile ./default.lock);
-  srcs = builtins.mapAttrs fetchurl pins;
+  srcs = lib.mapAttrsToList (_: fetchurl) pins;
 in
 stdenvNoCC.mkDerivation {
-  inherit version;
+  inherit version srcs;
   pname = "intel-tbb";
 
   # dontUnpack = true;
@@ -33,7 +33,11 @@ stdenvNoCC.mkDerivation {
 
   autoPatchelfIgnoreMissingDeps = [ "libhwloc.so.5" ];
 
-  unpackPhase = lib.concatMapAttrsStringSep "\n" (_name: src: "dpkg-deb -x ${src} .") srcs;
+  unpackPhase = ''
+    for src in $srcs; do
+      dpkg-deb -x "$src" .
+    done
+  '';
 
   installPhase = ''
     mkdir -p $out

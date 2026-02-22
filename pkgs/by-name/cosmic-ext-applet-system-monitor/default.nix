@@ -10,7 +10,7 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-system-monitor";
-  version = "0.2.7";
+  version = "0.2.8";
 
   src = fetchFromGitHub {
     owner = "d-brox";
@@ -27,7 +27,7 @@ rustPlatform.buildRustPackage rec {
     pkg-config
   ];
 
-  buildInputs = with pkgs; [fontconfig];
+  buildInputs = with pkgs; [ fontconfig ];
 
   dontUseJustBuild = true;
   dontUseJustCheck = true;
@@ -45,13 +45,13 @@ rustPlatform.buildRustPackage rec {
     export XDG_RUNTIME_DIR="$TMP"
   '';
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     homepage = "https://github.com/D-Brox/cosmic-ext-applet-system-monitor";
     description = "Highly configurable system resource monitor for the COSMIC Desktop Environment";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.linux;
     mainProgram = "cosmic-ext-applet-system-monitor";
   };

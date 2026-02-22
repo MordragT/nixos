@@ -17,7 +17,7 @@ in
       enable = true;
       package = pkgs.firefox;
       profiles.options = {
-        extensions.packages = with pkgs.firefoxAddons; [
+        extensions.packages = with pkgs.firefox-addons; [
           bib-kit
           bibitnow
           bitwarden-password-manager
