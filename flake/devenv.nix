@@ -23,7 +23,7 @@
           unzip
           git
           inputs'.disko.packages.default
-          inputs'.vaultix.packages.default
+          # inputs'.vaultix.packages.default
         ];
       };
 
