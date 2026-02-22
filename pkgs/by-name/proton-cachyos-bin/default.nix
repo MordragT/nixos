@@ -11,11 +11,14 @@ stdenv.mkDerivation rec {
   src = fetchzip {
     url = "https://mirror.cachyos.org/repo/x86_64_v3/cachyos-v3/proton-cachyos-1%3A${version}-x86_64_v3.pkg.tar.zst";
     hash = "sha256-yTecgTEB4VWnmjJHQW8qQOrcD+9Bbnf2tRcga+OdHL8=";
-    nativeBuildInputs = [zstd];
+    nativeBuildInputs = [ zstd ];
     stripRoot = false;
   };
 
-  outputs = ["out" "steamcompattool"];
+  outputs = [
+    "out"
+    "steamcompattool"
+  ];
 
   buildCommand = ''
     runHook preBuild
@@ -33,7 +36,7 @@ stdenv.mkDerivation rec {
     license = licenses.bsd3;
     description = "Compatibility tool for Steam Play based on Wine and additional components.";
     homepage = "https://github.com/ValveSoftware/Proton";
-    maintainers = with lib.maintainers; [Mordrag];
+    maintainers = with lib.maintainers; [ Mordrag ];
     platforms = platforms.linux;
   };
 }

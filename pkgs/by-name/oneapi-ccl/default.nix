@@ -17,7 +17,10 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-m+TQYtSs8qD2/5YzW/WRtl6Eg8nhGMVuSVi3Tz2ZQBQ=";
   };
 
-  outputs = ["out" "dev"];
+  outputs = [
+    "out"
+    "dev"
+  ];
 
   nativeBuildInputs = [
     cmake
@@ -45,7 +48,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     description = "oneAPI Collective Communications Library (oneCCL)";
     homepage = "https://01.org/oneCCL";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.all;
   };
 })
@@ -56,4 +59,3 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
 # >   cmake_install.cmake:131 (include)
 # >
 # >
-

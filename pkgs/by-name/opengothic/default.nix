@@ -29,7 +29,10 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  outputs = ["out" "steamcompattool"];
+  outputs = [
+    "out"
+    "steamcompattool"
+  ];
 
   nativeBuildInputs = [
     cmake
@@ -42,7 +45,7 @@ stdenv.mkDerivation rec {
     $out/bin/opengothic -g $gothic_dir $@ > /tmp/compat.log 2> /tmp/compat_err.log
   '';
 
-  env.NIX_CFLAGS_COMPILE = toString ["-Wno-unused-but-set-variable"];
+  env.NIX_CFLAGS_COMPILE = toString [ "-Wno-unused-but-set-variable" ];
 
   cmakeFlags = [
     "-DBUILD_SHARED_LIBS=ON"
@@ -74,6 +77,6 @@ stdenv.mkDerivation rec {
     changelog = "https://github.com/Try/OpenGothic/releases/tag/opengothic-v${version}";
     license = licenses.mit;
     platforms = platforms.all;
-    maintainers = with maintainers; [mordrag];
+    maintainers = with maintainers; [ mordrag ];
   };
 }

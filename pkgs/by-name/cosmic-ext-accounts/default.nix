@@ -45,14 +45,14 @@ rustPlatform.buildRustPackage {
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/accounts-ui"
   ];
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "A library for COSMIC online account management.";
     homepage = "https://github.com/cosmic-utils/accounts";
     license = lib.licenses.gpl3Only;
     mainProgram = "cosmic-ext-accounts";
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.linux;
     broken = true;
   };

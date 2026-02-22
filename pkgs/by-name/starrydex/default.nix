@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage rec {
     description = "A Pokédex application for the COSMIC™ desktop written in Rust ";
     homepage = "https://github.com/mariinkys/starrydex";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     mainProgram = "starry-dex";
     platforms = lib.platforms.linux;
   };

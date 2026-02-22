@@ -7,8 +7,7 @@
   libclang,
   rocksdb,
 }:
-rustPlatform
-.buildRustPackage rec {
+rustPlatform.buildRustPackage rec {
   pname = "oxen";
   version = "0.42.3";
   sourceRoot = "source/oxen-rust";

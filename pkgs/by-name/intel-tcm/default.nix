@@ -5,7 +5,8 @@
   autoPatchelfHook,
   dpkg,
   hwloc,
-}: let
+}:
+let
   major = "1.4";
   version = "1.4.0-345";
 
@@ -18,32 +19,35 @@
   #   hash = "";
   # };
 in
-  stdenvNoCC.mkDerivation {
-    inherit version;
-    pname = "intel-tcm";
+stdenvNoCC.mkDerivation {
+  inherit version;
+  pname = "intel-tcm";
 
-    # dontUnpack = true;
-    dontStrip = true;
+  # dontUnpack = true;
+  dontStrip = true;
 
-    nativeBuildInputs = [autoPatchelfHook dpkg];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    dpkg
+  ];
 
-    buildInputs = [
-      stdenv.cc.cc.lib
-      hwloc
-    ];
+  buildInputs = [
+    stdenv.cc.cc.lib
+    hwloc
+  ];
 
-    unpackPhase = ''
-      dpkg-deb -x ${tcm} .
-    '';
+  unpackPhase = ''
+    dpkg-deb -x ${tcm} .
+  '';
 
-    installPhase = ''
-      mkdir $out
+  installPhase = ''
+    mkdir $out
 
-      cd ./opt/intel/oneapi/tcm/${major}
+    cd ./opt/intel/oneapi/tcm/${major}
 
-      rm lib/libhwloc.so*
+    rm lib/libhwloc.so*
 
-      mv lib $out/lib
-      mv share $out/share
-    '';
-  }
+    mv lib $out/lib
+    mv share $out/share
+  '';
+}

@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage {
       --replace-fail '~/.config/cosmic' "$out/share/cosmic"
   '';
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     homepage = "https://github.com/leb-kuchen/cosmic-ext-applet-emoji-selector";
@@ -56,7 +56,7 @@ rustPlatform.buildRustPackage {
       mpl20
       mit
     ];
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.linux;
     mainProgram = "cosmic-ext-applet-emoji-selector";
   };

@@ -38,8 +38,8 @@ stdenv.mkDerivation {
       and wants to recover its data on Linux.
     '';
     homepage = "https://github.com/abique/tmfs";
-    license = [licenses.mit];
+    license = [ licenses.mit ];
     platforms = platforms.unix;
-    maintainers = with maintainers; [mordrag];
+    maintainers = with maintainers; [ mordrag ];
   };
 }

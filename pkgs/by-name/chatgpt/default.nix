@@ -1,7 +1,8 @@
 {
   makeChromiumApp,
   writeTextFile,
-}: let
+}:
+let
   icon = writeTextFile {
     name = "chatgpt-icon";
     text = ''
@@ -10,10 +11,10 @@
     destination = "/share/icons/chatgpt/scalable/favicon.svg";
   };
 in
-  makeChromiumApp {
-    name = "chatgpt";
-    desktopName = "ChatGPT";
-    app = "https://chatgpt.com";
-    icon = "${icon}/share/icons/chatgpt/scalable/favicon.svg";
-    startupWMClass = "chrome-chatgpt.com__-Default";
-  }
+makeChromiumApp {
+  name = "chatgpt";
+  desktopName = "ChatGPT";
+  app = "https://chatgpt.com";
+  icon = "${icon}/share/icons/chatgpt/scalable/favicon.svg";
+  startupWMClass = "chrome-chatgpt.com__-Default";
+}

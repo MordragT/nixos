@@ -46,7 +46,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     changelog = "https://github.com/uxlfoundation/oneMath/releases/tag/v${finalAttrs.version}";
     description = "oneAPI Math Library (oneMath)";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.all;
   };
 })

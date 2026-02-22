@@ -21,6 +21,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/drakulix/cosmic-ext-alternative-startup";
     license = lib.licenses.gpl3Only;
     mainProgram = "cosmic-ext-alternative-startup";
-    maintainers = [];
+    maintainers = [ ];
   };
 }

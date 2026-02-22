@@ -32,7 +32,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     description = " oneAPI DPC++ Library (oneDPL)";
     homepage = "https://01.org/oneDPL";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.all;
   };
 })

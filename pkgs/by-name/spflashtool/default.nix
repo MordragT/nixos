@@ -19,13 +19,15 @@ stdenv.mkDerivation rec {
     libsForQt5.qt5.wrapQtAppsHook
   ];
 
-  qtWrapperArgs = let
-    runtimeLibs = with libsForQt5.qt5; [
-      qtbase
-      qtserialport
-      qtxmlpatterns
-    ];
-  in "--set LD_LIBRARY_PATH ${lib.makeLibraryPath runtimeLibs}";
+  qtWrapperArgs =
+    let
+      runtimeLibs = with libsForQt5.qt5; [
+        qtbase
+        qtserialport
+        qtxmlpatterns
+      ];
+    in
+    "--set LD_LIBRARY_PATH ${lib.makeLibraryPath runtimeLibs}";
 
   installPhase = ''
     runHook preInstall
@@ -41,7 +43,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     license = licenses.unfree;
-    maintainers = with maintainers; [mordrag];
+    maintainers = with maintainers; [ mordrag ];
     description = "SP Flash Tool is an application to flash your MediaTek (MTK) SmartPhone.";
     platforms = platforms.linux;
   };

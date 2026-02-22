@@ -42,13 +42,13 @@ rustPlatform.buildRustPackage {
         --replace-fail "sudo install" "install"
   '';
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "A COSMIC applet for managing tailscale VPN connections";
     homepage = "https://github.com/cosmic-utils/gui-scale-applet";
     license = lib.licenses.bsd3;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     mainProgram = "gui-scale-applet";
   };
 }

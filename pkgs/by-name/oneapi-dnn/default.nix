@@ -19,9 +19,13 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-/e57voLBNun/2koTF3sEb0Z/nDjCwq9NJVk7TaTSvMY=";
   };
 
-  outputs = ["out" "dev" "doc"];
+  outputs = [
+    "out"
+    "dev"
+    "doc"
+  ];
 
-  nativeBuildInputs = [cmake];
+  nativeBuildInputs = [ cmake ];
 
   buildInputs = [
     level-zero
@@ -57,7 +61,7 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     description = "oneAPI Deep Neural Network Library (oneDNN)";
     homepage = "https://01.org/oneDNN";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [bhipple];
+    maintainers = with lib.maintainers; [ bhipple ];
     platforms = lib.platforms.all;
   };
 })

@@ -15,7 +15,10 @@ clangStdenv.mkDerivation rec {
     hash = "sha256-HIHF6KHlEI4rgQ9Epe0+DmNe1y95K9iYa4V/wFnJfEU=";
   };
 
-  outputs = ["out" "dev"];
+  outputs = [
+    "out"
+    "dev"
+  ];
 
   # Fix undefined reference errors with version script under LLVM.
   NIX_LDFLAGS = "--undefined-version";
@@ -37,6 +40,9 @@ clangStdenv.mkDerivation rec {
       All you have to do is to use the templates.
     '';
     platforms = platforms.unix;
-    maintainers = with maintainers; [thoughtpolice tmarkus];
+    maintainers = with maintainers; [
+      thoughtpolice
+      tmarkus
+    ];
   };
 }

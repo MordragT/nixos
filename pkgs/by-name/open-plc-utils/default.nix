@@ -35,7 +35,7 @@ stdenv.mkDerivation {
     description = "Qualcomm Atheros Open Powerline Toolkit.";
     homepage = "https://github.com/qca/open-plc-utls";
     license = lib.licenses.bsd3;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.linux;
   };
 }

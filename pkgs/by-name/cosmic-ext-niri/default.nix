@@ -7,10 +7,17 @@
   cosmic-session,
   makeDesktopItem,
   symlinkJoin,
-}: let
+}:
+let
   start = writeShellApplication {
     name = "start-cosmic-ext-niri";
-    runtimeInputs = [systemd dbus cosmic-session bash coreutils]; # TODO niri ?
+    runtimeInputs = [
+      systemd
+      dbus
+      cosmic-session
+      bash
+      coreutils
+    ]; # TODO niri ?
     text = ''
       set -e
       export XDG_CURRENT_DESKTOP="''${XDG_CURRENT_DESKTOP:=cosmic}"
@@ -34,12 +41,12 @@
     destination = "/share/wayland-sessions";
   };
 in
-  symlinkJoin {
-    name = "cosmic-ext-niri";
-    version = "0.1.0";
-    paths = [
-      desktop
-      start
-    ];
-    passthru.providedSessions = ["cosmic-ext-niri"];
-  }
+symlinkJoin {
+  name = "cosmic-ext-niri";
+  version = "0.1.0";
+  paths = [
+    desktop
+    start
+  ];
+  passthru.providedSessions = [ "cosmic-ext-niri" ];
+}

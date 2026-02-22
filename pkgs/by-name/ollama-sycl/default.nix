@@ -16,7 +16,8 @@
   intel-mkl,
   intel-tbb,
   acceleration ? null,
-}: let
+}:
+let
   inherit (lib) cmakeBool cmakeFeature;
   version = "0.3.10";
   src = fetchFromGitHub {
@@ -27,7 +28,8 @@
     fetchSubmodules = true;
   };
 
-  preparePatch = patch: hash:
+  preparePatch =
+    patch: hash:
     fetchpatch {
       url = "file://${src}/llm/patches/${patch}";
       inherit hash;
@@ -104,64 +106,64 @@
     '';
   };
 in
-  buildGoModule {
-    pname = "ollama";
-    inherit version src;
+buildGoModule {
+  pname = "ollama";
+  inherit version src;
 
-    vendorHash = "sha256-hSxcREAujhvzHVNwnRTfhi0MKI3s8HNavER2VLz6SYk=";
+  vendorHash = "sha256-hSxcREAujhvzHVNwnRTfhi0MKI3s8HNavER2VLz6SYk=";
 
-    nativeBuildInputs = [
-      makeWrapper
-    ];
+  nativeBuildInputs = [
+    makeWrapper
+  ];
 
-    buildInputs = [
-      llama-cpp-static
-    ];
+  buildInputs = [
+    llama-cpp-static
+  ];
 
-    propagatedBuildInputs = [
-      llama-cpp-sycl
-    ];
+  propagatedBuildInputs = [
+    llama-cpp-sycl
+  ];
 
-    doCheck = false;
+  doCheck = false;
 
-    ldflags = [
-      "-s"
-      "-w"
-      "-X=github.com/ollama/ollama/version.Version=${version}"
-      "-X=github.com/ollama/ollama/server.mode=release"
-    ];
+  ldflags = [
+    "-s"
+    "-w"
+    "-X=github.com/ollama/ollama/version.Version=${version}"
+    "-X=github.com/ollama/ollama/server.mode=release"
+  ];
 
-    postPatch = ''
-      # replace inaccurate version number with actual release version
-      substituteInPlace version/version.go --replace-fail 0.0.0 '${version}'
+  postPatch = ''
+    # replace inaccurate version number with actual release version
+    substituteInPlace version/version.go --replace-fail 0.0.0 '${version}'
 
-      substituteInPlace gpu/gpu_oneapi.go \
-        --replace-fail '"ONEAPI_DEVICE_SELECTOR", "level_zero:" + strings.Join(ids, ",")' '"ONEAPI_DEVICE_SELECTOR", "opencl:*"' \
-        --replace-fail '"strings"' ""
-    '';
+    substituteInPlace gpu/gpu_oneapi.go \
+      --replace-fail '"ONEAPI_DEVICE_SELECTOR", "level_zero:" + strings.Join(ids, ",")' '"ONEAPI_DEVICE_SELECTOR", "opencl:*"' \
+      --replace-fail '"strings"' ""
+  '';
 
-    preBuild = ''
-      mkdir -p llm/build/linux/x86_64/oneapi/bin
+  preBuild = ''
+    mkdir -p llm/build/linux/x86_64/oneapi/bin
 
-      makeWrapper ${llama-cpp-sycl}/bin/ollama_llama_server llm/build/linux/x86_64/oneapi/bin/ollama_llama_server \
-        --set ZES_ENABLE_SYSMAN '1'
+    makeWrapper ${llama-cpp-sycl}/bin/ollama_llama_server llm/build/linux/x86_64/oneapi/bin/ollama_llama_server \
+      --set ZES_ENABLE_SYSMAN '1'
 
-      gzip -n --force --best llm/build/linux/x86_64/oneapi/bin/ollama_llama_server
-    '';
+    gzip -n --force --best llm/build/linux/x86_64/oneapi/bin/ollama_llama_server
+  '';
 
-    postFixup = ''
-      # expose runtime libraries necessary to use the gpu
-      wrapProgram "$out/bin/ollama" \
-        --suffix LD_LIBRARY_PATH : '${addDriverRunpath.driverLink}/lib'
-    '';
+  postFixup = ''
+    # expose runtime libraries necessary to use the gpu
+    wrapProgram "$out/bin/ollama" \
+      --suffix LD_LIBRARY_PATH : '${addDriverRunpath.driverLink}/lib'
+  '';
 
-    meta = {
-      description = "Get up and running with large language models locally";
-      homepage = "https://github.com/ollama/ollama";
-      changelog = "https://github.com/ollama/ollama/releases/tag/v${version}";
-      license = lib.licenses.mit;
-      platforms = lib.platforms.unix;
-      mainProgram = "ollama";
-      maintainers = with lib.maintainers; [mordrag];
-    };
-  }
+  meta = {
+    description = "Get up and running with large language models locally";
+    homepage = "https://github.com/ollama/ollama";
+    changelog = "https://github.com/ollama/ollama/releases/tag/v${version}";
+    license = lib.licenses.mit;
+    platforms = lib.platforms.unix;
+    mainProgram = "ollama";
+    maintainers = with lib.maintainers; [ mordrag ];
+  };
+}

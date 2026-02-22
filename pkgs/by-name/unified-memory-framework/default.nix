@@ -55,7 +55,7 @@ stdenv.mkDerivation rec {
   meta = {
     description = "A library for constructing allocators and memory pools";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.all;
   };
 }

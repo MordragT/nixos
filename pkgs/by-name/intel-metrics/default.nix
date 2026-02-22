@@ -16,14 +16,14 @@ stdenv.mkDerivation (self: {
     hash = "sha256-AgrCJR10B1rtk/VLx7k5I3A4ZVhHoF3p4oxyiY4yAnI=";
   };
 
-  nativeBuildInputs = [cmake];
+  nativeBuildInputs = [ cmake ];
 
-  buildInputs = [libdrm.dev];
+  buildInputs = [ libdrm.dev ];
 
   meta = {
     description = "User mode library that provides access to GPU performance data.";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.linux;
   };
 })

@@ -7,8 +7,7 @@
   pkg-config,
   openssl,
 }:
-rustPlatform
-.buildRustPackage rec {
+rustPlatform.buildRustPackage rec {
   pname = "lottieconv";
   version = "0.3.0";
   src = fetchCrate {

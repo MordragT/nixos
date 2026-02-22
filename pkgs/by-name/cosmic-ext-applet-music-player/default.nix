@@ -44,12 +44,12 @@ rustPlatform.buildRustPackage {
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-music-player"
   ];
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     homepage = "https://github.com/Ebbo/cosmic-ext-applet-music-player";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     mainProgram = "cosmic-ext-applet-music-player";
   };
 }

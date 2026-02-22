@@ -51,7 +51,7 @@ stdenv.mkDerivation rec {
     description = "A power line adapter utility for Linux ";
     homepage = "https://github.com/serock/pla-util";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     platforms = lib.platforms.linux;
   };
 }

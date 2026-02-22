@@ -41,12 +41,12 @@ rustPlatform.buildRustPackage {
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-gamemode-status"
   ];
 
-  passthru.updateScript = nix-update-script {};
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     homepage = "https://github.com/d-brox/cosmic-ext-applet-gamemode-status";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [mordrag];
+    maintainers = with lib.maintainers; [ mordrag ];
     mainProgram = "cosmic-ext-applet-gamemode-status";
   };
 }

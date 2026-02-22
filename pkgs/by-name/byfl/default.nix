@@ -37,7 +37,7 @@ libcxxStdenv.mkDerivation rec {
     clang
   ];
 
-  nativeBuildInputs = [cmake];
+  nativeBuildInputs = [ cmake ];
 
   meta.broken = true;
 }

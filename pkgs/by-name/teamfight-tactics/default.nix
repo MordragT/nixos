@@ -2,7 +2,8 @@
   makeDesktopItem,
   writeTextFile,
   scrcpy,
-}: let
+}:
+let
   icon = writeTextFile {
     name = "tft-icon";
     text = ''
@@ -28,9 +29,9 @@
     destination = "/share/icons/tft/scalable/favicon.svg";
   };
 in
-  makeDesktopItem {
-    name = "teamfight-tactics";
-    desktopName = "Teamfight Tactics";
-    icon = "${icon}/share/icons/tft/scalable/favicon.svg";
-    exec = "${scrcpy}/bin/scrcpy --video-bit-rate=8M --new-display=1440x2560 --max-fps=60 --video-codec=h265 --video-encoder=c2.mtk.hevc.encoder --render-driver=opengl --start-app=com.riotgames.league.teamfighttactics --fullscreen --stay-awake";
-  }
+makeDesktopItem {
+  name = "teamfight-tactics";
+  desktopName = "Teamfight Tactics";
+  icon = "${icon}/share/icons/tft/scalable/favicon.svg";
+  exec = "${scrcpy}/bin/scrcpy --video-bit-rate=8M --new-display=1440x2560 --max-fps=60 --video-codec=h265 --video-encoder=c2.mtk.hevc.encoder --render-driver=opengl --start-app=com.riotgames.league.teamfighttactics --fullscreen --stay-awake";
+}
