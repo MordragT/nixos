@@ -20,7 +20,10 @@
       gnome-disks.enable = true;
       nautilus.enable = true;
     };
-    secrets.enable = true;
+    secrets = {
+      enable = false;
+      # hostPubkey = TODO;
+    };
     security.enable = true;
     users.enable = true;
     virtualisation.enable = true;

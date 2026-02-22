@@ -2,6 +2,12 @@
 
 set shell := ["nu", "-c"]
 
+edit secret:
+    nix run .#vaultix.app.x86_64-linux.edit {{ secret }}
+
+renc:
+    nix run .#vaultix.app.x86_64-linux.renc
+
 update:
     use pkgs/by-scope/firefox-addons; firefox-addons
     use pkgs/by-scope/vscode-extensions; vscode-extensions

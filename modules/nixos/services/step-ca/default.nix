@@ -20,23 +20,21 @@ in
   config = {
     # Install certificates by default in every machine
     security.pki.certificateFiles = [
-      ./root_ca.crt
-      ./intermediate_ca.crt
+      ./root-ca.crt
+      ./intermediate-ca.crt
     ];
   }
   // lib.mkIf cfg.enable {
-    classified = {
-      files = {
-        step-ca = {
-          encrypted = ./step-ca.enc;
-          user = "step-ca";
-          group = "step-ca";
-        };
-        intermediate-ca = {
-          encrypted = ./intermediate-ca.enc;
-          user = "step-ca";
-          group = "step-ca";
-        };
+    vaultix.secrets = {
+      step-ca = {
+        file = ./step-ca.age;
+        owner = config.users.users.step-ca.name;
+        group = config.users.groups.step-ca.name;
+      };
+      intermediate-ca = {
+        file = ./intermediate-ca.age;
+        owner = config.users.users.step-ca.name;
+        group = config.users.groups.step-ca.name;
       };
     };
 
@@ -47,15 +45,15 @@ in
     services = {
       step-ca = {
         enable = true;
-        intermediatePasswordFile = "/var/secrets/step-ca";
+        intermediatePasswordFile = config.vaultix.secrets.step-ca.path;
         address = "0.0.0.0";
         port = 8443;
         openFirewall = true;
         settings = {
-          root = ./root_ca.crt;
+          root = ./root-ca.crt;
           federatedRoots = null;
-          crt = ./intermediate_ca.crt;
-          key = "/var/secrets/intermediate-ca";
+          crt = ./intermediate-ca.crt;
+          key = config.vaultix.secrets.intermediate-ca.path;
           dnsNames = [
             cfg.fqdn
             "localhost"

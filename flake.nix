@@ -2,11 +2,6 @@
   description = "My system configuration";
 
   inputs = {
-    classified = {
-      url = "github:GoldsteinE/classified";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     comoji = {
       url = "github:MordragT/comoji";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +49,11 @@
 
     valhali = {
       url = "github:MordragT/valhali";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vaultix = {
+      url = "github:milieuim/vaultix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

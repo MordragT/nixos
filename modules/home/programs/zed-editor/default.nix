@@ -160,7 +160,7 @@ in
           mcp-server-github =
             let
               github-mcp-server-wrapped = pkgs.writeShellScriptBin "github-mcp-server-wrapped" ''
-                export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat /var/secrets/github-mcp-token)
+                export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat /run/vaultix/github-mcp-token)
                 ${pkgs.github-mcp-server}/bin/github-mcp-server "$@"
               '';
             in

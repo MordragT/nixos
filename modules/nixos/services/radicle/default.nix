@@ -47,7 +47,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # classified.files.radicle.encrypted = ./radicle.enc;
+    # vaultix.secrets.radicle = {
+    #   file = ./radicle.age;
+    #   owner = config.users.users.radicle.name;
+    #   group = config.users.groups.radicle.name;
+    # };
 
     # services.radicle = {
     #   enable = true;

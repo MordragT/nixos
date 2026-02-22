@@ -5,6 +5,7 @@
       disko.nixosModules.default
       lanzaboote.nixosModules.default
       valhali.nixosModules.default
+      vaultix.nixosModules.default
       ./desktop
       ./environment
       ./hardware

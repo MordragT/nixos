@@ -15,11 +15,15 @@ in
   config = lib.mkIf cfg.enable {
     # has to contain `export CLOUDFLARE_API_TOKEN=<token>
     # Profile -> API Tokens -> Create Token
-    classified.files.cloudflare.encrypted = ./cloudflare.enc;
+    vaultix.secrets.cloudflare = {
+      file = ./cloudflare.age;
+      owner = config.users.users.caddy.name;
+      group = config.users.groups.caddy.name;
+    };
 
     services.caddy = {
       enable = true;
-      environmentFile = "/var/secrets/cloudflare";
+      environmentFile = config.vaultix.secrets.cloudflare.path;
       extraConfig = ''
         (cloudflare) {
           tls {

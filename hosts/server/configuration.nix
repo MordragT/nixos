@@ -21,7 +21,10 @@
     programs = {
       gnome-disks.enable = true;
     };
-    secrets.enable = true;
+    secrets = {
+      enable = false;
+      # hostPubkey = TODO;
+    };
     security.enable = true;
     users.enable = true;
     virtualisation.enable = true;

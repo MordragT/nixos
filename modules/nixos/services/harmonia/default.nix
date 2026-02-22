@@ -22,12 +22,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    classified.files.harmonia.encrypted = ./harmonia.enc;
+    vaultix.secrets.harmonia = {
+      file = ./harmonia.age;
+      owner = config.users.users.harmonia.name;
+      group = config.users.groups.harmonia.name;
+    };
 
     services.harmonia = {
       enable = true;
       # nix-store --generate-binary-cache-key ${cfg.fqdn} harmonia.secret harmonia.pub
-      signKeyPaths = [ "/var/secrets/harmonia" ];
+      signKeyPaths = [ config.vaultix.secrets.harmonia.path ];
       settings = {
         bind = "127.0.0.1:${toString cfg.port}";
       };

@@ -83,9 +83,8 @@ in
       };
     };
 
-    # vpnctl
     home.packages = with pkgs; [
-      vpnctl
+      # vpnctl
       superview
       all-to
     ];

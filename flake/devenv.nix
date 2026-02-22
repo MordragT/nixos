@@ -8,6 +8,8 @@
     {
       config,
       pkgs,
+      inputs',
+      system,
       ...
     }:
     {
@@ -16,9 +18,12 @@
         packages = with pkgs; [
           nixfmt
           statix
-          disko
+          ssh-to-age
+          rage
           unzip
           git
+          inputs'.disko.packages.default
+          inputs'.vaultix.packages.default
         ];
       };
 

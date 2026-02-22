@@ -22,7 +22,10 @@ _: {
     networking.enable = true;
     nix.enable = true;
     pipewire.enable = true;
-    secrets.enable = true;
+    secrets = {
+      enable = true;
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICS5VqBeNWhTolWxS01+dpg3zcw5OMRaSF5Ylwk1fn1v root@tom-desktop";
+    };
     security.enable = true;
     users.enable = true;
     virtualisation.enable = true;

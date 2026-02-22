@@ -16,10 +16,10 @@ in
 
   config = lib.mkIf cfg.enable {
     # Expires December 2025
-    classified.files."proton-nl".encrypted = ./proton-nl.enc;
+    # TODO fix classified.files."proton-nl".encrypted = ./proton-nl.enc;
 
     networking.wg-quick.interfaces.proton-nl = {
-      privateKeyFile = "/var/secrets/proton-nl";
+      privateKeyFile = "/var/secrets/proton-nl"; # TODO config.vaultix.secrets.proton-nl.path
       address = [ "10.2.0.2/32" ];
       dns = [ "10.2.0.1" ];
       mtu = 1280;
@@ -44,10 +44,10 @@ in
       ];
     };
 
-    classified.files."pia-de".encrypted = ./pia-de.enc;
+    # TODO fix classified.files."pia-de".encrypted = ./pia-de.enc;
 
     networking.wg-quick.interfaces.pia-de = {
-      privateKeyFile = "/var/secrets/pia-de";
+      privateKeyFile = "/var/secrets/pia-de"; # TODO config.vaultix.secrets.pia-de.path
       address = [ "10.36.142.120" ];
       dns = [ "10.0.0.243" ];
       mtu = 1280;
