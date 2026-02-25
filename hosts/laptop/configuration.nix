@@ -7,6 +7,7 @@ _: {
     };
     disks = {
       enable = true;
+      zram = true;
       mainPool = {
         devices.main = "/dev/disk/by-id/nvme-SAMSUNG_MZVL2512HCJQ-00BL7_S64KNF0T710767";
       };

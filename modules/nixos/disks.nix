@@ -35,6 +35,7 @@ in
 {
   options.mordrag.disks = {
     enable = lib.mkEnableOption "Disks";
+    zram = lib.mkEnableOption "Zram";
 
     rootSize = lib.mkOption {
       type = lib.types.str;
@@ -102,6 +103,29 @@ in
         which denotes the first device in the RAID pool.
       '';
     }) (lib.attrValues cfg.pools);
+
+    swapDevices = [
+      {
+        device = "/dev/disk/by-label/swap";
+      }
+    ];
+
+    # according to this https://github.com/systemd/systemd/issues/16708
+    # systemd will skip zram swaps when hibernating, so as long as i keep
+    # a traditional swap I should be gucci
+    zramSwap = {
+      enable = cfg.zram;
+      writebackDevice = "/dev/disk/by-label/swap-writeback";
+    };
+
+    boot.kernel.sysctl = lib.mkIf cfg.zram {
+      # According to https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
+      # these values are best of zram swap
+      "vm.swappiness" = 180;
+      "vm.watermark_boost_factor" = 0;
+      "vm.watermark_scale_factor" = 125;
+      "vm.page-cluster" = 0;
+    };
 
     disko.devices =
       let

@@ -10,6 +10,7 @@
     };
     disks = {
       enable = true;
+      zram = true;
       mainPool = {
         devices.main = "/dev/sda";
       };
