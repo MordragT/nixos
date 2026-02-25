@@ -31,7 +31,6 @@
         intel-compute-runtime
         intel-compute-runtime.drivers
         intel-media-driver
-        intel-vaapi-driver
         vpl-gpu-rt
       ];
     };

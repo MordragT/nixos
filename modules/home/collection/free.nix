@@ -15,9 +15,9 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       # Must haves
-      anarchism
+      # anarchism
       # android-translation-layer # translation layer similar to wine, very wip
-      brave
+      # brave
 
       # Editors
       # jetbrains.idea-community

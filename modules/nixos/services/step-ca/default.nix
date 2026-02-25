@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   lib,
@@ -16,6 +17,10 @@ in
       type = lib.types.nonEmptyStr;
     };
   };
+
+  imports = [
+    inputs.valhali.nixosModules.default
+  ];
 
   config = {
     # Install certificates by default in every machine

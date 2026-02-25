@@ -1,21 +1,18 @@
-{
-  config,
-  lib,
-  ...
-}:
-{
+_: {
   mordrag = {
-    bluetooth.enable = true;
     boot.enable = true;
-    core.enable = true;
-    desktop = {
-      gnome.enable = true;
+    disks = {
+      enable = true;
+      mainPool = {
+        devices.main = "/dev/disk/by-id/nvme-SAMSUNG_MZVL2512HCJQ-00BL7_S64KNF0T710767";
+      };
     };
-    fonts.enable = true;
-    locale.enable = true;
-    networking.enable = true;
-    nix.enable = true;
-    pipewire.enable = true;
+    desktop.cosmic = {
+      enable = true;
+      greeter = true;
+    };
+    hardware.intel-i7-1260p = true;
+    platform.enable = true;
     programs = {
       gnome-disks.enable = true;
       nautilus.enable = true;
@@ -24,35 +21,5 @@
       enable = false;
       # hostPubkey = TODO;
     };
-    security.enable = true;
-    users.enable = true;
-    virtualisation.enable = true;
   };
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
-  hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    cpu = {
-      intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    };
-  };
-
-  services = {
-    displayManager = {
-      gdm.enable = true;
-    };
-  };
-
-  programs = {
-    captive-browser = {
-      enable = true;
-      interface = "wlp2s0";
-    };
-    geary.enable = true;
-  };
-
 }

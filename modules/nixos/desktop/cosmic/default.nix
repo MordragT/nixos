@@ -10,16 +10,21 @@ in
 {
   options.mordrag.desktop.cosmic = {
     enable = lib.mkEnableOption "Cosmic";
+    greeter = lib.mkEnableOption "Cosmic Greeter";
   };
 
   config = lib.mkIf cfg.enable {
     # mordrag.services.cosmic-bg-theme.enable = true;
 
-    services.desktopManager.cosmic.enable = true;
-
-    services.gnome.gnome-keyring.enable = true;
-    # services.gnome.gnome-online-accounts.enable = true;
-    # services.accounts-daemon.enable = true;
+    services = {
+      # accounts-daemon.enable = true;
+      desktopManager.cosmic.enable = true;
+      displayManager.cosmic-greeter.enable = cfg.greeter;
+      gnome = {
+        gnome-keyring.enable = true;
+        # gnome-online-accounts.enable = true;
+      };
+    };
 
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";

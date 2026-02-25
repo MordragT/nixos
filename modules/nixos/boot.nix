@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -14,8 +15,11 @@ in
     # https://www.abhik.ai/concepts/memory/transparent-huge-pages
     thp = lib.mkEnableOption "Transparent Huge Pages (THP)";
     v4l2loopback = lib.mkEnableOption "v4l2loopback";
-
   };
+
+  inmports = [
+    inputs.lanzaboote.nixosModules.default
+  ];
 
   config = lib.mkIf cfg.enable {
     # Boot Loader
@@ -75,6 +79,7 @@ in
           "sd_mod" # SD Cards
           "sr_mod" # Optical CD/DVD
           "rtsx_usb_sdmmc" # Realtek USB SD Reader (Laptops)
+          "thunderbolt"
         ];
         kernelModules = [ ];
       };

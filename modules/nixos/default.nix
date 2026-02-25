@@ -1,11 +1,6 @@
-{ inputs, ... }:
-{
+_: {
   flake.nixosModules.default = {
-    imports = with inputs; [
-      disko.nixosModules.default
-      lanzaboote.nixosModules.default
-      valhali.nixosModules.default
-      vaultix.nixosModules.default
+    imports = [
       ./desktop
       ./environment
       ./hardware
@@ -15,11 +10,13 @@
       ./bluetooth.nix
       ./boot.nix
       ./core.nix
+      ./disks.nix
       ./fonts.nix
       ./locale.nix
       ./networking.nix
       ./nix.nix
       ./pipewire.nix
+      ./platform.nix
       ./security.nix
       ./users.nix
       ./virtualisation.nix

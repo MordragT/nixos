@@ -47,7 +47,6 @@
       ];
       permitCertUid = config.services.caddy.user;
     };
-    userborn.enable = true;
     xserver.wacom.enable = true;
   };
 }

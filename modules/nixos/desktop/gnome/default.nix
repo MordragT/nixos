@@ -10,10 +10,14 @@ in
 {
   options.mordrag.desktop.gnome = {
     enable = lib.mkEnableOption "Gnome";
+    gdm = lib.mkEnableOption "GDM Display Manager";
   };
 
   config = lib.mkIf cfg.enable {
-    services.desktopManager.gnome.enable = true;
+    services = {
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = cfg.gdm;
+    };
 
     environment.gnome.excludePackages = with pkgs; [
       totem

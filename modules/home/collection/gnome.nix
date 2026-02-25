@@ -24,7 +24,7 @@ in
       bustle # inspect dbus messages
       # cartridges # game launcher
       # calls # phone dialer and call handler
-      chess-clock
+      # chess-clock
       # citations # bibtex
       # clairvoyant
       collision # check file hashes

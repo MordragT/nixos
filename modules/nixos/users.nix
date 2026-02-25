@@ -13,6 +13,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    services.userborn.enable = true;
+
     users = {
       mutableUsers = true;
 
@@ -25,6 +27,7 @@ in
         extraGroups = [ "root" ];
       };
 
+      # TODO parameterize name?
       users.tom = {
         isNormalUser = true;
         initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";

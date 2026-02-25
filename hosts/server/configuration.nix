@@ -4,20 +4,14 @@
 }:
 {
   mordrag = {
-    bluetooth.enable = true;
     boot.enable = true;
-    core.enable = true;
     desktop = {
       cosmic.enable = true;
     };
-    fonts.enable = true;
     hardware = {
       intel-n4100 = true;
     };
-    locale.enable = true;
-    networking.enable = true;
-    nix.enable = true;
-    pipewire.enable = true;
+    platform.enable = true;
     programs = {
       gnome-disks.enable = true;
     };
@@ -25,9 +19,6 @@
       enable = false;
       # hostPubkey = TODO;
     };
-    security.enable = true;
-    users.enable = true;
-    virtualisation.enable = true;
   };
 
   # nix.settings = {

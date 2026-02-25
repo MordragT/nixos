@@ -12,6 +12,5 @@
     ./stalwart
     ./step-ca
     ./vaultwarden
-    ./wg-quick
   ];
 }

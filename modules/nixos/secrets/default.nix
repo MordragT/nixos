@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   ...
@@ -14,6 +15,10 @@ in
       description = "Public key of the host, used for encrypting secrets for this host.";
     };
   };
+
+  imports = [
+    inputs.vaultix.nixosModules.default
+  ];
 
   config = lib.mkIf cfg.enable {
     vaultix = {
