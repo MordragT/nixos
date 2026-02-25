@@ -8,6 +8,12 @@
     desktop = {
       cosmic.enable = true;
     };
+    disks = {
+      enable = true;
+      mainPool = {
+        devices.main = "/dev/sda";
+      };
+    };
     hardware = {
       intel-n4100 = true;
     };

@@ -71,6 +71,11 @@ in
   options.mordrag.environment.state = {
     inherit targets;
     enable = mkEnableOption "Enable state loading";
+
+    presets = {
+      full = mkEnableOption "Enable the full impermanence preset.";
+    };
+
     user = {
       enable = mkEnableOption "Enable user state loading";
       inherit targets;
@@ -79,6 +84,82 @@ in
 
   config =
     let
+      fullPreset = [
+        {
+          source = "/nix/state/system/config";
+          destination = "/etc";
+          method = "mount";
+          owner = "root";
+          group = "root";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/system/state";
+          destination = "/var/lib";
+          method = "mount";
+          owner = "root";
+          group = "root";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/system/log";
+          destination = "/var/log";
+          method = "mount";
+          owner = "root";
+          group = "root";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/system/variable";
+          destination = "/var";
+          method = "mount";
+          owner = "root";
+          group = "root";
+          mode = "0700";
+        }
+        # Home
+        {
+          source = "/nix/state/users/tom/home";
+          destination = "/home/tom";
+          method = "mount";
+          owner = "tom";
+          group = "users";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/users/tom/data";
+          destination = "/home/tom";
+          method = "mount";
+          owner = "tom";
+          group = "users";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/users/tom/config";
+          destination = "/home/tom/.config";
+          method = "mount";
+          owner = "tom";
+          group = "users";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/users/tom/share";
+          destination = "/home/tom/.local/share";
+          method = "mount";
+          owner = "tom";
+          group = "users";
+          mode = "0700";
+        }
+        {
+          source = "/nix/state/users/tom/state";
+          destination = "/home/tom/.local/state";
+          method = "mount";
+          owner = "tom";
+          group = "users";
+          mode = "0700";
+        }
+      ];
+
       load-state =
         target:
         with target;
@@ -91,7 +172,7 @@ in
 
       system.activationScripts.load-state.text =
         let
-          script = concatMapStrings load-state cfg.targets;
+          script = concatMapStrings load-state (cfg.targets ++ (lib.optionals cfg.presets.full fullPreset));
         in
         script;
 

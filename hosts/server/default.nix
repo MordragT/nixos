@@ -4,7 +4,6 @@
     stateVersion = "24.05";
     modules = [
       ./configuration.nix
-      ./file-systems.nix
       ./impermanence.nix
     ];
 
