@@ -34,7 +34,6 @@
       # forgejo.enable = true;
       # stalwart.enable = true;
       # vaultwarden.enable = true;
-      wg-quick.enable = true;
     };
   };
 

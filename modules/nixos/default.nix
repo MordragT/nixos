@@ -20,7 +20,6 @@ _: {
       ./security.nix
       ./users.nix
       ./virtualisation.nix
-      ./zram.nix
     ];
   };
 }

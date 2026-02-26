@@ -17,7 +17,7 @@ in
     v4l2loopback = lib.mkEnableOption "v4l2loopback";
   };
 
-  inmports = [
+  imports = [
     inputs.lanzaboote.nixosModules.default
   ];
 

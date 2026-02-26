@@ -23,6 +23,5 @@ _: {
       enable = true;
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICS5VqBeNWhTolWxS01+dpg3zcw5OMRaSF5Ylwk1fn1v root@tom-desktop";
     };
-    # TODO zram.enable = true;
   };
 }
