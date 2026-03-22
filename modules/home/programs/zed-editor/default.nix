@@ -72,22 +72,22 @@ in
             provider = "copilot_chat";
             # claude-sonnet-4, codestral-latest, gemini-2.5-flash, claude-sonnet-4
             # model = "claude-sonnet-4";
-            model = "gpt-4.1";
+            model = "gpt-5-mini";
           };
 
           inline_assistant_model = {
-            provider = "copilot_chat";
-            model = "gpt-4.1";
+            provider = "google";
+            model = "gemini-3-flash";
           };
 
           commit_message_model = {
             provider = "copilot_chat";
-            model = "gpt-4.1";
+            model = "gpt-5-mini";
           };
 
           thread_summary_model = {
-            provider = "copilot_chat";
-            model = "gpt-4.1";
+            provider = "google";
+            model = "gemini-3-flash";
           };
 
           default_profile = "ask";
@@ -169,9 +169,9 @@ in
               args = [ "stdio" ];
             };
         };
-        edit_predictions.mode = "subtle";
-        features = {
-          edit_prediction_provider = "copilot"; # zed
+        edit_predictions = {
+          mode = "subtle";
+          provider = "copilot";
         };
         file_scan_exclusions = [
           "**/.git"
@@ -208,6 +208,7 @@ in
         };
         languages = {
           Kola = {
+            semantic_tokens = "full";
             language_servers = [ "kola-ls" ];
           };
           Nix = {
@@ -232,7 +233,6 @@ in
           entry_spacing = "standard";
           indent_guides.show = "never";
         };
-        semantic_tokens = "full";
         show_wrap_guides = true;
         soft_wrap = "preferred_line_length";
         tab_bar.show = false;

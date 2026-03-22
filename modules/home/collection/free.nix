@@ -37,7 +37,7 @@ in
       drawio
       # glaxnimate
       inkscape
-      krita
+      # broken krita
       gimp3
       material-maker
       pixelorama

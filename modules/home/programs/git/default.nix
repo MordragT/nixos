@@ -61,7 +61,7 @@ in
       git-sizer
       git-subrepo
       git-filter-repo
-      gitbutler
+      # broken gitbutler
       gitleaks
       # gitoxide # alternative git still wip
       onefetch # git summary

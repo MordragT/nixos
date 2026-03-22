@@ -17,6 +17,7 @@ in
       networkmanager = {
         enable = true;
         dns = "systemd-resolved";
+        # broken ? wifi.backend = "iwd";
         plugins = with pkgs; [ networkmanager-openvpn ];
       };
 

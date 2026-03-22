@@ -30,6 +30,7 @@ in
       collision # check file hashes
       # commit
       # contrast # gtk check contrast
+      crosspipe # patchbay for pipewire
       crosswords
       # curtail # image compressor
       # czkawka # duplicate finder
@@ -79,7 +80,6 @@ in
       # gnome-tweaks
       halftone # create pixel art images
       # health # health tracker
-      helvum # patchbay for pipewire
       hieroglyphic # finding LaTeX symbols from drawings
       # icon-library
       # identity # image comparison
