@@ -67,6 +67,8 @@ in
       # starrydex
       # stellarshot
       tasks
+
+      xrdp # fixes some warnings for cosmic
     ];
   };
 }

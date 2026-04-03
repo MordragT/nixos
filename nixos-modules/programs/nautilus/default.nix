@@ -20,12 +20,14 @@ in
 
     # audio and video informations: https://github.com/NixOS/nixpkgs/issues/53631#issuecomment-3704189416
     environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 =
-      lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0"
-        [
-          pkgs.gst_all_1.gst-plugins-good
-          # pkgs.gst_all_1.gst-plugins-bad
-          # pkgs.gst_all_1.gst-plugins-ugly
-          pkgs.gst_all_1.gst-libav
-        ];
+      with pkgs.gst_all_1;
+      lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
+        gstreamer
+        gst-plugins-base
+        gst-plugins-good
+        gst-plugins-bad
+        gst-plugins-ugly
+        gst-libav
+      ];
   };
 }

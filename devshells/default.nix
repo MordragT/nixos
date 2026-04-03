@@ -1,7 +1,3 @@
-{ config, inputs, ... }:
-let
-  vaultix = config.flake.vaultix.app;
-in
 {
   perSystem =
     {
@@ -22,8 +18,6 @@ in
           rage
           inputs'.disko.packages.default
           inputs'.nixos-anywhere.packages.default
-          vaultix.${system}.renc
-          vaultix.${system}.edit
         ];
       };
     };

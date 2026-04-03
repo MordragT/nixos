@@ -13,7 +13,7 @@
     services = {
       caddy = {
         enable = true;
-        secretFile = config.vaultix.secrets.cloudflare.file;
+        secretFile = config.vaultix.secrets.cloudflare.path;
       };
       # llama = {
       #   enable = true;
