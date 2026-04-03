@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.bluetooth;
+  cfg = config.mordrag.platform.bluetooth;
 in
 {
-  options.mordrag.bluetooth = {
+  options.mordrag.platform.bluetooth = {
     enable = lib.mkEnableOption "Bluetooth";
   };
 

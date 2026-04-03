@@ -39,9 +39,26 @@
 
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      inputs = {
+        disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nu-env = {
       url = "github:MordragT/nu-env";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    qpad = {
+      url = "github:MordragT/qpad";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     systems.url = "github:nix-systems/default";
@@ -66,7 +83,7 @@
       imports = [
         ./flake
         ./hosts
-        ./libext
+        ./lib
         ./modules
         ./pkgs
       ];

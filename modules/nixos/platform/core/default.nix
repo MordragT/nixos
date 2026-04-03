@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.core;
+  cfg = config.mordrag.platform.core;
 in
 {
-  options.mordrag.core = {
+  options.mordrag.platform.core = {
     enable = lib.mkEnableOption "Core";
   };
 

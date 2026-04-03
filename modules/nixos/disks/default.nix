@@ -67,16 +67,18 @@ in
     };
 
     pools = lib.mkOption {
-      type = lib.types.attrsOf lib.types.submodule {
-        options = {
-          inherit raid devices;
-          subvolumes = lib.mkOption {
-            type = lib.types.attrsOf lib.types.anything; # or lib.types.attrs to be simpler
-            default = { };
-            description = "Disko subvolume definitions for this pool.";
+      type = lib.types.attrsOf (
+        lib.types.submodule {
+          options = {
+            inherit raid devices;
+            subvolumes = lib.mkOption {
+              type = lib.types.attrsOf lib.types.anything; # or lib.types.attrs to be simpler
+              default = { };
+              description = "Disko subvolume definitions for this pool.";
+            };
           };
-        };
-      };
+        }
+      );
       default = { };
       description = "Additional pools";
     };
@@ -156,38 +158,38 @@ in
             additionalDevices = builtins.removeAttrs pool.devices [ "main" ];
             raidDeviceLabels = mkDiskLabels poolName additionalDevices;
           in
-          lib.mapAttrs mkPoolDisk additionalDevices
-            # Main should be evaluated last
-            {
-              main = {
-                device = mainDevice;
-                type = "disk";
+          (lib.mapAttrs mkPoolDisk additionalDevices)
+          # Main should be evaluated last
+          // {
+            main = {
+              device = mainDevice;
+              type = "disk";
 
-                content = {
-                  type = "gpt";
-                  partitions = {
-                    data = {
-                      name = "${poolName}-main";
-                      size = "100%";
-                      content = {
-                        inherit (pool) subvolumes;
-                        type = "btrfs";
-                        extraArgs =
-                          lib.optionals (builtins.length raidDeviceLabels > 0) [
-                            "-f"
-                            "-d"
-                            pool.raid
-                            "-m"
-                            pool.raid
-                          ]
-                          ++ raidDeviceLabels;
-                      };
+              content = {
+                type = "gpt";
+                partitions = {
+                  data = {
+                    name = "${poolName}-main";
+                    size = "100%";
+                    content = {
+                      inherit (pool) subvolumes;
+                      type = "btrfs";
+                      extraArgs =
+                        lib.optionals (builtins.length raidDeviceLabels > 0) [
+                          "-f"
+                          "-d"
+                          pool.raid
+                          "-m"
+                          pool.raid
+                        ]
+                        ++ raidDeviceLabels;
                     };
-                  }
-                  // partitions;
-                };
+                  };
+                }
+                // partitions;
               };
             };
+          };
 
         mkPool = mkPartitionedPool { };
       in
@@ -200,53 +202,56 @@ in
             "mode=755"
           ];
         };
-      }
-      // (mkPartitionedPool
-        {
-          boot = {
-            type = "EF00";
-            name = "boot";
-            size = cfg.bootSize;
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
-            };
-          };
-          swap = {
-            name = "swap";
-            size = cfg.swapSize;
-            content = {
-              type = "swap";
-              resumeDevice = true;
-            };
-          };
-        }
-        (
-          cfg.mainPool
-          // {
-            subvolumes = {
-              nix = {
-                type = "filesystem";
-                mountpoint = "/nix";
-                mountOptions = [
-                  "noatime"
-                  "compress=zstd"
-                ];
+
+        disk =
+          (mkPartitionedPool
+            {
+              boot = {
+                type = "EF00";
+                name = "boot";
+                size = cfg.bootSize;
+                content = {
+                  type = "filesystem";
+                  format = "vfat";
+                  mountpoint = "/boot";
+                };
               };
-              state = {
-                type = "filesystem";
-                mountpoint = "/nix/state";
-                mountOptions = [
-                  "noatime"
-                  "compress=zstd"
-                ];
+              swap = {
+                name = "swap";
+                size = cfg.swapSize;
+                content = {
+                  type = "swap";
+                  resumeDevice = true;
+                };
               };
-            };
-          }
-        )
-      )
-      // lib.mapAttrs mkPool cfg.pools;
+            }
+            "main"
+            (
+              cfg.mainPool
+              // {
+                subvolumes = {
+                  nix = {
+                    type = "filesystem";
+                    mountpoint = "/nix";
+                    mountOptions = [
+                      "noatime"
+                      "compress=zstd"
+                    ];
+                  };
+                  state = {
+                    type = "filesystem";
+                    mountpoint = "/nix/state";
+                    mountOptions = [
+                      "noatime"
+                      "compress=zstd"
+                    ];
+                  };
+                };
+              }
+            )
+          )
+          // lib.mergeAttrsList (lib.attrValues (lib.mapAttrs mkPool cfg.pools));
+      };
 
     fileSystems = {
       "/nix".neededForBoot = true;

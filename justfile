@@ -9,8 +9,8 @@ renc:
     nix run .#vaultix.app.x86_64-linux.renc
 
 update:
-    use pkgs/by-scope/firefox-addons; firefox-addons
-    use pkgs/by-scope/vscode-extensions; vscode-extensions
+    use pkgs/by-attr/firefox-addons; firefox-addons
+    use pkgs/by-attr/vscode-extensions; vscode-extensions
     use pkgs/by-scope/intel-dpcpp; intel-dpcpp
     use pkgs/by-name/intel-mkl; intel-mkl
     use pkgs/by-name/intel-mpi; intel-mpi

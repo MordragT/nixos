@@ -30,6 +30,10 @@
         };
       };
       printing.enable = true;
+      qpad = {
+        enable = true;
+        openFirewall = true;
+      };
       radicle.enable = true;
       # forgejo.enable = true;
       # stalwart.enable = true;

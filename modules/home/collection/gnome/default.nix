@@ -50,7 +50,7 @@ in
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
-      # broken exhibit # 3D model viewer
+      exhibit # 3D model viewer
       eyedropper # pick format colors
       # raider # file shredder
       resources # monitor hardware resources

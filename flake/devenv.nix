@@ -23,6 +23,7 @@
           unzip
           git
           inputs'.disko.packages.default
+          inputs'.nixos-anywhere.packages.default
           # inputs'.vaultix.packages.default
         ];
       };

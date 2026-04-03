@@ -11,7 +11,7 @@ in
 {
   options.mordrag.boot = {
     enable = lib.mkEnableOption "Boot";
-    secure-boot = lib.mkEnableOption "Secure Boot";
+    secureBoot = lib.mkEnableOption "Secure Boot";
     # https://www.abhik.ai/concepts/memory/transparent-huge-pages
     thp = lib.mkEnableOption "Transparent Huge Pages (THP)";
     v4l2loopback = lib.mkEnableOption "v4l2loopback";
@@ -23,12 +23,12 @@ in
 
   config = lib.mkIf cfg.enable {
     # Boot Loader
-    environment.systemPackages = lib.optionals cfg.secure-boot [ pkgs.sbctl ];
+    environment.systemPackages = lib.optionals cfg.secureBoot [ pkgs.sbctl ];
 
     boot = {
       loader = {
         systemd-boot = {
-          enable = !cfg.secure-boot;
+          enable = !cfg.secureBoot;
           editor = false;
           consoleMode = "max";
         };
@@ -36,7 +36,7 @@ in
       };
 
       lanzaboote = {
-        enable = cfg.secure-boot;
+        enable = cfg.secureBoot;
         pkiBundle = "/var/lib/sbctl";
       };
 

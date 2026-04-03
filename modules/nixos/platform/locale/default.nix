@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.locale;
+  cfg = config.mordrag.platform.locale;
 in
 {
-  options.mordrag.locale = {
+  options.mordrag.platform.locale = {
     enable = lib.mkEnableOption "Locale";
   };
 

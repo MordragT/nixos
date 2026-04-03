@@ -1,10 +1,9 @@
-{ ... }:
-{
+_: {
   imports = [
-    ./cli.nix
-    ./free.nix
-    ./gaming.nix
-    ./gnome.nix
-    ./nonfree.nix
+    ./cli
+    ./free
+    ./gaming
+    ./gnome
+    ./nonfree
   ];
 }

@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.fonts;
+  cfg = config.mordrag.platform.fonts;
 in
 {
-  options.mordrag.fonts = {
+  options.mordrag.platform.fonts = {
     enable = lib.mkEnableOption "Fonts";
   };
 

@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.virtualisation;
+  cfg = config.mordrag.platform.virtualisation;
 in
 {
-  options.mordrag.virtualisation = {
+  options.mordrag.platform.virtualisation = {
     enable = lib.mkEnableOption "Virtualisation";
   };
 

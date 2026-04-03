@@ -1,25 +1,15 @@
-_: {
+{
   flake.nixosModules.default = {
     imports = [
+      ./boot
       ./desktop
+      ./disks
       ./environment
       ./hardware
+      ./platform
       ./programs
       ./secrets
       ./services
-      ./bluetooth.nix
-      ./boot.nix
-      ./core.nix
-      ./disks.nix
-      ./fonts.nix
-      ./locale.nix
-      ./networking.nix
-      ./nix.nix
-      ./pipewire.nix
-      ./platform.nix
-      ./security.nix
-      ./users.nix
-      ./virtualisation.nix
     ];
   };
 }

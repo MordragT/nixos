@@ -2,8 +2,8 @@
 let
   flakeModules.default = {
     imports = [
-      ./homes.nix
-      ./hosts.nix
+      ./homes
+      ./hosts
     ];
   };
 in

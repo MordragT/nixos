@@ -1,8 +1,10 @@
+{ inputs, ... }:
 {
   mordrag.hosts."tom-desktop" = {
     system = "x86_64-linux";
     stateVersion = "23.11";
     modules = [
+      inputs.qpad.nixosModules.default
       ./configuration.nix
       ./file-systems.nix
       ./impermanence.nix

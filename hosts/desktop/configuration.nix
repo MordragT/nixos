@@ -2,7 +2,7 @@ _: {
   mordrag = {
     boot = {
       enable = true;
-      secure-boot = true;
+      secureBoot = true;
       thp = true;
       v4l2loopback = true;
     };

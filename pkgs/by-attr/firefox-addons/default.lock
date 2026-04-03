@@ -35,10 +35,10 @@
   {
     "slug": "bitwarden-password-manager",
     "name": "Bitwarden Password Manager",
-    "version": "2025.12.1",
+    "version": "2026.2.0",
     "addonId": "{446900e4-71c2-419f-a6a7-df9c091e268b}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4664623/bitwarden_password_manager-2025.12.1.xpi",
-    "sha256": "sha256:a7a123eee4e40fdd8af7c0c67243731ddcc37ae1498cf2828995f4905600c51f",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4715321/bitwarden_password_manager-2026.2.0.xpi",
+    "sha256": "sha256:e54999d45ae1cd001452a34294240633c89a95ae832f212721d746a89555958e",
     "homepage": "https://bitwarden.com",
     "description": "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.",
     "license": "GPL-3.0-only"
@@ -57,10 +57,10 @@
   {
     "slug": "csgofloat",
     "name": "CSFloat Market Checker",
-    "version": "5.9.3",
+    "version": "5.14.0",
     "addonId": "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4627404/csgofloat-5.9.3.xpi",
-    "sha256": "sha256:e95fa49cee8640756e6b4ee7176889621b755df0c296a1439b2e7f7da06a8c4b",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4734421/csgofloat-5.14.0.xpi",
+    "sha256": "sha256:2c0b08ae3ed55f6bca82dffd87a8d7351a8753d6a8161fe7706f5103e21d8496",
     "homepage": "https://csgofloat.com",
     "description": "Shows the float value, paint seed, and screenshots of Counter-Strike (CS:GO &amp; CS2) items on the Steam Market or Inventories",
     "license": "MIT"
@@ -68,10 +68,10 @@
   {
     "slug": "ghostery",
     "name": "Ghostery – Privacy Ad Blocker",
-    "version": "10.5.29",
+    "version": "10.5.34",
     "addonId": "firefox@ghostery.com",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4689598/ghostery-10.5.29.xpi",
-    "sha256": "sha256:5222c18ca11e56fc658eb03a78bb6cb6ae6c53f1208e491b151dbbf223acd7c2",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4728013/ghostery-10.5.34.xpi",
+    "sha256": "sha256:447284c489518b1fc07695ab4ee770d2a082c16e0d5dd22a45f3fe988dde2be0",
     "homepage": "http://www.ghostery.com/",
     "description": "The best privacy tool and ad blocker extension for Firefox. Stop trackers, speed up websites and block ads everywhere including YouTube and Facebook.",
     "license": "MPL-2.0"
@@ -112,10 +112,10 @@
   {
     "slug": "sidebery",
     "name": "Sidebery",
-    "version": "5.4.0",
+    "version": "5.5.0",
     "addonId": "{3c078156-979c-498b-8990-85f7987dd929}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4613339/sidebery-5.4.0.xpi",
-    "sha256": "sha256:184a3157df4c5b018daff5c63b8bea120f6d34e6f298c0fbed968b092508f599",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4688454/sidebery-5.5.0.xpi",
+    "sha256": "sha256:8d57ad35177442f6a89c3d319fa3e0586376a1f2b72f0fd3032386e5f3505db8",
     "homepage": "https://github.com/mbnuqw/sidebery",
     "description": "Vertical tabs tree and bookmarks in sidebar with advanced containers configuration, grouping and many other features.",
     "license": "MIT"
@@ -123,10 +123,10 @@
   {
     "slug": "skinport-plus",
     "name": "Skinport Plus",
-    "version": "25.9.26",
+    "version": "26.3.26",
     "addonId": "{46da1da2-d8cd-42b2-b6d6-dfc312231d15}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4586072/skinport_plus-25.9.26.xpi",
-    "sha256": "sha256:d0130634b75313bcdaba647c35f7f8c2762ea2439466aadac1851b836a4fbf86",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4741114/skinport_plus-26.3.26.xpi",
+    "sha256": "sha256:77ddf737f552db8babb3f4fb596020d801488d83b4c0c84f92e5ae597e29aaa7",
     "homepage": "https://addons.mozilla.org/en-US/firefox/addon/skinport-plus/",
     "description": "Enhance your trading experience on Skinport and Steam with Skinport Plus.",
     "license": "all-rights-reserved"
@@ -145,10 +145,10 @@
   {
     "slug": "ublock-origin",
     "name": "uBlock Origin",
-    "version": "1.69.0",
+    "version": "1.70.0",
     "addonId": "uBlock0@raymondhill.net",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4675310/ublock_origin-1.69.0.xpi",
-    "sha256": "sha256:785bcde68a25faa8a0949964ec5ffe9bdcb85d3f0ae21c23f607c6c8f91472cf",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4721638/ublock_origin-1.70.0.xpi",
+    "sha256": "sha256:f2730d2877005763a45d765749892e936f49cae713d28f7aa6ea314454b89cf1",
     "homepage": "https://github.com/gorhill/uBlock#ublock-origin",
     "description": "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.",
     "license": "GPL-3.0-only"

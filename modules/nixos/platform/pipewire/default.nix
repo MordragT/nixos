@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.pipewire;
+  cfg = config.mordrag.platform.pipewire;
 in
 {
-  options.mordrag.pipewire = {
+  options.mordrag.platform.pipewire = {
     enable = lib.mkEnableOption "Pipewire";
   };
 

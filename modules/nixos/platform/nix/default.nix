@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.nix;
+  cfg = config.mordrag.platform.nix;
 in
 {
-  options.mordrag.nix = {
+  options.mordrag.platform.nix = {
     enable = lib.mkEnableOption "Nix settings";
   };
 

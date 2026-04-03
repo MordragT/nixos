@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.security;
+  cfg = config.mordrag.platform.security;
 in
 {
-  options.mordrag.security = {
+  options.mordrag.platform.security = {
     enable = lib.mkEnableOption "Security";
   };
 

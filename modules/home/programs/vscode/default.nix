@@ -161,7 +161,7 @@ in
           piousdeer.adwaita-theme
           # PolyMeilex.wgsl
           # redhat.java
-          # broken rust-lang.rust-analyzer-nightly
+          # rust-lang.rust-analyzer-nightly
           # rust-lang.rust-analyzer
           skellock.just
           # streetsidesoftware.code-spell-checker

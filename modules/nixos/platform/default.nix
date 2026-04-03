@@ -7,12 +7,25 @@ let
   cfg = config.mordrag.platform;
 in
 {
+  imports = [
+    ./bluetooth
+    ./core
+    ./fonts
+    ./locale
+    ./networking
+    ./nix
+    ./pipewire
+    ./security
+    ./users
+    ./virtualisation
+  ];
+
   options.mordrag.platform = {
     enable = lib.mkEnableOption "The basis that hosts built upon.";
   };
 
   config = lib.mkIf cfg.enable {
-    mordrag = {
+    mordrag.platform = {
       bluetooth.enable = true;
       core.enable = true;
       fonts.enable = true;

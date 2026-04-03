@@ -4,20 +4,18 @@
 }:
 {
   mordrag = {
-    boot.enable = true;
-    desktop = {
-      cosmic.enable = true;
+    boot = {
+      enable = true;
+      secureBoot = true;
     };
+    desktop.cosmic.enable = true;
     disks = {
       enable = true;
       zram = true;
-      mainPool = {
-        devices.main = "/dev/sda";
-      };
+      mainPool.devices.main = "/dev/disk/by-id/nvme-WDC_PC_SN520_SDAPNUW-256G-1006_19321B800783";
+      pools.snapshot.devices.main = "/dev/disk/by-id/ata-ST1000LM035-1RK172_WL16JC6M";
     };
-    hardware = {
-      intel-n4100 = true;
-    };
+    hardware.amd-r5-2400g = true;
     platform.enable = true;
     programs = {
       gnome-disks.enable = true;
@@ -26,6 +24,16 @@
       enable = false;
       # hostPubkey = TODO;
     };
+
+    environment.state = {
+      enable = true;
+      presets.full = true;
+    };
+  };
+
+  # For impermanence, TODO: movein presets full
+  environment.etc = {
+    machine-id.source = "/nix/state/system/config/machine-id";
   };
 
   # nix.settings = {
@@ -34,54 +42,53 @@
   # };
 
   environment.systemPackages = with pkgs; [
-    pulsemixer
     loupe
     showtime
     papers
-    (
-      # TODO create desktop file for this
-      pkgs.writeShellScriptBin "steamos-session-select" ''
-        echo $XDG_RUNTIME_DIR
-        SESSION_SWITCH_FILE="$XDG_RUNTIME_DIR/steamos-session/switch"
-        mkdir -p "$(dirname "$SESSION_SWITCH_FILE")"
+    # (
+    #   # TODO create desktop file for this
+    #   pkgs.writeShellScriptBin "steamos-session-select" ''
+    #     echo $XDG_RUNTIME_DIR
+    #     SESSION_SWITCH_FILE="$XDG_RUNTIME_DIR/steamos-session/switch"
+    #     mkdir -p "$(dirname "$SESSION_SWITCH_FILE")"
 
-        if [ -f "$SESSION_SWITCH_FILE" ]; then
-          rm "$SESSION_SWITCH_FILE"
-          # systemctl --user start cosmic-session.service
-          steam -shutdown
-          exec cosmic-session
-        else
-          touch "$SESSION_SWITCH_FILE"
-          # systemctl --user start steam-session.service
-          cosmic-osd log-out
-          # No need to execute steam-gamescope here, as it will be executed by greetd
-          # exec steam-gamescope
-        fi
-      ''
-    )
-    (pkgs.writeShellScriptBin "steamos-select-branch" ''
-      case "$1" in
-        "-c")
-          # Current Branch
-          echo "main"
-          ;;
-        "-l")
-          # List Branches
-          echo "main"
-          ;;
-        *)
-          # Switch Branch
-          ;;
-      esac
-    '')
-    (pkgs.writeShellScriptBin "steamos-update" ''
-      # Exit codes according to vendor:
-      # 0 - update success
-      # 1 - update error
-      # 7 - no update available
-      # 8 - need reboot
-      exit 7
-    '')
+    #     if [ -f "$SESSION_SWITCH_FILE" ]; then
+    #       rm "$SESSION_SWITCH_FILE"
+    #       # systemctl --user start cosmic-session.service
+    #       steam -shutdown
+    #       exec cosmic-session
+    #     else
+    #       touch "$SESSION_SWITCH_FILE"
+    #       # systemctl --user start steam-session.service
+    #       cosmic-osd log-out
+    #       # No need to execute steam-gamescope here, as it will be executed by greetd
+    #       # exec steam-gamescope
+    #     fi
+    #   ''
+    # )
+    # (pkgs.writeShellScriptBin "steamos-select-branch" ''
+    #   case "$1" in
+    #     "-c")
+    #       # Current Branch
+    #       echo "main"
+    #       ;;
+    #     "-l")
+    #       # List Branches
+    #       echo "main"
+    #       ;;
+    #     *)
+    #       # Switch Branch
+    #       ;;
+    #   esac
+    # '')
+    # (pkgs.writeShellScriptBin "steamos-update" ''
+    #   # Exit codes according to vendor:
+    #   # 0 - update success
+    #   # 1 - update error
+    #   # 7 - no update available
+    #   # 8 - need reboot
+    #   exit 7
+    # '')
   ];
 
   mordrag.programs.steam = {
@@ -91,70 +98,37 @@
     ];
   };
   # TODO add as argument to own steam module
-  programs.steam.gamescopeSession = {
-    args = [
-      "-W 1280"
-      "-H 720"
-      # "-F fsr" # doesn't seem to work that well
-      "--mangoapp"
-      "--fullscreen" # gamescope introduces a lot of latency if not fullscreen
-    ];
-    steamArgs = [
-      "-steamos3"
-      "-tenfoot"
-      "-pipewire-dmabuf"
-    ];
-    # somehow --mangoapp on gamescope doesn't find default config
-    env.MANGOHUD_CONFIGFILE = "/home/tom/.config/MangoHud/MangoHud.conf";
-  };
-
-  # Simple user services don't work because sessions need special permission e.g. to get drm master via loginctl activate-session (if I understand it correctly)
-  # maybe uwsm can help here but not sure if it works with cosmic
-  # systemd.user.services.steam-session = {
-  #   description = "Steam Session";
-  #   conflicts = ["cosmic-session.service"];
-  #   requires = ["graphical-session.target"];
-  #   after = ["graphical-session.target"];
-
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     ExecStart = "steam-gamescope";
-  #   };
+  # programs.steam.gamescopeSession = {
+  #   args = [
+  #     "-W 1280"
+  #     "-H 720"
+  #     # "-F fsr" # doesn't seem to work that well
+  #     "--mangoapp"
+  #     "--fullscreen" # gamescope introduces a lot of latency if not fullscreen
+  #   ];
+  #   steamArgs = [
+  #     "-steamos3"
+  #     "-tenfoot"
+  #     "-pipewire-dmabuf"
+  #   ];
+  #   # somehow --mangoapp on gamescope doesn't find default config
+  #   env.MANGOHUD_CONFIGFILE = "/home/tom/.config/MangoHud/MangoHud.conf";
   # };
 
-  # systemd.user.services.cosmic-session = {
-  #   description = "Cosmic Session";
-  #   conflicts = ["steam-session.service"];
-  #   requires = ["graphical-session.target"];
-  #   after = ["graphical-session.target"];
+  # services = {
+  #   greetd = {
+  #     enable = true;
+  #     # settings.initial_session = {
+  #     #   user = "tom";
+  #     #   command = "cosmic-session";
+  #     # };
 
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     ExecStart = "${pkgs.cosmic-session}/bin/cosmic-session";
+  #     settings = {
+  #       default_session = {
+  #         user = "tom";
+  #         command = "steam-gamescope";
+  #       };
+  #     };
   #   };
   # };
-
-  services = {
-    greetd = {
-      enable = true;
-      # settings.initial_session = {
-      #   user = "tom";
-      #   command = "cosmic-session";
-      # };
-
-      settings = {
-        default_session = {
-          user = "tom";
-          command = "steam-gamescope";
-        };
-      };
-    };
-
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-      };
-    };
-  };
 }

@@ -47,6 +47,7 @@ in
         "tera"
         "toml"
         "typst"
+        "vue"
         "wgsl"
         "zedokai"
         "zig"

@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.users;
+  cfg = config.mordrag.platform.users;
 in
 {
-  options.mordrag.users = {
+  options.mordrag.platform.users = {
     enable = lib.mkEnableOption "Users";
   };
 
@@ -43,6 +43,13 @@ in
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIm/oTrV+ISStJ7Gb3ES7lZdCfya2TdEtkFZ/A1rqYEv tom@tom-pc"
         ];
+      };
+    };
+
+    services.openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
       };
     };
   };

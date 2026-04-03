@@ -37,7 +37,7 @@ in
       drawio
       # glaxnimate
       inkscape
-      # broken krita
+      krita
       gimp3
       material-maker
       pixelorama
@@ -59,7 +59,7 @@ in
       # dorion # rust written discord alternative
       # insomnia # make http requests against rest apis
       # mattermost-desktop
-      protonvpn-gui
+      proton-vpn
       qbittorrent # download torrents
       # rpi-imager # raspberry pi image flasher
     ];

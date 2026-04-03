@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.mordrag.networking;
+  cfg = config.mordrag.platform.networking;
 in
 {
-  options.mordrag.networking = {
+  options.mordrag.platform.networking = {
     enable = lib.mkEnableOption "Networking";
   };
 

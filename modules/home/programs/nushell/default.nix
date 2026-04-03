@@ -9,7 +9,7 @@ let
   plugins = [
     "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
     "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
-    # broken https://github.com/nushell/nushell/issues/17510: "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
+    "${pkgs.nu-plugin-apt}/bin/nu_plugin_apt"
   ];
 in
 {
@@ -43,7 +43,7 @@ in
         configFile.text = ''
           plugin use formats
           plugin use gstat
-          # plugin use apt
+          plugin use apt
 
           const scripts = "${./scripts}"
 
