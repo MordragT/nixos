@@ -1,10 +1,12 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
   ...
 }:
 let
+  inherit (pkgs.stdenv.hostPlatform) system;
   cfg = config.mordrag.programs.git;
 in
 {
@@ -44,7 +46,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      inputs'.comoji.packages.default # emoji conventional commits
+      inputs.comoji.packages.${system}.default # emoji conventional commits
       git-cliff # generate changelogs
       git-sizer
       git-subrepo

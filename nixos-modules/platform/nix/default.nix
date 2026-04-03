@@ -32,6 +32,7 @@ in
           "mordrag.cachix.org-1:6SOBxvzKQ/PyH4xBCXSsUvBLvQPrjNMQhd9jE3d4gWI="
         ];
         auto-optimise-store = true;
+        use-xdg-base-directories = true;
       };
       gc = {
         automatic = true;

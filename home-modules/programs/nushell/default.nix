@@ -20,56 +20,64 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.nushell = {
-      enable = true;
-      package = pkgs.nushell;
-      loginFile.text = ''
-        # Remove each plugin
-        plugin list | get name | each {|x| (plugin rm $x)}
 
-        ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
-      '';
-      envFile.source = ./env.nu;
-      configFile.text = ''
-        plugin use formats
-        plugin use gstat
-        plugin use apt
+    programs = {
+      # needed for nushell integration
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+      nushell = {
+        enable = true;
+        package = pkgs.nushell;
+        loginFile.text = ''
+          # Remove each plugin
+          plugin list | get name | each {|x| (plugin rm $x)}
 
-        const scripts = "${./scripts}"
+          ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
+        '';
+        envFile.source = ./env.nu;
+        configFile.text = ''
+          plugin use formats
+          plugin use gstat
+          plugin use apt
 
-        # cannot use files directly as that would rename them to a hash
-        # and would clash with nushell module system
-        use $"($scripts)/comma.nu" ,
-        use $"($scripts)/compress-pdf.nu" "compress pdf"
+          const scripts = "${./scripts}"
 
-        alias comojit = comoji commit
-        alias r = direnv reload
-        alias code = zeditor
+          # cannot use files directly as that would rename them to a hash
+          # and would clash with nushell module system
+          use $"($scripts)/comma.nu" ,
+          use $"($scripts)/compress-pdf.nu" "compress pdf"
 
-        $env.config = {
-          display_errors: {
-            exit_code: false
+          alias comojit = comoji commit
+          alias r = direnv reload
+          alias code = zeditor
+
+          $env.config = {
+            display_errors: {
+              exit_code: false
+            }
+
+            error_style: "fancy"
+
+            ls: {
+              clickable_links: true
+              use_ls_colors: true
+            }
+
+            rm: {
+              always_trash: true
+            }
+
+            show_banner: false
+
+            table: {
+              mode: rounded
+              show_empty: true
+            }
           }
-
-          error_style: "fancy"
-
-          ls: {
-            clickable_links: true
-            use_ls_colors: true
-          }
-
-          rm: {
-            always_trash: true
-          }
-
-          show_banner: false
-
-          table: {
-            mode: rounded
-            show_empty: true
-          }
-        }
-      '';
+        '';
+      };
     };
 
     home.packages = with inputs.nu-env.packages.${system}; [

@@ -14,8 +14,11 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.adwaita-icon-theme ];
-    xdg.icons.enable = true;
-    xdg.icons.fallbackCursorThemes = [ "Adwaita" ];
+
+    xdg.icons = {
+      enable = true;
+      fallbackCursorThemes = [ "Adwaita" ];
+    };
 
     fonts = {
       fontDir.enable = true;

@@ -23,8 +23,8 @@ in
       lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0"
         [
           pkgs.gst_all_1.gst-plugins-good
-          pkgs.gst_all_1.gst-plugins-bad
-          pkgs.gst_all_1.gst-plugins-ugly
+          # pkgs.gst_all_1.gst-plugins-bad
+          # pkgs.gst_all_1.gst-plugins-ugly
           pkgs.gst_all_1.gst-libav
         ];
   };

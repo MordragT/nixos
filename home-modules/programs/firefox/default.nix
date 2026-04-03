@@ -15,6 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.options = {
         extensions.packages = with pkgs.firefox-addons; [
           bib-kit

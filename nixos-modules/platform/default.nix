@@ -20,7 +20,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
+
     time.timeZone = "Europe/Berlin";
     i18n.defaultLocale = "en_US.UTF-8";
     console.keyMap = "us";
@@ -34,9 +38,15 @@ in
       sudo-rs.enable = true;
     };
 
-    services.openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
+    services = {
+      openssh = {
+        enable = true;
+        settings.PasswordAuthentication = false;
+      };
+
+      journald.extraConfig = ''
+        SystemMaxUse=2G
+      '';
     };
 
     mordrag.platform = {

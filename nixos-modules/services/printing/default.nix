@@ -21,10 +21,11 @@ in
     services = {
       printing = {
         enable = true;
-        drivers = [ pkgs.hplip ];
+        # deprecated drivers = [ pkgs.hplip ];
       };
 
-      system-config-printer.enable = true;
+      # This installs a web interface for cups
+      # system-config-printer.enable = true;
     };
   };
 }

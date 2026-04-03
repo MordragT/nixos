@@ -18,8 +18,8 @@
     hardware.amd-r5-2400g = true;
     networking = {
       enable = true;
-      lanMac = "TODO";
-      wlanMac = "TODO";
+      lanMac = "9c:7b:ef:ae:e5:6d";
+      wlanMac = "1a:2e:ad:e8:fd:4c";
     };
     platform.enable = true;
     programs = {

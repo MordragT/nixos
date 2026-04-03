@@ -17,12 +17,12 @@ in
     # mordrag.services.cosmic-bg-theme.enable = true;
 
     services = {
-      # accounts-daemon.enable = true;
+      accounts-daemon.enable = true;
       desktopManager.cosmic.enable = true;
       displayManager.cosmic-greeter.enable = cfg.greeter;
       gnome = {
         gnome-keyring.enable = true;
-        # gnome-online-accounts.enable = true;
+        gnome-online-accounts.enable = true;
       };
     };
 
