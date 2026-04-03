@@ -9,7 +9,10 @@
       # TODO: this doesn't seem to work for first nixos-anywhere install
       # secureBoot = true;
     };
-    desktop.cosmic.enable = true;
+    desktop.cosmic = {
+      enable = true;
+      greeter = true;
+    };
     disks = {
       enable = true;
       zram = true;
@@ -20,7 +23,7 @@
     networking = {
       enable = true;
       lanMac = "9c:7b:ef:ae:e5:6d";
-      wlanMac = "1a:2e:ad:e8:fd:4c";
+      wlanMac = "54:8c:a0:b1:5b:df";
     };
     platform.enable = true;
     programs = {

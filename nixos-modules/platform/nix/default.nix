@@ -31,6 +31,11 @@ in
           "9lore.cachix.org-1:H2/a1Wlm7VJRfJNNvFbxtLQPYswP3KzXwSI5ROgzGII="
           "mordrag.cachix.org-1:6SOBxvzKQ/PyH4xBCXSsUvBLvQPrjNMQhd9jE3d4gWI="
         ];
+        trusted-users = [
+          "root"
+          config.mordrag.users.main
+        ];
+        allowed-users = [ "@wheel" ];
         auto-optimise-store = true;
         use-xdg-base-directories = true;
       };

@@ -115,7 +115,7 @@ in
 
     swapDevices = [
       {
-        device = "/dev/disk/by-label/main-swap";
+        device = "/dev/disk/by-label/disk-main-swap";
       }
     ];
 
@@ -124,7 +124,7 @@ in
     # a traditional swap I should be gucci
     zramSwap = {
       enable = cfg.zram;
-      writebackDevice = "/dev/disk/by-label/main-swap-writeback";
+      writebackDevice = "/dev/disk/by-label/disk-main-swap-writeback";
     };
 
     boot.kernel.sysctl = lib.mkIf cfg.zram {
