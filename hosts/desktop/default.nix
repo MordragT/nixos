@@ -5,6 +5,7 @@
     stateVersion = "23.11";
     modules = [
       inputs.qpad.nixosModules.default
+      inputs.vaultix.nixosModules.default
       ./configuration.nix
       ./file-systems.nix
       ./impermanence.nix

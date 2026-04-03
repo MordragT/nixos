@@ -81,11 +81,57 @@
       systems = import inputs.systems;
 
       imports = [
-        ./flake
+        inputs.git-hooks.flakeModule
+        inputs.vaultix.flakeModules.default
+        ./devshells
+        ./home-modules
         ./hosts
         ./lib
-        ./modules
+        ./nixos-modules
         ./pkgs
       ];
+
+      flake.vaultix = {
+        # extraRecipients = [ ];                 # default, optional
+        # cache = "./secrets/cache";             # default, optional
+        # defaultSecretDirectory = "./secrets";  # default, optional
+        # nodes = self.nixosConfigurations;      # default, optional
+        # extraPackages = [ ];                   # default, optional
+        # pinentryPackage = null;                # default, optional
+        nodes = {
+          inherit (inputs.self.nixosConfigurations) tom-desktop;
+        };
+        identity = "~/.config/age/keys.txt";
+      };
+
+      perSystem =
+        { pkgs, ... }:
+        {
+          pre-commit = {
+            settings = {
+              package = pkgs.prek;
+              hooks = {
+                nixfmt = {
+                  enable = true;
+                  id = "nixfmt";
+                  after = [ "statix" ];
+                };
+                statix = {
+                  enable = true;
+                  id = "statix";
+                };
+                yamllint = {
+                  enable = true;
+                  settings.configuration = ''
+                    rules:
+                      truthy:
+                        check-keys: false
+                  '';
+                };
+              };
+            };
+          };
+        };
     };
+
 }

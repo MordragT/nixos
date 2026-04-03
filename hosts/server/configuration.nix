@@ -16,30 +16,36 @@
       pools.snapshot.devices.main = "/dev/disk/by-id/ata-ST1000LM035-1RK172_WL16JC6M";
     };
     hardware.amd-r5-2400g = true;
+    networking = {
+      enable = true;
+      lanMac = "TODO";
+      wlanMac = "TODO";
+    };
     platform.enable = true;
     programs = {
+      git.enable = true;
       gnome-disks.enable = true;
+      steam = {
+        enable = true;
+        compatPackages = [ pkgs.proton-ge-bin ];
+      };
     };
-    secrets = {
-      enable = false;
-      # hostPubkey = TODO;
-    };
-
-    environment.state = {
+    state = {
       enable = true;
       presets.full = true;
     };
+    users = {
+      enable = true;
+      main = "tom";
+    };
   };
+
+  programs.chromium.enable = true;
 
   # For impermanence, TODO: movein presets full
   environment.etc = {
     machine-id.source = "/nix/state/system/config/machine-id";
   };
-
-  # nix.settings = {
-  #   substituters = [ "https://harmonia.mordrag.de" ];
-  #   trusted-public-keys = [ "harmonia.mordrag.de:ohyp4iA+P1zKhD/nXWjrQtCB6+e69d/vgLuWD3/mnZ8=" ];
-  # };
 
   environment.systemPackages = with pkgs; [
     loupe
@@ -91,12 +97,6 @@
     # '')
   ];
 
-  mordrag.programs.steam = {
-    enable = true;
-    compatPackages = with pkgs; [
-      proton-ge-bin
-    ];
-  };
   # TODO add as argument to own steam module
   # programs.steam.gamescopeSession = {
   #   args = [

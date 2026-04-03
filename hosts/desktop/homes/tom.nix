@@ -1,36 +1,38 @@
-_: {
+{ pkgs, ... }:
+{
   mordrag = {
     core.enable = true;
 
     programs = {
-      bottles.enable = true;
       firefox.enable = true;
-      git.enable = true;
-      helix.enable = true;
       mangohud.enable = true;
-      niri.enable = true;
       nushell.enable = true;
-      nvim.enable = true;
-      obs.enable = true;
-      radicle.enable = true;
-      thunderbird.enable = true;
       vscode.enable = true;
       zed-editor.enable = true;
       zen-browser.enable = true;
     };
 
-    # services.espanso.enable = true;
-
-    collection = {
-      cli.enable = true;
-      free.enable = true;
-      gaming.enable = true;
-      gnome.enable = true;
-      nonfree.enable = true;
-    };
+    gnome.enable = true;
   };
 
-  programs.chromium = {
-    enable = true;
-  };
+  home.packages = with pkgs; [
+    beekeeper-studio # sql client
+    blender # 3d modeling
+    blockbench # 3d modeling for games
+    discord
+    gimp3 # image editor
+    # glaxnimate # 2d/3d vector animation software
+    drawio # diagram editor
+    inkscape # vector graphics editor
+    krita # digital painting
+    material-maker # procedural texture generator
+    onlyoffice-desktopeditors # office suite
+    ookla-speedtest
+    pixelorama # 2d sprite editor
+    prismlauncher # minecraft launcher
+    proton-vpn # VPN client
+    qbittorrent # download torrents
+    teamfight-tactics
+    teams-for-linux # microsoft teams
+  ];
 }

@@ -1,5 +1,5 @@
-_: pkgs:
+_: prev:
 let
-  buildSupport = pkgs.callPackage ./build-support.nix { };
+  buildSupport = prev.callPackage ./build-support.nix { };
 in
 buildSupport.mkXpiAddonsFromList (builtins.fromJSON (builtins.readFile ./default.lock))

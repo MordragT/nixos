@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./flake
-    ./home
-    ./nixos
-  ];
-}

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 let
   by-attr = import ./by-attr;
   by-lang = import ./by-lang;
@@ -31,6 +31,7 @@ in
   perSystem =
     {
       pkgs,
+      system,
       ...
     }:
     let
@@ -48,6 +49,11 @@ in
       ];
     in
     {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       inherit packages legacyPackages;
     };
 }

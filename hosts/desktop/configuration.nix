@@ -1,4 +1,8 @@
-_: {
+{
+  vaultix = {
+    settings.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICS5VqBeNWhTolWxS01+dpg3zcw5OMRaSF5Ylwk1fn1v root@tom-desktop";
+  };
+
   mordrag = {
     boot = {
       enable = true;
@@ -18,10 +22,18 @@ _: {
       amd-r5-2600 = true;
       intel-arc-a750 = true;
     };
-    platform.enable = true;
-    secrets = {
+    networking = {
       enable = true;
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICS5VqBeNWhTolWxS01+dpg3zcw5OMRaSF5Ylwk1fn1v root@tom-desktop";
+      lanMac = "30:9c:23:8a:54:c6";
+      wlanMac = "14:f6:d8:b3:fd:f3";
+    };
+    platform.enable = true;
+    users = {
+      enable = true;
+      main = "tom";
     };
   };
+
+  programs.chromium.enable = true;
+
 }

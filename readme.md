@@ -49,7 +49,7 @@ your home folders like `Desktop` or `Documents` under `/nix/state/users/name/hom
 
 ```nix
 # system/config/<machine>/impermanence.nix
-environment.state = {
+mordrag.state = {
     enable = true;
     targets = [
         {
