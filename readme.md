@@ -11,10 +11,9 @@ System and home-manager configuration for my linux machines.
 
 ## 📦 Contents
 
-- `system/config/`: Machine specific configurations
-- `system/modules/`: Nixos modules
-- `home/config/`: Home-Manager configurations
-- `home/modules/`: Home-Manager modules
+- `hosts/`: Machine specific configurations
+- `nixos-modules/`: Nixos modules
+- `home-modules/`: Home-Manager modules
 - `pkgs/`: Overlays for various packages
 
 ## 🚀 How to use ?
@@ -43,7 +42,7 @@ sudo nixos-install --flake uri#system
 
 ### 🤫 Impermanence
 
-Instead of tediously specifying all the files you want to keep, the `environment.state` module allows you to specify only the folders you want to overlay by symlink or by mount.
+Instead of tediously specifying all the files you want to keep, the `state` module allows you to specify only the folders you want to overlay by symlink or by mount.
 Say you have folders under `/nix/state/users/name/data` where you have all the folders which sadly do not follow the XDG directories like `.ssh` or `.minecraft` and you have
 your home folders like `Desktop` or `Documents` under `/nix/state/users/name/home`. Then you can specify the following config:
 
@@ -88,8 +87,8 @@ Now `Desktop@` and `Documents@` will be mounted/symlinked at startup to your hom
 
 ### 🦊 Firefox Addons
 
-Under `pkgs/by-scope/firefox-addons` are a bunch of firefox addons defined. But instead of manually creating derivations for each addon,
-the addons are generated via the `pkgs/by-scope/firefox-addons/mod.nu` nushell script. The resulting `default.lock` is then used to create
+Under `pkgs/by-attr/firefox-addons` are a bunch of firefox addons defined. But instead of manually creating derivations for each addon,
+the addons are generated via the `pkgs/by-attr/firefox-addons/mod.nu` nushell script. The resulting `default.lock` is then used to create
 the respective derivations.
 
 Now to add addons you can just add the slugs into the `pkgs/by-scope/firefox-addons/mod.nu` script and recreate the `default.lock` file

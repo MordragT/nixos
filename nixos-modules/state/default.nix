@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.mordrag.state;
+  user = config.mordrag.users.main;
   targets = lib.mkOption {
     description = lib.mdDoc "List of source state trees and destination trees";
     default = [ ];
@@ -85,7 +86,7 @@ in
     let
       fullPreset = [
         {
-          source = "/nix/state/system/config";
+          source = "/state/system/config";
           destination = "/etc";
           method = "mount";
           owner = "root";
@@ -93,7 +94,7 @@ in
           mode = "0700";
         }
         {
-          source = "/nix/state/system/state";
+          source = "/state/system/state";
           destination = "/var/lib";
           method = "mount";
           owner = "root";
@@ -101,7 +102,7 @@ in
           mode = "0700";
         }
         {
-          source = "/nix/state/system/log";
+          source = "/state/system/log";
           destination = "/var/log";
           method = "mount";
           owner = "root";
@@ -109,8 +110,24 @@ in
           mode = "0700";
         }
         {
-          source = "/nix/state/system/variable";
-          destination = "/var";
+          source = "/state/system/cache";
+          destination = "/var/cache";
+          method = "mount";
+          owner = "root";
+          group = "root";
+          mode = "0700";
+        }
+        {
+          source = "/state/system/spool";
+          destination = "/var/spool";
+          method = "mount";
+          owner = "root";
+          group = "root";
+          mode = "0700";
+        }
+        {
+          source = "/state/system/secrets";
+          destination = "/var/secrets";
           method = "mount";
           owner = "root";
           group = "root";
@@ -118,42 +135,42 @@ in
         }
         # Home
         {
-          source = "/nix/state/users/tom/home";
-          destination = "/home/tom";
+          source = "/state/users/${user}/home";
+          destination = "/home/${user}";
           method = "mount";
-          owner = "tom";
+          owner = user;
           group = "users";
           mode = "0700";
         }
         {
-          source = "/nix/state/users/tom/data";
-          destination = "/home/tom";
+          source = "/state/users/${user}/cache";
+          destination = "/home/${user}/.cache";
           method = "mount";
-          owner = "tom";
+          owner = user;
           group = "users";
           mode = "0700";
         }
         {
-          source = "/nix/state/users/tom/config";
-          destination = "/home/tom/.config";
+          source = "/state/users/${user}/config";
+          destination = "/home/${user}/.config";
           method = "mount";
-          owner = "tom";
+          owner = user;
           group = "users";
           mode = "0700";
         }
         {
-          source = "/nix/state/users/tom/share";
-          destination = "/home/tom/.local/share";
+          source = "/state/users/${user}/data";
+          destination = "/home/${user}/.local/share";
           method = "mount";
-          owner = "tom";
+          owner = user;
           group = "users";
           mode = "0700";
         }
         {
-          source = "/nix/state/users/tom/state";
-          destination = "/home/tom/.local/state";
+          source = "/state/users/${user}/state";
+          destination = "/home/${user}/.local/state";
           method = "mount";
-          owner = "tom";
+          owner = user;
           group = "users";
           mode = "0700";
         }

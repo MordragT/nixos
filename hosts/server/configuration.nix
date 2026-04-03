@@ -6,7 +6,8 @@
   mordrag = {
     boot = {
       enable = true;
-      secureBoot = true;
+      # TODO: this doesn't seem to work for first nixos-anywhere install
+      # secureBoot = true;
     };
     desktop.cosmic.enable = true;
     disks = {

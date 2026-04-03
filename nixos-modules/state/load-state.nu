@@ -6,9 +6,13 @@ def find-paths [source] {
     if ($source | path basename | str ends-with '@') {
         return [$source]
     } else {
-        let results = ls -a $source
-        | where { |entry| $entry.type == dir }
-        | each { |entry| find-paths $entry.name}
+        let results = try {
+            ls -a $source
+            | where { |entry| $entry.type == dir }
+            | each { |entry| find-paths $entry.name}
+        } catch {
+            []
+        }
 
         let paths = if ($results | is-empty) {
             []

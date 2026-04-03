@@ -38,11 +38,12 @@ in
         initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";
         extraGroups = [
           "wheel"
+          "adbusers"
           "docker"
           "gamemode"
-          "wireshark"
-          "adbusers"
+          "networkmanager"
           "vboxusers"
+          "wireshark"
         ];
         shell = pkgs.nushell;
         openssh.authorizedKeys.keys = [

@@ -16,6 +16,9 @@
 
           mordrag.platform.nix.enable = true;
 
+          users.users.nixos.initialPassword = "nixos";
+          services.getty.autologinUser = "nixos";
+
           environment.systemPackages = with pkgs; [
             disko
             git

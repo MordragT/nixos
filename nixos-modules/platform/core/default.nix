@@ -37,11 +37,13 @@ in
         just # make alike
         libva-utils
         lm_sensors
+        lshw
         macchina # neofetch alternative
         parted
         pax-utils
         pciutils
         psmisc
+        powerstat
         tealdeer # tldr
         tokei # count lines of code
         trash-cli # put files in trash

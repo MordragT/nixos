@@ -26,6 +26,7 @@ in
 
   config = lib.mkIf cfg.enable {
     networking = {
+      useDHCP = false;
       nftables.enable = true;
       firewall.enable = true;
       networkmanager = {
@@ -52,13 +53,18 @@ in
       services.NetworkManager-wait-online.enable = false;
 
       network = {
+        enable = true;
+        wait-online.enable = false;
+
+        # Each link must have a number smaller than 99
+        # to be matched before the default `99-default.link`
         links = {
-          lan = {
+          "10-lan" = {
             matchConfig.PermanentMACAddress = cfg.lanMac;
             linkConfig.Name = "lan";
           };
 
-          wlan = {
+          "20-wlan" = {
             matchConfig.PermanentMACAddress = cfg.wlanMac;
             linkConfig.Name = "wlan";
           };

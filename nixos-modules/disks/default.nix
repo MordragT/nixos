@@ -115,7 +115,7 @@ in
 
     swapDevices = [
       {
-        device = "/dev/disk/by-label/swap";
+        device = "/dev/disk/by-label/main-swap";
       }
     ];
 
@@ -124,7 +124,7 @@ in
     # a traditional swap I should be gucci
     zramSwap = {
       enable = cfg.zram;
-      writebackDevice = "/dev/disk/by-label/swap-writeback";
+      writebackDevice = "/dev/disk/by-label/main-swap-writeback";
     };
 
     boot.kernel.sysctl = lib.mkIf cfg.zram {
@@ -173,7 +173,8 @@ in
           (lib.mapAttrs mkPoolDisk additionalDevices)
           # Main should be evaluated last
           // {
-            "${poolName}-main" = {
+            # Just use poolName as label for the main device.
+            ${poolName} = {
               device = mainDevice;
               type = "disk";
 
@@ -181,7 +182,7 @@ in
                 type = "gpt";
                 partitions = {
                   data = {
-                    name = "${poolName}-main";
+                    name = "data";
                     size = "100%";
                     content = {
                       inherit (pool) subvolumes;
@@ -257,7 +258,7 @@ in
                   };
                   state = {
                     type = "filesystem";
-                    mountpoint = "/nix/state";
+                    mountpoint = "/state";
                     mountOptions = [
                       "noatime"
                       "compress=zstd"
@@ -272,7 +273,7 @@ in
 
     fileSystems = {
       "/nix".neededForBoot = true;
-      "/nix/state".neededForBoot = true;
+      "/state".neededForBoot = true;
     };
   };
 }
