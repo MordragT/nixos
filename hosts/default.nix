@@ -52,6 +52,7 @@
   };
 
   imports = [
+    ./beacon
     ./desktop
     ./installer
     ./laptop

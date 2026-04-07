@@ -186,21 +186,42 @@ in
       # 2. create script which will create parent directories if target dir does not exist
       # 3. depending on method create activation scripts
 
-      system.activationScripts.load-state.text =
-        let
+      systemd.services = {
+        state = {
+          enable = true;
+          description = "State Binding";
+
+          after = [ config.systemd.services.userborn.name ];
+
+          path = [ pkgs.util-linux ];
           script = lib.concatMapStrings load-state (
             cfg.targets ++ (lib.optionals cfg.presets.full fullPreset)
           );
-        in
-        script;
 
-      systemd.services.state = lib.mkIf cfg.user.enable {
-        enable = true;
-        description = "State Binding";
-        after = [ "systemd-logind.service" ];
-        wantedBy = [ "multi-user.target" ];
-        path = [ pkgs.util-linux ];
-        script = lib.concatMapStrings load-state cfg.user.targets;
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
+
+          wantedBy = [ "sysinit.target" ];
+        };
+
+        user-state = lib.mkIf cfg.user.enable {
+          enable = true;
+          description = "User State Binding";
+
+          after = [ "systemd-logind.service" ];
+
+          path = [ pkgs.util-linux ];
+          script = lib.concatMapStrings load-state cfg.user.targets;
+
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+          };
+
+          wantedBy = [ "multi-user.target" ];
+        };
       };
     };
 }

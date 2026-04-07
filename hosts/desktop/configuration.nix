@@ -9,6 +9,7 @@
       secureBoot = true;
       thp = true;
       v4l2loopback = true;
+      tmpSize = "50%";
     };
     desktop = {
       cosmic = {

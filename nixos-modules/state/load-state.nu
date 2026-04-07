@@ -4,23 +4,16 @@
 
 def find-paths [source] {
     if ($source | path basename | str ends-with '@') {
-        return [$source]
+        [$source]
     } else {
-        let results = try {
+        try {
             ls -a $source
             | where { |entry| $entry.type == dir }
             | each { |entry| find-paths $entry.name}
+            | flatten
         } catch {
             []
         }
-
-        let paths = if ($results | is-empty) {
-            []
-        } else {
-            $results | reduce { |it, acc| $acc | append $it }
-        }
-
-        return $paths
     }
 }
 
@@ -46,8 +39,8 @@ def create-dir-inner [path, owner, group, mode, to_create] {
         $to_create
         | each { |path|
             mkdir $path
-            chown $"($owner):($group)" $path
-            chmod $mode $path
+            ^chown $"($owner):($group)" $path
+            ^chmod $mode $path
         }
     }
 }

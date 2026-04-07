@@ -16,6 +16,8 @@
     disks = {
       enable = true;
       zram = true;
+      swapSize = "12G";
+      swapWritebackSize = "4G";
       mainPool.devices.main = "/dev/disk/by-id/nvme-WDC_PC_SN520_SDAPNUW-256G-1006_19321B800783";
       pools.snapshot.devices.main = "/dev/disk/by-id/ata-ST1000LM035-1RK172_WL16JC6M";
     };

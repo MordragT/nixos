@@ -15,6 +15,20 @@ in
     # https://www.abhik.ai/concepts/memory/transparent-huge-pages
     thp = lib.mkEnableOption "Transparent Huge Pages (THP)";
     v4l2loopback = lib.mkEnableOption "v4l2loopback";
+
+    tmpSize = lib.mkOption {
+      type = lib.types.str;
+      default = "25%";
+      description = "Size of the /tmp tmpfs partition.";
+      example = "2G";
+    };
+
+    runSize = lib.mkOption {
+      type = lib.types.str;
+      default = "10%";
+      description = "Size of the /run tmpfs partition.";
+      example = "2G";
+    };
   };
 
   imports = [
@@ -42,11 +56,11 @@ in
 
       tmp = {
         useTmpfs = true;
-        tmpfsSize = "50%";
+        tmpfsSize = cfg.tmpSize;
         cleanOnBoot = true;
       };
 
-      runSize = "25%";
+      inherit (cfg) runSize;
 
       kernelPackages = pkgs.linuxPackages_latest; # pkgs.linuxPackages_cachyos-lto; #linuxPackages_latest/testing/6_7
 

@@ -53,16 +53,21 @@ in
 
     swapSize = lib.mkOption {
       type = lib.types.str;
-      default = "4G";
       description = "Size of the swap partition.";
       example = "8G";
     };
 
-    swapWriteBackSize = lib.mkOption {
+    swapWritebackSize = lib.mkOption {
       type = lib.types.str;
-      default = "2G";
       description = "Size of the zram swap writeback device.";
       example = "8G";
+    };
+
+    zramSize = lib.mkOption {
+      type = lib.types.ints.positive;
+      description = "Size of the zram device in percentage of the total RAM.";
+      example = 25;
+      default = 50;
     };
 
     mainPool = lib.mkOption {
@@ -115,7 +120,7 @@ in
 
     swapDevices = [
       {
-        device = "/dev/disk/by-label/disk-main-swap";
+        device = "/swap/swapFile";
       }
     ];
 
@@ -124,7 +129,8 @@ in
     # a traditional swap I should be gucci
     zramSwap = {
       enable = cfg.zram;
-      writebackDevice = "/dev/disk/by-label/disk-main-swap-writeback";
+      memoryPercent = cfg.zramSize;
+      writebackDevice = "/swap/swapWritebackFile";
     };
 
     boot.kernel.sysctl = lib.mkIf cfg.zram {
@@ -140,7 +146,9 @@ in
       let
         mkDiskLabels =
           poolName: devices:
-          lib.map (deviceName: "/dev/disk/by-partlabel/${poolName}-${deviceName}") (lib.attrNames devices);
+          lib.map (deviceName: "/dev/disk/by-partlabel/disk-${poolName}-${deviceName}-data") (
+            lib.attrNames devices
+          );
 
         mkDisk =
           poolName: deviceName: device:
@@ -148,14 +156,16 @@ in
             name = "${poolName}-${deviceName}";
           in
           {
-            ${name} = {
+            name = "0-${name}"; # prefix with '0-' to ensure main last
+            value = {
               inherit device;
               type = "disk";
 
               content = {
                 type = "gpt";
                 partitions.data = {
-                  inherit name;
+                  name = "data";
+                  label = "disk-${name}-data"; # custom label to remove '0-' prefix
                   size = "100%";
                 };
               };
@@ -170,10 +180,10 @@ in
             additionalDevices = builtins.removeAttrs pool.devices [ "main" ];
             raidDeviceLabels = mkDiskLabels poolName additionalDevices;
           in
-          (lib.mapAttrs mkPoolDisk additionalDevices)
-          # Main should be evaluated last
+          (lib.mapAttrs' mkPoolDisk additionalDevices)
           // {
             # Just use poolName as label for the main device.
+            # Main should be evaluated last
             ${poolName} = {
               device = mainDevice;
               type = "disk";
@@ -229,19 +239,6 @@ in
                   mountpoint = "/boot";
                 };
               };
-              swap = {
-                name = "swap";
-                size = cfg.swapSize;
-                content = {
-                  type = "swap";
-                  resumeDevice = true;
-                };
-              };
-
-              swapWriteback = {
-                name = "swap-writeback";
-                size = cfg.swapWriteBackSize;
-              };
             }
             "main"
             (
@@ -256,6 +253,7 @@ in
                       "compress=zstd"
                     ];
                   };
+
                   state = {
                     type = "filesystem";
                     mountpoint = "/state";
@@ -263,6 +261,16 @@ in
                       "noatime"
                       "compress=zstd"
                     ];
+                  };
+
+                  swap = {
+                    mountpoint = "/swap";
+                    swap = {
+                      swapFile.size = cfg.swapSize;
+                    }
+                    // lib.optionalAttrs cfg.zram {
+                      swapWritebackFile.size = cfg.swapWritebackSize;
+                    };
                   };
                 };
               }
