@@ -72,7 +72,6 @@ in
 
       state.directories = [
         "/var/lib/bluetooth"
-        "/etc/ssh"
       ];
     };
   };
