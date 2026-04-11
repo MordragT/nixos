@@ -57,6 +57,11 @@ in
   spflashtool-v5 = callPackage ./spflashtool-v5 { };
   stable-diffusion-cpp-sycl = callPackage ./stable-diffusion-cpp-sycl { };
   starrydex = callPackage ./starrydex { };
+
+  steamos-cosmic-session-select = callPackage ./steamos-cosmic-session-select { };
+  steamos-select-branch = callPackage ./steamos-select-branch { };
+  steamos-update = callPackage ./steamos-update { };
+
   teamfight-tactics = callPackage ./teamfight-tactics { };
   tmfs = callPackage ./tmfs { };
 

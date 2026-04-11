@@ -3,5 +3,6 @@
     ./cosmic
     ./gnome
     ./niri
+    ./steamos
   ];
 }

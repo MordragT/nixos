@@ -9,10 +9,7 @@
       # TODO: this doesn't seem to work for first nixos-anywhere install
       # secureBoot = true;
     };
-    desktop.cosmic = {
-      enable = true;
-      greeter = true;
-    };
+    desktop.steamos.enable = true;
     disks = {
       enable = true;
       zram = true;
@@ -38,7 +35,6 @@
     };
     state = {
       enable = true;
-      machine-id = "634F3958557051577043754872754F366";
     };
     users = {
       enable = true;
@@ -55,84 +51,5 @@
     loupe
     showtime
     papers
-    # (
-    #   # TODO create desktop file for this
-    #   pkgs.writeShellScriptBin "steamos-session-select" ''
-    #     echo $XDG_RUNTIME_DIR
-    #     SESSION_SWITCH_FILE="$XDG_RUNTIME_DIR/steamos-session/switch"
-    #     mkdir -p "$(dirname "$SESSION_SWITCH_FILE")"
-
-    #     if [ -f "$SESSION_SWITCH_FILE" ]; then
-    #       rm "$SESSION_SWITCH_FILE"
-    #       # systemctl --user start cosmic-session.service
-    #       steam -shutdown
-    #       exec cosmic-session
-    #     else
-    #       touch "$SESSION_SWITCH_FILE"
-    #       # systemctl --user start steam-session.service
-    #       cosmic-osd log-out
-    #       # No need to execute steam-gamescope here, as it will be executed by greetd
-    #       # exec steam-gamescope
-    #     fi
-    #   ''
-    # )
-    # (pkgs.writeShellScriptBin "steamos-select-branch" ''
-    #   case "$1" in
-    #     "-c")
-    #       # Current Branch
-    #       echo "main"
-    #       ;;
-    #     "-l")
-    #       # List Branches
-    #       echo "main"
-    #       ;;
-    #     *)
-    #       # Switch Branch
-    #       ;;
-    #   esac
-    # '')
-    # (pkgs.writeShellScriptBin "steamos-update" ''
-    #   # Exit codes according to vendor:
-    #   # 0 - update success
-    #   # 1 - update error
-    #   # 7 - no update available
-    #   # 8 - need reboot
-    #   exit 7
-    # '')
   ];
-
-  # TODO add as argument to own steam module
-  # programs.steam.gamescopeSession = {
-  #   args = [
-  #     "-W 1280"
-  #     "-H 720"
-  #     # "-F fsr" # doesn't seem to work that well
-  #     "--mangoapp"
-  #     "--fullscreen" # gamescope introduces a lot of latency if not fullscreen
-  #   ];
-  #   steamArgs = [
-  #     "-steamos3"
-  #     "-tenfoot"
-  #     "-pipewire-dmabuf"
-  #   ];
-  #   # somehow --mangoapp on gamescope doesn't find default config
-  #   env.MANGOHUD_CONFIGFILE = "/home/tom/.config/MangoHud/MangoHud.conf";
-  # };
-
-  # services = {
-  #   greetd = {
-  #     enable = true;
-  #     # settings.initial_session = {
-  #     #   user = "tom";
-  #     #   command = "cosmic-session";
-  #     # };
-
-  #     settings = {
-  #       default_session = {
-  #         user = "tom";
-  #         command = "steam-gamescope";
-  #       };
-  #     };
-  #   };
-  # };
 }

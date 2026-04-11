@@ -31,7 +31,6 @@
           };
           state = {
             enable = true;
-            machine-id = "72565A534E454B4B39633347634B314C6";
           };
           users = {
             enable = true;

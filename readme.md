@@ -91,15 +91,15 @@ Under `pkgs/by-attr/firefox-addons` are a bunch of firefox addons defined. But i
 the addons are generated via the `pkgs/by-attr/firefox-addons/mod.nu` nushell script. The resulting `default.lock` is then used to create
 the respective derivations.
 
-Now to add addons you can just add the slugs into the `pkgs/by-scope/firefox-addons/mod.nu` script and recreate the `default.lock` file
+Now to add addons you can just add the slugs into the `pkgs/by-attr/firefox-addons/mod.nu` script and recreate the `default.lock` file
 by running `just update`
 
-*Disclaimer*: Due to some limitations of nushell, at the moment the path of `default.lock` is hardcoded into `pkgs/by-scope/firefox-addons/mod.nu`.
+*Disclaimer*: Due to some limitations of nushell, at the moment the path of `default.lock` is hardcoded into `pkgs/by-attr/firefox-addons/mod.nu`.
     You ~~might~~ probably want to change that
 
 ### 💻 Vscode Extensions
 
-The vscode extensions are very similar to the firefox addons and are defined under `pkgs/by-scope/vscode-extensions`.
+The vscode extensions are very similar to the firefox addons and are defined under `pkgs/by-attr/vscode-extensions`.
 The **disclaimer** also applies!
 
 ### 🚧 WIP Intel OneAPI
