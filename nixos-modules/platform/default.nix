@@ -42,6 +42,18 @@ in
       openssh = {
         enable = true;
         settings.PasswordAuthentication = false;
+
+        hostKeys = [
+          {
+            bits = 4096;
+            path = "/state/etc/ssh/ssh_host_rsa_key";
+            type = "rsa";
+          }
+          {
+            path = "/state/etc/ssh/ssh_host_ed25519_key";
+            type = "ed25519";
+          }
+        ];
       };
 
       journald.extraConfig = ''
@@ -49,12 +61,19 @@ in
       '';
     };
 
-    mordrag.platform = {
-      core.enable = true;
-      fonts.enable = true;
-      nix.enable = true;
-      pipewire.enable = true;
-      virtualisation.enable = true;
+    mordrag = {
+      platform = {
+        core.enable = true;
+        fonts.enable = true;
+        nix.enable = true;
+        pipewire.enable = true;
+        virtualisation.enable = true;
+      };
+
+      state.directories = [
+        "/var/lib/bluetooth"
+        "/etc/ssh"
+      ];
     };
   };
 }

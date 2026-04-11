@@ -25,6 +25,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mordrag.state.directories = [ "/etc/NetworkManager/system-connections" ];
+
     networking = {
       useDHCP = false;
       nftables.enable = true;

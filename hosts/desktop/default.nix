@@ -8,7 +8,6 @@
       inputs.vaultix.nixosModules.default
       ./configuration.nix
       ./file-systems.nix
-      ./impermanence.nix
       ./programs.nix
       ./services.nix
     ];

@@ -118,19 +118,13 @@ in
       '';
     }) (lib.attrValues cfg.pools);
 
-    swapDevices = [
-      {
-        device = "/swap/swapFile";
-      }
-    ];
-
     # according to this https://github.com/systemd/systemd/issues/16708
     # systemd will skip zram swaps when hibernating, so as long as i keep
     # a traditional swap I should be gucci
     zramSwap = {
       enable = cfg.zram;
       memoryPercent = cfg.zramSize;
-      writebackDevice = "/swap/swapWritebackFile";
+      writebackDevice = "/dev/disk/by-partlabel/disk-main-swap-writeback";
     };
 
     boot.kernel.sysctl = lib.mkIf cfg.zram {
@@ -237,7 +231,22 @@ in
                   type = "filesystem";
                   format = "vfat";
                   mountpoint = "/boot";
+                  mountOptions = [ "umask=0077" ];
                 };
+              };
+
+              swap = {
+                name = "swap";
+                size = cfg.swapSize;
+                content = {
+                  type = "swap";
+                  resumeDevice = true;
+                };
+              };
+
+              swapWriteback = {
+                name = "swap-writeback";
+                size = cfg.swapWritebackSize;
               };
             }
             "main"
@@ -261,16 +270,6 @@ in
                       "noatime"
                       "compress=zstd"
                     ];
-                  };
-
-                  swap = {
-                    mountpoint = "/swap";
-                    swap = {
-                      swapFile.size = cfg.swapSize;
-                    }
-                    // lib.optionalAttrs cfg.zram {
-                      swapWritebackFile.size = cfg.swapWritebackSize;
-                    };
                   };
                 };
               }

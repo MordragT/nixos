@@ -36,7 +36,6 @@ in
       };
     };
 
-    mordrag.services.caddy.enable = true;
     services.caddy.virtualHosts."harmonia.${config.networking.domain}".extraConfig = ''
       import cloudflare
       encode zstd

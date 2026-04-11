@@ -21,6 +21,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mordrag.state.directories = [ config.services.caddy.dataDir ];
+
     services.caddy = {
       enable = true;
       openFirewall = true;

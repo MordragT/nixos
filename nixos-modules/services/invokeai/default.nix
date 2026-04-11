@@ -78,6 +78,8 @@ in
       };
     in
     lib.mkIf cfg.enable {
+      mordrag.state.directories = [ root ];
+
       environment.systemPackages = [
         app
       ];

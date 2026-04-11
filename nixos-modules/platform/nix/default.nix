@@ -33,7 +33,7 @@ in
         ];
         trusted-users = [
           "root"
-          config.mordrag.users.main
+          config.mordrag.users.main.name
         ];
         allowed-users = [ "@wheel" ];
         auto-optimise-store = true;

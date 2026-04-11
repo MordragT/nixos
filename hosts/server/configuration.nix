@@ -38,20 +38,18 @@
     };
     state = {
       enable = true;
-      presets.full = true;
+      machine-id = "634F3958557051577043754872754F366";
     };
     users = {
       enable = true;
-      main = "tom";
+      main = {
+        name = "tom";
+        state.enable = true;
+      };
     };
   };
 
   programs.chromium.enable = true;
-
-  # For impermanence, TODO: movein presets full
-  environment.etc = {
-    machine-id.source = "/nix/state/system/config/machine-id";
-  };
 
   environment.systemPackages = with pkgs; [
     loupe

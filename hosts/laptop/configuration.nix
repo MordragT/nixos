@@ -28,15 +28,14 @@
     };
     state = {
       enable = true;
-      presets.full = true;
+      machine-id = "35507A53344A4E7651447543546432766";
     };
     users = {
       enable = true;
-      main = "tom";
+      main = {
+        name = "tom";
+        state.enable = true;
+      };
     };
-  };
-
-  environment.etc = {
-    machine-id.source = "/nix/state/system/config/machine-id";
   };
 }

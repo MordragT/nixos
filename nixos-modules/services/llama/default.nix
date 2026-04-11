@@ -63,6 +63,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mordrag.state.directories = [ "/var/lib/llama-cpp" ];
+
     systemd.services.llama-cpp = {
       description = "LLaMA C++ server";
       after = [ "network.target" ];
@@ -89,7 +91,6 @@ in
       };
     };
 
-    mordrag.services.caddy.enable = true;
     services.caddy.virtualHosts."llama.${config.networking.domain}".extraConfig = ''
       import cloudflare
       encode zstd

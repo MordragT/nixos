@@ -19,6 +19,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mordrag.state.directories = [ config.services.forgejo.stateDir ];
+
     services = {
       forgejo = {
         enable = true;
