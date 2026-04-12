@@ -29,6 +29,12 @@ in
               description = "List of packages to install for the main user.";
             };
 
+            extraGroups = lib.mkOption {
+              type = with lib.types; listOf str;
+              default = [ ];
+              description = "List of extra groups to add the main user to.";
+            };
+
             state = lib.mkOption {
               description = "Options for the state of the main user.";
               type = lib.types.submodule {
@@ -195,13 +201,12 @@ in
         initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";
         extraGroups = [
           "wheel"
-          "adbusers"
+          # TODO The following should be factored out in their respective modules.
           "docker"
-          "gamemode"
-          "networkmanager"
           "vboxusers"
           "wireshark"
-        ];
+        ]
+        ++ cfg.main.extraGroups;
         shell = pkgs.nushell;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIm/oTrV+ISStJ7Gb3ES7lZdCfya2TdEtkFZ/A1rqYEv tom@tom-pc"

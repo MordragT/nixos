@@ -13,6 +13,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mordrag.users.main.extraGroups = [ "adbusers" ];
+
     environment.systemPackages = with pkgs; [
       android-tools
       mtkclient

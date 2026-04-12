@@ -25,7 +25,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    mordrag.state.directories = [ "/etc/NetworkManager/system-connections" ];
+    mordrag = {
+      state.directories = [ "/etc/NetworkManager/system-connections" ];
+      users.main.extraGroups = [ "networkmanager" ];
+    };
 
     networking = {
       useDHCP = false;

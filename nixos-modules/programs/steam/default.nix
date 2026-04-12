@@ -18,12 +18,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mordrag.users.main.extraGroups = [ "gamemode" ];
+
     hardware.steam-hardware.enable = true;
 
     programs = {
       steam = {
         enable = true;
-        gamescopeSession.enable = true;
         protontricks.enable = true;
         remotePlay.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
@@ -37,24 +38,6 @@ in
           renice = 10;
           inhibit_screensaver = 0;
         };
-      };
-      gamescope = {
-        enable = true;
-        capSysNice = false;
-        package = pkgs.gamescope;
-        # args = [
-        #   "-W 2560"
-        #   "-H 1440"
-        #   "-w 1920"
-        #   "-h 1080"
-        #   "-r 120"
-        #   "-f"
-        #   "--rt"
-        #   "--display-index 1"
-        #   "--immediate-flips"
-        #   "--backend sdl"
-        #   "--mangoapp"
-        # ];
       };
     };
     environment.etc = {

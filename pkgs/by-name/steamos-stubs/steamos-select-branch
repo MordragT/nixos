@@ -1,0 +1,15 @@
+#!/bin/sh
+>&2 echo "[STEAMOS] $0: stub called with: $*"
+case "$1" in
+    "-c")
+        # What is our current branch? Pretend to be main
+        echo "main"
+        ;;
+    "-l")
+        # What branches are available? Pretend to only have main
+        echo "main"
+        ;;
+    *)
+        # Switch branch, just do nothing
+        ;;
+esac

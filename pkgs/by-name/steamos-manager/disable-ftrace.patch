@@ -1,0 +1,13 @@
+diff --git a/steamos-manager/src/daemon/root.rs b/steamos-manager/src/daemon/root.rs
+index 47fcb01..ac7c7fc 100644
+--- a/steamos-manager/src/daemon/root.rs
++++ b/steamos-manager/src/daemon/root.rs
+@@ -124,8 +124,6 @@ impl DaemonContext for RootContext {
+         self.state = state;
+ 
+         let connection = daemon.get_connection();
+-        let ftrace = Ftrace::init(&connection).await?;
+-        daemon.add_service(ftrace);
+ 
+         let ip = DeckService::init(connection);
+         daemon.add_service(ip);

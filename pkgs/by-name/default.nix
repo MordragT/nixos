@@ -58,9 +58,8 @@ in
   stable-diffusion-cpp-sycl = callPackage ./stable-diffusion-cpp-sycl { };
   starrydex = callPackage ./starrydex { };
 
-  steamos-cosmic-session-select = callPackage ./steamos-cosmic-session-select { };
-  steamos-select-branch = callPackage ./steamos-select-branch { };
-  steamos-update = callPackage ./steamos-update { };
+  steamos-manager = callPackage ./steamos-manager { };
+  steamos-stubs = callPackage ./steamos-stubs { };
 
   teamfight-tactics = callPackage ./teamfight-tactics { };
   tmfs = callPackage ./tmfs { };

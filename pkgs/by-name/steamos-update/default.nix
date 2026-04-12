@@ -1,9 +1,0 @@
-{ writeShellScriptBin }:
-writeShellScriptBin "steamos-update" ''
-  # Exit codes according to vendor:
-  # 0 - update success
-  # 1 - update error
-  # 7 - no update available
-  # 8 - need reboot
-  exit 7
-''

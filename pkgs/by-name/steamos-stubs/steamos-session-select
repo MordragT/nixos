@@ -1,0 +1,13 @@
+#!/bin/sh
+>&2 echo "[STEAMOS] $0: stub called with: $*"
+case "$1" in
+    "gamescope")
+        steamosctl switch-to-game-mode
+        ;;
+    "plasma")
+        steamosctl switch-to-desktop-mode
+        ;;
+    *)
+        >&2 echo "Unsupported action!"
+        ;;
+esac
