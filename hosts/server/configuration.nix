@@ -33,6 +33,13 @@
         compatPackages = [ pkgs.proton-ge-bin ];
       };
     };
+    services = {
+      qpad = {
+        enable = true;
+        port = 3000;
+        openFirewall = true;
+      };
+    };
     state = {
       enable = true;
     };

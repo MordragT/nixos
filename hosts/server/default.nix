@@ -1,8 +1,10 @@
+{ inputs, ... }:
 {
   mordrag.hosts."tom-server" = {
     system = "x86_64-linux";
     stateVersion = "26.05";
     modules = [
+      inputs.qpad.nixosModules.default
       ./configuration.nix
     ];
 

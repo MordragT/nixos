@@ -20,12 +20,12 @@ index ddab3e5..404d8fa 100644
  
  [update_bios]
 -script = "/usr/bin/jupiter-biosupdate"
-+script = "@stubs@/bin/steamos-bios-update"
++script = "@stubs@/bin/steamos-polkit-helpers/jupiter-biosupdate"
  script_args = ["--auto"]
  
  [update_dock]
 -script = "/usr/lib/jupiter-dock-updater/jupiter-dock-updater.sh"
-+script = "@stubs@/bin/steamos-dock-updater"
++script = "@stubs@/bin/steamos-polkit-helpers/jupiter-dock-updater"
  
  [storage.trim_devices]
 -script = "/usr/lib/hwsupport/trim-devices.sh"
@@ -289,6 +289,12 @@ index b4afd05..136842b 100644
          &[
              "phy",
              "phy0",
+@@ -375,4 +374,4 @@
+     let mut settings = get_nm_settings().await?;
+     settings.backend = backend;
+-    set_nm_settings(settings, true, connection).await
++    set_nm_settings(settings, false, connection).await
+ }
 @@ -378,7 +377,7 @@ pub(crate) async fn set_wifi_backend(backend: WifiBackend, connection: &Connecti
  }
  

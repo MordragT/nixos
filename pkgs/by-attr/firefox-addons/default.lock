@@ -2,10 +2,10 @@
   {
     "slug": "addon-7tv-extension",
     "name": "7TV",
-    "version": "3.1.16",
+    "version": "3.1.20",
     "addonId": "moz-addon-prod@7tv.app",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4672494/7tv_extension-3.1.16.xpi",
-    "sha256": "sha256:b8da5e541c03c982dccbcc0ab5c23981e5bcc3d42ef49cc33ebd55225904d46f",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4749830/7tv_extension-3.1.20.xpi",
+    "sha256": "sha256:1510de1f5959a9988b02ae4e165e42c66ac15b79d361b5bb99fd7596515b0d8d",
     "homepage": "https://7tv.app",
     "description": "Improve your viewing experience on Twitch and YouTube with new features, emotes, vanity and performance.",
     "license": "Apache-2.0"
@@ -35,10 +35,10 @@
   {
     "slug": "bitwarden-password-manager",
     "name": "Bitwarden Password Manager",
-    "version": "2026.2.0",
+    "version": "2026.3.0",
     "addonId": "{446900e4-71c2-419f-a6a7-df9c091e268b}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4715321/bitwarden_password_manager-2026.2.0.xpi",
-    "sha256": "sha256:e54999d45ae1cd001452a34294240633c89a95ae832f212721d746a89555958e",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4749958/bitwarden_password_manager-2026.3.0.xpi",
+    "sha256": "sha256:2dc6d074d4dc0abd2a8966f5065a55e7252bbf5e54b23c31dbedabfac0d4dbc4",
     "homepage": "https://bitwarden.com",
     "description": "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.",
     "license": "GPL-3.0-only"
@@ -68,10 +68,10 @@
   {
     "slug": "ghostery",
     "name": "Ghostery – Privacy Ad Blocker",
-    "version": "10.5.34",
+    "version": "10.5.37",
     "addonId": "firefox@ghostery.com",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4728013/ghostery-10.5.34.xpi",
-    "sha256": "sha256:447284c489518b1fc07695ab4ee770d2a082c16e0d5dd22a45f3fe988dde2be0",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4755945/ghostery-10.5.37.xpi",
+    "sha256": "sha256:08bf8d529d7ca3acb9008bba040863ee9e3ade22ce7790c38fea94e24dccb201",
     "homepage": "http://www.ghostery.com/",
     "description": "The best privacy tool and ad blocker extension for Firefox. Stop trackers, speed up websites and block ads everywhere including YouTube and Facebook.",
     "license": "MPL-2.0"
@@ -90,10 +90,10 @@
   {
     "slug": "proton-vpn-firefox-extension",
     "name": "Proton VPN: Fast & Secure",
-    "version": "1.2.15",
+    "version": "1.2.16",
     "addonId": "vpn@proton.ch",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4666247/proton_vpn_firefox_extension-1.2.15.xpi",
-    "sha256": "sha256:381dd05af39b71c86292612a552fa82431753cba60a96761cb3dd47c9e24e437",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4741264/proton_vpn_firefox_extension-1.2.16.xpi",
+    "sha256": "sha256:ab7fd773acae35f4020d6874daae98a1d1ac4db1f736fdbf70e232063f8b9600",
     "homepage": "https://protonvpn.com/",
     "description": "Secure your internet and protect your online privacy in one click.",
     "license": "GPL-3.0-only"
@@ -134,10 +134,10 @@
   {
     "slug": "sponsorblock",
     "name": "SponsorBlock - Skip Sponsorships on YouTube",
-    "version": "6.1.2",
+    "version": "6.1.3",
     "addonId": "sponsorBlocker@ajay.app",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4644570/sponsorblock-6.1.2.xpi",
-    "sha256": "sha256:598f66c9eb6bbab2bd5f87376b632a5860f442d3694e233610f5b37f8b6e3f10",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4744354/sponsorblock-6.1.3.xpi",
+    "sha256": "sha256:cc6ee2918298ce6a1754b462d0b54d9a96f545f65cd3ac69016332ebca1d100b",
     "homepage": "https://sponsor.ajay.app",
     "description": "Easily skip YouTube video sponsors. When you visit a YouTube video, the extension will check the database for reported sponsors and automatically skip known sponsors. You can also report sponsors in videos. Other browsers: https://sponsor.ajay.app",
     "license": "LGPL-3.0-only"

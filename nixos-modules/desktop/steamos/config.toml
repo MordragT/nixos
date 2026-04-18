@@ -1,0 +1,16 @@
+[[device]]
+dmi.sys_vendor = "HP" # /sys/class/dmi/id/sys_vendor
+dmi.product_name = "HP EliteDesk 705 G4 SFF" # /sys/class/dmi/id/product_name
+device = "generic"
+variant = "saturn"
+friendly_name = "Nixos Generic Pc"
+wifi.backend = "iwd"
+
+[gpu_performance]
+driver = "amdgpu"
+
+[gpu_power_profile]
+driver = "amdgpu"
+
+# [inputplumber]
+# target_devices = ["keyboard", "mouse"]

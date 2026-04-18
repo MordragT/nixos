@@ -28,7 +28,6 @@ let
         --stats-path "$stats" \
         >"$tmpdir/session.log" 2>&1; then
       echo "gamescope exited with code $?" >> "$tmpdir/session.log"
-      cat "$tmpdir/session.log"
       exit 1
     fi &
     gamescope_pid="$!"
@@ -45,11 +44,8 @@ let
       # Systemd or Session manager will have to restart session
     fi
 
-    echo "Wayland display set ?"
-    echo "$WAYLAND_DISPLAY"
-
     # Start Steam
-    steam -steamos3 -tenfoot -pipewire-dmabuf
+    steam -steamos3 -tenfoot -pipewire-dmabuf -clientbeta steamdeck_publicbeta
 
     # When the client exits, kill gamescope nicely
     kill $gamescope_pid
@@ -79,10 +75,60 @@ in
       users.main.extraGroups = [ "seat" ];
     };
 
+    networking.networkmanager.wifi.backend = "iwd";
+
     hardware.steam-hardware.enable = true;
 
-    environment.systemPackages = [ pkgs.steamos-manager ];
+    environment = {
+      systemPackages = with pkgs; [
+        dmidecode
+        steamos-manager
+        steamos-stubs
+      ];
+
+      # DMI stuff needs to match
+      etc."steamos-manager/config.toml".source = ./config.toml;
+
+      # Steamos Manager needs this file and doesn't create it on startup
+      # https://gitlab.steamos.cloud/holo/steamos-manager/-/blob/main/steamos-manager/src/wifi.rs
+      etc."NetworkManager/conf.d/99-valve-wifi-backend.conf" = {
+        text = ''
+          [connection]
+          wifi.powersave=0
+          [device]
+          wifi.backend=${config.networking.networkmanager.wifi.backend}
+        '';
+
+        mode = "0644";
+      };
+    };
     systemd.packages = [ pkgs.steamos-manager ];
+    services.dbus.packages = [ pkgs.steamos-manager ];
+
+    systemd.services = {
+      steamos-manager = {
+        overrideStrategy = "asDropin";
+        # FIXME: should probably be done upstream
+        after = [ "inputplumber.service" ];
+      };
+
+      # This doesn't work and errors with file not found error somehow
+      # steamos-setup = {
+      #   wants = [ "steamos-manager.service" ];
+      #   after = [ "steamos-manager.service" ];
+
+      #   path = [ pkgs.steamos-manager ];
+
+      #   # For some reason this settings get overwritten, therefore put them here
+      #   script = ''
+      #     steamosctl set-wifi-backend ${config.networking.networkmanager.wifi.backend}
+      #   '';
+
+      #   serviceConfig.Type = "oneshot";
+
+      #   wantedBy = [ "multi-user.target" ];
+      # };
+    };
 
     security.wrappers = {
       gamescope = {
@@ -93,48 +139,29 @@ in
       };
     };
 
-    # Steam overrides this SOMETIMES seemingly for no reason
-    # so we need to force it back to the user's choice.
-    systemd.user.services.steamos-setup-cosmic-session = {
+    systemd.user.services.steamos-user-setup = {
       wants = [ "steamos-manager.service" ];
       after = [ "steamos-manager.service" ];
 
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.steamos-manager}/bin/steamosctl set-default-desktop-session ${pkgs.cosmic-session}/share/wayland-sessions/cosmic.desktop";
-      };
+      path = [ pkgs.steamos-manager ];
+
+      # For some reason this settings get overwritten, therefore put them here
+      script = ''
+        steamosctl set-default-desktop-session ${pkgs.cosmic-session}/share/wayland-sessions/cosmic.desktop
+      '';
+
+      serviceConfig.Type = "oneshot";
 
       wantedBy = [ "graphical-session.target" ];
     };
 
-    # # required for hdr? breaks gamescope ?
-    # hardware.graphics = {
-    #   enable32Bit = true;
-    #   extraPackages = [ pkgs.gamescope-wsi ];
-    #   extraPackages32 = [ pkgs.pkgsi686Linux.gamescope-wsi ];
-    # };
-
-    programs = {
-      steam.enable = true;
-
-      # gamescope = {
-      #   enable = true;
-      #   capSysNice = true;
-      #   args = [
-      #     # "-W 2560"
-      #     # "-H 1440"
-      #     # "-w 1920"
-      #     # "-h 1080"
-      #     # "-r 120"
-      #     # "-F fsr" # doesn't seem to work that well
-      #     # "--rt"
-      #     # "--display-index 1"
-      #     # "--immediate-flips"
-      #     # "--backend sdl"
-      #     "--mangoapp"
-      #     "--fullscreen" # gamescope introduces a lot of latency if not fullscreen
-      #   ];
-      # };
+    programs.steam = {
+      enable = true;
+      extraPackages = with pkgs; [
+        steamos-stubs
+        dmidecode
+        xwininfo
+      ];
     };
 
     services = {
@@ -143,8 +170,11 @@ in
       # required by steamos-manager ?
       inputplumber.enable = true;
 
-      # required by steam gamescope ? or maybe in combination with gamescope-wsi?
+      # used by gamescope although logind maybe also works
       seatd.enable = true;
+
+      # needed by steamos-manager ?
+      fwupd.enable = true;
 
       greetd = {
         enable = true;
@@ -152,6 +182,7 @@ in
           default_session = {
             user = "tom";
             command = "${steam-gamescope}/bin/steam-gamescope";
+            # command = "cosmic-session";
           };
         };
       };

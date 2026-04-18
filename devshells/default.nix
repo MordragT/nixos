@@ -13,6 +13,7 @@
         packages = with pkgs; [
           nixfmt
           statix
+          unzip
           nixos-install-tools
           ssh-to-age
           rage
