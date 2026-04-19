@@ -66,5 +66,6 @@ in
 
   unified-memory-framework = callPackage ./unified-memory-framework { };
   vulkan-raytracing = callPackage ./vulkan-raytracing { };
+  xdg-desktop-portal-gamescope = callPackage ./xdg-desktop-portal-gamescope { };
   zen-browser-bin = callPackage ./zen-browser-bin { };
 }

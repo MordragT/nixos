@@ -493,11 +493,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1773168029,
-        "narHash": "sha256-dLcdUV+M7z5YIPpLGWKhJ71TZhHHHhEjsJAI0BqlHeI=",
+        "lastModified": 1776550048,
+        "narHash": "sha256-zChzCAMNSWWbJXCt+IE7xrsArQg+WW5tnSDkJNvCo+g=",
         "owner": "MordragT",
         "repo": "nu-env",
-        "rev": "0636a884cd447d624e039f730b390d8737dad04c",
+        "rev": "8049204389c410b64db8b9b8568f700966e390f5",
         "type": "github"
       },
       "original": {
@@ -563,11 +563,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1775222148,
-        "narHash": "sha256-F2N5gWtmpEYP/+lRqYD36acSnNBZGe9nbdMrScFLJ9o=",
+        "lastModified": 1776557579,
+        "narHash": "sha256-7v0fZ9K2tZp9cQrCHC6vsNHDPJrzeHgc5pWh9NHO6OE=",
         "owner": "MordragT",
         "repo": "qpad",
-        "rev": "a5107b950b6a1091f48e72d158d549270c0cf4ba",
+        "rev": "8273ddca3cc4f4e254d4996322dfe748ec039647",
         "type": "github"
       },
       "original": {

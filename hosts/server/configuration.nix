@@ -8,6 +8,7 @@
       enable = true;
       # TODO: this doesn't seem to work for first nixos-anywhere install
       # secureBoot = true;
+      thp = true;
     };
     desktop.steamos.enable = true;
     disks = {

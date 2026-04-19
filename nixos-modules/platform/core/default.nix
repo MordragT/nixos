@@ -24,8 +24,10 @@ in
         alsa-utils # configure audio devices
         asciinema_3 # record terminals
         bintools
+        btop
         clinfo # opencl info
         doggo # dig alternative
+        dmidecode
         drm_info
         dua # print file size of directories
         fd # find replacement
@@ -38,6 +40,7 @@ in
         libva-utils
         lm_sensors
         lshw
+        lsof # list open files
         macchina # neofetch alternative
         parted
         pax-utils

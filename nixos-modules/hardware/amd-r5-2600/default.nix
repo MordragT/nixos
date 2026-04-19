@@ -14,13 +14,6 @@
       cpu.amd.updateMicrocode = true;
     };
 
-    boot = {
-      kernelModules = [ "kvm-amd" ];
-      kernelParams = [
-        # Disable Retbleed mitigations on Zen+ (Ryzen 5 2600) for 5-20% perf gain.
-        # Low risk on single-user home setups (needs local code exec); safe for gaming.
-        "retbleed=off"
-      ];
-    };
+    boot.kernelModules = [ "kvm-amd" ];
   };
 }

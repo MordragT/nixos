@@ -39,6 +39,10 @@ in
     };
 
     services = {
+      journald.extraConfig = ''
+        SystemMaxUse=2G
+      '';
+
       openssh = {
         enable = true;
         settings.PasswordAuthentication = false;
@@ -56,9 +60,10 @@ in
         ];
       };
 
-      journald.extraConfig = ''
-        SystemMaxUse=2G
-      '';
+      scx = {
+        enable = true;
+        scheduler = "scx_lavd";
+      };
     };
 
     mordrag = {
