@@ -35,6 +35,7 @@
       main = {
         name = "tom";
         state.enable = true;
+        xdg.enable = true;
         packages = with pkgs; [
           beekeeper-studio # sql client
           blender # 3d modeling

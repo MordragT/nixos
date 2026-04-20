@@ -32,6 +32,17 @@
       steam = {
         enable = true;
         compatPackages = [ pkgs.proton-ge-bin ];
+        shortcuts = [
+          {
+            name = "Mario Party Wii";
+            exe = "${pkgs.dolphin-emu}/bin/dolphin-emu";
+            args = [
+              "-b"
+              "-e"
+              "/home/tom/Games/Wii/mario-party-8.wbfs"
+            ];
+          }
+        ];
       };
     };
     services = {
@@ -49,6 +60,7 @@
       main = {
         name = "tom";
         state.enable = true;
+        xdg.enable = true;
       };
     };
   };

@@ -6,7 +6,5 @@
     description = "Library for flakes.";
   };
 
-  config.flake.lib = {
-    # TODO: fill with helpers
-  };
+  config.flake.lib = { };
 }

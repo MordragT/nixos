@@ -12,6 +12,17 @@
           proton-ge-bin
           opengothic
         ];
+        shortcuts = [
+          {
+            name = "Mario Kart Wii";
+            exe = "${pkgs.dolphin-emu}/bin/dolphin-emu";
+            args = [
+              "-b"
+              "-e"
+              "/run/media/Media/Games/Wii/mario-party-8.wbfs"
+            ];
+          }
+        ];
       };
       valent.enable = true;
     };

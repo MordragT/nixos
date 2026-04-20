@@ -563,11 +563,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1776557579,
-        "narHash": "sha256-7v0fZ9K2tZp9cQrCHC6vsNHDPJrzeHgc5pWh9NHO6OE=",
+        "lastModified": 1776626717,
+        "narHash": "sha256-Cf895MsgIaZaFIQmQLIR+8bZfjhkJ85iDO/8KCTAvFw=",
         "owner": "MordragT",
         "repo": "qpad",
-        "rev": "8273ddca3cc4f4e254d4996322dfe748ec039647",
+        "rev": "d9bde2f31495fda48b62a56800a3af2abdadcea0",
         "type": "github"
       },
       "original": {
