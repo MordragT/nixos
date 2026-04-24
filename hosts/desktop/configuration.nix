@@ -40,6 +40,7 @@
           beekeeper-studio # sql client
           blender # 3d modeling
           blockbench # 3d modeling for games
+          cemu # wii u emulator
           discord
           gimp3 # image editor
           # glaxnimate # 2d/3d vector animation software
@@ -55,6 +56,7 @@
           qbittorrent # download torrents
           teamfight-tactics
           teams-for-linux # microsoft teams
+          unrar
         ];
       };
     };

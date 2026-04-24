@@ -14,4 +14,6 @@
     # TODO move gnome packages into users.users.xxx.packages
     gnome.enable = true;
   };
+
+  programs.chromium.enable = true;
 }

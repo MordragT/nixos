@@ -1,72 +1,8 @@
-#!/bin/bash
-
-set -e
-
-UPDATE_CHECK=0
-UPDATE_ERROR=0
-CURRENT_VER=4.4
-AVAILABLE_VER=4.5
-
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --check) UPDATE_CHECK=1; shift ;;
-        --mock-update-available) shift ;; #default behaviour
-        --mock-up-to-date) CURRENT_VER=$AVAILABLE_VER; shift ;;
-        --mock-update-error) UPDATE_ERROR=1; shift ;;
-        *) echo "Unknown option $1"; exit -22;;
-    esac
-done
-
-to_int() {
-  local major=${1%%.*}
-  local minor=${1#*.}
-  printf '%d%02d\n' "$major" "$minor"
-}
-
-check()
-{
-	echo "FW Current: $CURRENT_VER"
-	echo "FW Available: $AVAILABLE_VER"
-
-    if (( $(to_int "$AVAILABLE_VER") > $(to_int "$CURRENT_VER") )); then
-        echo "FW update available"
-        exit 0
-    fi
-    echo "FW up to date"
-    exit 7
-}
-
-
-update()
-{
-    echo "Kinet_Flash_Write FW1"
-    for i in {1..100}; do
-        echo -en "\rprogress=$i%"
-        sleep 0.001
-    done
-    echo
-
-    echo "Kinet_Flash_Write FW0"
-    for i in {1..100}; do
-        echo -en "\rprogress=$i%"
-        sleep 0.02
-
-        if [[ "$i" -gt "50" ]]; then
-            if [[ "$UPDATE_ERROR" != "0" ]]; then
-                echo
-                echo "FW Update error"
-                exit -1
-            fi
-        fi
-    done
-    echo
-
-    exit 0
-}
-
-
-if [[ "$UPDATE_CHECK" != "0" ]]; then
-    check
-else
-    update
-fi
+#!/bin/sh
+>&2 echo "[STEAMOS] $0: stub called with: $*"
+# Exit codes according to vendor:
+# 0 - update success/update available
+# 7 - no update available
+# -1 - update error
+# -22 - unknown option
+exit 7

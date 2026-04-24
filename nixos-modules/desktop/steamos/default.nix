@@ -6,92 +6,67 @@
 }:
 let
   cfg = config.mordrag.desktop.steamos;
+  start-session = pkgs.writeScript "start-session" ''
+    #! /usr/bin/env -S ${lib.getExe pkgs.nushell} --plugins ${lib.getExe pkgs.nushell-plugin-formats} --no-config-file
 
-  steam-gamescope = pkgs.writeShellScriptBin "steam-gamescope" ''
-    # Session variables
-    export XDG_SESSION_TYPE=x11
-    export XDG_SESSION_DESKTOP=steam-gamescope
-    export XDG_CURRENT_DESKTOP=steam-gamescope
+    # [Autologin]\nSession={session}\n
+    const TEMP_CONFIG = "/etc/sddm.conf.d/zzt-steamos-temp-login.conf"
 
-    # Setup socket for gamescope
-    # Create run directory file for startup and stats sockets
-    tmpdir="$(mktemp -p "$XDG_RUNTIME_DIR" -d -t gamescope.XXXXXXX)"
-    socket="$tmpdir/startup.socket"
-    stats="$tmpdir/stats.pipe"
-    mkfifo -- "$stats"
-    mkfifo -- "$socket"
+    if ($TEMP_CONFIG | path exists) {
+      let config = open $TEMP_CONFIG | from ini
+      let session = $config.Autologin.Session
 
-    export GAMESCOPE_STATS="$stats"
-
-    # Enable the gamescope WSI extension to allow gamescope to manage buffers directly
-    export ENABLE_GAMESCOPE_WSI=1
-    # Don't wait for buffers to idle on the client side before sending them to gamescope
-    export vk_xwayland_wait_ready=false
-
-    # Start gamescope compositor, log it's output and background it
-    if ! /run/wrappers/bin/gamescope \
-        --backend drm \
-        --ready-fd "$socket" \
-        --stats-path "$stats" \
-        --output-width 1920 \
-        --output-height 1080 \
-        --filter fsr \
-        --steam \
-        --mangoapp \
-        --xwayland-count 2 \
-        >"$tmpdir/session.log" 2>&1; then
-      echo "gamescope exited with code $?" >> "$tmpdir/session.log"
-      exit 1
-    fi &
-    gamescope_pid="$!"
-
-    if read -r -t 16 response_x_display response_wl_display <>"$socket"; then
-      export DISPLAY="$response_x_display"
-      export GAMESCOPE_WAYLAND_DISPLAY="$response_wl_display"
-    else
-      echo "gamescope failed"
-      kill -9 "$gamescope_pid"
-      wait -n "$gamescope_pid"
-      exit 1
-      # Systemd or Session manager will have to restart session
-    fi
-
-    # Sync to systemd user manager (so user services see Wayland/Display)
-    systemctl --user import-environment \
-        DISPLAY GAMESCOPE_WAYLAND_DISPLAY \
-        XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
-
-    # Set input method modules for Qt/GTK that will show the Steam keyboard
-    export QT_IM_MODULE=steam
-    export GTK_IM_MODULE=Steam
-
-    export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-
-    export STEAM_MULTIPLE_XWAYLANDS=1
-    export STEAM_MANGOAPP_PRESETS_SUPPORTED=1
-    export STEAM_USE_MANGOAPP=1
-
-    export MANGOHUD_CONFIG=preset=3
-    export MANGOHUD=1
-
-    # Start Steam
-    steam -steamos3 -tenfoot -pipewire-dmabuf
-
-    # When the client exits, kill gamescope nicely
-    kill $gamescope_pid
+      if ($session | str contains "gamescope") {
+        exec ${start-gamescope-session}/bin/start-gamescope-session
+      } else {
+        let desktop = open $session | from ini
+        exec $desktop."Desktop Entry".Exec
+      }
+    } else {
+      exec ${start-gamescope-session}/bin/start-gamescope-session
+    }
   '';
 
-  gamescopeSession =
+  start-gamescope-session = pkgs.writeShellScriptBin "start-gamescope-session" ''
+    # It is possible to get things remaining from the previous session
+    # and our units are still running in the user systemd
+    systemctl --user stop gamescope-session.target
+    systemctl --user stop graphical-session-pre.target
+    systemctl --user reset-failed
+
+    # TODO relevant?
+    # This makes it so that xdg-desktop-portal only looks for holo- and
+    # gamescope-specific portal implementations and doesn't try to start other
+    # irrelevant portal implementations (gtk, kde, …).
+    # XDG_DESKTOP_PORTAL_DIR="/usr/share/xdg-desktop-portal/gamescope-portals"
+
+    # Remove these as they prevent gamescope-session from starting correctly
+    systemctl --user unset-environment DISPLAY
+
+    # If this shell script is killed then stop gamescope-session
+    trap 'systemctl --user stop gamescope-session.target' HUP INT TERM
+
+    # Start gamescope-session target
+    systemctl --user --wait start gamescope-session.target
+
+    # The 'wait' above blocks until gamescope-session.target stops
+    # We want to wait until *everything* has finished. We know systemd will have
+    # queued a stop job on graphical-session-pre aleady
+    # by also queuing up a job we can block until that completes
+    systemctl --user stop graphical-session-pre.target
+  '';
+
+  gamescope-wayland =
     (pkgs.makeDesktopItem {
-      name = "steam";
-      desktopName = "Steam";
-      comment = "A desktop session for running Steam in gamescope";
-      exec = "${steam-gamescope}/bin/steam-gamescope";
+      name = "gamescope-session";
+      desktopName = "Gamescope Wayland Session";
+      comment = "A wayland desktop session for running Steam in gamescope";
+      exec = "${start-gamescope-session}/bin/start-gamescope-session";
       type = "Application";
       destination = "/share/wayland-sessions";
     }).overrideAttrs
       (_: {
-        passthru.providedSessions = [ "steam" ];
+        passthru.providedSessions = [ "gamescope-session" ];
       });
 in
 {
@@ -114,14 +89,14 @@ in
 
     environment = {
       systemPackages = with pkgs; [
-        dmidecode
         steamos-manager
-        steamos-stubs
-        mangohud
       ];
 
       # DMI stuff needs to match
       etc."steamos-manager/config.toml".source = ./config.toml;
+
+      # steamos-manager determines on the existence of this file if the desktop sessions are managed.
+      etc."sddm.conf.d/steamos.conf".text = "";
 
       # Steamos Manager needs this file and doesn't create it on startup
       # https://gitlab.steamos.cloud/holo/steamos-manager/-/blob/main/steamos-manager/src/wifi.rs
@@ -152,26 +127,150 @@ in
         xdg-desktop-portal-gamescope
       ];
 
-      services.steamos-manager = {
-        overrideStrategy = "asDropin";
-        # FIXME: should probably be done upstream
-        after = [ "inputplumber.service" ];
-      };
+      user = {
+        targets.gamescope-session = {
+          requires = [
+            "graphical-session.target"
+            config.systemd.user.services.gamescope-session.name
+          ];
+          bindsTo = [
+            "graphical-session.target"
+            config.systemd.user.services.gamescope-session.name
+          ];
+          after = [ "graphical-session.target" ];
+          unitConfig.PropagatesStopTo = [ "graphical-session.target" ];
+          upholds = [ config.systemd.user.services.steam-launcher.name ];
+        };
 
-      user.services.steamos-user-setup = {
-        wants = [ "steamos-manager.service" ];
-        after = [ "steamos-manager.service" ];
+        services = {
+          gamescope-session = {
+            before = [
+              "graphical-session.target"
+              # The XDG desktop portal frontend relies on the value of $XDG_CURRENT_DESKTOP to
+              # decide which backends to load, so its startup should be delayed until after
+              # the session is running.
+              "xdg-desktop-portal.service"
+            ];
+            partOf = [ "graphical-session.target" ];
+            wants = [ "graphical-session-pre.target" ];
+            after = [ "graphical-session-pre.target" ];
 
-        path = [ pkgs.steamos-manager ];
+            environment = {
+              # Session variables
+              XDG_SESSION_TYPE = "x11";
+              XDG_SESSION_DESKTOP = "gamescope-session";
+              XDG_CURRENT_DESKTOP = "gamescope-session";
+            };
 
-        # For some reason this settings get overwritten, therefore put them here
-        script = ''
-          steamosctl set-default-desktop-session ${pkgs.cosmic-session}/share/wayland-sessions/cosmic.desktop
-        '';
+            path = [ pkgs.mangohud ];
 
-        serviceConfig.Type = "oneshot";
+            script = ''
+              # Setup socket for gamescope
+              # Create run directory file for startup and stats sockets
+              tmpdir="$(mktemp -p "$XDG_RUNTIME_DIR" -d -t gamescope.XXXXXXX)"
+              socket="$tmpdir/startup.socket"
+              stats="$tmpdir/stats.pipe"
+              mkfifo -- "$stats"
+              mkfifo -- "$socket"
 
-        wantedBy = [ "graphical-session.target" ];
+              export GAMESCOPE_STATS="$stats"
+
+              # TODO: need to also import the following two to systemctl ?
+
+              # Enable the gamescope WSI extension to allow gamescope to manage buffers directly
+              export ENABLE_GAMESCOPE_WSI=1
+              # Don't wait for buffers to idle on the client side before sending them to gamescope
+              export vk_xwayland_wait_ready=false
+
+              read_gamescope_env() {
+                 	if read -r -t 8 response_x_display response_wl_display <> "$socket"; then
+                		export DISPLAY="$response_x_display"
+                		export GAMESCOPE_WAYLAND_DISPLAY="$response_wl_display"
+
+                		# Sync environment variables to systemd, then notify we are ready to launch subsequent services
+                    systemctl --user import-environment \
+                      DISPLAY GAMESCOPE_WAYLAND_DISPLAY \
+                      XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
+
+                		systemd-notify --ready
+                 	fi
+              }
+
+              # Spawned in parallel to read values from gamescope
+              (read_gamescope_env &)
+
+
+              exec /run/wrappers/bin/gamescope \
+                  --backend drm \
+                  --ready-fd "$socket" \
+                  --stats-path "$stats" \
+                  --output-width 1920 \
+                  --output-height 1080 \
+                  --filter fsr \
+                  --steam \
+                  --mangoapp \
+                  --xwayland-count 2
+            '';
+
+            serviceConfig = {
+              Type = "notify";
+              NotifyAccess = "all";
+              TimeoutStartSec = 5;
+              TimeoutStopSec = 10;
+            };
+          };
+
+          steam-launcher = {
+            description = "Steam Launcher";
+            after = [
+              "graphical-session.target"
+              # The Steam client calls into the XDG desktop portal frontend service
+              # (org.freedesktop.portal.Realtime.MakeThreadHighPriorityWithPID) at shutdown,
+              # ensure both services are stopped in the right order.
+              "xdg-desktop-portal.service"
+            ];
+            partOf = [ "graphical-session.target" ];
+
+            path = [ pkgs.steamos-stubs ];
+
+            environment = {
+              # Set input method modules for Qt/GTK that will show the Steam keyboard
+              QT_IM_MODULE = "steam";
+              GTK_IM_MODULE = "Steam";
+
+              SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+
+              STEAM_MULTIPLE_XWAYLANDS = "1";
+              STEAM_MANGOAPP_PRESETS_SUPPORTED = "1";
+              STEAM_USE_MANGOAPP = "1";
+
+              MANGOHUD_CONFIG = "preset=3";
+              MANGOHUD = "1";
+            };
+
+            serviceConfig = {
+              ExecStart = "${pkgs.steam}/bin/steam -steamos3 -tenfoot -pipewire-dmabuf";
+              KillMode = "mixed";
+              TimeoutStopSec = 60;
+            };
+          };
+
+          steamos-user-setup = {
+            wants = [ "steamos-manager.service" ];
+            after = [ "steamos-manager.service" ];
+
+            path = [ pkgs.steamos-manager ];
+
+            # For some reason this settings get overwritten, therefore put them here
+            script = ''
+              steamosctl set-default-desktop-session ${pkgs.cosmic-session}/share/wayland-sessions/cosmic.desktop
+            '';
+
+            serviceConfig.Type = "oneshot";
+
+            wantedBy = [ "graphical-session.target" ];
+          };
+        };
       };
     };
 
@@ -181,34 +280,26 @@ in
         steamos-stubs
         dmidecode
         xwininfo
-        mangohud
       ];
     };
 
     services = {
-      displayManager.sessionPackages = [ gamescopeSession ];
+      displayManager.sessionPackages = [ gamescope-wayland ];
 
       dbus.packages = with pkgs; [
         steamos-manager
         xdg-desktop-portal-gamescope
       ];
 
-      # required by steamos-manager ?
-      inputplumber.enable = true;
-
       # used by gamescope although logind maybe also works
       seatd.enable = true;
-
-      # needed by steamos-manager ?
-      fwupd.enable = true;
 
       greetd = {
         enable = true;
         settings = {
           default_session = {
             user = "tom";
-            command = "${steam-gamescope}/bin/steam-gamescope";
-            # command = "cosmic-session";
+            command = "${start-session}";
           };
         };
       };
@@ -217,6 +308,7 @@ in
     xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gamescope ];
+      config."gamescope-session".default = [ "gamescope" ];
     };
   };
 }

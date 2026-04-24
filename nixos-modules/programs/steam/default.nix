@@ -37,12 +37,12 @@ let
 
             env_str = " ".join(f"{k}={v}" for k, v in envs.items())
             args_str = " ".join(args)
-            launch_opts = f"{env_str} {args_str}".strip()
+            launch_opts = f"{env_str} {exe} {args_str}".strip()
 
             return {
                 "appid": app_id,
                 "appname": app,
-                "Exe": f"\"{exe}\"",
+                "Exe": "\"env\"",
                 "LaunchOptions": launch_opts,
                 "AllowOverlay": 0,
             }

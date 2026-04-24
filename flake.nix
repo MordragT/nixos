@@ -58,7 +58,12 @@
 
     nu-env = {
       url = "github:MordragT/nu-env";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        git-hooks.follows = "git-hooks";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     qpad = {

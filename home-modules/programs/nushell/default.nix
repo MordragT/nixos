@@ -11,7 +11,7 @@ let
   plugins = [
     "${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats"
     "${pkgs.nushellPlugins.gstat}/bin/nu_plugin_gstat"
-    "${inputs.nu-env.packages.${system}.nu-plugin-apt}/bin/nu_plugin_apt"
+    "${inputs.nu-env.packages.${system}.nushell-plugin-apt}/bin/nu_plugin_apt"
   ];
 in
 {

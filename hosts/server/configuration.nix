@@ -42,6 +42,28 @@
               "/home/tom/Games/Wii/mario-party-8.wbfs"
             ];
           }
+          {
+            name = "Mario Kart WiiU";
+            exe = "${pkgs.cemu}/bin/cemu";
+            args = [
+              "--fullscreen"
+              "--game"
+              "/home/tom/Games/WiiU/mario-kart-8/code/Turbo.rpx"
+              "--mlc"
+              "/home/tom/Games/WiiU/mlc"
+            ];
+          }
+          {
+            name = "New Mario Bros U";
+            exe = "${pkgs.cemu}/bin/cemu";
+            args = [
+              "--fullscreen"
+              "--game"
+              "/home/tom/Games/WiiU/new-super-mario-bros-u/code/red-pro2.rpx"
+              "--mlc"
+              "/home/tom/Games/WiiU/mlc"
+            ];
+          }
         ];
       };
     };
@@ -71,5 +93,6 @@
     loupe
     showtime
     papers
+    cemu
   ];
 }
