@@ -436,6 +436,7 @@ in
         initialHashedPassword = "$6$bMyXd7NPiO./sD/f$enBP8XmgvHDiJh35ObyRVCPOrsScFI/AZL/mcIhACbqNAHKOkQLSjhlAvRanjNj9buWwB4uQxSLtqLRhBY5x/.";
         extraGroups = [
           "wheel"
+          "input" # check if this helps cemu controller, otherwise remove
           # TODO The following should be factored out in their respective modules.
           "docker"
           "vboxusers"

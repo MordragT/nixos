@@ -10,7 +10,10 @@
       # secureBoot = true;
       thp = true;
     };
-    desktop.steamos.enable = true;
+    desktop = {
+      cosmic.enable = true;
+      steamos.enable = true;
+    };
     disks = {
       enable = true;
       zram = true;
@@ -49,8 +52,8 @@
               "--fullscreen"
               "--game"
               "/home/tom/Games/WiiU/mario-kart-8/code/Turbo.rpx"
-              "--mlc"
-              "/home/tom/Games/WiiU/mlc"
+              # "--mlc"
+              # "/home/tom/Games/WiiU/mlc"
             ];
           }
           {
@@ -60,8 +63,8 @@
               "--fullscreen"
               "--game"
               "/home/tom/Games/WiiU/new-super-mario-bros-u/code/red-pro2.rpx"
-              "--mlc"
-              "/home/tom/Games/WiiU/mlc"
+              # "--mlc"
+              # "/home/tom/Games/WiiU/mlc"
             ];
           }
         ];
@@ -94,5 +97,7 @@
     showtime
     papers
     cemu
+    cdecrypt # decrypt wii u nus content
+    sdl-jstest # controller test for sdl
   ];
 }

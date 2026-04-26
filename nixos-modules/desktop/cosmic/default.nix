@@ -42,7 +42,7 @@ in
       # cosmic-ext-applet-git-work
       cosmic-ext-applet-logomenu
       cosmic-ext-applet-minimon
-      cosmic-ext-applet-music-player
+      # cosmic-ext-applet-music-player
       cosmic-ext-applet-privacy-indicator
       # cosmic-ext-applet-system-monitor
       cosmic-ext-applet-tailscale

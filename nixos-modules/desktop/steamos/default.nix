@@ -16,6 +16,8 @@ let
       let config = open $TEMP_CONFIG | from ini
       let session = $config.Autologin.Session
 
+      ${pkgs.steamos-manager}/bin/steamosctl clean-temporary-sessions
+
       if ($session | str contains "gamescope") {
         exec ${start-gamescope-session}/bin/start-gamescope-session
       } else {
@@ -76,7 +78,7 @@ in
 
   config = lib.mkIf cfg.enable {
     mordrag = {
-      desktop.cosmic.enable = true;
+      programs.mangohud.enable = true;
       users.main.extraGroups = [ "seat" ];
     };
 
@@ -92,23 +94,25 @@ in
         steamos-manager
       ];
 
-      # DMI stuff needs to match
-      etc."steamos-manager/config.toml".source = ./config.toml;
+      etc = {
+        # DMI stuff needs to match
+        "steamos-manager/config.toml".source = ./config.toml;
 
-      # steamos-manager determines on the existence of this file if the desktop sessions are managed.
-      etc."sddm.conf.d/steamos.conf".text = "";
+        # steamos-manager determines on the existence of this file if the desktop sessions are managed.
+        "sddm.conf.d/steamos.conf".text = "";
 
-      # Steamos Manager needs this file and doesn't create it on startup
-      # https://gitlab.steamos.cloud/holo/steamos-manager/-/blob/main/steamos-manager/src/wifi.rs
-      etc."NetworkManager/conf.d/99-valve-wifi-backend.conf" = {
-        text = ''
-          [connection]
-          wifi.powersave=0
-          [device]
-          wifi.backend=${config.networking.networkmanager.wifi.backend}
-        '';
+        # Steamos Manager needs this file and doesn't create it on startup
+        # https://gitlab.steamos.cloud/holo/steamos-manager/-/blob/main/steamos-manager/src/wifi.rs
+        "NetworkManager/conf.d/99-valve-wifi-backend.conf" = {
+          text = ''
+            [connection]
+            wifi.powersave=0
+            [device]
+            wifi.backend=${config.networking.networkmanager.wifi.backend}
+          '';
 
-        mode = "0644";
+          mode = "0644";
+        };
       };
     };
 
@@ -126,6 +130,12 @@ in
         steamos-manager
         xdg-desktop-portal-gamescope
       ];
+
+      services.steamos-manager = {
+        overrideStrategy = "asDropin";
+        # FIXME: should probably be done upstream
+        after = [ "inputplumber.service" ];
+      };
 
       user = {
         targets.gamescope-session = {
@@ -243,9 +253,6 @@ in
               STEAM_MULTIPLE_XWAYLANDS = "1";
               STEAM_MANGOAPP_PRESETS_SUPPORTED = "1";
               STEAM_USE_MANGOAPP = "1";
-
-              MANGOHUD_CONFIG = "preset=3";
-              MANGOHUD = "1";
             };
 
             serviceConfig = {
@@ -262,6 +269,7 @@ in
             path = [ pkgs.steamos-manager ];
 
             # For some reason this settings get overwritten, therefore put them here
+            # TODO: make desktop session configurable
             script = ''
               steamosctl set-default-desktop-session ${pkgs.cosmic-session}/share/wayland-sessions/cosmic.desktop
             '';
@@ -290,6 +298,20 @@ in
         steamos-manager
         xdg-desktop-portal-gamescope
       ];
+
+      inputplumber.enable = true;
+
+      # maybe fixes cemu issues
+      udev.extraRules = ''
+        # USB devices and topological children
+        SUBSYSTEMS=="usb", TAG+="uaccess"
+
+        # HID devices over hidraw
+        KERNEL=="hidraw*", TAG+="uaccess"
+
+        # Steam Controller udev write access
+        KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
+      '';
 
       # used by gamescope although logind maybe also works
       seatd.enable = true;
