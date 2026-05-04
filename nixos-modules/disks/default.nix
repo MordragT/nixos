@@ -84,7 +84,7 @@ in
           options = {
             inherit raid devices;
             subvolumes = lib.mkOption {
-              type = lib.types.attrsOf lib.types.anything; # or lib.types.attrs to be simpler
+              type = lib.types.attrs;
               default = { };
               description = "Disko subvolume definitions for this pool.";
             };

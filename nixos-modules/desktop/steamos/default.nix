@@ -43,7 +43,7 @@ let
     # XDG_DESKTOP_PORTAL_DIR="/usr/share/xdg-desktop-portal/gamescope-portals"
 
     # Remove these as they prevent gamescope-session from starting correctly
-    systemctl --user unset-environment DISPLAY
+    systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY
 
     # If this shell script is killed then stop gamescope-session
     trap 'systemctl --user stop gamescope-session.target' HUP INT TERM

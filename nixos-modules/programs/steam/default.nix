@@ -39,13 +39,18 @@ let
             args_str = " ".join(args)
             launch_opts = f"{env_str} {exe} {args_str}".strip()
 
-            return {
+            shortcut = {
                 "appid": app_id,
                 "appname": app,
                 "Exe": "\"env\"",
                 "LaunchOptions": launch_opts,
                 "AllowOverlay": 0,
             }
+
+            if s.get("icon") is not None:
+                shortcut["Icon"] = s["icon"]
+
+            return shortcut
 
 
         data = {
@@ -94,20 +99,26 @@ in
               default = null;
             };
 
+            icon = lib.mkOption {
+              description = "Path to the icon to use for the shortcut";
+              type = with lib.types; nullOr path;
+              default = null;
+            };
+
             environment = lib.mkOption {
-              type = with lib.types; attrsOf str;
               description = "Environment variables to set when launching";
+              type = with lib.types; attrsOf str;
               default = { };
             };
 
             exe = lib.mkOption {
-              type = lib.types.path;
               description = "Path to the executable";
+              type = lib.types.path;
             };
 
             args = lib.mkOption {
-              type = with lib.types; listOf str;
               description = "Arguments to pass to the executable";
+              type = with lib.types; listOf str;
               default = [ ];
             };
           };

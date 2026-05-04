@@ -31,6 +31,7 @@ in
         drm_info
         dua # print file size of directories
         fd # find replacement
+        gptfdisk # utils for gpt disks
         helix # Kakoune style editor
         bottom # better top
         hwloc

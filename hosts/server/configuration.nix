@@ -20,7 +20,17 @@
       swapSize = "12G";
       swapWritebackSize = "4G";
       mainPool.devices.main = "/dev/disk/by-id/nvme-WDC_PC_SN520_SDAPNUW-256G-1006_19321B800783";
-      pools.snapshot.devices.main = "/dev/disk/by-id/ata-ST1000LM035-1RK172_WL16JC6M";
+      pools.scratch = {
+        devices.main = "/dev/disk/by-id/ata-ST1000LM035-1RK172_WL16JC6M";
+        subvolumes.games = {
+          type = "filesystem";
+          mountpoint = "/run/media/games";
+          mountOptions = [
+            "noatime"
+            "compress=zstd"
+          ];
+        };
+      };
     };
     hardware.amd-r5-2400g = true;
     networking = {
@@ -47,25 +57,31 @@
           }
           {
             name = "Mario Kart WiiU";
+            environment = {
+              SDL_GAMECONTROLLER_ALLOW_STEAM_VIRTUAL_GAMEPAD = "0";
+              SDL_GAMECONTROLLER_IGNORE_DEVICES = "";
+            };
             exe = "${pkgs.cemu}/bin/cemu";
             args = [
               "--fullscreen"
               "--game"
               "/home/tom/Games/WiiU/mario-kart-8/code/Turbo.rpx"
-              # "--mlc"
-              # "/home/tom/Games/WiiU/mlc"
             ];
+            icon = "/home/tom/Games/WiiU/mario-kart-8/meta/iconTex.tga";
           }
           {
             name = "New Mario Bros U";
+            environment = {
+              SDL_GAMECONTROLLER_ALLOW_STEAM_VIRTUAL_GAMEPAD = "0";
+              SDL_GAMECONTROLLER_IGNORE_DEVICES = "";
+            };
             exe = "${pkgs.cemu}/bin/cemu";
             args = [
               "--fullscreen"
               "--game"
               "/home/tom/Games/WiiU/new-super-mario-bros-u/code/red-pro2.rpx"
-              # "--mlc"
-              # "/home/tom/Games/WiiU/mlc"
             ];
+            icon = "/home/tom/Games/WiiU/new-super-mario-bros-u/meta/iconTex.tga";
           }
         ];
       };
