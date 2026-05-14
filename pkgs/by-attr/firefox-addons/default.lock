@@ -35,10 +35,10 @@
   {
     "slug": "bitwarden-password-manager",
     "name": "Bitwarden Password Manager",
-    "version": "2026.3.0",
+    "version": "2026.4.0",
     "addonId": "{446900e4-71c2-419f-a6a7-df9c091e268b}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4749958/bitwarden_password_manager-2026.3.0.xpi",
-    "sha256": "sha256:2dc6d074d4dc0abd2a8966f5065a55e7252bbf5e54b23c31dbedabfac0d4dbc4",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4796063/bitwarden_password_manager-2026.4.0.xpi",
+    "sha256": "sha256:ccbdf6c3a11c8655d4fe9bdfcf5f16c4c9ff2d8732fadbb85396a2123274ae10",
     "homepage": "https://bitwarden.com",
     "description": "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.",
     "license": "GPL-3.0-only"
@@ -57,10 +57,10 @@
   {
     "slug": "csgofloat",
     "name": "CSFloat Market Checker",
-    "version": "5.15.0",
+    "version": "5.15.1",
     "addonId": "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4766910/csgofloat-5.15.0.xpi",
-    "sha256": "sha256:73a9a56db9a7a60ba64e551b22486098a7aeea2a2f5b432ec2fd1b5d1ac613e0",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4791498/csgofloat-5.15.1.xpi",
+    "sha256": "sha256:c87a739ce36751c7dc93370b2cc8a3ede58768736f0790e9a12fb0ba7441d1d3",
     "homepage": "https://csgofloat.com",
     "description": "Shows the float value, paint seed, and screenshots of Counter-Strike (CS:GO &amp; CS2) items on the Steam Market or Inventories",
     "license": "MIT"
@@ -68,10 +68,10 @@
   {
     "slug": "ghostery",
     "name": "Ghostery – Privacy Ad Blocker",
-    "version": "10.5.39",
+    "version": "10.5.42",
     "addonId": "firefox@ghostery.com",
-    "url": "https://addons.mozilla.org/firefox/downloads/file/4774190/ghostery-10.5.39.xpi",
-    "sha256": "sha256:fcc8b83e649594d24d00c46ffe2500b652f814d10322cfd884737c1692c7d3c3",
+    "url": "https://addons.mozilla.org/firefox/downloads/file/4802024/ghostery-10.5.42.xpi",
+    "sha256": "sha256:a3e48a79068760919d4cb92988fd473b17b4bd420392a4c237a6bac60eec66f3",
     "homepage": "http://www.ghostery.com/",
     "description": "The best privacy tool and ad blocker extension for Firefox. Stop trackers, speed up websites and block ads everywhere including YouTube and Facebook.",
     "license": "MPL-2.0"

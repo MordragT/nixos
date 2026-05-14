@@ -32,8 +32,8 @@
   {
     "name": "parol-vscode",
     "publisher": "jsinger67",
-    "version": "0.5.5",
-    "sha256": "13a1i4wyy85z0wz3dpqsfva9g9pk96i5d57dpfv3hgivf4wnj975"
+    "version": "0.6.0",
+    "sha256": "1ck0h3ag866y9z6lgbr3lb60qpp93194m8i9025jp8lf2nl2gdy1"
   },
   {
     "name": "sublime-keybindings",
