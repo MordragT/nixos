@@ -7,19 +7,21 @@
   stdenv,
   nix-update-script,
 }:
+let
+  version = "0.1.3";
+in
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-gamemode-status";
-  version = "unstable-2025-11-11";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "d-brox";
     repo = "cosmic-ext-applet-gamemode-status";
-    # rev = "v${version}";
-    rev = "a5fe0b8af4af01675511e0f125c1533e03a8d313";
-    hash = "sha256-QspiYxWVOW6pMs64bWrxxWQVfGp8hFNHBFtQwTPjzQs=";
+    rev = "v${version}";
+    hash = "";
   };
 
-  cargoHash = "sha256-We02sFKIbsGh3l+YNMw0EPQLcsgU+Vn55BY5bocCUgk=";
+  cargoHash = "";
 
   nativeBuildInputs = [
     libcosmicAppHook

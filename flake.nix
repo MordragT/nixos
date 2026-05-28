@@ -51,7 +51,6 @@
       url = "github:nix-community/nixos-anywhere";
       inputs = {
         disko.follows = "disko";
-        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -84,7 +83,7 @@
 
     vaultix = {
       url = "github:milieuim/vaultix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

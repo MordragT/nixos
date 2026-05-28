@@ -10,7 +10,7 @@
         enable = true;
         compatPackages = with pkgs; [
           proton-ge-bin
-          opengothic
+          # opengothic
         ];
       };
       valent.enable = true;

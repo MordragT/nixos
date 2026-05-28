@@ -23,7 +23,7 @@ in
         matangover.mypy
         Mordrag.one-dark-vibrant
 
-        ms-python.python
+        # broken ms-python.python
         ms-python.vscode-pylance
         ms-dotnettools.csharp
         ms-toolsai.jupyter

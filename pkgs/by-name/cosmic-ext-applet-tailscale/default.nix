@@ -7,18 +7,21 @@
   stdenv,
   nix-update-script,
 }:
+let
+  version = "3.10.1";
+in
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-tailscale";
-  version = "unstable-2025-11-30";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "gui-scale-applet";
-    rev = "9528f588d7a010149071136ea3f9948771f7d0cf";
-    hash = "sha256-/oTU+FF10YhgadIG61M8R9LQUV3kkcLczlbV9/53D7I=";
+    rev = version;
+    hash = "sha256-jePK1NTDoPvQ2G/YcDk60cttbNPaQSNSH7/PMU0BFD4=";
   };
 
-  cargoHash = "sha256-G0YJifAC+/cl9l592vDGmVDsMwG6VyJLfw0abc/3PKk=";
+  cargoHash = "";
 
   nativeBuildInputs = [
     libcosmicAppHook

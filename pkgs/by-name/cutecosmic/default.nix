@@ -33,7 +33,7 @@ stdenv.mkDerivation rec {
       src
       cargoRoot
       ;
-    hash = "sha256-+1z0VoxDeOYSmb7BoFSdrwrfo1mmwkxeuEGP+CGFc8Y=";
+    hash = "sha256-ZpKHWOmp73SPo5cGAXulkFtNtmgZTjSGZLizoasHoZw=";
   };
 
   nativeBuildInputs = [

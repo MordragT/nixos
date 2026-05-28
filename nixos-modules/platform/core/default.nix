@@ -22,7 +22,7 @@ in
       systemPackages = with pkgs; [
         config.boot.kernelPackages.turbostat
         alsa-utils # configure audio devices
-        asciinema_3 # record terminals
+        asciinema # record terminals
         bintools
         btop
         clinfo # opencl info

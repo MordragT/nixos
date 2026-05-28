@@ -13,19 +13,18 @@
   libXcursor,
   steamCompatToolHook,
 }:
-stdenv.mkDerivation rec {
+let
+  version = "0.92";
+in
+stdenv.mkDerivation {
   pname = "opengothic";
-  # broken some problem with ZenKit and phoenix include dir
-  # version = "unstable-2025-20-10";
-  version = "unstable-2025-27-03";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "Try";
     repo = "OpenGothic";
-    # rev = "99a0c866d95b584beecca9976d17dd8fe0464675";
-    # sha256 = "sha256-8PMYowmQAeFGH0tNiKppEoQHPzFy7oLPAtAQrXRYr/s=";
-    rev = "379bef748420df5bda142251b95d829e4f6cfed3";
-    sha256 = "sha256-RkIuP283kEKugENQcCp9LOo4jyLdCSvocoTz2N2qmzg=";
+    rev = "v${version}";
+    sha256 = "sha256-6HCBmSjzV3nVDuD/7im6NtWLkDu+V+in2lUloEhp3Cc=";
     fetchSubmodules = true;
   };
 
@@ -72,6 +71,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
+    broken = true;
     description = "Reimplementation of Gothic 2 Notr";
     homepage = "https://github.com/Try/OpenGothic";
     changelog = "https://github.com/Try/OpenGothic/releases/tag/opengothic-v${version}";

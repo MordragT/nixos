@@ -45,7 +45,7 @@ in
       # cosmic-ext-applet-music-player
       cosmic-ext-applet-privacy-indicator
       # cosmic-ext-applet-system-monitor
-      cosmic-ext-applet-tailscale
+      # broken cosmic-ext-applet-tailscale
       cosmic-ext-applet-weather
 
       # cosmic-ext-accounts

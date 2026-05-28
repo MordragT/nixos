@@ -35,8 +35,8 @@ in
         }
       '';
       package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
-        hash = "sha256-VBmICI1wklu02jmgDRmmlfNc9ftK7a74uF280xzx8uc=";
+        plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
+        hash = "sha256-bzMqxWTqrJ1skZmRTXyEMCKStXpljbqe5r0Ve2cnBfM=";
       };
     };
   };
