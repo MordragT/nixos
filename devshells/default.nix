@@ -14,7 +14,7 @@
           nixfmt
           statix
           unzip
-          nixos-install-tools
+          nixos-rebuild
           ssh-to-age
           rage
           nushell
