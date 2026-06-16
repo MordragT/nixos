@@ -4,13 +4,13 @@
       config,
       pkgs,
       inputs',
-      system,
       ...
     }:
     {
       devShells.default = pkgs.mkShell {
         shellHook = config.pre-commit.installationScript;
         packages = with pkgs; [
+          prek
           nixfmt
           statix
           unzip
