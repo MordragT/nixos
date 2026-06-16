@@ -48,6 +48,7 @@
           blockbench # 3d modeling for games
           cemu # wii u emulator
           discord
+          gh # github cli
           gimp3 # image editor
           # glaxnimate # 2d/3d vector animation software
           drawio # diagram editor
