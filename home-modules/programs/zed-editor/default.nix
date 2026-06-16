@@ -35,7 +35,6 @@ in
         "ansible"
         "crates-lsp"
         "elm"
-        "gemini"
         "harper"
         "html"
         "java"

@@ -256,7 +256,13 @@ in
             };
 
             serviceConfig = {
-              ExecStart = "${pkgs.steam}/bin/steam -steamos3 -tenfoot -pipewire-dmabuf";
+              ExecStart =
+                let
+                  steam = pkgs.steam.override {
+                    extraPkgs = p: [ p.steamos-stubs ];
+                  };
+                in
+                "${steam}/bin/steam -steamos3 -tenfoot -pipewire-dmabuf";
               KillMode = "mixed";
               TimeoutStopSec = 60;
             };

@@ -18,7 +18,7 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-WIS7fibkWcUcEfG9/DyNzxWbhpD3HKqqy+6lOqVwyc8=";
   };
 
-  cargoHash = "sha256-jbxPlH8S9Xm9Hm+y3Ac21T1jRy6kBr58LKiylJ6jZnU=";
+  cargoHash = "sha256-Ph88r4zu1RDHySkVmj5fSrQ8YcYXQ+Q9YyhZcX02Y1s=";
 
   nativeBuildInputs = [
     libcosmicAppHook

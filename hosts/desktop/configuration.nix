@@ -60,6 +60,7 @@
           prismlauncher # minecraft launcher
           proton-vpn # VPN client
           qbittorrent # download torrents
+          stirling-pdf-desktop
           teamfight-tactics
           teams-for-linux # microsoft teams
           unrar
