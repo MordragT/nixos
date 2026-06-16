@@ -17,6 +17,7 @@
           nixos-install-tools
           ssh-to-age
           rage
+          nushell
           inputs'.disko.packages.default
           inputs'.nixos-anywhere.packages.default
         ];

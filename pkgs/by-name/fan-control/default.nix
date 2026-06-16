@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage rec {
   inherit version src;
 
   pname = "fan-control";
-  cargoHash = "sha256-KpChdhwJVupZ4v2gDMIOB1GA+UDFXAiE8bN3+aSbe4o=";
+  cargoHash = "sha256-tA0Pvne3+lzvablVhwHClYeKB/3u+07RNrtSYo08lV0=";
 
   nativeBuildInputs = [
     pkg-config

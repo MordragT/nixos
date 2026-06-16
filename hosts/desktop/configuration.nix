@@ -26,8 +26,14 @@
     };
     networking = {
       enable = true;
-      lanMac = "30:9c:23:8a:54:c6";
-      wlanMac = "14:f6:d8:b3:fd:f3";
+      primary = {
+        name = "lan";
+        mac = "30:9c:23:8a:54:c6";
+      };
+      secondary = {
+        name = "wlan";
+        mac = "14:f6:d8:b3:fd:f3";
+      };
     };
     platform.enable = true;
     users = {

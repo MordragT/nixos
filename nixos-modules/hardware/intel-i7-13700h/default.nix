@@ -5,9 +5,9 @@
   ...
 }:
 {
-  options.mordrag.hardware.intel-i7-1260p = lib.mkEnableOption "Intel N4100";
+  options.mordrag.hardware.intel-i7-13700h = lib.mkEnableOption "Intel I7 13700H";
 
-  config = lib.mkIf config.mordrag.hardware.intel-i7-1260p {
+  config = lib.mkIf config.mordrag.hardware.intel-i7-13700h {
     powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 
     boot.kernelModules = [ "kvm-intel" ];

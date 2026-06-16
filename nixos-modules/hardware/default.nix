@@ -5,7 +5,7 @@
     ./amd-r5-2400g
     ./amd-r5-2600
     ./intel-arc-a750
-    ./intel-i7-1260p
+    ./intel-i7-13700h
     ./intel-n4100
   ];
 }

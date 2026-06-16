@@ -61,7 +61,7 @@ in
                 brave-search
                 csgofloat
                 ghostery
-                proton-vpn-firefox-extension
+                # proton-vpn-firefox-extension
                 rust-search-extension
                 sponsorblock
                 youtube-shorts-block

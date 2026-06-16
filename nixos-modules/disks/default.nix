@@ -7,6 +7,8 @@
 let
   cfg = config.mordrag.disks;
 
+  luks = lib.mkEnableOption "Enable luks for the pool";
+
   raid = lib.mkOption {
     type = lib.types.enum [
       "single"
@@ -73,7 +75,7 @@ in
     mainPool = lib.mkOption {
       type = lib.types.submodule {
         options = {
-          inherit raid devices;
+          inherit raid luks devices;
         };
       };
     };
@@ -82,7 +84,7 @@ in
       type = lib.types.attrsOf (
         lib.types.submodule {
           options = {
-            inherit raid devices;
+            inherit raid luks devices;
             subvolumes = lib.mkOption {
               type = lib.types.attrs;
               default = { };
@@ -143,9 +145,12 @@ in
           lib.map (deviceName: "/dev/disk/by-partlabel/disk-${poolName}-${deviceName}-data") (
             lib.attrNames devices
           );
+        mkLuksLabels =
+          poolName: devices:
+          lib.map (deviceName: "/dev/mapper/luks-${poolName}-${deviceName}") (lib.attrNames devices);
 
         mkDisk =
-          poolName: deviceName: device:
+          luks: poolName: deviceName: device:
           let
             name = "${poolName}-${deviceName}";
           in
@@ -161,7 +166,14 @@ in
                   name = "data";
                   label = "disk-${name}-data"; # custom label to remove '0-' prefix
                   size = "100%";
-                };
+                }
+                // (lib.optionalAttrs luks {
+                  content = {
+                    type = "luks";
+                    name = "luks-${name}";
+                    settings.allowDiscards = true;
+                  };
+                });
               };
             };
           };
@@ -169,10 +181,34 @@ in
         mkPartitionedPool =
           partitions: poolName: pool:
           let
-            mkPoolDisk = mkDisk poolName;
+            mkPoolDisk = mkDisk pool.luks poolName;
             mainDevice = pool.devices.main;
-            additionalDevices = builtins.removeAttrs pool.devices [ "main" ];
-            raidDeviceLabels = mkDiskLabels poolName additionalDevices;
+            additionalDevices = removeAttrs pool.devices [ "main" ];
+            mkLabels = if pool.luks then mkLuksLabels else mkDiskLabels;
+            raidDeviceLabels = mkLabels poolName additionalDevices;
+            btrfsContent = {
+              inherit (pool) subvolumes;
+              type = "btrfs";
+              extraArgs =
+                lib.optionals (builtins.length raidDeviceLabels > 0) [
+                  "-f"
+                  "-d"
+                  pool.raid
+                  "-m"
+                  pool.raid
+                ]
+                ++ raidDeviceLabels;
+            };
+            content =
+              if pool.luks then
+                {
+                  type = "luks";
+                  name = "luks-${poolName}-main";
+                  settings.allowDiscards = true;
+                  content = btrfsContent;
+                }
+              else
+                btrfsContent;
           in
           (lib.mapAttrs' mkPoolDisk additionalDevices)
           // {
@@ -188,19 +224,8 @@ in
                   data = {
                     name = "data";
                     size = "100%";
-                    content = {
-                      inherit (pool) subvolumes;
-                      type = "btrfs";
-                      extraArgs =
-                        lib.optionals (builtins.length raidDeviceLabels > 0) [
-                          "-f"
-                          "-d"
-                          pool.raid
-                          "-m"
-                          pool.raid
-                        ]
-                        ++ raidDeviceLabels;
-                    };
+
+                    inherit content;
                   };
                 }
                 // partitions;

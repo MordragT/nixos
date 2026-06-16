@@ -11,14 +11,17 @@
       swapSize = "32G";
       swapWritebackSize = "8G";
       mainPool = {
-        devices.main = "/dev/disk/by-id/nvme-SAMSUNG_MZVL2512HCJQ-00BL7_S64KNF0T710767";
+        devices.main = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_1TB_S6Z1NJ0W535010R";
+        luks = true;
       };
     };
-    hardware.intel-i7-1260p = true;
+    hardware.intel-i7-13700h = true;
     networking = {
       enable = true;
-      lanMac = "TODO";
-      wlanMac = "TODO";
+      primary = {
+        name = "wlan";
+        mac = "c4:3d:1a:0c:ef:4f";
+      };
     };
     platform.enable = true;
     programs = {

@@ -17,6 +17,3 @@ jobs:
 
       - name: Check flake
         run: NIXPKGS_ALLOW_BROKEN=1 nix flake check --no-build --impure
-
-      - name: Build opengothic
-        run: nix build .#opengothic

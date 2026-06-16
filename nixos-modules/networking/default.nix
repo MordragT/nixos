@@ -11,16 +11,43 @@ in
   options.mordrag.networking = {
     enable = lib.mkEnableOption "Networking";
 
-    lanMac = lib.mkOption {
-      description = "Define a MAC address for the LAN interface.";
-      type = lib.types.str;
-      example = "ab:cd:ef:12:34:56";
+    primary = lib.mkOption {
+      description = "Options regarding the primary interface";
+      type = lib.types.submodule {
+        options = {
+          name = lib.mkOption {
+            description = "The name of the interface.";
+            type = lib.types.str;
+          };
+
+          mac = lib.mkOption {
+            description = "Define a MAC address for the interface.";
+            type = lib.types.str;
+            example = "ab:cd:ef:12:34:56";
+          };
+        };
+      };
     };
 
-    wlanMac = lib.mkOption {
-      description = "Define a MAC address for the WLAN interface.";
-      type = lib.types.str;
-      example = "ab:cd:ef:12:34:56";
+    secondary = lib.mkOption {
+      description = "Options regarding the primary interface";
+      type = lib.types.nullOr (
+        lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              description = "The name of the interface.";
+              type = lib.types.str;
+            };
+
+            mac = lib.mkOption {
+              description = "Define a MAC address for the interface.";
+              type = lib.types.str;
+              example = "ab:cd:ef:12:34:56";
+            };
+          };
+        }
+      );
+      default = null;
     };
   };
 
@@ -49,7 +76,7 @@ in
       nat = {
         enable = true;
         enableIPv6 = true;
-        externalInterface = "lan";
+        externalInterface = cfg.primary.name;
         internalInterfaces = [ "bridge" ];
       };
     };
@@ -64,16 +91,17 @@ in
         # Each link must have a number smaller than 99
         # to be matched before the default `99-default.link`
         links = {
-          "10-lan" = {
-            matchConfig.PermanentMACAddress = cfg.lanMac;
-            linkConfig.Name = "lan";
+          "10-primary" = {
+            matchConfig.PermanentMACAddress = cfg.primary.mac;
+            linkConfig.Name = cfg.primary.name;
           };
-
-          "20-wlan" = {
-            matchConfig.PermanentMACAddress = cfg.wlanMac;
-            linkConfig.Name = "wlan";
+        }
+        // (lib.optionalAttrs (cfg.secondary != null) {
+          "20-secondary" = {
+            matchConfig.PermanentMACAddress = cfg.secondary.mac;
+            linkConfig.Name = cfg.secondary.name;
           };
-        };
+        });
 
         netdevs.bridge.netdevConfig = {
           Kind = "bridge";
@@ -93,7 +121,7 @@ in
             }
           ];
           dhcpServerConfig = {
-            UplinkInterface = "lan";
+            UplinkInterface = cfg.primary.name;
             # PoolOffset = 10;
             # PoolSize = 245;
             DefaultLeaseTimeSec = 1 * 60 * 60; # default 1h
@@ -141,7 +169,7 @@ in
     };
 
     environment.etc."qemu/bridge.conf".text = ''
-      allow lan
+      allow ${cfg.primary.name}
     '';
   };
 }

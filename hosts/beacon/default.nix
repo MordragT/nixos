@@ -22,8 +22,14 @@
           hardware.intel-n4100 = true;
           networking = {
             enable = true;
-            lanMac = "84:39:be:67:f5:ae";
-            wlanMac = "5c:5f:67:3a:d9:aa";
+            primary = {
+              name = "lan";
+              mac = "84:39:be:67:f5:ae";
+            };
+            secondary = {
+              name = "wlan";
+              mac = "5c:5f:67:3a:d9:aa";
+            };
           };
           platform.enable = true;
           programs = {
