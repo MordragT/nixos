@@ -38,9 +38,9 @@ in
         '';
         envFile.source = ./env.nu;
         configFile.text = ''
-          plugin use formats
-          plugin use gstat
-          plugin use apt
+          # plugin use formats
+          # plugin use gstat
+          # plugin use apt
 
           const scripts = "${./scripts}"
 
