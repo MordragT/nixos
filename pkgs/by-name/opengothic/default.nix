@@ -9,8 +9,9 @@
   libglvnd,
   vulkan-headers,
   vulkan-loader,
-  libX11,
-  libXcursor,
+  vulkan-validation-layers,
+  libx11,
+  libxcursor,
   steamCompatToolHook,
 }:
 let
@@ -44,23 +45,15 @@ stdenv.mkDerivation {
     $out/bin/opengothic -g $gothic_dir $@ > /tmp/compat.log 2> /tmp/compat_err.log
   '';
 
-  env.NIX_CFLAGS_COMPILE = toString [ "-Wno-unused-but-set-variable" ];
-
-  cmakeFlags = [
-    "-DBUILD_SHARED_LIBS=ON"
-    "-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo"
-    "-DCMAKE_SKIP_RPATH=OFF"
-    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
-  ];
-
   buildInputs = [
     alsa-lib # cannot find audio device
     glslang
     libglvnd
     vulkan-headers
     vulkan-loader
-    libX11
-    libXcursor
+    vulkan-validation-layers
+    libx11
+    libxcursor
   ];
 
   postInstall = ''
@@ -71,7 +64,6 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    broken = true;
     description = "Reimplementation of Gothic 2 Notr";
     homepage = "https://github.com/Try/OpenGothic";
     changelog = "https://github.com/Try/OpenGothic/releases/tag/opengothic-v${version}";

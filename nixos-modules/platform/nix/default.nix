@@ -53,6 +53,7 @@ in
       };
       nix-ld.enable = true; # run unpatchable binaries
       nix-index.enable = true; # recommends non-installed packages
+      command-not-found.enable = false;
     };
 
     environment.systemPackages = with pkgs; [

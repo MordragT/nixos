@@ -19,7 +19,6 @@ in
   cosmic-ext-bg-theme = callPackage ./cosmic-ext-bg-theme { };
   cosmic-ext-calendar = callPackage ./cosmic-ext-calendar { };
 
-  cutecosmic = callPackage ./cutecosmic { };
   dud = callPackage ./dud { };
   ensembles = callPackage ./ensembles { };
   epic-asset-manager = callPackage ./epic-asset-manager { };
@@ -64,7 +63,6 @@ in
   teamfight-tactics = callPackage ./teamfight-tactics { };
   tmfs = callPackage ./tmfs { };
 
-  unified-memory-framework = callPackage ./unified-memory-framework { };
   vulkan-raytracing = callPackage ./vulkan-raytracing { };
   xdg-desktop-portal-gamescope = callPackage ./xdg-desktop-portal-gamescope { };
   zen-browser-bin = callPackage ./zen-browser-bin { };
