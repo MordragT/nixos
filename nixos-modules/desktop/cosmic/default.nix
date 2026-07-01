@@ -55,6 +55,7 @@ in
 
       cosmic-player
       cosmic-reader
+      cosmic-monitor
 
       # andromeda
       # chronos
