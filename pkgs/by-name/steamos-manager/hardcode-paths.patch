@@ -1,5 +1,5 @@
 diff --git a/data/platform.toml b/data/platform.toml
-index ddab3e5..404d8fa 100644
+index ddab3e5..7858072 100644
 --- a/data/platform.toml
 +++ b/data/platform.toml
 @@ -1,27 +1,27 @@
@@ -124,71 +124,37 @@ index 4d74271..2400e80 100644
                      FileFormat::Toml.file_extensions(),
                      FileFormat::Toml,
                  )
-diff --git a/steamos-manager/src/audio.rs b/steamos-manager/src/audio.rs
-index 7b14d10..1364f7d 100644
---- a/steamos-manager/src/audio.rs
-+++ b/steamos-manager/src/audio.rs
-@@ -49,9 +49,9 @@ impl AudioManager {
- 
-     #[cfg(not(test))]
-     pub async fn is_supported() -> Result<bool> {
--        if try_exists("/usr/bin/wpctl").await? {
-+        if try_exists("@wireplumber@/bin/wpctl").await? {
-             // wpctl exists, now check if node.features.audio.mono is patched in also
--            let output = script_output("pw-dump", &["sm-settings"]).await?;
-+            let output = script_output("@pipewire@/bin/pw-dump", &["sm-settings"]).await?;
-             let object: Value = serde_json::from_str(&output)?;
-             // Now check for our key
-             if let Some(array) = object.as_array() {
-@@ -90,7 +90,7 @@ impl AudioManager {
-                 Mode::Stereo => "false",
-             };
- 
--            run_script("/usr/bin/wpctl", &["settings", MONO_KEY, mono]).await?;
-+            run_script("@wireplumber@/bin/wpctl", &["settings", MONO_KEY, mono]).await?;
-         }
- 
-         self.mode = Some(mode);
-@@ -99,7 +99,7 @@ impl AudioManager {
- 
-     #[cfg(not(test))]
-     async fn load_values(&mut self) -> Result<()> {
--        let output = script_output("/usr/bin/wpctl", &["settings", MONO_KEY]).await?;
-+        let output = script_output("@wireplumber@/bin/wpctl", &["settings", MONO_KEY]).await?;
- 
-         match output.trim() {
-             "Value: true" => self.mode = Some(Mode::Mono),
 diff --git a/steamos-manager/src/daemon/root.rs b/steamos-manager/src/daemon/root.rs
-index e2744c5..25aa822 100644
+index 7a71215..cf69c56 100644
 --- a/steamos-manager/src/daemon/root.rs
 +++ b/steamos-manager/src/daemon/root.rs
 @@ -108,7 +108,7 @@ impl DaemonContext for RootContext {
      }
  
-     fn system_config_path(&self) -> Result<PathBuf> {
+     fn system_config_path() -> Result<PathBuf> {
 -        Ok(path("/usr/share/steamos-manager/system.d"))
 +        Ok(path("@out@/share/steamos-manager/system.d"))
      }
  
      fn state(&self) -> &RootState {
 diff --git a/steamos-manager/src/daemon/user.rs b/steamos-manager/src/daemon/user.rs
-index bc5b634..3bff0b9 100644
+index 4887314..b321a82 100644
 --- a/steamos-manager/src/daemon/user.rs
 +++ b/steamos-manager/src/daemon/user.rs
 @@ -81,7 +81,7 @@ impl DaemonContext for UserContext {
      }
  
-     fn system_config_path(&self) -> Result<PathBuf> {
+     fn system_config_path() -> Result<PathBuf> {
 -        Ok(path("/usr/share/steamos-manager/user.d"))
 +        Ok(path("@out@/share/steamos-manager/user.d"))
      }
  
      fn state(&self) -> &UserState {
 diff --git a/steamos-manager/src/hardware.rs b/steamos-manager/src/hardware.rs
-index cebb30a..d92755d 100644
+index 8641e69..c772101 100644
 --- a/steamos-manager/src/hardware.rs
 +++ b/steamos-manager/src/hardware.rs
-@@ -37,7 +37,7 @@ const SYS_VENDOR_PATH: &str = "/sys/class/dmi/id/sys_vendor";
+@@ -39,7 +39,7 @@ const SYS_VENDOR_PATH: &str = "/sys/class/dmi/id/sys_vendor";
  const BOARD_NAME_PATH: &str = "/sys/class/dmi/id/board_name";
  const PRODUCT_NAME_PATH: &str = "/sys/class/dmi/id/product_name";
  #[cfg(not(test))]
@@ -198,10 +164,10 @@ index cebb30a..d92755d 100644
  const DEVICE_CONFIG_PATH: &str = "../data/devices";
  
 diff --git a/steamos-manager/src/manager/root.rs b/steamos-manager/src/manager/root.rs
-index 583e8c2..85cf5a0 100644
+index 8b36e71..a117c39 100644
 --- a/steamos-manager/src/manager/root.rs
 +++ b/steamos-manager/src/manager/root.rs
-@@ -196,7 +196,7 @@ impl SteamOSManager {
+@@ -220,7 +220,7 @@ impl SteamOSManager {
              _ => return Vec::new(),
          };
          for index in indices {
@@ -211,10 +177,10 @@ index 583e8c2..85cf5a0 100644
                  Ok(as_string) => as_string.trim().parse().unwrap_or(-1.0),
                  Err(message) => {
 diff --git a/steamos-manager/src/manager/user.rs b/steamos-manager/src/manager/user.rs
-index c6efbf7..bfdf2a9 100644
+index ebd67dc..58fa63b 100644
 --- a/steamos-manager/src/manager/user.rs
 +++ b/steamos-manager/src/manager/user.rs
-@@ -1435,10 +1435,6 @@ impl Service for ScreenReaderSetupService {
+@@ -1604,10 +1604,6 @@ impl Service for ScreenReaderSetupService {
      const NAME: &'static str = "screenreader-setup";
  
      async fn run(&mut self) -> Result<()> {
@@ -226,7 +192,7 @@ index c6efbf7..bfdf2a9 100644
          let orca_manager = OrcaManager::new(&self.session).await?;
          let screen_reader = Arc::new(Mutex::new(orca_manager));
 diff --git a/steamos-manager/src/platform.rs b/steamos-manager/src/platform.rs
-index 513be96..5501182 100644
+index 4ba91e9..30b0d6b 100644
 --- a/steamos-manager/src/platform.rs
 +++ b/steamos-manager/src/platform.rs
 @@ -174,7 +174,7 @@ impl FormatDeviceConfig {
@@ -239,23 +205,20 @@ index 513be96..5501182 100644
              .await
              .with_context(|| format!("Failed to read {path}"))?;
 diff --git a/steamos-manager/src/power.rs b/steamos-manager/src/power.rs
-index f36f6f3..1720545 100644
+index 5255428..b3987a6 100644
 --- a/steamos-manager/src/power.rs
 +++ b/steamos-manager/src/power.rs
-@@ -331,10 +331,7 @@ impl<'dbus> CpuSchedulerManager<'dbus> {
+@@ -57,7 +57,7 @@ const CPU_POLICY_NAME: &str = "policy";
+ const CPU_SCALING_GOVERNOR_SUFFIX: &str = "scaling_governor";
+ const CPU_SCALING_AVAILABLE_GOVERNORS_SUFFIX: &str = "scaling_available_governors";
  
-     #[cfg(not(test))]
-     pub async fn is_supported() -> Result<bool> {
--        if try_exists(path("/usr/bin/scx_lavd")).await? {
--            return Ok(true);
--        }
--        Ok(false)
-+        Ok(true)
-     }
+-const LAVD_PATH: &str = "/usr/bin/scx_lavd";
++const LAVD_PATH: &str = "@scx@/bin/scx_lavd";
  
-     pub(crate) async fn get_available_cpu_schedulers(&self) -> Result<Vec<CpuScheduler>> {
+ const PLATFORM_PROFILE_PREFIX: &str = "/sys/class/platform-profile";
+ 
 diff --git a/steamos-manager/src/wifi.rs b/steamos-manager/src/wifi.rs
-index b4afd05..136842b 100644
+index 9379fa2..415964e 100644
 --- a/steamos-manager/src/wifi.rs
 +++ b/steamos-manager/src/wifi.rs
 @@ -33,19 +33,18 @@ use crate::{path, read_config_directory};

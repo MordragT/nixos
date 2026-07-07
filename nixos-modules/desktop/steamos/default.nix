@@ -10,7 +10,7 @@ let
     #! /usr/bin/env -S ${lib.getExe pkgs.nushell} --plugins ${lib.getExe pkgs.nushell-plugin-formats} --no-config-file
 
     # [Autologin]\nSession={session}\n
-    const TEMP_CONFIG = "/etc/sddm.conf.d/zzt-steamos-temp-login.conf"
+    const TEMP_CONFIG = "/etc/sddm.conf.d/zzt-holo-temp-login.conf"
 
     if ($TEMP_CONFIG | path exists) {
       let config = open $TEMP_CONFIG | from ini
@@ -82,7 +82,7 @@ in
       users.main.extraGroups = [ "seat" ];
     };
 
-    networking.networkmanager.wifi.backend = "iwd";
+    networking.networkmanager.wifi.backend = "wpa_supplicant";
 
     hardware = {
       steam-hardware.enable = true;
@@ -99,7 +99,7 @@ in
         "steamos-manager/config.toml".source = ./config.toml;
 
         # steamos-manager determines on the existence of this file if the desktop sessions are managed.
-        "sddm.conf.d/steamos.conf".text = "";
+        "sddm.conf.d/holo.conf".text = "";
 
         # Steamos Manager needs this file and doesn't create it on startup
         # https://gitlab.steamos.cloud/holo/steamos-manager/-/blob/main/steamos-manager/src/wifi.rs

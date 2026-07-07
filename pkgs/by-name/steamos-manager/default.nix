@@ -7,8 +7,6 @@
   iwd,
   trace-cmd,
   iw,
-  pipewire,
-  wireplumber,
   dmidecode,
   pkg-config,
   wrapGAppsNoGuiHook,
@@ -16,20 +14,24 @@
   gsettings-desktop-schemas,
   speechd-minimal,
   udev,
+  scx,
 }:
+let
+  version = "26.3.0";
+in
 rustPlatform.buildRustPackage {
+  inherit version;
   pname = "steamos-manager";
-  version = "26.0.1-unstable-2026-04-02";
 
   src = fetchFromGitLab {
     domain = "gitlab.steamos.cloud";
     owner = "holo";
     repo = "steamos-manager";
-    rev = "ebd78b881ec4c04585bb4e9928ac77770d0dd059";
-    hash = "sha256-9aKl8YV6Im8dShkMSPeoikTdcTxoTdJX9S1ZDZ4uAcQ=";
+    rev = "v${version}";
+    hash = "sha256-Kt3xZkwYdyEwhzSQ4I8oRLMZLT2or96Jb8V+612vy9o=";
   };
 
-  cargoHash = "sha256-45X3ixQ200LVfSDhMcBzqjQsebydw76nGeqn7c7/rDY=";
+  cargoHash = "sha256-j3HWFLdITTAHGxYtOFofYqv9QUT/ykV6uD3BiW4STeE=";
 
   # tests assume Steam Deck hardware and FHS paths
   doCheck = false;
@@ -37,17 +39,17 @@ rustPlatform.buildRustPackage {
   patches = [
     (replaceVars ./hardcode-paths.patch {
       inherit
-        wireplumber
         dmidecode
-        pipewire
         iw
         iwd
         coreutils
         ;
+      scx = scx.rustscheds;
       stubs = steamos-stubs;
       traceCmd = trace-cmd;
       out = null;
     })
+    ./fix-sddm-config-path.patch
     # FIXME: build steamos-log-submitter and reenable this maybe?
     ./disable-ftrace.patch
   ];

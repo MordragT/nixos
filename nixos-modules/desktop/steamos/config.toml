@@ -4,7 +4,7 @@ dmi.product_name = "HP EliteDesk 705 G4 SFF" # /sys/class/dmi/id/product_name
 device = "generic"
 variant = "saturn"
 friendly_name = "Nixos Generic Pc"
-wifi.backend = "iwd"
+wifi.backend = "wpa_supplicant"
 
 [gpu_performance]
 driver = "amdgpu"
