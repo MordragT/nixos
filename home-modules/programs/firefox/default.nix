@@ -18,6 +18,7 @@ in
       configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.options = {
         extensions.packages = with pkgs.firefox-addons; [
+          addon-1password-x-password-manager
           bib-kit
           bitwarden-password-manager
           brave-search

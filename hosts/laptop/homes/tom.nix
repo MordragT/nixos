@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   mordrag = {
     gnome.enable = true;
@@ -11,9 +10,4 @@
   };
 
   programs.chromium.enable = true;
-
-  home.packages = with pkgs; [
-    slack
-    teams-for-linux
-  ];
 }

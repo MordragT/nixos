@@ -33,6 +33,7 @@ def fetch-addon [slug] {
 export def main [] {
     const file = path self ./default.lock
     const slugs = [
+        1password-x-password-manager
         7tv-extension
         bib-kit
         bibitnow

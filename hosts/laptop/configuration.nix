@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   mordrag = {
     boot.enable = true;
@@ -37,6 +38,17 @@
       main = {
         name = "tom";
         state.enable = true;
+        packages = with pkgs; [
+          _1password-gui
+          beekeeper-studio
+          bruno
+          drawio
+          gather
+          gh
+          opcua-commander
+          slack
+          teams-for-linux
+        ];
       };
     };
   };
@@ -52,5 +64,10 @@
   services = {
     tailscale.enable = true;
     fwupd.enable = true;
+  };
+
+  virtualisation = {
+    virtualbox.host.enable = true;
+    # vmware.host.enable = true;
   };
 }

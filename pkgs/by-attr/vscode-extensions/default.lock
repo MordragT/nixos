@@ -44,8 +44,8 @@
   {
     "name": "texlab",
     "publisher": "efoerster",
-    "version": "5.25.1",
-    "sha256": "10zz4x35v8skvjwl48zipvp2agsppg48cy27i31qjcyjqdsvq1bc"
+    "version": "5.26.0",
+    "sha256": "0izi26y7ddhz3j8mw0vgv82isaj7cwqdn3vfx6sf64kpmnay2d7g"
   },
   {
     "name": "vscode-nickel",

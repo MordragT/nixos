@@ -23,6 +23,7 @@ in
   ensembles = callPackage ./ensembles { };
   epic-asset-manager = callPackage ./epic-asset-manager { };
   fan-control = callPackage ./fan-control { };
+  gather = callPackage ./gather { };
 
   intel-ccl = callPackage ./intel-ccl { };
   intel-dnnl = callPackage ./intel-dnnl { };
