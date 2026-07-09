@@ -54,7 +54,7 @@ in
             env = pkgs.buildEnv {
               name = "zen-extensions";
               paths = with pkgs.firefox-addons; [
-                addon-7tv-extension
+                # addon-7tv-extension
                 bib-kit
                 # bibitnow
                 bitwarden-password-manager

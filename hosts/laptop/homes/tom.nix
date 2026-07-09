@@ -1,11 +1,19 @@
+{ pkgs, ... }:
 {
   mordrag = {
     gnome.enable = true;
     core.enable = true;
     programs = {
+      firefox.enable = true;
       nushell.enable = true;
       zed-editor.enable = true;
-      zen-browser.enable = true;
     };
   };
+
+  programs.chromium.enable = true;
+
+  home.packages = with pkgs; [
+    slack
+    teams-for-linux
+  ];
 }
