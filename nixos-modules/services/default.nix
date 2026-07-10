@@ -9,6 +9,7 @@
     ./invokeai
     ./llama
     ./printing
+    ./tailscale
     ./vaultwarden
   ];
 }

@@ -30,6 +30,9 @@
       gnome-disks.enable = true;
       nautilus.enable = true;
     };
+    services = {
+      tailscale.enable = true;
+    };
     state = {
       enable = true;
     };
@@ -62,7 +65,6 @@
   };
 
   services = {
-    tailscale.enable = true;
     fwupd.enable = true;
   };
 
