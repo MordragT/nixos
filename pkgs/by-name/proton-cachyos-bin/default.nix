@@ -4,13 +4,17 @@
   fetchzip,
   zstd,
 }:
-stdenv.mkDerivation rec {
+let
+  version = "11.0-20260602";
+in
+
+stdenv.mkDerivation {
   pname = "proton-cachyos-bin";
-  version = "9.0.20250426-1";
+  inherit version;
 
   src = fetchzip {
-    url = "https://mirror.cachyos.org/repo/x86_64_v3/cachyos-v3/proton-cachyos-1%3A${version}-x86_64_v3.pkg.tar.zst";
-    hash = "sha256-yTecgTEB4VWnmjJHQW8qQOrcD+9Bbnf2tRcga+OdHL8=";
+    url = "https://github.com/CachyOS/proton-cachyos/releases/download/cachyos-${version}-slr/proton-cachyos-${version}-slr-x86_64_v3.tar.xz";
+    hash = "sha256-093fO6oOBFnyJNbqr0em+sK5/YyxHQBE7BfV2JDAitE=";
     nativeBuildInputs = [ zstd ];
     stripRoot = false;
   };

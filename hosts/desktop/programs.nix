@@ -5,6 +5,7 @@
       git.enable = true;
       gnome-disks.enable = true;
       lsfg-vk.enable = true;
+      mangohud.enable = true;
       nautilus.enable = true;
       steam = {
         enable = true;
