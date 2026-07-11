@@ -1,12 +1,10 @@
 {
   lib,
-  intel-sycl,
+  intel-llvm,
   fetchFromGitHub,
   cmake,
   ninja,
   pkg-config,
-  python3,
-  autoAddDriverRunpath,
   oneapi-tbb,
   oneapi-dnn,
   oneapi-math,
@@ -17,12 +15,9 @@
 let
   inherit (lib)
     cmakeBool
-    cmakeFeature
-    optionals
-    optionalString
     ;
 in
-intel-sycl.stdenv.mkDerivation (finalAttrs: {
+intel-llvm.stdenv.mkDerivation (finalAttrs: {
   pname = "stable-diffusion-cpp";
   version = "master-453-4ff2c8c";
 

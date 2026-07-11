@@ -1,11 +1,11 @@
 {
   fetchFromGitHub,
-  intel-sycl,
+  intel-llvm,
   cmake,
   ninja,
   lib,
 }:
-intel-sycl.stdenv.mkDerivation (finalAttrs: {
+intel-llvm.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-math-sycl-blas";
   version = "unstable-2025-08-04";
 

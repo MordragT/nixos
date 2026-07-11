@@ -4,7 +4,6 @@ let
 in
 {
   intel-dpcpp = callScope ./intel-dpcpp;
-  intel-sycl = callScope ./intel-sycl;
   pti-gpu = callScope ./pti-gpu;
   # steamPackages = pkgs.steamPackages.overrideScope (_: _: makeScope ./steam-packages self.steamPackages);
 }

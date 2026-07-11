@@ -2,13 +2,13 @@
   cmake,
   fetchFromGitHub,
   lib,
-  intel-sycl,
+  intel-llvm,
   opencl-headers,
   ocl-icd,
   level-zero,
   oneapi-tbb,
 }:
-intel-sycl.stdenv.mkDerivation (finalAttrs: {
+intel-llvm.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-dnn";
   version = "3.10.2";
 
@@ -32,7 +32,6 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     ocl-icd
     opencl-headers
     oneapi-tbb
-    intel-sycl.openmp
   ];
 
   cmakeFlags = [

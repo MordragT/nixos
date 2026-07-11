@@ -1,20 +1,21 @@
 {
   lib,
-  intel-sycl,
+  intel-llvm,
   fetchFromGitHub,
   cmake,
   level-zero,
 }:
 # requires dpcpp compiler
-intel-sycl.stdenv.mkDerivation (finalAttrs: {
+intel-llvm.stdenv.mkDerivation (finalAttrs: {
   pname = "oneapi-ccl";
-  version = "2021.17";
+  version = "2022.0.0";
 
   src = fetchFromGitHub {
     owner = "uxlfoundation";
     repo = "oneCCL";
     rev = finalAttrs.version;
-    hash = "sha256-m+TQYtSs8qD2/5YzW/WRtl6Eg8nhGMVuSVi3Tz2ZQBQ=";
+    hash = "sha256-VVI/vJMTi6d6is+ZuDWtsc+Zw32CA9RgLkGEc3VuWYE=";
+    fetchSubmodules = true;
   };
 
   outputs = [
@@ -30,13 +31,14 @@ intel-sycl.stdenv.mkDerivation (finalAttrs: {
     level-zero
   ];
 
-  # env.DPCPP_ROOT = intel-sycl.stdenv.cc.cc;
+  # env.DPCPP_ROOT = intel-llvm.stdenv.cc.cc;
 
   cmakeFlags = [
     "-DBUILD_EXAMPLES=OFF"
     "-DBUILD_FT=OFF" # functional tests
     "-DCCL_ENABLE_ZE=ON"
     "-DCOMPUTE_BACKEND=dpcpp"
+    # DONECCL_USE_SYSTEM_LIBCCL=OFF
   ];
 
   # Tests fail on some Hydra builders, because they do not support SSE4.2.

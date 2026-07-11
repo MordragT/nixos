@@ -3,12 +3,12 @@
   bazel_8,
   bazelPackage,
   fetchFromGitHub,
-  intel-sycl,
+  intel-llvm,
   oneapi-tbb,
   oneapi-math,
 }:
 # requires dpcpp compiler
-bazelPackage.override { inherit (intel-sycl) stdenv; } rec {
+bazelPackage.override { inherit (intel-llvm) stdenv; } rec {
   name = "oneapi-dal";
   version = "2025.9.0";
 

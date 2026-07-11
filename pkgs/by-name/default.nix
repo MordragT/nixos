@@ -30,11 +30,13 @@ in
   intel-metrics = callPackage ./intel-metrics { };
   intel-mkl = callPackage ./intel-mkl { };
   intel-mpi = callPackage ./intel-mpi { };
+  intel-pti = callPackage ./intel-pti { };
   intel-tbb = callPackage ./intel-tbb { };
   intel-tcm = callPackage ./intel-tcm { };
 
   llama-cpp-sycl = callPackage ./llama-cpp-sycl { };
   lottieconv = callPackage ./lottieconv { };
+  neural-pixel = callPackage ./neural-pixel { };
   ollama-sycl = callPackage ./ollama-sycl { };
 
   oneapi-ccl = callPackage ./oneapi-ccl { };

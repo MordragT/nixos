@@ -4,17 +4,11 @@ let
   build-support = callPackage ./build-support.nix { };
 in
 {
-  aniposelib = callPackage ./aniposelib { };
-
   argbind = callPackage ./argbind { };
 
   bitsandbytes = callPackage ./bitsandbytes { };
 
   compel = callPackage ./compel { };
-
-  controlnet-aux = callPackage ./controlnet-aux { };
-
-  deffcode = callPackage ./deffcode { };
 
   datasets = pyPkgs.datasets.overrideAttrs (old: {
     postPatch = ''
@@ -35,10 +29,6 @@ in
 
   fastapi-events = callPackage ./fastapi-events { };
 
-  freemocap = callPackage ./freemocap { };
-
-  freemocap-blender-addon = callPackage ./freemocap-blender-addon { };
-
   invokeai = callPackage ./invokeai { };
 
   ipex = callPackage ./ipex {
@@ -58,8 +48,6 @@ in
 
   optimum-intel = callPackage ./optimum-intel { };
 
-  oute-tts = callPackage ./oute-tts { };
-
   parler-tts = callPackage ./parler-tts { };
 
   pdftext = callPackage ./pdftext { };
@@ -72,16 +60,6 @@ in
 
   randomname = callPackage ./randomname { };
 
-  skelly-synchronize = callPackage ./skelly-synchronize { };
-
-  skelly-viewer = callPackage ./skelly-viewer { };
-
-  skellycam = callPackage ./skellycam { };
-
-  skellyforge = callPackage ./skellyforge { };
-
-  skellytracker = callPackage ./skellytracker { };
-
   spandrel = callPackage ./spandrel { };
 
   surya-ocr = callPackage ./surya-ocr { };
@@ -90,8 +68,7 @@ in
     inherit (build-support) fetchtorch;
   };
 
-  # torch = self.torch-bin;
-  torch = callPackage ./torch { };
+  torch = pySelf.torch-bin;
 
   torch-stoi = callPackage ./torch-stoi { };
 

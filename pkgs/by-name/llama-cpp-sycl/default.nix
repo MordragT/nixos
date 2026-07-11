@@ -3,7 +3,7 @@
   cmake,
   fetchFromGitHub,
   fetchpatch,
-  intel-sycl,
+  intel-llvm,
   oneapi-tbb,
   oneapi-dnn,
   oneapi-math,
@@ -19,7 +19,7 @@
 let
   inherit (lib) cmakeBool;
 in
-intel-sycl.stdenv.mkDerivation (finalAttrs: {
+intel-llvm.stdenv.mkDerivation (finalAttrs: {
   pname = "llama-cpp";
   version = "7610";
 

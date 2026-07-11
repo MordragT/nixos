@@ -8,16 +8,16 @@
   intel-dpcpp,
   intel-mkl,
   intel-ccl,
+  intel-pti,
   pti-gpu,
   ocl-icd,
-  pyyaml,
   filelock,
+  fsspec,
   typing-extensions,
   sympy,
   networkx,
   jinja2,
   numpy,
-  requests,
   setuptools,
 }:
 buildPythonPackage rec {
@@ -48,18 +48,18 @@ buildPythonPackage rec {
     zlib
     intel-mkl
     intel-ccl
+    intel-pti
     intel-dpcpp.llvm.lib
-    (pti-gpu.sdk.override { intel-sycl = intel-dpcpp; })
+    (pti-gpu.sdk.override { intel-llvm = intel-dpcpp; })
     ocl-icd
   ];
 
   dependencies = [
     filelock
+    fsspec
     jinja2
     networkx
     numpy
-    pyyaml
-    requests
     setuptools
     sympy
     typing-extensions
@@ -90,4 +90,6 @@ buildPythonPackage rec {
   '';
 
   pythonImportsCheck = [ "torch" ];
+
+  dontCheckRuntimeDeps = true;
 }

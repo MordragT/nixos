@@ -48,7 +48,10 @@ stdenvNoCC.mkDerivation {
     libffi_3_3
     elfutils
     ocl-icd
-    unified-memory-framework
+    (unified-memory-framework.overrideAttrs (old: {
+      cmakeFlags = [ "-DUMF_BUILD_SHARED_LIBRARY=ON" ] ++ old.cmakeFlags;
+      doCheck = false;
+    }))
   ];
 
   unpackPhase = ''
