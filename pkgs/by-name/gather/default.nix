@@ -18,5 +18,5 @@ makeChromiumApp {
   desktopName = "Gather Town";
   app = "https://app.gather.town/app";
   icon = "${icon}/share/icons/gather/scalable/favicon.svg";
-  startupWMClass = "chrome-app.gather.town__-Default";
+  startupWMClass = "chrome-app.gather.town__app-Default";
 }

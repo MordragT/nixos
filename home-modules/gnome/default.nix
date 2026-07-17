@@ -50,7 +50,7 @@ in
       # endeavour # task manager
       # ensembles # live DAW
       # errands # task manager
-      exhibit # 3D model viewer
+      # broken exhibit # 3D model viewer
       eyedropper # pick format colors
       # raider # file shredder
       resources # monitor hardware resources
@@ -112,7 +112,7 @@ in
       # pika-backup # simple backups
       # planify # more advanced task manager
       # plots # graph plotting
-      # rnote # draw notes
+      rnote # draw notes
       share-preview # test social media cards
       # shortwave # internet radio
       showtime # video player

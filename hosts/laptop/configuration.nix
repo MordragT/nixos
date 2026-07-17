@@ -48,6 +48,7 @@
           drawio
           gather
           gh
+          onlyoffice-desktopeditors # office suite
           opcua-commander
           slack
           teams-for-linux

@@ -63,8 +63,9 @@ in
       examine
       fan-control
       forecast
+      lswt # list wayland top-levels (windows)
       oboete
-      # quick-webapps
+      quick-webapps
       # starrydex
       # stellarshot
       tasks
