@@ -68,7 +68,7 @@ in
       gnome-calculator
       gnome-calendar
       # gnome-color-manager
-      # gnome-decoder # scan qr codes
+      gnome-decoder # scan qr codes
       # gnome-font-viewer
       # gnome-frog # extract text from images
       # gnome-obfuscate # censor private information
