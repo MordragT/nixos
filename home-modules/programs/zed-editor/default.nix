@@ -27,6 +27,7 @@ in
         nil # nix language server
         nixd # TODO needed because of https://github.com/zed-industries/zed/issues/23368
         nixfmt
+        prettier
         inputs.fenix.packages.${system}.rust-analyzer
         tinymist # lsp for typst
       ];
@@ -34,13 +35,16 @@ in
       extensions = [
         "ansible"
         "crates-lsp"
+        "elixir"
         "elm"
+        "emmet" # web stuff
         "harper"
         "html"
         "java"
         "just"
         "kdl"
         "kotlin"
+        "leptos"
         "neocmake"
         "nix"
         "nu"

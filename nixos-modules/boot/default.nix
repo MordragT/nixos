@@ -45,6 +45,7 @@ in
           enable = !cfg.secureBoot;
           editor = false;
           consoleMode = "max";
+          configurationLimit = 8;
         };
         efi.canTouchEfiVariables = false;
       };

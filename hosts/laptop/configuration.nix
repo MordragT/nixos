@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  networking.firewall.allowedTCPPorts = [ 8080 ];
+
   mordrag = {
     boot.enable = true;
     desktop.cosmic = {

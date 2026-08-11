@@ -20,8 +20,10 @@ in
       accounts-daemon.enable = true;
       desktopManager.cosmic.enable = true;
       displayManager.cosmic-greeter.enable = cfg.greeter;
+      oo7.enable = true;
       gnome = {
-        gnome-keyring.enable = true;
+        gnome-keyring.enable = false;
+        gcr-ssh-agent.enable = true;
         gnome-online-accounts.enable = true;
       };
     };
