@@ -7,7 +7,7 @@
 let
   cfg = config.mordrag.desktop.steamos;
   start-session = pkgs.writeScript "start-session" ''
-    #! /usr/bin/env -S ${lib.getExe pkgs.nushell} --plugins ${lib.getExe pkgs.nushell-plugin-formats} --no-config-file
+    #! /usr/bin/env -S ${lib.getExe pkgs.nushell} --plugins ${lib.getExe pkgs.nushellPlugins.formats} --no-config-file
 
     # [Autologin]\nSession={session}\n
     const TEMP_CONFIG = "/etc/sddm.conf.d/zzt-holo-temp-login.conf"

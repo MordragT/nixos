@@ -18,7 +18,7 @@
         greeter = true;
       };
       gnome.enable = true;
-      niri.enable = true;
+      # niri.enable = true;
     };
     hardware = {
       amd-r5-2600 = true;
@@ -48,6 +48,8 @@
           blockbench # 3d modeling for games
           cemu # wii u emulator
           discord
+          gather
+          gemini-cli
           gh # github cli
           gimp3 # image editor
           # glaxnimate # 2d/3d vector animation software
@@ -62,6 +64,7 @@
           proton-vpn # VPN client
           qbittorrent # download torrents
           slack
+          spotify
           stirling-pdf-desktop
           teamfight-tactics
           teams-for-linux # microsoft teams

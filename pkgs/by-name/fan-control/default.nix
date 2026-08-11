@@ -14,8 +14,9 @@ let
   src = fetchFromGitHub {
     owner = "wiiznokes";
     repo = "fan-control";
-    rev = version;
-    hash = "sha256-tIR+e8u50Km8DzGPm2YzyJAlV6lo3qRlnRsUx57I9Zg=";
+    # rev = version;
+    rev = "679af3b544af25a6ba6cfa454e1a1f8d7427f8af";
+    hash = "sha256-k4okxPzem7vtgbvXvZwTzu9FvBlbT+6l3xQMyN1Ryjg=";
     fetchSubmodules = true;
   };
 
@@ -28,7 +29,7 @@ rustPlatform.buildRustPackage rec {
   inherit version src;
 
   pname = "fan-control";
-  cargoHash = "sha256-tA0Pvne3+lzvablVhwHClYeKB/3u+07RNrtSYo08lV0=";
+  cargoHash = "sha256-KCTmky/M89c+oR5pCkSfFo+rlQqN8ejwOW3XBqhADS8=";
 
   nativeBuildInputs = [
     pkg-config

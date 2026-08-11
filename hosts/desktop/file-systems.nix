@@ -27,16 +27,6 @@
         "mode=755"
       ];
     };
-
-    "/run/media/Media" = {
-      device = "/dev/disk/by-label/Media";
-      fsType = "btrfs";
-      options = [
-        "noatime"
-        "compress=zstd"
-        "autodefrag"
-      ];
-    };
   };
 
   swapDevices = [

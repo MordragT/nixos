@@ -23,7 +23,6 @@ in
         alejandra # nix formater
         copilot-language-server
         harper # grammar checker
-        gemini-cli
         nil # nix language server
         nixd # TODO needed because of https://github.com/zed-industries/zed/issues/23368
         nixfmt
@@ -76,25 +75,25 @@ in
 
           default_model = {
             # zed.dev, mistral, google, copilot_chat
-            provider = "copilot_chat";
+            provider = "google";
             # claude-sonnet-4, codestral-latest, gemini-2.5-flash, claude-sonnet-4
             # model = "claude-sonnet-4";
-            model = "gpt-5-mini";
+            model = "gemini-3.5-flash";
           };
 
           inline_assistant_model = {
             provider = "google";
-            model = "gemini-3-flash";
+            model = "gemini-3.5-flash";
           };
 
           commit_message_model = {
-            provider = "copilot_chat";
-            model = "gpt-5-mini";
+            provider = "google";
+            model = "gemini-3.5-flash";
           };
 
           thread_summary_model = {
             provider = "google";
-            model = "gemini-3-flash";
+            model = "gemini-3.5-flash";
           };
 
           default_profile = "ask";
@@ -117,8 +116,13 @@ in
               grep = true;
               terminal = true;
               thinking = true;
-              web_search = true;
+              search_web = true;
             };
+          };
+        };
+        agent_servers = {
+          gemini = {
+            type = "registry";
           };
         };
         buffer_font_family = "Geist Mono";
@@ -146,13 +150,29 @@ in
           enabled = true;
           show_parameter_hints = false;
         };
-        language_models.ollama = {
-          api_url = "http://localhost:11434";
-          available_models = [ ];
-        };
-        language_models.openai_compatible.lamma-cpp = {
-          api_url = "http://localhost:8030";
-          available_models = [ ];
+        language_models = {
+          openai_compatible = {
+            groq = {
+              api_url = "https://api.groq.com/openai/v1";
+              available_models = [
+                {
+                  name = "openai/gpt-oss-120b";
+                  display_name = "OpenAI GPT OSS 120B";
+                  max_tokens = 131072;
+                  capabilities = {
+                    tools = true;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+              ];
+            };
+          };
+          ollama = {
+            api_url = "http://localhost:11434";
+            available_models = [ ];
+          };
         };
         languages = {
           Kola = {
@@ -173,7 +193,7 @@ in
             };
           };
         };
-        notification_panel.dock = "left";
+        # notification_panel.dock = "left";
         outline_panel.dock = "right";
         preferred_line_length = 120;
         project_panel = {
@@ -182,7 +202,7 @@ in
           indent_guides.show = "never";
         };
         show_wrap_guides = true;
-        soft_wrap = "preferred_line_length";
+        soft_wrap = "prefer_line";
         tab_bar.show = false;
         terminal = {
           dock = "left";
