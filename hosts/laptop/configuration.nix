@@ -48,6 +48,7 @@
           drawio
           gather
           gh
+          nitrokey-app2
           onlyoffice-desktopeditors # office suite
           opcua-commander
           slack
@@ -58,6 +59,7 @@
   };
 
   hardware = {
+    nitrokey.enable = true;
     tuxedo-drivers.enable = true;
     tuxedo-rs = {
       enable = true;

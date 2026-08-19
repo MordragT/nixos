@@ -99,7 +99,7 @@ in
           default_profile = "ask";
           profiles.ask = {
             name = "Ask";
-            enable_all_context_servers = true;
+            enable_all_context_servers = false;
 
             tools = {
               copy_path = false;
@@ -158,6 +158,17 @@ in
                 {
                   name = "openai/gpt-oss-120b";
                   display_name = "OpenAI GPT OSS 120B";
+                  max_tokens = 131072;
+                  capabilities = {
+                    tools = true;
+                    images = false;
+                    parallel_tool_calls = false;
+                    prompt_cache_key = false;
+                  };
+                }
+                {
+                  name = "qwen/qwen3.6-27b";
+                  display_name = "Qwen3.6 27B";
                   max_tokens = 131072;
                   capabilities = {
                     tools = true;
