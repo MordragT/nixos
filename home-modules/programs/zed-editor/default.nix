@@ -144,6 +144,8 @@ in
           "**/.settings"
           "**/.direnv"
         ];
+        format_on_save = "on";
+        formatter = "auto";
         git_panel.dock = "right";
         indent_guides.enabled = false;
         inlay_hints = {
