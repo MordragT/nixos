@@ -40,6 +40,8 @@ in
     };
 
     services = {
+      fwupd.enable = true;
+
       journald.extraConfig = ''
         SystemMaxUse=2G
       '';
@@ -65,6 +67,11 @@ in
         enable = true;
         scheduler = "scx_lavd";
       };
+    };
+
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
 
     mordrag = {

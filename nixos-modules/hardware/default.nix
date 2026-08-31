@@ -7,5 +7,7 @@
     ./intel-arc-a750
     ./intel-i7-13700h
     ./intel-n4100
+    ./nitrokey
+    ./tuxedo
   ];
 }

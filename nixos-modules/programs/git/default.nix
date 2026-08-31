@@ -34,7 +34,7 @@ in
         user = {
           email = "connect.mordrag@gmx.de";
           name = "Thomas Wehmöller";
-          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN40eH/59LSYNIaNsBfsvQYVbbpitikNRPxS5VyRyEda";
+          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWO1CI//QXycOvxY5TyYmSRDPzXm7Y4N8wmO/i+zk5Y";
         };
         commit.gpgsign = true;
         tag.gpgSign = true;

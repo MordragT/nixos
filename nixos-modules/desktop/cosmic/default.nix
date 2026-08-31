@@ -23,7 +23,6 @@ in
       oo7.enable = true;
       gnome = {
         gnome-keyring.enable = false;
-        gcr-ssh-agent.enable = true;
         gnome-online-accounts.enable = true;
       };
     };

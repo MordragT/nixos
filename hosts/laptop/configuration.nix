@@ -16,7 +16,11 @@
         luks = true;
       };
     };
-    hardware.intel-i7-13700h = true;
+    hardware = {
+      intel-i7-13700h = true;
+      nitrokey = true;
+      tuxedo = true;
+    };
     networking = {
       enable = true;
       primary = {
@@ -48,7 +52,6 @@
           drawio
           gather
           gh
-          nitrokey-app2
           onlyoffice-desktopeditors # office suite
           opcua-commander
           slack
@@ -56,19 +59,6 @@
         ];
       };
     };
-  };
-
-  hardware = {
-    nitrokey.enable = true;
-    tuxedo-drivers.enable = true;
-    tuxedo-rs = {
-      enable = true;
-      tailor-gui.enable = true;
-    };
-  };
-
-  services = {
-    fwupd.enable = true;
   };
 
   virtualisation = {

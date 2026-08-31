@@ -23,6 +23,7 @@
     hardware = {
       amd-r5-2600 = true;
       intel-arc-a750 = true;
+      nitrokey = true;
     };
     networking = {
       enable = true;
@@ -74,7 +75,9 @@
     };
   };
 
-  programs.chromium.enable = true;
+  programs = {
+    chromium.enable = true;
+  };
 
   # files not yet supported by mordrag.users.main.state
   systemd.tmpfiles.rules = [
