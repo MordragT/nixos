@@ -16,18 +16,18 @@ in
 
   config = lib.mkIf cfg.enable {
     programs = {
-      # ssh.extraConfig =
-      #   let
-      #     mainUser = config.mordrag.users.main.name;
-      #   in
-      #   ''
-      #     Host github.com
-      #       HostName github.com
-      #       User git
-      #       IdentityFile /home/${mainUser}/.ssh/id_ed25519_sk_github
-      #       IdentitiesOnly yes
-      #       IdentityAgent none
-      #   '';
+      ssh.extraConfig =
+        let
+          mainUser = config.mordrag.users.main.name;
+        in
+        ''
+          Host github.com
+            HostName github.com
+            User git
+            IdentityFile /home/${mainUser}/.ssh/id_ed25519
+            IdentitiesOnly yes
+            IdentityAgent none
+        '';
 
       git = {
         enable = true;
