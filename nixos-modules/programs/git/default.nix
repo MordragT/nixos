@@ -34,14 +34,16 @@ in
         user = {
           email = "connect.mordrag@gmx.de";
           name = "Thomas Wehmöller";
-          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWO1CI//QXycOvxY5TyYmSRDPzXm7Y4N8wmO/i+zk5Y";
+          signingKey = "2E3F 41E4 5C52 63BC 6A4A  5389 922C 9B26 1449 E566";
         };
         commit.gpgsign = true;
         tag.gpgSign = true;
-        gpg = {
-          format = "ssh";
-          ssh.program = lib.getExe' pkgs.openssh "ssh-keygen";
-        };
+        gpg.format = "openpgp";
+        # When signingKey is an ssh key do this:
+        # gpg = {
+        #   format = "ssh";
+        #   ssh.program = lib.getExe' pkgs.openssh "ssh-keygen";
+        # };
       };
     };
 
