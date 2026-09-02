@@ -15,35 +15,50 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      lfs.enable = true;
-      config = {
-        alias = {
-          ci = "commit -m";
-          co = "checkout";
-          l = "log --oneline";
-          ll = "log";
-          s = "status";
+    programs = {
+      # ssh.extraConfig =
+      #   let
+      #     mainUser = config.mordrag.users.main.name;
+      #   in
+      #   ''
+      #     Host github.com
+      #       HostName github.com
+      #       User git
+      #       IdentityFile /home/${mainUser}/.ssh/id_ed25519_sk_github
+      #       IdentitiesOnly yes
+      #       IdentityAgent none
+      #   '';
+
+      git = {
+        enable = true;
+        lfs.enable = true;
+        config = {
+          alias = {
+            ci = "commit -m";
+            co = "checkout";
+            l = "log --oneline";
+            ll = "log";
+            s = "status";
+          };
+          core = {
+            editor = "${pkgs.helix}/bin/hx";
+            pager = "${pkgs.delta}/bin/delta";
+          };
+          init.defaultBranch = "main";
+          user = {
+            email = "connect.mordrag@gmx.de";
+            name = "Thomas Wehmöller";
+            signingKey = "2E3F 41E4 5C52 63BC 6A4A  5389 922C 9B26 1449 E566";
+          };
+          commit.gpgsign = true;
+          tag.gpgSign = true;
+          gpg.format = "openpgp";
+          # When signingKey is an ssh key do this:
+          # gpg = {
+          #   format = "ssh";
+          #   ssh.program = lib.getExe' pkgs.openssh "ssh-keygen";
+          # };
         };
-        core = {
-          editor = "${pkgs.helix}/bin/hx";
-          pager = "${pkgs.delta}/bin/delta";
-        };
-        init.defaultBranch = "main";
-        user = {
-          email = "connect.mordrag@gmx.de";
-          name = "Thomas Wehmöller";
-          signingKey = "2E3F 41E4 5C52 63BC 6A4A  5389 922C 9B26 1449 E566";
-        };
-        commit.gpgsign = true;
-        tag.gpgSign = true;
-        gpg.format = "openpgp";
-        # When signingKey is an ssh key do this:
-        # gpg = {
-        #   format = "ssh";
-        #   ssh.program = lib.getExe' pkgs.openssh "ssh-keygen";
-        # };
       };
     };
 

@@ -8,8 +8,10 @@
   options.mordrag.hardware.nitrokey = lib.mkEnableOption "NitroKey";
 
   config = lib.mkIf config.mordrag.hardware.nitrokey {
-    environment.systemPackages = [
-      pkgs.nitrokey-app2
+    environment.systemPackages = with pkgs; [
+      nitrokey-app2
+      pynitrokey
+      libfido2
     ];
 
     hardware = {
