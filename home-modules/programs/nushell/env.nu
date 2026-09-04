@@ -167,13 +167,16 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
+# XDG environment varialbes
 $env.XDG_STATE_HOME = $env.HOME | path join ".local" "state"
 $env.XDG_DATA_HOME = $env.HOME | path join ".local" "share"
 $env.XDG_CONFIG_HOME = $env.HOME | path join ".config"
 $env.XDG_CACHE_HOME = $env.HOME | path join ".cache"
 
+# Application XDG fixes
 $env.VAGRANT_HOME = $env.HOME | path join ".local" "share" "vagrant"
+$env.GRADLE_USER_HOME = $env.HOME | path join ".local" "share" "gradle"
 
+# Secrets
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
-
 $env.SOPS_AGE_KEY_FILE = $env.HOME | path join ".config" "age" "keys.txt"
