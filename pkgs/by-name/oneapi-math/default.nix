@@ -23,6 +23,7 @@ intel-llvm.stdenv.mkDerivation (finalAttrs: {
   ];
 
   cmakeFlags = [
+    (lib.cmakeBool "BUILD_SHARED_LIBS" true)
     (lib.cmakeBool "ENABLE_GENERIC_BLAS_BACKEND" true)
 
     (lib.cmakeBool "ENABLE_MKLCPU_BACKEND" false)

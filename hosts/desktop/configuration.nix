@@ -44,20 +44,22 @@
         state.enable = true;
         xdg.enable = true;
         packages = with pkgs; [
+          antigravity-cli
           beekeeper-studio # sql client
           blender # 3d modeling
           blockbench # 3d modeling for games
           cemu # wii u emulator
           discord
           gather
-          gemini-cli
           gh # github cli
           gimp3 # image editor
+          github-copilot-cli
           # glaxnimate # 2d/3d vector animation software
           drawio # diagram editor
           inkscape # vector graphics editor
           krita # digital painting
           material-maker # procedural texture generator
+          # mistral-vibe
           onlyoffice-desktopeditors # office suite
           ookla-speedtest
           pixelorama # 2d sprite editor

@@ -6,59 +6,22 @@
 }:
 let
   cfg = config.mordrag.services.llama;
+
+  settings = {
+    hf-repo = "unsloth/Qwen3.5-9B-GGUF:UD-IQ3_XXS";
+    # hf-repo = "bartowski/Meta-Llama-3-8B-Instruct-GGUF:Q4_K_M";
+    sleep-idle-seconds = 5 * 60;
+
+    inherit (cfg) port;
+  };
 in
 {
   options.mordrag.services.llama = {
     enable = lib.mkEnableOption "Llama";
-    settings = lib.mkOption {
-      description = "Generates command-line arguments";
-      default = { };
-      type = lib.types.submodule {
-        freeformType =
-          with lib.types;
-          let
-            atom = nullOr (oneOf [
-              bool
-              str
-              int
-              float
-            ]);
-          in
-          attrsOf (either atom (listOf atom));
-        options = {
-          host = lib.mkOption {
-            description = "Which IP address to listen on.";
-            default = "127.0.0.1";
-            type = lib.types.str;
-          };
 
-          port = lib.mkOption {
-            description = "Which port to listen on.";
-            type = lib.types.port;
-          };
-
-          model = lib.mkOption {
-            description = "Which model to serve";
-            type = lib.types.str;
-          };
-
-          gpu-layers = lib.mkOption {
-            description = "Number of layers to store in VRAM";
-            default = 0;
-            type = lib.types.int;
-          };
-
-          split-mode = lib.mkOption {
-            description = "How to split the model across multiple GPUs";
-            default = "none";
-            type = lib.types.enum [
-              "none"
-              "layer"
-              "row"
-            ];
-          };
-        };
-      };
+    port = lib.mkOption {
+      description = "LLaMA C++ HTTP Port";
+      type = lib.types.port;
     };
   };
 
@@ -74,27 +37,43 @@ in
         # level-zero discovery has been changed and somehow doesn't work anymore
         # https://github.com/oneapi-src/level-zero/pull/402/files
         LD_LIBRARY_PATH = "/run/opengl-driver/lib/";
+        LLAMA_CACHE = "/var/cache/llama-cpp";
       };
       serviceConfig = {
         Type = "idle";
         KillSignal = "SIGINT";
         Restart = "on-failure";
         RestartSec = 300;
-        WorkingDirectory = "%S/llama-cpp";
-        StateDirectory = [ "llama-cpp" ];
+
         DynamicUser = true;
-        User = "llama-cpp";
-        Group = "llama-cpp";
-        ExecStart = "${pkgs.llama-cpp-sycl}/bin/llama-server ${
-          toString (lib.cli.toCommandLineGNU { } cfg.settings)
-        }";
+        StateDirectory = "llama-cpp";
+        CacheDirectory = "llama-cpp";
+        WorkingDirectory = "/var/lib/llama-cpp";
+
+        ExecStart = toString [
+          (lib.getExe' pkgs.llama-cpp-sycl "llama-server")
+          (lib.cli.toCommandLine (optionName: {
+            option = if builtins.stringLength optionName > 1 then "--${optionName}" else "-${optionName}";
+            sep = " ";
+            explicitBool = false;
+            formatArg = lib.generators.mkValueStringDefault { };
+          }) settings)
+        ];
       };
     };
 
-    services.caddy.virtualHosts."llama.${config.networking.domain}".extraConfig = ''
-      import cloudflare
-      encode zstd
-      reverse_proxy :${toString cfg.settings.port}
-    '';
+    services = {
+      # llama-cpp = {
+      #   enable = true;
+      #   package = pkgs.llama-cpp-vulkan;
+      #   settings = settings;
+      # };
+
+      caddy.virtualHosts."llama.${config.networking.domain}".extraConfig = ''
+        import cloudflare
+        encode zstd
+        reverse_proxy :${toString cfg.port}
+      '';
+    };
   };
 }

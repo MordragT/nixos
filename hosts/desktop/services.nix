@@ -15,14 +15,10 @@
         enable = true;
         secretFile = config.vaultix.secrets.cloudflare.path;
       };
-      # llama = {
-      #   enable = true;
-      #   port = 8080;
-      #   settings = {
-      #     gpu-layers = 33;
-      #     model = "DeepseekCoder-6.7-Instruct-Q4.gguf";
-      #   };
-      # };
+      llama = {
+        enable = true;
+        port = 8080;
+      };
       printing.enable = true;
       qpad = {
         enable = true;

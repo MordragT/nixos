@@ -27,5 +27,20 @@ intel-llvm.stdenv.mkDerivation (finalAttrs: {
 
   cmakeFlags = [
     (lib.cmakeFeature "TUNING_TARGET" "INTEL_GPU")
+    (lib.cmakeBool "BLAS_ENABLE_COMPLEX" true)
+    (lib.cmakeBool "BLAS_ENABLE_HALF" true)
   ];
+
+  postInstall = ''
+    mkdir -p $out/lib/cmake/onemath_sycl_blas
+
+    mv $out/onemath_sycl_blas-config.cmake \
+       $out/lib/cmake/onemath_sycl_blas/onemath_sycl_blas-config.cmake
+
+    mv $out/onemath_sycl_blas-config-version.cmake \
+       $out/lib/cmake/onemath_sycl_blas/onemath_sycl_blas-config-version.cmake
+
+    mv $out/onemath_sycl_blas-targets.cmake \
+       $out/lib/cmake/onemath_sycl_blas/onemath_sycl_blas-targets.cmake
+  '';
 })

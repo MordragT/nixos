@@ -45,6 +45,7 @@ in
   oneapi-dpl = callPackage ./oneapi-dpl { };
   oneapi-math = callPackage ./oneapi-math { };
   oneapi-math-sycl-blas = callPackage ./oneapi-math-sycl-blas { };
+  oneapi-mkl = callPackage ./oneapi-mkl { };
   # oneapi-tbb = callPackage ./oneapi-tbb {};
   oneapi-tbb = pkgs.onetbb;
 

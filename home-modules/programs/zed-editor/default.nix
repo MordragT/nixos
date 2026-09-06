@@ -73,55 +73,112 @@ in
           enabled = true;
           dock = "left";
 
+          auto_compact = {
+            enabled = true;
+            threshold = "85%";
+          };
+
           default_model = {
             # zed.dev, mistral, google, copilot_chat
-            provider = "google";
+            provider = "copilot_chat";
             # claude-sonnet-4, codestral-latest, gemini-2.5-flash, claude-sonnet-4
-            # model = "claude-sonnet-4";
-            model = "gemini-3.5-flash";
+            model = "auto";
           };
 
           inline_assistant_model = {
-            provider = "google";
-            model = "gemini-3.5-flash";
+            provider = "copilot_chat";
+            model = "auto";
           };
 
           commit_message_model = {
-            provider = "google";
-            model = "gemini-3.5-flash";
+            provider = "copilot_chat";
+            model = "auto";
           };
 
           thread_summary_model = {
-            provider = "google";
-            model = "gemini-3.5-flash";
+            provider = "copilot_chat";
+            model = "auto";
           };
 
-          default_profile = "ask";
-          profiles.ask = {
-            name = "Ask";
-            enable_all_context_servers = false;
+          favorite_models = [
+            {
+              provider = "copilot_chat";
+              model = "auto";
+            }
+            {
+              provider = "openrouter";
+              model = "openrouter/free";
+            }
+          ];
 
-            tools = {
-              copy_path = false;
-              create_directory = false;
-              delete_path = false;
-              diagnostics = true;
-              edit_file = false;
-              fetch = true;
-              list_directory = true;
-              move_path = false;
-              now = true;
-              find_path = true;
-              read_file = true;
-              grep = true;
-              terminal = true;
-              thinking = true;
-              search_web = true;
+          default_profile = "ask";
+
+          # Default profiles, removed ones commented out
+          profiles = {
+            ask = {
+              name = "Ask";
+              enable_all_context_servers = false;
+
+              tools = {
+                create_thread = true;
+                diagnostics = true;
+                fetch = true;
+                # list_agents_and_models = true;
+                list_directory = true;
+                find_path = true;
+                find_references = true;
+                # get_code_actions = true; # more of a write feature ?
+                go_to_definition = true;
+                read_file = true;
+                grep = true;
+                # skill = true; # do not use skills
+                spawn_agent = true;
+                search_web = true;
+              };
+            };
+
+            write = {
+              name = "Write";
+              enable_all_context_servers = false;
+
+              tools = {
+                copy_path = true;
+                create_directory = true;
+                create_thread = true;
+                delete_path = true;
+                diagnostics = true;
+                apply_code_action = true;
+                edit_file = true;
+                write_file = true;
+                fetch = true;
+                find_path = true;
+                find_references = true;
+                get_code_actions = true;
+                go_to_definition = true;
+                # list_agents_and_models= true; # not needed
+                list_directory = true;
+                move_path = true;
+                rename_symbol = true;
+                read_file = true;
+                grep = true;
+                # skill= true; # do not use skills
+                spawn_agent = true;
+                terminal = true;
+                search_web = true;
+              };
             };
           };
         };
         agent_servers = {
-          gemini = {
+          antigravity = {
+            type = "registry";
+          };
+
+          github_copilot = {
+            type = "registry";
+          };
+
+          mistral_vibe = {
             type = "registry";
           };
         };
@@ -153,38 +210,9 @@ in
           show_parameter_hints = false;
         };
         language_models = {
-          openai_compatible = {
-            groq = {
-              api_url = "https://api.groq.com/openai/v1";
-              available_models = [
-                {
-                  name = "openai/gpt-oss-120b";
-                  display_name = "OpenAI GPT OSS 120B";
-                  max_tokens = 131072;
-                  capabilities = {
-                    tools = true;
-                    images = false;
-                    parallel_tool_calls = false;
-                    prompt_cache_key = false;
-                  };
-                }
-                {
-                  name = "qwen/qwen3.6-27b";
-                  display_name = "Qwen3.6 27B";
-                  max_tokens = 131072;
-                  capabilities = {
-                    tools = true;
-                    images = false;
-                    parallel_tool_calls = false;
-                    prompt_cache_key = false;
-                  };
-                }
-              ];
-            };
-          };
-          ollama = {
-            api_url = "http://localhost:11434";
-            available_models = [ ];
+          "llama.cpp" = {
+            api_url = "http://localhost:8080";
+            auto_discover = true;
           };
         };
         languages = {

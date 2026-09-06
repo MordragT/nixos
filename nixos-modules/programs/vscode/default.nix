@@ -24,13 +24,13 @@ in
         Mordrag.one-dark-vibrant
 
         # broken ms-python.python
-        ms-python.vscode-pylance
+        # broken ms-python.vscode-pylance
         ms-dotnettools.csharp
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
-        ms-vscode.cpptools
+        # broken ms-vscode.cpptools
         ms-vscode.sublime-keybindings
 
         myriad-dreamin.tinymist
