@@ -7,9 +7,13 @@
   pkg-config,
   openssl,
 }:
-rustPlatform.buildRustPackage rec {
+let
   pname = "lottieconv";
-  version = "0.3.0";
+  version = "0.3.1";
+in
+rustPlatform.buildRustPackage {
+  inherit pname version;
+
   src = fetchCrate {
     inherit pname version;
     sha256 = "";

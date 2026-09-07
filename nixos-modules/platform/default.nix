@@ -42,9 +42,7 @@ in
     services = {
       fwupd.enable = true;
 
-      journald.extraConfig = ''
-        SystemMaxUse=2G
-      '';
+      journald.settings.Journal.SystemMaxUse = "2G";
 
       openssh = {
         enable = true;

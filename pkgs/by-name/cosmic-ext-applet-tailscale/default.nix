@@ -3,12 +3,10 @@
   fetchFromGitHub,
   libcosmicAppHook,
   rustPlatform,
-  just,
-  stdenv,
   nix-update-script,
 }:
 let
-  version = "3.10.1";
+  version = "3.10.2";
 in
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-tailscale";
@@ -18,31 +16,16 @@ rustPlatform.buildRustPackage {
     owner = "cosmic-utils";
     repo = "gui-scale-applet";
     rev = version;
-    hash = "sha256-jePK1NTDoPvQ2G/YcDk60cttbNPaQSNSH7/PMU0BFD4=";
+    hash = "";
   };
 
   cargoHash = "";
 
-  nativeBuildInputs = [
-    libcosmicAppHook
-    just
-  ];
+  nativeBuildInputs = [ libcosmicAppHook ];
 
-  dontUseJustBuild = true;
-  dontUseJustCheck = true;
-
-  justFlags = [
-    "--set"
-    "prefix"
-    (placeholder "out")
-    "--set"
-    "bin-src"
-    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/gui-scale-applet"
-  ];
-
-  postPatch = ''
-    substituteInPlace justfile \
-        --replace-fail "sudo install" "install"
+  postInstall = ''
+    install -Dm0644 data/com.github.bhh32.GUIScaleApplet.desktop $out/share/applications/
+    install -Dm0644 data/icons/scalable/apps/tailscale-icon.png $out/share/icons/hicolor/scalable/status/
   '';
 
   passthru.updateScript = nix-update-script { };

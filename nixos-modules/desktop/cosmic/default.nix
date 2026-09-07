@@ -36,7 +36,7 @@ in
     environment.systemPackages = with pkgs; [
       cosmic-ext-applet-caffeine
       # cosmic-ext-applet-clipboard-manager
-      # cosmic-ext-applet-connect
+      # cosmic-ext-applet-kdeconnect
       # cosmic-ext-applet-external-monitor-brightness
       # cosmic-ext-applet-emoji-selector
       # cosmic-ext-applet-gamemode-status

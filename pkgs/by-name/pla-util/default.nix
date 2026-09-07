@@ -17,10 +17,6 @@ stdenv.mkDerivation rec {
     hash = "sha256-L25k+pPZgkX+8MMgJQusRDlMd42HuuqzMaMXp6bcoNg=";
   };
 
-  # makeFlags = [
-  #   "prefix=$(out)"
-  # ];
-
   nativeBuildInputs = [
     gprbuild
     gnat

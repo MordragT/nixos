@@ -15,14 +15,17 @@
   libpanel,
   desktop-file-utils,
 }:
+let
+  version = "3.9.4";
+in
 stdenv.mkDerivation {
   pname = "epic-asset-manager";
-  version = "unstable-2025-05-19";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "AchetaGames";
     repo = "Epic-Asset-Manager";
-    rev = "$b8b36b88c145398a3938faa59eda15b3551d3400";
+    rev = "v${version}";
     sha256 = "";
   };
 

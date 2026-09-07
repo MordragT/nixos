@@ -1,7 +1,7 @@
 diff --git a/ggml/src/ggml-sycl/solve_tri.cpp b/ggml/src/ggml-sycl/solve_tri.cpp
 index 39326deee..7d48ca826 100644
---- a/ggml/src/ggml-sycl/solve_tri.cpp
-+++ b/ggml/src/ggml-sycl/solve_tri.cpp
+--- a/src/ggml-sycl/solve_tri.cpp
++++ b/src/ggml-sycl/solve_tri.cpp
 @@ -84,33 +84,6 @@ static void solve_tri_f32_fast(const float * __restrict__ A,
      }
  }

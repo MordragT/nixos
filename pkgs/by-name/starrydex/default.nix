@@ -4,24 +4,24 @@
   fetchFromGitHub,
   libcosmicAppHook,
 }:
-rustPlatform.buildRustPackage rec {
+let
+  version = "0.3.7";
+in
+rustPlatform.buildRustPackage {
   pname = "starrydex";
-  version = "0.3.0";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "mariinkys";
     repo = "starrydex";
     rev = version;
-    hash = "sha256-2iABIJaWtxTdaLXh+Jvj7pI3SxEJ9JKbGoiU7MuiP0E=";
+    hash = "";
   };
 
-  cargoHash = "sha256-x2igZLo4tGdKfn8ViyLlBqJJp4NdISX5y+M4VpnVipE=";
+  cargoHash = "";
 
   nativeBuildInputs = [
     libcosmicAppHook
-  ];
-
-  buildInputs = [
   ];
 
   meta = {

@@ -47,7 +47,7 @@
         state.enable = true;
         packages = with pkgs; [
           _1password-gui
-          beekeeper-studio
+          # broken beekeeper-studio
           bruno
           drawio
           gather

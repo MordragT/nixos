@@ -17,7 +17,7 @@
         enable = true;
         greeter = true;
       };
-      gnome.enable = true;
+      # gnome.enable = true;
       # niri.enable = true;
     };
     hardware = {
@@ -45,7 +45,7 @@
         xdg.enable = true;
         packages = with pkgs; [
           antigravity-cli
-          beekeeper-studio # sql client
+          # broken beekeeper-studio # sql client
           blender # 3d modeling
           blockbench # 3d modeling for games
           cemu # wii u emulator

@@ -1,32 +1,24 @@
 {
   lib,
-  intel-llvm,
+  stdenv,
   fetchFromGitHub,
   cmake,
   ninja,
   pkg-config,
-  oneapi-tbb,
-  oneapi-dnn,
-  oneapi-math,
-  level-zero,
-  ocl-icd,
-  opencl-headers,
+  ggml-sycl,
 }:
 let
-  inherit (lib)
-    cmakeBool
-    ;
+  inherit (lib) cmakeBool;
 in
-intel-llvm.stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "stable-diffusion-cpp";
-  version = "master-453-4ff2c8c";
+  version = "master-849-d04e895";
 
   src = fetchFromGitHub {
     owner = "leejet";
     repo = "stable-diffusion.cpp";
     rev = finalAttrs.version;
-    hash = "sha256-8cN6dYOQAKnJpuQdtayp6+o71s64lG+FcTn8GsIM4jI=";
-    fetchSubmodules = true;
+    hash = "";
   };
 
   patches = [
@@ -41,18 +33,13 @@ intel-llvm.stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    oneapi-tbb
-    oneapi-dnn
-    oneapi-math
-    level-zero
-    ocl-icd
-    opencl-headers
+    ggml-sycl
   ];
 
   cmakeFlags = [
     (cmakeBool "SD_BUILD_EXAMPLES" true)
     (cmakeBool "SD_BUILD_SHARED_LIBS" true)
-    (cmakeBool "SD_USE_SYSTEM_GGML" false)
+    (cmakeBool "SD_USE_SYSTEM_GGML" true)
     (cmakeBool "SD_SYCL" true)
     (cmakeBool "SD_CUDA" false)
     (cmakeBool "SD_HIPBLAS" false)
@@ -60,7 +47,6 @@ intel-llvm.stdenv.mkDerivation (finalAttrs: {
     (cmakeBool "SD_OPENCL" false)
     (cmakeBool "SD_METAL" false)
     (cmakeBool "SD_FAST_SOFTMAX" false)
-    (cmakeBool "GGML_SYCL_F16" true) # not sure if this is a good idea
   ];
 
   meta = with lib; {

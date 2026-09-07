@@ -10,7 +10,7 @@
   ...
 }:
 let
-  version = "0.7.5";
+  version = "0.8.9";
 in
 stdenv.mkDerivation {
   pname = "neural-pixel";
@@ -20,7 +20,7 @@ stdenv.mkDerivation {
     owner = "Luiz-Alcantara";
     repo = "Neural-Pixel";
     tag = "v${version}";
-    hash = "sha256-zYNRuNSvt8X9gquGq2GiXnAoxIYRnN4L/eJHjrfg2ag=";
+    hash = "";
   };
 
   nativeBuildInputs = [

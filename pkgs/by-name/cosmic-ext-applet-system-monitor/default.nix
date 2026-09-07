@@ -10,7 +10,7 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-system-monitor";
-  version = "0.2.8";
+  version = "0.2.10";
 
   src = fetchFromGitHub {
     owner = "d-brox";

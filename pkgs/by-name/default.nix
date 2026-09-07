@@ -8,7 +8,7 @@ in
 
   cosmic-ext-accounts = callPackage ./cosmic-ext-accounts { };
   cosmic-ext-applet-clipboard-manager = callPackage ./cosmic-ext-applet-clipboard-manager { };
-  cosmic-ext-applet-connect = callPackage ./cosmic-ext-applet-connect { };
+  cosmic-ext-applet-kdeconnect = callPackage ./cosmic-ext-applet-kdeconnect { };
   cosmic-ext-applet-emoji-selector = callPackage ./cosmic-ext-applet-emoji-selector { };
   cosmic-ext-applet-gamemode-status = callPackage ./cosmic-ext-applet-gamemode-status { };
   cosmic-ext-applet-git-work = callPackage ./cosmic-ext-applet-git-work { };
@@ -24,6 +24,7 @@ in
   epic-asset-manager = callPackage ./epic-asset-manager { };
   fan-control = callPackage ./fan-control { };
   gather = callPackage ./gather { };
+  ggml-sycl = callPackage ./ggml-sycl { };
 
   intel-ccl = callPackage ./intel-ccl { };
   intel-dnnl = callPackage ./intel-dnnl { };
@@ -67,7 +68,6 @@ in
   teamfight-tactics = callPackage ./teamfight-tactics { };
   tmfs = callPackage ./tmfs { };
 
-  vulkan-raytracing = callPackage ./vulkan-raytracing { };
   xdg-desktop-portal-gamescope = callPackage ./xdg-desktop-portal-gamescope { };
   zen-browser-bin = callPackage ./zen-browser-bin { };
 }
