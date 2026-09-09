@@ -15,9 +15,13 @@ let
 
     # hf-repo = "unsloth/Qwen3.5-9B-GGUF:Q4_K_M";
     # hf-repo = "ornith-ai/Ornith-1.5-9B-GGUF:Q4_K_M";
-    hf-repo = "JetBrains/Mellum2-12B-A2.5B-Thinking-GGUF-MXFP4_MOE:MXFP4_MOE";
+    # hf-repo = "JetBrains/Mellum2-12B-A2.5B-Thinking-GGUF-MXFP4_MOE:MXFP4_MOE";
+    hf-repo = "Myric/Mellum2-12B-A2.5B-Thinking-APEX-GGUF";
+    hf-file = "Mellum2-12B-APEX-mini-imat.gguf";
 
     sleep-idle-seconds = 5 * 60;
+    # cpu-moe = true;
+    # load-mode = "none";
 
     cache-type-k = "q8_0";
     cache-type-v = "q4_0";

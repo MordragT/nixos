@@ -67,9 +67,9 @@ intel-llvm.stdenv.mkDerivation (finalAttrs: {
   ];
 
   cmakeFlags = [
-    (cmakeFeature "CMAKE_CXX_FLAGS" "-w")
-    (cmakeBool "GGML_NATIVE" false)
+    (cmakeFeature "CMAKE_CXX_FLAGS" "-w -DGGML_MAX_NAME=128") # needed for stable-diffusion.cpp
     (cmakeBool "BUILD_SHARED_LIBS" true)
+    (cmakeBool "GGML_NATIVE" false)
 
     # Enable some CPU features targetting x86_64_v3 (Haswell and newer)
     (cmakeBool "GGML_SSE42" true)

@@ -20,7 +20,7 @@ stdenv.mkDerivation {
     owner = "Luiz-Alcantara";
     repo = "Neural-Pixel";
     tag = "v${version}";
-    hash = "";
+    hash = "sha256-tyV80H++lMutiIjY2vWQ64ayiF8o9MNy9CT5hpxQ8ds=";
   };
 
   nativeBuildInputs = [

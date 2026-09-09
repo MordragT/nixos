@@ -8,7 +8,7 @@
   ggml-sycl,
 }:
 let
-  inherit (lib) cmakeBool;
+  inherit (lib) cmakeBool cmakeFeature;
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "stable-diffusion-cpp";
@@ -18,13 +18,9 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "leejet";
     repo = "stable-diffusion.cpp";
     rev = finalAttrs.version;
-    hash = "";
+    hash = "sha256-87tEPKu8xq611fa2/tXvWujl3dypniL+DVrczKP34Qs=";
+    fetchSubmodules = true;
   };
-
-  patches = [
-    ./fast-math.patch
-    ./ggml-onemath.patch
-  ];
 
   nativeBuildInputs = [
     cmake
@@ -37,16 +33,12 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   cmakeFlags = [
-    (cmakeBool "SD_BUILD_EXAMPLES" true)
+    # sadly needs to be set as the feature in ggml-sycl
+    # doesn't propagate
+    (cmakeFeature "CMAKE_CXX_FLAGS" "-DGGML_MAX_NAME=128")
+    (cmakeBool "SD_BUILD_EXAMPLES" true) # server, cli
     (cmakeBool "SD_BUILD_SHARED_LIBS" true)
     (cmakeBool "SD_USE_SYSTEM_GGML" true)
-    (cmakeBool "SD_SYCL" true)
-    (cmakeBool "SD_CUDA" false)
-    (cmakeBool "SD_HIPBLAS" false)
-    (cmakeBool "SD_VULKAN" false)
-    (cmakeBool "SD_OPENCL" false)
-    (cmakeBool "SD_METAL" false)
-    (cmakeBool "SD_FAST_SOFTMAX" false)
   ];
 
   meta = with lib; {
@@ -56,5 +48,8 @@ stdenv.mkDerivation (finalAttrs: {
     mainProgram = "sd";
     maintainers = with lib.maintainers; [ mordrag ];
     platforms = platforms.linux;
+    # currently waiting for int8 related changes being upstreamed
+    # https://github.com/ggml-org/llama.cpp/pull/28480
+    broken = true;
   };
 })

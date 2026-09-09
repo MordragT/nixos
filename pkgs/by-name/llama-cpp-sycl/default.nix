@@ -9,6 +9,7 @@
   nodejs,
   npmHooks,
   ggml-sycl,
+  openssl,
 }:
 let
   inherit (lib) cmakeBool cmakeFeature;
@@ -41,13 +42,15 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     ggml-sycl
+    openssl
   ];
 
   cmakeFlags = [
+    (cmakeBool "BUILD_SHARED_LIBS" true)
     (cmakeBool "LLAMA_BUILD_EXAMPLES" false)
     (cmakeBool "LLAMA_BUILD_SERVER" true)
     (cmakeBool "LLAMA_OPENSSL" true)
-    (cmakeBool "BUILD_SHARED_LIBS" true)
+    (cmakeBool "LLAMA_USE_SYSTEM_GGML" true)
     (cmakeFeature "LLAMA_BUILD_NUMBER" buildNumber)
     (cmakeFeature "LLAMA_BUILD_COMMIT" buildCommit)
   ];
