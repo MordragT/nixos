@@ -20,14 +20,18 @@ let
     hf-file = "Mellum2-12B-APEX-mini-imat.gguf";
 
     sleep-idle-seconds = 5 * 60;
-    # cpu-moe = true;
-    # load-mode = "none";
+    log-verbosity = 4;
 
-    cache-type-k = "q8_0";
-    cache-type-v = "q4_0";
+    cache-type-k = "iq4_nl";
+    cache-type-v = "iq4_nl";
+    # no-kv-offload = true; # do not offload cache to gpu
+
     flash-attn = "on";
 
     inherit (cfg) port;
+  }
+  // lib.optionalAttrs (cfg.device != null) {
+    inherit (cfg) device;
   };
 in
 {
@@ -38,10 +42,26 @@ in
       description = "LLaMA C++ HTTP Port";
       type = lib.types.port;
     };
+
+    device = lib.mkOption {
+      description = "The device to run LLaMA.CPP on.";
+      type = with lib.types; nullOr str;
+      default = null;
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    mordrag.state.directories = [ "/var/lib/llama-cpp" ];
+    # The service uses dynamic user, therefore `private`
+    mordrag.state.directories = [
+      {
+        directory = "/var/lib/private/llama-cpp";
+        mode = "0700";
+      }
+      {
+        directory = "/var/cache/private/llama-cpp";
+        mode = "0700";
+      }
+    ];
 
     systemd.services.llama-cpp = {
       description = "LLaMA C++ server";
@@ -63,7 +83,8 @@ in
         DynamicUser = true;
         StateDirectory = "llama-cpp";
         CacheDirectory = "llama-cpp";
-        WorkingDirectory = "/var/lib/llama-cpp";
+        RuntimeDirectory = "llama-cpp";
+        WorkingDirectory = "%t/llama-cpp";
 
         ExecStart = toString [
           (lib.getExe' pkgs.llama-cpp-sycl "llama-server")

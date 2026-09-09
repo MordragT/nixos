@@ -36,6 +36,7 @@
           intel-compute-runtime.drivers
           intel-media-driver
           vpl-gpu-rt
+          level-zero
         ];
       };
     };

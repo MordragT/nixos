@@ -10,6 +10,7 @@
   npmHooks,
   ggml-sycl,
   openssl,
+  curl,
 }:
 let
   inherit (lib) cmakeBool cmakeFeature;
@@ -43,6 +44,7 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     ggml-sycl
     openssl
+    curl
   ];
 
   cmakeFlags = [

@@ -29,6 +29,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # Ensure for dynamic user services that this directory already exists with the correct permissions
+    systemd.tmpfiles.rules = [
+      # For /var/lib/private
+      "d /var/lib/private 0700 ${config.users.users.root.name} ${config.users.groups.root.name} -"
+      "d /state/var/lib/private 0700 ${config.users.users.root.name} ${config.users.groups.root.name} -"
+
+      # For /var/cache/private
+      "d /var/cache/private 0700 ${config.users.users.root.name} ${config.users.groups.root.name} -"
+      "d /state/var/cache/private 0700 ${config.users.users.root.name} ${config.users.groups.root.name} -"
+    ];
+
     environment = {
       persistence."/state" = {
         enable = true;

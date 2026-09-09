@@ -36,6 +36,11 @@
     };
     services = {
       tailscale.enable = true;
+      llama = {
+        enable = true;
+        port = 9090;
+        device = "none";
+      };
     };
     state = {
       enable = true;
