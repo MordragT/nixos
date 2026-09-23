@@ -27,6 +27,13 @@ in
             IdentityFile /home/${mainUser}/.ssh/id_ed25519
             IdentitiesOnly yes
             IdentityAgent none
+
+          Host hf.co huggingface.co
+            HostName hf.co
+            User git
+            IdentityFile /home/${mainUser}/.ssh/id_ed25519
+            IdentitiesOnly yes
+            IdentityAgent none
         '';
 
       git = {

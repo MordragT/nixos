@@ -1,0 +1,12 @@
+{
+  "checkpoints": {
+    "main": "mordrag/trellis2-gguf-q4:"
+  },
+  "labels": ["3d", "custom"],
+  "model_name": "user.Trellis2-Q4",
+  "recipe": "trellis",
+  "recipe_options": {},
+  "registry_source": "huggingface",
+  "size": 6.1,
+  "source": "huggingface"
+}

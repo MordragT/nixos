@@ -443,7 +443,7 @@ in
           "wireshark"
         ]
         ++ cfg.main.extraGroups;
-        shell = pkgs.nushell;
+        # shell = pkgs.nushell; # seems to break login to cosmic
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIm/oTrV+ISStJ7Gb3ES7lZdCfya2TdEtkFZ/A1rqYEv tom@tom-pc"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpKEHRFw2kYxJpf1m7Tud2mGoXjaUlPGe/YACBgoQIx tom@tom-laptop"

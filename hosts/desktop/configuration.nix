@@ -45,6 +45,7 @@
         xdg.enable = true;
         packages = with pkgs; [
           antigravity-cli
+          audacity
           # broken beekeeper-studio # sql client
           blender # 3d modeling
           blockbench # 3d modeling for games
@@ -60,6 +61,7 @@
           krita # digital painting
           material-maker # procedural texture generator
           # mistral-vibe
+          neural-pixel # sd.cpp image generation
           onlyoffice-desktopeditors # office suite
           ookla-speedtest
           pixelorama # 2d sprite editor

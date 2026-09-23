@@ -1,0 +1,28 @@
+{
+  "checkpoints": {
+    "main": "unsloth/Z-Image-Turbo-GGUF:z-image-turbo-Q6_K.gguf",
+    "text_encoder": "unsloth/Qwen3-4B-Instruct-2507-GGUF:Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "vae": "Tongyi-MAI/Z-Image-Turbo:vae/diffusion_pytorch_model.safetensors"
+  },
+  "labels": ["custom", "image"],
+  "image_defaults": {
+    "steps": 8,
+    "cfg_scale": 1.0,
+    "width": 1024,
+    "height": 1024
+  },
+  "model_name": "user.Z-Image-Turbo-Q6",
+  "recipe": "sd-cpp",
+  "recipe_options": {
+    "cfg_scale": 1,
+    "height": 1024,
+    "merge_args": true,
+    "pinned": false,
+    "sd-cpp_backend": "vulkan",
+    "sdcpp_args": "--offload-to-cpu",
+    "steps": 8,
+    "width": 1024
+  },
+  "registry_source": "huggingface",
+  "source": "huggingface"
+}

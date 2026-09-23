@@ -1,0 +1,107 @@
+{
+  "dpcpp-cpp-rt": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/b5/d7/c19db67c824c49f126b31b61bdd1f1cf9283e671daa254868b48987b6a43/dpcpp_cpp_rt-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-dzlqnl44i8n3eOxMETEYGWbqXjH9aO1JsmE4ROhp3Bw="
+  },
+  "impi-rt": {
+    "version": "2021.18.1",
+    "url": "https://files.pythonhosted.org/packages/0e/88/a4f4392dcf96a33e53348584f0935f800292e96d093da298fcb8088ae9dd/impi_rt-2021.18.1-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-UcqJweZOYNhqfUCn1hJDErpjqvwD+2qswUCzxmNx2BQ="
+  },
+  "intel-cmplr-lib-rt": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/0b/2d/94c431fe41bcc56d9834af652f844721798a139c9f0a7b999e6338aebd0a/intel_cmplr_lib_rt-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-tKl13uuX7uJsFecDj2NjXE2swzFRUG8uXFbMV1jL5GI="
+  },
+  "intel-cmplr-lib-ur": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/80/f0/b7e8305da2d2ea162599795886d03a809bf1554ec5079c59f147b506f277/intel_cmplr_lib_ur-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-snIH87QtEs6IzVPKizt6fnl1WqB6hOzPHCCfy+/kaL8="
+  },
+  "intel-cmplr-lic-rt": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/27/5d/8cae7c2c43d61b0434adc4d68ac56955c3ebd5443c77842fce6abe3ac357/intel_cmplr_lic_rt-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-9Njse62k4h8cFlVbaivnuh0ooRRj3Xu7VwVeDEHEovs="
+  },
+  "intel-opencl-rt": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/1d/3d/895a1628ca64752a235a045a649609d6e3b3f42b1588312225bf2fd7dd48/intel_opencl_rt-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-tUOgkgn8FXpw60D3IziGKjXPhq0e9ICNTonPAHi/iUc="
+  },
+  "intel-openmp": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/8b/4d/27cb1284bee222fdd4f4280a651c264031bc1f8ebbdbd29cdfd0f906a466/intel_openmp-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-RhIjGjYF24kSZcHYzEr0nuZgCdxV8kASdwqfrz2Kw14="
+  },
+  "intel-pti": {
+    "version": "1.1.0",
+    "url": "https://files.pythonhosted.org/packages/80/60/a94fd058dfed6c774ab376279a38c1e8822b9b7ab4a9c8e0f5b960f3a8e3/intel_pti-1.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-Yrs3QGjV5DI523p10Z5nPiG+aGAwkt5iOFIsrU6oyco="
+  },
+  "intel-sycl-rt": {
+    "version": "2026.1.2",
+    "url": "https://files.pythonhosted.org/packages/80/3c/f8ef51b3d21eb1b2e7d1b302877d3354bbe3a0e728c5a8c4f9b7ff080957/intel_sycl_rt-2026.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-n0ya/xEXein/gbzs/9R+Q7Ht9Ut2b5ftHawTqCC2SeY="
+  },
+  "mkl": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/61/da/4921e17b1f455f7fed30d5cc0964f3289eee6a6cb03cdf7d5e20c14bd025/mkl-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-TVomRJgYqK69SyqvaykYMeaR+c90sVLfSbmc9Iu9U2A="
+  },
+  "oneccl": {
+    "version": "2022.1.2",
+    "url": "https://files.pythonhosted.org/packages/56/31/c0b03d6ed8cda5ad9a4de065e9e5da0eb1e8e5b5fa1b23a10d6f3a6ebed4/oneccl-2022.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-yHwo/M5UNbA7jwHz5mmrPsWXGPKPmrU3QDtJ7+g/TBY="
+  },
+  "oneccl-devel": {
+    "version": "2022.1.2",
+    "url": "https://files.pythonhosted.org/packages/e9/6b/df3454051871ad3e3ff5bd9e00bf3004d76480c49c3a554f5c004927727f/oneccl_devel-2022.1.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-vfl2RNqXH8EStr1T1uIuj/Ay+48yRCu5FOmHJ0QsIp0="
+  },
+  "onemkl-license": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/e3/ef/8437c187319e779a76f4dbb468a1863d729297d79a1b5f44b10a58c96ec2/onemkl_license-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-Of2ClkivksngPCK6Io8HF02Cmqov48X2zXBzuOuKmAU="
+  },
+  "onemkl-sycl-blas": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/d6/c5/94ce322721013c42578398846e57da4273d1f8e48ab1e49ad311a418d36e/onemkl_sycl_blas-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-Ip3RlGK0pYjBVupzvOKf6vDpZDTXl6m644qJaU/EZJM="
+  },
+  "onemkl-sycl-dft": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/71/60/80d4fa8e4e100f290572cf99856e067195fb9d22a7f462b8e0993833c526/onemkl_sycl_dft-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-cb00+MJbaGmkQKAerdJ0MVFgG/LQEbAcESBuyB9t6As="
+  },
+  "onemkl-sycl-lapack": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/0c/ee/9058fe036b82bc742adb6280574502da2a8c70364a945829579fd3dd8084/onemkl_sycl_lapack-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-l/82JvmUY+UHNKhQNO0sp2VgG1xdOwVgaV2nrsC09ik="
+  },
+  "onemkl-sycl-rng": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/f0/3c/4ee5d31e04539d1acd0a1acd3ddf722db570ac8c381d5bc2a9a197e31ca7/onemkl_sycl_rng-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-bSTuedotf+OLmd/fPDbjny3Hlr4KtcR3o+bRwkTtXM0="
+  },
+  "onemkl-sycl-sparse": {
+    "version": "2026.1.0",
+    "url": "https://files.pythonhosted.org/packages/83/af/416bc19b3488129975a9bd1dbdb8bbe9340a49a802c1e24db6728e233359/onemkl_sycl_sparse-2026.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-UOb+LNkBCQ1HP8VyABz6XA0ABxkDZ0XjpMlep0sy+cw="
+  },
+  "tbb": {
+    "version": "2023.1.0",
+    "url": "https://files.pythonhosted.org/packages/25/0c/0266c71e3fa50a71db5ce8a1d0807863df3215c5f7b5fe7c98b257561138/tbb-2023.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-ZK01JBxzallUmPU0Or7I6qogPp/g29v0uG03xaOrHZw="
+  },
+  "tcmlib": {
+    "version": "1.5.0",
+    "url": "https://files.pythonhosted.org/packages/60/24/aa409bb20703acc70cf4d3bc620a55c789639c2995b2667fb44ae7236ec9/tcmlib-1.5.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-nXwBz/Narpv1OQtiBoDr3xCn0hHCLWSIonoClQLn0Ko="
+  },
+  "umf": {
+    "version": "1.1.0",
+    "url": "https://files.pythonhosted.org/packages/c4/72/2e0182f4e6a727a15d0a8a99a82182a4f5bdec1a4f5767acfd2abdc72070/umf-1.1.0-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "hash": "sha256-VnFSxe5rjhbMVrKaipprkY3h/r+Jh39x6i6CR+85/DI="
+  }
+}

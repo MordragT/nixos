@@ -15,7 +15,11 @@
         enable = true;
         secretFile = config.vaultix.secrets.cloudflare.path;
       };
-      llama = {
+      # llama = {
+      #   enable = true;
+      #   port = 8080;
+      # };
+      lemonade = {
         enable = true;
         port = 8080;
       };

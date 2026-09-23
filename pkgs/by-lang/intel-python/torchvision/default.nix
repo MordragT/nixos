@@ -10,16 +10,18 @@
   libjpeg,
   libjpeg8,
 }:
-buildPythonPackage rec {
+let
   pname = "torchvision";
-  version = "0.24.1";
+  version = "0.29.0";
+in
+buildPythonPackage {
+  inherit pname version;
   format = "wheel";
 
   src = fetchtorch {
     inherit pname version;
     suffix = "%2Bxpu";
-    platform = "manylinux_2_28_x86_64";
-    hash = "sha256-2cWe5a49BWDwJAHI39gFTVCBOo27XTOod33n0C9vy3s=";
+    hash = "sha256-tomSJct+QdsJSzLXyN+KFbOeWnU4eXad6afiYuRTC3Y=";
   };
 
   nativeBuildInputs = [

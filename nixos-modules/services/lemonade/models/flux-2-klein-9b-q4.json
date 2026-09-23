@@ -1,0 +1,26 @@
+{
+  "checkpoints": {
+    "main": "leejet/FLUX.2-klein-9B-GGUF:flux-2-klein-9b-Q4_0.gguf",
+    "text_encoder": "unsloth/Qwen3-8B-GGUF:Qwen3-8B-Q4_K_M.gguf",
+    "vae": "Comfy-Org/flux2-dev:split_files/vae/flux2-vae.safetensors"
+  },
+  "image_defaults": {
+    "cfg_scale": 1.0,
+    "height": 1024,
+    "steps": 4,
+    "width": 1024
+  },
+  "labels": ["image", "edit", "custom"],
+  "model_name": "user.Flux-2-Klein-9B-Q4",
+  "recipe": "sd-cpp",
+  "recipe_options": {
+    "cfg_scale": 1.0,
+    "height": 1024,
+    "steps": 4,
+    "width": 1024,
+    "sd-cpp_backend": "vulkan",
+    "sdcpp_args": "--offload-to-cpu"
+  },
+  "registry_source": "huggingface",
+  "source": "huggingface"
+}

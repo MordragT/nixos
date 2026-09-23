@@ -6,16 +6,18 @@
   sox,
   torch,
 }:
-buildPythonPackage rec {
+let
   pname = "torchaudio";
-  version = "2.9.1";
+  version = "2.11.0";
+in
+buildPythonPackage {
+  inherit pname version;
   format = "wheel";
 
   src = fetchtorch {
     inherit pname version;
     suffix = "%2Bxpu";
-    platform = "manylinux_2_28_x86_64";
-    hash = "sha256-CrEpTR7Qv0chlbkMioYckFBvWMJ6Qy1zQ9zKVV5+h2k=";
+    hash = "sha256-L7h8rntpua+EosqFksBy3H52o4UZ1KFXQc8rKMDevV4=";
   };
 
   nativeBuildInputs = [

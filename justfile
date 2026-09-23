@@ -11,6 +11,7 @@ renc:
 update:
     use pkgs/by-attr/firefox-addons; firefox-addons
     use pkgs/by-attr/vscode-extensions; vscode-extensions
+    use pkgs/by-name/intel-oneapi; intel-oneapi
     use pkgs/by-scope/intel-dpcpp; intel-dpcpp
     use pkgs/by-name/intel-mkl; intel-mkl
     use pkgs/by-name/intel-mpi; intel-mpi

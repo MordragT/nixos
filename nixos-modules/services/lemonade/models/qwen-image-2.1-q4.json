@@ -1,0 +1,30 @@
+{
+  "checkpoints": {
+    "main": "unsloth/Qwen-Image-2.1-GGUF:qwen-image-2.1-Q4_K_M.gguf",
+    "text_encoder": "unsloth/Qwen3-VL-8B-Instruct-GGUF:Qwen3-VL-8B-Instruct-UD-Q4_K_XL.gguf",
+    "vae": "unsloth/Qwen-Image-2.1-FP8:vae/qwen_image_2.1_vae_bf16.safetensors"
+  },
+  "image_defaults": {
+    "cfg_scale": 2.5,
+    "flow_shift": 3.0,
+    "height": 512,
+    "sampling_method": "euler",
+    "steps": 20,
+    "width": 512
+  },
+  "labels": ["image", "edit"],
+  "model_name": "user.Qwen-Image-2.1-Q4",
+  "recipe": "sd-cpp",
+  "recipe_options": {
+    "cfg_scale": 2.5,
+    "flow_shift": 3.0,
+    "height": 512,
+    "sampling_method": "euler",
+    "sdcpp_args": "--diffusion-fa --offload-to-cpu",
+    "steps": 20,
+    "width": 512
+  },
+  "registry_source": "huggingface",
+  "size": 18.2,
+  "source": "huggingface"
+}

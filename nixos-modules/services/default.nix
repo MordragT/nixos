@@ -7,6 +7,7 @@
     ./forgejo
     ./harmonia
     ./invokeai
+    ./lemonade
     ./llama
     ./printing
     ./tailscale

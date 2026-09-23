@@ -12,11 +12,11 @@
   pip,
   python,
   accelerate,
+  bitsandbytes,
   compel,
   diffusers,
   gguf,
   invisible-watermark,
-  mediapipe,
   numpy,
   onnx,
   onnxruntime,
@@ -25,7 +25,6 @@
   safetensors,
   sentencepiece,
   spandrel,
-  ipex,
   torch,
   torchmetrics,
   torchsde,
@@ -51,12 +50,12 @@
   semver,
 }:
 let
-  version = "6.0.2";
+  version = "6.14.1";
   src = fetchFromGitHub {
     owner = "invoke-ai";
     repo = "InvokeAI";
     rev = "v${version}";
-    hash = "sha256-XmzjsBISi875aoMlya+E78yBGRVs73cy78C2hm6Exfo=";
+    hash = "sha256-yhlz8u2rsL2XRM3U0D2eFbJA1wz74mIgeTNRprx/KZY=";
   };
   web = stdenv.mkDerivation rec {
     pname = "invokeai-web";
@@ -66,6 +65,7 @@ let
 
     nativeBuildInputs = [
       nodejs
+      pnpm
       pnpmConfigHook
     ];
 
@@ -76,8 +76,8 @@ let
         version
         sourceRoot
         ;
-      hash = "sha256-sjVQqSVxeljk5NO9NN0e7N1Vhft0QIA8+Pq9Nr+zAiw=";
-      fetcherVersion = 2;
+      hash = "sha256-EBxUpRBq+9+evRUaqFTLaOypsZuImcqFKthlJiRAOms=";
+      fetcherVersion = 4;
     };
 
     buildPhase = ''
@@ -99,7 +99,6 @@ buildPythonPackage {
   ];
 
   pythonRemoveDeps = [
-    "bitsandbytes"
     "opencv-contrib-python"
     "mediapipe"
   ];
@@ -109,7 +108,7 @@ buildPythonPackage {
     "numpy"
     "onnx"
     "onnxruntime"
-    "torch" # no idea why invokeai thinkgs torch is version 2.6.0
+    # "torch" # no idea why invokeai thinkgs torch is version 2.6.0
   ];
 
   build-system = [
@@ -123,6 +122,7 @@ buildPythonPackage {
 
   dependencies = [
     accelerate
+    bitsandbytes
     compel
     diffusers
     gguf
@@ -136,7 +136,6 @@ buildPythonPackage {
     safetensors
     sentencepiece
     spandrel
-    # ipex
     torch
     torchmetrics
     torchsde
@@ -174,9 +173,9 @@ buildPythonPackage {
   #   test = [ruff ruff-lsp mypy pre-commit pytest pytest-cov pytest-timeout pytest-datadir requests_testadapter httpx];
   # };
 
-  patches = [
-    ./01-xpu-and-shutil.patch
-  ];
+  # patches = [
+  #   ./01-xpu-and-shutil.patch
+  # ];
 
   postInstall = ''
     ln -s ${web} $out/${python.sitePackages}/invokeai/frontend/web/dist
@@ -188,6 +187,7 @@ buildPythonPackage {
   '';
 
   meta = {
+    broken = true;
     description = "Fancy Web UI for Stable Diffusion";
     homepage = "https://invoke-ai.github.io/InvokeAI/";
     mainProgram = "invokeai-web";

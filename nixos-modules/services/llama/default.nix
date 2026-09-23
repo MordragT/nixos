@@ -25,6 +25,7 @@ let
     cache-type-k = "iq4_nl";
     cache-type-v = "iq4_nl";
     # no-kv-offload = true; # do not offload cache to gpu
+    fit-target = 512;
 
     flash-attn = "on";
 

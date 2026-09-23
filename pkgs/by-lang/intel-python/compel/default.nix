@@ -6,15 +6,16 @@
   diffusers,
   pyparsing,
   torch,
+  notebook,
 }:
 buildPythonPackage rec {
   pname = "compel";
-  version = "2.1.1";
+  version = "2.4.0";
   format = "pyproject";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-miAYGXIxk6Cz71wJChUOZLTvXgFxUmLc5yPr0ysi33w=";
+    sha256 = "sha256-nZNdNbtNFvoh1LO1Kdi4+dx4TWe0TkL0bNSMndMhrcI=";
   };
 
   build-system = [
@@ -26,6 +27,7 @@ buildPythonPackage rec {
     pyparsing
     transformers
     torch
+    notebook
   ];
 
   pythonImportsCheck = [ "compel" ];

@@ -4,13 +4,16 @@
   gtk4,
   lib,
   pkg-config,
-  stable-diffusion-cpp-sycl,
+  # stable-diffusion-cpp-sycl,
+  stable-diffusion-cpp-vulkan,
   stdenv,
   makeWrapper,
   ...
 }:
 let
   version = "0.8.9";
+  # sd = stable-diffusion-cpp-sycl; # currently broken
+  sd = stable-diffusion-cpp-vulkan;
 in
 stdenv.mkDerivation {
   pname = "neural-pixel";
@@ -48,6 +51,6 @@ stdenv.mkDerivation {
 
     wrapProgram $out/bin/neural-pixel \
       --set GTK_THEME Adwaita:dark \
-      --suffix PATH : ${lib.makeBinPath [ stable-diffusion-cpp-sycl ]};
+      --suffix PATH : ${lib.makeBinPath [ sd ]};
   '';
 }

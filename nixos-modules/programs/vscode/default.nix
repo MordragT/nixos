@@ -25,7 +25,7 @@ in
 
         # broken ms-python.python
         # broken ms-python.vscode-pylance
-        ms-dotnettools.csharp
+        # broken ms-dotnettools.csharp
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
         ms-toolsai.vscode-jupyter-cell-tags

@@ -24,8 +24,7 @@
       dist ? "whl/xpu",
       python ? "cp313",
       abi ? "cp313",
-      platform ? "linux_x86_64",
-      # platform ? "manylinux_2_28_x86_64",
+      platform ? "manylinux_2_28_x86_64",
       hash,
     }:
     fetchurl {

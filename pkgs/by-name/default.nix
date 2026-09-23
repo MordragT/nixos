@@ -3,6 +3,7 @@ let
   inherit (self) callPackage;
 in
 {
+  acestep-cpp-vulkan = callPackage ./acestep-cpp-vulkan { };
   byfl = callPackage ./byfl { };
   chatgpt = callPackage ./chatgpt { };
 
@@ -31,10 +32,13 @@ in
   intel-metrics = callPackage ./intel-metrics { };
   intel-mkl = callPackage ./intel-mkl { };
   intel-mpi = callPackage ./intel-mpi { };
+  intel-oneapi = callPackage ./intel-oneapi { };
   intel-pti = callPackage ./intel-pti { };
   intel-tbb = callPackage ./intel-tbb { };
   intel-tcm = callPackage ./intel-tcm { };
 
+  kokoros = callPackage ./kokoros { };
+  lemonade-server = callPackage ./lemonade-server { };
   llama-cpp-sycl = callPackage ./llama-cpp-sycl { };
   lottieconv = callPackage ./lottieconv { };
   neural-pixel = callPackage ./neural-pixel { };
@@ -52,6 +56,7 @@ in
 
   open-plc-utils = callPackage ./open-plc-utils { };
   opengothic = callPackage ./opengothic { };
+  openmoss-vulkan = callPackage ./openmoss-vulkan { };
   openvino-tokenizers = callPackage ./openvino-tokenizers { };
   oxen = callPackage ./oxen { };
   pla-util = callPackage ./pla-util { };
@@ -66,7 +71,9 @@ in
   steamos-stubs = callPackage ./steamos-stubs { };
 
   teamfight-tactics = callPackage ./teamfight-tactics { };
+  thinksound-cpp-vulkan = callPackage ./thinksound-cpp-vulkan { };
   tmfs = callPackage ./tmfs { };
+  trellis-cpp-vulkan = callPackage ./trellis-cpp-vulkan { };
 
   xdg-desktop-portal-gamescope = callPackage ./xdg-desktop-portal-gamescope { };
   zen-browser-bin = callPackage ./zen-browser-bin { };
