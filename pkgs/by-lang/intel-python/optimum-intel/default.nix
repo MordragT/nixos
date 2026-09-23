@@ -4,6 +4,7 @@
   fetchFromGitHub,
   setuptools,
   torch,
+  torchvision,
   optimum,
   transformers,
   datasets,
@@ -13,33 +14,39 @@
   nncf,
   openvino,
   openvino-tokenizers,
-  accelerate,
-  ipex,
   diffusers,
 }:
-buildPythonPackage rec {
+let
+  version = "2.2.0";
+in
+buildPythonPackage {
   pname = "optimum-intel";
-  version = "1.21.0";
+  inherit version;
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "huggingface";
     repo = "optimum-intel";
     rev = "v${version}";
-    hash = "sha256-gVm94yoV47nlGPtqPuU4ePzA1+1vnCCrRGoG2MrrFBA=";
+    hash = "sha256-d7kLE0xjgtkhVvT7St/at3RSnWPvZjBl9AyD1sQ7nq8=";
   };
+
   build-system = [
     setuptools
   ];
 
   dependencies = [
     torch
+    torchvision
     optimum
     transformers
     datasets
     sentencepiece
     scipy
     onnx
+    nncf
+    openvino
+    openvino-tokenizers
   ];
 
   optional-dependencies = {
@@ -51,14 +58,6 @@ buildPythonPackage rec {
       openvino
       openvino-tokenizers
     ];
-    neural-compressor = [
-      #neural-compressor
-      accelerate
-    ];
-    ipex = [
-      ipex
-      accelerate
-    ];
     diffusers = [
       diffusers
     ];
@@ -66,6 +65,14 @@ buildPythonPackage rec {
 
   pythonRelaxDeps = [
     "transformers"
+    "optimum"
+    "huggingface-hub"
+  ];
+
+  # These somehow fail although provided
+  pythonRemoveDeps = [
+    "openvino"
+    "openvino-tokenizers"
   ];
 
   # collision with optimum-cli and does import that only anyways

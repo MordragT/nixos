@@ -42,10 +42,6 @@ in
 
   nncf = callPackage ./nncf { };
 
-  openvino-tokenizers = callPackage ./openvino-tokenizers {
-    openvino-tokenizers-native = pySelf.pkgs.openvino-tokenizers;
-  };
-
   optimum-intel = callPackage ./optimum-intel { };
 
   parler-tts = callPackage ./parler-tts { };
@@ -59,8 +55,6 @@ in
   pystoi = callPackage ./pystoi { };
 
   randomname = callPackage ./randomname { };
-
-  spandrel = callPackage ./spandrel { };
 
   surya-ocr = callPackage ./surya-ocr { };
 

@@ -25,17 +25,21 @@
   pillow,
   plotly,
 }:
-buildPythonPackage rec {
+let
+  version = "3.4.0";
+in
+buildPythonPackage {
   pname = "nncf";
-  version = "2.14.0";
+  inherit version;
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "openvinotoolkit";
     repo = "nncf";
     rev = "v${version}";
-    hash = "sha256-0hrmJI8pnAAtC8D2WnUKxu5rEpXwBQ2mIUxVoX9m2/E=";
+    hash = "sha256-PsInhbHmTrnP/STSpCqSfXpd6CAIYR4Ah3bbxu3lfuo=";
   };
+
   build-system = [
     setuptools
   ];
@@ -71,19 +75,15 @@ buildPythonPackage rec {
 
   pythonRelaxDeps = [
     "ninja"
+    "numpy"
   ];
 
   pythonRemoveDeps = [
     "openvino-telemetry"
   ];
 
-  # postPatch = ''
-  #   substituteInPlace ./pyproject.toml \
-  #     --replace-fail 'version = { attr = "custom_version.version" }' 'version = "${version}"'
-  # '';
-
   postPatch = ''
-    substituteInPlace ./custom_version.py \
+    substituteInPlace ./src/custom_version.py \
       --replace-fail 'version = get_custom_version()' 'version = "${version}"'
   '';
 

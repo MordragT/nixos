@@ -57,7 +57,6 @@ in
   open-plc-utils = callPackage ./open-plc-utils { };
   opengothic = callPackage ./opengothic { };
   openmoss-vulkan = callPackage ./openmoss-vulkan { };
-  openvino-tokenizers = callPackage ./openvino-tokenizers { };
   oxen = callPackage ./oxen { };
   pla-util = callPackage ./pla-util { };
   proton-cachyos-bin = callPackage ./proton-cachyos-bin { };
