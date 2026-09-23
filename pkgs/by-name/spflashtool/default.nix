@@ -2,7 +2,7 @@
   stdenv,
   lib,
   fetchzip,
-  libsForQt5,
+  qt5,
   autoPatchelfHook,
 }:
 stdenv.mkDerivation rec {
@@ -16,12 +16,12 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     autoPatchelfHook
-    libsForQt5.qt5.wrapQtAppsHook
+    qt5.wrapQtAppsHook
   ];
 
   qtWrapperArgs =
     let
-      runtimeLibs = with libsForQt5.qt5; [
+      runtimeLibs = with qt5; [
         qtbase
         qtserialport
         qtxmlpatterns

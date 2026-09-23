@@ -4,8 +4,6 @@ let
   build-support = callPackage ./build-support.nix { };
 in
 {
-  argbind = callPackage ./argbind { };
-
   bitsandbytes = callPackage ./bitsandbytes { };
 
   compel = callPackage ./compel { };
@@ -16,10 +14,6 @@ in
         --replace-fail "0.3.8" "0.3.9"
     '';
   });
-
-  descript-audio-codec = callPackage ./descript-audio-codec { };
-
-  descript-audiotools = callPackage ./descript-audiotools { };
 
   dynamicprompts = callPackage ./dynamicprompts { };
 
@@ -44,8 +38,6 @@ in
 
   optimum-intel = callPackage ./optimum-intel { };
 
-  parler-tts = callPackage ./parler-tts { };
-
   pdftext = callPackage ./pdftext { };
 
   picklescan = callPackage ./picklescan { };
@@ -53,8 +45,6 @@ in
   pypatchmatch = callPackage ./pypatchmatch { };
 
   pystoi = callPackage ./pystoi { };
-
-  randomname = callPackage ./randomname { };
 
   surya-ocr = callPackage ./surya-ocr { };
 

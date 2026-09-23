@@ -8,6 +8,7 @@
   libGL,
   glib,
   level-zero,
+  ocl-icd,
   ...
 }:
 let
@@ -19,7 +20,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "intel-oneapi";
-  version = "2025.3";
+  version = "2026.1.2";
 
   srcs = lib.mapAttrsToList (_: whl: fetchurl { inherit (whl) url hash; }) wheels;
 
@@ -41,6 +42,7 @@ stdenv.mkDerivation {
     libGL
     glib
     level-zero
+    ocl-icd
   ];
 
   # Ignore-list for deps neither the wheels nor nixpkgs provide.
@@ -92,6 +94,10 @@ stdenv.mkDerivation {
         done
       fi
     done
+
+    # use ocl-icd instead
+    rm $out/lib/libOpenCL.so*
+
     runHook postInstall
   '';
 
