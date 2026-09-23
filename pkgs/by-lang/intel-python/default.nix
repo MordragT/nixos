@@ -70,6 +70,10 @@ in
     inherit (build-support) fetchtorch;
   };
 
+  torchcodec = callPackage ./torchcodec {
+    inherit (build-support) fetchtorch;
+  };
+
   torchvision = callPackage ./torchvision {
     inherit (build-support) fetchtorch;
   };
