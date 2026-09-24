@@ -68,12 +68,14 @@ stdenv.mkDerivation {
   '';
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/lib $out/share/intel-oneapi
+    mkdir -p $out/lib $out/include $out/share/intel-oneapi
+
     # Collect .so files from each wheel's .data/data/lib into $out/lib.
     # Later wheels' files overwrite earlier only on exact filename match;
     # Intel wheels use distinct filenames so this is safe.
     for wheel_dir in wheel_*; do
       if [ -d "$wheel_dir" ]; then
+        # --- libs ---
         for data_lib in "$wheel_dir"/*.data/data/lib; do
           if [ -d "$data_lib" ]; then
             cp -rn "$data_lib"/. $out/lib/ 2>/dev/null || \
@@ -84,6 +86,18 @@ stdenv.mkDerivation {
         if [ -d "$wheel_dir/lib" ]; then
           cp -rn "$wheel_dir/lib"/. $out/lib/ 2>/dev/null || true
         fi
+
+        # --- includes ---
+        for data_inc in "$wheel_dir"/*.data/data/include; do
+          if [ -d "$data_inc" ]; then
+            cp -rn "$data_inc"/. $out/include/ 2>/dev/null || \
+              cp -r "$data_inc"/. $out/include/
+          fi
+        done
+        if [ -d "$wheel_dir/include" ]; then
+          cp -rn "$wheel_dir/include"/. $out/include/ 2>/dev/null || true
+        fi
+
         # Preserve license / manifest files under share/ for compliance
         for meta in "$wheel_dir"/*.dist-info/METADATA; do
           if [ -f "$meta" ]; then
