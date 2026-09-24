@@ -23,6 +23,8 @@ in
 
   fastapi-events = callPackage ./fastapi-events { };
 
+  intel-oneapi = pyPkgs.toPythonModule pySelf.pkgs.intel-oneapi;
+
   invokeai = callPackage ./invokeai { };
 
   ipex = callPackage ./ipex {

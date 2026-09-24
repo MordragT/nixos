@@ -9,6 +9,7 @@
   glib,
   level-zero,
   ocl-icd,
+  python3,
   ...
 }:
 let
@@ -17,19 +18,13 @@ let
   # All are py2.py3-none-manylinux_2_28_x86_64 binary
   # distributions containing .so files and Python shims.
   wheels = builtins.fromJSON (builtins.readFile ./wheels.lock);
+  wheelSrcs = lib.mapAttrsToList (_: whl: fetchurl { inherit (whl) url hash; }) wheels;
 in
 stdenv.mkDerivation {
   pname = "intel-oneapi";
   version = "2026.1.2";
 
-  srcs = lib.mapAttrsToList (_: whl: fetchurl { inherit (whl) url hash; }) wheels;
-
-  sourceRoot = ".";
-
-  dontConfigure = true;
-  dontBuild = true;
-  # Runtime library stuff — no binaries, no Python, just .so files.
-  dontStrip = true;
+  srcs = wheelSrcs;
 
   nativeBuildInputs = [
     unzip
@@ -46,10 +41,8 @@ stdenv.mkDerivation {
   ];
 
   # Ignore-list for deps neither the wheels nor nixpkgs provide.
-  # Intel wheel-to-wheel SONAME refs are resolved
   autoPatchelfIgnoreMissingDeps = [
-    # impi-rt fabric plugins (RDMA / InfiniBand / PSM / EFA / UCX) — loaded
-    # only when MPI distributed mode is requested.
+    # impi-rt fabric plugins (RDMA / InfiniBand / PSM / EFA / UCX)
     "librdmacm.so.1"
     "libibverbs.so.1"
     "libucp.so.0"
@@ -58,59 +51,66 @@ stdenv.mkDerivation {
     "libefa.so.1"
   ];
 
-  unpackPhase = ''
-    runHook preUnpack
-    for whl in $srcs; do
-      mkdir -p "wheel_$(basename "$whl" .whl)"
-      unzip -q "$whl" -d "wheel_$(basename "$whl" .whl)"
-    done
-    runHook postUnpack
-  '';
+  dontUnpack = true;
+  dontConfigure = true;
+  dontBuild = true;
+  dontStrip = true;
+
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/lib $out/include $out/share/intel-oneapi
 
-    # Collect .so files from each wheel's .data/data/lib into $out/lib.
-    # Later wheels' files overwrite earlier only on exact filename match;
-    # Intel wheels use distinct filenames so this is safe.
-    for wheel_dir in wheel_*; do
-      if [ -d "$wheel_dir" ]; then
-        # --- libs ---
-        for data_lib in "$wheel_dir"/*.data/data/lib; do
-          if [ -d "$data_lib" ]; then
-            cp -rn "$data_lib"/. $out/lib/ 2>/dev/null || \
-              cp -r "$data_lib"/. $out/lib/
-          fi
-        done
-        # Also copy any top-level lib dirs (some wheels use that layout)
-        if [ -d "$wheel_dir/lib" ]; then
-          cp -rn "$wheel_dir/lib"/. $out/lib/ 2>/dev/null || true
-        fi
+    mkdir -p "$out/lib" "$out/bin" "$out/include"
+    mkdir -p "$out/${python3.sitePackages}"
 
-        # --- includes ---
-        for data_inc in "$wheel_dir"/*.data/data/include; do
-          if [ -d "$data_inc" ]; then
-            cp -rn "$data_inc"/. $out/include/ 2>/dev/null || \
-              cp -r "$data_inc"/. $out/include/
-          fi
-        done
-        if [ -d "$wheel_dir/include" ]; then
-          cp -rn "$wheel_dir/include"/. $out/include/ 2>/dev/null || true
-        fi
+    for whl in $srcs; do
+      echo "unpacking $whl"
+      tmp=$(mktemp -d)
+      unzip -q "$whl" -d "$tmp"
 
-        # Preserve license / manifest files under share/ for compliance
-        for meta in "$wheel_dir"/*.dist-info/METADATA; do
-          if [ -f "$meta" ]; then
-            pname=$(basename "$(dirname "$meta")" .dist-info)
-            mkdir -p "$out/share/intel-oneapi/$pname"
-            cp "$meta" "$out/share/intel-oneapi/$pname/"
-          fi
+      # PEP 427 wheel data scheme: <pkg>-<ver>.data/<scheme>/...
+      shopt -s nullglob
+      for datadir in "$tmp"/*.data; do
+        [ -d "$datadir" ] || continue
+        for scheme in "$datadir"/*; do
+          [ -d "$scheme" ] || continue
+          schemeName=$(basename "$scheme")
+          case "$schemeName" in
+            data)
+              # Runtime libs, headers, bins from .data/data/{lib,include,bin}
+              if [ -d "$scheme/lib" ]; then
+                cp -af "$scheme/lib"/. "$out/lib/"
+              fi
+              if [ -d "$scheme/include" ]; then
+                cp -af "$scheme/include"/. "$out/include/"
+              fi
+              if [ -d "$scheme/bin" ]; then
+                cp -af "$scheme/bin"/. "$out/bin/"
+              fi
+              ;;
+            scripts)
+              cp -af "$scheme"/. "$out/bin/"
+              ;;
+            headers)
+              cp -af "$scheme"/. "$out/include/"
+              ;;
+            *)
+              # purelib/platlib or unknown → site-packages
+              cp -af "$scheme"/. "$out/${python3.sitePackages}/"
+              ;;
+          esac
         done
+        rm -rf "$datadir"
+      done
+
+      # Remaining top-level entries (python packages + .dist-info) go to site-packages
+      if [ -n "$(ls -A "$tmp" 2>/dev/null)" ]; then
+        cp -af "$tmp"/. "$out/${python3.sitePackages}/"
       fi
+      rm -rf "$tmp"
     done
 
-    # use ocl-icd instead
-    rm $out/lib/libOpenCL.so*
+    # use ocl-icd instead of bundled OpenCL
+    rm -f $out/lib/libOpenCL.so*
 
     runHook postInstall
   '';

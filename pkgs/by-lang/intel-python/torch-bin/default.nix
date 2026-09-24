@@ -45,7 +45,6 @@ buildPythonPackage {
 
   buildInputs = [
     zlib
-    intel-oneapi
   ];
 
   dependencies = [
@@ -57,6 +56,7 @@ buildPythonPackage {
     setuptools
     sympy
     typing-extensions
+    intel-oneapi
   ];
 
   postInstall = ''
