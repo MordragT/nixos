@@ -8,6 +8,11 @@
 let
   cfg = config.mordrag.services.lemonade;
 
+  # Small wrapper helper because openmoss doesn't fit on 8gigs of vram
+  openMossWrapped = pkgs.writeShellScriptBin "moss-tts-server" ''
+    exec ${cfg.backends.openMoss}/bin/moss-tts-server --aux-cpu "$@"
+  '';
+
   backendPath = name: "/etc/lemonade/backends/${name}";
 
   backendLinks = {
@@ -17,7 +22,8 @@ let
     "lemonade/backends/thinksound-vulkan".source = "${cfg.backends.thinkSound}/bin/ts-server";
     "lemonade/backends/trellis-vulkan".source = "${cfg.backends.trellis}/bin/trellis-server";
     "lemonade/backends/acestep-vulkan".source = "${cfg.backends.aceStep}/bin/ace-server";
-    "lemonade/backends/openmoss-vulkan".source = "${cfg.backends.openMoss}/bin/moss-tts-server";
+    # "lemonade/backends/openmoss-vulkan".source = "${cfg.backends.openMoss}/bin/moss-tts-server";
+    "lemonade/backends/openmoss-vulkan".source = "${openMossWrapped}/bin/moss-tts-server";
     "lemonade/backends/kokoro-cpu".source = "${cfg.backends.kokoro}/bin/koko";
   };
 

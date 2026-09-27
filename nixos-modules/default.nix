@@ -2,6 +2,7 @@
   flake.nixosModules.default = {
     imports = [
       ./boot
+      ./containers
       ./desktop
       ./disks
       ./hardware

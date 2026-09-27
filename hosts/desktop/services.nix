@@ -10,6 +10,13 @@
   };
 
   mordrag = {
+    containers = {
+      # comfyui = {
+      #   enable = true;
+      #   port = 8188;
+      # };
+    };
+
     services = {
       caddy = {
         enable = true;
@@ -34,6 +41,10 @@
 
   services = {
     flatpak.enable = true;
+    open-webui = {
+      enable = true;
+      port = 8000;
+    };
     tailscale = {
       enable = true; # trayscale gui ?
       extraSetFlags = [ "--operator=tom" ];

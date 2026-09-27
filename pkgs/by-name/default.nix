@@ -57,6 +57,7 @@ in
   open-plc-utils = callPackage ./open-plc-utils { };
   opengothic = callPackage ./opengothic { };
   openmoss-vulkan = callPackage ./openmoss-vulkan { };
+  openvino = callPackage ./openvino { };
   oxen = callPackage ./oxen { };
   pla-util = callPackage ./pla-util { };
   proton-cachyos-bin = callPackage ./proton-cachyos-bin { };
@@ -73,6 +74,7 @@ in
   thinksound-cpp-vulkan = callPackage ./thinksound-cpp-vulkan { };
   tmfs = callPackage ./tmfs { };
   trellis-cpp-vulkan = callPackage ./trellis-cpp-vulkan { };
+  trellis-studio = callPackage ./trellis-studio { };
 
   xdg-desktop-portal-gamescope = callPackage ./xdg-desktop-portal-gamescope { };
   zen-browser-bin = callPackage ./zen-browser-bin { };
