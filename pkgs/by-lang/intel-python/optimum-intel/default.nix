@@ -85,6 +85,11 @@ buildPythonPackage {
             '__version__ = "${version}"'
   '';
 
+  # collision with optimum-cli and does import that only anyways
+  postInstall = ''
+    rm -r $out/bin
+  '';
+
   doCheck = false; # tests require CUDA and also GPU access
 
   pythonImportsCheck = [
