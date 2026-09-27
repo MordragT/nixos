@@ -17,7 +17,7 @@
   diffusers,
 }:
 let
-  version = "2.2.0";
+  version = "2.3.0";
 in
 buildPythonPackage {
   pname = "optimum-intel";
@@ -27,8 +27,12 @@ buildPythonPackage {
   src = fetchFromGitHub {
     owner = "huggingface";
     repo = "optimum-intel";
-    rev = "v${version}";
-    hash = "sha256-d7kLE0xjgtkhVvT7St/at3RSnWPvZjBl9AyD1sQ7nq8=";
+    # rev = "v${version}";
+    # hash = "sha256-d7kLE0xjgtkhVvT7St/at3RSnWPvZjBl9AyD1sQ7nq8=";
+    # use branch to make it compatible with new transformers version of nix
+    # transformers-v5.14
+    rev = "f132b42ac55078b61ce9326dd4aa282aed1e913b";
+    hash = "sha256-X487P/cPNwrHdlIhhFmfk+oEjZVpubUzr3AMJ+pFVEQ=";
   };
 
   build-system = [
@@ -75,15 +79,17 @@ buildPythonPackage {
     "openvino-tokenizers"
   ];
 
-  # collision with optimum-cli and does import that only anyways
-  postInstall = ''
-    rm -r $out/bin
+  postPatch = ''
+    substituteInPlace optimum/intel/version.py \
+        --replace-fail '__version__ = "2.3.0.dev0"' \
+            '__version__ = "${version}"'
   '';
 
   doCheck = false; # tests require CUDA and also GPU access
 
   pythonImportsCheck = [
     "optimum.intel"
+    "optimum.intel.openvino"
     "optimum.exporters"
   ];
 

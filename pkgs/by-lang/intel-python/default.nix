@@ -70,6 +70,18 @@ in
     inherit (build-support) fetchtorch;
   };
 
+  # Optimum Intel doesn't work with transformers 5.17.0, so we override it to 5.16.0
+  transformers = pyPkgs.transformers.overrideAttrs (_: {
+    version = "v5.16.1";
+
+    src = pyPkgs.pkgs.fetchFromGitHub {
+      owner = "huggingface";
+      repo = "transformers";
+      rev = "v5.16.1";
+      hash = "sha256-VgBgaj4Qh2NVmJoqlrdb3hED/n1otIqDawXcALBpb2c=";
+    };
+  });
+
   triton-xpu = callPackage ./triton-xpu {
     inherit (build-support) fetchtorch;
   };
