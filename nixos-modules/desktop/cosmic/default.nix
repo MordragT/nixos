@@ -30,7 +30,7 @@ in
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       COSMIC_DATA_CONTROL_ENABLED = "1"; # needed for cosmic-ext-applet-clipboard-manager
-      QT_QPA_PLATFORMTHEME = "cosmic"; # utilizes cutecosmic
+      # broken somehow QT_QPA_PLATFORMTHEME = "cosmic"; # utilizes cutecosmic
     };
 
     environment.systemPackages = with pkgs; [

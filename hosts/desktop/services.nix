@@ -26,10 +26,10 @@
       #   enable = true;
       #   port = 8080;
       # };
-      lemonade = {
-        enable = true;
-        port = 8080;
-      };
+      # lemonade = {
+      #   enable = true;
+      #   port = 8080;
+      # };
       printing.enable = true;
       qpad = {
         enable = true;
@@ -41,10 +41,6 @@
 
   services = {
     flatpak.enable = true;
-    open-webui = {
-      enable = true;
-      port = 8000;
-    };
     tailscale = {
       enable = true; # trayscale gui ?
       extraSetFlags = [ "--operator=tom" ];

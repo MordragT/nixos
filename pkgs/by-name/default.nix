@@ -57,7 +57,20 @@ in
   open-plc-utils = callPackage ./open-plc-utils { };
   opengothic = callPackage ./opengothic { };
   openmoss-vulkan = callPackage ./openmoss-vulkan { };
-  openvino = callPackage ./openvino { };
+  openvino-gpu = callPackage ./openvino-gpu { };
+  openvino-tokenizers-gpu = pkgs.openvino-tokenizers.override {
+    openvino = self.openvino-gpu;
+  };
+  openvino-genai-gpu =
+    (pkgs.openvino-genai.override {
+      openvino = self.openvino-gpu;
+      openvino-tokenizers = self.openvino-tokenizers-gpu;
+    }).overrideAttrs
+      (old: {
+        # This fixes a build failure connected to some aggregate destructor
+        # in C++20
+        cmakeFlags = [ "-DCMAKE_CXX_STANDARD=17" ] ++ old.cmakeFlags;
+      });
   oxen = callPackage ./oxen { };
   pla-util = callPackage ./pla-util { };
   proton-cachyos-bin = callPackage ./proton-cachyos-bin { };

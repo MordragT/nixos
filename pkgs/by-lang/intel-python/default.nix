@@ -38,6 +38,20 @@ in
 
   nncf = callPackage ./nncf { };
 
+  openvino-gpu = pyPkgs.openvino.override {
+    openvino-native = pyPkgs.pkgs.openvino-gpu;
+  };
+
+  openvino-tokenizers-gpu = pyPkgs.openvino-tokenizers.override {
+    openvino = pySelf.openvino-gpu;
+    openvino-tokenizers-native = pyPkgs.pkgs.openvino-tokenizers-gpu;
+  };
+
+  openvino-genai-gpu = pyPkgs.openvino-genai.override {
+    openvino-genai-native = pySelf.openvino-genai-gpu;
+    openvino-tokenizers = pySelf.openvino-tokenizers-gpu;
+  };
+
   optimum-intel = callPackage ./optimum-intel { };
 
   pdftext = callPackage ./pdftext { };

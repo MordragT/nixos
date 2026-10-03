@@ -53,7 +53,7 @@ let
 in
 
 stdenv.mkDerivation (finalAttrs: {
-  pname = "openvino";
+  pname = "openvino-gpu";
   version = "2026.4.0";
 
   src = fetchFromGitHub {

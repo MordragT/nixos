@@ -8,6 +8,10 @@
   options.mordrag.hardware.intel-arc-a750 = lib.mkEnableOption "Intel ARC A750";
 
   config = lib.mkIf config.mordrag.hardware.intel-arc-a750 {
+    environment.systemPackages = [
+      pkgs.nvtopPackages.intel # gpu top
+    ];
+
     # Force probe the i915 and xe drivers for the Intel Arc A750 GPU,
     # to enable experimental xe driver support.
     boot.kernelParams = [

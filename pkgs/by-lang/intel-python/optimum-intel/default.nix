@@ -12,8 +12,8 @@
   scipy,
   onnx,
   nncf,
-  openvino,
-  openvino-tokenizers,
+  openvino-gpu,
+  openvino-tokenizers-gpu,
   diffusers,
 }:
 let
@@ -49,8 +49,8 @@ buildPythonPackage {
     scipy
     onnx
     nncf
-    openvino
-    openvino-tokenizers
+    openvino-gpu
+    openvino-tokenizers-gpu
   ];
 
   optional-dependencies = {
@@ -59,8 +59,8 @@ buildPythonPackage {
     ];
     openvino = [
       nncf
-      openvino
-      openvino-tokenizers
+      openvino-gpu
+      openvino-tokenizers-gpu
     ];
     diffusers = [
       diffusers
