@@ -21,8 +21,10 @@ in
 
       extraPackages = with pkgs; [
         alejandra # nix formater
+        beamPackages.expert
         copilot-language-server
         harper # grammar checker
+        kotlin-language-server
         nil # nix language server
         nixd # TODO needed because of https://github.com/zed-industries/zed/issues/23368
         nixfmt
@@ -216,9 +218,33 @@ in
           };
         };
         languages = {
+          Elixir = {
+            language_servers = [
+              "expert"
+              "!elixir-ls"
+            ];
+          };
+          EEx = {
+            language_servers = [
+              "expert"
+              "!elixir-ls"
+            ];
+          };
+          HEEx = {
+            language_servers = [
+              "expert"
+              "!elixir-ls"
+            ];
+          };
           Kola = {
             semantic_tokens = "full";
             language_servers = [ "kola-ls" ];
+          };
+          Kotlin = {
+            language_servers = [
+              "kotlin-language-server"
+              "!kotlin-lsp"
+            ];
           };
           Nix = {
             language_servers = [

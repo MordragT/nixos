@@ -12,6 +12,7 @@
       nitrokey-app2
       pynitrokey
       libfido2
+      age-plugin-openpgp-card
     ];
 
     hardware = {
