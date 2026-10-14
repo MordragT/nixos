@@ -13,6 +13,7 @@
       pynitrokey
       libfido2
       age-plugin-openpgp-card
+      age-plugin-yubikey
     ];
 
     hardware = {

@@ -57,6 +57,7 @@
           drawio
           gather
           gh
+          jwt-cli
           onlyoffice-desktopeditors # office suite
           opcua-commander
           slack
@@ -68,6 +69,6 @@
 
   virtualisation = {
     virtualbox.host.enable = true;
-    # vmware.host.enable = true;
+    vmware.host.enable = true;
   };
 }
