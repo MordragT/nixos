@@ -71,7 +71,8 @@
   services.udev = {
     enable = true;
     extraRules = ''
-      SUBSYSTEMS=="usb", ATTRS{idVendor}=="04f9", ATTRS{idProduct}=="209b", GROUP="users", MODE="0664"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="04f9", ATTR{idProduct}=="209b", MODE="0666", TAG+="uaccess"
+      SUBSYSTEM=="usbmisc", KERNEL=="lp*", ATTRS{idVendor}=="04f9", ATTRS{idProduct}=="209b", MODE="0666"
     '';
   };
 
