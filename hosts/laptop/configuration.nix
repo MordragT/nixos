@@ -67,6 +67,14 @@
     };
   };
 
+  # Allow access to brother label printer
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="04f9", ATTRS{idProduct}=="209b", GROUP="users", MODE="0664"
+    '';
+  };
+
   virtualisation = {
     virtualbox.host.enable = true;
     vmware.host.enable = true;
