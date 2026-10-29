@@ -151,12 +151,12 @@ in
         nssmdns4 = true;
         nssmdns6 = false;
         openFirewall = true;
-        publish = {
-          enable = true;
-          domain = true;
-          addresses = true;
-          workstation = true;
-          userServices = true;
+        settings.publish = {
+          disable-publishing = false;
+          disable-user-service-publishing = false;
+          publish-workstation = true;
+          publish-domain = true;
+          publish-addresses = true;
         };
       };
     };

@@ -6,6 +6,7 @@ in
   acestep-cpp-vulkan = callPackage ./acestep-cpp-vulkan { };
   byfl = callPackage ./byfl { };
   chatgpt = callPackage ./chatgpt { };
+  command-code = callPackage ./command-code { };
 
   cosmic-ext-accounts = callPackage ./cosmic-ext-accounts { };
   cosmic-ext-applet-clipboard-manager = callPackage ./cosmic-ext-applet-clipboard-manager { };
@@ -25,6 +26,7 @@ in
   epic-asset-manager = callPackage ./epic-asset-manager { };
   fan-control = callPackage ./fan-control { };
   gather = callPackage ./gather { };
+  ggml-openvino = callPackage ./ggml-openvino { };
   ggml-sycl = callPackage ./ggml-sycl { };
 
   intel-ccl = callPackage ./intel-ccl { };
@@ -39,7 +41,12 @@ in
 
   kokoros = callPackage ./kokoros { };
   lemonade-server = callPackage ./lemonade-server { };
-  llama-cpp-sycl = callPackage ./llama-cpp-sycl { };
+  llama-cpp-openvino = callPackage ./llama-cpp-system-ggml {
+    ggml = self.ggml-openvino;
+  };
+  llama-cpp-sycl = callPackage ./llama-cpp-system-ggml {
+    ggml = self.ggml-sycl;
+  };
   lottieconv = callPackage ./lottieconv { };
   neural-pixel = callPackage ./neural-pixel { };
   ollama-sycl = callPackage ./ollama-sycl { };

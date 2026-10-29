@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      amberol # simple audio player
+      # broken amberol # simple audio player
       # apostrophe # markdown editor
       # audio-sharing
       # authenticator # generate two-factor codes
@@ -122,7 +122,7 @@ in
       # telegraph # decode morse code
       # textpieces
       turtle # gui for version control in nautilus
-      typewriter # create typst docs
+      typesetter # create typst docs
       # broken upscaler # frontend for upscayl-ncnn
       # video-trimmer
       warp # send and recieve files

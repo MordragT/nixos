@@ -22,6 +22,7 @@ in
       extraPackages = with pkgs; [
         alejandra # nix formater
         beamPackages.expert
+        antigravity-acp
         copilot-language-server
         harper # grammar checker
         kotlin-language-server
@@ -88,21 +89,25 @@ in
           };
 
           inline_assistant_model = {
-            provider = "copilot_chat";
+            provider = "local";
             model = "auto";
           };
 
           commit_message_model = {
-            provider = "copilot_chat";
+            provider = "local";
             model = "auto";
           };
 
           thread_summary_model = {
-            provider = "copilot_chat";
+            provider = "local";
             model = "auto";
           };
 
           favorite_models = [
+            {
+              provider = "local";
+              model = "auto";
+            }
             {
               provider = "copilot_chat";
               model = "auto";
@@ -176,6 +181,11 @@ in
             type = "registry";
           };
 
+          command_code = {
+            command = "${pkgs.command-code}/bin/cmd";
+            args = [ "acp" ];
+          };
+
           github_copilot = {
             type = "registry";
           };
@@ -186,6 +196,7 @@ in
         };
         buffer_font_family = "Geist Mono";
         buffer_font_size = 15;
+        cli_default_open_behavior = "new_window";
         collaboration_panel.dock = "right";
         edit_predictions = {
           mode = "subtle";
@@ -212,7 +223,7 @@ in
           show_parameter_hints = false;
         };
         language_models = {
-          "llama.cpp" = {
+          "local" = {
             api_url = "http://localhost:8080";
             auto_discover = true;
           };

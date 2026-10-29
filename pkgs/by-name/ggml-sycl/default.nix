@@ -20,13 +20,13 @@ let
 in
 intel-llvm.stdenv.mkDerivation (finalAttrs: {
   pname = "ggml";
-  version = "0.23.0";
+  version = "0.27.0";
 
   src = fetchFromGitHub {
     owner = "ggml-org";
     repo = "ggml";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-QArqnQ5//Ft9Knm1Caqz68t4ikNQnk+O+OZUTfZlVCk=";
+    hash = "sha256-a/NtFGX7jYITnj6EWE6+H2eyhsKutn0k4IiStihOagA=";
   };
 
   patches = [

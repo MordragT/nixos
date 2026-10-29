@@ -35,9 +35,9 @@ let
     position=top-right
     output_folder=$XDG_RUNTIME_DIR/mangohud
     fps_limit=0,60,120,180
-    toggle_fps_limit=Super_L+F1
-    toggle_hud=Super_L+F3
-    toggle_logging=Super_L+F4
+    toggle_fps_limit=Shift_R+F1
+    toggle_hud=Shift_R+F3
+    toggle_logging=Shift_R+F4
   '';
 in
 {
