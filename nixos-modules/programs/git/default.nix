@@ -21,6 +21,13 @@ in
           mainUser = config.mordrag.users.main.name;
         in
         ''
+          Host codeberg.org
+            HostName codeberg.org
+            User git
+            IdentityFile /home/${mainUser}/.ssh/id_ed25519
+            IdentitiesOnly yes
+            IdentityAgent none
+
           Host github.com
             HostName github.com
             User git

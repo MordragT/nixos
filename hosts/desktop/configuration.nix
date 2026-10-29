@@ -44,12 +44,24 @@
         state.enable = true;
         xdg.enable = true;
         packages = with pkgs; [
+          # Artcraft
+          photocraft
+          pdfcraft
+          deckcraft
+          soundcraft
+          wordcraft
+          gridcraft
+          lightcraft
+          vectorcraft
+          cadcraft
+
           antigravity-cli
           audacity
           # broken beekeeper-studio # sql client
           blender # 3d modeling
           blockbench # 3d modeling for games
           cemu # wii u emulator
+          command-code
           discord
           gather
           gh # github cli
@@ -70,7 +82,6 @@
           qbittorrent # download torrents
           slack
           spotify
-          stirling-pdf-desktop
           teamfight-tactics
           teams-for-linux # microsoft teams
           unrar

@@ -8,7 +8,7 @@
   ninja,
   nodejs,
   npmHooks,
-  ggml-sycl,
+  ggml,
   openssl,
   curl,
 }:
@@ -17,18 +17,18 @@ let
 
   # Upstream reads these from git, which the release tarball does not ship.
   # They are purely informational: `llama-server --version`, `/props`, and the web UI.
-  buildNumber = "10809";
-  buildCommit = "5266f24";
+  buildNumber = "11669";
+  buildCommit = "620d222";
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "llama-cpp";
-  version = "0.4.0";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
     owner = "ggerganov";
     repo = "llama.cpp";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-WImZjO3U9EXZUNP/FMpxo8PaTjQW8X2SBTfGwwFlZIM=";
+    hash = "sha256-pEDYgI3AMTU+cekvRX7NNt5wddznydQSNuerswvEpsA=";
   };
 
   patches = [ ];
@@ -42,7 +42,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    ggml-sycl
+    ggml
     openssl
     curl
   ];
@@ -58,7 +58,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   npmRoot = "tools/ui";
-  npmDepsHash = "sha256-2Q7XhaLAArmviOLdQsNbYTfdyDE5pW9lR26cRHEVl9k=";
+  npmDepsHash = "sha256-hqYzdp1FwPhYkBP278fQXgY9NCKB6Q3P6Gko7BfP0m0=";
   npmDeps = fetchNpmDeps {
     name = "${finalAttrs.pname}-${finalAttrs.version}-npm-deps";
     inherit (finalAttrs) src patches;

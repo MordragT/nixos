@@ -36,6 +36,7 @@ in
 
           ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
         '';
+        loadSessionVariables = false;
         envFile.source = ./env.nu;
         configFile.text = ''
           # plugin use formats
