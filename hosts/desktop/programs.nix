@@ -27,12 +27,13 @@
     thunderbird.enable = true;
   };
 
-  security.wrappers.samply = {
-    source = "${pkgs.samply}/bin/samply";
-    owner = "root";
-    group = "wheel";
-    permissions = "0750";
-    capabilities = "cap_perfmon=ep";
-  };
+  # broken
+  # security.wrappers.samply = {
+  #   source = "${pkgs.samply}/bin/samply";
+  #   owner = "root";
+  #   group = "wheel";
+  #   permissions = "0750";
+  #   capabilities = "cap_perfmon=ep";
+  # };
 
 }

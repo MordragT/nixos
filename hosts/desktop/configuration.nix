@@ -45,15 +45,15 @@
         xdg.enable = true;
         packages = with pkgs; [
           # Artcraft
-          photocraft
-          pdfcraft
-          deckcraft
-          soundcraft
-          wordcraft
-          gridcraft
-          lightcraft
-          vectorcraft
-          cadcraft
+          # photocraft
+          # pdfcraft
+          # deckcraft
+          # soundcraft
+          # wordcraft
+          # gridcraft
+          # lightcraft
+          # vectorcraft
+          # cadcraft
 
           antigravity-cli
           audacity

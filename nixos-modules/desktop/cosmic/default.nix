@@ -47,7 +47,7 @@ in
       cosmic-ext-applet-privacy-indicator
       # cosmic-ext-applet-system-monitor
       # broken cosmic-ext-applet-tailscale
-      cosmic-ext-applet-weather
+      # broken cosmic-ext-applet-weather
 
       # cosmic-ext-accounts
       # cosmic-ext-calendar
@@ -62,7 +62,7 @@ in
       # chronos
       cutecosmic
       examine
-      fan-control
+      # broken fan-control
       forecast
       lswt # list wayland top-levels (windows)
       oboete
