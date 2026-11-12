@@ -78,6 +78,6 @@
 
   virtualisation = {
     virtualbox.host.enable = true;
-    vmware.host.enable = true;
+    # broken vmware.host.enable = true;
   };
 }

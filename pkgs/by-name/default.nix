@@ -82,6 +82,7 @@ in
   pla-util = callPackage ./pla-util { };
   proton-cachyos-bin = callPackage ./proton-cachyos-bin { };
 
+  snappea = callPackage ./snappea { };
   spflashtool = callPackage ./spflashtool { };
   spflashtool-v5 = callPackage ./spflashtool-v5 { };
   stable-diffusion-cpp-sycl = callPackage ./stable-diffusion-cpp-sycl { };
